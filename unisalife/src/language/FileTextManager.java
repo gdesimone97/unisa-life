@@ -67,6 +67,6 @@ public class FileTextManager extends TextManager {
 
     @Override
     public String getString() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return fileTextFinder.getString();
     }
 }
