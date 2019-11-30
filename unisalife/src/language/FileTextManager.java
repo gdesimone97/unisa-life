@@ -67,7 +67,7 @@ public class FileTextManager extends TextManager {
     }
 
     @Override
-    public List<String> getString() {
+    public List<String> getString() throws StringNotFoundException{
         return fileTextFinder.getString();
     }
 }
