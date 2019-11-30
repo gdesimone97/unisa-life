@@ -11,7 +11,12 @@ import java.util.Set;
  * @author Giuseppe De Simone
  */
 public abstract class TextManager extends LanguageManager implements TextFinder{
-    public abstract Set getAvailableLanguages();
-    public abstract Set getCurrentLanguage();
-    public abstract void setLanguage(String);
+    @Override
+    public abstract Set<String> getAvailableLanguages();
+    @Override
+    public abstract String getCurrentLanguage();
+    @Override
+    public abstract void setLanguage(String lang);
+    @Override
+    public abstract String getString();
 }
