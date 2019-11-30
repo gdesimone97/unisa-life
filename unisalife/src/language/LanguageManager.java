@@ -4,11 +4,16 @@
  * and open the template in the editor.
  */
 package language;
-
+import java.util.Set;
 /**
  *
- * @author desio
+ * @author Giuseppe De Simone
  */
-public abstract class LanguageManager {
+abstract class LanguageManager {
+    private String currentLanguage;
+    private String availableLanguages;
     
+    public abstract Set<String> getAvailableLanguages();
+    public abstract String getCurrentLanguage();
+    public abstract void setLanguage(String lang);
 }
