@@ -56,7 +56,7 @@ public class FileTextManager extends TextManager {
     public void setLanguage(String lang) throws LanguageSelectedNotAvailableException{
         Set<String> availableLanguages = fileLanguageManager.getAvailableLanguages();
         for (String languageAvailable: availableLanguages){
-            if(lang == languageAvailable){
+            if(lang.equals(languageAvailable)){
                 fileLanguageManager.setLanguage(lang);
                 fileTextFinder.setFileName(lang+FORMAT);
                 return;
