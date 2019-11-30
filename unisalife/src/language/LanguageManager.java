@@ -4,19 +4,24 @@
  * and open the template in the editor.
  */
 package language;
+
 import java.util.Set;
 
 /**
  *
  * @author Giuseppe De Simone
  */
-public abstract class TextManager extends LanguageManager implements TextFinder{
-    @Override
+abstract class LanguageManager {
+
+    private String currentLanguage;
+
     public abstract Set<String> getAvailableLanguages();
-    @Override
-    public abstract String getCurrentLanguage();
-    @Override
-    public abstract void setLanguage(String lang);
-    @Override
-    public abstract String getString();
+
+    public String getCurrentLanguage() {
+        return currentLanguage;
+    }
+
+    public void setLanguage(String lang) {
+        this.currentLanguage = lang;
+    }
 }
