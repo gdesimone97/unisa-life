@@ -6,6 +6,8 @@
  */
 package language;
 
+import language.exceptions.FileNotSetException;
+
 /**
  * Abstract class that implements the mechanism to search for text in a file.
  *
