@@ -11,6 +11,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.HashSet;
 import java.util.Scanner;
+import language.exception.NoLanguegesFileFoundException;
 
 /**
  *
@@ -18,15 +19,26 @@ import java.util.Scanner;
  */
 class FileLanguageManager extends LanguageManager {
 
-    private static final FileLanguageManager instance = new FileLanguageManager();
+    private static FileLanguageManager instance = null;
     private HashMap<String, String> fileLanguagesMap = new HashMap<>();
 
-    private FileLanguageManager() {
+    private FileLanguageManager() throws NoLanguegesFileFoundException {
         super();
         getFileLanguages();
     }
 
-    public static FileLanguageManager getLanguageManager() {
+    static {
+        try {
+            instance = new FileLanguageManager();
+        } catch (NoLanguegesFileFoundException ex) {
+            instance = null;
+        }
+    }
+
+    public static FileLanguageManager getLanguageManager() throws NoLanguegesFileFoundException{
+        if(instance == null) {
+            throw new NoLanguegesFileFoundException();
+        }
         return instance;
     }
 
@@ -40,7 +52,7 @@ class FileLanguageManager extends LanguageManager {
         return langsSet;
     }
 
-    private void getFileLanguages() {
+    private void getFileLanguages() throws NoLanguegesFileFoundException {
         final String PATH_STRING = "..//lang";
         Path dir = Paths.get(PATH_STRING);
         try (DirectoryStream<Path> stream = Files.newDirectoryStream(dir)) {
@@ -54,6 +66,9 @@ class FileLanguageManager extends LanguageManager {
         } catch (Exception ex) {
             ex.printStackTrace();
             System.out.println("Error listing files");
+        }
+        if (this.fileLanguagesMap.size() == 0) {
+            throw new NoLanguegesFileFoundException();
         }
     }
 }
