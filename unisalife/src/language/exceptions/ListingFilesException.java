@@ -3,28 +3,28 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package language.exception;
+package language.exceptions;
 
 /**
  *
  * @author Giuseppe De Simone
  */
-public class NoLanguegesFileFoundException extends Exception {
+public class ListingFilesException extends Exception {
 
     /**
-     * Creates a new instance of <code>NoLanguegesFileFound</code> without
+     * Creates a new instance of <code>ListingFilesException</code> without
      * detail message.
      */
-    public NoLanguegesFileFoundException() {
+    public ListingFilesException() {
     }
 
     /**
-     * Constructs an instance of <code>NoLanguegesFileFound</code> with the
+     * Constructs an instance of <code>ListingFilesException</code> with the
      * specified detail message.
      *
      * @param msg the detail message.
      */
-    public NoLanguegesFileFoundException(String msg) {
+    public ListingFilesException(String msg) {
         super(msg);
     }
 }
