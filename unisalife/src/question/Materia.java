@@ -3,13 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Questions;
+package question;
 
 /**
  *
  * @author 1997g
  */
-public interface QuestionsIterator {
-    public boolean hasNext();
-    public Question next();
+public enum Materia {
+    matematica,
+    fisica, 
+    programmazioneadoggetti,
+    retidicalcolatori,
+    database;
 }
