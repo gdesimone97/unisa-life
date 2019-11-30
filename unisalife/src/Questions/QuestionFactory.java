@@ -17,6 +17,5 @@ public abstract class QuestionFactory {
     }
     
     public abstract Questions getQuestions();
-    public abstract Questions parseQuestions(String[] str);
     
 }
