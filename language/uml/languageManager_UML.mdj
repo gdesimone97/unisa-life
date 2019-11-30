@@ -3777,6 +3777,35 @@
 								"$ref": "AAAAAAFuu4LC8xvR8LA="
 							},
 							"points": "708:648;708:696;984:696"
+						},
+						{
+							"_type": "UMLNoteView",
+							"_id": "AAAAAAFuu7qD+msHAIQ=",
+							"_parent": {
+								"$ref": "AAAAAAFF+qBtyKM79qY="
+							},
+							"font": "Arial;13;0",
+							"left": 1001.4189453125,
+							"top": 552,
+							"width": 279.39697265625,
+							"height": 51,
+							"text": "getFileTextFinder = CacheFileTextFinder.getCacheFileTextFinder"
+						},
+						{
+							"_type": "UMLNoteLinkView",
+							"_id": "AAAAAAFuu7qEoWsc1es=",
+							"_parent": {
+								"$ref": "AAAAAAFF+qBtyKM79qY="
+							},
+							"font": "Arial;13;0",
+							"head": {
+								"$ref": "AAAAAAFuu7qD+msHAIQ="
+							},
+							"tail": {
+								"$ref": "AAAAAAFut0Mv2B0FCpc="
+							},
+							"lineStyle": 1,
+							"points": "932:607;1000:597"
 						}
 					]
 				},
