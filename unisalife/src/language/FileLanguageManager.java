@@ -22,7 +22,8 @@ class FileLanguageManager extends LanguageManager {
 
     private static FileLanguageManager instance = null;
     private HashMap<String, String> fileLanguagesMap = new HashMap<>();
-
+    private final String FORMAT = ".txt";
+    
     private FileLanguageManager() throws NoLanguegesFileFoundException, ListingFilesException {
         super();
         getFileLanguages();
@@ -61,14 +62,14 @@ class FileLanguageManager extends LanguageManager {
             for (Path file : stream) {
                 String fileName = file.getFileName().toString();
                 Scanner sc = new Scanner(fileName);
-                sc.useDelimiter(".txt");
+                sc.useDelimiter(FORMAT);
                 String lang = sc.next();
                 this.fileLanguagesMap.put(fileName, lang);
             }
         } catch (IOException ex) {
             throw new ListingFilesException();
         }
-        if (this.fileLanguagesMap.size() == 0) {
+        if (this.fileLanguagesMap.isEmpty()) {
             throw new NoLanguegesFileFoundException();
         }
     }
