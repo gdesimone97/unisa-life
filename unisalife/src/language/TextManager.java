@@ -9,6 +9,6 @@ package language;
  *
  * @author desio
  */
-public class TextManager {
+public abstract class TextManager {
     
 }
