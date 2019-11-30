@@ -14,7 +14,7 @@ import java.util.LinkedList;
  * @author simon
  */
 public class Handler {
-    public LinkedList<GameObject> objects=Game.actualMap.getList();
+    public LinkedList<GameObject> objects=Game.maps[Game.actualMap].getList();
     //private TileMap map;
     
     public Handler(){
@@ -35,7 +35,7 @@ public class Handler {
     }
     
     public void render(Graphics2D g){
-        Game.actualMap.getTileMap().render(g);
+        Game.maps[Game.actualMap].getTileMap().render(g);
         
         /*for(int i=0;i < objects.size();i++){
             tempObj=objects.get(i);

@@ -7,6 +7,7 @@
 import java.util.LinkedList;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
 /**
  *
  * @author simon
@@ -14,8 +15,8 @@ import java.awt.Rectangle;
 public abstract class GameObject {
     protected float x,y;
     protected ObjectId id;
-    protected float velX=0,velY=0;
-    protected int width=32,height=32;
+    protected BufferedImage facingDownImage;
+    protected static int width=Game.dimensionSprite,height=Game.dimensionSprite;
     
     public GameObject(float x,float y, ObjectId id){
         this.x=x;
@@ -43,32 +44,17 @@ public abstract class GameObject {
         this.y=y;
     }
     
-    public float getVelX(){
-        return velX;
-    }
-    
-    public float getVelY(){
-        return velY;
-    }
-    
-    public void setVelX(float velX){
-        this.velX=velX;
-    }
-    
-    public void setVelY(float velY){
-        this.velY=velY;
-    }
     
     public ObjectId getId() {
         return this.id;
     }
-    public int getHeight(){
+    /*public int getHeight(){
         return this.height;
     }
     public int getWidth(){
         return this.width;
     }
-    
+    */
     public Rectangle getBounds(){
         return new Rectangle((int)x,(int)y,(int)width,(int)height);
     }

@@ -1,3 +1,5 @@
+
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -15,7 +17,7 @@ import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import javax.imageio.ImageIO;
-import java.util.HashMap;
+
 
 
 public class TileMap {
@@ -84,7 +86,7 @@ public class TileMap {
 							tileSize,
 							tileSize
 						);
-				tiles[0][col] = new Tile(subimage, Tile.NORMAL);
+				tiles[0][col] = new Tile(subimage);
                                // MatrixToTiles.put(new Tuple(row,col),)
                                 
 				subimage = tileset.getSubimage(
@@ -93,7 +95,7 @@ public class TileMap {
 							tileSize,
 							tileSize
 						);
-				tiles[1][col] = new Tile(subimage, Tile.BLOCKED);
+				tiles[1][col] = new Tile(subimage);
 			}
 			
 		}
@@ -140,20 +142,16 @@ public class TileMap {
 		}
 		
 	}
-	
+        public int getWidth() { return width; }
+	public int getHeight() { return height; }
+	/*
 	public int getTileSize() { return tileSize; }
 	public int getx() { return x; }
 	public int gety() { return y; }
-	public int getWidth() { return width; }
-	public int getHeight() { return height; }
+	
 	public int getNumRows() { return numRows; }
 	public int getNumCols() { return numCols; }
-	public int getType(int row, int col) {
-		int rc = map[row][col];
-		int r = rc / numTilesOriz;
-		int c = rc % numTilesOriz;
-		return tiles[r][c].getType();
-	}
+	
 	public int getIndex(int row, int col) {
 		return map[row][col];
 	}
@@ -221,7 +219,7 @@ public class TileMap {
 		else moving = false;
 		
 	}
-	
+	*/
 	public void render(Graphics2D g) {
 		/*System.out.println("row off"+rowOffset);
                 System.out.println("col off"+colOffset);

@@ -9,7 +9,9 @@
  *
  * @author simon
  */
-public enum State {
-    Menu(),
-    Game();
+public enum Facing {
+    Down(),
+    Up(),
+    Left(),
+    Right();
 }

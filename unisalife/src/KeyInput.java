@@ -28,26 +28,14 @@ public class KeyInput extends KeyAdapter {
         int k=e.getKeyCode();
         if(k==KeyEvent.VK_ESCAPE)
                 System.exit(0);
-        if(Game.state==State.Game){
-            if(k==KeyEvent.VK_M)Game.state=State.Menu;
-            if(k==KeyEvent.VK_RIGHT) Game.player.setVelX(vel);
-            if(k==KeyEvent.VK_LEFT) Game.player.setVelX(-vel);
-            if(k==KeyEvent.VK_DOWN) Game.player.setVelY(vel);
-            if(k==KeyEvent.VK_UP) Game.player.setVelY(-vel);
-        }
-        else{
-            if(Game.state==State.Menu)
-                if(k==KeyEvent.VK_M)Game.state=State.Game;
-        }
+        Game.state.performPressAction(k);
+        
     }
     
     @Override
     public void keyReleased(KeyEvent e){
         int k=e.getKeyCode();
-        if(k==KeyEvent.VK_RIGHT) Game.player.setVelX(0);
-        if(k==KeyEvent.VK_LEFT) Game.player.setVelX(0);
-        if(k==KeyEvent.VK_DOWN) Game.player.setVelY(0);
-        if(k==KeyEvent.VK_UP) Game.player.setVelY(0);
+        Game.state.performReleaseAction(k);
     }
     
 }

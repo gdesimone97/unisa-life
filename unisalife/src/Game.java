@@ -33,26 +33,52 @@ public class Game extends Canvas implements Runnable {
     public boolean isRunning = false;
     public Thread thread;
     static Handler handler;
-    Camera camera;
+    static Camera camera;
+    public static BufferedImage[] texturePlayer;
     //public static int WIDTH=Toolkit.getDefaultToolkit().getScreenSize().width,HEIGHT=Toolkit.getDefaultToolkit().getScreenSize().height;
     public static int WIDTHSCREEN=500,HEIGHTSCREEN=500, HEIGHTSCREEN2 = HEIGHTSCREEN + 32;
-    public static int WIDTHMAP=928,HEIGHTMAP=928;
+    public static int WIDTHMAP=928,HEIGHTMAP=928,speed=2;
+    public static final int dimensionSprite=32;
     public double AMOUNTOFTICKS = 30.0;
-    Menu menu;
-    static State state=State.Menu;
+   
+    static Menu menu;
+    static GameState state=new MenuState();
     static Map[] maps=new Map[5];
-    static Map actualMap;
+    static int actualMap;
     static TileMap tileMap;
     static Player player;
     
     private void tick(){
-        if(state==State.Game){
-            handler.tick();
-            camera.tick(Game.player);
-        }
+        state.tick();
     }
     
-    private void initMaps(){
+    
+    /**
+     * ciao
+     */
+    private void initResources(){
+        texturePlayer=new BufferedImage[12];
+        try {
+        BufferedImage characterImage= ImageIO.read(
+				getClass().getResourceAsStream("/Sprites/character.png")
+        );
+        texturePlayer[0]=characterImage.getSubimage(32,0, dimensionSprite, dimensionSprite);
+        texturePlayer[1]=characterImage.getSubimage(0,0, dimensionSprite, dimensionSprite);
+        texturePlayer[2]=characterImage.getSubimage(64,0, dimensionSprite, dimensionSprite);
+        texturePlayer[3]=characterImage.getSubimage(32,32, dimensionSprite, dimensionSprite);
+        texturePlayer[4]=characterImage.getSubimage(0,32, dimensionSprite, dimensionSprite);
+        texturePlayer[5]=characterImage.getSubimage(64,32, dimensionSprite, dimensionSprite);
+        texturePlayer[6]=characterImage.getSubimage(32,64, dimensionSprite, dimensionSprite);
+        texturePlayer[7]=characterImage.getSubimage(0,64, dimensionSprite, dimensionSprite);
+        texturePlayer[8]=characterImage.getSubimage(64,64, dimensionSprite, dimensionSprite);
+        texturePlayer[9]=characterImage.getSubimage(32,96, dimensionSprite, dimensionSprite);
+        texturePlayer[10]=characterImage.getSubimage(0,96, dimensionSprite, dimensionSprite);
+        texturePlayer[11]=characterImage.getSubimage(64,96, dimensionSprite, dimensionSprite);
+    }
+        
+        catch (Exception e) {
+            System.exit(4);
+    }
         TileMap t0  = new TileMap(32,928,928);
         t0.loadTiles("/Tilesets/tileset.gif");
 	TileMap t1 = new TileMap(32,928,928);
@@ -62,19 +88,24 @@ public class Game extends Canvas implements Runnable {
         maps[0]=new Map(t0);
         maps[0].addObject(new Block(150,150,ObjectId.Block));
         maps[0].addObject(new Teleport(250,250,ObjectId.Teleport,"Tileset/tileset.gif",1,new Destination(20,20)));   
-        
         maps[1]=new Map(t1);
         maps[1].addObject(new Block(100,70,ObjectId.Block));
         maps[1].addObject(new Block(70,40,ObjectId.Block));
+        
     }
     
     private void init(){
         
-        initMaps();
-        actualMap = maps[0];
-        WIDTHMAP=actualMap.getTileMap().getWidth();
-        HEIGHTMAP=actualMap.getTileMap().getHeight();
-        player=new Player(50,50,ObjectId.Player);
+        initResources();
+        player=new Player(50,50,ObjectId.Player,new Animation(texturePlayer[10],texturePlayer[11]),
+                new Animation(texturePlayer[1],texturePlayer[2]),
+                new Animation(texturePlayer[4],texturePlayer[5]),
+                new Animation(texturePlayer[7],texturePlayer[8])
+        );
+        
+        actualMap = 0;
+        WIDTHMAP=maps[actualMap].getTileMap().getWidth();
+        HEIGHTMAP=maps[actualMap].getTileMap().getHeight();
         menu=new Menu();
         handler = new Handler(/*actualMap.getList()*/);
         //handler.addObject(player);
@@ -127,10 +158,11 @@ public class Game extends Canvas implements Runnable {
         }
         Graphics g = bs.getDrawGraphics();
         Graphics2D g2d = (Graphics2D)g;
-        if(state==State.Game){
+        state.render(g);
+        /*if(state==State.Game){
             g.setColor(Color.white);
             g.fillRect(0, 0, WIDTHSCREEN, HEIGHTSCREEN2);
-        /*    BufferedImage image=null;
+            BufferedImage image=null;
             try
         {
           image=ImageIO.read(new File("C:\\Users\\simon\\Desktop\\casa.png"));
@@ -141,7 +173,7 @@ public class Game extends Canvas implements Runnable {
           e.printStackTrace();
           System.exit(1);
         }
-               */
+               
             g2d.translate(camera.getX(), camera.getY());
             handler.render(g2d);
             g2d.translate(-camera.getX(), -camera.getY());
@@ -151,6 +183,7 @@ public class Game extends Canvas implements Runnable {
             g.fillRect(0,0,WIDTHSCREEN,HEIGHTSCREEN2 );
             menu.render(g);
         }
+        */
         g.dispose();
         bs.show();
         
