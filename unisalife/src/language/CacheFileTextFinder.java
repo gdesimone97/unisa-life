@@ -6,6 +6,8 @@
  */
 package language;
 
+import language.exceptions.StringNotFoundException;
+import language.exceptions.FileNotSetException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

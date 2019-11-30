@@ -6,6 +6,8 @@
 */
 package language;
 
+import language.exceptions.StringNotFoundException;
+import language.exceptions.FileNotSetException;
 import java.util.List;
 
 /**
