@@ -7,15 +7,15 @@ package language.exception;
 
 /**
  *
- * @author desio
+ * @author Giuseppe De Simone
  */
-public class NoLanguegesFileFound extends Exception {
+public class NoLanguegesFileFoundException extends Exception {
 
     /**
      * Creates a new instance of <code>NoLanguegesFileFound</code> without
      * detail message.
      */
-    public NoLanguegesFileFound() {
+    public NoLanguegesFileFoundException() {
     }
 
     /**
@@ -24,7 +24,7 @@ public class NoLanguegesFileFound extends Exception {
      *
      * @param msg the detail message.
      */
-    public NoLanguegesFileFound(String msg) {
+    public NoLanguegesFileFoundException(String msg) {
         super(msg);
     }
 }
