@@ -5,13 +5,14 @@
  */
 package language;
 
+import java.io.IOException;
 import java.nio.file.*;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.HashSet;
 import java.util.Scanner;
-import language.exception.NoLanguegesFileFoundException;
+import language.exception.*;
 
 /**
  *
@@ -22,7 +23,7 @@ class FileLanguageManager extends LanguageManager {
     private static FileLanguageManager instance = null;
     private HashMap<String, String> fileLanguagesMap = new HashMap<>();
 
-    private FileLanguageManager() throws NoLanguegesFileFoundException {
+    private FileLanguageManager() throws NoLanguegesFileFoundException, ListingFilesException {
         super();
         getFileLanguages();
     }
@@ -30,14 +31,15 @@ class FileLanguageManager extends LanguageManager {
     static {
         try {
             instance = new FileLanguageManager();
-        } catch (NoLanguegesFileFoundException ex) {
+        } catch (NoLanguegesFileFoundException | ListingFilesException ex) {
+            ex.printStackTrace();
             instance = null;
         }
     }
 
-    public static FileLanguageManager getLanguageManager() throws NoLanguegesFileFoundException{
+    public static FileLanguageManager getLanguageManager() throws NoFileLanguageManagerCreatedException{
         if(instance == null) {
-            throw new NoLanguegesFileFoundException();
+            throw new NoFileLanguageManagerCreatedException();
         }
         return instance;
     }
@@ -52,7 +54,7 @@ class FileLanguageManager extends LanguageManager {
         return langsSet;
     }
 
-    private void getFileLanguages() throws NoLanguegesFileFoundException {
+    private void getFileLanguages() throws NoLanguegesFileFoundException, ListingFilesException {
         final String PATH_STRING = "..//lang";
         Path dir = Paths.get(PATH_STRING);
         try (DirectoryStream<Path> stream = Files.newDirectoryStream(dir)) {
@@ -63,9 +65,8 @@ class FileLanguageManager extends LanguageManager {
                 String lang = sc.next();
                 this.fileLanguagesMap.put(fileName, lang);
             }
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            System.out.println("Error listing files");
+        } catch (IOException ex) {
+            throw new ListingFilesException();
         }
         if (this.fileLanguagesMap.size() == 0) {
             throw new NoLanguegesFileFoundException();
