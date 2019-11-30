@@ -6,6 +6,7 @@
 package language;
 
 import java.util.Set;
+import language.exceptions.*
 
 /**
  *
@@ -21,7 +22,7 @@ abstract class LanguageManager {
         return currentLanguage;
     }
 
-    public void setLanguage(String lang) {
+    public void setLanguage(String lang) throws LanguageSelectedNotAvailableException{
         this.currentLanguage = lang;
     }
 }
