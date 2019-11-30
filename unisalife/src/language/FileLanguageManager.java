@@ -12,12 +12,10 @@ import java.util.Map;
 import java.util.Set;
 import java.util.HashSet;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
- * @author desio
+ * @author Giuseppe De Simone
  */
 class FileLanguageManager extends LanguageManager {
 
@@ -26,6 +24,7 @@ class FileLanguageManager extends LanguageManager {
 
     private FileLanguageManager() {
         super();
+        getFileLanguages();
     }
 
     public static FileLanguageManager getLanguageManager() {
@@ -41,20 +40,20 @@ class FileLanguageManager extends LanguageManager {
         }
         return langsSet;
     }
-    
-    private void getFileLanguages(){
+
+    private void getFileLanguages() {
         final String PATH_STRING = ".//lang";
         Path dir = Paths.get(PATH_STRING);
         try (DirectoryStream<Path> stream = Files.newDirectoryStream(dir)) {
-            for (Path file: stream){
+            for (Path file : stream) {
                 String fileName = file.getFileName().toString();
                 Scanner sc = new Scanner(fileName);
                 sc.useDelimiter(".");
                 String lang = sc.next();
-                this.fileLanguagesMap.put(fileName,lang );
+                this.fileLanguagesMap.put(fileName, lang);
             }
         } catch (IOException ex) {
-           System.out.println("Error listing files");
+            System.out.println("Error listing files");
         }
     }
 }
