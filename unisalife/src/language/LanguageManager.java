@@ -14,7 +14,6 @@ import java.util.Set;
 abstract class LanguageManager {
 
     private String currentLanguage;
-    private String availableLanguages;
 
     public abstract Set<String> getAvailableLanguages();
 
@@ -23,6 +22,6 @@ abstract class LanguageManager {
     }
 
     public void setLanguage(String lang) {
-        this.availableLanguages = lang;
+        this.currentLanguage = lang;
     }
 }
