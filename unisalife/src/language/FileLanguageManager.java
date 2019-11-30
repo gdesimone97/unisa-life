@@ -20,7 +20,7 @@ import java.util.Scanner;
 class FileLanguageManager extends LanguageManager {
 
     private static final FileLanguageManager instance = new FileLanguageManager();
-    private HashMap<String, String> fileLanguagesMap;
+    private HashMap<String, String> fileLanguagesMap = new HashMap<>();
 
     private FileLanguageManager() {
         super();
@@ -42,17 +42,18 @@ class FileLanguageManager extends LanguageManager {
     }
 
     private void getFileLanguages() {
-        final String PATH_STRING = ".//lang";
+        final String PATH_STRING = "..//lang";
         Path dir = Paths.get(PATH_STRING);
         try (DirectoryStream<Path> stream = Files.newDirectoryStream(dir)) {
             for (Path file : stream) {
                 String fileName = file.getFileName().toString();
                 Scanner sc = new Scanner(fileName);
-                sc.useDelimiter(".");
+                sc.useDelimiter(".txt");
                 String lang = sc.next();
                 this.fileLanguagesMap.put(fileName, lang);
             }
-        } catch (IOException ex) {
+        } catch (Exception ex) {
+            ex.printStackTrace();
             System.out.println("Error listing files");
         }
     }
