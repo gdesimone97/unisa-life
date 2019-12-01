@@ -7,7 +7,7 @@ package language;
 
 import java.util.Iterator;
 import java.util.Set;
-import language.exception.NoLanguegesFileFoundException;
+import language.exceptions.*;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
