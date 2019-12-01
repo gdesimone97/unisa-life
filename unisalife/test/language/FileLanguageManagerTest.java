@@ -5,7 +5,13 @@
  */
 package language;
 
+import java.io.IOException;
+import java.nio.file.DirectoryStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Iterator;
+import java.util.*;
 import java.util.Set;
 import language.exceptions.*;
 import org.junit.After;
@@ -57,10 +63,46 @@ public class FileLanguageManagerTest {
     /**
      * Test of getAvailableLanguages method, of class FileLanguageManager.
      */
+    /*
+    @Ignore
     @Test(expected = NoLanguegesFileFoundException.class)
     public void testGetAvailableLanguagesNoLangueges() throws NoLanguegesFileFoundException, NoFileLanguageManagerCreatedException {
         System.out.print("getAvailableLanguages - test no file in directory ");
         FileLanguageManager result = FileLanguageManager.getLanguageManager();
     }
+     */
+    /**
+     * Test of getLanguageManager method, of class FileLanguageManager.
+     */
+    @Test
+    public void testGetLanguageManager() throws Exception {
+        System.out.println("getLanguageManager");
+        FileLanguageManager expResult = null;
+        FileLanguageManager result = FileLanguageManager.getLanguageManager();
+        assertNotEquals(expResult, result);
+        fail("Da implementare");
+    }
 
+    /**
+     * Test of getAvailableLanguages method, of class FileLanguageManager.
+     */
+    @Test
+    public void testGetAvailableLanguages() throws IOException {
+        System.out.println("getAvailableLanguages");
+        FileLanguageManager instance = null;
+        Set<String> expResult = readDirectory();
+        Set<String> result = instance.getAvailableLanguages();
+        assertEquals(expResult, result);
+    }
+
+    private Set<String> readDirectory() throws IOException {
+        final String PATH_STRING = "..//lang";
+        Path dir = Paths.get(PATH_STRING);
+        DirectoryStream<Path> stream = Files.newDirectoryStream(dir);
+        Set<String> files = new HashSet<>();
+        for (Path file : stream) {
+            files.add(file.getFileName().toString());
+        }
+        return files;
+    }
 }
