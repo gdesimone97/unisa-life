@@ -42,15 +42,13 @@ public class FileTextFinderTest {
      * Test of getFileName method, of class FileTextFinder.
      */
     @Test
-    public void testGetFileNameWithInstance() throws FileNotSetException {
+    public void testGetFileNameWithInstance() throws FileNotSetException, InvalidFileNameException {
         System.out.println("getFileName");
         String fileName = "italiano.xml";
         FileTextFinder finder = FileTextFinder.getFileTextFinder(fileName);
         String expResult = "italiano.xml";
         String result = FileTextFinder.getFileName();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -64,8 +62,6 @@ public class FileTextFinderTest {
         FileTextFinder.setFileName(fileName);
         String result = FileTextFinder.getFileName();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     @Test(expected = FileNotSetException.class)
@@ -74,8 +70,6 @@ public class FileTextFinderTest {
         String expResult = "";
         String result = FileTextFinder.getFileName();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
