@@ -16,7 +16,9 @@ import language.exceptions.FileNotSetException;
 public abstract class FileTextFinder implements TextFinder {
 
     private static String fileName = null;
-
+    
+    private FileTextFinder(){}
+    
     /**
      * @return the common current filename setted for that language
      */
