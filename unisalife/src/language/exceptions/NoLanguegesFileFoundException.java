@@ -6,6 +6,7 @@
 package language.exceptions;
 
 /**
+ * Report to develoepr that the language directory is empty
  *
  * @author Giuseppe De Simone
  */

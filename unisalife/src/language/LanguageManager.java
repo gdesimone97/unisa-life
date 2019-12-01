@@ -42,7 +42,7 @@ abstract class LanguageManager {
      * @throws LanguageSelectedNotAvailableException if the given language is
      * not available
      */
-    public void setLanguage(String lang) throws LanguageSelectedNotAvailableException {
+    public void setLanguage(String lang) throws LanguageSelectedNotAvailableException,FileNotSetException {
         this.currentLanguage = lang;
     }
 }

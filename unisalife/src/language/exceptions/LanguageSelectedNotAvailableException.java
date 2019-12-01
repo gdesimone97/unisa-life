@@ -6,8 +6,9 @@
 package language.exceptions;
 
 /**
+ * Report to developer that the selected language is not available
  *
- * @author desio
+ * @author Giuseppe De Simone
  */
 public class LanguageSelectedNotAvailableException extends Exception {
 

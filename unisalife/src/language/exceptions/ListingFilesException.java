@@ -6,6 +6,8 @@
 package language.exceptions;
 
 /**
+ * Report to developer that something is gone wrong in the reading of directory
+ * that contain the languages files
  *
  * @author Giuseppe De Simone
  */
