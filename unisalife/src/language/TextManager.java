@@ -10,7 +10,9 @@ import java.util.Set;
 import language.exceptions.*;
 
 /**
- *
+ * Abstract class where are defined the main methods that a class have to have
+ * to get the available languages of the game and the current one,
+ * set the language of the game and obtain a set of string respect to a game's object.
  * @author Giuseppe De Simone
  */
 public abstract class TextManager extends LanguageManager implements TextFinder {
