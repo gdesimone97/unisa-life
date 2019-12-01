@@ -53,9 +53,7 @@ public class FileTextManager extends TextManager {
     }
 
     /**
-     * method to get all available languages
-     *
-     * @return a set of all available languages
+     * {@inheritDoc}
      */
     @Override
     public Set<String> getAvailableLanguages() {
@@ -63,9 +61,7 @@ public class FileTextManager extends TextManager {
     }
 
     /**
-     * method to get the current language
-     *
-     * @return a String containing the current language
+     * {@inheritDoc}
      */
     @Override
     public String getCurrentLanguage() {
@@ -73,11 +69,7 @@ public class FileTextManager extends TextManager {
     }
 
     /**
-     * Set the game's language compared to the language given as parameter
-     *
-     * @param lang - language to set
-     * @throws LanguageSelectedNotAvailableException if the given language is
-     * not available
+     * {@inheritDoc}
      */
     @Override
     public void setLanguage(String lang) throws LanguageSelectedNotAvailableException {
@@ -92,6 +84,10 @@ public class FileTextManager extends TextManager {
         throw new LanguageSelectedNotAvailableException();
     }
 
+    /**
+     *
+     * {@inheritDoc}
+     */
     @Override
     public List<String> getString() throws StringNotFoundException {
         return fileTextFinder.getString();
