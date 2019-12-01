@@ -38,7 +38,7 @@ abstract class LanguageManager {
     /**
      * Set the game's language compared to the language given as parameter
      *
-     * @param lang - language to set
+     * @param lang language to set
      * @throws LanguageSelectedNotAvailableException if the given language is
      * not available
      */
