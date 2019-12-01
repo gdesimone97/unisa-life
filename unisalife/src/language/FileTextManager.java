@@ -10,7 +10,8 @@ import java.util.Set;
 import language.exceptions.*;
 
 /**
- *
+ * This class allow: to set the game's language, obtain the available languages and the current one and
+ * get the set of string respect to a game's object.
  * @author Giuseppe De Simone
  */
 public class FileTextManager extends TextManager {
@@ -31,11 +32,17 @@ public class FileTextManager extends TextManager {
 
     private FileTextManager() throws NoFileLanguageManagerCreatedException, FileNotSetException {
         super();
-            fileLanguageManager = FileLanguageManager.getLanguageManager();
-            String filename = fileLanguageManager.getCurrentLanguage() + FORMAT;
-            fileTextFinder = FileTextFinder.getFileTextFinder(filename);
+        fileLanguageManager = FileLanguageManager.getLanguageManager();
+        String filename = fileLanguageManager.getCurrentLanguage() + FORMAT;
+        fileTextFinder = FileTextFinder.getFileTextFinder(filename);
     }
 
+    /**
+     * method to get the instance of FileTextManager
+     *
+     * @return the FileTextManager
+     * @throws FileTextManagerNotCreatedException
+     */
     public static FileTextManager getFileTextManager() throws FileTextManagerNotCreatedException {
         if (instance == null) {
             throw new FileTextManagerNotCreatedException();
@@ -43,16 +50,33 @@ public class FileTextManager extends TextManager {
         return instance;
     }
 
+    /**
+     * method to get all available languages
+     *
+     * @return a set of all available languages
+     */
     @Override
     public Set<String> getAvailableLanguages() {
         return fileLanguageManager.getAvailableLanguages();
     }
 
+    /**
+     * method to get the current language
+     *
+     * @return a String containing the current language
+     */
     @Override
     public String getCurrentLanguage() {
         return fileLanguageManager.getCurrentLanguage();
     }
 
+    /**
+     * Set the game's language compared to the language given as parameter
+     *
+     * @param lang - language to set
+     * @throws LanguageSelectedNotAvailableException if the given language is
+     * not available
+     */
     @Override
     public void setLanguage(String lang) throws LanguageSelectedNotAvailableException {
         Set<String> availableLanguages = fileLanguageManager.getAvailableLanguages();
@@ -67,7 +91,7 @@ public class FileTextManager extends TextManager {
     }
 
     @Override
-    public List<String> getString() throws StringNotFoundException{
+    public List<String> getString() throws StringNotFoundException {
         return fileTextFinder.getString();
     }
 }
