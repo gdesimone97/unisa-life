@@ -10,8 +10,10 @@ import java.util.Set;
 import language.exceptions.*;
 
 /**
- * This class allow: to set the game's language, obtain the available languages and the current one and
- * get the set of string respect to a game's object.
+ * This class extends the abstract class TextManager and specialize his methods
+ * in order to perform the operations of getting strings, setting and obtaining
+ * languages on files
+ *
  * @author Giuseppe De Simone
  */
 public class FileTextManager extends TextManager {
