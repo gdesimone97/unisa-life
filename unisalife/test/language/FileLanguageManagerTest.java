@@ -75,12 +75,11 @@ public class FileLanguageManagerTest {
      * Test of getLanguageManager method, of class FileLanguageManager.
      */
     @Test
-    public void testGetLanguageManager() throws Exception {
+    public void testGetLanguageManager() throws NoFileLanguageManagerCreatedException {
         System.out.println("getLanguageManager");
         FileLanguageManager expResult = null;
         FileLanguageManager result = FileLanguageManager.getLanguageManager();
         assertNotEquals(expResult, result);
-        fail("Da implementare");
     }
 
     /**
