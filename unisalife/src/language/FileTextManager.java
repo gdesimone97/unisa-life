@@ -5,11 +5,15 @@
  */
 package language;
 
+import language.exceptions.FileTextManagerNotCreatedException;
 import java.util.List;
 import java.util.Set;
 import language.exceptions.*;
 
 /**
+ * This class extends the abstract class TextManager and specialize his methods
+ * in order to perform the operations of getting strings, setting and obtaining
+ * languages on files
  *
  * @author Giuseppe De Simone
  */
@@ -31,11 +35,17 @@ public class FileTextManager extends TextManager {
 
     private FileTextManager() throws NoFileLanguageManagerCreatedException, FileNotSetException {
         super();
-            fileLanguageManager = FileLanguageManager.getLanguageManager();
-            String filename = fileLanguageManager.getCurrentLanguage() + FORMAT;
-            fileTextFinder = FileTextFinder.getFileTextFinder(filename);
+        fileLanguageManager = FileLanguageManager.getLanguageManager();
+        String filename = fileLanguageManager.getCurrentLanguage() + FORMAT;
+        fileTextFinder = FileTextFinder.getFileTextFinder(filename);
     }
 
+    /**
+     * Method to get the instance of FileTextManager
+     *
+     * @return the FileTextManager
+     * @throws FileTextManagerNotCreatedException
+     */
     public static FileTextManager getFileTextManager() throws FileTextManagerNotCreatedException {
         if (instance == null) {
             throw new FileTextManagerNotCreatedException();
@@ -43,16 +53,25 @@ public class FileTextManager extends TextManager {
         return instance;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Set<String> getAvailableLanguages() {
         return fileLanguageManager.getAvailableLanguages();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getCurrentLanguage() {
         return fileLanguageManager.getCurrentLanguage();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setLanguage(String lang) throws LanguageSelectedNotAvailableException {
         Set<String> availableLanguages = fileLanguageManager.getAvailableLanguages();
@@ -66,8 +85,12 @@ public class FileTextManager extends TextManager {
         throw new LanguageSelectedNotAvailableException();
     }
 
+    /**
+     *
+     * {@inheritDoc}
+     */
     @Override
-    public List<String> getString() throws StringNotFoundException{
+    public List<String> getString() throws StringNotFoundException {
         return fileTextFinder.getString();
     }
 }
