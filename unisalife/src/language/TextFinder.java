@@ -10,7 +10,7 @@ import language.exceptions.StringNotFoundException;
 import java.util.List;
 
 /**
- *
+ * Interface for a generic class which aim is to find a text to be shown in the game for a given object
  * @author alfon
  */
 interface TextFinder {
