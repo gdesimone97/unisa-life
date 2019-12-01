@@ -27,13 +27,13 @@ public class FileTextManager extends TextManager {
     static {
         try {
             instance = new FileTextManager();
-        } catch (NoFileLanguageManagerCreatedException | FileNotSetException ex) {
+        } catch (NoFileLanguageManagerCreatedException | FileNotSetException | InvalidFileNameException ex) {
             ex.printStackTrace();
             instance = null;
         }
     }
 
-    private FileTextManager() throws NoFileLanguageManagerCreatedException, FileNotSetException {
+    private FileTextManager() throws NoFileLanguageManagerCreatedException, FileNotSetException, InvalidFileNameException {
         super();
         fileLanguageManager = FileLanguageManager.getLanguageManager();
         String filename = fileLanguageManager.getCurrentLanguage() + FORMAT;
