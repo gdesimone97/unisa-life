@@ -89,22 +89,8 @@ public class FileLanguageManagerTest {
     public void testGetAvailableLanguages() throws IOException, NoFileLanguageManagerCreatedException {
         System.out.println("getAvailableLanguages");
         FileLanguageManager instance = FileLanguageManager.getLanguageManager();
-        Set<String> expResult = readDirectory();
+        Set<String> expResult = ReadDirectory.readDirectory();
         Set<String> result = instance.getAvailableLanguages();
         assertEquals(expResult, result);
-    }
-
-    private Set<String> readDirectory() throws IOException {
-        final String PATH_STRING = "..//lang";
-        final String FORMAT = ".txt";
-        Path dir = Paths.get(PATH_STRING);
-        DirectoryStream<Path> stream = Files.newDirectoryStream(dir);
-        Set<String> files = new HashSet<>();
-        for (Path file : stream) {
-            Scanner sc = new Scanner(file.getFileName().toString());
-            sc.useDelimiter(FORMAT);
-            files.add(sc.next());
-        }
-        return files;
     }
 }
