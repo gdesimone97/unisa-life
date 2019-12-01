@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package unisalife;
-import de.gurkenlabs.litiengine.*;
 
 
 /**
@@ -18,8 +17,7 @@ public class Main {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        Game.init();
-        Game.start();
+        
         
     }
     
