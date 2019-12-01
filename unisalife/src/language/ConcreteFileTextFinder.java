@@ -11,7 +11,7 @@ import language.exceptions.FileNotSetException;
 import java.util.List;
 
 /**
- *
+ * 
  * @author alfon
  */
 public class ConcreteFileTextFinder extends FileTextFinder{
@@ -25,9 +25,5 @@ public class ConcreteFileTextFinder extends FileTextFinder{
         return istance;
     }
     
-    @Override
-    public List<String> getString() throws StringNotFoundException{
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
     
 }

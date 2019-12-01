@@ -81,9 +81,8 @@ public class FileTextFinderTest {
         String fileName = "italiano.xml";
         FileTextFinder.setFileName(fileName);
     }
-    
-    
-        /**
+
+    /**
      * Test of setFileName method, of class FileTextFinder.
      */
     @Test
@@ -124,8 +123,8 @@ public class FileTextFinderTest {
     /**
      * Test of getFileTextFinder method, of class FileTextFinder.
      */
-    @Test(expected = FileNotSetException.class)
-    public void testGetFileTextFinderException() throws Exception {
+    @Test(expected = InvalidFileNameException.class)
+    public void testGetFileTextFinderInvalidFileNameException() throws Exception {
         System.out.println("getFileTextFinder");
         String fileName = null;
         FileTextFinder expResult = null;
