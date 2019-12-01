@@ -4,19 +4,26 @@
  * and open the template in the editor.
  */
 package language;
+
+import java.util.List;
 import java.util.Set;
+import language.exceptions.*;
 
 /**
  *
  * @author Giuseppe De Simone
  */
-public abstract class TextManager extends LanguageManager implements TextFinder{
+public abstract class TextManager extends LanguageManager implements TextFinder {
+
     @Override
     public abstract Set<String> getAvailableLanguages();
+
     @Override
     public abstract String getCurrentLanguage();
+
     @Override
-    public abstract void setLanguage(String lang);
+    public abstract void setLanguage(String lang) throws LanguageSelectedNotAvailableException;
+
     @Override
-    public abstract String getString();
+    public abstract List<String> getString() throws StringNotFoundException;
 }
