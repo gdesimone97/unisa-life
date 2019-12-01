@@ -6,6 +6,8 @@
 package language.exceptions;
 
 /**
+ * Report to developer that something is gone wrong in creation of
+ * FileLanguageManager instance
  *
  * @author Giuseppe De Simone
  */
