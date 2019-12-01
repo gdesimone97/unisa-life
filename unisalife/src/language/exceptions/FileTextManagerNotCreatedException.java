@@ -6,7 +6,7 @@
 package language.exceptions;
 
 /**
- * Report to developer that something is gone wrong in the creation of
+ * Report to developer that something has gone wrong in the creation of
  * FileTextManager instamce
  *
  * @author Giuseppe De Simone
