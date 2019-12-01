@@ -135,19 +135,19 @@ public class GameFrame extends javax.swing.JFrame {
         HudPanel.setPreferredSize(new java.awt.Dimension(600, 175));
 
         LevelLabel.setBackground(new java.awt.Color(255, 255, 255));
-        LevelLabel.setIcon(new javax.swing.ImageIcon("C:\\Users\\Davide\\Desktop\\RossoLabel.PNG")); // NOI18N
+        LevelLabel.setIcon(new javax.swing.ImageIcon("C:\\Users\\Davide\\Documents\\GitHub\\unisa-life\\unisalife\\src\\unisagui\\RossoLabel.PNG")); // NOI18N
         LevelLabel.setText(".");
         LevelLabel.setMaximumSize(new java.awt.Dimension(225, 25));
         LevelLabel.setMinimumSize(new java.awt.Dimension(225, 25));
         LevelLabel.setPreferredSize(new java.awt.Dimension(225, 25));
 
-        MoneyIcon.setIcon(new javax.swing.ImageIcon("C:\\Users\\Davide\\Desktop\\RossoLabel.PNG")); // NOI18N
+        MoneyIcon.setIcon(new javax.swing.ImageIcon("C:\\Users\\Davide\\Documents\\GitHub\\unisa-life\\unisalife\\src\\unisagui\\RossoLabel.PNG")); // NOI18N
         MoneyIcon.setText("jLabel2");
         MoneyIcon.setMaximumSize(new java.awt.Dimension(25, 25));
         MoneyIcon.setMinimumSize(new java.awt.Dimension(25, 25));
         MoneyIcon.setPreferredSize(new java.awt.Dimension(25, 25));
 
-        MoneyLabel.setIcon(new javax.swing.ImageIcon("C:\\Users\\Davide\\Desktop\\RossoLabel.PNG")); // NOI18N
+        MoneyLabel.setIcon(new javax.swing.ImageIcon("C:\\Users\\Davide\\Documents\\GitHub\\unisa-life\\unisalife\\src\\unisagui\\RossoLabel.PNG")); // NOI18N
         MoneyLabel.setText("jLabel3");
         MoneyLabel.setMaximumSize(new java.awt.Dimension(125, 25));
         MoneyLabel.setMinimumSize(new java.awt.Dimension(125, 25));
@@ -157,19 +157,19 @@ public class GameFrame extends javax.swing.JFrame {
         EnergyProgressBar.setMinimumSize(new java.awt.Dimension(150, 25));
         EnergyProgressBar.setPreferredSize(new java.awt.Dimension(150, 25));
 
-        EnergyIcon.setIcon(new javax.swing.ImageIcon("C:\\Users\\Davide\\Desktop\\RossoLabel.PNG")); // NOI18N
+        EnergyIcon.setIcon(new javax.swing.ImageIcon("C:\\Users\\Davide\\Documents\\GitHub\\unisa-life\\unisalife\\src\\unisagui\\RossoLabel.PNG")); // NOI18N
         EnergyIcon.setText("jLabel2");
         EnergyIcon.setMaximumSize(new java.awt.Dimension(25, 25));
         EnergyIcon.setMinimumSize(new java.awt.Dimension(25, 25));
         EnergyIcon.setPreferredSize(new java.awt.Dimension(25, 25));
 
-        StressIcon.setIcon(new javax.swing.ImageIcon("C:\\Users\\Davide\\Desktop\\RossoLabel.PNG")); // NOI18N
+        StressIcon.setIcon(new javax.swing.ImageIcon("C:\\Users\\Davide\\Documents\\GitHub\\unisa-life\\unisalife\\src\\unisagui\\RossoLabel.PNG")); // NOI18N
         StressIcon.setText("jLabel2");
         StressIcon.setMaximumSize(new java.awt.Dimension(25, 25));
         StressIcon.setMinimumSize(new java.awt.Dimension(25, 25));
         StressIcon.setPreferredSize(new java.awt.Dimension(25, 25));
 
-        SleepIcon.setIcon(new javax.swing.ImageIcon("C:\\Users\\Davide\\Desktop\\RossoLabel.PNG")); // NOI18N
+        SleepIcon.setIcon(new javax.swing.ImageIcon("C:\\Users\\Davide\\Documents\\GitHub\\unisa-life\\unisalife\\src\\unisagui\\RossoLabel.PNG")); // NOI18N
         SleepIcon.setText("jLabel2");
         SleepIcon.setMaximumSize(new java.awt.Dimension(25, 25));
         SleepIcon.setMinimumSize(new java.awt.Dimension(25, 25));
@@ -236,13 +236,13 @@ public class GameFrame extends javax.swing.JFrame {
         ExamPanel.setMinimumSize(new java.awt.Dimension(500, 500));
         ExamPanel.setPreferredSize(new java.awt.Dimension(500, 500));
 
-        ProfLabel.setIcon(new javax.swing.ImageIcon("C:\\Users\\Davide\\Desktop\\Materiale Prog. SOE\\FoggiaIcon.jpg")); // NOI18N
+        ProfLabel.setIcon(new javax.swing.ImageIcon("C:\\Users\\Davide\\Documents\\GitHub\\unisa-life\\unisalife\\src\\unisagui\\FoggiaIcon.jpg")); // NOI18N
         ProfLabel.setText("jLabel1");
         ProfLabel.setMaximumSize(new java.awt.Dimension(75, 75));
         ProfLabel.setMinimumSize(new java.awt.Dimension(75, 75));
         ProfLabel.setPreferredSize(new java.awt.Dimension(75, 75));
 
-        StudentLabel.setIcon(new javax.swing.ImageIcon("C:\\Users\\Davide\\Desktop\\Materiale Prog. SOE\\StudentIcon.jpg")); // NOI18N
+        StudentLabel.setIcon(new javax.swing.ImageIcon("C:\\Users\\Davide\\Documents\\GitHub\\unisa-life\\unisalife\\src\\unisagui\\StudentIcon.jpg")); // NOI18N
         StudentLabel.setText("jLabel2");
         StudentLabel.setMaximumSize(new java.awt.Dimension(75, 75));
         StudentLabel.setMinimumSize(new java.awt.Dimension(75, 75));
