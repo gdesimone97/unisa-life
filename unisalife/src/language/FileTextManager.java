@@ -5,6 +5,7 @@
  */
 package language;
 
+import language.exceptions.FileTextManagerNotCreatedException;
 import java.util.List;
 import java.util.Set;
 import language.exceptions.*;
@@ -40,7 +41,7 @@ public class FileTextManager extends TextManager {
     }
 
     /**
-     * method to get the instance of FileTextManager
+     * Method to get the instance of FileTextManager
      *
      * @return the FileTextManager
      * @throws FileTextManagerNotCreatedException
