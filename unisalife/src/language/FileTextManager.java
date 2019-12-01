@@ -78,7 +78,7 @@ public class FileTextManager extends TextManager {
         for (String languageAvailable : availableLanguages) {
             if (lang.equals(languageAvailable)) {
                 fileLanguageManager.setLanguage(lang);
-                FileTextFinder.setFileName(lang + FORMAT);
+                //FileTextFinder.setFileName(lang + FORMAT);
                 return;
             }
         }

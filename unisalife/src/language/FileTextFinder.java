@@ -6,10 +6,11 @@
  */
 package language;
 
+import language.exceptions.InvalidFileNameException;
 import language.exceptions.FileNotSetException;
 
 /**
- * Abstract class that implements the mechanism to search for text in a file.
+ * Abstract class that implements the mechanisms to search for text in a file
  *
  * @author alfon
  */
@@ -17,12 +18,14 @@ public abstract class FileTextFinder implements TextFinder {
 
     private static String fileName = null;
     
-    private FileTextFinder(){}
+    protected FileTextFinder(){}
     
     /**
      * @return the common current filename setted for that language
      */
-    public static String getFileName() {
+    public static String getFileName() throws FileNotSetException {
+        if (FileTextFinder.fileName==null)
+            throw new FileNotSetException();
         return FileTextFinder.fileName;
     }
 
@@ -30,8 +33,12 @@ public abstract class FileTextFinder implements TextFinder {
      * Change the common current filename to a new one
      *
      * @param fileName
+     * @throws language.exceptions.FileNotSetException
+     * @throws language.exceptions.InvalidFileNameException
      */
-    public static void setFileName(String fileName) throws FileNotSetException {
+    public static void setFileName(String fileName) throws FileNotSetException, InvalidFileNameException {
+        if(fileName==null || fileName.equals(""))
+            throw new InvalidFileNameException();
         FileTextFinder.fileName = fileName;
         CacheFileTextFinder.getCacheFileTextFinder().cleanCache();
     }
@@ -56,6 +63,5 @@ public abstract class FileTextFinder implements TextFinder {
         FileTextFinder.setFileName(fileName);
         return CacheFileTextFinder.getCacheFileTextFinder();
     }
-    
     
 }
