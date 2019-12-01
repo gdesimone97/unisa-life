@@ -5,10 +5,6 @@
  */
 package language;
 
-import java.util.List;
-import java.util.Set;
-import language.exceptions.*;
-
 /**
  * Abstract class where are defined the main methods that a class have to have
  * to get the available languages of the game and the current one, set the
@@ -18,27 +14,4 @@ import language.exceptions.*;
  */
 public abstract class TextManager extends LanguageManager implements TextFinder {
 
-    /**
-     * {@inheritDoc }
-     */
-    @Override
-    public abstract Set<String> getAvailableLanguages();
-
-    /**
-     * {@inheritDoc }
-     */
-    @Override
-    public abstract String getCurrentLanguage();
-
-    /**
-     * {@inheritDoc }
-     */
-    @Override
-    public abstract void setLanguage(String lang) throws LanguageSelectedNotAvailableException;
-
-    /**
-     * {@inheritDoc }
-     */
-    @Override
-    public abstract List<String> getString() throws StringNotFoundException;
 }
