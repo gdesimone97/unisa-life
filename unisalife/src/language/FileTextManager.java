@@ -73,7 +73,7 @@ public class FileTextManager extends TextManager {
      * {@inheritDoc}
      */
     @Override
-    public void setLanguage(String lang) throws LanguageSelectedNotAvailableException {
+    public void setLanguage(String lang) throws LanguageSelectedNotAvailableException, FileNotSetException {
         Set<String> availableLanguages = fileLanguageManager.getAvailableLanguages();
         for (String languageAvailable : availableLanguages) {
             if (lang.equals(languageAvailable)) {
