@@ -213,7 +213,7 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\Davide\Documents\GitHub\unisa-life\unisalife\src\unisagui\RossoLabel.PNG"/>
+              <Image iconType="3" name="/unisagui/RossoLabel.PNG"/>
             </Property>
             <Property name="text" type="java.lang.String" value="."/>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -230,7 +230,7 @@
         <Component class="javax.swing.JLabel" name="MoneyIcon">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\Davide\Documents\GitHub\unisa-life\unisalife\src\unisagui\RossoLabel.PNG"/>
+              <Image iconType="3" name="/unisagui/RossoLabel.PNG"/>
             </Property>
             <Property name="text" type="java.lang.String" value="jLabel2"/>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -247,7 +247,7 @@
         <Component class="javax.swing.JLabel" name="MoneyLabel">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\Davide\Documents\GitHub\unisa-life\unisalife\src\unisagui\RossoLabel.PNG"/>
+              <Image iconType="3" name="/unisagui/RossoLabel.PNG"/>
             </Property>
             <Property name="text" type="java.lang.String" value="jLabel3"/>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -277,7 +277,7 @@
         <Component class="javax.swing.JLabel" name="EnergyIcon">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\Davide\Documents\GitHub\unisa-life\unisalife\src\unisagui\RossoLabel.PNG"/>
+              <Image iconType="3" name="/unisagui/RossoLabel.PNG"/>
             </Property>
             <Property name="text" type="java.lang.String" value="jLabel2"/>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -294,7 +294,7 @@
         <Component class="javax.swing.JLabel" name="StressIcon">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\Davide\Documents\GitHub\unisa-life\unisalife\src\unisagui\RossoLabel.PNG"/>
+              <Image iconType="3" name="/unisagui/RossoLabel.PNG"/>
             </Property>
             <Property name="text" type="java.lang.String" value="jLabel2"/>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -311,7 +311,7 @@
         <Component class="javax.swing.JLabel" name="SleepIcon">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\Davide\Documents\GitHub\unisa-life\unisalife\src\unisagui\RossoLabel.PNG"/>
+              <Image iconType="3" name="/unisagui/RossoLabel.PNG"/>
             </Property>
             <Property name="text" type="java.lang.String" value="jLabel2"/>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -434,7 +434,7 @@
         <Component class="javax.swing.JLabel" name="ProfLabel">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\Davide\Documents\GitHub\unisa-life\unisalife\src\unisagui\FoggiaIcon.jpg"/>
+              <Image iconType="3" name="/unisagui/FoggiaIcon.jpg"/>
             </Property>
             <Property name="text" type="java.lang.String" value="jLabel1"/>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -451,7 +451,7 @@
         <Component class="javax.swing.JLabel" name="StudentLabel">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\Davide\Documents\GitHub\unisa-life\unisalife\src\unisagui\StudentIcon.jpg"/>
+              <Image iconType="3" name="/unisagui/StudentIcon.jpg"/>
             </Property>
             <Property name="text" type="java.lang.String" value="jLabel2"/>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
