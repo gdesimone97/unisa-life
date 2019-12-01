@@ -6,7 +6,9 @@
 package language.exceptions;
 
 /**
- * Report to developer that something went wrong in the creation of FileTextManager instamce
+ * Report to developer that something is gone wrong in the creation of
+ * FileTextManager instamce
+ *
  * @author Giuseppe De Simone
  */
 public class FileTextManagerNotCreatedException extends Exception {
