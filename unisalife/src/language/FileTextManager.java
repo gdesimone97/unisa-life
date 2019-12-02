@@ -5,7 +5,7 @@
  */
 package language;
 
-import language.exceptions.FileTextManagerNotCreatedException;
+import language.exceptions.FileTextManagerException;
 import java.util.List;
 import java.util.Set;
 import language.exceptions.*;
@@ -27,13 +27,13 @@ public class FileTextManager extends TextManager {
     static {
         try {
             instance = new FileTextManager();
-        } catch (NoFileLanguageManagerCreatedException | FileNotSetException | InvalidFileNameException ex) {
+        } catch (FileLanguageManagerException | FileNotSetException | InvalidFileNameException ex) {
             ex.printStackTrace();
             instance = null;
         }
     }
 
-    private FileTextManager() throws NoFileLanguageManagerCreatedException, FileNotSetException, InvalidFileNameException {
+    private FileTextManager() throws FileLanguageManagerException, FileNotSetException, InvalidFileNameException {
         super();
         fileLanguageManager = FileLanguageManager.getLanguageManager();
         String filename = fileLanguageManager.getCurrentLanguage() + FORMAT;
@@ -44,11 +44,11 @@ public class FileTextManager extends TextManager {
      * Method to get the instance of FileTextManager
      *
      * @return the FileTextManager
-     * @throws FileTextManagerNotCreatedException
+     * @throws FileTextManagerException
      */
-    public synchronized static FileTextManager getFileTextManager() throws FileTextManagerNotCreatedException {
+    public synchronized static FileTextManager getFileTextManager() throws FileTextManagerException {
         if (instance == null) {
-            throw new FileTextManagerNotCreatedException();
+            throw new FileTextManagerException();
         }
         return instance;
     }

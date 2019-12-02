@@ -56,7 +56,7 @@ public class FileTextManagerTest {
      * Test of getAvailableLanguages method, of class FileTextManager.
      */
     @Test
-    public void testGetAvailableLanguages() throws IOException, FileTextManagerNotCreatedException {
+    public void testGetAvailableLanguages() throws IOException, FileTextManagerException {
         System.out.println("getAvailableLanguages");
         FileTextManager instance = FileTextManager.getFileTextManager();
         Set<String> expResult = ReadDirectory.readDirectory();
@@ -68,7 +68,7 @@ public class FileTextManagerTest {
      * Test of getCurrentLanguage method, of class FileTextManager.
      */
     @Test
-    public void testGetCurrentLanguage() throws FileTextManagerNotCreatedException, NoFileLanguageManagerCreatedException {
+    public void testGetCurrentLanguage() throws FileTextManagerException, FileLanguageManagerException {
         System.out.println("getCurrentLanguage");
         FileTextManager instance = FileTextManager.getFileTextManager();
         FileLanguageManager languageManager = FileLanguageManager.getLanguageManager();

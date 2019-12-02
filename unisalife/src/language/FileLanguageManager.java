@@ -6,7 +6,7 @@
 package language;
 
 import language.exceptions.ListingFilesException;
-import language.exceptions.NoFileLanguageManagerCreatedException;
+import language.exceptions.FileLanguageManagerException;
 import language.exceptions.NoLanguegesFileFoundException;
 import java.io.IOException;
 import java.nio.file.*;
@@ -40,9 +40,9 @@ class FileLanguageManager extends LanguageManager {
         }
     }
 
-    public synchronized static FileLanguageManager getLanguageManager() throws NoFileLanguageManagerCreatedException{
+    public synchronized static FileLanguageManager getLanguageManager() throws FileLanguageManagerException{
         if(instance == null) {
-            throw new NoFileLanguageManagerCreatedException();
+            throw new FileLanguageManagerException();
         }
         return instance;
     }
