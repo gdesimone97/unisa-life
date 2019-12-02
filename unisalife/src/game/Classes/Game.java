@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-
+package game.Classes;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -25,38 +25,102 @@ import java.io.File;
 import java.io.IOException;
 import java.awt.Dimension;
 /**
- *
+ * Game represents the thread that runs the game. 
  * @author simon
  */
 public class Game extends Canvas implements Runnable {
 
+    /**
+     *variable that says if the game has started.
+     */
     public boolean isRunning = false;
+
+    /**
+     *
+     */
     public Thread thread;
     static Handler handler;
     static Camera camera;
+
+    /**
+     *
+     */
     public static BufferedImage[] texturePlayer;
     //public static int WIDTH=Toolkit.getDefaultToolkit().getScreenSize().width,HEIGHT=Toolkit.getDefaultToolkit().getScreenSize().height;
-    public static int WIDTHSCREEN=500,HEIGHTSCREEN=500, HEIGHTSCREEN2 = HEIGHTSCREEN + 32;
-    public static int WIDTHMAP=928,HEIGHTMAP=928,speed=2;
+    public static int WIDTHSCREEN=500,
+
+    /**
+     *
+     */
+    HEIGHTSCREEN=500,
+
+    /**
+    
+     */
+    HEIGHTSCREEN2 = HEIGHTSCREEN + 32;
+    public static int WIDTHMAP=928,
+
+    /**
+     *
+     */
+    HEIGHTMAP=928,
+
+    /**
+     *
+     */
+    speed=2;
+
+    /**
+     *
+     */
     public static final int dimensionSprite=32;
+
+    /**
+     *
+     */
     public double AMOUNTOFTICKS = 30.0;
    
-    static Menu menu;
-    static GameState state=new MenuState();
+    public static Menu menu;
+    public static GameState state=new MenuState();
     static Map[] maps=new Map[5];
-    static int actualMap;
+    public static int actualMap;
     static TileMap tileMap;
     static Player player;
     
-    private void tick(){
-        state.tick();
-    }
     
     
     /**
-     * ciao
+     * method that loads the resources of game(maps, objects, camera, handler and key listener).
      */
     private void initResources(){
+        TileMap t0  = new TileMap(32,928,928);
+        t0.loadTiles("/Tilesets/tileset.gif");
+	TileMap t1 = new TileMap(32,928,928);
+        t1.loadTiles("/Tilesets/tileset.gif");
+        t0.loadMap("/Maps/map7.map");
+        t1.loadMap("/Maps/map8.map");
+        maps[0]=new Map(t0);
+        maps[0].addObject(new Block(150,150,ObjectId.Block));
+        maps[0].addObject(new Teleport(250,250,ObjectId.Teleport,"Tileset/tileset.gif",1,new Destination(20,20)));
+        maps[0].addObject(new Item(300,300,ObjectId.Item,"/Sprites/item.png","Sfera pokè"));
+        maps[1]=new Map(t1);
+        maps[1].addObject(new Block(100,70,ObjectId.Block));
+        maps[1].addObject(new Block(70,40,ObjectId.Block));
+        maps[1].addObject(new Person(200,200,ObjectId.Interactable,"/Sprites/foggia.png"));
+        actualMap = 0;
+        WIDTHMAP=maps[actualMap].getTileMap().getWidth();
+        HEIGHTMAP=maps[actualMap].getTileMap().getHeight();
+        menu=new Menu();
+        handler = new Handler();
+        camera=new Camera(0,0);
+        this.addKeyListener(new KeyInput(handler));
+        
+    }
+    /**
+     * method that load the textures and animations of the player
+     */
+    
+    private void initPlayer(){
         texturePlayer=new BufferedImage[12];
         try {
         BufferedImage characterImage= ImageIO.read(
@@ -79,40 +143,31 @@ public class Game extends Canvas implements Runnable {
         catch (Exception e) {
             System.exit(4);
     }
-        TileMap t0  = new TileMap(32,928,928);
-        t0.loadTiles("/Tilesets/tileset.gif");
-	TileMap t1 = new TileMap(32,928,928);
-        t1.loadTiles("/Tilesets/tileset.gif");
-        t0.loadMap("/Maps/map7.map");
-        t1.loadMap("/Maps/map8.map");
-        maps[0]=new Map(t0);
-        maps[0].addObject(new Block(150,150,ObjectId.Block));
-        maps[0].addObject(new Teleport(250,250,ObjectId.Teleport,"Tileset/tileset.gif",1,new Destination(20,20)));   
-        maps[1]=new Map(t1);
-        maps[1].addObject(new Block(100,70,ObjectId.Block));
-        maps[1].addObject(new Block(70,40,ObjectId.Block));
-        
+        player=Player.getIstance();
+        player.setFacingDownImage(Game.texturePlayer[0]);
+        player.setFacingLeftImage(Game.texturePlayer[3]);
+        player.setFacingRightImage(Game.texturePlayer[6]);
+        player.setFacingUpImage(Game.texturePlayer[9]);
+        player.setDownAnimation(new Animation(texturePlayer[1],texturePlayer[2]));
+        player.setLeftAnimation(new Animation(texturePlayer[4],texturePlayer[5]));
+        player.setRightAnimation(new Animation(texturePlayer[7],texturePlayer[8]));
+        player.setUpAnimation(new Animation(texturePlayer[10],texturePlayer[11]));
+        player.setX(50);
+        player.setY(50);
     }
     
+    /**
+     * method that calls all other init methods.
+     */
     private void init(){
         
         initResources();
-        player=new Player(50,50,ObjectId.Player,new Animation(texturePlayer[10],texturePlayer[11]),
-                new Animation(texturePlayer[1],texturePlayer[2]),
-                new Animation(texturePlayer[4],texturePlayer[5]),
-                new Animation(texturePlayer[7],texturePlayer[8])
-        );
-        
-        actualMap = 0;
-        WIDTHMAP=maps[actualMap].getTileMap().getWidth();
-        HEIGHTMAP=maps[actualMap].getTileMap().getHeight();
-        menu=new Menu();
-        handler = new Handler(/*actualMap.getList()*/);
-        //handler.addObject(player);
-        camera=new Camera(0,0);
-        this.addKeyListener(new KeyInput(handler));
+        initPlayer();
     }
     
+    /**
+     *method that run the thread
+     */
     public synchronized void start(){
         if (isRunning)
             return;
@@ -120,7 +175,10 @@ public class Game extends Canvas implements Runnable {
         thread=new Thread(this);
         thread.start();
     }
-    
+    /**
+     * method that initializes the game engine and calls init methods.
+     * It calls render and tick methods according to the setting of game engine.
+     */
     public void run(){
         init();
         this.requestFocus();
@@ -135,7 +193,7 @@ public class Game extends Canvas implements Runnable {
             delta += (now - lastTime) / ns;
             lastTime = now;
             while(delta >= 1){
-                  tick();
+                state.tick();
                 updates++;
                 delta--;
             }
@@ -149,6 +207,10 @@ public class Game extends Canvas implements Runnable {
             }
         }
     
+    /**
+     * method that is responsible for rendering all the graphical objects.
+     */
+    
     private void render(){
         BufferStrategy bs = this.getBufferStrategy();
         if(bs==null)
@@ -159,39 +221,18 @@ public class Game extends Canvas implements Runnable {
         Graphics g = bs.getDrawGraphics();
         Graphics2D g2d = (Graphics2D)g;
         state.render(g);
-        /*if(state==State.Game){
-            g.setColor(Color.white);
-            g.fillRect(0, 0, WIDTHSCREEN, HEIGHTSCREEN2);
-            BufferedImage image=null;
-            try
-        {
-          image=ImageIO.read(new File("C:\\Users\\simon\\Desktop\\casa.png"));
-          g.drawImage(image,100,100, this);
-        }
-        catch (Exception e)
-        {
-          e.printStackTrace();
-          System.exit(1);
-        }
-               
-            g2d.translate(camera.getX(), camera.getY());
-            handler.render(g2d);
-            g2d.translate(-camera.getX(), -camera.getY());
-        }
-        else{
-            g.setColor(Color.BLACK);
-            g.fillRect(0,0,WIDTHSCREEN,HEIGHTSCREEN2 );
-            menu.render(g);
-        }
-        */
         g.dispose();
         bs.show();
         
     }
     
+    /**
+     * method that creates a new window and starts the game
+     * @param args
+     */
     public static void main(String[] args) {
         // TODO code application logic here
-        new Window(/*Toolkit.getDefaultToolkit().getScreenSize()*//*Toolkit.getDefaultToolkit().getScreenSize()*/new Dimension(WIDTHSCREEN,HEIGHTSCREEN2),"Demo",new Game());
+        new Window(new Dimension(WIDTHSCREEN,HEIGHTSCREEN2),"Demo",new Game());
         
     }
     

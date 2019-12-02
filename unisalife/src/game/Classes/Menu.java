@@ -3,15 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+package game.Classes;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import game.Interfaces.Renderable;
 /**
  *
  * @author simon
  */
-public class Menu {
+public class Menu implements Renderable{
+
+    /**
+     *
+     * @param g
+     */
     public void render(Graphics g){
         Font f1=new Font("arial",Font.BOLD,50);
         g.setFont(f1);

@@ -1,4 +1,4 @@
-
+package game.Classes;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -13,6 +13,10 @@
  */
 import java.awt.image.BufferedImage;
 
+/**
+ *
+ * @author simon
+ */
 public class Tile {
 	
 	private BufferedImage image;
@@ -22,12 +26,22 @@ public class Tile {
 	public static final int NORMAL = 0;
 	public static final int BLOCKED = 1;
 	*/
+
+    /**
+     *
+     * @param image
+     */
+    
 	public Tile(BufferedImage image) {
 		this.image = image;
 		
 	}
 	
-	public BufferedImage getImage() { return image; }
+    /**
+     *
+     * @return
+     */
+    public BufferedImage getImage() { return image; }
 	
 	
 }

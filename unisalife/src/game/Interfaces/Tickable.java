@@ -3,16 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+package game.Interfaces;
 
 /**
  *
  * @author simon
  */
-public enum ObjectId {
-    Player(),
-    Block(),
-    Teleport(),
-    Professor(),
-    Test();
+public interface Tickable {
+    public void tick();
 }

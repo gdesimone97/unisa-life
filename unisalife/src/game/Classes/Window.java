@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+package game.Classes;
 import java.awt.Dimension;
 import javax.swing.JFrame;
 /**
@@ -11,6 +11,13 @@ import javax.swing.JFrame;
  * @author simon
  */
 public class Window {
+
+    /**
+     *
+     * @param size
+     * @param title
+     * @param game
+     */
     public Window(Dimension size,String title,Game game){
         game.setMaximumSize(size);
         game.setMinimumSize(size);
@@ -20,8 +27,8 @@ public class Window {
         frame.add(game);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(size);
-        frame.setUndecorated(true);
-        //frame.setResizable(true);
+        //frame.setUndecorated(true);
+        frame.setResizable(false);
         frame.setLocationRelativeTo(null);
         frame.pack();
         frame.setVisible(true);

@@ -3,10 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+package game.Classes;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.LinkedList;
+import game.Interfaces.Renderable;
 
 
 /**
@@ -14,26 +15,45 @@ import java.util.LinkedList;
  * @author simon
  */
 public class Handler {
+
+    /**
+     *
+     */
     public LinkedList<GameObject> objects=Game.maps[Game.actualMap].getList();
     //private TileMap map;
     
+    /**
+     *
+     */
     public Handler(){
        
     }
     
+    /**
+     *
+     * @param l
+     */
     public Handler(LinkedList<GameObject> l){
         objects=l;
     }
     
     //private GameObject tempObj;
-    public void tick(){
+
+    /**
+     *
+     */
+        public void tick(){
         /*for(int i=0;i < objects.size();i++){
             tempObj=objects.get(i);
             tempObj.tick(objects);
         }*/
-        Game.player.tick(objects);
+        Game.player.tick();
     }
     
+    /**
+     *
+     * @param g
+     */
     public void render(Graphics2D g){
         Game.maps[Game.actualMap].getTileMap().render(g);
         
@@ -42,8 +62,10 @@ public class Handler {
             tempObj.render(g);
         }*/
         Game.player.render(g);
-        for(GameObject go:objects)
-            go.render(g);
+        for(GameObject go:objects){
+            if(go instanceof Renderable)
+                ((Renderable)go).render(g);
+        }
     }
     
     /*public GameObject getPlayer(){
@@ -52,12 +74,22 @@ public class Handler {
                 return objects.get(i);
         return null;
     }*/
+
+    /**
+     *
+     * @param g
+     */
+    
     
     public void addObject(GameObject g){
-        this.objects.add(g);
+        Game.maps[Game.actualMap].getList().add(g);
     }
     
+    /**
+     *
+     * @param g
+     */
     public void removeObject(GameObject g){
-        this.objects.remove(g);
+        Game.maps[Game.actualMap].getList().remove(g);
     }
 }

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+package game.Classes;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 /**
@@ -15,10 +15,18 @@ public class KeyInput extends KeyAdapter {
     Handler handler;
     private int vel=2;
     
-    
+    /**
+     *
+     * @param vel
+     */
     public void setVel(int vel){
         this.vel=vel;
     }
+
+    /**
+     *
+     * @param handler
+     */
     public KeyInput(Handler handler){
         this.handler=handler;
     }

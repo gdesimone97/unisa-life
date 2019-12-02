@@ -1,4 +1,4 @@
-
+package game.Classes;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -18,8 +18,10 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import javax.imageio.ImageIO;
 
-
-
+/**
+ *
+ * @author simon
+ */
 public class TileMap {
 	
 	// position
@@ -57,14 +59,24 @@ public class TileMap {
 	private int numRowsToDraw;
 	private int numColsToDraw;
 	
-	public TileMap(int tileSize,int w,int h) {
+    /**
+     *
+     * @param tileSize
+     * @param w
+     * @param h
+     */
+    public TileMap(int tileSize,int w,int h) {
 		this.tileSize = tileSize;
 		numRowsToDraw = /*Game.WIDTHMAP / tileSize + 2;*/w; //31
 		numColsToDraw = /*Game.HEIGHTMAP / tileSize + 2;*/h;  //31
 		speed = 4;
 	}
 	
-	public void loadTiles(String s) {
+    /**
+     *
+     * @param s
+     */
+    public void loadTiles(String s) {
 		//System.out.print(s);
 		try {
         tileset = ImageIO.read(
@@ -105,7 +117,11 @@ public class TileMap {
 		
 	}
 	
-	public void loadMap(String s) {
+    /**
+     *
+     * @param s
+     */
+    public void loadMap(String s) {
 		
 		try {
 			
@@ -142,8 +158,18 @@ public class TileMap {
 		}
 		
 	}
-        public int getWidth() { return width; }
-	public int getHeight() { return height; }
+
+    /**
+     *
+     * @return
+     */
+    public int getWidth() { return width; }
+
+    /**
+     *
+     * @return
+     */
+    public int getHeight() { return height; }
 	/*
 	public int getTileSize() { return tileSize; }
 	public int getx() { return x; }
@@ -220,6 +246,12 @@ public class TileMap {
 		
 	}
 	*/
+
+    /**
+     *
+     * @param g
+     */
+    
 	public void render(Graphics2D g) {
 		/*System.out.println("row off"+rowOffset);
                 System.out.println("col off"+colOffset);
