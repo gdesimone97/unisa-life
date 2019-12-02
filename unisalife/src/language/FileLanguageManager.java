@@ -40,7 +40,7 @@ class FileLanguageManager extends LanguageManager {
         }
     }
 
-    public static FileLanguageManager getLanguageManager() throws NoFileLanguageManagerCreatedException{
+    public synchronized static FileLanguageManager getLanguageManager() throws NoFileLanguageManagerCreatedException{
         if(instance == null) {
             throw new NoFileLanguageManagerCreatedException();
         }

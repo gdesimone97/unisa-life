@@ -46,7 +46,7 @@ public class FileTextManager extends TextManager {
      * @return the FileTextManager
      * @throws FileTextManagerNotCreatedException
      */
-    public static FileTextManager getFileTextManager() throws FileTextManagerNotCreatedException {
+    public synchronized static FileTextManager getFileTextManager() throws FileTextManagerNotCreatedException {
         if (instance == null) {
             throw new FileTextManagerNotCreatedException();
         }
