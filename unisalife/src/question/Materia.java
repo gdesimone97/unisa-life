@@ -6,7 +6,7 @@
 package question;
 
 /**
- *
+ * This Enumeration contains all the subjects of the game
  * @author 1997g
  */
 public enum Materia {

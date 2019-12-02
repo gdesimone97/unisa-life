@@ -6,7 +6,9 @@
 package question;
 
 /**
- *
+ * Interface of the Iterator of Questions
+ * In this interface there are 2 methods, hasNext() and next() that have to be completed
+ * in every implementation of this iterator
  * @author 1997g
  */
 public interface QuestionsIterator {

@@ -6,7 +6,8 @@
 package question;
 
 /**
- *
+ * Interface of the Collection of questions
+ * Every implementation of this class must implement the iterator() method
  * @author 1997g
  */
 public interface QuestionsCollection {

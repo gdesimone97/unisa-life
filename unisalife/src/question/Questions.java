@@ -9,7 +9,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
- *
+ * This class is the set of all the Question objects that are in a specific subject
+ * Questions are structured in a dictionary that pairs the level of difficulty of questions with an
+ * ArrayList of Question
  * @author 1997g
  */
 public class Questions {
@@ -20,6 +22,11 @@ public class Questions {
     }
     
     public void addQuestion(Question question) {
+        ArrayList list = questions.get(question.getLevel());
+        if(list == null) {
+            questions.put(question.getLevel(), new ArrayList());
+            
+        }
         questions.get(question.getLevel()).add(question);
     }
     
