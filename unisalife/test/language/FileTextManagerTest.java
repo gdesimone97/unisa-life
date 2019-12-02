@@ -98,11 +98,20 @@ public class FileTextManagerTest {
     public void testSetLanguageException() throws Exception {
         System.out.println("setLanguage");
         FileTextManager instance = FileTextManager.getFileTextManager();
-        FileLanguageManager languageManager = FileLanguageManager.getLanguageManager();
+        FileLanguageManager fileLanguageManager = FileLanguageManager.getLanguageManager();
+        LanguageManager languageManager = new LanguageManagerImpl();
         String lang = "test";
         instance.setLanguage(lang);
-        String result = languageManager.getCurrentLanguage();
-        assertEquals(result, lang);
+        assertEquals(fileLanguageManager.getCurrentLanguage(), lang);
+        assertEquals(languageManager.getCurrentLanguage(), lang);
+    }
+
+    
+    public class LanguageManagerImpl extends LanguageManager {
+
+        public Set<String> getAvailableLanguages() {
+            return null;
+        }
     }
 
     /**
@@ -111,9 +120,10 @@ public class FileTextManagerTest {
     @Test
     public void testGetString() throws Exception {
         System.out.println("getString");
+        String exp = "";
         FileTextManager instance = null;
         List<String> expResult = null;
-        List<String> result = instance.getString();
+        List<String> result = instance.getString(exp);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
