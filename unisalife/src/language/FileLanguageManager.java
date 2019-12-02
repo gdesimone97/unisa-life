@@ -35,7 +35,6 @@ class FileLanguageManager extends LanguageManager {
         try {
             instance = new FileLanguageManager();
         } catch (NoLanguegesFileFoundException | ListingFilesException ex) {
-            ex.printStackTrace();
             instance = null;
         }
     }
