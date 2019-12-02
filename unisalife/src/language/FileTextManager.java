@@ -28,7 +28,6 @@ public class FileTextManager extends TextManager {
         try {
             instance = new FileTextManager();
         } catch (FileLanguageManagerException | FileNotSetException | InvalidFileNameException ex) {
-            ex.printStackTrace();
             instance = null;
         }
     }
