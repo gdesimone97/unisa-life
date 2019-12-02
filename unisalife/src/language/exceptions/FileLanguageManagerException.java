@@ -11,14 +11,14 @@ package language.exceptions;
  *
  * @author Giuseppe De Simone
  */
-public class NoFileLanguageManagerCreatedException extends Exception {
+public class FileLanguageManagerException extends Exception {
 
     /**
      * Creates a new instance of
      * <code>NoFileLanguageManagerCreatedException</code> without detail
      * message.
      */
-    public NoFileLanguageManagerCreatedException() {
+    public FileLanguageManagerException() {
     }
 
     /**
@@ -28,7 +28,7 @@ public class NoFileLanguageManagerCreatedException extends Exception {
      *
      * @param msg the detail message.
      */
-    public NoFileLanguageManagerCreatedException(String msg) {
+    public FileLanguageManagerException(String msg) {
         super(msg);
     }
 }

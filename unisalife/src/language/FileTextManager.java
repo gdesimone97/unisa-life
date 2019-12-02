@@ -5,7 +5,7 @@
  */
 package language;
 
-import language.exceptions.FileTextManagerNotCreatedException;
+import language.exceptions.FileTextManagerException;
 import java.util.List;
 import java.util.Set;
 import language.exceptions.*;
@@ -27,13 +27,12 @@ public class FileTextManager extends TextManager {
     static {
         try {
             instance = new FileTextManager();
-        } catch (NoFileLanguageManagerCreatedException | FileNotSetException | InvalidFileNameException ex) {
-            ex.printStackTrace();
+        } catch (FileLanguageManagerException | FileNotSetException | InvalidFileNameException ex) {
             instance = null;
         }
     }
 
-    private FileTextManager() throws NoFileLanguageManagerCreatedException, FileNotSetException, InvalidFileNameException {
+    private FileTextManager() throws FileLanguageManagerException, FileNotSetException, InvalidFileNameException {
         super();
         fileLanguageManager = FileLanguageManager.getLanguageManager();
         String filename = fileLanguageManager.getCurrentLanguage() + FORMAT;
@@ -44,11 +43,11 @@ public class FileTextManager extends TextManager {
      * Method to get the instance of FileTextManager
      *
      * @return the FileTextManager
-     * @throws FileTextManagerNotCreatedException
+     * @throws FileTextManagerException
      */
-    public static FileTextManager getFileTextManager() throws FileTextManagerNotCreatedException {
+    public synchronized static FileTextManager getFileTextManager() throws FileTextManagerException {
         if (instance == null) {
-            throw new FileTextManagerNotCreatedException();
+            throw new FileTextManagerException();
         }
         return instance;
     }
@@ -73,12 +72,16 @@ public class FileTextManager extends TextManager {
      * {@inheritDoc}
      */
     @Override
-    public void setLanguage(String lang) throws LanguageSelectedNotAvailableException, FileNotSetException {
+    public void setLanguage(String lang) throws LanguageSelectedNotAvailableException {
         Set<String> availableLanguages = fileLanguageManager.getAvailableLanguages();
         for (String languageAvailable : availableLanguages) {
             if (lang.equals(languageAvailable)) {
                 fileLanguageManager.setLanguage(lang);
-                //FileTextFinder.setFileName(lang + FORMAT);
+                try {
+                    FileTextFinder.setFileName(lang + FORMAT);
+                } catch (InvalidFileNameException | FileNotSetException ex) {
+                    throw new LanguageSelectedNotAvailableException();
+                }
                 return;
             }
         }

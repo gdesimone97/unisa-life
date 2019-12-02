@@ -11,13 +11,13 @@ package language.exceptions;
  *
  * @author Giuseppe De Simone
  */
-public class FileTextManagerNotCreatedException extends Exception {
+public class FileTextManagerException extends Exception {
 
     /**
      * Creates a new instance of <code>FileTextManagerNotCreatedException</code>
      * without detail message.
      */
-    public FileTextManagerNotCreatedException() {
+    public FileTextManagerException() {
     }
 
     /**
@@ -26,7 +26,7 @@ public class FileTextManagerNotCreatedException extends Exception {
      *
      * @param msg the detail message.
      */
-    public FileTextManagerNotCreatedException(String msg) {
+    public FileTextManagerException(String msg) {
         super(msg);
     }
 }
