@@ -9,6 +9,6 @@ package language.exceptions;
  * Exception to recognize when a message hasn't been found
  * @author alfon
  */
-public class StringNotFoundException extends Exception {
+public class StringNotFoundException extends TextFinderException {
     
 }

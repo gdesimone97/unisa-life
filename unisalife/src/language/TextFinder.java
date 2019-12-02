@@ -6,6 +6,7 @@
 */
 package language;
 
+import language.exceptions.TextFinderException;
 import language.exceptions.StringNotFoundException;
 import java.util.List;
 
@@ -17,9 +18,10 @@ public interface TextFinder {
     
     /**
      * Method to perform a query and get the messages for that object
+     * @param obj and object that implements Information interface
      * @return a list of strings
      * @throws StringNotFoundException 
      */
-    List<String> getString() throws StringNotFoundException;
+    List<String> getString(Information obj) throws TextFinderException;
 
 }

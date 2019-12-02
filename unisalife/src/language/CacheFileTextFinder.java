@@ -6,12 +6,8 @@
  */
 package language;
 
-import language.exceptions.StringNotFoundException;
-import language.exceptions.FileNotSetException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import language.exceptions.*;
 
 /**
  * Concrete class that implements a cache in the proxy patter. It also uses the
@@ -52,7 +48,7 @@ public class CacheFileTextFinder extends FileTextFinder {
     /**
      * Private Constructor
      */
-    private CacheFileTextFinder() throws FileNotSetException {
+    private CacheFileTextFinder() throws TextFinderException {
         this.concreteFileTextFinder = ConcreteFileTextFinder.getConcreteFileTextFinder();
         this.cache = new HashMap<>(CacheFileTextFinder.MAXSIZE);
     }
@@ -61,26 +57,30 @@ public class CacheFileTextFinder extends FileTextFinder {
      * Static getter method to istantiate a CacheFileTextFinder
      *
      * @return the current istance of the CacheFileTextFinder
+     * @throws language.exceptions.FileNotSetException
      */
-    public static synchronized CacheFileTextFinder getCacheFileTextFinder() throws FileNotSetException {
-        if (instance == null)
+    public static synchronized CacheFileTextFinder getCacheFileTextFinder() throws TextFinderException {
+        if (instance == null) {
             instance = new CacheFileTextFinder();
+        }
         return instance;
     }
 
     /**
-     * Method to perform the query. A search in the file is performed if the
-     * strings to find are not present in memory.
-     *
-     * @return a list of strings
+     * {@inheritDoc}
      */
     @Override
-    public List<String> getString() throws StringNotFoundException {
+    public List<String> getString(Information obj) throws TextFinderException {
         List<String> returnList = null;
-        String exp = this.computeExpression();
+        String exp;
+        try {
+            exp = this.computeExpression(obj);
+        } catch (InvalidObjectInformationException ex) {
+            throw new StringNotFoundException();
+        }
         ValueNode returnNode = this.cache.get(exp);
         if (returnNode == null) {
-            returnList = this.concreteFileTextFinder.getString();
+            returnList = this.concreteFileTextFinder.getString(exp);
             this.addToCache(exp, returnList);
         } else {
             this.updateCache(returnNode);
@@ -114,9 +114,9 @@ public class CacheFileTextFinder extends FileTextFinder {
                 visited++;
             }
 
-            for (String s : toRemove) {
+            toRemove.forEach((s) -> {
                 this.cache.remove(s);
-            }
+            });
 
         }
         // Insert the new node in the cache
@@ -130,6 +130,15 @@ public class CacheFileTextFinder extends FileTextFinder {
      */
     private void updateCache(ValueNode v) {
         v.increase();
+    }
+
+    /**
+     * Method to get how many elements are currently saved in the cache
+     *
+     * @return the number of elements
+     */
+    int size() {
+        return cache.size();
     }
 
     /**

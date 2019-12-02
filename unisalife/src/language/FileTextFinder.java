@@ -6,6 +6,7 @@
  */
 package language;
 
+import language.exceptions.InvalidObjectInformationException;
 import language.exceptions.InvalidFileNameException;
 import language.exceptions.FileNotSetException;
 
@@ -17,15 +18,17 @@ import language.exceptions.FileNotSetException;
 public abstract class FileTextFinder implements TextFinder {
 
     private static String fileName = null;
-    
-    protected FileTextFinder(){}
-    
+
+    protected FileTextFinder() {
+    }
+
     /**
      * @return the common current filename setted for that language
      */
     public static String getFileName() throws FileNotSetException {
-        if (FileTextFinder.fileName==null)
+        if (FileTextFinder.fileName == null) {
             throw new FileNotSetException();
+        }
         return FileTextFinder.fileName;
     }
 
@@ -37,8 +40,9 @@ public abstract class FileTextFinder implements TextFinder {
      * @throws language.exceptions.InvalidFileNameException
      */
     public static void setFileName(String fileName) throws FileNotSetException, InvalidFileNameException {
-        if(fileName==null || fileName.equals(""))
+        if (fileName == null || fileName.equals("")) {
             throw new InvalidFileNameException();
+        }
         FileTextFinder.fileName = fileName;
         CacheFileTextFinder.getCacheFileTextFinder().cleanCache();
     }
@@ -47,10 +51,18 @@ public abstract class FileTextFinder implements TextFinder {
      * Method to construct the right expression to query in the XML file to get
      * the right list of strings for the object that called getString()
      *
+     * @param obj The object that has to print a message
      * @return the expression to perform the query
+     * @throws language.exceptions.InvalidObjectInformationException
      */
-    protected String computeExpression() {
-        return null;
+    protected String computeExpression(Information obj) throws InvalidObjectInformationException {
+        String info = obj.getInfo();
+        if (info.equals("") || (info == null)) {
+            throw new InvalidObjectInformationException();
+        }
+        String lastClass = obj.getClass().getSimpleName();
+        String expression = "//" + lastClass + "[@info = '" + info + "']";
+        return expression;
     }
 
     /**
@@ -63,5 +75,5 @@ public abstract class FileTextFinder implements TextFinder {
         FileTextFinder.setFileName(fileName);
         return CacheFileTextFinder.getCacheFileTextFinder();
     }
-    
+
 }

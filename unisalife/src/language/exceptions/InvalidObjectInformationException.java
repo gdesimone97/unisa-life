@@ -6,9 +6,12 @@
 package language.exceptions;
 
 /**
- * Exception to recognize when the file hasn't been set
+ * Exception that occours when an object tries to query a string without giving a correct "info" value
  * @author alfon
  */
-public class FileNotSetException extends TextFinderException {
+public class InvalidObjectInformationException extends Exception {
+
+    public InvalidObjectInformationException() {
+    }
     
 }

@@ -6,9 +6,9 @@
 package language.exceptions;
 
 /**
- * Exception to recognize when the file hasn't been set
+ * Generic exception in finding a string
  * @author alfon
  */
-public class FileNotSetException extends TextFinderException {
+public class TextFinderException extends Exception {
     
 }

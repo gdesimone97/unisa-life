@@ -6,9 +6,12 @@
 package language.exceptions;
 
 /**
- * Exception to recognize when the file hasn't been set
+ * Exception thrown when an error with the XML file occours.
  * @author alfon
  */
-public class FileNotSetException extends TextFinderException {
+public class XMLFileException extends TextFinderException {
+
+    public XMLFileException() {
+    }
     
 }
