@@ -28,18 +28,13 @@ public class ExamTest {
     public static void main(String[] args) {
         Exam esame = new Exam(Materia.matematica);
         BookletSingleton booklet = BookletSingleton.getInstance();        
-        
+        int i;
         //Test of the class Exam in particular the functionality of score assignment
-        for (int i=1; i<=4; i++){
-            Question question = esame.getQuestion();
-            String stringa = JOptionPane.showInputDialog(question.toString() + "\n\n Risposta: ");
-            
-            ArrayList<Answer> answers = question.getAnswers();
-            
-            Answer answer = answers.get(Integer.parseInt(stringa)-1);
-            System.out.println("Hai risposto " + answer + ". " + (question.isCorrect(answer)));
-            esame.verifyAnswer(question.isCorrect(answer), 8, i); //the parameter seconds is given, change it to experience a variation in the resulting score
-            System.out.println("current score: "+esame.getScore());
+        for (i=1; i<=3; i++){
+            doExam(esame, 20, i);
+        }
+        if(esame.getScore()==30){
+            doExam(esame, 20, i);
         }
         System.out.println("Il voto è: " + esame.getScore());
         
@@ -56,4 +51,16 @@ public class ExamTest {
         }
     }
     
+    
+    public static void doExam (Exam esame, int seconds, int level){
+        Question question = esame.getQuestion();
+        String stringa = JOptionPane.showInputDialog(question.toString() + "\n\n Risposta: ");
+
+        ArrayList<Answer> answers = question.getAnswers();
+
+        Answer answer = answers.get(Integer.parseInt(stringa)-1);
+        System.out.println("Hai risposto " + answer + ". " + (question.isCorrect(answer)));
+        esame.verifyAnswer(question.isCorrect(answer), seconds, level); //the parameter seconds is given, change it to experience a variation in the resulting score
+        System.out.println("current score: "+esame.getScore());
+    }
 }

@@ -7,14 +7,17 @@
 package exam;
 import java.util.Iterator;
 import question.*;
+
 /**
+ * This class is used to do an exam of a given subject.
+ * In this implementation the questions are divided into 4 levels (mandatory)
  *
  * @author liovi
  */
 public class Exam {
     private final Questions questions;
     private int score;
-    private final Materia examSubject;
+    private final int maxLevel;
     private final int basicScore;
     QuestionsIterator iter;
     
@@ -27,9 +30,9 @@ public class Exam {
     public Exam(Materia materia){
         StringsQuestionFactory questionsFetch = new StringsQuestionFactory(materia);
         this.score = 0;
-        this.examSubject = materia;
         this.questions = questionsFetch.getQuestions();
         this.basicScore = 5;
+        this.maxLevel = 4;
         this.iter = questions.iterator();
     }
     
@@ -44,14 +47,14 @@ public class Exam {
      * for each answer
      */
     public void verifyAnswer(boolean answer, int seconds, int level){
-        if(level!=4 && answer){
+        if(level!=maxLevel && answer){
             if(seconds>=10)
                this.score+=(this.basicScore*level);
             else{
-                double losePoints = (((10-seconds)*0.1)*(4)); //variable used to store losed points depending on passed time before give the answer
+                double losePoints = (((10-seconds)*0.1)*(maxLevel)); //variable used to store losed points depending on passed time before give the answer
                 this.score += this.basicScore*level - losePoints;
             }
-        }else if (level == 4){
+        }else if (level == maxLevel && this.score == 30){
             if(answer)
                 this.score+=1;
             else
