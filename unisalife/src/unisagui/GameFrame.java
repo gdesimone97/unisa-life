@@ -152,13 +152,13 @@ public class GameFrame extends javax.swing.JFrame {
         ExamPanel.setMinimumSize(new java.awt.Dimension(500, 500));
         ExamPanel.setPreferredSize(new java.awt.Dimension(500, 500));
 
-        ProfLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/unisagui/FoggiaIcon.jpg"))); // NOI18N
+        ProfLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/unisagui/Icon/FoggiaIcon.jpg"))); // NOI18N
         ProfLabel.setText("jLabel1");
         ProfLabel.setMaximumSize(new java.awt.Dimension(75, 75));
         ProfLabel.setMinimumSize(new java.awt.Dimension(75, 75));
         ProfLabel.setPreferredSize(new java.awt.Dimension(75, 75));
 
-        StudentLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/unisagui/StudentIcon.jpg"))); // NOI18N
+        StudentLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/unisagui/Icon/StudentIcon.jpg"))); // NOI18N
         StudentLabel.setText("jLabel2");
         StudentLabel.setMaximumSize(new java.awt.Dimension(75, 75));
         StudentLabel.setMinimumSize(new java.awt.Dimension(75, 75));
@@ -1166,7 +1166,7 @@ public class GameFrame extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, GamePanelLayout.createSequentialGroup()
                 .addGap(50, 50, 50)
                 .addComponent(HintScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 277, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 240, Short.MAX_VALUE)
                 .addComponent(ConversationScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27))
         );
@@ -1182,7 +1182,7 @@ public class GameFrame extends javax.swing.JFrame {
         LevelLabel.setMinimumSize(new java.awt.Dimension(225, 25));
         LevelLabel.setPreferredSize(new java.awt.Dimension(225, 25));
 
-        MoneyIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/unisagui/RossoLabel.PNG"))); // NOI18N
+        MoneyIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/unisagui/Icon/MoneyIcon.png"))); // NOI18N
         MoneyIcon.setText("jLabel2");
         MoneyIcon.setMaximumSize(new java.awt.Dimension(25, 25));
         MoneyIcon.setMinimumSize(new java.awt.Dimension(25, 25));
@@ -1198,19 +1198,19 @@ public class GameFrame extends javax.swing.JFrame {
         EnergyProgressBar.setMinimumSize(new java.awt.Dimension(150, 25));
         EnergyProgressBar.setPreferredSize(new java.awt.Dimension(150, 25));
 
-        EnergyIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/unisagui/RossoLabel.PNG"))); // NOI18N
+        EnergyIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/unisagui/Icon/EnergyIcon.png"))); // NOI18N
         EnergyIcon.setText("jLabel2");
         EnergyIcon.setMaximumSize(new java.awt.Dimension(25, 25));
         EnergyIcon.setMinimumSize(new java.awt.Dimension(25, 25));
         EnergyIcon.setPreferredSize(new java.awt.Dimension(25, 25));
 
-        StressIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/unisagui/RossoLabel.PNG"))); // NOI18N
+        StressIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/unisagui/Icon/StressIcon.png"))); // NOI18N
         StressIcon.setText("jLabel2");
         StressIcon.setMaximumSize(new java.awt.Dimension(25, 25));
         StressIcon.setMinimumSize(new java.awt.Dimension(25, 25));
         StressIcon.setPreferredSize(new java.awt.Dimension(25, 25));
 
-        HungerIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/unisagui/RossoLabel.PNG"))); // NOI18N
+        HungerIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/unisagui/Icon/HungerIcon.png"))); // NOI18N
         HungerIcon.setText("jLabel2");
         HungerIcon.setMaximumSize(new java.awt.Dimension(25, 25));
         HungerIcon.setMinimumSize(new java.awt.Dimension(25, 25));
