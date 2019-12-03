@@ -1030,12 +1030,16 @@ public class GameFrame extends javax.swing.JFrame {
         GamePanel.setMinimumSize(new java.awt.Dimension(500, 500));
         GamePanel.setPreferredSize(new java.awt.Dimension(500, 500));
 
+        DialogScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        DialogScrollPane.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+
         DialogTextArea.setEditable(false);
         DialogTextArea.setColumns(20);
         DialogTextArea.setRows(5);
-        DialogTextArea.setMaximumSize(new java.awt.Dimension(200, 100));
-        DialogTextArea.setMinimumSize(new java.awt.Dimension(200, 100));
-        DialogTextArea.setPreferredSize(new java.awt.Dimension(200, 100));
+        DialogTextArea.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        DialogTextArea.setMaximumSize(new java.awt.Dimension(450, 100));
+        DialogTextArea.setMinimumSize(new java.awt.Dimension(450, 100));
+        DialogTextArea.setPreferredSize(new java.awt.Dimension(450, 100));
         DialogScrollPane.setViewportView(DialogTextArea);
 
         javax.swing.GroupLayout GamePanelLayout = new javax.swing.GroupLayout(GamePanel);
@@ -1043,16 +1047,16 @@ public class GameFrame extends javax.swing.JFrame {
         GamePanelLayout.setHorizontalGroup(
             GamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, GamePanelLayout.createSequentialGroup()
-                .addContainerGap(121, Short.MAX_VALUE)
-                .addComponent(DialogScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(101, 101, 101))
+                .addGap(25, 25, 25)
+                .addComponent(DialogScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 449, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25))
         );
         GamePanelLayout.setVerticalGroup(
             GamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, GamePanelLayout.createSequentialGroup()
-                .addContainerGap(361, Short.MAX_VALUE)
+                .addGap(375, 375, 375)
                 .addComponent(DialogScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(27, 27, 27))
         );
 
         HudPanel.setMaximumSize(new java.awt.Dimension(600, 175));

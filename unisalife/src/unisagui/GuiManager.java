@@ -61,40 +61,44 @@ public class GuiManager {
             throw new NotInteractiveException();
     }
     
-    public void showExamPanel(Exam exam){
-        exammanager.showExamPanel(exam);
+    public void showExamDialog(Exam exam){
+        exammanager.showExamDialog(exam);
     }
     
     public void showSettingsMenu(){
         settingsmenumanager.showSettingsMenu();
     }
     
-    public void showInventoryPanel(){
-        inventorymanager.showInventoryPanel();
+    public void showMainMenu(){
+        mainmenumanager.showMainMenu();
     }
     
-    public void showCareerPanel(){
-        careermanager.showCareerPanel();
+    public void showInventoryDialog(){
+        inventorymanager.showInventoryDialog();
     }
     
-    public void showQuestPanel(){
-        questmanager.showQuestPanel();
+    public void showCareerDialog(){
+        careermanager.showCareerDialog();
+    }
+    
+    public void showQuestDialog(){
+        questmanager.showQuestDialog();
     }
     
     public void showRequest(GameObject go){
         requestmanager.showRequest(go.getId());
     }
     
-    public void updateQuestPanel(Quest quest, boolean presence){
-        questmanager.updateQuestPanel(quest, presence);
+    public void updateQuestDialog(Quest quest, boolean presence){
+        questmanager.updateQuestDialog(quest, presence);
     }
     
-    public void updateInventoryPanel(Item item, boolean presence){
-        inventorymanager.updateInventoryPanel(item, presence);
+    public void updateInventoryDialog(Item item, boolean presence){
+        inventorymanager.updateInventoryDialog(item, presence);
     }
     
-    public void updateCareerPanel(Exam exam){
-        careermanager.updateCareerPanel(exam);
+    public void updateCareerDialog(Exam exam){
+        careermanager.updateCareerDialog(exam);
     }
     
     public void updateStressBar(int stress){

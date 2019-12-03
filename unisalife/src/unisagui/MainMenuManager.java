@@ -19,7 +19,7 @@ public class MainMenuManager {
     }
     
     public void showMainMenu(){
-        SwingUtilities.invokeLater(() -> gameframe.MainMenuPanel.setVisible(true));
+        SwingUtilities.invokeLater(() -> gameframe.MainMenuDialog.setVisible(true));
     }
     
     public String getInfo(){

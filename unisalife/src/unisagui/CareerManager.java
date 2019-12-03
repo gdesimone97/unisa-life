@@ -23,12 +23,12 @@ public class CareerManager {
      * 
      * @param exam 
      */
-    public void updateCareerPanel(Exam exam){
+    public void updateCareerDialog(Exam exam){
         
     }
     
-    public void showCareerPanel(){
-        
+    public void showCareerDialog(){
+        //ancora dobbiamo crearlo
     }
     
 }

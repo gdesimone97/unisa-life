@@ -5,6 +5,8 @@
  */
 package unisagui;
 
+import javax.swing.SwingUtilities;
+
 /**
  *
  * @author virgi
@@ -12,6 +14,7 @@ package unisagui;
 public class SettingsMenuManager {
     
     private final String info = "GUIsettings";
+    private final GameFrame gameframe = GameFrame.getInstance();
     
     protected SettingsMenuManager(){
         
@@ -22,7 +25,7 @@ public class SettingsMenuManager {
     }
     
     public void showSettingsMenu(){
-        
+        SwingUtilities.invokeLater(() -> gameframe.MainMenuDialog.setVisible(false)
     }
     
 }

@@ -5,6 +5,8 @@
  */
 package unisagui;
 
+import javax.swing.SwingUtilities;
+
 /**
  *
  * @author virgi
@@ -12,6 +14,7 @@ package unisagui;
 public class InventoryManager {
     
     private final String info = "GUIinventory";
+    private final GameFrame gameframe = GameFrame.getInstance();
 
     protected InventoryManager() {
         
@@ -21,15 +24,15 @@ public class InventoryManager {
         return info;
     }
     
-    public void showInventoryPanel(){
-        
+    public void showInventoryDialog(){
+        SwingUtilities.invokeLater(() -> gameframe.InventoryDialog.setVisible(true));
     }
     /**
      * 
      * @param item represents the item that has been collected or removed
      * @param presence says if the item has been collected or removed
      */
-    public void updateInventoryPanel(Item item, boolean presence){
+    public void updateInventoryDialog(Item item, boolean presence){
         
     }
 

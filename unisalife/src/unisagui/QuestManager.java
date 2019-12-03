@@ -15,11 +15,11 @@ public class QuestManager {
         
     }
     
-    public void updateQuestPanel(Quest quest, boolean presence){
+    public void updateQuestDialog(Quest quest, boolean presence){
         
     }
     
-    public void showQuestPanel(){
+    public void showQuestDialog(){
         
     }
 }

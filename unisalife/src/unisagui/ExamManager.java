@@ -22,8 +22,8 @@ public class ExamManager {
      * 
      * @param exam 
      */
-    public void showExamPanel(Exam exam){
-        SwingUtilities.invokeLater(() -> gameframe.ExamPanel.setVisible(true));
+    public void showExamDialog(Exam exam){
+        SwingUtilities.invokeLater(() -> gameframe.ExamDialog.setVisible(true));
     }
     
 }

@@ -16,10 +16,10 @@ public class DialogManager {
     }
     
     public void showHint(String hint){
-        
+        //ancora dobbiamo crearle
     }
     
     public void showConversation(String conversation){
-        
+        //ancora dobbiamo crearle
     }
 }
