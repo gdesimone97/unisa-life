@@ -100,7 +100,7 @@ public class FileTextManagerTest {
         FileTextManager instance = FileTextManager.getFileTextManager();
         FileLanguageManager fileLanguageManager = FileLanguageManager.getLanguageManager();
         LanguageManager languageManager = new LanguageManagerImpl();
-        String lang = "test";
+        String lang = "test_language";
         instance.setLanguage(lang);
         assertEquals(fileLanguageManager.getCurrentLanguage(), lang);
         assertEquals(languageManager.getCurrentLanguage(), lang);
@@ -111,6 +111,21 @@ public class FileTextManagerTest {
         public Set<String> getAvailableLanguages() {
             return null;
         }
+    }
+
+    /**
+     * Test of getString method, of class FileTextManager.
+     */
+    @Test
+    public void testGetString() throws FileTextManagerException, TextFinderException, LanguageSelectedNotAvailableException {
+        final String TEST_STRING = "Stringa di test";
+        System.out.println("getString");
+        FileTextManager instance = FileTextManager.getFileTextManager();
+        instance.setLanguage("test.xml");
+        String expResult = TEST_STRING;
+        InformationTest infoTest = new InformationTest();
+        String result = instance.getString(infoTest).get(0);
+        assertEquals(expResult, result);
     }
 
     private class InformationTest implements Information {
@@ -127,21 +142,6 @@ public class FileTextManagerTest {
             return true;
         }
 
-    }
-    
-    /**
-     * Test of getString method, of class FileTextManager.
-     */
-    
-    @Test
-    public void testGetString() throws FileTextManagerException, TextFinderException {
-        final String TEST_STRING = "Stringa di test";
-        System.out.println("getString");
-        FileTextManager instance = FileTextManager.getFileTextManager();
-        String expResult = TEST_STRING;
-        InformationTest infoTest = new InformationTest();
-        String result = instance.getString(infoTest).get(0);
-        assertEquals(expResult, result);
     }
 
 }

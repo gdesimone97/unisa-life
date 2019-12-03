@@ -24,7 +24,7 @@ class FileLanguageManager extends LanguageManager {
 
     private static FileLanguageManager instance = null;
     private HashMap<String, String> fileLanguagesMap = new HashMap<>();
-    private final String FORMAT = ".txt";
+    private final String FORMAT = FormatFileHandler.getFORMAT();
     
     private FileLanguageManager() throws NoLanguegesFileFoundException, ListingFilesException {
         super();
