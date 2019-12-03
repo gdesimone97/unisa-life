@@ -6,12 +6,7 @@
 package language;
 
 import java.io.IOException;
-import java.nio.file.DirectoryStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Iterator;
-import java.util.*;
 import java.util.Set;
 import language.exceptions.*;
 import org.junit.After;
@@ -61,17 +56,6 @@ public class FileLanguageManagerTest {
     }
 
     /**
-     * Test of getAvailableLanguages method, of class FileLanguageManager.
-     */
-    /*
-    @Ignore
-    @Test(expected = NoLanguegesFileFoundException.class)
-    public void testGetAvailableLanguagesNoLangueges() throws NoLanguegesFileFoundException, FileLanguageManagerException {
-        System.out.print("getAvailableLanguages - test no file in directory ");
-        FileLanguageManager result = FileLanguageManager.getLanguageManager();
-    }
-     */
-    /**
      * Test of getLanguageManager method, of class FileLanguageManager.
      */
     @Test
@@ -93,4 +77,17 @@ public class FileLanguageManagerTest {
         Set<String> result = instance.getAvailableLanguages();
         assertEquals(expResult, result);
     }
+    
+    /**
+     * Test of getAvailableLanguages method, of class FileLanguageManager.
+     */
+    @Test(expected = FileLanguageManagerException.class)
+    public void testGetAvailableLanguagesException() throws IOException, FileLanguageManagerException {
+        System.out.println("getAvailableLanguages - exception");
+        FileLanguageManager instance = FileLanguageManager.getLanguageManager();
+        Set<String> expResult = ReadDirectory.readDirectory("..//test_path");
+        Set<String> result = instance.getAvailableLanguages();
+        assertEquals(expResult, result);
+    }
+    
 }
