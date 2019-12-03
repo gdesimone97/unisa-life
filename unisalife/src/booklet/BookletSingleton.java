@@ -41,6 +41,10 @@ public class BookletSingleton {
         return booklet.get(subject).getScore();
     }
     
+    public boolean getAvailablity(Materia subject){
+        return booklet.get(subject).isAvailable();
+    }
+    
     /**
      * This method allows to set a score to the exam and make it no longer
      * available

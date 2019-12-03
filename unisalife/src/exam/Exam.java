@@ -16,6 +16,7 @@ public class Exam {
     private int score;
     private final Materia examSubject;
     private final int basicScore;
+    QuestionsIterator iter;
     
     /**
      * Constructor. Given a examSubject fetches the questions.
@@ -29,6 +30,7 @@ public class Exam {
         this.examSubject = materia;
         this.questions = questionsFetch.getQuestions();
         this.basicScore = 5;
+        this.iter = questions.iterator();
     }
     
     /**
@@ -46,8 +48,8 @@ public class Exam {
             if(seconds>=10)
                this.score+=(this.basicScore*level);
             else{
-                double losePoints = (((10-seconds)*0.1)*(-4)); //variable used to store losed points depending on passed time before give the answer
-                this.score += (this.basicScore*level) - losePoints;
+                double losePoints = (((10-seconds)*0.1)*(4)); //variable used to store losed points depending on passed time before give the answer
+                this.score += this.basicScore*level - losePoints;
             }
         }else if (level == 4){
             if(answer)
@@ -63,7 +65,7 @@ public class Exam {
      * null
      */
     public Question getQuestion(){
-        QuestionsIterator iter = questions.iterator();
+        
         if(iter.hasNext())
             return iter.next();
         else
