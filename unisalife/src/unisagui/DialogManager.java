@@ -15,11 +15,11 @@ public class DialogManager {
         
     }
     
-    public void showHint(String hint){
+    public void showHint(String hint, boolean show){
         //ancora dobbiamo crearle
     }
     
-    public void showConversation(String conversation){
+    public void showConversation(String conversation, boolean show){
         //ancora dobbiamo crearle
     }
 }

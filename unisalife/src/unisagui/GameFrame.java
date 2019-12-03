@@ -127,9 +127,12 @@ public class GameFrame extends javax.swing.JFrame {
         LanguageButton = new javax.swing.JButton();
         KeyboardButton = new javax.swing.JButton();
         ReturnToMainMenuButton = new javax.swing.JButton();
+        jDialog1 = new javax.swing.JDialog();
         GamePanel = new javax.swing.JPanel();
-        DialogScrollPane = new javax.swing.JScrollPane();
-        DialogTextArea = new javax.swing.JTextArea();
+        ConversationScrollPane = new javax.swing.JScrollPane();
+        ConversationTextArea = new javax.swing.JTextArea();
+        HintScrollPane = new javax.swing.JScrollPane();
+        HintTextArea = new javax.swing.JTextArea();
         HudPanel = new javax.swing.JPanel();
         LevelLabel = new javax.swing.JLabel();
         MoneyIcon = new javax.swing.JLabel();
@@ -1021,6 +1024,19 @@ public class GameFrame extends javax.swing.JFrame {
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
 
+        jDialog1.setType(java.awt.Window.Type.POPUP);
+
+        javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
+        jDialog1.getContentPane().setLayout(jDialog1Layout);
+        jDialog1Layout.setHorizontalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jDialog1Layout.setVerticalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("HNTBAE\n"); // NOI18N
         setBackground(new java.awt.Color(255, 51, 51));
@@ -1036,37 +1052,65 @@ public class GameFrame extends javax.swing.JFrame {
         GamePanel.setMinimumSize(new java.awt.Dimension(500, 500));
         GamePanel.setPreferredSize(new java.awt.Dimension(500, 500));
 
-        DialogScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        DialogScrollPane.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+        ConversationScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        ConversationScrollPane.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+        ConversationScrollPane.setVisible(false);
 
-        DialogTextArea.setEditable(false);
-        DialogTextArea.setColumns(20);
-        DialogTextArea.setRows(5);
-        DialogTextArea.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        DialogTextArea.setMaximumSize(new java.awt.Dimension(450, 100));
-        DialogTextArea.setMinimumSize(new java.awt.Dimension(450, 100));
-        DialogTextArea.setPreferredSize(new java.awt.Dimension(450, 100));
-        DialogTextArea.addKeyListener(new java.awt.event.KeyAdapter() {
+        ConversationTextArea.setEditable(false);
+        ConversationTextArea.setColumns(20);
+        ConversationTextArea.setRows(5);
+        ConversationTextArea.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        ConversationTextArea.setMaximumSize(new java.awt.Dimension(450, 100));
+        ConversationTextArea.setMinimumSize(new java.awt.Dimension(450, 100));
+        ConversationTextArea.setPreferredSize(new java.awt.Dimension(450, 100));
+        ConversationTextArea.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                DialogTextAreaKeyPressed(evt);
+                ConversationTextAreaKeyPressed(evt);
             }
         });
-        DialogScrollPane.setViewportView(DialogTextArea);
+        ConversationScrollPane.setViewportView(ConversationTextArea);
+
+        HintScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        HintScrollPane.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+        HintScrollPane.setMaximumSize(new java.awt.Dimension(200, 50));
+        HintScrollPane.setMinimumSize(new java.awt.Dimension(200, 50));
+        HintScrollPane.setPreferredSize(new java.awt.Dimension(200, 50));
+        HintScrollPane.setVisible(false);
+
+        HintTextArea.setEditable(false);
+        HintTextArea.setColumns(20);
+        HintTextArea.setRows(5);
+        HintTextArea.setMaximumSize(new java.awt.Dimension(200, 50));
+        HintTextArea.setMinimumSize(new java.awt.Dimension(200, 50));
+        HintTextArea.setPreferredSize(new java.awt.Dimension(200, 50));
+        HintTextArea.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                HintTextAreaKeyPressed(evt);
+            }
+        });
+        HintScrollPane.setViewportView(HintTextArea);
 
         javax.swing.GroupLayout GamePanelLayout = new javax.swing.GroupLayout(GamePanel);
         GamePanel.setLayout(GamePanelLayout);
         GamePanelLayout.setHorizontalGroup(
             GamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, GamePanelLayout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(DialogScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 449, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25))
+            .addGroup(GamePanelLayout.createSequentialGroup()
+                .addGroup(GamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(GamePanelLayout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addComponent(ConversationScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 449, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(GamePanelLayout.createSequentialGroup()
+                        .addGap(150, 150, 150)
+                        .addComponent(HintScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         GamePanelLayout.setVerticalGroup(
             GamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, GamePanelLayout.createSequentialGroup()
-                .addGap(375, 375, 375)
-                .addComponent(DialogScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50)
+                .addComponent(HintScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 277, Short.MAX_VALUE)
+                .addComponent(ConversationScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27))
         );
 
@@ -1226,17 +1270,29 @@ public class GameFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_ReturnToMainMenuButtonActionPerformed
     /**
-     * When ENTER key is pressed, DialogScrollPane is not visible anymore and the
-     * DialogTextArea is cleared.
+     * When ENTER key is pressed, ConversationScrollPane is not visible anymore and the
+     * ConversationTextArea is cleared.
      * @param evt 
      */
-    private void DialogTextAreaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_DialogTextAreaKeyPressed
+    private void ConversationTextAreaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ConversationTextAreaKeyPressed
        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
            
-        SwingUtilities.invokeLater(() -> DialogScrollPane.setVisible(false));
-        SwingUtilities.invokeLater(() -> DialogTextArea.setText(EMPTY_TEXT));
+        SwingUtilities.invokeLater(() -> ConversationScrollPane.setVisible(false));
+        SwingUtilities.invokeLater(() -> ConversationTextArea.setText(EMPTY_TEXT));
         }
-    }//GEN-LAST:event_DialogTextAreaKeyPressed
+    }//GEN-LAST:event_ConversationTextAreaKeyPressed
+    /**
+     * When ENTER key is pressed, HintScrollPane is not visible anymore and the
+     * HintTextArea is cleared.
+     * @param evt 
+     */
+    private void HintTextAreaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_HintTextAreaKeyPressed
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+           
+        SwingUtilities.invokeLater(() -> HintScrollPane.setVisible(false));
+        SwingUtilities.invokeLater(() -> HintTextArea.setText(EMPTY_TEXT));
+        }
+    }//GEN-LAST:event_HintTextAreaKeyPressed
 
     /**
      * @param args the command line arguments
@@ -1276,9 +1332,9 @@ public class GameFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     protected javax.swing.JButton AudioButton;
     protected javax.swing.JButton ConfirmAnswer;
+    protected javax.swing.JScrollPane ConversationScrollPane;
+    protected javax.swing.JTextArea ConversationTextArea;
     protected javax.swing.JButton CreditsButton;
-    protected javax.swing.JScrollPane DialogScrollPane;
-    protected javax.swing.JTextArea DialogTextArea;
     protected javax.swing.JLabel EnergyIcon;
     protected javax.swing.JProgressBar EnergyProgressBar;
     protected javax.swing.JDialog ExamDialog;
@@ -1289,6 +1345,8 @@ public class GameFrame extends javax.swing.JFrame {
     protected javax.swing.JButton FirstAnswer;
     protected javax.swing.JButton FourthAnswer;
     protected javax.swing.JPanel GamePanel;
+    protected javax.swing.JScrollPane HintScrollPane;
+    protected javax.swing.JTextArea HintTextArea;
     protected javax.swing.JPanel HudPanel;
     protected javax.swing.JLabel HungerIcon;
     protected javax.swing.JProgressBar HungerProgressBar;
@@ -1377,5 +1435,6 @@ public class GameFrame extends javax.swing.JFrame {
     protected javax.swing.JProgressBar StressProgressBar;
     protected javax.swing.JLabel StudentLabel;
     protected javax.swing.JButton ThirdAnswer;
+    protected javax.swing.JDialog jDialog1;
     // End of variables declaration//GEN-END:variables
 }

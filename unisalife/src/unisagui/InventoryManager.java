@@ -24,8 +24,8 @@ public class InventoryManager {
         return info;
     }
     
-    public void showInventoryDialog(){
-        SwingUtilities.invokeLater(() -> gameframe.InventoryDialog.setVisible(true));
+    public void showInventoryDialog(boolean show){
+        SwingUtilities.invokeLater(() -> gameframe.InventoryDialog.setVisible(show));
     }
     /**
      * 

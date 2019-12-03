@@ -17,7 +17,7 @@ public class RequestManager {
         
     }
     
-    public void showRequest(String id){
+    public void showRequest(String id, boolean show){
         this.setInfo(id);
         
     }

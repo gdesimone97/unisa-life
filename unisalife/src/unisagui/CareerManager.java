@@ -27,7 +27,7 @@ public class CareerManager {
         
     }
     
-    public void showCareerDialog(){
+    public void showCareerDialog(boolean show){
         //ancora dobbiamo crearlo
     }
     

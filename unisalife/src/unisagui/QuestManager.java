@@ -19,7 +19,7 @@ public class QuestManager {
         
     }
     
-    public void showQuestDialog(){
+    public void showQuestDialog(boolean show){
         
     }
 }

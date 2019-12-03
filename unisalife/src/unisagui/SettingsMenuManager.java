@@ -24,8 +24,8 @@ public class SettingsMenuManager {
         return info;
     }
     
-    public void showSettingsMenu(){
-        SwingUtilities.invokeLater(() -> gameframe.MainMenuDialog.setVisible(false)
+    public void showSettingsMenu(boolean show){
+        SwingUtilities.invokeLater(() -> gameframe.MainMenuDialog.setVisible(show));
     }
     
 }

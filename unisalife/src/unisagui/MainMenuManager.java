@@ -18,8 +18,8 @@ public class MainMenuManager {
         
     }
     
-    public void showMainMenu(){
-        SwingUtilities.invokeLater(() -> gameframe.MainMenuDialog.setVisible(true));
+    public void showMainMenu(boolean show){
+        SwingUtilities.invokeLater(() -> gameframe.MainMenuDialog.setVisible(show));
     }
     
     public String getInfo(){

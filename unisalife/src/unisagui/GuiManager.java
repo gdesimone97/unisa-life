@@ -51,42 +51,42 @@ public class GuiManager {
         return instance;
     }
     
-    public void showDialog(GameObject go, String s) throws NotInteractiveException {
+    public void showDialog(GameObject go, String s, boolean show) throws NotInteractiveException {
         
         if(go instanceof Item)
-            dialogmanager.showHint(s);
+            dialogmanager.showHint(s,show);
         else if(go instanceof Person)
-            dialogmanager.showConversation(s);
+            dialogmanager.showConversation(s,show);
         else
             throw new NotInteractiveException();
     }
     
-    public void showExamDialog(Exam exam){
-        exammanager.showExamDialog(exam);
+    public void showExamDialog(Exam exam, boolean show){
+        exammanager.showExamDialog(exam,show);
     }
     
-    public void showSettingsMenu(){
-        settingsmenumanager.showSettingsMenu();
+    public void showSettingsMenu(boolean show){
+        settingsmenumanager.showSettingsMenu(show);
     }
     
-    public void showMainMenu(){
-        mainmenumanager.showMainMenu();
+    public void showMainMenu(boolean show){
+        mainmenumanager.showMainMenu(show);
     }
     
-    public void showInventoryDialog(){
-        inventorymanager.showInventoryDialog();
+    public void showInventoryDialog(boolean show){
+        inventorymanager.showInventoryDialog(show);
     }
     
-    public void showCareerDialog(){
-        careermanager.showCareerDialog();
+    public void showCareerDialog(boolean show){
+        careermanager.showCareerDialog(show);
     }
     
-    public void showQuestDialog(){
-        questmanager.showQuestDialog();
+    public void showQuestDialog(boolean show){
+        questmanager.showQuestDialog(show);
     }
     
-    public void showRequest(GameObject go){
-        requestmanager.showRequest(go.getId());
+    public void showRequest(GameObject go, boolean show){
+        requestmanager.showRequest(go.getId(),show);
     }
     
     public void updateQuestDialog(Quest quest, boolean presence){
