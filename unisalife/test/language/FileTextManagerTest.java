@@ -45,7 +45,7 @@ public class FileTextManagerTest {
      * Test of getFileTextManager method, of class FileTextManager.
      */
     @Test
-    public void testGetFileTextManager() throws Exception {
+    public void testGetFileTextManager() throws FileTextManagerException {
         System.out.println("getFileTextManager");
         FileTextManager expResult = null;
         FileTextManager result = FileTextManager.getFileTextManager();
@@ -118,12 +118,25 @@ public class FileTextManagerTest {
      * Test of getString method, of class FileTextManager.
      */
     @Test
-    public void testGetString() throws Exception {
+    public void testGetString() throws FileTextManagerException, TextFinderException {
+        final String TEST_STRING = "Stringa di test";
+        final String ATTR_STRING = "123";
         System.out.println("getString");
-        String exp = "";
-        FileTextManager instance = null;
-        List<String> expResult = null;
-        List<String> result = instance.getString(exp);
+        FileTextManager instance = FileTextManager.getFileTextManager();
+        String expResult = TEST_STRING;
+        String result = "";
+        List<String> resultString = instance.getString(new Information() {
+            @Override
+            public String getInfo() {
+                return ATTR_STRING;
+            }
+
+            @Override
+            public Boolean isAvailable() {
+                return true;
+            }
+        });
+        result = resultString.get(0);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
