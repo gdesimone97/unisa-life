@@ -64,16 +64,4 @@ public class FileLanguageManagerTest {
         Set<String> result = instance.getAvailableLanguages();
         assertEquals(expResult, result);
     }
-
-    /**
-     * Test of getAvailableLanguages method, of class FileLanguageManager.
-     */
-    @Test(expected = FileLanguageManagerException.class)
-    public void testGetAvailableLanguagesException() throws IOException, FileLanguageManagerException {
-        System.out.println("getAvailableLanguages - exception");
-        FileLanguageManager instance = FileLanguageManager.getLanguageManager();
-        Set<String> expResult = ReadDirectory.readDirectory("..//lang");
-        Set<String> result = instance.getAvailableLanguages();
-        assertEquals(expResult, result);
-    }
 }
