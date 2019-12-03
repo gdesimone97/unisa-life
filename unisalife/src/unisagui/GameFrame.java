@@ -127,7 +127,11 @@ public class GameFrame extends javax.swing.JFrame {
         LanguageButton = new javax.swing.JButton();
         KeyboardButton = new javax.swing.JButton();
         ReturnToMainMenuButton = new javax.swing.JButton();
-        jDialog1 = new javax.swing.JDialog();
+        RequestDialog = new javax.swing.JDialog();
+        RequestLabel = new javax.swing.JLabel();
+        YesButton = new javax.swing.JButton();
+        NoButton = new javax.swing.JButton();
+        RequestPanel = new javax.swing.JPanel();
         GamePanel = new javax.swing.JPanel();
         ConversationScrollPane = new javax.swing.JScrollPane();
         ConversationTextArea = new javax.swing.JTextArea();
@@ -1024,17 +1028,70 @@ public class GameFrame extends javax.swing.JFrame {
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
 
-        jDialog1.setType(java.awt.Window.Type.POPUP);
+        RequestDialog.setMinimumSize(new java.awt.Dimension(250, 175));
+        RequestDialog.setType(java.awt.Window.Type.POPUP);
 
-        javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
-        jDialog1.getContentPane().setLayout(jDialog1Layout);
-        jDialog1Layout.setHorizontalGroup(
-            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+        RequestLabel.setText("Request Label");
+        RequestLabel.setMaximumSize(new java.awt.Dimension(200, 50));
+        RequestLabel.setMinimumSize(new java.awt.Dimension(200, 50));
+        RequestLabel.setPreferredSize(new java.awt.Dimension(200, 50));
+
+        YesButton.setText("jButton1");
+        YesButton.setPreferredSize(new java.awt.Dimension(75, 50));
+        YesButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                YesButtonActionPerformed(evt);
+            }
+        });
+
+        NoButton.setText("jButton1");
+        NoButton.setPreferredSize(new java.awt.Dimension(75, 50));
+
+        javax.swing.GroupLayout RequestPanelLayout = new javax.swing.GroupLayout(RequestPanel);
+        RequestPanel.setLayout(RequestPanelLayout);
+        RequestPanelLayout.setHorizontalGroup(
+            RequestPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
         );
-        jDialog1Layout.setVerticalGroup(
-            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+        RequestPanelLayout.setVerticalGroup(
+            RequestPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout RequestDialogLayout = new javax.swing.GroupLayout(RequestDialog.getContentPane());
+        RequestDialog.getContentPane().setLayout(RequestDialogLayout);
+        RequestDialogLayout.setHorizontalGroup(
+            RequestDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(RequestDialogLayout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addGroup(RequestDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(RequestDialogLayout.createSequentialGroup()
+                        .addComponent(YesButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(50, 50, 50)
+                        .addComponent(NoButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(RequestLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(25, 25, 25))
+            .addGroup(RequestDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(RequestDialogLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(RequestPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        RequestDialogLayout.setVerticalGroup(
+            RequestDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(RequestDialogLayout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(RequestLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25)
+                .addGroup(RequestDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(NoButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(YesButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(25, 25, 25))
+            .addGroup(RequestDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(RequestDialogLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(RequestPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -1294,6 +1351,10 @@ public class GameFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_HintTextAreaKeyPressed
 
+    private void YesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_YesButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_YesButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1423,7 +1484,11 @@ public class GameFrame extends javax.swing.JFrame {
     protected javax.swing.JLabel NameOfExamLabel;
     protected javax.swing.JButton NewGameButton;
     protected javax.swing.JButton NextButton;
+    protected javax.swing.JButton NoButton;
     protected javax.swing.JLabel ProfLabel;
+    protected javax.swing.JDialog RequestDialog;
+    protected javax.swing.JLabel RequestLabel;
+    protected javax.swing.JPanel RequestPanel;
     protected javax.swing.JButton ResumeGameButton;
     protected javax.swing.JButton ReturnToMainMenuButton;
     protected javax.swing.JButton SecondAnswer;
@@ -1435,6 +1500,6 @@ public class GameFrame extends javax.swing.JFrame {
     protected javax.swing.JProgressBar StressProgressBar;
     protected javax.swing.JLabel StudentLabel;
     protected javax.swing.JButton ThirdAnswer;
-    protected javax.swing.JDialog jDialog1;
+    protected javax.swing.JButton YesButton;
     // End of variables declaration//GEN-END:variables
 }
