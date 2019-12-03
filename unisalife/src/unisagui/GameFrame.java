@@ -122,6 +122,8 @@ public class GameFrame extends javax.swing.JFrame {
         KeyboardButton = new javax.swing.JButton();
         ReturnToMainMenuButton = new javax.swing.JButton();
         GamePanel = new javax.swing.JPanel();
+        DialogScrollPane = new javax.swing.JScrollPane();
+        DialogTextArea = new javax.swing.JTextArea();
         HudPanel = new javax.swing.JPanel();
         LevelLabel = new javax.swing.JLabel();
         MoneyIcon = new javax.swing.JLabel();
@@ -1017,10 +1019,8 @@ public class GameFrame extends javax.swing.JFrame {
         setTitle("HNTBAE\n"); // NOI18N
         setBackground(new java.awt.Color(255, 51, 51));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        setMaximumSize(new java.awt.Dimension(600, 750));
         setMinimumSize(new java.awt.Dimension(600, 750));
         setName("PrincipalJFrame\n"); // NOI18N
-        setPreferredSize(new java.awt.Dimension(600, 750));
         setResizable(false);
         setSize(new java.awt.Dimension(600, 750));
 
@@ -1030,15 +1030,29 @@ public class GameFrame extends javax.swing.JFrame {
         GamePanel.setMinimumSize(new java.awt.Dimension(500, 500));
         GamePanel.setPreferredSize(new java.awt.Dimension(500, 500));
 
+        DialogTextArea.setEditable(false);
+        DialogTextArea.setColumns(20);
+        DialogTextArea.setRows(5);
+        DialogTextArea.setMaximumSize(new java.awt.Dimension(200, 100));
+        DialogTextArea.setMinimumSize(new java.awt.Dimension(200, 100));
+        DialogTextArea.setPreferredSize(new java.awt.Dimension(200, 100));
+        DialogScrollPane.setViewportView(DialogTextArea);
+
         javax.swing.GroupLayout GamePanelLayout = new javax.swing.GroupLayout(GamePanel);
         GamePanel.setLayout(GamePanelLayout);
         GamePanelLayout.setHorizontalGroup(
             GamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 500, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, GamePanelLayout.createSequentialGroup()
+                .addContainerGap(121, Short.MAX_VALUE)
+                .addComponent(DialogScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(101, 101, 101))
         );
         GamePanelLayout.setVerticalGroup(
             GamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 500, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, GamePanelLayout.createSequentialGroup()
+                .addContainerGap(361, Short.MAX_VALUE)
+                .addComponent(DialogScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         HudPanel.setMaximumSize(new java.awt.Dimension(600, 175));
@@ -1236,6 +1250,8 @@ public class GameFrame extends javax.swing.JFrame {
     protected javax.swing.JButton AudioButton;
     protected javax.swing.JButton ConfirmAnswer;
     protected javax.swing.JButton CreditsButton;
+    protected javax.swing.JScrollPane DialogScrollPane;
+    protected javax.swing.JTextArea DialogTextArea;
     protected javax.swing.JLabel EnergyIcon;
     protected javax.swing.JProgressBar EnergyProgressBar;
     protected javax.swing.JDialog ExamDialog;
