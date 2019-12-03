@@ -64,10 +64,10 @@ public abstract class FileTextFinder implements TextFinder {
                 throw new InvalidObjectInformationException();
             }
             String lastClass = obj.getClass().getSimpleName();
-            expression = "//" + lastClass + "[@info = '" + info + "']";
+            expression = "//" + lastClass + "[@info = \'" + info + "\']";
         }
         else{
-            expression ="//Warnings [@info = 'NotAvailable']";
+            expression ="//Warnings [@info = \'NotAvailable\']";
         }
         return expression;
 

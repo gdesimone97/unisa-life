@@ -7,7 +7,8 @@
 package language;
 
 import language.exceptions.*;
-import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.*;
 import javax.xml.parsers.*;
@@ -80,7 +81,7 @@ public class ConcreteFileTextFinder extends FileTextFinder {
      * @return a Document object
      * @throws XMLFileException if error occours opening the file
      */
-    private Document createDocument(File inputFile) throws XMLFileException {
+    private Document createDocument(FileInputStream inputFile) throws XMLFileException {
         Document doc = null;
         try {
             doc = this.documentBuilder.parse(inputFile);
@@ -103,8 +104,17 @@ public class ConcreteFileTextFinder extends FileTextFinder {
     protected List<String> getString(String exp) throws TextFinderException {
 
         List<String> returnList = new ArrayList<>();
-        File inputFile = new File(FileTextFinder.getFileName());
+        FileInputStream inputFile;
+        try {
+            System.out.println(FileTextFinder.getFileName());
+            inputFile = new FileInputStream(FileTextFinder.getFileName());
+
+        } catch (FileNotFoundException ex) {
+            throw new TextFinderException();
+        }
+
         Document doc = this.createDocument(inputFile);
+
         NodeList nodeList = null;
         try {
             nodeList = (NodeList) this.querier.compile(exp).evaluate(doc, XPathConstants.NODESET);

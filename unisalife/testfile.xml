@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
+<root>
 <GenericAbstract>
 
 <GenericClass info="TestInfo">
 <message>OK</message>
-</GenericClass
+</GenericClass>
 
 <GenericClass info="TestSingleInfo">
 <message>OneString</message>
-</GenericClass
+</GenericClass>
 
 <GenericClass info="TestMultipleInfo">
 <message>First</message>
 <message>Second</message>
 <message>Third</message>
-</GenericClass
+</GenericClass>
 
 </GenericAbstract>
 
@@ -21,3 +23,4 @@
 <message>Operation not allowed</message>
 </Warnings>
 
+</root>
