@@ -3,9 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package game.Classes;
+package game.GameObjects;
 
-import static game.Classes.GameObject.width;
+import game.GameResources.Game;
+import game.GameObjects.FaceState;
+
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
@@ -14,17 +16,17 @@ import java.awt.Rectangle;
  * @author simon
  */
 public class UpFaceState extends FaceState{
-    public UpFaceState(){
-        super();
+    public UpFaceState(Player player){
+        super(player);
     }
     
+    @Override
     public void drawFace(Graphics g){
-        g.drawImage(Game.player.facingUpImage, (int)Game.player.x,(int)Game.player.y, null);
-        return;
+        g.drawImage(player.facingUpImage, (int)player.getX(),(int)player.getY(), null);
     }
     
     @Override
     public Rectangle visualViewOfPlayer(){
-        return new Rectangle((int)Game.player.x+Game.player.width/4,(int)Game.player.y-Game.player.height/2,Game.player.width/2,Game.player.height/2);
+        return new Rectangle((int)player.getX()+player.getWidth()/4,(int)player.getY()-player.getHeight()/2,(int)player.getWidth()/2,player.getHeight()/2);
     }
 }

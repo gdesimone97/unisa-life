@@ -3,18 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package game.Classes;
+package game.GameResources;
 import java.awt.Graphics;
 /**
  *
  * @author simon
  */
 public abstract class GameState {
-
+    Game game;
     /**
      *
      */
-    public GameState(){}
+    public GameState(Game g){
+        game=g;
+    }
 
     /**
      *

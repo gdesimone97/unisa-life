@@ -3,8 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package game.Classes;
-import game.Classes.Game;
+package game.GameResources;
 import java.awt.Graphics;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
@@ -12,13 +11,13 @@ import java.awt.event.KeyEvent;
  *
  * @author simon
  */
-public class MenuState extends GameState {
+public class NotGameState extends GameState {
 
     /**
      *
      */
-    public MenuState(){
-        super();
+    public NotGameState(Game g){
+        super(g);
     }
 
     /**
@@ -29,7 +28,6 @@ public class MenuState extends GameState {
     public void render(Graphics g){
         g.setColor(Color.BLACK);
         g.fillRect(0,0,Game.WIDTHSCREEN,Game.HEIGHTSCREEN2 );
-        Game.menu.render(g);
     }
 
     /**
@@ -44,7 +42,7 @@ public class MenuState extends GameState {
      */
     @Override
     public void performPressAction(int k){
-        if(k==KeyEvent.VK_M)Game.state=new PlayState();
+        if(k==KeyEvent.VK_M)game.state=new PlayState(game);
     }
     
     /**

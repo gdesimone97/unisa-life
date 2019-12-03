@@ -3,7 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package game.Classes;
+package game.GameObjects;
+import game.GameResources.Animation;
+import game.GameResources.Game;
+import game.GameResources.Handler;
 import game.Interfaces.Tickable;
 import game.Interfaces.Interactable;
 import game.Interfaces.Renderable;
@@ -20,23 +23,28 @@ import java.awt.Rectangle;
 public class Player extends GameObject implements Tickable,Renderable{
     private Handler handler; 
     private float velX=0;
-    private float velY=0;
-    private Animation upWalk;
-    private Animation downWalk;
-    private Animation leftWalk;
-    private Animation rightWalk;
+    protected float velY=0;
+    protected Animation upWalk;
+    protected Animation downWalk;
+    protected Animation leftWalk;
+    protected Animation rightWalk;
     protected BufferedImage facingDownImage;
     protected BufferedImage facingLeftImage;
     protected BufferedImage facingRightImage;
     protected BufferedImage facingUpImage;
-    private FaceState face;
+    protected FaceState face;
+    private static Player uniqueIstance=null;
+    protected Game game;
+    protected GameInventory inventory;
     
     /*public Player(float x,float y,ObjectId i){
         super(x,y,i);
     }*/
-    private Player(float x,float y,ObjectId i){
+    private Player(float x,float y,ObjectId i,Game g,GameInventory inventory){
         super(x,y,i);
-        face=new DownFaceState();
+        face=new DownFaceState(this);
+        game=g;
+        this.inventory=inventory;
         
         /*try {
         image = ImageIO.read(
@@ -57,83 +65,41 @@ public class Player extends GameObject implements Tickable,Renderable{
     */
     }
     
-    /**
-     *
-     * @param i
-     */
-    public void setFacingLeftImage(BufferedImage i){
-        facingLeftImage=i;
-    }
-
-    /**
-     *
-     * @param i
-     */
-    public void setFacingRightImage(BufferedImage i){
-        facingRightImage=i;
-    }
-
-    /**
-     *
-     * @param i
-     */
-    public void setFacingUpImage(BufferedImage i){
-        facingUpImage=i;
-    }
-
-    /**
-     *
-     * @param i
-     */
-    public void setFacingDownImage(BufferedImage i){
-        facingDownImage=i;
+    public void changeFaceSet(BufferedImage down,BufferedImage left,BufferedImage right,BufferedImage up){
+        facingLeftImage=left;
+        facingRightImage=right;
+        facingUpImage=up;
+        facingDownImage=down;
     }
     
-    private static Player uniqueIstance=null;
-
+    public void changeAnimationSet(Animation down,Animation left,Animation right,Animation up){
+        upWalk=up;
+        downWalk=down;
+        leftWalk=left;
+        rightWalk=right;
+    }
+    
     /**
-     *
+     *@param g
      * @return
+     * 
      */
-    public static Player getIstance(){
+    public static Player getIstance(Game g){
         if(uniqueIstance==null){
-            return new Player(0,0,ObjectId.Player);
+            return new Player(0,0,ObjectId.Player,g,new GameInventory());
         }
         return uniqueIstance;
     }
     
-    /**
-     *
-     * @param a
-     */
-    public void setUpAnimation(Animation a){
-        upWalk=a;
-    }
-
-    /**
-     *
-     * @param a
-     */
-    public void setDownAnimation(Animation a){
-        downWalk=a;
-    }
-
-    /**
-     *
-     * @param a
-     */
-    public void setLeftAnimation(Animation a){
-        leftWalk=a;
-    }
-
-    /**
-     *
-     * @param a
-     */
-    public void setRightAnimation(Animation a){
-        rightWalk=a;
+    public void setInventory(LinkedList<Item> l){
+        this.inventory=new GameInventory(l);
     }
     
+    /**
+     *
+     * @param a
+     */
+   
     /**
      *
      * @return
@@ -205,15 +171,15 @@ public class Player extends GameObject implements Tickable,Renderable{
     @Override
     public void tick(/*LinkedList<GameObject> objects*/)
     {
-        if(velX>0) face=new RightFaceState();
-        if(velX<0) face=new LeftFaceState();
-        if(velY>0) face=new DownFaceState();
-        if(velY<0) face=new UpFaceState();
-        if(x+velX>0&&x+velX<Game.WIDTHMAP-width)
+        if(velX>0) face=new RightFaceState(this);
+        if(velX<0) face=new LeftFaceState(this);
+        if(velY>0) face=new DownFaceState(this);
+        if(velY<0) face=new UpFaceState(this);
+        if(x+velX>0&&x+velX<game.getWidthMap()-width)
             x+=velX;
-        if(y+velY>0&&y+velY<Game.HEIGHTMAP-height)
+        if(y+velY>0&&y+velY<game.getHeightMap()-height)
             y+=velY;
-        collisions(Game.maps[Game.actualMap].getList());
+        collisions(game.getActualMap().getList());
         downWalk.runAnimation();
         leftWalk.runAnimation();
         rightWalk.runAnimation();
@@ -235,30 +201,30 @@ public class Player extends GameObject implements Tickable,Renderable{
                 System.out.print(t.mapPath);
                 Game.tileMap.loadTiles(t.tilePath);
                 */
-                Game.actualMap=t.getMapDest();
-                Game.WIDTHMAP=Game.maps[Game.actualMap].getTileMap().getWidth();
-                Game.HEIGHTMAP=Game.maps[Game.actualMap].getTileMap().getHeight();
-                Game.handler=new Handler();
+                game.updateActualMap(t.getMapDest());
+                game.setWidthMap(game.getActualMap().getTileMap().getWidth());
+                game.setHeightMap(game.getActualMap().getTileMap().getHeight());
+                game.setHandler(new Handler());
                 x=t.getDestination().getX();
                 y=t.getDestination().getY();            
                 break;
             }
             if(getBottomBounds().intersects(g.getBounds()))//&&g.getId()!=ObjectId.Teleport)
             {
-                y=g.y-height;
+                y=g.getY()-height;
                 break;
             }
             
             if(getTopBounds().intersects(g.getBounds())){//&&g.getId()!=ObjectId.Tel){
-                y=g.y+height;
+                y=g.getY()+height;
                 break;
             }
             if(getLeftBounds().intersects(g.getBounds())){//&&g.getId()!=ObjectId.Block){
-                x=g.x+width+1;
+                x=g.getX()+width+1;
                 break;
             }
             if(getRightBounds().intersects(g.getBounds())){//&&g.getId()!=ObjectId.Block){
-                x=g.x-width-1;
+                x=g.getX()-width-1;
                 break;
             }
             }
@@ -271,6 +237,12 @@ public class Player extends GameObject implements Tickable,Renderable{
         for(GameObject g:l){
             if(g instanceof Interactable && visualViewOfPlayer().intersects(g.getBounds())){
                 ((Interactable)g).interact();
+                if(g.getId()==ObjectId.Item){
+                    this.inventory.addItem((Item)g);
+                    l.remove(g);
+                    for(Item i:inventory)
+                        System.out.print(i.getTitle());
+                }
                 break;
             }
         }
@@ -306,4 +278,13 @@ public class Player extends GameObject implements Tickable,Renderable{
     private Rectangle visualViewOfPlayer(){
         return face.visualViewOfPlayer();
     }
+    
+    public int getWidth(){
+        return width;
+    }
+    
+    public int getHeight(){
+        return height;
+    }
+    
 }

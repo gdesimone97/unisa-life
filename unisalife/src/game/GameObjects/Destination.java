@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package game.Classes;
+package game.GameObjects;
 
 /**
  * Destination represents a tuple of x and y coordinates used for 

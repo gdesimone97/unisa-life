@@ -3,14 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package game.Classes;
+package game.GameObjects;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Rectangle;
-import java.awt.image.BufferedImage;
 import java.util.LinkedList;
-import javax.imageio.ImageIO;
 
 /**
  * A block represent a point in the map that can't be passed from the player.
@@ -49,11 +46,11 @@ public class Block extends GameObject{
      *
      * @param g
      */
-    
+    /*
     public void render(Graphics g){
         g.setColor(Color.black);
         g.fillRect((int)x,(int)y, width, height);
         //g.drawImage(image, (int)x,(int) y, (int)width, (int)height, null);
-    }
+    }*/
     
 }

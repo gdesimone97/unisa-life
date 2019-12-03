@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package game.Classes;
+package game.GameObjects;
 
+import game.GameResources.Game;
 import game.Interfaces.Tickable;
 
 /**
@@ -14,15 +15,17 @@ import game.Interfaces.Tickable;
  */
 public class Camera implements Tickable {
     private float x,y;
+    private Player player;
 
     /**
      *
      * @param x x starting position of camera
      * @param y y starting position of camera
      */
-    public Camera(float x,float y){
+    public Camera(float x,float y,Player p){
         this.x=x;
         this.y=y;
+        player=p;
     }
 
     /**
@@ -64,8 +67,8 @@ public class Camera implements Tickable {
      */
     @Override
     public void tick(){
-        x=(-Game.player.getX()+Game.WIDTHSCREEN/2);
-        y=(-Game.player.getY()+Game.HEIGHTSCREEN2/2);
+        x=(-player.getX()+Game.WIDTHSCREEN/2);
+        y=(-player.getY()+Game.HEIGHTSCREEN2/2);
         /*x=(-player.getX()+Toolkit.getDefaultToolkit().getScreenSize().width/2);
         y=(-player.getY()+Toolkit.getDefaultToolkit().getScreenSize().height/2);*/
     }

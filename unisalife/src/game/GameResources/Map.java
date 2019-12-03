@@ -3,7 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package game.Classes;
+package game.GameResources;
+import game.GameObjects.GameObject;
 import java.util.LinkedList;
 /**
  *

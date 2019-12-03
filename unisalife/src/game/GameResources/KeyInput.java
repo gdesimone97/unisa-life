@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package game.Classes;
+package game.GameResources;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 /**
@@ -13,22 +13,22 @@ import java.awt.event.KeyEvent;
 public class KeyInput extends KeyAdapter {
     
     Handler handler;
-    private int vel=2;
+    Game game;
+    private boolean trigg=false;
+    
     
     /**
      *
      * @param vel
      */
-    public void setVel(int vel){
-        this.vel=vel;
-    }
 
     /**
      *
      * @param handler
      */
-    public KeyInput(Handler handler){
+    public KeyInput(Handler handler,Game g){
         this.handler=handler;
+        this.game=g;
     }
     
     @Override
@@ -36,14 +36,16 @@ public class KeyInput extends KeyAdapter {
         int k=e.getKeyCode();
         if(k==KeyEvent.VK_ESCAPE)
                 System.exit(0);
-        Game.state.performPressAction(k);
+        game.state.performPressAction(k);
         
     }
+    
+    
     
     @Override
     public void keyReleased(KeyEvent e){
         int k=e.getKeyCode();
-        Game.state.performReleaseAction(k);
+        game.state.performReleaseAction(k);
     }
     
 }

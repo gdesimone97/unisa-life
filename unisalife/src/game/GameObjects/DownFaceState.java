@@ -3,7 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package game.Classes;
+package game.GameObjects;
+import game.GameResources.Game;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 /**
@@ -11,18 +12,18 @@ import java.awt.Rectangle;
  * @author simon
  */
 public class DownFaceState extends FaceState{
-    public DownFaceState(){
-        super();
+    public DownFaceState(Player player){
+        super(player);
     }
     
     public void drawFace(Graphics g){
-        g.drawImage(Game.player.facingDownImage, (int)Game.player.x, (int)Game.player.y, null);
+        g.drawImage(player.facingDownImage, (int)player.getX(), (int)player.getY(), null);
         return;
     }
     
     @Override
     public Rectangle visualViewOfPlayer(){
-        return new Rectangle((int)Game.player.x+Game.player.width/4,(int)Game.player.y+Game.player.height,Game.player.width/2,Game.player.height/2);
+        return new Rectangle((int)player.getX()+player.getWidth()/4,(int)player.getY()+player.getHeight(),(int)player.getWidth()/2,(int)player.getHeight()/2);
     }
     
 }

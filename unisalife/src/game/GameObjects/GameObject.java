@@ -3,38 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package game.Classes;
-import java.util.LinkedList;
-import java.awt.Graphics;
+package game.GameObjects;
+import game.GameResources.Game;
 import java.awt.Rectangle;
-import java.awt.image.BufferedImage;
 /**
  * represents an object of the game(player, character, block, teleport, item).
  * @author simon
  */
 public abstract class GameObject {
-    protected float x,
-
-    /**
-     *
-     */
-    y;
-
-    /**
-     *
-     */
-    protected ObjectId id;
-
-    /**
-     *
-     */
+    protected float x,y;
     
-    protected static int width=Game.dimensionSprite,
-
-    /**
-     *
-     */
-    height=Game.dimensionSprite;
+    protected ObjectId id;
+    protected int width=Game.DIMENSIONSPRITE;
+    protected int height=Game.DIMENSIONSPRITE;
     
     /**
      *
@@ -76,6 +57,7 @@ public abstract class GameObject {
      */
     public  float getY(){
         return y;
+        
     }
     
     /**

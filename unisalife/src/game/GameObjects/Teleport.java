@@ -3,7 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package game.Classes;
+package game.GameObjects;
+import game.GameObjects.ObjectId;
+import game.GameObjects.Destination;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.LinkedList;

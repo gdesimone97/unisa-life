@@ -3,10 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package game.Classes;
-
-import game.Classes.Game;
-import game.Classes.MenuState;
+package game.GameResources;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -20,8 +17,8 @@ public class PlayState extends GameState{
     /**
      *
      */
-    public PlayState(){
-        super();
+    public PlayState(Game g){
+        super(g);
     }
     
     /**
@@ -53,12 +50,12 @@ public class PlayState extends GameState{
      */
     @Override
     public void performPressAction(int k){
-        if(k==KeyEvent.VK_M)Game.state=new MenuState();
-        if(k==KeyEvent.VK_RIGHT) Game.player.setVelX(Game.speed);
-        if(k==KeyEvent.VK_LEFT) Game.player.setVelX(-Game.speed);
-        if(k==KeyEvent.VK_DOWN) Game.player.setVelY(Game.speed);
-        if(k==KeyEvent.VK_UP) Game.player.setVelY(-Game.speed);
-        if(k==KeyEvent.VK_SPACE) Game.player.dialog(Game.maps[Game.actualMap].getList());
+        if(k==KeyEvent.VK_M)game.state=new NotGameState(game);
+        if(k==KeyEvent.VK_RIGHT) Game.player.setVelX(game.PLAYERSPEED);
+        if(k==KeyEvent.VK_LEFT) Game.player.setVelX(-game.PLAYERSPEED);
+        if(k==KeyEvent.VK_DOWN) Game.player.setVelY(game.PLAYERSPEED);
+        if(k==KeyEvent.VK_UP) Game.player.setVelY(-game.PLAYERSPEED);
+        if(k==KeyEvent.VK_SPACE) Game.player.dialog(game.getActualMap().getList());
     }
 
     /**

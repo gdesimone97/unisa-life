@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package game.Classes;
+package game.GameResources;
 import java.awt.image.BufferedImage;
 import java.awt.Graphics;
 /**
@@ -13,7 +13,7 @@ import java.awt.Graphics;
  * @author simon
  */
 public class Animation {
-    private static final int speed=2;
+    private int speed;
     private int frames;
     private int index=0;
     private int count=0;
@@ -23,9 +23,11 @@ public class Animation {
     /**
      * Constructor takes a sequence of BufferedImage objects.
      *
+     * @param s
      * @param args
      */
-    public Animation(BufferedImage... args){
+    public Animation(int s,BufferedImage... args){
+        speed=s;
         images=new BufferedImage[args.length];
         frames=args.length;
         for(int i=0;i<frames;i++){

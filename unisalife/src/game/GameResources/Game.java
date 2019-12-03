@@ -4,25 +4,21 @@
  * and open the template in the editor.
  */
 
-package game.Classes;
+package game.GameResources;
+import game.GameObjects.Teleport;
+import game.GameObjects.Player;
+import game.GameObjects.Person;
+import game.GameObjects.ObjectId;
+import game.GameObjects.Item;
+import game.GameObjects.Destination;
+import game.GameObjects.Camera;
+import game.GameObjects.Block;
 import java.awt.Canvas;
-import java.awt.Color;
-import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
-import java.awt.Rectangle;
-import java.awt.Color;
-import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.util.LinkedList;
 import javax.imageio.ImageIO;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.WindowConstants;
 import java.awt.Graphics;
-import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.awt.Dimension;
 /**
  * Game represents the thread that runs the game. 
@@ -39,53 +35,26 @@ public class Game extends Canvas implements Runnable {
      *
      */
     public Thread thread;
-    static Handler handler;
-    static Camera camera;
+    protected static Handler handler;
+    protected static Camera camera;
 
     /**
      *
      */
-    public static BufferedImage[] texturePlayer;
-    //public static int WIDTH=Toolkit.getDefaultToolkit().getScreenSize().width,HEIGHT=Toolkit.getDefaultToolkit().getScreenSize().height;
-    public static int WIDTHSCREEN=500,
-
-    /**
-     *
-     */
-    HEIGHTSCREEN=500,
-
-    /**
+    protected static BufferedImage[] texturePlayer;
+    public static final int WIDTHSCREEN=500,
+                            HEIGHTSCREEN=500,
+                            HEIGHTSCREEN2 = HEIGHTSCREEN + 32,
+                            PLAYERSPEED=2,
+                            DIMENSIONSPRITE=32;
+    private int WIDTHMAP,HEIGHTMAP;
     
-     */
-    HEIGHTSCREEN2 = HEIGHTSCREEN + 32;
-    public static int WIDTHMAP=928,
-
-    /**
-     *
-     */
-    HEIGHTMAP=928,
-
-    /**
-     *
-     */
-    speed=2;
-
-    /**
-     *
-     */
-    public static final int dimensionSprite=32;
-
-    /**
-     *
-     */
-    public double AMOUNTOFTICKS = 30.0;
-   
-    public static Menu menu;
-    public static GameState state=new MenuState();
-    static Map[] maps=new Map[5];
-    public static int actualMap;
-    static TileMap tileMap;
-    static Player player;
+    public final static double AMOUNTOFTICKS = 30.0;
+    protected GameState state=new NotGameState(this);
+    protected static Map[] maps=new Map[5];
+    protected static int actualMap;
+    protected static TileMap tileMap;
+    protected static Player player;
     
     
     
@@ -110,10 +79,7 @@ public class Game extends Canvas implements Runnable {
         actualMap = 0;
         WIDTHMAP=maps[actualMap].getTileMap().getWidth();
         HEIGHTMAP=maps[actualMap].getTileMap().getHeight();
-        menu=new Menu();
-        handler = new Handler();
-        camera=new Camera(0,0);
-        this.addKeyListener(new KeyInput(handler));
+        this.addKeyListener(new KeyInput(handler,this));
         
     }
     /**
@@ -126,34 +92,33 @@ public class Game extends Canvas implements Runnable {
         BufferedImage characterImage= ImageIO.read(
 				getClass().getResourceAsStream("/Sprites/character.png")
         );
-        texturePlayer[0]=characterImage.getSubimage(32,0, dimensionSprite, dimensionSprite);
-        texturePlayer[1]=characterImage.getSubimage(0,0, dimensionSprite, dimensionSprite);
-        texturePlayer[2]=characterImage.getSubimage(64,0, dimensionSprite, dimensionSprite);
-        texturePlayer[3]=characterImage.getSubimage(32,32, dimensionSprite, dimensionSprite);
-        texturePlayer[4]=characterImage.getSubimage(0,32, dimensionSprite, dimensionSprite);
-        texturePlayer[5]=characterImage.getSubimage(64,32, dimensionSprite, dimensionSprite);
-        texturePlayer[6]=characterImage.getSubimage(32,64, dimensionSprite, dimensionSprite);
-        texturePlayer[7]=characterImage.getSubimage(0,64, dimensionSprite, dimensionSprite);
-        texturePlayer[8]=characterImage.getSubimage(64,64, dimensionSprite, dimensionSprite);
-        texturePlayer[9]=characterImage.getSubimage(32,96, dimensionSprite, dimensionSprite);
-        texturePlayer[10]=characterImage.getSubimage(0,96, dimensionSprite, dimensionSprite);
-        texturePlayer[11]=characterImage.getSubimage(64,96, dimensionSprite, dimensionSprite);
+        texturePlayer[0]=characterImage.getSubimage(32,0, DIMENSIONSPRITE, DIMENSIONSPRITE);
+        texturePlayer[1]=characterImage.getSubimage(0,0, DIMENSIONSPRITE, DIMENSIONSPRITE);
+        texturePlayer[2]=characterImage.getSubimage(64,0, DIMENSIONSPRITE, DIMENSIONSPRITE);
+        texturePlayer[3]=characterImage.getSubimage(32,32, DIMENSIONSPRITE, DIMENSIONSPRITE);
+        texturePlayer[4]=characterImage.getSubimage(0,32, DIMENSIONSPRITE, DIMENSIONSPRITE);
+        texturePlayer[5]=characterImage.getSubimage(64,32, DIMENSIONSPRITE, DIMENSIONSPRITE);
+        texturePlayer[6]=characterImage.getSubimage(32,64, DIMENSIONSPRITE, DIMENSIONSPRITE);
+        texturePlayer[7]=characterImage.getSubimage(0,64, DIMENSIONSPRITE, DIMENSIONSPRITE);
+        texturePlayer[8]=characterImage.getSubimage(64,64, DIMENSIONSPRITE, DIMENSIONSPRITE);
+        texturePlayer[9]=characterImage.getSubimage(32,96, DIMENSIONSPRITE, DIMENSIONSPRITE);
+        texturePlayer[10]=characterImage.getSubimage(0,96, DIMENSIONSPRITE, DIMENSIONSPRITE);
+        texturePlayer[11]=characterImage.getSubimage(64,96, DIMENSIONSPRITE, DIMENSIONSPRITE);
     }
         
         catch (Exception e) {
             System.exit(4);
     }
-        player=Player.getIstance();
-        player.setFacingDownImage(Game.texturePlayer[0]);
-        player.setFacingLeftImage(Game.texturePlayer[3]);
-        player.setFacingRightImage(Game.texturePlayer[6]);
-        player.setFacingUpImage(Game.texturePlayer[9]);
-        player.setDownAnimation(new Animation(texturePlayer[1],texturePlayer[2]));
-        player.setLeftAnimation(new Animation(texturePlayer[4],texturePlayer[5]));
-        player.setRightAnimation(new Animation(texturePlayer[7],texturePlayer[8]));
-        player.setUpAnimation(new Animation(texturePlayer[10],texturePlayer[11]));
+        player=Player.getIstance(this);
+        player.changeFaceSet(Game.texturePlayer[0],Game.texturePlayer[3], Game.texturePlayer[6],Game.texturePlayer[9]);
+
+        player.changeAnimationSet(new Animation(PLAYERSPEED,texturePlayer[1],texturePlayer[2]),
+                                    new Animation(PLAYERSPEED,texturePlayer[4],texturePlayer[5]),
+                                    new Animation(PLAYERSPEED,texturePlayer[7],texturePlayer[8]),
+                                    new Animation(PLAYERSPEED,texturePlayer[10],texturePlayer[11]));
         player.setX(50);
         player.setY(50);
+        
     }
     
     /**
@@ -163,6 +128,8 @@ public class Game extends Canvas implements Runnable {
         
         initResources();
         initPlayer();
+        handler = new Handler();
+        camera=new Camera(0,0,player);
     }
     
     /**
@@ -179,6 +146,7 @@ public class Game extends Canvas implements Runnable {
      * method that initializes the game engine and calls init methods.
      * It calls render and tick methods according to the setting of game engine.
      */
+    @Override
     public void run(){
         init();
         this.requestFocus();
@@ -207,10 +175,26 @@ public class Game extends Canvas implements Runnable {
             }
         }
     
+    public void updateActualMap(int i){
+        actualMap=i;
+    }
+    
+    public Map getActualMap(){
+        return maps[actualMap];
+    }
+    
+    public Handler getHandler(){
+        return handler;
+    }
+    
+    public void setHandler(Handler h){
+        handler=h;
+    }
+
+    
     /**
      * method that is responsible for rendering all the graphical objects.
      */
-    
     private void render(){
         BufferStrategy bs = this.getBufferStrategy();
         if(bs==null)
@@ -225,6 +209,23 @@ public class Game extends Canvas implements Runnable {
         bs.show();
         
     }
+    
+    public float getHeightMap(){
+        return HEIGHTMAP;
+    }
+    
+    public float getWidthMap(){
+        return WIDTHMAP;
+    }
+    
+    public void setHeightMap(int h){
+        this.HEIGHTMAP=h;
+    }
+    
+    public void setWidthMap(int w){
+        this.WIDTHMAP=w;
+    }
+    
     
     /**
      * method that creates a new window and starts the game
