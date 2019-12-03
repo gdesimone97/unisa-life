@@ -6,7 +6,6 @@
 
 package booklet;
 import question.Materia;
-import java.io.Serializable;
 import java.util.EnumMap;
 
 /**
@@ -21,9 +20,9 @@ import java.util.EnumMap;
  * @author liovi
  */
 
-public class BookletSingleton implements Serializable{
+public class BookletSingleton {
     
-    private static final long serialVersionUID = -7604766932017737115L;
+    private static BookletSingleton instance = null;
     private EnumMap<Materia,Subject> booklet;
     
     private BookletSingleton(){
@@ -46,8 +45,8 @@ public class BookletSingleton implements Serializable{
      * This method allows to set a score to the exam and make it no longer
      * available
      * 
-     * @param subject
-     * @param score
+     * @param subject indicates the subject of the exam
+     * @param score indicate the score reached at the exam
      */
     public void setScore(Materia subject, int score){
         Subject newScore = booklet.get(subject);
@@ -55,32 +54,21 @@ public class BookletSingleton implements Serializable{
         newScore.setAvailable(false);
         booklet.replace(subject, newScore);
     }
-
-    /**
-     *
-     * @param booklet
-     */
-    public void setBooklet(EnumMap<Materia, Subject> booklet) {
-        this.booklet = booklet;
-    }
-    
-    private static class BookletSingletonHelper{
-        private static final BookletSingleton instance = new BookletSingleton();
-    }
     
     /**
-     *
-     * @return
+     * If an instance of the class BookletSingleton is not instanciated
+     * create a reference for it and returns it. At every request after
+     * the first instantiation returns the same instance.
+     * 
+     * @return instance of the class BookletSingleton
      */
     public static BookletSingleton getInstance(){
-        return BookletSingletonHelper.instance;
+        if (instance == null)
+            synchronized (BookletSingleton.class){
+                if(instance == null)
+                    instance = new BookletSingleton();
+            }
+        return instance;
     }
     
-    /**
-     *
-     * @return
-     */
-    protected Object readResolve() {
-        return getInstance();
-    }
 }
