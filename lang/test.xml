@@ -1,1 +1,1 @@
-<InformationTest info = "123">Stringa di test</InformationTest>
+<InformationTest info = "123"><message>Stringa di test</message></InformationTest>

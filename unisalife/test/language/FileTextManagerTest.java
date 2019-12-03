@@ -6,6 +6,7 @@
 package language;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Set;
 import language.exceptions.*;
 import org.junit.After;
@@ -123,7 +124,8 @@ public class FileTextManagerTest {
         instance.setLanguage("test");
         String expResult = TEST_STRING;
         InformationTest infoTest = new InformationTest();
-        String result = instance.getString(infoTest).get(0);
+        List<String> listStrings = instance.getString(infoTest);
+        String result = listStrings.get(0);
         assertEquals(expResult, result);
     }
 
