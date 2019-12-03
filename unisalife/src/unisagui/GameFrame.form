@@ -2134,6 +2134,9 @@
                   <Dimension value="[450, 100]"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="DialogTextAreaKeyPressed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

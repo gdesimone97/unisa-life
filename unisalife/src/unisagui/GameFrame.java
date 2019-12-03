@@ -1,6 +1,10 @@
 
 package unisagui;
 
+import java.awt.event.KeyEvent;
+import javax.swing.SwingUtilities;
+
+
 /**
  * @author Davide
  */
@@ -11,6 +15,8 @@ public class GameFrame extends javax.swing.JFrame {
      */
     
     private static GameFrame instance;
+    private final static String EMPTY_TEXT="";
+    
     
     private GameFrame() {
         initComponents();
@@ -1040,6 +1046,11 @@ public class GameFrame extends javax.swing.JFrame {
         DialogTextArea.setMaximumSize(new java.awt.Dimension(450, 100));
         DialogTextArea.setMinimumSize(new java.awt.Dimension(450, 100));
         DialogTextArea.setPreferredSize(new java.awt.Dimension(450, 100));
+        DialogTextArea.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                DialogTextAreaKeyPressed(evt);
+            }
+        });
         DialogScrollPane.setViewportView(DialogTextArea);
 
         javax.swing.GroupLayout GamePanelLayout = new javax.swing.GroupLayout(GamePanel);
@@ -1214,6 +1225,18 @@ public class GameFrame extends javax.swing.JFrame {
     private void ReturnToMainMenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReturnToMainMenuButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ReturnToMainMenuButtonActionPerformed
+    /**
+     * When ENTER key is pressed, DialogScrollPane is not visible anymore and the
+     * DialogTextArea is cleared.
+     * @param evt 
+     */
+    private void DialogTextAreaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_DialogTextAreaKeyPressed
+       if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+           
+        SwingUtilities.invokeLater(() -> DialogScrollPane.setVisible(false));
+        SwingUtilities.invokeLater(() -> DialogTextArea.setText(EMPTY_TEXT));
+        }
+    }//GEN-LAST:event_DialogTextAreaKeyPressed
 
     /**
      * @param args the command line arguments
