@@ -22,7 +22,7 @@ public class FileTextManager extends TextManager {
     private static FileTextManager instance;
     private FileLanguageManager fileLanguageManager;
     private FileTextFinder fileTextFinder;
-    private final String FORMAT = ".txt";
+    private final String FORMAT = FormatFileHandler.getFORMAT();
 
     static {
         try {
