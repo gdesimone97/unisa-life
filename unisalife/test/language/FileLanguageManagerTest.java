@@ -42,18 +42,6 @@ public class FileLanguageManagerTest {
     public void tearDown() {
     }
 
-    /**
-     * Test of getLanguageManager method, of class FileLanguageManager.
-     */
-    @Test
-    public void testGetAvailableLanguagesOneLangueges() throws NoLanguegesFileFoundException, FileLanguageManagerException {
-        System.out.print("getLanguageManager - only one language ");
-        FileLanguageManager result = FileLanguageManager.getLanguageManager();
-        Set<String> s = result.getAvailableLanguages();
-        Iterator<String> iter = s.iterator();
-        String lang = iter.next();
-        assertEquals("errore lingua", "eng", lang);
-    }
 
     /**
      * Test of getLanguageManager method, of class FileLanguageManager.
@@ -85,9 +73,8 @@ public class FileLanguageManagerTest {
     public void testGetAvailableLanguagesException() throws IOException, FileLanguageManagerException {
         System.out.println("getAvailableLanguages - exception");
         FileLanguageManager instance = FileLanguageManager.getLanguageManager();
-        Set<String> expResult = ReadDirectory.readDirectory("..//test_path");
+        Set<String> expResult = ReadDirectory.readDirectory("..//lang");
         Set<String> result = instance.getAvailableLanguages();
         assertEquals(expResult, result);
     }
-    
 }

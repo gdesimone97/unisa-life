@@ -116,7 +116,7 @@ public class FileTextManagerTest {
      * Test of getString method, of class FileTextManager.
      */
     @Test
-    public void testGetString() throws FileTextManagerException, TextFinderException, LanguageSelectedNotAvailableException {
+    public void testGetString() throws TextFinderException, LanguageSelectedNotAvailableException, FileTextManagerException {
         final String TEST_STRING = "Stringa di test";
         System.out.println("getString");
         FileTextManager instance = FileTextManager.getFileTextManager();

@@ -39,7 +39,7 @@ class FileLanguageManager extends LanguageManager {
             instance = null;
         }
     }
-
+ 
     /**
      * Methods that return a instance of FileLanguageManager
      *
@@ -75,7 +75,8 @@ class FileLanguageManager extends LanguageManager {
                 Scanner sc = new Scanner(fileName);
                 sc.useDelimiter(FORMAT);
                 String lang = sc.next();
-                this.fileLanguagesMap.put(fileName, lang);
+                String relativeFileName = PATH_STRING + "//" + fileName;                
+                this.fileLanguagesMap.put(relativeFileName, lang);
             }
         } catch (IOException ex) {
             throw new ListingFilesException();
