@@ -20,8 +20,8 @@ import java.util.Set;
  */
 class ReadDirectory {
      public static Set<String> readDirectory() throws IOException {
-        final String PATH_STRING = "..//lang";
-        final String FORMAT = FormatFileHandler.getFORMAT();
+        final String PATH_STRING = FilesInformations.getPATH();
+        final String FORMAT = FilesInformations.getFORMAT();
         Path dir = Paths.get(PATH_STRING);
         DirectoryStream<Path> stream = Files.newDirectoryStream(dir);
         Set<String> files = new HashSet<>();
