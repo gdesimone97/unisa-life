@@ -9,6 +9,7 @@ package language;
 import language.exceptions.InvalidObjectInformationException;
 import language.exceptions.InvalidFileNameException;
 import language.exceptions.FileNotSetException;
+import language.exceptions.TextFinderException;
 
 /**
  * Abstract class that implements the mechanisms to search for text in a file
@@ -39,7 +40,7 @@ public abstract class FileTextFinder implements TextFinder {
      * @throws language.exceptions.FileNotSetException
      * @throws language.exceptions.InvalidFileNameException
      */
-    public static void setFileName(String fileName) throws FileNotSetException, InvalidFileNameException {
+    public static void setFileName(String fileName) throws FileNotSetException, InvalidFileNameException, TextFinderException {
         if (fileName == null || fileName.equals("")) {
             throw new InvalidFileNameException();
         }
@@ -56,13 +57,20 @@ public abstract class FileTextFinder implements TextFinder {
      * @throws language.exceptions.InvalidObjectInformationException
      */
     protected String computeExpression(Information obj) throws InvalidObjectInformationException {
-        String info = obj.getInfo();
-        if (info.equals("") || (info == null)) {
-            throw new InvalidObjectInformationException();
+        String expression = null;
+        if (obj.isAvailable()) {
+            String info = obj.getInfo();
+            if (info.equals("") || (info == null)) {
+                throw new InvalidObjectInformationException();
+            }
+            String lastClass = obj.getClass().getSimpleName();
+            expression = "//" + lastClass + "[@info = '" + info + "']";
         }
-        String lastClass = obj.getClass().getSimpleName();
-        String expression = "//" + lastClass + "[@info = '" + info + "']";
+        else{
+            expression ="//Warnings [@info = 'NotAvailable']";
+        }
         return expression;
+
     }
 
     /**
@@ -71,7 +79,7 @@ public abstract class FileTextFinder implements TextFinder {
      *
      * @return an istance of the CacheFileTextFinder
      */
-    public synchronized static FileTextFinder getFileTextFinder(String fileName) throws FileNotSetException, InvalidFileNameException {
+    public synchronized static FileTextFinder getFileTextFinder(String fileName) throws TextFinderException, FileNotSetException, InvalidFileNameException {
         FileTextFinder.setFileName(fileName);
         return CacheFileTextFinder.getCacheFileTextFinder();
     }

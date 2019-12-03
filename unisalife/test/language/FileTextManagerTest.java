@@ -113,8 +113,8 @@ public class FileTextManagerTest {
         System.out.println("getString");
         FileTextManager instance = null;
         List<String> expResult = null;
-        List<String> result = instance.getString();
-        assertEquals(expResult, result);
+        //List<String> result = instance.getString();
+        //assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
