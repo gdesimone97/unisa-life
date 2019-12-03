@@ -27,6 +27,7 @@ public class ConcreteFileTextFinder extends FileTextFinder {
     private static ConcreteFileTextFinder instance = null;
     private XPath querier = null;
     private DocumentBuilder documentBuilder = null;
+    private final String MESSAGE_TAG = "message";
 
     /**
      * Static method to get a ConcreteFileTextFinder object, according to
@@ -106,7 +107,6 @@ public class ConcreteFileTextFinder extends FileTextFinder {
         List<String> returnList = new ArrayList<>();
         FileInputStream inputFile;
         try {
-            System.out.println(FileTextFinder.getFileName());
             inputFile = new FileInputStream(FileTextFinder.getFileName());
 
         } catch (FileNotFoundException ex) {
@@ -121,10 +121,17 @@ public class ConcreteFileTextFinder extends FileTextFinder {
         } catch (XPathExpressionException ex) {
             throw new StringNotFoundException();
         }
-        // nodeList contains everything we need
+        // nodeList contains all the nodes that matches the query
         for (int i = 0; i < nodeList.getLength(); i++) {
             Node currentNode = nodeList.item(i);
-            returnList.add(currentNode.getTextContent());
+            if (currentNode.getNodeType() == Node.ELEMENT_NODE) {
+                // each node of the list has a set of messages, which are also nodes
+                Element currentElement = (Element) currentNode;
+                NodeList msgNodeList = currentElement.getElementsByTagName(MESSAGE_TAG);
+                for (int j = 0; j < msgNodeList.getLength(); j++) {
+                    returnList.add(msgNodeList.item(j).getTextContent());
+                }
+            }
         }
         if (returnList.size() <= 0) {
             throw new StringNotFoundException();

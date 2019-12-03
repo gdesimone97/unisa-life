@@ -5,8 +5,9 @@
  */
 package language;
 
+import com.sun.javafx.scene.control.skin.VirtualFlow;
+import java.util.ArrayList;
 import java.util.List;
-import org.xml.sax.*;
 import language.exceptions.*;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -89,19 +90,16 @@ public class CacheFileTextFinderTest {
         FileTextFinder finder = FileTextFinder.getFileTextFinder("testfile.xml");
         List<String> resultList = finder.getString(instance);
         int expResult = 1;
-        List<String> result = finder.getString(instance);
-        assertEquals(expResult, result.size());
+        assertEquals(expResult, resultList.size());
     }
 
     @Test
     public void testGetStringMultiple() throws Exception {
         System.out.println("getString");
-        GenericClass instance = new GenericClass("TestMultipleSingleInfo");
+        GenericClass instance = new GenericClass("TestMultipleInfo");
         FileTextFinder finder = FileTextFinder.getFileTextFinder("testfile.xml");
         List<String> resultList = finder.getString(instance);
-        int expResult = 1;
-        List<String> result = finder.getString(instance);
-        assertEquals(expResult, result.size());
+        assertTrue(resultList.size()>1);
     }
 
     @Test(expected = TextFinderException.class)
@@ -160,14 +158,14 @@ public class CacheFileTextFinderTest {
     /**
      * Test Warning message
      */
+    @Test
     public void testWarning() throws Exception {
         System.out.println("getString");
-        GenericClass instance = new GenericClass("TestSingleInfo");
+        GenericClass instance = new GenericClass("TestInfo");
         instance.setAvailable(Boolean.FALSE);
         FileTextFinder finder = FileTextFinder.getFileTextFinder("testfile.xml");
         List<String> resultList = finder.getString(instance);
         String expResult = "Operation not allowed";
-        List<String> result = finder.getString(instance);
-        assertTrue(expResult.equals(result.get(0)));
+        assertTrue(expResult.equals(resultList.get(0)));
     }
 }
