@@ -93,7 +93,8 @@ public class FileTextManager extends TextManager {
      * {@inheritDoc}
      */
     @Override
-    public List<String> getString(String exp) throws StringNotFoundException {
-        return fileTextFinder.getString(exp);
+    public List<String> getString(Information obj) throws StringNotFoundException, TextFinderException {
+        return fileTextFinder.getString(obj);
     }
+    
 }
