@@ -5,6 +5,7 @@
  */
 
 package exam;
+import java.util.Iterator;
 import question.*;
 /**
  *
@@ -93,8 +94,9 @@ public class Exam {
      * null
      */
     public Question getQuestion(){
-        if(questions.iterator().hasNext())
-            return questions.iterator().next();
+        QuestionsIterator iter = questions.iterator();
+        if(iter.hasNext())
+            return iter.next();
         else
             return null;
     }
