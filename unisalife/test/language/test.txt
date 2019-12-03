@@ -1,3 +1,3 @@
-<test attr = "123">
+<InformationTest attr = "123">
 Stringa di test
-</test>
+</InformationTest>

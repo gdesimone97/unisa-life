@@ -21,22 +21,22 @@ import static org.junit.Assert.*;
  * @author Giuseppe De Simone
  */
 public class FileTextManagerTest {
-    
+
     public FileTextManagerTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -63,7 +63,7 @@ public class FileTextManagerTest {
         Set<String> result = instance.getAvailableLanguages();
         assertEquals(expResult, result);
     }
-    
+
     /**
      * Test of getCurrentLanguage method, of class FileTextManager.
      */
@@ -90,7 +90,7 @@ public class FileTextManagerTest {
         String result = languageManager.getCurrentLanguage();
         assertEquals(result, lang);
     }
-    
+
     /**
      * Test of setLanguage method, of class FileTextManager.
      */
@@ -106,7 +106,6 @@ public class FileTextManagerTest {
         assertEquals(languageManager.getCurrentLanguage(), lang);
     }
 
-    
     public class LanguageManagerImpl extends LanguageManager {
 
         public Set<String> getAvailableLanguages() {
@@ -114,32 +113,35 @@ public class FileTextManagerTest {
         }
     }
 
+    private class InformationTest implements Information {
+
+        private final String ATTR_STRING = "123";
+
+        @Override
+        public String getInfo() {
+            return ATTR_STRING;
+        }
+
+        @Override
+        public Boolean isAvailable() {
+            return true;
+        }
+
+    }
+    
     /**
      * Test of getString method, of class FileTextManager.
      */
+    
     @Test
     public void testGetString() throws FileTextManagerException, TextFinderException {
         final String TEST_STRING = "Stringa di test";
-        final String ATTR_STRING = "123";
         System.out.println("getString");
         FileTextManager instance = FileTextManager.getFileTextManager();
         String expResult = TEST_STRING;
-        String result = "";
-        List<String> resultString = instance.getString(new Information() {
-            @Override
-            public String getInfo() {
-                return ATTR_STRING;
-            }
-
-            @Override
-            public Boolean isAvailable() {
-                return true;
-            }
-        });
-        result = resultString.get(0);
+        InformationTest infoTest = new InformationTest();
+        String result = instance.getString(infoTest).get(0);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
-    
+
 }
