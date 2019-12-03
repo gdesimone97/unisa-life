@@ -17,6 +17,7 @@ import java.util.HashSet;
 import java.util.Scanner;
 
 /**
+ * Class to get all available languages by files
  *
  * @author Giuseppe De Simone
  */
@@ -39,13 +40,22 @@ class FileLanguageManager extends LanguageManager {
         }
     }
 
-    public synchronized static FileLanguageManager getLanguageManager() throws FileLanguageManagerException{
-        if(instance == null) {
+    /**
+     * Methods that return a instance of FileLanguageManager
+     *
+     * @return a instance of FileLanguageManager
+     * @throws FileLanguageManagerException if something has gone wrong
+     */
+    public synchronized static FileLanguageManager getLanguageManager() throws FileLanguageManagerException {
+        if (instance == null) {
             throw new FileLanguageManagerException();
         }
         return instance;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Set<String> getAvailableLanguages() {
         Set<Map.Entry<String, String>> map = this.fileLanguagesMap.entrySet();
