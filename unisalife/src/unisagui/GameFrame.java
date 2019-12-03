@@ -57,6 +57,7 @@ public class GameFrame extends javax.swing.JFrame {
         FourthAnswer = new javax.swing.JButton();
         ConfirmAnswer = new javax.swing.JButton();
         MainMenuDialog = new javax.swing.JDialog();
+        MainMenuDialog.setLocation(CENTER);
         MainMenuDialog.setAlwaysOnTop(true);
         MainMenuDialog.setVisible(true);
         MainMenuPanel = new javax.swing.JPanel();
@@ -300,7 +301,6 @@ public class GameFrame extends javax.swing.JFrame {
 
         MainMenuDialog.setMaximumSize(new java.awt.Dimension(600, 750));
         MainMenuDialog.setMinimumSize(new java.awt.Dimension(600, 750));
-        MainMenuDialog.setLocation(CENTER);
         MainMenuDialog.setResizable(false);
 
         MainMenuPanel.setMaximumSize(new java.awt.Dimension(600, 750));

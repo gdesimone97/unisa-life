@@ -320,13 +320,13 @@
         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[600, 750]"/>
         </Property>
-        <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor" postCode="MainMenuDialog.setLocation(CENTER);">
+        <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[600, 750]"/>
         </Property>
         <Property name="resizable" type="boolean" value="false"/>
       </Properties>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value="MainMenuDialog.setAlwaysOnTop(true);&#xa;MainMenuDialog.setVisible(true);"/>
+        <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value="MainMenuDialog.setLocation(CENTER);&#xa;MainMenuDialog.setAlwaysOnTop(true);&#xa;MainMenuDialog.setVisible(true);"/>
       </AuxValues>
 
       <Layout>
