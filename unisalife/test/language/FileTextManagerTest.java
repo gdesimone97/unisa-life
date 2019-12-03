@@ -21,22 +21,22 @@ import static org.junit.Assert.*;
  * @author Giuseppe De Simone
  */
 public class FileTextManagerTest {
-    
+
     public FileTextManagerTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -45,7 +45,7 @@ public class FileTextManagerTest {
      * Test of getFileTextManager method, of class FileTextManager.
      */
     @Test
-    public void testGetFileTextManager() throws Exception {
+    public void testGetFileTextManager() throws FileTextManagerException {
         System.out.println("getFileTextManager");
         FileTextManager expResult = null;
         FileTextManager result = FileTextManager.getFileTextManager();
@@ -63,7 +63,7 @@ public class FileTextManagerTest {
         Set<String> result = instance.getAvailableLanguages();
         assertEquals(expResult, result);
     }
-    
+
     /**
      * Test of getCurrentLanguage method, of class FileTextManager.
      */
@@ -90,7 +90,7 @@ public class FileTextManagerTest {
         String result = languageManager.getCurrentLanguage();
         assertEquals(result, lang);
     }
-    
+
     /**
      * Test of setLanguage method, of class FileTextManager.
      */
@@ -98,25 +98,50 @@ public class FileTextManagerTest {
     public void testSetLanguageException() throws Exception {
         System.out.println("setLanguage");
         FileTextManager instance = FileTextManager.getFileTextManager();
-        FileLanguageManager languageManager = FileLanguageManager.getLanguageManager();
+        FileLanguageManager fileLanguageManager = FileLanguageManager.getLanguageManager();
+        LanguageManager languageManager = new LanguageManagerImpl();
         String lang = "test";
         instance.setLanguage(lang);
-        String result = languageManager.getCurrentLanguage();
-        assertEquals(result, lang);
+        assertEquals(fileLanguageManager.getCurrentLanguage(), lang);
+        assertEquals(languageManager.getCurrentLanguage(), lang);
     }
 
+    public class LanguageManagerImpl extends LanguageManager {
+
+        public Set<String> getAvailableLanguages() {
+            return null;
+        }
+    }
+
+    private class InformationTest implements Information {
+
+        private final String ATTR_STRING = "123";
+
+        @Override
+        public String getInfo() {
+            return ATTR_STRING;
+        }
+
+        @Override
+        public Boolean isAvailable() {
+            return true;
+        }
+
+    }
+    
     /**
      * Test of getString method, of class FileTextManager.
      */
-    @Test
-    public void testGetString() throws Exception {
-        System.out.println("getString");
-        FileTextManager instance = null;
-        List<String> expResult = null;
-        //List<String> result = instance.getString();
-        //assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
     
+    @Test
+    public void testGetString() throws FileTextManagerException, TextFinderException {
+        final String TEST_STRING = "Stringa di test";
+        System.out.println("getString");
+        FileTextManager instance = FileTextManager.getFileTextManager();
+        String expResult = TEST_STRING;
+        InformationTest infoTest = new InformationTest();
+        String result = instance.getString(infoTest).get(0);
+        assertEquals(expResult, result);
+    }
+
 }

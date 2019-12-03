@@ -1,0 +1,3 @@
+<InformationTest attr = "123">
+Stringa di test
+</InformationTest>
