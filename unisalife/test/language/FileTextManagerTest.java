@@ -95,7 +95,7 @@ public class FileTextManagerTest {
      * Test of setLanguage method, of class FileTextManager.
      */
     @Test(expected = LanguageSelectedNotAvailableException.class)
-    public void testSetLanguageException() throws Exception {
+    public void testSetLanguage_languageNotSelectedException() throws Exception {
         System.out.println("setLanguage");
         FileTextManager instance = FileTextManager.getFileTextManager();
         FileLanguageManager fileLanguageManager = FileLanguageManager.getLanguageManager();
@@ -127,6 +127,36 @@ public class FileTextManagerTest {
         List<String> listStrings = instance.getString(infoTest);
         String result = listStrings.get(0);
         assertEquals(expResult, result);
+    }
+    
+    /**
+     * Test of getString method, of class FileTextManager.
+     */
+    @Test(expected = XMLFileException.class)
+    public void testGetString_empty() throws TextFinderException, LanguageSelectedNotAvailableException, FileTextManagerException {
+        final String TEST_STRING = "Stringa di test";
+        System.out.println("getString");
+        FileTextManager instance = FileTextManager.getFileTextManager();
+        instance.setLanguage("test_empty");
+        InformationTest infoTest = new InformationTest();
+        List<String> listStrings = instance.getString(infoTest);
+        String result = listStrings.get(0);
+        assertEquals("", result);
+    }
+    
+    /**
+     * Test of getString method, of class FileTextManager.
+     */
+    @Test(expected = StringNotFoundException.class)
+    public void testGetString_stringNotFound() throws TextFinderException, LanguageSelectedNotAvailableException, FileTextManagerException {
+        final String TEST_STRING = "Stringa di test";
+        System.out.println("getString");
+        FileTextManager instance = FileTextManager.getFileTextManager();
+        instance.setLanguage("test_stringNotFound");
+        InformationTest infoTest = new InformationTest();
+        List<String> listStrings = instance.getString(infoTest);
+        String result = listStrings.get(0);
+        assertEquals("", result);
     }
 
     private class InformationTest implements Information {
