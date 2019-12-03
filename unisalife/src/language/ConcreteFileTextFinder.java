@@ -10,8 +10,6 @@ import language.exceptions.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.xml.parsers.*;
 import javax.xml.xpath.*;
 import org.w3c.dom.*;
@@ -48,7 +46,8 @@ public class ConcreteFileTextFinder extends FileTextFinder {
 
     /**
      * Private constructor, it builds up a DocumentBuilder and a XPath object
-     * @throws XMLFileException 
+     *
+     * @throws XMLFileException
      */
     private ConcreteFileTextFinder() throws XMLFileException {
         try {
@@ -93,11 +92,13 @@ public class ConcreteFileTextFinder extends FileTextFinder {
     }
 
     /**
-     * As getString(Information obj), it performs the query and searches for the list of strings to be returned.
-     * This actually works taking an expression directly.
+     * As getString(Information obj), it performs the query and searches for the
+     * list of strings to be returned. This actually works taking an expression
+     * directly.
+     *
      * @param exp The expression of the query
      * @return the desired list of strings
-     * @throws TextFinderException 
+     * @throws TextFinderException
      */
     protected List<String> getString(String exp) throws TextFinderException {
 

@@ -42,7 +42,7 @@ public class FileTextFinderTest {
      * Test of getFileName method, of class FileTextFinder.
      */
     @Test
-    public void testGetFileNameWithInstance() throws FileNotSetException, InvalidFileNameException {
+    public void testGetFileNameWithInstance() throws FileNotSetException, InvalidFileNameException, TextFinderException {
         System.out.println("getFileName");
         String fileName = "italiano.xml";
         FileTextFinder finder = FileTextFinder.getFileTextFinder(fileName);
@@ -55,7 +55,7 @@ public class FileTextFinderTest {
      * Test of getFileName method, of class FileTextFinder.
      */
     @Test
-    public void testGetFileNameWithoutInstance() throws FileNotSetException, InvalidFileNameException {
+    public void testGetFileNameWithoutInstance() throws FileNotSetException, InvalidFileNameException, TextFinderException {
         System.out.println("getFileName");
         String fileName = "italiano.xml";
         String expResult = "italiano.xml";

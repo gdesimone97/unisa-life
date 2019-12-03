@@ -6,6 +6,7 @@
 package language;
 
 import java.util.List;
+import org.xml.sax.*;
 import language.exceptions.*;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -19,13 +20,15 @@ import static org.junit.Assert.*;
  * @author alfon
  */
 public class CacheFileTextFinderTest {
-    
-    abstract class GenericAbstract implements Information{};
-    
+
+    abstract class GenericAbstract implements Information {
+    };
+
     class GenericClass extends GenericAbstract {
 
         private String info = "ID";
         private Boolean av = true;
+
         public GenericClass(String info) {
             this.info = info;
         }
@@ -39,8 +42,8 @@ public class CacheFileTextFinderTest {
         public Boolean isAvailable() {
             return this.av;
         }
-        
-        public void setAvailable(Boolean b){
+
+        public void setAvailable(Boolean b) {
             this.av = b;
         }
 
@@ -101,10 +104,11 @@ public class CacheFileTextFinderTest {
         assertEquals(expResult, result.size());
     }
 
-    @Test(expected = StringNotFoundException.class)
+    @Test(expected = TextFinderException.class)
     public void testGetStringException() throws Exception {
         System.out.println("getString");
         GenericClass instance = new GenericClass("TestWrongInfo");
+
         FileTextFinder finder = FileTextFinder.getFileTextFinder("testfile.xml");
         List<String> result = finder.getString(instance);
     }
@@ -153,11 +157,10 @@ public class CacheFileTextFinderTest {
         assertEquals(result, expectedResult);
     }
      */
-    
     /**
      * Test Warning message
      */
-    public void testWarning() throws Exception{
+    public void testWarning() throws Exception {
         System.out.println("getString");
         GenericClass instance = new GenericClass("TestSingleInfo");
         instance.setAvailable(Boolean.FALSE);
