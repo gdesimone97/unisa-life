@@ -2,6 +2,8 @@
 package unisagui;
 
 import java.awt.event.KeyEvent;
+import java.awt.GraphicsEnvironment;
+import java.awt.Point;
 import javax.swing.SwingUtilities;
 
 
@@ -16,10 +18,14 @@ public class GameFrame extends javax.swing.JFrame {
     
     private static GameFrame instance;
     private final static String EMPTY_TEXT="";
+    private final static Point CENTER = GraphicsEnvironment.getLocalGraphicsEnvironment().getCenterPoint();
+    
+    
     
     
     private GameFrame() {
         initComponents();
+
     }
     
     public static synchronized GameFrame getInstance(){
@@ -51,6 +57,8 @@ public class GameFrame extends javax.swing.JFrame {
         FourthAnswer = new javax.swing.JButton();
         ConfirmAnswer = new javax.swing.JButton();
         MainMenuDialog = new javax.swing.JDialog();
+        MainMenuDialog.setAlwaysOnTop(true);
+        MainMenuDialog.setVisible(true);
         MainMenuPanel = new javax.swing.JPanel();
         MainMenuLabel = new javax.swing.JLabel();
         SettingsButton = new javax.swing.JButton();
@@ -148,17 +156,18 @@ public class GameFrame extends javax.swing.JFrame {
         StressProgressBar = new javax.swing.JProgressBar();
         HungerProgressBar = new javax.swing.JProgressBar();
 
+        ExamDialog.setMinimumSize(new java.awt.Dimension(500, 500));
+        ExamDialog.setResizable(false);
+
         ExamPanel.setMaximumSize(new java.awt.Dimension(500, 500));
         ExamPanel.setMinimumSize(new java.awt.Dimension(500, 500));
         ExamPanel.setPreferredSize(new java.awt.Dimension(500, 500));
 
-        ProfLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/unisagui/Icon/FoggiaIcon.jpg"))); // NOI18N
         ProfLabel.setText("jLabel1");
         ProfLabel.setMaximumSize(new java.awt.Dimension(75, 75));
         ProfLabel.setMinimumSize(new java.awt.Dimension(75, 75));
         ProfLabel.setPreferredSize(new java.awt.Dimension(75, 75));
 
-        StudentLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/unisagui/Icon/StudentIcon.jpg"))); // NOI18N
         StudentLabel.setText("jLabel2");
         StudentLabel.setMaximumSize(new java.awt.Dimension(75, 75));
         StudentLabel.setMinimumSize(new java.awt.Dimension(75, 75));
@@ -289,6 +298,11 @@ public class GameFrame extends javax.swing.JFrame {
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
 
+        MainMenuDialog.setMaximumSize(new java.awt.Dimension(600, 750));
+        MainMenuDialog.setMinimumSize(new java.awt.Dimension(600, 750));
+        MainMenuDialog.setLocation(CENTER);
+        MainMenuDialog.setResizable(false);
+
         MainMenuPanel.setMaximumSize(new java.awt.Dimension(600, 750));
         MainMenuPanel.setMinimumSize(new java.awt.Dimension(600, 750));
 
@@ -311,6 +325,11 @@ public class GameFrame extends javax.swing.JFrame {
         ExitButton.setMaximumSize(new java.awt.Dimension(75, 75));
         ExitButton.setMinimumSize(new java.awt.Dimension(75, 75));
         ExitButton.setPreferredSize(new java.awt.Dimension(75, 75));
+        ExitButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ExitButtonActionPerformed(evt);
+            }
+        });
 
         NewGameButton.setText("NEW GAME");
         NewGameButton.setMaximumSize(new java.awt.Dimension(200, 50));
@@ -392,6 +411,9 @@ public class GameFrame extends javax.swing.JFrame {
                     .addComponent(MainMenuPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
+
+        InventoryDialog.setMinimumSize(new java.awt.Dimension(400, 450));
+        InventoryDialog.setResizable(false);
 
         InventoryPanel.setMaximumSize(new java.awt.Dimension(400, 450));
         InventoryPanel.setMinimumSize(new java.awt.Dimension(400, 450));
@@ -916,13 +938,18 @@ public class GameFrame extends javax.swing.JFrame {
         );
         InventoryDialogLayout.setVerticalGroup(
             InventoryDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGap(0, 450, Short.MAX_VALUE)
             .addGroup(InventoryDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(InventoryDialogLayout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
                     .addComponent(InventoryPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
+
+        SettingsDialog.setLocation(CENTER);
+        SettingsDialog.setMaximumSize(new java.awt.Dimension(600, 750));
+        SettingsDialog.setMinimumSize(new java.awt.Dimension(600, 750));
+        SettingsDialog.setResizable(false);
 
         SettingsPanel.setMaximumSize(new java.awt.Dimension(600, 750));
         SettingsPanel.setMinimumSize(new java.awt.Dimension(600, 750));
@@ -1166,7 +1193,7 @@ public class GameFrame extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, GamePanelLayout.createSequentialGroup()
                 .addGap(50, 50, 50)
                 .addComponent(HintScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 240, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 275, Short.MAX_VALUE)
                 .addComponent(ConversationScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27))
         );
@@ -1176,19 +1203,16 @@ public class GameFrame extends javax.swing.JFrame {
         HudPanel.setPreferredSize(new java.awt.Dimension(600, 175));
 
         LevelLabel.setBackground(new java.awt.Color(255, 255, 255));
-        LevelLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/unisagui/RossoLabel.PNG"))); // NOI18N
         LevelLabel.setText(".");
         LevelLabel.setMaximumSize(new java.awt.Dimension(225, 25));
         LevelLabel.setMinimumSize(new java.awt.Dimension(225, 25));
         LevelLabel.setPreferredSize(new java.awt.Dimension(225, 25));
 
-        MoneyIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/unisagui/Icon/MoneyIcon.png"))); // NOI18N
         MoneyIcon.setText("jLabel2");
         MoneyIcon.setMaximumSize(new java.awt.Dimension(25, 25));
         MoneyIcon.setMinimumSize(new java.awt.Dimension(25, 25));
         MoneyIcon.setPreferredSize(new java.awt.Dimension(25, 25));
 
-        MoneyLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/unisagui/RossoLabel.PNG"))); // NOI18N
         MoneyLabel.setText("jLabel3");
         MoneyLabel.setMaximumSize(new java.awt.Dimension(125, 25));
         MoneyLabel.setMinimumSize(new java.awt.Dimension(125, 25));
@@ -1198,19 +1222,16 @@ public class GameFrame extends javax.swing.JFrame {
         EnergyProgressBar.setMinimumSize(new java.awt.Dimension(150, 25));
         EnergyProgressBar.setPreferredSize(new java.awt.Dimension(150, 25));
 
-        EnergyIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/unisagui/Icon/EnergyIcon.png"))); // NOI18N
         EnergyIcon.setText("jLabel2");
         EnergyIcon.setMaximumSize(new java.awt.Dimension(25, 25));
         EnergyIcon.setMinimumSize(new java.awt.Dimension(25, 25));
         EnergyIcon.setPreferredSize(new java.awt.Dimension(25, 25));
 
-        StressIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/unisagui/Icon/StressIcon.png"))); // NOI18N
         StressIcon.setText("jLabel2");
         StressIcon.setMaximumSize(new java.awt.Dimension(25, 25));
         StressIcon.setMinimumSize(new java.awt.Dimension(25, 25));
         StressIcon.setPreferredSize(new java.awt.Dimension(25, 25));
 
-        HungerIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/unisagui/Icon/HungerIcon.png"))); // NOI18N
         HungerIcon.setText("jLabel2");
         HungerIcon.setMaximumSize(new java.awt.Dimension(25, 25));
         HungerIcon.setMinimumSize(new java.awt.Dimension(25, 25));
@@ -1316,7 +1337,8 @@ public class GameFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_NewGameButtonActionPerformed
 
     private void SettingsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SettingsButtonActionPerformed
-        // TODO add your handling code here:
+        SwingUtilities.invokeLater(() -> MainMenuDialog.setVisible(false));
+        SwingUtilities.invokeLater(() -> SettingsDialog.setVisible(true));
     }//GEN-LAST:event_SettingsButtonActionPerformed
 
     private void ResumeGameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ResumeGameButtonActionPerformed
@@ -1324,7 +1346,9 @@ public class GameFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_ResumeGameButtonActionPerformed
 
     private void ReturnToMainMenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReturnToMainMenuButtonActionPerformed
-        // TODO add your handling code here:
+        SwingUtilities.invokeLater(() -> SettingsDialog.setVisible(false));
+        // chiamata qualcuno per riferire di salvare e chiudere il gioco...
+        SwingUtilities.invokeLater(() -> MainMenuDialog.setVisible(true));
     }//GEN-LAST:event_ReturnToMainMenuButtonActionPerformed
     /**
      * When ENTER key is pressed, ConversationScrollPane is not visible anymore and the
@@ -1354,6 +1378,10 @@ public class GameFrame extends javax.swing.JFrame {
     private void YesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_YesButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_YesButtonActionPerformed
+
+    private void ExitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitButtonActionPerformed
+        SwingUtilities.invokeLater(() -> System.exit(0));
+    }//GEN-LAST:event_ExitButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1386,8 +1414,10 @@ public class GameFrame extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new GameFrame().setVisible(true);
+                 
             }
         });
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
