@@ -159,6 +159,24 @@ public class FileTextManagerTest {
         assertEquals("", result);
     }
 
+    /**
+     * Test of getString method, of class FileTextManager.
+     */
+    @Test
+    public void testGetString_getMultipleStrings() throws TextFinderException, LanguageSelectedNotAvailableException, FileTextManagerException {
+        final String TEST_STRING_1 = "Test1";
+        final String TEST_STRING_2 = "Test2";
+        System.out.println("getString");
+        FileTextManager instance = FileTextManager.getFileTextManager();
+        instance.setLanguage("test_multipleStrings");
+        InformationTest infoTest = new InformationTest();
+        List<String> listStrings = instance.getString(infoTest);
+        String result1 = listStrings.get(0);
+        String resutl2 = listStrings.get(1);
+        assertEquals(TEST_STRING_1, result1);
+        assertEquals(TEST_STRING_2,resutl2);
+    }
+    
     private class InformationTest implements Information {
 
         private final String ATTR_STRING = "123";
