@@ -10,7 +10,8 @@ import question.*;
 
 /**
  * This class is used to do an exam of a given subject.
- * In this implementation the questions are divided into 4 levels (mandatory)
+ * The number of questions is modifiable by changing maxLevel value and 
+ * basicScore due to reach a maximum of 30 point (a little overflow is admitted)
  *
  * @author liovi
  */
@@ -18,7 +19,7 @@ public class Exam {
     private final Questions questions;
     private int score;
     private final int maxLevel;
-    private final int basicScore;
+    private final double basicScore;
     QuestionsIterator iter;
     
     /**
@@ -31,8 +32,8 @@ public class Exam {
         StringsQuestionFactory questionsFetch = new StringsQuestionFactory(materia);
         this.score = 0;
         this.questions = questionsFetch.getQuestions();
-        this.basicScore = 5;
-        this.maxLevel = 4;
+        this.basicScore = 2;
+        this.maxLevel = 6;
         this.iter = questions.iterator();
     }
     
@@ -46,15 +47,15 @@ public class Exam {
      * @param level Difficulty level of the question used to give a rising value
      * for each answer
      */
-    public void verifyAnswer(boolean answer, int seconds, int level){
+    public void verifyAnswer(boolean answer, int seconds, int level){ //here the level is referred to the number of questions choosed
         if(level!=maxLevel && answer){
             if(seconds>=10)
                this.score+=(this.basicScore*level);
             else{
-                double losePoints = (((10-seconds)*0.1)*(maxLevel)); //variable used to store losed points depending on passed time before give the answer
+                double losePoints = (((10-seconds)*0.1)*(basicScore)); //variable used to store losed points depending on passed time before give the answer
                 this.score += this.basicScore*level - losePoints;
             }
-        }else if (level == maxLevel && this.score == 30){
+        }else if (level == maxLevel && this.score >= 30){
             if(answer)
                 this.score+=1;
             else
@@ -79,7 +80,7 @@ public class Exam {
      *
      * @return the score
      */
-    public int getScore(){
+    public double getScore(){
         return this.score;
     }
 

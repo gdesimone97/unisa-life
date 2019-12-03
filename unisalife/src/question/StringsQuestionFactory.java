@@ -45,9 +45,9 @@ public class StringsQuestionFactory extends QuestionFactory {
     */
     private void parseQuestions() {
         String[] strList = {"1#Qual è la capitale della Francia?#Parigi#Roma#Londra#Madrid",
-                            "1#Quanti stati ha un bit?#2#1#3",
+                            "2#Quanti stati ha un bit?#2#1#3",
                             "3#Chi è lo scrubmastah di questo gruppo?#Tu#Giuseppe#Ritrovato",
-                            "3#Virginia ha i capelli:#Rosa#Verdi#Rossi#Bianchi",
+                            "4#Virginia ha i capelli:#Rosa#Verdi#Rossi#Bianchi",
                             "5#Chi è l'unica ragazza del gruppo 8?#Alfonso#Gennaro#Simone",
                             "6#Peppe quante cose può guardare contemporaneamente?#Due#Una#Mille"};
         

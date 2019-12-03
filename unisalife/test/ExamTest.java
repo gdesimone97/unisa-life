@@ -30,8 +30,8 @@ public class ExamTest {
         BookletSingleton booklet = BookletSingleton.getInstance();        
         int i;
         //Test of the class Exam in particular the functionality of score assignment
-        for (i=1; i<=3; i++){
-            doExam(esame, 20, i);
+        for (i=1; i<=5; i++){
+            doExam(esame, 8, i);
         }
         if(esame.getScore()==30){
             doExam(esame, 20, i);
@@ -40,7 +40,7 @@ public class ExamTest {
         
         //Test of the class BookletSingleton functionality
         if(esame.getScore()>18)
-            booklet.setScore(Materia.matematica, esame.getScore());
+            booklet.setScore(Materia.matematica, (int) esame.getScore());
         
         System.out.println("Libretto");
         for (Materia x : Materia.values()){
