@@ -14,13 +14,17 @@ import java.util.HashMap;
  * ArrayList of Question
  * @author 1997g
  */
-public class Questions {
+public class Questions implements QuestionsCollection {
     private HashMap<Integer, ArrayList<Question>> questions;
 
     public Questions() {
         this.questions = new HashMap<Integer, ArrayList<Question>>();
     }
     
+    /**
+     * This method adds new question in the list of this class
+     * @param question is the question to be added
+     */
     public void addQuestion(Question question) {
         ArrayList list = questions.get(question.getLevel());
         if(list == null) {
@@ -30,11 +34,20 @@ public class Questions {
         questions.get(question.getLevel()).add(question);
     }
     
+    /**
+     * This method provides an instance of a class that implements Iterator interface
+     * that has next() and hasNext() methods.
+     * @return the instance of iterator
+     */
     public QuestionsIterator iterator() {
         return new QuestionsIteratorImpl(this.questions);
     }
     
-    
+    /**
+     * this is a private inner class, that is a implementation of the interface
+     * QuestionsIterator. For this reason, this class implements 
+     * next() and hasNext() methods
+     */
     private class QuestionsIteratorImpl implements QuestionsIterator {
         private Integer actualLevel;
         private int actualSeen;
@@ -46,11 +59,19 @@ public class Questions {
             this.actualSeen = 0;
         }
         
+        /**
+         * This method checks if there is another question of a following difficulty level
+         * @return a bool
+         */
         @Override
         public boolean hasNext() {
             return (actualSeen < questions.keySet().size());
         }
 
+        /**
+         * This method provides the next level following question
+         * @return a question
+         */
         @Override
         public Question next() {
             ArrayList<Question> levelQuestions;
