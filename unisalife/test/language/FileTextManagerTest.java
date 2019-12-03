@@ -6,7 +6,6 @@
 package language;
 
 import java.io.IOException;
-import java.util.List;
 import java.util.Set;
 import language.exceptions.*;
 import org.junit.After;
@@ -121,7 +120,7 @@ public class FileTextManagerTest {
         final String TEST_STRING = "Stringa di test";
         System.out.println("getString");
         FileTextManager instance = FileTextManager.getFileTextManager();
-        instance.setLanguage("test.xml");
+        instance.setLanguage("test");
         String expResult = TEST_STRING;
         InformationTest infoTest = new InformationTest();
         String result = instance.getString(infoTest).get(0);
