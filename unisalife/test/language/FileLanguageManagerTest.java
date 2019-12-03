@@ -42,7 +42,6 @@ public class FileLanguageManagerTest {
     public void tearDown() {
     }
 
-
     /**
      * Test of getLanguageManager method, of class FileLanguageManager.
      */
@@ -65,7 +64,7 @@ public class FileLanguageManagerTest {
         Set<String> result = instance.getAvailableLanguages();
         assertEquals(expResult, result);
     }
-    
+
     /**
      * Test of getAvailableLanguages method, of class FileLanguageManager.
      */
