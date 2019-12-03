@@ -19,31 +19,22 @@ import java.util.Set;
  * @author desio
  */
 class ReadDirectory {
-     public static Set<String> readDirectory() throws IOException {
-        final String PATH_STRING = "..//lang";
-        final String FORMAT = FormatFileHandler.getFORMAT();
-        Path dir = Paths.get(PATH_STRING);
-        DirectoryStream<Path> stream = Files.newDirectoryStream(dir);
-        Set<String> files = new HashSet<>();
-        for (Path file : stream) {
-            Scanner sc = new Scanner(file.getFileName().toString());
-            sc.useDelimiter(FORMAT);
-            files.add(sc.next());
-        }
-        return files;
+
+    public static Set<String> readDirectory() throws IOException {
+        final String PATH_STRING = FilesInformations.getPATH();
+        return readDirectory(PATH_STRING);
     }
-     
-     public static Set<String> readDirectory(String path) throws IOException {
-        final String FORMAT = ".xml";
+
+    public static Set<String> readDirectory(String path) throws IOException {
         Path dir = Paths.get(path);
         DirectoryStream<Path> stream = Files.newDirectoryStream(dir);
         Set<String> files = new HashSet<>();
         for (Path file : stream) {
             Scanner sc = new Scanner(file.getFileName().toString());
-            sc.useDelimiter(FORMAT);
-            files.add(sc.next());
+            sc.useDelimiter(FilesInformations.getFORMAT());
+            String filename = sc.next();
+            files.add(filename);
         }
         return files;
     }
-     
 }

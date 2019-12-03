@@ -22,7 +22,7 @@ public class FileTextManager extends TextManager {
     private static FileTextManager instance;
     private FileLanguageManager fileLanguageManager;
     private FileTextFinder fileTextFinder;
-    private final String FORMAT = FormatFileHandler.getFORMAT();
+    private final String FORMAT = FilesInformations.getFORMAT();
 
     static {
         try {
@@ -76,9 +76,9 @@ public class FileTextManager extends TextManager {
         Set<String> availableLanguages = fileLanguageManager.getAvailableLanguages();
         for (String languageAvailable : availableLanguages) {
             if (lang.equals(languageAvailable)) {
-                fileLanguageManager.setLanguage(lang);
                 try {
-                    FileTextFinder.setFileName(lang + FORMAT);
+                    FileTextFinder.setFileName(FilesInformations.getPATH() + "//" + lang + FORMAT);
+                    fileLanguageManager.setLanguage(lang);
                 } catch (InvalidFileNameException | TextFinderException ex) {
                     throw new LanguageSelectedNotAvailableException();
                 }

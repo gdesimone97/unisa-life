@@ -17,6 +17,7 @@ import java.util.HashSet;
 import java.util.Scanner;
 
 /**
+ * Class to get all available languages by files
  *
  * @author Giuseppe De Simone
  */
@@ -24,8 +25,8 @@ class FileLanguageManager extends LanguageManager {
 
     private static FileLanguageManager instance = null;
     private HashMap<String, String> fileLanguagesMap = new HashMap<>();
-    private final String FORMAT = FormatFileHandler.getFORMAT();
-    
+    private final String FORMAT = FilesInformations.getFORMAT();
+
     private FileLanguageManager() throws NoLanguegesFileFoundException, ListingFilesException {
         super();
         getFileLanguages();
@@ -38,14 +39,23 @@ class FileLanguageManager extends LanguageManager {
             instance = null;
         }
     }
-
-    public synchronized static FileLanguageManager getLanguageManager() throws FileLanguageManagerException{
-        if(instance == null) {
+ 
+    /**
+     * Methods that return a instance of FileLanguageManager
+     *
+     * @return a instance of FileLanguageManager
+     * @throws FileLanguageManagerException if something has gone wrong
+     */
+    public synchronized static FileLanguageManager getLanguageManager() throws FileLanguageManagerException {
+        if (instance == null) {
             throw new FileLanguageManagerException();
         }
         return instance;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Set<String> getAvailableLanguages() {
         Set<Map.Entry<String, String>> map = this.fileLanguagesMap.entrySet();
@@ -57,7 +67,7 @@ class FileLanguageManager extends LanguageManager {
     }
 
     private void getFileLanguages() throws NoLanguegesFileFoundException, ListingFilesException {
-        final String PATH_STRING = "..//lang";
+        final String PATH_STRING = FilesInformations.getPATH();
         Path dir = Paths.get(PATH_STRING);
         try (DirectoryStream<Path> stream = Files.newDirectoryStream(dir)) {
             for (Path file : stream) {
@@ -65,7 +75,8 @@ class FileLanguageManager extends LanguageManager {
                 Scanner sc = new Scanner(fileName);
                 sc.useDelimiter(FORMAT);
                 String lang = sc.next();
-                this.fileLanguagesMap.put(fileName, lang);
+                String relativeFileName = PATH_STRING + "//" + fileName;                
+                this.fileLanguagesMap.put(relativeFileName, lang);
             }
         } catch (IOException ex) {
             throw new ListingFilesException();
