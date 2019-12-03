@@ -27,12 +27,12 @@ public class FileTextManager extends TextManager {
     static {
         try {
             instance = new FileTextManager();
-        } catch (FileLanguageManagerException | FileNotSetException | InvalidFileNameException ex) {
+        } catch (FileLanguageManagerException | InvalidFileNameException | TextFinderException ex) {
             instance = null;
         }
     }
 
-    private FileTextManager() throws FileLanguageManagerException, FileNotSetException, InvalidFileNameException {
+    private FileTextManager() throws FileLanguageManagerException, FileNotSetException, InvalidFileNameException, TextFinderException {
         super();
         fileLanguageManager = FileLanguageManager.getLanguageManager();
         String filename = fileLanguageManager.getCurrentLanguage() + FORMAT;
@@ -79,7 +79,7 @@ public class FileTextManager extends TextManager {
                 fileLanguageManager.setLanguage(lang);
                 try {
                     FileTextFinder.setFileName(lang + FORMAT);
-                } catch (InvalidFileNameException | FileNotSetException ex) {
+                } catch (InvalidFileNameException | TextFinderException ex) {
                     throw new LanguageSelectedNotAvailableException();
                 }
                 return;
