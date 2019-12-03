@@ -6,6 +6,9 @@
 
 package question;
 
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author 1997g
@@ -18,9 +21,18 @@ public class Main {
         Questions q = sqf.getQuestions();
         
         QuestionsIterator questIt = q.iterator();
+        
         while(questIt.hasNext()) {
-            System.out.println(questIt.next().toString());
+            Question question = questIt.next();
+            String stringa = JOptionPane.showInputDialog(question.toString() + "\n\n Risposta: ");
+            ArrayList<Answer> answers = question.getAnswers();
+            
+            Answer answer = answers.get(Integer.parseInt(stringa)-1);
+            System.out.println("Hai risposto " + answer + ". " + (question.isCorrect(answer)));
+            
         }
+        
+        System.out.println("Il voto è: Mario Gay");
         
     }
 

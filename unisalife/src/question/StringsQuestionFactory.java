@@ -44,17 +44,23 @@ public class StringsQuestionFactory extends QuestionFactory {
     * so that it can create an object Question, made of Answers also, and add to the object Questions
     */
     private void parseQuestions() {
-        String[] strList = {"0#Qual è la capitale della Francia?#Parigi#Roma#Londra#Madrid#"};
+        String[] strList = {"1#Qual è la capitale della Francia?#Parigi#Roma#Londra#Madrid",
+                            "1#Quanti stati ha un bit?#2#1#3",
+                            "3#Chi è lo scrubmastah di questo gruppo?#Tu#Giuseppe#Ritrovato",
+                            "3#Virginia ha i capelli:#Rosa#Verdi#Rossi#Bianchi",
+                            "5#Chi è l'unica ragazza del gruppo 8?#Alfonso#Gennaro#Simone"};
         
         Scanner sc;
-        boolean count = true;
+        boolean count;
         Integer level;
         String quest;
-        ArrayList<Answer> answers = new ArrayList<Answer>();
+        ArrayList<Answer> answers;
         
         for (String str : strList) {
             sc = new Scanner(str);
             sc.useDelimiter(delimiter);
+            answers = new ArrayList<Answer>();
+            count = true;
             
             level = sc.nextInt();
             quest = sc.next();
@@ -64,6 +70,7 @@ public class StringsQuestionFactory extends QuestionFactory {
                     count = false;
                 }
             }
+            
             Question q = new Question(level, quest, answers);
             questions.addQuestion(q);
         }

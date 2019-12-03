@@ -76,7 +76,15 @@ public class Question {
             answers.add(answers.remove(randomPos));
         }
     }
+    
+    /**
+     * Returns the dim of the list of answers of this question
+     */
+    public int getNumberOfAnswers() {
+        return answers.size();
+    }
 
+    @Override
     public String toString() {
         String str = "";
         str += this.getQuestion() + "\n";

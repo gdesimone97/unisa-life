@@ -37,21 +37,27 @@ public class Questions {
     
     private class QuestionsIteratorImpl implements QuestionsIterator {
         private Integer actualLevel;
+        private int actualSeen;
         private HashMap<Integer, ArrayList<Question>> questions;
 
         public QuestionsIteratorImpl(HashMap<Integer, ArrayList<Question>> questions) {
             this.questions = questions;
-            this.actualLevel = 1;
+            this.actualLevel = 0;
+            this.actualSeen = 0;
         }
         
         @Override
         public boolean hasNext() {
-            return (actualLevel < questions.keySet().size());
+            return (actualSeen < questions.keySet().size());
         }
 
         @Override
         public Question next() {
-            ArrayList<Question> levelQuestions = questions.get(actualLevel++);
+            ArrayList<Question> levelQuestions;
+            do {
+                levelQuestions = questions.get(++actualLevel);
+            } while (levelQuestions == null);
+            actualSeen++;
             int randomIndex = ((int) (Math.random() * 10)) % levelQuestions.size();
             return levelQuestions.get(randomIndex);
         }
