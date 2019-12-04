@@ -1,6 +1,7 @@
 
 package unisagui;
 
+import java.awt.Frame;
 import java.awt.event.KeyEvent;
 import javax.swing.SwingUtilities;
 
@@ -36,7 +37,9 @@ public class GameFrame extends javax.swing.JFrame {
     private void initialSettings(GameFrame instance){        
         SwingUtilities.invokeLater(() ->MainMenuDialog.isAlwaysOnTop());
         SwingUtilities.invokeLater(() ->MainMenuDialog.setVisible(true));
-        SwingUtilities.invokeLater(() ->instance.setVisible(false));      
+        //SwingUtilities.invokeLater(() ->instance.setState(Frame.ICONIFIED));
+        SwingUtilities.invokeLater(() ->instance.setVisible(false));   
+        SwingUtilities.invokeLater(() ->instance.validate());
     }
     
     private void undecoratingDialogs(){
@@ -57,6 +60,9 @@ public class GameFrame extends javax.swing.JFrame {
         SwingUtilities.invokeLater(() ->InventoryDialog.setLocation(instance.getLocation()));
     }
     
+    protected void settingLanguage(String s) throws Exception{
+        //in cui verranno settati testi e cazzi e mazzi nella lingua scelta
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -1644,8 +1650,7 @@ public class GameFrame extends javax.swing.JFrame {
      * @param evt 
      */
     private void ConversationTextAreaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ConversationTextAreaKeyPressed
-       if(evt.getKeyCode()==KeyEvent.VK_ENTER){
-           
+       if(evt.getKeyCode()==KeyEvent.VK_ENTER){           
         SwingUtilities.invokeLater(() -> ConversationScrollPane.setVisible(false));
         SwingUtilities.invokeLater(() -> ConversationTextArea.setText(EMPTY_TEXT));
         }
@@ -1689,7 +1694,7 @@ public class GameFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_AvatarOkButtonActionPerformed
 
     private void LanguageComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LanguageComboBoxActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_LanguageComboBoxActionPerformed
 
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
@@ -1702,6 +1707,8 @@ public class GameFrame extends javax.swing.JFrame {
     private void MainMenuDialogComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_MainMenuDialogComponentShown
         if (MainMenuDialog.isVisible()){
            SwingUtilities.invokeLater(() ->this.setVisible(false));
+           SwingUtilities.invokeLater(() ->this.validate());
+
         }
     }//GEN-LAST:event_MainMenuDialogComponentShown
     

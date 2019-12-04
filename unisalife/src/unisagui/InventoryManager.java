@@ -35,6 +35,7 @@ public class InventoryManager {
     public void updateInventoryDialog(Item item, boolean presence){
         
     }
-
+    //se viene passata la posizione dell'elemento
+    // public void updateInventoryDialog(Item item, int position, boolean presence)
     
 }

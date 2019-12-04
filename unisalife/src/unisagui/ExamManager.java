@@ -25,7 +25,9 @@ public class ExamManager {
      * show=false at this function
      */
     public void showExamDialog(Exam exam, boolean show){
+        //Settaggio della text area e dei bottoni
         SwingUtilities.invokeLater(() -> gameframe.ExamDialog.setVisible(show));
+        
     }
     
 }

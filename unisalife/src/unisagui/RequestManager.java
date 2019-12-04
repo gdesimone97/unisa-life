@@ -12,6 +12,7 @@ package unisagui;
 public class RequestManager {
     
     private String info;
+    private final GameFrame gameframe = GameFrame.getInstance();
     
     protected RequestManager(){
         
@@ -19,7 +20,8 @@ public class RequestManager {
     
     public void showRequest(String id, boolean show){
         this.setInfo(id);
-        
+        //gameframe.RequestLabel.setText(Lang.getString());
+        //dovrebbe restituirmi la stringa da inserire nella richiesta
     }
     
     private void setInfo(String id){

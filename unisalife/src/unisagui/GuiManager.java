@@ -21,7 +21,8 @@ public class GuiManager {
     private final SettingsMenuManager settingsmenumanager;
     private final ExamManager exammanager;
     private final QuestManager questmanager;
-    private static GuiManager instance = null;
+    private final GameFrame gameframe = GameFrame.getInstance(); //potrebbe essere evitato
+    private static GuiManager instance;
 
     private GuiManager() {
         
@@ -114,5 +115,10 @@ public class GuiManager {
     
     public void updateMoney(int money){
         hudmanager.updateMoney(money);
+    }
+    
+    //potrebbe essere evitato
+    private void setGuiLanguage(){
+        gameframe.settingLanguage("");
     }
 }
