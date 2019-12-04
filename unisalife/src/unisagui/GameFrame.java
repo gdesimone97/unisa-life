@@ -1132,9 +1132,7 @@ public class GameFrame extends javax.swing.JFrame {
             .addGap(0, 300, Short.MAX_VALUE)
         );
 
-        AvatarChooserDialog.setMaximumSize(new java.awt.Dimension(600, 750));
         AvatarChooserDialog.setMinimumSize(new java.awt.Dimension(600, 750));
-        AvatarChooserDialog.setPreferredSize(new java.awt.Dimension(600, 750));
 
         AvatarChooserPanel.setMaximumSize(new java.awt.Dimension(600, 750));
         AvatarChooserPanel.setMinimumSize(new java.awt.Dimension(600, 750));
@@ -1418,7 +1416,7 @@ public class GameFrame extends javax.swing.JFrame {
         LevelLabel.setMinimumSize(new java.awt.Dimension(225, 25));
         LevelLabel.setPreferredSize(new java.awt.Dimension(225, 25));
 
-        MoneyIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/unisagui/Icon/MoneyIcon.png"))); // NOI18N
+        MoneyIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/unisagui/Icon/FoggiaIcon.jpg"))); // NOI18N
         MoneyIcon.setText("jLabel2");
         MoneyIcon.setMaximumSize(new java.awt.Dimension(25, 25));
         MoneyIcon.setMinimumSize(new java.awt.Dimension(25, 25));
