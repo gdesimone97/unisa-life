@@ -14,11 +14,21 @@ public class DialogManager {
     protected DialogManager(){
         
     }
-    
+    /**
+     * 
+     * @param hint
+     * @param show 
+     * show an hint in a small text area that can be closed using "ENTER" key
+     */
     public void showHint(String hint, boolean show){
         //ancora dobbiamo crearle
     }
-    
+    /**
+     * 
+     * @param conversation
+     * @param show 
+     * show conversation between us and a GameObject of type Person that can be closed using "ENTER" key
+     */
     public void showConversation(String conversation, boolean show){
         //ancora dobbiamo crearle
     }

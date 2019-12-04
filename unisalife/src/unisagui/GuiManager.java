@@ -83,19 +83,35 @@ public class GuiManager {
     public void showSettingsMenu(boolean show){
         settingsmenumanager.showSettingsMenu(show);
     }
-    
+    /**
+     * 
+     * @param show 
+     * show main menu dialog
+     */
     public void showMainMenu(boolean show){
         mainmenumanager.showMainMenu(show);
     }
-    
+    /**
+     * 
+     * @param show 
+     * show the Inventory dialog that contains all available item
+     */
     public void showInventoryDialog(boolean show){
         inventorymanager.showInventoryDialog(show);
     }
-    
+    /**
+     * 
+     * @param show 
+     * show the career dialog that contains all the exam done and undone
+     */
     public void showCareerDialog(boolean show){
         careermanager.showCareerDialog(show);
     }
-    
+    /**
+     * 
+     * @param show 
+     * show the quest dialog that contains all the quest available
+     */
     public void showQuestDialog(boolean show){
         questmanager.showQuestDialog(show);
     }
@@ -116,27 +132,52 @@ public class GuiManager {
     public void updateQuestDialog(Quest quest, boolean presence){
         questmanager.updateQuestDialog(quest, presence);
     }
-    
+    /**
+     * 
+     * @param item
+     * @param presence 
+     * update the dialog of inventory removing or adding some item
+     */
     public void updateInventoryDialog(Item item, boolean presence){
         inventorymanager.updateInventoryDialog(item, presence);
     }
-    
+    /**
+     * 
+     * @param exam 
+     * update the career dialog marking as done new exams
+     */
     public void updateCareerDialog(Exam exam){
         careermanager.updateCareerDialog(exam);
     }
-    
+    /**
+     * 
+     * @param stress 
+     * update the progress bar of stress
+     */
     public void updateStressBar(int stress){
         hudmanager.updateStressBar(stress);
     }
-    
+    /**
+     * 
+     * @param energy 
+     * update the progress bar of energy
+     */
     public void updateEnergyBar(int energy){
         hudmanager.updateEnergyBar(energy);
     }
-    
+    /**
+     * 
+     * @param hunger 
+     * update the progress bar of hunger
+     */
     public void updateHungerBar(int hunger){
         hudmanager.updateHungerBar(hunger);
     }
-    
+    /**
+     * 
+     * @param money 
+     * update the money showing the current amount of money
+     */
     public void updateMoney(int money){
         hudmanager.updateMoney(money);
     }
