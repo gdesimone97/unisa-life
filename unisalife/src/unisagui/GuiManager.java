@@ -50,7 +50,14 @@ public class GuiManager {
         }
         return instance;
     }
-    
+    /**
+     * 
+     * @param go is the GameObject  that start the Dialog
+     * @param s  is a String to show in the Dialog
+     * @param show  boolean that says if the Dialog must be open or closed
+     * @throws NotInteractiveException 
+     * This method use instanceof for understand if  show Hint dialog or Conversation  
+     */
     public void showDialog(GameObject go, String s, boolean show) throws NotInteractiveException {
         
         if(go instanceof Item)
@@ -60,11 +67,19 @@ public class GuiManager {
         else
             throw new NotInteractiveException();
     }
-    
+    /**
+     * 
+     * @param exam
+     * @param show boolean that says if the Exam dialog must be open or closed
+     * 
+     */
     public void showExamDialog(Exam exam, boolean show){
         exammanager.showExamDialog(exam,show);
     }
-    
+    /**
+     * 
+     * @param show boolean that says if the Menu must be open or closed
+     */
     public void showSettingsMenu(boolean show){
         settingsmenumanager.showSettingsMenu(show);
     }
@@ -84,11 +99,20 @@ public class GuiManager {
     public void showQuestDialog(boolean show){
         questmanager.showQuestDialog(show);
     }
-    
+    /**
+     * 
+     * @param go
+     * @param show 
+     *  GameObject id is used for undetstand what type of request will be visible
+     */
     public void showRequest(GameObject go, boolean show){
         requestmanager.showRequest(go.getId(),show);
     }
-    
+    /**
+     * 
+     * @param quest
+     * @param presence for add or remove a quest 
+     */
     public void updateQuestDialog(Quest quest, boolean presence){
         questmanager.updateQuestDialog(quest, presence);
     }

@@ -135,7 +135,7 @@
             <Component class="javax.swing.JLabel" name="StudentLabel">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/unisagui/Icon/StudentIcon.jpg"/>
+                  <Image iconType="3" name="/icon/StudentIcon.jpg"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="jLabel2"/>
                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -2135,7 +2135,13 @@
     </Container>
     <Container class="javax.swing.JDialog" name="AvatarChooserDialog">
       <Properties>
+        <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[600, 750]"/>
+        </Property>
         <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[600, 750]"/>
+        </Property>
+        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[600, 750]"/>
         </Property>
       </Properties>
@@ -2768,7 +2774,7 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/unisagui/RossoLabel.PNG"/>
+              <Image iconType="3" name="/icon/RossoLabel.PNG"/>
             </Property>
             <Property name="text" type="java.lang.String" value="."/>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -2788,7 +2794,7 @@
         <Component class="javax.swing.JLabel" name="MoneyIcon">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/unisagui/Icon/FoggiaIcon.jpg"/>
+              <Image iconType="3" name="/unisagui/Icon/MoneyIcon.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="jLabel2"/>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -2808,7 +2814,7 @@
         <Component class="javax.swing.JLabel" name="MoneyLabel">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/unisagui/RossoLabel.PNG"/>
+              <Image iconType="3" name="/icon/RossoLabel.PNG"/>
             </Property>
             <Property name="text" type="java.lang.String" value="jLabel3"/>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -2844,7 +2850,7 @@
         <Component class="javax.swing.JLabel" name="EnergyIcon">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/unisagui/Icon/EnergyIcon.png"/>
+              <Image iconType="3" name="/icon/EnergyIcon.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="jLabel2"/>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -2864,7 +2870,7 @@
         <Component class="javax.swing.JLabel" name="StressIcon">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/unisagui/Icon/StressIcon.png"/>
+              <Image iconType="3" name="/icon/StressIcon.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="jLabel2"/>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -2884,7 +2890,7 @@
         <Component class="javax.swing.JLabel" name="HungerIcon">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/unisagui/Icon/HungerIcon.png"/>
+              <Image iconType="3" name="/icon/HungerIcon.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="jLabel2"/>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">

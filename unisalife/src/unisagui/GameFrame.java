@@ -175,7 +175,7 @@ public class GameFrame extends javax.swing.JFrame {
         ProfLabel.setMinimumSize(new java.awt.Dimension(75, 75));
         ProfLabel.setPreferredSize(new java.awt.Dimension(75, 75));
 
-        StudentLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/unisagui/Icon/StudentIcon.jpg"))); // NOI18N
+        StudentLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/StudentIcon.jpg"))); // NOI18N
         StudentLabel.setText("jLabel2");
         StudentLabel.setMaximumSize(new java.awt.Dimension(75, 75));
         StudentLabel.setMinimumSize(new java.awt.Dimension(75, 75));
@@ -1132,7 +1132,9 @@ public class GameFrame extends javax.swing.JFrame {
             .addGap(0, 300, Short.MAX_VALUE)
         );
 
+        AvatarChooserDialog.setMaximumSize(new java.awt.Dimension(600, 750));
         AvatarChooserDialog.setMinimumSize(new java.awt.Dimension(600, 750));
+        AvatarChooserDialog.setPreferredSize(new java.awt.Dimension(600, 750));
 
         AvatarChooserPanel.setMaximumSize(new java.awt.Dimension(600, 750));
         AvatarChooserPanel.setMinimumSize(new java.awt.Dimension(600, 750));
@@ -1410,19 +1412,19 @@ public class GameFrame extends javax.swing.JFrame {
         HudPanel.setPreferredSize(new java.awt.Dimension(600, 175));
 
         LevelLabel.setBackground(new java.awt.Color(255, 255, 255));
-        LevelLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/unisagui/RossoLabel.PNG"))); // NOI18N
+        LevelLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/RossoLabel.PNG"))); // NOI18N
         LevelLabel.setText(".");
         LevelLabel.setMaximumSize(new java.awt.Dimension(225, 25));
         LevelLabel.setMinimumSize(new java.awt.Dimension(225, 25));
         LevelLabel.setPreferredSize(new java.awt.Dimension(225, 25));
 
-        MoneyIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/unisagui/Icon/FoggiaIcon.jpg"))); // NOI18N
+        MoneyIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/unisagui/Icon/MoneyIcon.png"))); // NOI18N
         MoneyIcon.setText("jLabel2");
         MoneyIcon.setMaximumSize(new java.awt.Dimension(25, 25));
         MoneyIcon.setMinimumSize(new java.awt.Dimension(25, 25));
         MoneyIcon.setPreferredSize(new java.awt.Dimension(25, 25));
 
-        MoneyLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/unisagui/RossoLabel.PNG"))); // NOI18N
+        MoneyLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/RossoLabel.PNG"))); // NOI18N
         MoneyLabel.setText("jLabel3");
         MoneyLabel.setMaximumSize(new java.awt.Dimension(125, 25));
         MoneyLabel.setMinimumSize(new java.awt.Dimension(125, 25));
@@ -1432,19 +1434,19 @@ public class GameFrame extends javax.swing.JFrame {
         EnergyProgressBar.setMinimumSize(new java.awt.Dimension(150, 25));
         EnergyProgressBar.setPreferredSize(new java.awt.Dimension(150, 25));
 
-        EnergyIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/unisagui/Icon/EnergyIcon.png"))); // NOI18N
+        EnergyIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/EnergyIcon.png"))); // NOI18N
         EnergyIcon.setText("jLabel2");
         EnergyIcon.setMaximumSize(new java.awt.Dimension(25, 25));
         EnergyIcon.setMinimumSize(new java.awt.Dimension(25, 25));
         EnergyIcon.setPreferredSize(new java.awt.Dimension(25, 25));
 
-        StressIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/unisagui/Icon/StressIcon.png"))); // NOI18N
+        StressIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/StressIcon.png"))); // NOI18N
         StressIcon.setText("jLabel2");
         StressIcon.setMaximumSize(new java.awt.Dimension(25, 25));
         StressIcon.setMinimumSize(new java.awt.Dimension(25, 25));
         StressIcon.setPreferredSize(new java.awt.Dimension(25, 25));
 
-        HungerIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/unisagui/Icon/HungerIcon.png"))); // NOI18N
+        HungerIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/HungerIcon.png"))); // NOI18N
         HungerIcon.setText("jLabel2");
         HungerIcon.setMaximumSize(new java.awt.Dimension(25, 25));
         HungerIcon.setMinimumSize(new java.awt.Dimension(25, 25));
@@ -1546,7 +1548,8 @@ public class GameFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_LanguageButtonActionPerformed
 
     private void NewGameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewGameButtonActionPerformed
-        // TODO add your handling code here:
+        SwingUtilities.invokeLater(() -> AvatarChooserDialog.setVisible(true));
+        SwingUtilities.invokeLater(() -> MainMenuDialog.setVisible(false));
     }//GEN-LAST:event_NewGameButtonActionPerformed
 
     private void SettingsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SettingsButtonActionPerformed
