@@ -18,8 +18,10 @@ import question.*;
 public class Exam {
     private final Questions questions;
     private int score;
+    private float sum;
+    private int count;
     private final int maxLevel;
-    private final double basicScore;
+    private float basicScore;
     QuestionsIterator iter;
     
     /**
@@ -29,14 +31,13 @@ public class Exam {
      * 
      */
     public Exam(Materia materia){
-        StringsQuestionFactory questionsFetch = new StringsQuestionFactory(materia);
-        int j = 0;
+        QuestionFactory questionsFetch = new StringsQuestionFactory(materia);
         this.score = 0;
+        this.sum = 0;
+        this.count = 0;
         this.questions = questionsFetch.getQuestions();
-        this.maxLevel = 6;
-        for(int i=1; i<=this.maxLevel;i++)
-            j+=i;
-        this.basicScore = 30/j;
+        this.maxLevel = this.questions.getNumLevels();
+        this.basicScore = 12/(30-(30/(float)(this.maxLevel-1)));
         this.iter = questions.iterator();
     }
     
@@ -51,18 +52,14 @@ public class Exam {
      * for each answer
      */
     public void verifyAnswer(boolean answer, int seconds, int level){ //here the level is referred to the number of questions choosed
+        int x = (30-(30/(this.maxLevel-level))); //seconds from which the user loses points
         if(level!=maxLevel && answer){
-            if(seconds>=10)
-               this.score+=(this.basicScore*level);
-            else{
-                double losePoints = (((10-seconds)*0.1)*(basicScore)); //variable used to store losed points depending on passed time before give the answer
-                this.score += this.basicScore*level - losePoints;
-            }
-        }else if (level == maxLevel && this.score >= 30){
-            if(answer)
-                this.score+=1;
-            else
-                this.score-=1;
+            this.sum += (seconds >= x ? 30 : 30-this.basicScore*(x-seconds));
+        }else if(level!=maxLevel && !answer){
+            this.count++;
+            this.sum += (count <= (0.4*(maxLevel-1)) ? 18 : 0);                    
+        }else if (level == maxLevel && this.score == 30){
+            this.score += (answer ? 1 : -1);
         }
     }
     
@@ -83,9 +80,13 @@ public class Exam {
      *
      * @return the score
      */
-    public double getScore(){
+    public int getScore(){
+        this.score = (int)this.sum/(maxLevel-1);
         return this.score;
     }
-
+    
+    public float getCurrentScore(){
+        return this.sum;
+    }
     
 }

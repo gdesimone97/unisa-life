@@ -30,29 +30,30 @@ public class ExamTest {
         BookletSingleton booklet = BookletSingleton.getInstance();        
         int i;
         //Test of the class Exam in particular the functionality of score assignment
-        for (i=1; i<=5; i++){
-            doExam(esame, 8, i);
+        for (i=1; i<=3; i++){
+            doExam(esame, 10);
         }
-        if(esame.getScore()==30){
-            doExam(esame, 20, i);
-        }
-        System.out.println("Il voto è: " + esame.getScore());
-        
-        //Test of the class BookletSingleton functionality
-        if(esame.getScore()>18)
-            booklet.setScore(Materia.matematica, (int) esame.getScore());
-        
-        System.out.println("Libretto");
-        for (Materia x : Materia.values()){
-            if(!booklet.getAvailablity(x))
-                System.out.println(x.toString() + " already done: yes score:"+booklet.getScore(x));
-            else
-                System.out.println(x.toString() + " already done: no");
-        }
+        System.out.println("Il voto finale e': " + esame.getScore());
+//        if(esame.getScore()==30){
+//            doExam(esame, 20, i);
+//        }
+//        System.out.println("Il voto è: " + esame.getScore());
+//        
+//        //Test of the class BookletSingleton functionality
+//        if(esame.getScore()>18)
+//            booklet.setScore(Materia.matematica, (int) esame.getScore());
+//        
+//        System.out.println("Libretto");
+//        for (Materia x : Materia.values()){
+//            if(!booklet.getAvailablity(x))
+//                System.out.println(x.toString() + " already done: yes score:"+booklet.getScore(x));
+//            else
+//                System.out.println(x.toString() + " already done: no");
+//        }
     }
     
     
-    public static void doExam (Exam esame, int seconds, int level){
+    public static void doExam (Exam esame, int seconds){
         Question question = esame.getQuestion();
         String stringa = JOptionPane.showInputDialog(question.toString() + "\n\n Risposta: ");
 
@@ -60,7 +61,7 @@ public class ExamTest {
 
         Answer answer = answers.get(Integer.parseInt(stringa)-1);
         System.out.println("Hai risposto " + answer + ". " + (question.isCorrect(answer)));
-        esame.verifyAnswer(question.isCorrect(answer), seconds, level); //the parameter seconds is given, change it to experience a variation in the resulting score
-        System.out.println("current score: "+esame.getScore());
+        esame.verifyAnswer(question.isCorrect(answer), seconds, question.getLevel()); //the parameter seconds is given, change it to experience a variation in the resulting score
+        System.out.println("current score: "+esame.getCurrentScore());
     }
 }
