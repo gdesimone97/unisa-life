@@ -19,6 +19,7 @@ public class Main {
         QuestionFactory sqf = new StringsQuestionFactory(Materia.matematica);
 
         Questions q = sqf.getQuestions();
+        System.out.println("Il numero di livelli è: " + q.getNumLevels());
         
         QuestionsIterator questIt = q.iterator();
         
