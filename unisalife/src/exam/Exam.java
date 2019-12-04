@@ -30,10 +30,13 @@ public class Exam {
      */
     public Exam(Materia materia){
         StringsQuestionFactory questionsFetch = new StringsQuestionFactory(materia);
+        int j = 0;
         this.score = 0;
         this.questions = questionsFetch.getQuestions();
-        this.basicScore = 2;
         this.maxLevel = 6;
+        for(int i=1; i<=this.maxLevel;i++)
+            j+=i;
+        this.basicScore = 30/j;
         this.iter = questions.iterator();
     }
     
