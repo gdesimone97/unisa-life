@@ -34,6 +34,10 @@ public class Questions implements QuestionsCollection {
         questions.get(question.getLevel()).add(question);
     }
     
+    public int getNumLevels() {
+        return questions.size();
+    }
+    
     /**
      * This method provides an instance of a class that implements Iterator interface
      * that has next() and hasNext() methods.
