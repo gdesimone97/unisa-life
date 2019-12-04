@@ -20,6 +20,11 @@ public class GameFrame extends javax.swing.JFrame {
     
     private GameFrame() {
         initComponents();
+        undecoratingDialogs();
+        settingLocations(this);
+        initialSettings(this);
+        
+        
     }
     
     public static synchronized GameFrame getInstance(){
@@ -27,6 +32,31 @@ public class GameFrame extends javax.swing.JFrame {
             instance = new GameFrame();
         return instance;
     }
+    
+    private void initialSettings(GameFrame instance){        
+        SwingUtilities.invokeLater(() ->MainMenuDialog.isAlwaysOnTop());
+        SwingUtilities.invokeLater(() ->MainMenuDialog.setVisible(true));
+        SwingUtilities.invokeLater(() ->instance.setVisible(false));      
+    }
+    
+    private void undecoratingDialogs(){
+        SwingUtilities.invokeLater(() -> MainMenuDialog.setUndecorated(true));
+        SwingUtilities.invokeLater(() -> SettingsDialog.setUndecorated(true));
+        SwingUtilities.invokeLater(() -> RequestDialog.setUndecorated(true));
+        SwingUtilities.invokeLater(() -> ExamDialog.setUndecorated(true));
+        SwingUtilities.invokeLater(() -> AvatarChooserDialog.setUndecorated(true));
+        SwingUtilities.invokeLater(() -> InventoryDialog.setUndecorated(true));
+    }
+    
+    private void settingLocations(GameFrame instance){
+        SwingUtilities.invokeLater(() ->MainMenuDialog.setLocation(instance.getLocation())); 
+        SwingUtilities.invokeLater(() ->SettingsDialog.setLocation(instance.getLocation()));
+        SwingUtilities.invokeLater(() ->RequestDialog.setLocation(instance.getLocation()));
+        SwingUtilities.invokeLater(() ->ExamDialog.setLocation(instance.getLocation()));
+        SwingUtilities.invokeLater(() ->AvatarChooserDialog.setLocation(instance.getLocation()));
+        SwingUtilities.invokeLater(() ->InventoryDialog.setLocation(instance.getLocation()));
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -124,29 +154,30 @@ public class GameFrame extends javax.swing.JFrame {
         SettingsLayer = new javax.swing.JLabel();
         AudioButton = new javax.swing.JButton();
         MusicButton = new javax.swing.JButton();
-        LanguageButton = new javax.swing.JButton();
         KeyboardButton = new javax.swing.JButton();
         ReturnToMainMenuButton = new javax.swing.JButton();
+        LanguageComboBox = new javax.swing.JComboBox<>();
         RequestDialog = new javax.swing.JDialog();
         RequestPanel = new javax.swing.JPanel();
         RequestLabel = new javax.swing.JLabel();
         YesButton = new javax.swing.JButton();
         NoButton = new javax.swing.JButton();
         CareerDialog = new javax.swing.JDialog();
+        CareerPanel = new javax.swing.JPanel();
+        CareerScrollPane = new javax.swing.JScrollPane();
+        ExamTable = new javax.swing.JTable();
+        CareerLabel = new javax.swing.JLabel();
         AvatarChooserDialog = new javax.swing.JDialog();
         AvatarChooserPanel = new javax.swing.JPanel();
         AvatarName = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
+        AvatarNameLabel = new javax.swing.JLabel();
         MaleWhiteButton = new javax.swing.JButton();
         AvatarImage = new javax.swing.JLabel();
         MaleBlackButton = new javax.swing.JButton();
         FemaleBlackButton = new javax.swing.JButton();
         FemaleWhiteButton = new javax.swing.JButton();
         AvatarIcon = new javax.swing.JLabel();
-        LanguageDialog = new javax.swing.JDialog();
-        LanguagePanel = new javax.swing.JPanel();
-        EnglishButton = new javax.swing.JButton();
-        ItalianButton = new javax.swing.JButton();
+        AvatarOkButton = new javax.swing.JButton();
         KeyboardSettingsDialog = new javax.swing.JDialog();
         jLabel1 = new javax.swing.JLabel();
         GamePanel = new javax.swing.JPanel();
@@ -165,17 +196,17 @@ public class GameFrame extends javax.swing.JFrame {
         StressProgressBar = new javax.swing.JProgressBar();
         HungerProgressBar = new javax.swing.JProgressBar();
 
+        ExamDialog.setMinimumSize(new java.awt.Dimension(500, 500));
+
         ExamPanel.setMaximumSize(new java.awt.Dimension(500, 500));
         ExamPanel.setMinimumSize(new java.awt.Dimension(500, 500));
         ExamPanel.setPreferredSize(new java.awt.Dimension(500, 500));
 
-        ProfLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/unisagui/Icon/FoggiaIcon.jpg"))); // NOI18N
         ProfLabel.setText("jLabel1");
         ProfLabel.setMaximumSize(new java.awt.Dimension(75, 75));
         ProfLabel.setMinimumSize(new java.awt.Dimension(75, 75));
         ProfLabel.setPreferredSize(new java.awt.Dimension(75, 75));
 
-        StudentLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/unisagui/Icon/StudentIcon.jpg"))); // NOI18N
         StudentLabel.setText("jLabel2");
         StudentLabel.setMaximumSize(new java.awt.Dimension(75, 75));
         StudentLabel.setMinimumSize(new java.awt.Dimension(75, 75));
@@ -306,6 +337,13 @@ public class GameFrame extends javax.swing.JFrame {
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
 
+        MainMenuDialog.setMinimumSize(new java.awt.Dimension(600, 750));
+        MainMenuDialog.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                MainMenuDialogComponentShown(evt);
+            }
+        });
+
         MainMenuPanel.setMaximumSize(new java.awt.Dimension(600, 750));
         MainMenuPanel.setMinimumSize(new java.awt.Dimension(600, 750));
 
@@ -391,7 +429,7 @@ public class GameFrame extends javax.swing.JFrame {
                     .addComponent(ExitButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(25, 25, 25)
                 .addComponent(CreditsButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(175, 175, 175))
+                .addContainerGap(175, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout MainMenuDialogLayout = new javax.swing.GroupLayout(MainMenuDialog.getContentPane());
@@ -414,6 +452,8 @@ public class GameFrame extends javax.swing.JFrame {
                     .addComponent(MainMenuPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
+
+        InventoryDialog.setMinimumSize(new java.awt.Dimension(400, 450));
 
         InventoryPanel.setMaximumSize(new java.awt.Dimension(400, 450));
         InventoryPanel.setMinimumSize(new java.awt.Dimension(400, 450));
@@ -709,6 +749,7 @@ public class GameFrame extends javax.swing.JFrame {
         InventoryPageButton.setPreferredSize(new java.awt.Dimension(50, 25));
 
         NextButton.setText("NE");
+        NextButton.setEnabled(false);
         NextButton.setMaximumSize(new java.awt.Dimension(50, 25));
         NextButton.setMinimumSize(new java.awt.Dimension(50, 25));
         NextButton.setPreferredSize(new java.awt.Dimension(50, 25));
@@ -929,7 +970,7 @@ public class GameFrame extends javax.swing.JFrame {
         InventoryDialog.getContentPane().setLayout(InventoryDialogLayout);
         InventoryDialogLayout.setHorizontalGroup(
             InventoryDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
             .addGroup(InventoryDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(InventoryDialogLayout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -938,13 +979,15 @@ public class GameFrame extends javax.swing.JFrame {
         );
         InventoryDialogLayout.setVerticalGroup(
             InventoryDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
             .addGroup(InventoryDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(InventoryDialogLayout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
                     .addComponent(InventoryPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
+
+        SettingsDialog.setMinimumSize(new java.awt.Dimension(600, 750));
 
         SettingsPanel.setMaximumSize(new java.awt.Dimension(600, 750));
         SettingsPanel.setMinimumSize(new java.awt.Dimension(600, 750));
@@ -969,16 +1012,6 @@ public class GameFrame extends javax.swing.JFrame {
         MusicButton.setMinimumSize(new java.awt.Dimension(75, 75));
         MusicButton.setPreferredSize(new java.awt.Dimension(75, 75));
 
-        LanguageButton.setText("LANGUAGE");
-        LanguageButton.setMaximumSize(new java.awt.Dimension(200, 50));
-        LanguageButton.setMinimumSize(new java.awt.Dimension(200, 50));
-        LanguageButton.setPreferredSize(new java.awt.Dimension(200, 50));
-        LanguageButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                LanguageButtonActionPerformed(evt);
-            }
-        });
-
         KeyboardButton.setText("KEYBOARD SETTINGS");
         KeyboardButton.setMaximumSize(new java.awt.Dimension(200, 50));
         KeyboardButton.setMinimumSize(new java.awt.Dimension(200, 50));
@@ -999,21 +1032,32 @@ public class GameFrame extends javax.swing.JFrame {
             }
         });
 
+        LanguageComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "English", "Italian" }));
+        LanguageComboBox.setMaximumSize(new java.awt.Dimension(200, 50));
+        LanguageComboBox.setMinimumSize(new java.awt.Dimension(200, 50));
+        LanguageComboBox.setPreferredSize(new java.awt.Dimension(200, 50));
+        LanguageComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LanguageComboBoxActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout SettingsPanelLayout = new javax.swing.GroupLayout(SettingsPanel);
         SettingsPanel.setLayout(SettingsPanelLayout);
         SettingsPanelLayout.setHorizontalGroup(
             SettingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(SettingsPanelLayout.createSequentialGroup()
                 .addGap(200, 200, 200)
-                .addGroup(SettingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(LanguageButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(SettingsPanelLayout.createSequentialGroup()
-                        .addComponent(AudioButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(50, 50, 50)
-                        .addComponent(MusicButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(SettingsLayer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(KeyboardButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ReturnToMainMenuButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(SettingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(LanguageComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(SettingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(SettingsPanelLayout.createSequentialGroup()
+                            .addComponent(AudioButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(50, 50, 50)
+                            .addComponent(MusicButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(SettingsLayer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(KeyboardButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(ReturnToMainMenuButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(200, 200, 200))
         );
         SettingsPanelLayout.setVerticalGroup(
@@ -1026,7 +1070,7 @@ public class GameFrame extends javax.swing.JFrame {
                     .addComponent(AudioButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(MusicButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(25, 25, 25)
-                .addComponent(LanguageButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(LanguageComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(25, 25, 25)
                 .addComponent(KeyboardButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(25, 25, 25)
@@ -1038,7 +1082,7 @@ public class GameFrame extends javax.swing.JFrame {
         SettingsDialog.getContentPane().setLayout(SettingsDialogLayout);
         SettingsDialogLayout.setHorizontalGroup(
             SettingsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
             .addGroup(SettingsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(SettingsDialogLayout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -1047,7 +1091,7 @@ public class GameFrame extends javax.swing.JFrame {
         );
         SettingsDialogLayout.setVerticalGroup(
             SettingsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
             .addGroup(SettingsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(SettingsDialogLayout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -1121,26 +1165,102 @@ public class GameFrame extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
+        CareerDialog.setMinimumSize(new java.awt.Dimension(500, 500));
+
+        CareerPanel.setMaximumSize(new java.awt.Dimension(500, 500));
+        CareerPanel.setMinimumSize(new java.awt.Dimension(500, 500));
+        CareerPanel.setPreferredSize(new java.awt.Dimension(500, 500));
+
+        ExamTable.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        ExamTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Exam", "Vote", "State"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.Integer.class, java.lang.Object.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        ExamTable.setMaximumSize(new java.awt.Dimension(450, 400));
+        ExamTable.setMinimumSize(new java.awt.Dimension(450, 400));
+        ExamTable.setPreferredSize(new java.awt.Dimension(450, 400));
+        ExamTable.setRequestFocusEnabled(false);
+        CareerScrollPane.setViewportView(ExamTable);
+        if (ExamTable.getColumnModel().getColumnCount() > 0) {
+            ExamTable.getColumnModel().getColumn(0).setResizable(false);
+            ExamTable.getColumnModel().getColumn(0).setPreferredWidth(350);
+            ExamTable.getColumnModel().getColumn(1).setResizable(false);
+            ExamTable.getColumnModel().getColumn(1).setPreferredWidth(50);
+            ExamTable.getColumnModel().getColumn(2).setResizable(false);
+            ExamTable.getColumnModel().getColumn(2).setPreferredWidth(50);
+        }
+
+        CareerLabel.setText("jLabel3");
+
+        javax.swing.GroupLayout CareerPanelLayout = new javax.swing.GroupLayout(CareerPanel);
+        CareerPanel.setLayout(CareerPanelLayout);
+        CareerPanelLayout.setHorizontalGroup(
+            CareerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(CareerPanelLayout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(CareerScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CareerPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(CareerLabel)
+                .addGap(226, 226, 226))
+        );
+        CareerPanelLayout.setVerticalGroup(
+            CareerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CareerPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(CareerLabel)
+                .addGap(18, 18, 18)
+                .addComponent(CareerScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26))
+        );
+
         javax.swing.GroupLayout CareerDialogLayout = new javax.swing.GroupLayout(CareerDialog.getContentPane());
         CareerDialog.getContentPane().setLayout(CareerDialogLayout);
         CareerDialogLayout.setHorizontalGroup(
             CareerDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(CareerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         CareerDialogLayout.setVerticalGroup(
             CareerDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(CareerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        AvatarChooserDialog.setMaximumSize(new java.awt.Dimension(600, 750));
         AvatarChooserDialog.setMinimumSize(new java.awt.Dimension(600, 750));
-        AvatarChooserDialog.setPreferredSize(new java.awt.Dimension(600, 750));
 
         AvatarChooserPanel.setMaximumSize(new java.awt.Dimension(600, 750));
         AvatarChooserPanel.setMinimumSize(new java.awt.Dimension(600, 750));
         AvatarChooserPanel.setPreferredSize(new java.awt.Dimension(600, 750));
+        AvatarChooserPanel.setRequestFocusEnabled(false);
 
-        AvatarName.setText("jTextField1");
+        AvatarName.setText("Name");
         AvatarName.setMaximumSize(new java.awt.Dimension(200, 50));
         AvatarName.setMinimumSize(new java.awt.Dimension(200, 50));
         AvatarName.setPreferredSize(new java.awt.Dimension(200, 50));
@@ -1150,12 +1270,12 @@ public class GameFrame extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setText("jLabel2");
-        jLabel2.setMaximumSize(new java.awt.Dimension(200, 25));
-        jLabel2.setMinimumSize(new java.awt.Dimension(200, 25));
-        jLabel2.setPreferredSize(new java.awt.Dimension(200, 25));
+        AvatarNameLabel.setText("Your name:");
+        AvatarNameLabel.setMaximumSize(new java.awt.Dimension(200, 25));
+        AvatarNameLabel.setMinimumSize(new java.awt.Dimension(200, 25));
+        AvatarNameLabel.setPreferredSize(new java.awt.Dimension(200, 25));
 
-        MaleWhiteButton.setText("jButton1");
+        MaleWhiteButton.setText("MB");
         MaleWhiteButton.setMaximumSize(new java.awt.Dimension(75, 75));
         MaleWhiteButton.setMinimumSize(new java.awt.Dimension(75, 75));
         MaleWhiteButton.setPreferredSize(new java.awt.Dimension(75, 75));
@@ -1166,17 +1286,17 @@ public class GameFrame extends javax.swing.JFrame {
         AvatarImage.setName(""); // NOI18N
         AvatarImage.setPreferredSize(new java.awt.Dimension(200, 200));
 
-        MaleBlackButton.setText("jButton1");
+        MaleBlackButton.setText("MN");
         MaleBlackButton.setMaximumSize(new java.awt.Dimension(75, 75));
         MaleBlackButton.setMinimumSize(new java.awt.Dimension(75, 75));
         MaleBlackButton.setPreferredSize(new java.awt.Dimension(75, 75));
 
-        FemaleBlackButton.setText("jButton1");
+        FemaleBlackButton.setText("DN");
         FemaleBlackButton.setMaximumSize(new java.awt.Dimension(75, 75));
         FemaleBlackButton.setMinimumSize(new java.awt.Dimension(75, 75));
         FemaleBlackButton.setPreferredSize(new java.awt.Dimension(75, 75));
 
-        FemaleWhiteButton.setText("jButton1");
+        FemaleWhiteButton.setText("DB");
         FemaleWhiteButton.setMaximumSize(new java.awt.Dimension(75, 75));
         FemaleWhiteButton.setMinimumSize(new java.awt.Dimension(75, 75));
         FemaleWhiteButton.setPreferredSize(new java.awt.Dimension(75, 75));
@@ -1191,11 +1311,21 @@ public class GameFrame extends javax.swing.JFrame {
         AvatarIcon.setMinimumSize(new java.awt.Dimension(200, 75));
         AvatarIcon.setPreferredSize(new java.awt.Dimension(200, 75));
 
+        AvatarOkButton.setText("OK");
+        AvatarOkButton.setMaximumSize(new java.awt.Dimension(75, 50));
+        AvatarOkButton.setMinimumSize(new java.awt.Dimension(75, 50));
+        AvatarOkButton.setPreferredSize(new java.awt.Dimension(75, 50));
+        AvatarOkButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AvatarOkButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout AvatarChooserPanelLayout = new javax.swing.GroupLayout(AvatarChooserPanel);
         AvatarChooserPanel.setLayout(AvatarChooserPanelLayout);
         AvatarChooserPanelLayout.setHorizontalGroup(
             AvatarChooserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AvatarChooserPanelLayout.createSequentialGroup()
+            .addGroup(AvatarChooserPanelLayout.createSequentialGroup()
                 .addGap(200, 200, 200)
                 .addGroup(AvatarChooserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(AvatarIcon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1209,9 +1339,11 @@ public class GameFrame extends javax.swing.JFrame {
                                 .addComponent(FemaleBlackButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(FemaleWhiteButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addComponent(AvatarName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(AvatarNameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(AvatarImage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(200, 200, 200))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
+                .addComponent(AvatarOkButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25))
         );
         AvatarChooserPanelLayout.setVerticalGroup(
             AvatarChooserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1219,7 +1351,7 @@ public class GameFrame extends javax.swing.JFrame {
                 .addGap(60, 60, 60)
                 .addComponent(AvatarIcon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(25, 25, 25)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(AvatarNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
                 .addComponent(AvatarName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(25, 25, 25)
@@ -1230,9 +1362,15 @@ public class GameFrame extends javax.swing.JFrame {
                 .addGroup(AvatarChooserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(MaleBlackButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(FemaleBlackButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25)
-                .addComponent(AvatarImage, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(65, 65, 65))
+                .addGroup(AvatarChooserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(AvatarChooserPanelLayout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addComponent(AvatarImage, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(68, 68, 68))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AvatarChooserPanelLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(AvatarOkButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(25, 25, 25))))
         );
 
         AvatarImage.getAccessibleContext().setAccessibleName("");
@@ -1247,68 +1385,6 @@ public class GameFrame extends javax.swing.JFrame {
         AvatarChooserDialogLayout.setVerticalGroup(
             AvatarChooserDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(AvatarChooserPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-
-        LanguageDialog.setMinimumSize(new java.awt.Dimension(225, 125));
-
-        LanguagePanel.setMaximumSize(new java.awt.Dimension(225, 125));
-        LanguagePanel.setMinimumSize(new java.awt.Dimension(225, 125));
-        LanguagePanel.setPreferredSize(new java.awt.Dimension(225, 125));
-
-        EnglishButton.setText("jButton1");
-        EnglishButton.setMaximumSize(new java.awt.Dimension(75, 75));
-        EnglishButton.setMinimumSize(new java.awt.Dimension(75, 75));
-        EnglishButton.setPreferredSize(new java.awt.Dimension(75, 75));
-        EnglishButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EnglishButtonActionPerformed(evt);
-            }
-        });
-
-        ItalianButton.setText("jButton1");
-        ItalianButton.setMaximumSize(new java.awt.Dimension(75, 75));
-        ItalianButton.setMinimumSize(new java.awt.Dimension(75, 75));
-        ItalianButton.setPreferredSize(new java.awt.Dimension(75, 75));
-        ItalianButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ItalianButtonActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout LanguagePanelLayout = new javax.swing.GroupLayout(LanguagePanel);
-        LanguagePanel.setLayout(LanguagePanelLayout);
-        LanguagePanelLayout.setHorizontalGroup(
-            LanguagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(LanguagePanelLayout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(EnglishButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25)
-                .addComponent(ItalianButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25))
-        );
-        LanguagePanelLayout.setVerticalGroup(
-            LanguagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(LanguagePanelLayout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addGroup(LanguagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(EnglishButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ItalianButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25))
-        );
-
-        javax.swing.GroupLayout LanguageDialogLayout = new javax.swing.GroupLayout(LanguageDialog.getContentPane());
-        LanguageDialog.getContentPane().setLayout(LanguageDialogLayout);
-        LanguageDialogLayout.setHorizontalGroup(
-            LanguageDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LanguageDialogLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(LanguagePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        LanguageDialogLayout.setVerticalGroup(
-            LanguageDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(LanguageDialogLayout.createSequentialGroup()
-                .addComponent(LanguagePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         jLabel1.setText("Questa è la keyboard settings.");
@@ -1336,8 +1412,14 @@ public class GameFrame extends javax.swing.JFrame {
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setMinimumSize(new java.awt.Dimension(600, 750));
         setName("PrincipalJFrame\n"); // NOI18N
+        setUndecorated(true);
         setResizable(false);
         setSize(new java.awt.Dimension(600, 750));
+        addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                formKeyPressed(evt);
+            }
+        });
 
         GamePanel.setBackground(new java.awt.Color(51, 255, 0));
         GamePanel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -1402,7 +1484,7 @@ public class GameFrame extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, GamePanelLayout.createSequentialGroup()
                 .addGap(50, 50, 50)
                 .addComponent(HintScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 240, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 277, Short.MAX_VALUE)
                 .addComponent(ConversationScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27))
         );
@@ -1412,19 +1494,16 @@ public class GameFrame extends javax.swing.JFrame {
         HudPanel.setPreferredSize(new java.awt.Dimension(600, 175));
 
         LevelLabel.setBackground(new java.awt.Color(255, 255, 255));
-        LevelLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/unisagui/RossoLabel.PNG"))); // NOI18N
         LevelLabel.setText(".");
         LevelLabel.setMaximumSize(new java.awt.Dimension(225, 25));
         LevelLabel.setMinimumSize(new java.awt.Dimension(225, 25));
         LevelLabel.setPreferredSize(new java.awt.Dimension(225, 25));
 
-        MoneyIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/unisagui/Icon/MoneyIcon.png"))); // NOI18N
         MoneyIcon.setText("jLabel2");
         MoneyIcon.setMaximumSize(new java.awt.Dimension(25, 25));
         MoneyIcon.setMinimumSize(new java.awt.Dimension(25, 25));
         MoneyIcon.setPreferredSize(new java.awt.Dimension(25, 25));
 
-        MoneyLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/unisagui/RossoLabel.PNG"))); // NOI18N
         MoneyLabel.setText("jLabel3");
         MoneyLabel.setMaximumSize(new java.awt.Dimension(125, 25));
         MoneyLabel.setMinimumSize(new java.awt.Dimension(125, 25));
@@ -1434,19 +1513,16 @@ public class GameFrame extends javax.swing.JFrame {
         EnergyProgressBar.setMinimumSize(new java.awt.Dimension(150, 25));
         EnergyProgressBar.setPreferredSize(new java.awt.Dimension(150, 25));
 
-        EnergyIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/unisagui/Icon/EnergyIcon.png"))); // NOI18N
         EnergyIcon.setText("jLabel2");
         EnergyIcon.setMaximumSize(new java.awt.Dimension(25, 25));
         EnergyIcon.setMinimumSize(new java.awt.Dimension(25, 25));
         EnergyIcon.setPreferredSize(new java.awt.Dimension(25, 25));
 
-        StressIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/unisagui/Icon/StressIcon.png"))); // NOI18N
         StressIcon.setText("jLabel2");
         StressIcon.setMaximumSize(new java.awt.Dimension(25, 25));
         StressIcon.setMinimumSize(new java.awt.Dimension(25, 25));
         StressIcon.setPreferredSize(new java.awt.Dimension(25, 25));
 
-        HungerIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/unisagui/Icon/HungerIcon.png"))); // NOI18N
         HungerIcon.setText("jLabel2");
         HungerIcon.setMaximumSize(new java.awt.Dimension(25, 25));
         HungerIcon.setMinimumSize(new java.awt.Dimension(25, 25));
@@ -1531,7 +1607,7 @@ public class GameFrame extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        setSize(new java.awt.Dimension(618, 797));
+        setSize(new java.awt.Dimension(600, 750));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -1543,12 +1619,9 @@ public class GameFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_AudioButtonActionPerformed
 
-    private void LanguageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LanguageButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_LanguageButtonActionPerformed
-
     private void NewGameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewGameButtonActionPerformed
-        // TODO add your handling code here:
+        SwingUtilities.invokeLater(() -> AvatarChooserDialog.setVisible(true));
+        SwingUtilities.invokeLater(() -> MainMenuDialog.setVisible(false));
     }//GEN-LAST:event_NewGameButtonActionPerformed
 
     private void SettingsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SettingsButtonActionPerformed
@@ -1561,13 +1634,13 @@ public class GameFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_ResumeGameButtonActionPerformed
 
     private void ReturnToMainMenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReturnToMainMenuButtonActionPerformed
-        SwingUtilities.invokeLater(() -> SettingsDialog.setVisible(false));
-        // QUI EVENTUALE CHIAMATA A FUNZIONE SE SIAMO IN GIOCO PER AVVISARE DI SALVARE ETC...
+        // QUI EVENTUALE CHIAMATA A FUNZIONE SE SIAMO IN GIOCO PER AVVISARE DI SALVARE ETC...  
         SwingUtilities.invokeLater(() -> MainMenuDialog.setVisible(true));
+        SwingUtilities.invokeLater(() -> SettingsDialog.setVisible(false));          
     }//GEN-LAST:event_ReturnToMainMenuButtonActionPerformed
     /**
-     * When ENTER key is pressed, ConversationScrollPane is not visible anymore and the
-     * ConversationTextArea is cleared.
+     * When ENTER key is pressed, ConversationScrollPane is not visible anymore 
+     * and the ConversationTextArea is cleared.
      * @param evt 
      */
     private void ConversationTextAreaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ConversationTextAreaKeyPressed
@@ -1584,23 +1657,14 @@ public class GameFrame extends javax.swing.JFrame {
      */
     private void HintTextAreaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_HintTextAreaKeyPressed
         if(evt.getKeyCode()==KeyEvent.VK_ENTER){
-           
-        SwingUtilities.invokeLater(() -> HintScrollPane.setVisible(false));
-        SwingUtilities.invokeLater(() -> HintTextArea.setText(EMPTY_TEXT));
+            SwingUtilities.invokeLater(() -> HintScrollPane.setVisible(false));
+            SwingUtilities.invokeLater(() -> HintTextArea.setText(EMPTY_TEXT));
         }
     }//GEN-LAST:event_HintTextAreaKeyPressed
 
     private void YesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_YesButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_YesButtonActionPerformed
-
-    private void EnglishButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EnglishButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_EnglishButtonActionPerformed
-
-    private void ItalianButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ItalianButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ItalianButtonActionPerformed
 
     private void AvatarNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AvatarNameActionPerformed
         // TODO add your handling code here:
@@ -1619,7 +1683,29 @@ public class GameFrame extends javax.swing.JFrame {
         SwingUtilities.invokeLater(() -> SettingsDialog.setVisible(false));
     }//GEN-LAST:event_KeyboardButtonActionPerformed
 
-    /**
+    private void AvatarOkButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AvatarOkButtonActionPerformed
+        SwingUtilities.invokeLater(() -> AvatarChooserDialog.setVisible(false));
+        SwingUtilities.invokeLater(() -> this.setVisible(true));
+    }//GEN-LAST:event_AvatarOkButtonActionPerformed
+
+    private void LanguageComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LanguageComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_LanguageComboBoxActionPerformed
+
+    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
+        if(evt.getKeyCode()==KeyEvent.VK_ESCAPE){           
+            SwingUtilities.invokeLater(() -> SettingsDialog.setVisible(true));
+        }
+
+    }//GEN-LAST:event_formKeyPressed
+
+    private void MainMenuDialogComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_MainMenuDialogComponentShown
+        if (MainMenuDialog.isVisible()){
+           SwingUtilities.invokeLater(() ->this.setVisible(false));
+        }
+    }//GEN-LAST:event_MainMenuDialogComponentShown
+    
+        /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
@@ -1650,6 +1736,7 @@ public class GameFrame extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new GameFrame().setVisible(true);
+                
             }
         });
     }
@@ -1661,17 +1748,22 @@ public class GameFrame extends javax.swing.JFrame {
     protected javax.swing.JLabel AvatarIcon;
     protected javax.swing.JLabel AvatarImage;
     protected javax.swing.JTextField AvatarName;
+    protected javax.swing.JLabel AvatarNameLabel;
+    protected javax.swing.JButton AvatarOkButton;
     protected javax.swing.JDialog CareerDialog;
+    protected javax.swing.JLabel CareerLabel;
+    protected javax.swing.JPanel CareerPanel;
+    protected javax.swing.JScrollPane CareerScrollPane;
     protected javax.swing.JButton ConfirmAnswer;
     protected javax.swing.JScrollPane ConversationScrollPane;
     protected javax.swing.JTextArea ConversationTextArea;
     protected javax.swing.JButton CreditsButton;
     protected javax.swing.JLabel EnergyIcon;
     protected javax.swing.JProgressBar EnergyProgressBar;
-    protected javax.swing.JButton EnglishButton;
     protected javax.swing.JDialog ExamDialog;
     protected javax.swing.JPanel ExamPanel;
     protected javax.swing.JScrollPane ExamScrollPane;
+    protected javax.swing.JTable ExamTable;
     protected javax.swing.JTextArea ExamTextArea;
     protected javax.swing.JButton ExitButton;
     protected javax.swing.JButton FemaleBlackButton;
@@ -1744,12 +1836,9 @@ public class GameFrame extends javax.swing.JFrame {
     protected javax.swing.JLabel InventoryLabel;
     protected javax.swing.JLabel InventoryPageButton;
     protected javax.swing.JPanel InventoryPanel;
-    protected javax.swing.JButton ItalianButton;
     protected javax.swing.JButton KeyboardButton;
     protected javax.swing.JDialog KeyboardSettingsDialog;
-    protected javax.swing.JButton LanguageButton;
-    protected javax.swing.JDialog LanguageDialog;
-    protected javax.swing.JPanel LanguagePanel;
+    protected javax.swing.JComboBox<String> LanguageComboBox;
     protected javax.swing.JLabel LevelLabel;
     protected javax.swing.JLabel LevelOfQuestionLabel;
     protected javax.swing.JDialog MainMenuDialog;
@@ -1781,6 +1870,5 @@ public class GameFrame extends javax.swing.JFrame {
     protected javax.swing.JButton ThirdAnswer;
     protected javax.swing.JButton YesButton;
     protected javax.swing.JLabel jLabel1;
-    protected javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }

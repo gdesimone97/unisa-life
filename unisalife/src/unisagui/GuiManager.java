@@ -84,8 +84,7 @@ public class GuiManager {
     public void showQuestDialog(boolean show){
         questmanager.showQuestDialog(show);
     }
-    
-    public void showRequest(GameObject go, boolean show){
+        public void showRequest(GameObject go, boolean show){
         requestmanager.showRequest(go.getId(),show);
     }
     
