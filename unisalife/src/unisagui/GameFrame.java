@@ -328,6 +328,11 @@ public class GameFrame extends javax.swing.JFrame {
         ExitButton.setMaximumSize(new java.awt.Dimension(75, 75));
         ExitButton.setMinimumSize(new java.awt.Dimension(75, 75));
         ExitButton.setPreferredSize(new java.awt.Dimension(75, 75));
+        ExitButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ExitButtonActionPerformed(evt);
+            }
+        });
 
         NewGameButton.setText("NEW GAME");
         NewGameButton.setMaximumSize(new java.awt.Dimension(200, 50));
@@ -978,6 +983,11 @@ public class GameFrame extends javax.swing.JFrame {
         KeyboardButton.setMaximumSize(new java.awt.Dimension(200, 50));
         KeyboardButton.setMinimumSize(new java.awt.Dimension(200, 50));
         KeyboardButton.setPreferredSize(new java.awt.Dimension(200, 50));
+        KeyboardButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                KeyboardButtonActionPerformed(evt);
+            }
+        });
 
         ReturnToMainMenuButton.setText("MAIN MENU");
         ReturnToMainMenuButton.setMaximumSize(new java.awt.Dimension(200, 50));
@@ -1392,7 +1402,7 @@ public class GameFrame extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, GamePanelLayout.createSequentialGroup()
                 .addGap(50, 50, 50)
                 .addComponent(HintScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 277, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 240, Short.MAX_VALUE)
                 .addComponent(ConversationScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27))
         );
@@ -1542,7 +1552,8 @@ public class GameFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_NewGameButtonActionPerformed
 
     private void SettingsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SettingsButtonActionPerformed
-        // TODO add your handling code here:
+        SwingUtilities.invokeLater(() -> SettingsDialog.setVisible(true));
+        SwingUtilities.invokeLater(() -> MainMenuDialog.setVisible(false));
     }//GEN-LAST:event_SettingsButtonActionPerformed
 
     private void ResumeGameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ResumeGameButtonActionPerformed
@@ -1550,7 +1561,9 @@ public class GameFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_ResumeGameButtonActionPerformed
 
     private void ReturnToMainMenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReturnToMainMenuButtonActionPerformed
-        // TODO add your handling code here:
+        SwingUtilities.invokeLater(() -> SettingsDialog.setVisible(false));
+        // QUI EVENTUALE CHIAMATA A FUNZIONE SE SIAMO IN GIOCO PER AVVISARE DI SALVARE ETC...
+        SwingUtilities.invokeLater(() -> MainMenuDialog.setVisible(true));
     }//GEN-LAST:event_ReturnToMainMenuButtonActionPerformed
     /**
      * When ENTER key is pressed, ConversationScrollPane is not visible anymore and the
@@ -1596,6 +1609,15 @@ public class GameFrame extends javax.swing.JFrame {
     private void FemaleWhiteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FemaleWhiteButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_FemaleWhiteButtonActionPerformed
+
+    private void ExitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitButtonActionPerformed
+        SwingUtilities.invokeLater(() -> System.exit(0));
+    }//GEN-LAST:event_ExitButtonActionPerformed
+
+    private void KeyboardButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_KeyboardButtonActionPerformed
+        SwingUtilities.invokeLater(() -> KeyboardSettingsDialog.setVisible(true));
+        SwingUtilities.invokeLater(() -> SettingsDialog.setVisible(false));
+    }//GEN-LAST:event_KeyboardButtonActionPerformed
 
     /**
      * @param args the command line arguments
