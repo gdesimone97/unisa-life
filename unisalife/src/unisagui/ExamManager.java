@@ -21,6 +21,8 @@ public class ExamManager {
     /**
      * 
      * @param exam 
+     * Show the exam dialog that can be closed at the end of the exam passing
+     * show=false at this function
      */
     public void showExamDialog(Exam exam, boolean show){
         SwingUtilities.invokeLater(() -> gameframe.ExamDialog.setVisible(show));

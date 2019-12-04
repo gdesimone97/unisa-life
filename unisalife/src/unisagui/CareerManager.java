@@ -22,13 +22,18 @@ public class CareerManager {
     /**
      * 
      * @param exam 
+     * Update the carrer dialog with the current career
      */
     public void updateCareerDialog(Exam exam){
         
     }
-    
+    /**
+     * 
+     * @param show 
+     * show on screen the career dialog
+     */
     public void showCareerDialog(boolean show){
-        //ancora dobbiamo crearlo
+        
     }
     
 }
