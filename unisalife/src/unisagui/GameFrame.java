@@ -7,7 +7,7 @@ import javax.swing.SwingUtilities;
 
 
 /**
- * @author Davide
+ * @author Davide e a puttan ra mamm
  */
 public class GameFrame extends javax.swing.JFrame {
 
