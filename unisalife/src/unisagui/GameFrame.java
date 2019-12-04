@@ -136,7 +136,7 @@ public class GameFrame extends javax.swing.JFrame {
         AvatarChooserDialog = new javax.swing.JDialog();
         AvatarChooserPanel = new javax.swing.JPanel();
         AvatarName = new javax.swing.JTextField();
-        WriteNameLabel = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         MaleWhiteButton = new javax.swing.JButton();
         AvatarImage = new javax.swing.JLabel();
         MaleBlackButton = new javax.swing.JButton();
@@ -328,6 +328,11 @@ public class GameFrame extends javax.swing.JFrame {
         ExitButton.setMaximumSize(new java.awt.Dimension(75, 75));
         ExitButton.setMinimumSize(new java.awt.Dimension(75, 75));
         ExitButton.setPreferredSize(new java.awt.Dimension(75, 75));
+        ExitButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ExitButtonActionPerformed(evt);
+            }
+        });
 
         NewGameButton.setText("NEW GAME");
         NewGameButton.setMaximumSize(new java.awt.Dimension(200, 50));
@@ -978,6 +983,11 @@ public class GameFrame extends javax.swing.JFrame {
         KeyboardButton.setMaximumSize(new java.awt.Dimension(200, 50));
         KeyboardButton.setMinimumSize(new java.awt.Dimension(200, 50));
         KeyboardButton.setPreferredSize(new java.awt.Dimension(200, 50));
+        KeyboardButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                KeyboardButtonActionPerformed(evt);
+            }
+        });
 
         ReturnToMainMenuButton.setText("MAIN MENU");
         ReturnToMainMenuButton.setMaximumSize(new java.awt.Dimension(200, 50));
@@ -1122,7 +1132,9 @@ public class GameFrame extends javax.swing.JFrame {
             .addGap(0, 300, Short.MAX_VALUE)
         );
 
+        AvatarChooserDialog.setMaximumSize(new java.awt.Dimension(600, 750));
         AvatarChooserDialog.setMinimumSize(new java.awt.Dimension(600, 750));
+        AvatarChooserDialog.setPreferredSize(new java.awt.Dimension(600, 750));
 
         AvatarChooserPanel.setMaximumSize(new java.awt.Dimension(600, 750));
         AvatarChooserPanel.setMinimumSize(new java.awt.Dimension(600, 750));
@@ -1138,12 +1150,12 @@ public class GameFrame extends javax.swing.JFrame {
             }
         });
 
-        WriteNameLabel.setText("jLabel2");
-        WriteNameLabel.setMaximumSize(new java.awt.Dimension(200, 25));
-        WriteNameLabel.setMinimumSize(new java.awt.Dimension(200, 25));
-        WriteNameLabel.setPreferredSize(new java.awt.Dimension(200, 25));
+        jLabel2.setText("jLabel2");
+        jLabel2.setMaximumSize(new java.awt.Dimension(200, 25));
+        jLabel2.setMinimumSize(new java.awt.Dimension(200, 25));
+        jLabel2.setPreferredSize(new java.awt.Dimension(200, 25));
 
-        MaleWhiteButton.setText("MB");
+        MaleWhiteButton.setText("jButton1");
         MaleWhiteButton.setMaximumSize(new java.awt.Dimension(75, 75));
         MaleWhiteButton.setMinimumSize(new java.awt.Dimension(75, 75));
         MaleWhiteButton.setPreferredSize(new java.awt.Dimension(75, 75));
@@ -1154,17 +1166,17 @@ public class GameFrame extends javax.swing.JFrame {
         AvatarImage.setName(""); // NOI18N
         AvatarImage.setPreferredSize(new java.awt.Dimension(200, 200));
 
-        MaleBlackButton.setText("MN");
+        MaleBlackButton.setText("jButton1");
         MaleBlackButton.setMaximumSize(new java.awt.Dimension(75, 75));
         MaleBlackButton.setMinimumSize(new java.awt.Dimension(75, 75));
         MaleBlackButton.setPreferredSize(new java.awt.Dimension(75, 75));
 
-        FemaleBlackButton.setText("FN");
+        FemaleBlackButton.setText("jButton1");
         FemaleBlackButton.setMaximumSize(new java.awt.Dimension(75, 75));
         FemaleBlackButton.setMinimumSize(new java.awt.Dimension(75, 75));
         FemaleBlackButton.setPreferredSize(new java.awt.Dimension(75, 75));
 
-        FemaleWhiteButton.setText("FB");
+        FemaleWhiteButton.setText("jButton1");
         FemaleWhiteButton.setMaximumSize(new java.awt.Dimension(75, 75));
         FemaleWhiteButton.setMinimumSize(new java.awt.Dimension(75, 75));
         FemaleWhiteButton.setPreferredSize(new java.awt.Dimension(75, 75));
@@ -1197,7 +1209,7 @@ public class GameFrame extends javax.swing.JFrame {
                                 .addComponent(FemaleBlackButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(FemaleWhiteButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addComponent(AvatarName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(WriteNameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(AvatarImage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(200, 200, 200))
         );
@@ -1207,7 +1219,7 @@ public class GameFrame extends javax.swing.JFrame {
                 .addGap(60, 60, 60)
                 .addComponent(AvatarIcon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(25, 25, 25)
-                .addComponent(WriteNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
                 .addComponent(AvatarName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(25, 25, 25)
@@ -1390,7 +1402,7 @@ public class GameFrame extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, GamePanelLayout.createSequentialGroup()
                 .addGap(50, 50, 50)
                 .addComponent(HintScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 277, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 240, Short.MAX_VALUE)
                 .addComponent(ConversationScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27))
         );
@@ -1540,7 +1552,8 @@ public class GameFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_NewGameButtonActionPerformed
 
     private void SettingsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SettingsButtonActionPerformed
-        // TODO add your handling code here:
+        SwingUtilities.invokeLater(() -> SettingsDialog.setVisible(true));
+        SwingUtilities.invokeLater(() -> MainMenuDialog.setVisible(false));
     }//GEN-LAST:event_SettingsButtonActionPerformed
 
     private void ResumeGameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ResumeGameButtonActionPerformed
@@ -1548,7 +1561,9 @@ public class GameFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_ResumeGameButtonActionPerformed
 
     private void ReturnToMainMenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReturnToMainMenuButtonActionPerformed
-        // TODO add your handling code here:
+        SwingUtilities.invokeLater(() -> SettingsDialog.setVisible(false));
+        // QUI EVENTUALE CHIAMATA A FUNZIONE SE SIAMO IN GIOCO PER AVVISARE DI SALVARE ETC...
+        SwingUtilities.invokeLater(() -> MainMenuDialog.setVisible(true));
     }//GEN-LAST:event_ReturnToMainMenuButtonActionPerformed
     /**
      * When ENTER key is pressed, ConversationScrollPane is not visible anymore and the
@@ -1594,6 +1609,15 @@ public class GameFrame extends javax.swing.JFrame {
     private void FemaleWhiteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FemaleWhiteButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_FemaleWhiteButtonActionPerformed
+
+    private void ExitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitButtonActionPerformed
+        SwingUtilities.invokeLater(() -> System.exit(0));
+    }//GEN-LAST:event_ExitButtonActionPerformed
+
+    private void KeyboardButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_KeyboardButtonActionPerformed
+        SwingUtilities.invokeLater(() -> KeyboardSettingsDialog.setVisible(true));
+        SwingUtilities.invokeLater(() -> SettingsDialog.setVisible(false));
+    }//GEN-LAST:event_KeyboardButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1755,8 +1779,8 @@ public class GameFrame extends javax.swing.JFrame {
     protected javax.swing.JProgressBar StressProgressBar;
     protected javax.swing.JLabel StudentLabel;
     protected javax.swing.JButton ThirdAnswer;
-    protected javax.swing.JLabel WriteNameLabel;
     protected javax.swing.JButton YesButton;
     protected javax.swing.JLabel jLabel1;
+    protected javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }
