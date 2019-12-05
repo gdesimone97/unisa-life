@@ -9,7 +9,8 @@ import javax.swing.SwingUtilities;
 
 /**
  *
- * @author virgi
+ * @author Virginia Cavallaro
+ * @author Davide Coppola
  */
 public class InventoryManager {
     
@@ -32,10 +33,10 @@ public class InventoryManager {
      * @param item represents the item that has been collected or removed
      * @param presence says if the item has been collected or removed
      */
-    public void updateInventoryDialog(Item item, boolean presence){
+    /*public void updateInventoryDialog(Item item, boolean presence){
         
     }
     //se viene passata la posizione dell'elemento
     // public void updateInventoryDialog(Item item, int position, boolean presence)
-    
+    */
 }

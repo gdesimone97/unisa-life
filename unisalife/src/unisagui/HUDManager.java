@@ -9,7 +9,8 @@ import javax.swing.SwingUtilities;
 
 /**
  *
- * @author Virginia e Davide
+ * @author Virginia Cavallaro
+ * @author Davide Coppola
  */
 public class HUDManager {
     

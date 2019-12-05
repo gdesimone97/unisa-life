@@ -4,10 +4,11 @@ package unisagui;
 import java.awt.Frame;
 import java.awt.event.KeyEvent;
 import javax.swing.SwingUtilities;
-
+import game.GameResources.*;
 
 /**
- * @author Davide e a puttan ra mamm
+ * @author Virginia Cavallaro
+ * @author Davide Coppola
  */
 public class GameFrame extends javax.swing.JFrame {
 
@@ -34,7 +35,8 @@ public class GameFrame extends javax.swing.JFrame {
         return instance;
     }
     
-    private void initialSettings(GameFrame instance){        
+    private void initialSettings(GameFrame instance){      
+        SwingUtilities.invokeLater(() ->instance.setVisible(true)); 
         SwingUtilities.invokeLater(() ->MainMenuDialog.isAlwaysOnTop());
         SwingUtilities.invokeLater(() ->MainMenuDialog.setVisible(true));
         //SwingUtilities.invokeLater(() ->instance.setState(Frame.ICONIFIED));
@@ -186,7 +188,6 @@ public class GameFrame extends javax.swing.JFrame {
         AvatarOkButton = new javax.swing.JButton();
         KeyboardSettingsDialog = new javax.swing.JDialog();
         jLabel1 = new javax.swing.JLabel();
-        GamePanel = new javax.swing.JPanel();
         ConversationScrollPane = new javax.swing.JScrollPane();
         ConversationTextArea = new javax.swing.JTextArea();
         HintScrollPane = new javax.swing.JScrollPane();
@@ -208,7 +209,7 @@ public class GameFrame extends javax.swing.JFrame {
         ExamPanel.setMinimumSize(new java.awt.Dimension(500, 500));
         ExamPanel.setPreferredSize(new java.awt.Dimension(500, 500));
 
-        ProfLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/FoggiaIcon.jpg"))); // NOI18N
+        ProfLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Budapest.png"))); // NOI18N
         ProfLabel.setText("jLabel1");
         ProfLabel.setMaximumSize(new java.awt.Dimension(75, 75));
         ProfLabel.setMinimumSize(new java.awt.Dimension(75, 75));
@@ -1394,6 +1395,11 @@ public class GameFrame extends javax.swing.JFrame {
             .addComponent(AvatarChooserPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
+        KeyboardSettingsDialog.setMaximumSize(new java.awt.Dimension(200, 200));
+        KeyboardSettingsDialog.setMinimumSize(new java.awt.Dimension(200, 200));
+        KeyboardSettingsDialog.setPreferredSize(new java.awt.Dimension(200, 200));
+        KeyboardSettingsDialog.setResizable(false);
+
         jLabel1.setText("Questa è la keyboard settings.");
 
         javax.swing.GroupLayout KeyboardSettingsDialogLayout = new javax.swing.GroupLayout(KeyboardSettingsDialog.getContentPane());
@@ -1427,12 +1433,6 @@ public class GameFrame extends javax.swing.JFrame {
                 formKeyPressed(evt);
             }
         });
-
-        GamePanel.setBackground(new java.awt.Color(51, 255, 0));
-        GamePanel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        GamePanel.setMaximumSize(new java.awt.Dimension(500, 500));
-        GamePanel.setMinimumSize(new java.awt.Dimension(500, 500));
-        GamePanel.setPreferredSize(new java.awt.Dimension(500, 500));
 
         ConversationScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         ConversationScrollPane.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
@@ -1471,30 +1471,6 @@ public class GameFrame extends javax.swing.JFrame {
             }
         });
         HintScrollPane.setViewportView(HintTextArea);
-
-        javax.swing.GroupLayout GamePanelLayout = new javax.swing.GroupLayout(GamePanel);
-        GamePanel.setLayout(GamePanelLayout);
-        GamePanelLayout.setHorizontalGroup(
-            GamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(GamePanelLayout.createSequentialGroup()
-                .addGroup(GamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(GamePanelLayout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addComponent(ConversationScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 449, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(GamePanelLayout.createSequentialGroup()
-                        .addGap(150, 150, 150)
-                        .addComponent(HintScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
-        );
-        GamePanelLayout.setVerticalGroup(
-            GamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, GamePanelLayout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addComponent(HintScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 277, Short.MAX_VALUE)
-                .addComponent(ConversationScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27))
-        );
 
         HudPanel.setMaximumSize(new java.awt.Dimension(600, 175));
         HudPanel.setMinimumSize(new java.awt.Dimension(600, 175));
@@ -1596,22 +1572,32 @@ public class GameFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addComponent(GamePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(HudPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(75, 75, 75)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(ConversationScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 449, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(125, 125, 125)
+                            .addComponent(HintScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addContainerGap(76, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(75, 75, 75)
-                .addComponent(GamePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
+                .addGap(575, 575, 575)
                 .addComponent(HudPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(170, 170, 170)
+                    .addComponent(HintScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 277, Short.MAX_VALUE)
+                    .addComponent(ConversationScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(170, 170, 170)))
         );
 
         setSize(new java.awt.Dimension(600, 750));
@@ -1686,7 +1672,6 @@ public class GameFrame extends javax.swing.JFrame {
 
     private void KeyboardButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_KeyboardButtonActionPerformed
         SwingUtilities.invokeLater(() -> KeyboardSettingsDialog.setVisible(true));
-        SwingUtilities.invokeLater(() -> SettingsDialog.setVisible(false));
     }//GEN-LAST:event_KeyboardButtonActionPerformed
 
     private void AvatarOkButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AvatarOkButtonActionPerformed
@@ -1743,7 +1728,7 @@ public class GameFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new GameFrame().setVisible(true);
+                //new GameFrame().setVisible(true);
                 
             }
         });
@@ -1778,7 +1763,6 @@ public class GameFrame extends javax.swing.JFrame {
     protected javax.swing.JButton FemaleWhiteButton;
     protected javax.swing.JButton FirstAnswer;
     protected javax.swing.JButton FourthAnswer;
-    protected javax.swing.JPanel GamePanel;
     protected javax.swing.JScrollPane HintScrollPane;
     protected javax.swing.JTextArea HintTextArea;
     protected javax.swing.JPanel HudPanel;

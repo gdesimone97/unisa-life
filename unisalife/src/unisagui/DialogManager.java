@@ -7,7 +7,8 @@ package unisagui;
 
 /**
  *
- * @author Virginia e Davide
+ * @author Virginia Cavallaro
+ * @author Davide Coppola
  */
 public class DialogManager {
     

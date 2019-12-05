@@ -7,7 +7,8 @@ package unisagui;
 import javax.swing.SwingUtilities;
 /**
  *
- * @author virgi
+ * @author Virginia Cavallaro
+ * @author Davide Coppola
  */
 public class MainMenuManager {
     

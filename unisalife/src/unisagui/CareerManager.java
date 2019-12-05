@@ -7,7 +7,8 @@ package unisagui;
 
 /**
  *
- * @author virginia e davide
+ * @author Virginia Cavallaro
+ * @author Davide Coppola
  */
 public class CareerManager {
     
@@ -24,9 +25,9 @@ public class CareerManager {
      * @param exam 
      * Update the carrer dialog with the current career
      */
-    public void updateCareerDialog(Exam exam){
+    /*public void updateCareerDialog(Exam exam){
         
-    }
+    }*/
     /**
      * 
      * @param show 

@@ -9,7 +9,8 @@ import javax.swing.SwingUtilities;
 
 /**
  *
- * @author virgi
+ * @author Virginia Cavallaro
+ * @author Davide Coppola
  */
 public class SettingsMenuManager {
     
@@ -27,5 +28,6 @@ public class SettingsMenuManager {
     public void showSettingsMenu(boolean show){
         SwingUtilities.invokeLater(() -> gameframe.MainMenuDialog.setVisible(show));
     }
+    
     
 }

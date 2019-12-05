@@ -6,19 +6,20 @@
 package unisagui;
 
 /**
- *
- * @author virgi
+ * Non esiste ancora la form per utilizzare questa classe
+ * @author Virginia Cavallaro
+ * @author Davide Coppola
  */
 public class QuestManager {
     
     protected QuestManager(){
         
     }
-    
+    /*
     public void updateQuestDialog(Quest quest, boolean presence){
         
     }
-    
+    */
     public void showQuestDialog(boolean show){
         
     }

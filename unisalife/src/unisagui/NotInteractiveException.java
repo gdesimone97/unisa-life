@@ -7,7 +7,8 @@ package unisagui;
 
 /**
  *
- * @author virginia e davide
+ * @author Virginia Cavallaro
+ * @author Davide Coppola
  */
 class NotInteractiveException extends Exception {
 
