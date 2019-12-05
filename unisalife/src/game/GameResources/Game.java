@@ -71,7 +71,7 @@ public class Game extends Canvas implements Runnable {
         maps[0]=new Map(t0);
         maps[0].addObject(new Block(150,150,ObjectId.Block));
         maps[0].addObject(new Teleport(250,250,ObjectId.Teleport,"Tileset/tileset.gif",1,new Destination(20,20)));
-        maps[0].addObject(new Item(300,300,ObjectId.Item,"/Sprites/item.png","Sfera pokè"));
+        maps[0].addObject(new Item(300,300,ObjectId.Item,"/Sprites/item.png","Sfera pokè","pok"));
         maps[1]=new Map(t1);
         maps[1].addObject(new Block(100,70,ObjectId.Block));
         maps[1].addObject(new Block(70,40,ObjectId.Block));

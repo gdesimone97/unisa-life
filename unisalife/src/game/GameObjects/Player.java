@@ -17,7 +17,7 @@ import java.awt.Rectangle;
 
 
 /**
- * Class Player represents the controllable object of the game, the effective player
+ *
  * @author simon
  */
 public class Player extends GameObject implements Tickable,Renderable{
@@ -40,15 +40,6 @@ public class Player extends GameObject implements Tickable,Renderable{
     /*public Player(float x,float y,ObjectId i){
         super(x,y,i);
     }*/
-    
-    /**
-     * The constructor creates a Player instance and takes in input
-     * @param x x coordinate of the position we want the player to spawn
-     * @param y y coordinate of the position we want the player to spawn
-     * @param i i represents the enum-id of the player
-     * @param g g represents the thread that runs the game
-     * @param inventory inventory stands for the inventory associated with the player
-     */
     private Player(float x,float y,ObjectId i,Game g,GameInventory inventory){
         super(x,y,i);
         face=new DownFaceState(this);
@@ -74,14 +65,6 @@ public class Player extends GameObject implements Tickable,Renderable{
     */
     }
     
-    /**
-     * This method allows to change the face set that is associated with the player
-     * @param down down is the image for down face
-     * @param left left is the image for left face
-     * @param right right is the image for right face
-     * @param up up is the image for up face
-     */
-    
     public void changeFaceSet(BufferedImage down,BufferedImage left,BufferedImage right,BufferedImage up){
         facingLeftImage=left;
         facingRightImage=right;
@@ -89,14 +72,6 @@ public class Player extends GameObject implements Tickable,Renderable{
         facingDownImage=down;
     }
     
-    
-    /**
-     * This method allows to change the animation set that is associated with the player
-     * @param down down is the animation for down movements 
-     * @param left left is the animation for left movements
-     * @param right right is the animation for right movements 
-     * @param up up is the animation for up movements
-     */
     public void changeAnimationSet(Animation down,Animation left,Animation right,Animation up){
         upWalk=up;
         downWalk=down;
@@ -105,8 +80,7 @@ public class Player extends GameObject implements Tickable,Renderable{
     }
     
     /**
-     * Application of the singleton pattern, this method returns the unique istance of the player
-     *@param g 
+     *@param g
      * @return
      * 
      */
@@ -117,10 +91,6 @@ public class Player extends GameObject implements Tickable,Renderable{
         return uniqueIstance;
     }
     
-    /**
-     * Set up the player's inventory
-     * @param l list of items
-     */
     public void setInventory(LinkedList<Item> l){
         this.inventory=new GameInventory(l);
     }
@@ -163,8 +133,7 @@ public class Player extends GameObject implements Tickable,Renderable{
     }
     
     /**
-     * This method returns a rectangle simbolyzing the upper bounds of the player, 
-     * to avoid collisions
+     *
      * @return
      */
     public Rectangle getTopBounds(){
@@ -172,8 +141,7 @@ public class Player extends GameObject implements Tickable,Renderable{
     }
     
     /**
-     *This method returns a rectangle simbolyzing the bottom bounds of the player, 
-     * to avoid collisions
+     *
      * @return
      */
     public Rectangle getBottomBounds(){
@@ -181,8 +149,7 @@ public class Player extends GameObject implements Tickable,Renderable{
     }
     
     /**
-     *This method returns a rectangle simbolyzing the left bounds of the player, 
-     * to avoid collisions
+     *
      * @return
      */
     public Rectangle getLeftBounds(){
@@ -190,8 +157,7 @@ public class Player extends GameObject implements Tickable,Renderable{
     }
     
     /**
-     *This method returns a rectangle simbolyzing the right bounds of the player, 
-     * to avoid collisions
+     *
      * @return
      */
     public Rectangle getRightBounds(){
@@ -199,7 +165,7 @@ public class Player extends GameObject implements Tickable,Renderable{
     }
     
     /**
-     * This mathod updates the position, runs the animations, updates the facestates.
+     *
      * 
      */
     @Override
@@ -221,7 +187,7 @@ public class Player extends GameObject implements Tickable,Renderable{
     }
     
     /**
-     * This mathod menage the collisions between the game objects
+     *
      * @param objects
      */
     public void collisions(LinkedList<GameObject> objects){
@@ -283,7 +249,7 @@ public class Player extends GameObject implements Tickable,Renderable{
     }
     
     /**
-     * This method allows to visualize on the screen the player image
+     *
      * @param g
      */
     @Override

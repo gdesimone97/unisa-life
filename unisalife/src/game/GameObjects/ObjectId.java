@@ -6,7 +6,7 @@
 package game.GameObjects;
 
 /**
- *  The id enum classifies the type of object we can find in this game
+ *
  * @author simon
  */
 public enum ObjectId {

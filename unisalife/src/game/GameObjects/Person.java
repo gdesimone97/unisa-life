@@ -10,17 +10,12 @@ import javax.imageio.ImageIO;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.util.LinkedList;
-
 /**
-* Person class stands for a kind of GameObject that represents the persons in the game, 
-* so it needs to be interactable and renderable (for making them visible)
-* @author simon
+ *
+ * @author simon
  */
-
-
 public class Person extends GameObject implements Renderable,Interactable {
     protected BufferedImage facingDownImage;
-    
     
     public Person(float x,float y,ObjectId i,String path){
         super(x,y,i);
