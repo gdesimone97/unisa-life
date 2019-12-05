@@ -5,7 +5,7 @@
  */
 
 package exam;
-import question.*;
+import exam.question.*;
 
 /**
  * This class is used to do an exam of a given subject.

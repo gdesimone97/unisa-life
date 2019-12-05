@@ -10,11 +10,11 @@
  * @author liovi
  */
 
-import booklet.BookletSingleton;
+import exam.booklet.BookletSingleton;
 import exam.*;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import question.*;
+import exam.question.*;
 
 
 /**

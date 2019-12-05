@@ -4,16 +4,17 @@
  * and open the template in the editor.
  */
 
-package question;
+
 
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import exam.question.*;
 
 /**
  *
  * @author 1997g
  */
-public class Main {
+public class QuestionTest {
     
     public static void main(String[] args) {
         QuestionFactory sqf = new StringsQuestionFactory(Materia.matematica);

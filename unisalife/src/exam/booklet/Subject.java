@@ -3,8 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package booklet;
-import question.Materia;
+package exam.booklet;
+import exam.question.Materia;
 
 /**
  * This class is used to give a structure for storing a score of an exam and

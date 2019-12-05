@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package question;
+package exam.question;
 
 /**
  * This Enumeration contains all the subjects of the game

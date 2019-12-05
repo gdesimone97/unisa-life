@@ -4,8 +4,8 @@
  * and open the template in the editor.
  */
 
-package booklet;
-import question.Materia;
+package exam.booklet;
+import exam.question.Materia;
 import java.util.EnumMap;
 
 /**
