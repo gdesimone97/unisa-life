@@ -1,0 +1,14 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package language.exceptions;
+
+/**
+ * Exception to recognize when the file hasn't been set
+ * @author alfon
+ */
+public class FileNotSetException extends TextFinderException {
+    
+}
