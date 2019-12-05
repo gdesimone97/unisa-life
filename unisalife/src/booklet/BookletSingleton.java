@@ -34,6 +34,7 @@ public class BookletSingleton {
 
     /**
      * This method allows to view the score of a exam given the subject
+     * 
      * @param subject
      * @return the score of the exam
      */
@@ -41,6 +42,13 @@ public class BookletSingleton {
         return booklet.get(subject).getScore();
     }
     
+    /**
+     * True means not already passed
+     * False means already passed
+     * 
+     * @param subject
+     * @return boolean that indicates if the exam is passed or not
+     */
     public boolean getAvailablity(Materia subject){
         return booklet.get(subject).isAvailable();
     }

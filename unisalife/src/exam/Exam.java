@@ -5,7 +5,6 @@
  */
 
 package exam;
-import java.util.Iterator;
 import question.*;
 
 /**
@@ -21,7 +20,7 @@ public class Exam {
     private float sum;
     private int count;
     private final int maxLevel;
-    private float basicScore;
+    private final float basicScore;
     QuestionsIterator iter;
     
     /**
@@ -78,13 +77,17 @@ public class Exam {
     
     /**
      *
-     * @return the score
+     * @return the final score of the exam
      */
     public int getScore(){
         this.score = (int)this.sum/(maxLevel-1);
         return this.score;
     }
     
+    /**
+     *
+     * @return the sum of the score achieved during the exam
+     */
     public float getCurrentScore(){
         return this.sum;
     }
