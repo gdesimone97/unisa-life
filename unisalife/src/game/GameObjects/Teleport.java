@@ -4,11 +4,7 @@
  * and open the template in the editor.
  */
 package game.GameObjects;
-import game.GameObjects.ObjectId;
-import game.GameObjects.Destination;
-import java.awt.Color;
-import java.awt.Graphics;
-import java.util.LinkedList;
+
 /**
  
  * @author simon
@@ -35,30 +31,7 @@ public class Teleport extends GameObject{
         this.d=d;
     }
     
-    //render is void because a Teleport is invisible.
 
-    /**
-     *
-     * @param g
-     */
-        
-        public void render(Graphics g){
-            g.setColor(Color.blue);
-            g.fillRect((int)x, (int)y, (int)width, (int)height);
-    }
-    //tick is void because the collision is handled by Player's tick method.
-
-    /**
-     *
-     * @param objects
-     */
-        
-    public void tick(LinkedList<GameObject> objects){}
-    
-    /**
-     *
-     * @return destination of the teleport
-     */
     public Destination getDestination(){
         return d;
     }
