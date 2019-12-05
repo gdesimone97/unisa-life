@@ -3,18 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Documents/NetBeansProjects/unisa-life/unisalife/src/exam/question/Question.java</file>
-            <file>file:/D:/Documents/NetBeansProjects/unisa-life/unisalife/src/exam/booklet/BookletSingleton.java</file>
-            <file>file:/D:/Documents/NetBeansProjects/unisa-life/unisalife/src/exam/question/StringsQuestionFactory.java</file>
-            <file>file:/D:/Documents/NetBeansProjects/unisa-life/unisalife/test/ExamTest.java</file>
-            <file>file:/D:/Documents/NetBeansProjects/unisa-life/unisalife/src/exam/booklet/Subject.java</file>
-            <file>file:/D:/Documents/NetBeansProjects/unisa-life/unisalife/src/exam/question/QuestionsCollection.java</file>
-            <file>file:/D:/Documents/NetBeansProjects/unisa-life/unisalife/src/exam/question/QuestionsIterator.java</file>
-            <file>file:/D:/Documents/NetBeansProjects/unisa-life/unisalife/src/exam/Exam.java</file>
-            <file>file:/D:/Documents/NetBeansProjects/unisa-life/unisalife/src/exam/question/Materia.java</file>
-            <file>file:/D:/Documents/NetBeansProjects/unisa-life/unisalife/src/exam/question/QuestionFactory.java</file>
-            <file>file:/D:/Documents/NetBeansProjects/unisa-life/unisalife/src/exam/question/Questions.java</file>
-            <file>file:/D:/Documents/NetBeansProjects/unisa-life/unisalife/src/exam/question/Answer.java</file>
+            <file>file:/H:/PROGRAMMAZIONE/GITHUB/unisa-life/unisalife/src/language/ConcreteFileTextFinder.java</file>
+            <file>file:/H:/PROGRAMMAZIONE/GITHUB/unisa-life/unisalife/test/language/CacheFileTextFinderTest.java</file>
+            <file>file:/H:/PROGRAMMAZIONE/GITHUB/unisa-life/unisalife/test/language/FileLanguageManagerTest.java</file>
+            <file>file:/H:/PROGRAMMAZIONE/GITHUB/unisa-life/unisalife/src/language/CacheFileTextFinder.java</file>
+            <file>file:/H:/PROGRAMMAZIONE/GITHUB/unisa-life/unisalife/test/language/FileTextManagerTest.java</file>
+            <file>file:/H:/PROGRAMMAZIONE/GITHUB/unisa-life/unisalife/test/language/LanguageManagerTest.java</file>
         </group>
     </open-files>
 </project-private>
