@@ -13,15 +13,23 @@ import java.time.LocalDateTime;
 import java.io.Serializable;
 import java.util.Objects;
 /**
- *
+ * The item is a game object that can be keep in the inventory
  * @author simon
+ * 
  */
 public class Item extends GameObject implements Renderable,Interactable,Serializable,Comparable<Item> {
     private final String nameItem;
     private BufferedImage facingDownImage;
     private LocalDateTime taken;
 
-    
+    /**
+     * The constructor creates a new Item istance 
+     * @param x x coordinate in which we want the item to spawn
+     * @param y y coordinate in which we want the item to spawn
+     * @param i id enum that represent the type of the object 
+     * @param path path of the file associated with the item
+     * @param nameItem item's name
+     */
     public Item(float x,float y,ObjectId i,String path,String nameItem){
         super(x,y,i);
         this.nameItem=nameItem;
@@ -34,21 +42,32 @@ public class Item extends GameObject implements Renderable,Interactable,Serializ
     }
     }
     
+    /**
+     * sets the LocalDateTime object to the item-founding date 
+     * @param t LocalDateTime in which the item has been taken
+     */
     public void setTaken(LocalDateTime t){
         taken=t;
     }
     
+    /**
+     *
+     * @return returns the name of the item
+     */
     public String getTitle() {
         return nameItem;
     }
 
    
-
+    /**
+     * 
+     * @return returns the time in which the item has been taken
+     */
     public LocalDateTime getTaken() {
         return taken;
     }
 
-   
+    
     @Override
     public boolean equals( Object o ){
         if(o == null || !(o instanceof Item) )

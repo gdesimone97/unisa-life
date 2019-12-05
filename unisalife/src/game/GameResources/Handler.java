@@ -12,7 +12,8 @@ import game.Interfaces.Renderable;
 
 
 /**
- *
+ * Handler is a class that menage the position updating and visualizing all the objects contained in the
+ * list of GameObject that is passed.
  * @author simon
  */
 public class Handler {

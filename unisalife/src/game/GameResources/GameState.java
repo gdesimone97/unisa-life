@@ -6,38 +6,26 @@
 package game.GameResources;
 import java.awt.Graphics;
 /**
- *
+ * Game State class represents the abstract of all the states that are possible into this game.
+ * It's specialized in the classes NotGameState and PlayState
  * @author simon
  */
 public abstract class GameState {
     Game game;
-    /**
-     *
-     */
+   
     public GameState(Game g){
         game=g;
     }
 
-    /**
-     *
-     * @param k
-     */
+   
     public abstract void performPressAction(int k);
 
-    /**
-     *
-     * @param k
-     */
+  
     public abstract void performReleaseAction(int k);
 
-    /**
-     *
-     * @param g
-     */
+   
     public abstract void render(Graphics g);
 
-    /**
-     *
-     */
+    
     public abstract void tick();
 }

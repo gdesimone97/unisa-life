@@ -8,7 +8,7 @@ import java.awt.Graphics;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 /**
- *
+ * This inherited class simbolyze the game state in which we are not playing the game, but we are in the menus
  * @author simon
  */
 public class NotGameState extends GameState {

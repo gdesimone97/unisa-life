@@ -30,7 +30,7 @@ public class Camera implements Tickable {
 
     /**
      *
-     * @param x
+     * @param x x for setting up the x coordinate of the block
      */
     public void setX(float x){
         this.x=x;
@@ -38,7 +38,7 @@ public class Camera implements Tickable {
 
     /**
      *
-     * @param y
+     * @param y y for setting up the y coordinate of the block 
      */
     public void setY(float y){
         this.y=y;
@@ -46,7 +46,7 @@ public class Camera implements Tickable {
     
     /**
      *
-     * @return
+     * @return returns the x coordinate of the block
      */
     public float getX(){
         return x;
@@ -54,16 +54,16 @@ public class Camera implements Tickable {
     
     /**
      *
-     * @return
+     * @return returns the y coordinate of the block
      */
     public float getY(){
         return y;
     }
     
-    /** tick method is used for update the position of camera in order to 
-     * translate the visual and the objects to be rendered in the game.
+    /** tick method is used for updating the position of camera in order to 
+     * translate the visual and the objects rendered in the game.
      *
-     * @param player The player that camera follows.
+     *
      */
     @Override
     public void tick(){

@@ -7,7 +7,7 @@ package game.GameObjects;
 import game.GameResources.Game;
 import java.awt.Rectangle;
 /**
- * represents an object of the game(player, character, block, teleport, item).
+ * Represents an object of the game. It can be a player, a character, a block, a teleport, an item.
  * @author simon
  */
 public abstract class GameObject {
@@ -18,10 +18,12 @@ public abstract class GameObject {
     protected int height=Game.DIMENSIONSPRITE;
     
     /**
-     *
-     * @param x
-     * @param y
-     * @param id
+     *  
+     * The constructor takes in input the position that the object will have in the map and the id 
+     * associated with it.
+     * @param x x coordinate in which the object is situated
+     * @param y y coordinate in which the object is situated
+     * @param id enum indicating the type of game object passed
      */
     public GameObject(float x,float y, ObjectId id){
         this.x=x;
@@ -44,7 +46,7 @@ public abstract class GameObject {
     //methods getter and setter  
 
     /**
-     *
+     * Returns the x position of the object
      * @return
      */
         public float getX(){
@@ -52,7 +54,7 @@ public abstract class GameObject {
     }
     
     /**
-     *
+     * Returns the y position of the object
      * @return
      */
     public  float getY(){
@@ -61,7 +63,7 @@ public abstract class GameObject {
     }
     
     /**
-     *
+     * Sets the x position that the object will have in the map
      * @param x
      */
     public void setX(float x){
@@ -69,7 +71,7 @@ public abstract class GameObject {
     }
     
     /**
-     *
+     * Sets the y position that the object will have in the map
      * @param y
      */
     public void setY(float y){
@@ -77,7 +79,7 @@ public abstract class GameObject {
     }
     
     /**
-     *
+     * Returns the id associated with the object
      * @return
      */
     public ObjectId getId() {
@@ -93,6 +95,8 @@ public abstract class GameObject {
 
     /**
      *
+     * Returns the rectangle that contains the object
+     * 
      * @return
      */
     

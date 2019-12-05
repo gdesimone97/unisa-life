@@ -59,12 +59,7 @@ public class TileMap {
 	private int numRowsToDraw;
 	private int numColsToDraw;
 	
-    /**
-     *
-     * @param tileSize
-     * @param w
-     * @param h
-     */
+ 
     public TileMap(int tileSize,int w,int h) {
 		this.tileSize = tileSize;
 		numRowsToDraw = /*Game.WIDTHMAP / tileSize + 2;*/w; //31
@@ -72,10 +67,7 @@ public class TileMap {
 		speed = 4;
 	}
 	
-    /**
-     *
-     * @param s
-     */
+
     public void loadTiles(String s) {
 		//System.out.print(s);
 		try {
@@ -117,10 +109,7 @@ public class TileMap {
 		
 	}
 	
-    /**
-     *
-     * @param s
-     */
+    
     public void loadMap(String s) {
 		
 		try {
@@ -159,16 +148,10 @@ public class TileMap {
 		
 	}
 
-    /**
-     *
-     * @return
-     */
+    
     public int getWidth() { return width; }
 
-    /**
-     *
-     * @return
-     */
+    
     public int getHeight() { return height; }
 	/*
 	public int getTileSize() { return tileSize; }
@@ -247,10 +230,7 @@ public class TileMap {
 	}
 	*/
 
-    /**
-     *
-     * @param g
-     */
+   
     
 	public void render(Graphics2D g) {
 		/*System.out.println("row off"+rowOffset);

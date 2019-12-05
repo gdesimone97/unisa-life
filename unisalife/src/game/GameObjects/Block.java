@@ -10,7 +10,7 @@ import java.awt.Graphics;
 import java.util.LinkedList;
 
 /**
- * A block represent a point in the map that can't be passed from the player.
+ * A block represents a point in the map that can't be passed from the player.
  *
  * @author simon
  */
@@ -34,14 +34,14 @@ public class Block extends GameObject{
     }
     
     /**
-     * method tick is void because a block
+     * method tick is void because a block 
      * @param object
      */
-    
+    /*
     public void tick(LinkedList<GameObject> object){
         
     }
-
+*/
     /**
      *
      * @param g

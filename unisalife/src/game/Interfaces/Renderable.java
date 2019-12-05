@@ -6,7 +6,7 @@
 package game.Interfaces;
 import java.awt.Graphics;
 /**
- *
+ * 
  * @author simon
  */
 public interface Renderable {

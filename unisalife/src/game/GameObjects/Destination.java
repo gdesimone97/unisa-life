@@ -15,9 +15,9 @@ public class Destination {
     private float y=0;
     
     /**
-     *
-     * @param x
-     * @param y
+     * Takes in input the two coordinates for the new position of the player and creates the destination object
+     * @param x x coordinate of the updating position of the player
+     * @param y y coordinate of the updating position of the player
      */
     public Destination(float x,float y){
         this.x=x;
@@ -25,15 +25,16 @@ public class Destination {
     }
 
     /**
-     *
+     * Returns the x coordinate of the updating position of the player
      * @return
      */
     public float getX(){
         return x;
     }
     
+    
     /**
-     *
+     * Returns the y coordinate of the updating position of the player
      * @return
      */
     public float getY(){

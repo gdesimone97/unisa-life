@@ -16,9 +16,6 @@ import java.util.stream.Collectors;
 
 /**
  *
- * LinkedList -> ins in testa -> O(1)
- * By name -> O(n), trova posizione
- * By date -> O(1), aggiungi in testa
  *
  * 
  * 

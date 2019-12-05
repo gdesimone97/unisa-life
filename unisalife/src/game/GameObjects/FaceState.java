@@ -7,8 +7,12 @@ package game.GameObjects;
 import java.awt.image.BufferedImage;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+
 /**
- *
+ * This class represents the side to whom the player is addressed,
+ * the abstract methods are implemented in the inherited classes : DownFaceState,
+ * UpFaceState, RightFaceState and LeftFaceState.
+*
  * @author simon
  */
 public abstract class FaceState {
@@ -16,6 +20,7 @@ public abstract class FaceState {
     public FaceState(Player player){
         this.player=player;
     }
+    
     public abstract Rectangle visualViewOfPlayer();
     public abstract void drawFace(Graphics g);
     

@@ -6,7 +6,7 @@
 package game.Interfaces;
 
 /**
- *
+ * 
  * @author simon
  */
 public interface Tickable {

@@ -9,7 +9,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 /**
- *
+ * This class represent the state in which the player is effective playing the game
  * @author simon
  */
 public class PlayState extends GameState{

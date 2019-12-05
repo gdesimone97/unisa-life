@@ -7,16 +7,17 @@ package game.GameResources;
 import java.awt.Dimension;
 import javax.swing.JFrame;
 /**
- *
+ * Window class has the aim to effectively create the game window and the frame that contains
+ * all the game 
  * @author simon
  */
 public class Window {
-
+    
     /**
      *
-     * @param size
-     * @param title
-     * @param game
+     * @param size size is the size of the game window
+     * @param title title is the name that will be showed on the frame
+     * @param game game is the canvas in which the game is displayed
      */
     public Window(Dimension size,String title,Game game){
         game.setMaximumSize(size);
