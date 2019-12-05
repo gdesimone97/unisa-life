@@ -6,6 +6,9 @@
 
 package exam;
 import exam.question.*;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * This class is used to do an exam of a given subject.
@@ -14,8 +17,10 @@ import exam.question.*;
  *
  * @author liovi
  */
-public class Exam {
+public class Exam implements Runnable {
     private final Questions questions;
+    private final Materia subject;
+    private int answered;
     private int score;
     private float sum;
     private int count;
@@ -30,7 +35,8 @@ public class Exam {
      * 
      */
     public Exam(Materia materia){
-        QuestionFactory questionsFetch = new StringsQuestionFactory(materia);
+        this.subject = materia;
+        QuestionFactory questionsFetch = new StringsQuestionFactory(subject);
         this.score = 0;
         this.sum = 0;
         this.count = 0;
@@ -64,19 +70,6 @@ public class Exam {
     
     /**
      *
-     * @return the next question of the exam, if there aren't other questions
-     * null
-     */
-    public Question getQuestion(){
-        
-        if(iter.hasNext())
-            return iter.next();
-        else
-            return null;
-    }
-    
-    /**
-     *
      * @return the final score of the exam
      */
     public int getScore(){
@@ -90,6 +83,53 @@ public class Exam {
      */
     public float getCurrentScore(){
         return this.sum;
+    }
+    
+    public synchronized void setAnswered(int position){
+        this.answered = position;
+        this.notify();
+    }
+    
+     public synchronized int pause() {
+        long start;
+        long elapsed;
+         
+        //beginning of the time passing
+        start = System.nanoTime();
+        try {
+            this.wait(30000);
+        } catch (InterruptedException ex) {}
+        finally{
+            elapsed = System.nanoTime() - start;
+        }
+        
+        return (int) elapsed/1000000000;
+     }
+            
+
+    @Override
+    public void run() {
+        GuiManager gui = GuiManager.getInstance();
+        GuiManager.showExamDialog(this.subject.toString());
+        
+        while(iter.hasNext()){
+            
+
+            Question question = iter.next();
+            GuiManager.setExamQuestion(question.getQuestion());
+            ArrayList<Answer> answers = question.getAnswers();
+            
+            int i = 1;
+            for(Answer a : answers){
+                GuiManager.setExamAnswer(a,i++);
+            }
+            
+            
+            
+            
+            
+            Answer answer = answers.get(Integer.parseInt(stringa)-1);
+        }
     }
     
 }
