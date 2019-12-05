@@ -5,11 +5,9 @@
  */
 package unisagui;
 
-/* IMPORT DI SIMONE NON CANCELLARE
 import game.GameResources.*;
 import game.GameObjects.*;
 import game.Interfaces.*;
-*/
 import javax.swing.SwingUtilities;
 
 
