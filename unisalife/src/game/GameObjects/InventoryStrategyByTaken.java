@@ -7,10 +7,9 @@ package game.GameObjects;
 
 import java.util.Comparator;
 import java.util.List;
-import game.Interfaces.GameInventoryStrategy;
 
 /**
- *
+ * InventoryStrategy implementation that allows the insertion of elements in the inventory according to the natural order of their taken date.
  * @author cmarino
  */
 public class InventoryStrategyByTaken implements GameInventoryStrategy, Comparator<Item>{
@@ -30,13 +29,14 @@ public class InventoryStrategyByTaken implements GameInventoryStrategy, Comparat
     }
 
     @Override
-    public boolean addItem(List l, Item i) {
+    public int addItem(List l, Item i) {
         
         if(l.contains(i))
-            return false;
+            return -1;
         
+        i.setTaken();
         l.add(0, i);
-        return true;
+        return 0;
         
     }
     

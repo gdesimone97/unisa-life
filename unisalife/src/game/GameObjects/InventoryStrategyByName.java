@@ -4,32 +4,36 @@
  * and open the template in the editor.
  */
 package game.GameObjects;
-import game.Interfaces.GameInventoryStrategy;
-import java.util.Comparator;
+
 import java.util.List;
 
 /**
- *
+ * Inventory implementation that allows the insertion of items in the inventory according to the lexicographical order
+ * of their in-game name or title.
  * @author cmarino
  */
-public class InventoryStrategyByName implements GameInventoryStrategy, Comparator<Item>{
+public class InventoryStrategyByName implements GameInventoryStrategy{
 
     
 
     
     @Override
-    public boolean addItem(List<Item> l , Item i) {
+    public int addItem(List<Item> l , Item i) {
         
         int ap = l.indexOf(i);
         
         if(ap!=-1)
-            return false;
+            return -1;
         
         int p = 0;
 
         for( Item x : l){
             
-            if( this.compare(i, x) >= 0 ){          
+            System.out.println("Comparing " + x + " vs  " + i );
+            
+            
+            
+            if( this.compare(i, x) < 0 ){          
                 break;
             }
             
@@ -37,14 +41,24 @@ public class InventoryStrategyByName implements GameInventoryStrategy, Comparato
             
         }
         
+        i.setTaken();
         l.add(p, i);
         
-        return true;
+        return p;
         
     }
 
+    
+    
     @Override
     public int compare(Item o1, Item o2) {
+        
+        if(o1 == null && o2 == null )
+            return 0;
+        if(o1 == null)
+            return -1;
+        if(o2 == null)
+            return 1;
         
         return o1.getTitle().compareTo(o2.getTitle());
         

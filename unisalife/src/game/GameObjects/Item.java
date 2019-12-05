@@ -6,33 +6,29 @@
 package game.GameObjects;
 import game.Interfaces.Interactable;
 import game.Interfaces.Renderable;
+import game.Interfaces.Information;
 import java.awt.Graphics;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.time.LocalDateTime;
 import java.io.Serializable;
+import java.time.temporal.ChronoUnit;
 import java.util.Objects;
 /**
- * The item is a game object that can be keep in the inventory
+ *
  * @author simon
- * 
  */
-public class Item extends GameObject implements Renderable,Interactable,Serializable,Comparable<Item> {
-    private final String nameItem;
+public class Item extends GameObject implements Renderable,Interactable,Serializable,Comparable<Item>,Information {
+    private final String title;
+    private final String info;
     private BufferedImage facingDownImage;
     private LocalDateTime taken;
 
-    /**
-     * The constructor creates a new Item istance 
-     * @param x x coordinate in which we want the item to spawn
-     * @param y y coordinate in which we want the item to spawn
-     * @param i id enum that represent the type of the object 
-     * @param path path of the file associated with the item
-     * @param nameItem item's name
-     */
-    public Item(float x,float y,ObjectId i,String path,String nameItem){
+    
+    public Item(float x,float y,ObjectId i,String path,String title,String info){
         super(x,y,i);
-        this.nameItem=nameItem;
+        this.title=title;
+	this.info=info;
         try {
         facingDownImage = ImageIO.read(
 				getClass().getResourceAsStream(path)
@@ -41,59 +37,51 @@ public class Item extends GameObject implements Renderable,Interactable,Serializ
             System.exit(1);
     }
     }
-    
-    /**
-     * sets the LocalDateTime object to the item-founding date 
-     * @param t LocalDateTime in which the item has been taken
-     */
-    public void setTaken(LocalDateTime t){
-        taken=t;
+        @Override
+	public boolean equals( Object o){
+            if(o==null||!(o instanceof Item))
+                return false;
+        return this.info.equals(((Item)o).getInfo());
+
+}
+
+    @Override
+    public int compareTo(Item o){
+        if(o==null)
+            return 1;
+       return info.compareTo(o.getInfo());
+}
+
+    public void setTaken(){
+        this.taken=LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS);
     }
     
-    /**
-     *
-     * @return returns the name of the item
-     */
     public String getTitle() {
-        return nameItem;
+        return title;
     }
 
-   
-    /**
-     * 
-     * @return returns the time in which the item has been taken
-     */
+    @Override
+   public String getInfo(){
+	return this.info;
+}
+	
     public LocalDateTime getTaken() {
         return taken;
     }
 
-    
-    @Override
-    public boolean equals( Object o ){
-        if(o == null || !(o instanceof Item) )
-            return false;
-        
-        return ((Item)o).getTitle().equals(this.nameItem);
-        
-    }
+   
 
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 31 * hash + Objects.hashCode(this.nameItem);
+        hash = 31 * hash + Objects.hashCode(this.info);
         return hash;
     }
-    
-    @Override
-    public int compareTo(Item o) {
-        if(o.getTitle().equals(nameItem))
-            return o.getTaken().compareTo(taken);
-        return o.getTitle().compareTo(nameItem);
-    }
+        
     
     @Override
     public String toString(){
-        return "Object : " + this.nameItem + " ( taken in "+ this.taken +" )";
+        return "Object : " + this.title + " ( taken in "+ this.taken +" )";
     }
     
     
@@ -104,7 +92,7 @@ public class Item extends GameObject implements Renderable,Interactable,Serializ
     
     @Override
     public void interact(){
-        System.out.println("hai raccolto "+nameItem);
+        System.out.println("hai raccolto "+title);
     }
     
 }
