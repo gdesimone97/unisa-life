@@ -85,7 +85,7 @@ public class CacheFileTextFinderTest {
      */
     @Test
     public void testGetStringSingle() throws Exception {
-        System.out.println("getString");
+        System.out.println("getString with One String");
         GenericClass instance = new GenericClass("TestSingleInfo");
         FileTextFinder finder = FileTextFinder.getFileTextFinder("testfile.xml");
         List<String> resultList = finder.getString(instance);
@@ -93,18 +93,24 @@ public class CacheFileTextFinderTest {
         assertEquals(expResult, resultList.size());
     }
 
+    /**
+     * Test multiple String
+     */
     @Test
     public void testGetStringMultiple() throws Exception {
-        System.out.println("getString");
+        System.out.println("getString with multiple Strings");
         GenericClass instance = new GenericClass("TestMultipleInfo");
         FileTextFinder finder = FileTextFinder.getFileTextFinder("testfile.xml");
         List<String> resultList = finder.getString(instance);
         assertTrue(resultList.size()>1);
     }
-
+    
+    /**
+     * Test String Exception
+     */
     @Test(expected = TextFinderException.class)
     public void testGetStringException() throws Exception {
-        System.out.println("getString");
+        System.out.println("getString Exception");
         GenericClass instance = new GenericClass("TestWrongInfo");
 
         FileTextFinder finder = FileTextFinder.getFileTextFinder("testfile.xml");
