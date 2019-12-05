@@ -209,7 +209,6 @@ public class GameFrame extends javax.swing.JFrame {
         ExamPanel.setMinimumSize(new java.awt.Dimension(500, 500));
         ExamPanel.setPreferredSize(new java.awt.Dimension(500, 500));
 
-        ProfLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Budapest.png"))); // NOI18N
         ProfLabel.setText("jLabel1");
         ProfLabel.setMaximumSize(new java.awt.Dimension(75, 75));
         ProfLabel.setMinimumSize(new java.awt.Dimension(75, 75));
@@ -1395,9 +1394,7 @@ public class GameFrame extends javax.swing.JFrame {
             .addComponent(AvatarChooserPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        KeyboardSettingsDialog.setMaximumSize(new java.awt.Dimension(200, 200));
         KeyboardSettingsDialog.setMinimumSize(new java.awt.Dimension(200, 200));
-        KeyboardSettingsDialog.setPreferredSize(new java.awt.Dimension(200, 200));
         KeyboardSettingsDialog.setResizable(false);
 
         jLabel1.setText("Questa è la keyboard settings.");
