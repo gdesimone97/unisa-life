@@ -8,6 +8,8 @@ package exam.booklet;
 import exam.question.Materia;
 import java.io.Serializable;
 import java.util.EnumMap;
+import quests.QuestsManagerSingleton;
+import quests.mediator.*;
 
 /**
  * This class is used due to the necessity of have a booklet for our
@@ -21,12 +23,18 @@ import java.util.EnumMap;
  * @author liovi
  */
 
-public class BookletSingleton implements Serializable, Saveable{
+public class BookletSingleton extends User implements Serializable, Saveable{
     
     private static BookletSingleton instance = null;
     private EnumMap<Materia,Subject> booklet;
     
     private BookletSingleton(){
+        super();
+        super.name = "booklet";
+        super.mediator = QuestsManagerSingleton.getInstance();
+        mediator.addUser(this);
+        
+        
         this.booklet = new EnumMap(Materia.class);
         for (Materia x : Materia.values()){
             booklet.put(x, new Subject());
@@ -66,6 +74,8 @@ public class BookletSingleton implements Serializable, Saveable{
         newScore.setScore(score);
         newScore.setAvailable(false);
         booklet.replace(subject, newScore);
+        Message msg = new Message(subject.toString(), false); //the exam is not available if it's passed
+        send(msg);
     }
     
     /**
@@ -86,12 +96,20 @@ public class BookletSingleton implements Serializable, Saveable{
 
     @Override
     public Serializable save() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.booklet;
     }
 
     @Override
     public void load(Serializable obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.booklet = (EnumMap<Materia,Subject>) obj;
     }
+
+    @Override
+    public void send(Message mess) {
+        mediator.sendMessage(mess, this);
+    }
+
+    @Override
+    public void receive(Message mess) {}
     
 }

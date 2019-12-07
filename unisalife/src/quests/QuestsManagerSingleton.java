@@ -5,10 +5,11 @@
  */
 package quests;
 
-import exam.booklet.BookletSingleton;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import quests.mediator.*;
+import quests.quest.QuestFactory;
 
 /**
  *
@@ -17,12 +18,11 @@ import quests.mediator.*;
 public class QuestsManagerSingleton implements QuestMessages{
     
     private static QuestsManagerSingleton instance = null;
-    private List<User> users = new ArrayList<>();
-    BookletSingleton bookletInstance = BookletSingleton.getInstance();
-//    GameInventory gameInventoryInstance = GameInventory.getInstance();
+    private List<User> users;
+    private HashMap<String,QuestFactory> quest;
     
     private QuestsManagerSingleton(){
-        
+        this.users = new ArrayList<>();
     }
     
     public static QuestsManagerSingleton getInstance(){
@@ -36,10 +36,8 @@ public class QuestsManagerSingleton implements QuestMessages{
     
     @Override
     public void sendMessage(Message mess, User user) {
-        for(User u : this.users){
-            if( u != user){
-                u.receive(mess);
-            }
+        if(quest.containsKey(mess.getId())){
+            quest.get(mess.getId()).receive(mess);
         }
     }
 

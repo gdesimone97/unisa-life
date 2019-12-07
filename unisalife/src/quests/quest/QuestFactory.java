@@ -5,10 +5,21 @@
  */
 package quests.quest;
 
+import quests.mediator.Message;
+import quests.mediator.User;
+
 /**
  *
  * @author liovi
  */
-public abstract class QuestFactory {
+public abstract class QuestFactory extends User{
+    
+    
+
+    @Override
+    public abstract void send(Message mess);
+
+    @Override
+    public abstract void receive(Message mess);
     
 }
