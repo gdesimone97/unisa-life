@@ -6,6 +6,7 @@
 package saving;
 
 import java.io.Serializable;
+import saving.exceptions.*;
 
 /**
  *
@@ -13,5 +14,5 @@ import java.io.Serializable;
  */
 public interface Saveable {
     public Serializable save();
-    public void load(Serializable obj);
+    public void load(Serializable obj) throws LoadingException;
 }
