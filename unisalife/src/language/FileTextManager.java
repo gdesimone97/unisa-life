@@ -5,10 +5,13 @@
  */
 package language;
 
+import java.io.Serializable;
 import language.exceptions.FileTextManagerException;
 import java.util.List;
 import java.util.Set;
 import language.exceptions.*;
+import saving.Saveable;
+import saving.exceptions.LoadingException;
 
 /**
  * This class extends the abstract class TextManager and specialize his methods
@@ -17,7 +20,7 @@ import language.exceptions.*;
  *
  * @author Giuseppe De Simone
  */
-public class FileTextManager extends TextManager {
+public class FileTextManager extends TextManager implements Saveable {
 
     private static FileTextManager instance;
     private FileLanguageManager fileLanguageManager;
@@ -96,5 +99,27 @@ public class FileTextManager extends TextManager {
     public List<String> getString(Information obj) throws StringNotFoundException, TextFinderException {
         return fileTextFinder.getString(obj);
     }
-    
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Serializable save() {
+        String lang = getCurrentLanguage();
+        return lang;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void load(Serializable obj) throws LoadingException {
+        try{
+            String lang = (String) obj;
+            setLanguage(lang);
+        } catch (LanguageSelectedNotAvailableException ex){
+            throw new LoadingException();
+        }
+    }
+
 }
