@@ -20,10 +20,13 @@ public class SaveManager {
     private static SaveManager instance = new SaveManager();
     private List<Saveable> saveableComponents = new ArrayList<>();
     private Map<String,Serializable> savingItems = new HashMap<>();
+    private final String PATH = ""; // path per la cartella di salvataggio
     
     public SaveManager() {
         saveableComponents.add(BookletSingleton.getInstance());
-        
+    }
+    
+    public void save(){
         
     }
     
