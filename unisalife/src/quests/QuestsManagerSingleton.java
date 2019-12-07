@@ -14,17 +14,31 @@ import quests.mediator.*;
  *
  * @author liovi
  */
-public class QuestsManager implements QuestMessages{
+public class QuestsManagerSingleton implements QuestMessages{
     
+    private static QuestsManagerSingleton instance = null;
     private List<User> users = new ArrayList<>();
     BookletSingleton bookletInstance = BookletSingleton.getInstance();
 //    GameInventory gameInventoryInstance = GameInventory.getInstance();
     
+    private QuestsManagerSingleton(){
+        
+    }
+    
+    public static QuestsManagerSingleton getInstance(){
+        if (instance == null)
+            synchronized (QuestsManagerSingleton.class){
+                if(instance == null)
+                    instance = new QuestsManagerSingleton();
+            }
+        return instance;
+    }
+    
     @Override
-    public void sendMessage(boolean bool, User user) {
+    public void sendMessage(Message mess, User user) {
         for(User u : this.users){
             if( u != user){
-                u.receive(bool);
+                u.receive(mess);
             }
         }
     }
