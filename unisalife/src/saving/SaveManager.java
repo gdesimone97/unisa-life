@@ -30,4 +30,8 @@ public class SaveManager {
         
     }
     
+    public void load(){
+        
+    }
+    
 }
