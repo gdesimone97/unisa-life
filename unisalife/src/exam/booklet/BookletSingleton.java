@@ -6,6 +6,7 @@
 
 package exam.booklet;
 import exam.question.Materia;
+import java.io.Serializable;
 import java.util.EnumMap;
 
 /**
@@ -20,7 +21,7 @@ import java.util.EnumMap;
  * @author liovi
  */
 
-public class BookletSingleton {
+public class BookletSingleton implements Serializable, Saveable{
     
     private static BookletSingleton instance = null;
     private EnumMap<Materia,Subject> booklet;
@@ -81,6 +82,16 @@ public class BookletSingleton {
                     instance = new BookletSingleton();
             }
         return instance;
+    }
+
+    @Override
+    public Serializable save() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void load(Serializable obj) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }
