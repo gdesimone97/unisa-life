@@ -10,6 +10,6 @@ package quests.mediator;
  * @author liovi
  */
 public interface QuestMessages {
-    public void sendMessage(boolean bool, User user);
+    public void sendMessage(Message mess, User user);
     void addUser(User user);
 }

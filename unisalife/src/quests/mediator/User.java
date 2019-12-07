@@ -9,16 +9,8 @@ package quests.mediator;
  *
  * @author liovi
  */
-public abstract class User {
-    protected QuestMessages questMessages;
-    protected boolean bool;
-	
-    public User(QuestMessages questMess, boolean value){
-            this.questMessages=questMess;
-            this.bool=value;
-    }
+public interface User {
+    public abstract void send(Message mess);
 
-    public abstract void send(boolean bool);
-
-    public abstract void receive(boolean bool);
+    public abstract void receive(Message mess);
 }
