@@ -17,7 +17,7 @@ import language.exceptions.*;
  */
 abstract class LanguageManager {
 
-    private static String currentLanguage;
+    private String currentLanguage;
 
     /**
      * Method to obtain all available game's languages
@@ -31,7 +31,7 @@ abstract class LanguageManager {
      *
      * @return a string containing the current game's language
      */
-    public static String getCurrentLanguage() {
+    public String getCurrentLanguage() {
         return currentLanguage;
     }
 
