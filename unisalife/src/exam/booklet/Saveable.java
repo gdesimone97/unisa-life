@@ -11,7 +11,7 @@ import java.io.Serializable;
  *
  * @author liovi
  */
-interface Saveable {
+public interface Saveable {
     public Serializable save();
     public void load (Serializable obj);
 }
