@@ -17,7 +17,7 @@ import saving.exceptions.*;
 public interface Saveable {
 
     /**
-     * This method have to be implemented by sub-classes.
+     * This method has to be implemented by sub-classes.
      *
      * @return seriarizable object containig the objects that sub-classes want
      * to save
@@ -25,9 +25,9 @@ public interface Saveable {
     public Serializable save();
 
     /**
-     * This method have to be implemented by sub-classes.
+     * This method has to be implemented by sub-classes.
      *
-     * @param obj containing the object that sub-class has saved and they want
+     * @param obj containing the object that sub-class has saved and it want to
      * load it
      * @throws LoadingException if some errors occur during the loading process
      */
