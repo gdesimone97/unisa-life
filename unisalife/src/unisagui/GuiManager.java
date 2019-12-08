@@ -102,12 +102,19 @@ public class GuiManager {
     
     
     /**
-     * When called a JDialog with the Exam appears or disappears on the screen 
-     * @param examName is the name of the exam
-     * @param show if true the JDialog appears, if false disappears
+     * 
+     * @param examName
+     * @param question
+     * @param answer1
+     * @param answer2
+     * @param answer3
+     * @param answer4
+     * @param time
+     * @return
+     * @throws InterruptedException 
      */
-    public void showExamDialog(String examName, boolean show){
-        exammanager.showExamDialog(examName,show);
+    public String showExamDialog(String examName, String question, String answer1, String answer2, String answer3, String answer4, int time) throws InterruptedException{
+       return  exammanager.showExamDialog(examName,question,answer1,answer2,answer3,answer4,time);
     }
     
     /**

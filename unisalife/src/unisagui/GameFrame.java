@@ -209,7 +209,7 @@ public class GameFrame extends javax.swing.JFrame {
         ExamPanel.setMinimumSize(new java.awt.Dimension(500, 500));
         ExamPanel.setPreferredSize(new java.awt.Dimension(500, 500));
 
-        ProfLabel.setText("jLabel1");
+        ProfLabel.setText("prof img");
         ProfLabel.setMaximumSize(new java.awt.Dimension(75, 75));
         ProfLabel.setMinimumSize(new java.awt.Dimension(75, 75));
         ProfLabel.setPreferredSize(new java.awt.Dimension(75, 75));
@@ -243,21 +243,41 @@ public class GameFrame extends javax.swing.JFrame {
         FirstAnswer.setMaximumSize(new java.awt.Dimension(300, 25));
         FirstAnswer.setMinimumSize(new java.awt.Dimension(300, 25));
         FirstAnswer.setPreferredSize(new java.awt.Dimension(300, 25));
+        FirstAnswer.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                FirstAnswerMouseClicked(evt);
+            }
+        });
 
         SecondAnswer.setText("jButton1");
         SecondAnswer.setMaximumSize(new java.awt.Dimension(300, 25));
         SecondAnswer.setMinimumSize(new java.awt.Dimension(300, 25));
         SecondAnswer.setPreferredSize(new java.awt.Dimension(300, 25));
+        SecondAnswer.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                SecondAnswerMouseClicked(evt);
+            }
+        });
 
         ThirdAnswer.setText("jButton1");
         ThirdAnswer.setMaximumSize(new java.awt.Dimension(300, 25));
         ThirdAnswer.setMinimumSize(new java.awt.Dimension(300, 25));
         ThirdAnswer.setPreferredSize(new java.awt.Dimension(300, 25));
+        ThirdAnswer.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ThirdAnswerMouseClicked(evt);
+            }
+        });
 
         FourthAnswer.setText("jButton1");
         FourthAnswer.setMaximumSize(new java.awt.Dimension(300, 25));
         FourthAnswer.setMinimumSize(new java.awt.Dimension(300, 25));
         FourthAnswer.setPreferredSize(new java.awt.Dimension(300, 25));
+        FourthAnswer.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                FourthAnswerMouseClicked(evt);
+            }
+        });
 
         ConfirmAnswer.setText("Confirm");
         ConfirmAnswer.setMaximumSize(new java.awt.Dimension(125, 25));
@@ -269,11 +289,16 @@ public class GameFrame extends javax.swing.JFrame {
             }
         });
 
+        TimeLabel.setMaximumSize(new java.awt.Dimension(50, 25));
+        TimeLabel.setMinimumSize(new java.awt.Dimension(50, 25));
+        TimeLabel.setPreferredSize(new java.awt.Dimension(50, 25));
+
         javax.swing.GroupLayout ExamPanelLayout = new javax.swing.GroupLayout(ExamPanel);
         ExamPanel.setLayout(ExamPanelLayout);
         ExamPanelLayout.setHorizontalGroup(
             ExamPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ExamPanelLayout.createSequentialGroup()
+                .addGap(0, 0, 0)
                 .addGroup(ExamPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(FirstAnswer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(ExamPanelLayout.createSequentialGroup()
@@ -287,8 +312,12 @@ public class GameFrame extends javax.swing.JFrame {
                             .addComponent(ExamScrollPane)))
                     .addComponent(SecondAnswer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ThirdAnswer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(FourthAnswer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ConfirmAnswer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(ExamPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(ExamPanelLayout.createSequentialGroup()
+                            .addComponent(TimeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(ConfirmAnswer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(FourthAnswer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(25, 25, 25)
                 .addComponent(StudentLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -314,11 +343,16 @@ public class GameFrame extends javax.swing.JFrame {
                 .addComponent(ThirdAnswer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(25, 25, 25)
                 .addComponent(FourthAnswer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(2, 2, 2)
-                .addGroup(ExamPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ConfirmAnswer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(StudentLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25))
+                .addGroup(ExamPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(ExamPanelLayout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addGroup(ExamPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(ConfirmAnswer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(StudentLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(ExamPanelLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(TimeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(23, 23, 23))
         );
 
         ConfirmAnswer.getAccessibleContext().setAccessibleDescription("");
@@ -1694,6 +1728,24 @@ public class GameFrame extends javax.swing.JFrame {
 
         }
     }//GEN-LAST:event_MainMenuDialogComponentShown
+
+    private void FirstAnswerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FirstAnswerMouseClicked
+         ExamManager.setRESULT( FirstAnswer.getText());
+         
+    }//GEN-LAST:event_FirstAnswerMouseClicked
+
+    private void SecondAnswerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SecondAnswerMouseClicked
+        ExamManager.setRESULT( SecondAnswer.getText());
+    }//GEN-LAST:event_SecondAnswerMouseClicked
+
+    private void ThirdAnswerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ThirdAnswerMouseClicked
+        ExamManager.setRESULT( ThirdAnswer.getText());
+    }//GEN-LAST:event_ThirdAnswerMouseClicked
+
+    private void FourthAnswerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FourthAnswerMouseClicked
+        ExamManager.setRESULT( FourthAnswer.getText());
+    }//GEN-LAST:event_FourthAnswerMouseClicked
+    
     
         /**
      * @param args the command line arguments
@@ -1725,7 +1777,7 @@ public class GameFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                //new GameFrame().setVisible(true);
+                new GameFrame().setVisible(true);
                 
             }
         });
@@ -1857,6 +1909,7 @@ public class GameFrame extends javax.swing.JFrame {
     protected javax.swing.JProgressBar StressProgressBar;
     protected javax.swing.JLabel StudentLabel;
     protected javax.swing.JButton ThirdAnswer;
+    protected final javax.swing.JLabel TimeLabel = new javax.swing.JLabel();
     protected javax.swing.JButton YesButton;
     protected javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables

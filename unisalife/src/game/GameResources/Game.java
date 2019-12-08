@@ -20,6 +20,7 @@ import javax.imageio.ImageIO;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.awt.Dimension;
+import unisagui.GuiManager;
 /**
  * Game represents the thread that runs the game. 
  * @author simon
@@ -233,7 +234,8 @@ public class Game extends Canvas implements Runnable {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        new Window(new Dimension(WIDTHSCREEN,HEIGHTSCREEN2),"Demo",new Game());
+        GuiManager guiManager= GuiManager.getInstance();
+        guiManager.startGame(new Game());
         
     }
     
