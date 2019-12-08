@@ -61,8 +61,18 @@ public class SaveManager {
         }
     }
 
-    public void load() {
+    public void load() throws LoadingException {
+        try (FileInputStream filein = new FileInputStream(new File(PATH));
+                ObjectInputStream s = new ObjectInputStream(filein);
+                ){
+            Object obj = s.readObject();
+            savingItems = (Map)obj;
+            for(Serializable itemToLoad:savingItems.keySet()){
 
+            }
+        }
+        catch(Exception ex){
+            throw new LoadingException();
+        }
     }
-
 }
