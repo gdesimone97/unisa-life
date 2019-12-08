@@ -9,6 +9,11 @@ package interaction;
  *
  * @author 1997g
  */
-public class ProfessorInteractionManager {
+public class ProfessorInteractionManager implements InteractionManager {
+
+    @Override
+    public void execute() {
+        
+    }
     
 }

@@ -10,5 +10,5 @@ package interaction;
  * @author 1997g
  */
 public interface InteractionManager {
-    
+    public void execute();
 }
