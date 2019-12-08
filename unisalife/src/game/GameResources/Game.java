@@ -20,12 +20,15 @@ import javax.imageio.ImageIO;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.awt.Dimension;
+import java.io.Serializable;
+import java.util.List;
+import saving.Saveable;
 import unisagui.GuiManager;
 /**
  * Game represents the thread that runs the game. 
  * @author simon
  */
-public class Game extends Canvas implements Runnable {
+public class Game extends Canvas implements Runnable,Saveable {
 
     /**
      *variable that says if the game has started.
@@ -121,7 +124,35 @@ public class Game extends Canvas implements Runnable {
         player.setY(50);
         
     }
+    @Override
+    public void load(Serializable obj){}
+    @Override
+    public Serializable save(){
+        return new Game();
+   
+    }
     
+    /*da completare
+    @Override
+    public Serializable save(){
+        
+    }/*
+    
+    
+    //da completare
+    @Override
+    public void load(Serializable obj){
+        if(obj instanceof List)
+        {
+            List<Serializable> l = (List)obj;
+            for(Serializable s:l)
+            {
+                
+            }
+        }
+            
+    }
+    /*
     /**
      * method that calls all other init methods.
      */
