@@ -5,6 +5,8 @@
  */
 package interaction;
 
+import game.Interfaces.Interactable;
+
 /**
  *
  * @author 1997g
@@ -12,8 +14,7 @@ package interaction;
 public class ProfessorInteractionManager implements InteractionManager {
 
     @Override
-    public void execute() {
-        
+    public void execute(Interactable obj) {
     }
     
 }
