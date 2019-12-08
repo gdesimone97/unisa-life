@@ -14,10 +14,29 @@ import quests.QuestsManagerSingleton;
  * @author liovi
  */
 public abstract class User {
+
+    /**
+     * Is an instance of the mediator
+     */
     protected QuestsManagerSingleton mediator;
+
+    /**
+     * Is a string who represents the user
+     */
     protected String name;
     
+    /**
+     * This method is used to send a message to the Mediator who forwards it
+     * to the receiver
+     * 
+     * @param mess is the message that the class would send
+     */
     public abstract void send(Message mess);
 	
+    /**
+     * This method can be used to receive a message 
+     * 
+     * @param mess is the message that the class can receive
+     */
     public abstract void receive(Message mess);
 }

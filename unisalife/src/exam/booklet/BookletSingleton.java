@@ -94,21 +94,38 @@ public class BookletSingleton extends User implements Serializable, Saveable{
         return instance;
     }
 
+    /**
+     * This method is used to save the booklet
+     * @return a Serializable object that represents the booklet state
+     */
     @Override
     public Serializable save() {
         return this.booklet;
     }
 
+    /**
+     * This method is used to load the booklet 
+     * @param obj is a Serializable. Downcast is necessary before load the obj
+     */
     @Override
     public void load(Serializable obj) {
         this.booklet = (EnumMap<Materia,Subject>) obj;
     }
 
+    /**
+     * This method is used to send a message to the Mediator who forwards it
+     * to the receiver
+     * @param mess is the message that the class would send
+     */
     @Override
     public void send(Message mess) {
         mediator.sendMessage(mess, this);
     }
 
+    /**
+     * This method can be used to receive a message 
+     * @param mess is the message that the class can receive
+     */
     @Override
     public void receive(Message mess) {}
     

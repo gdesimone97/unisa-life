@@ -12,7 +12,9 @@ import quests.mediator.*;
 import quests.quest.QuestFactory;
 
 /**
- *
+ * This class is used due to a necessity of manage the communication between
+ * the booklet, the inventory and the quests
+ * 
  * @author liovi
  */
 public class QuestsManagerSingleton implements QuestMessages{
@@ -25,6 +27,10 @@ public class QuestsManagerSingleton implements QuestMessages{
         this.users = new ArrayList<>();
     }
     
+    /**
+     *
+     * @return an instance of QuestsManagerSingleton
+     */
     public static QuestsManagerSingleton getInstance(){
         if (instance == null)
             synchronized (QuestsManagerSingleton.class){
@@ -34,6 +40,12 @@ public class QuestsManagerSingleton implements QuestMessages{
         return instance;
     }
     
+    /**
+     * This method is used to forward messages between the classes
+     * 
+     * @param mess contains the message to forward
+     * @param user is the user who sended the message
+     */
     @Override
     public void sendMessage(Message mess, User user) {
         if(quest.containsKey(mess.getId())){
@@ -41,6 +53,11 @@ public class QuestsManagerSingleton implements QuestMessages{
         }
     }
 
+    /**
+     * This method is used to register a new user to the list
+     * 
+     * @param user reference to the user
+     */
     @Override
     public void addUser(User user) {
         this.users.add(user);

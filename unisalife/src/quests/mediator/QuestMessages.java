@@ -6,7 +6,8 @@
 package quests.mediator;
 
 /**
- *
+ * This interface is used to establish a contract for the mediator
+ * 
  * @author liovi
  */
 public interface QuestMessages {

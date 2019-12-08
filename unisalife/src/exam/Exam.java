@@ -5,6 +5,7 @@
  */
 
 package exam;
+import character.Status;
 import exam.question.*;
 
 /**
@@ -17,6 +18,7 @@ import exam.question.*;
 public class Exam {
     private final Questions questions;
     private int score;
+    private int coinReward;
     private float sum;
     private int count;
     private final int maxLevel;
@@ -34,6 +36,7 @@ public class Exam {
         this.score = 0;
         this.sum = 0;
         this.count = 0;
+        this.coinReward = 100;
         this.questions = questionsFetch.getQuestions();
         this.maxLevel = this.questions.getNumLevels();
         this.basicScore = 12/(30-(30/(float)(this.maxLevel-1)));
@@ -76,11 +79,22 @@ public class Exam {
     }
     
     /**
-     *
+     * This method is used to calculate the final score of the exam and calculate
+     * the amount of money that the user has lose/win
+     * 
      * @return the final score of the exam
      */
     public int getScore(){
         this.score = (int)this.sum/(maxLevel-1);
+        
+        if (this.score >= 18)
+            Status.setMoney((this.score - 18)*this.coinReward); 
+            //can be used also this expression. In fact if the user 
+            //doesn't pass the exame, he/she loses an amount of money that depends
+            //on which is slow him/her score.
+        else
+            Status.setMoney(-50);
+        
         return this.score;
     }
     
