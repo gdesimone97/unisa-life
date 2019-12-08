@@ -5,10 +5,13 @@
  */
 package interaction;
 
+import game.Interfaces.Interactable;
+
 /**
  *
  * @author 1997g
  */
 public interface InteractionManager {
-    public void execute();
+
+    public void execute(Interactable obj);
 }
