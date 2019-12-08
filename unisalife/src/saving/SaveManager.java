@@ -8,10 +8,12 @@ package saving;
 import saving.exceptions.*;
 import exam.booklet.BookletSingleton;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.io.ObjectInputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -52,8 +54,19 @@ public class SaveManager {
         }
     }
 
-    public void load() {
-
+    public void load() throws LoadingException {
+        try (FileInputStream filein = new FileInputStream(new File(PATH));
+                ObjectInputStream s = new ObjectInputStream(filein);
+                ){
+            Object obj = s.readObject();
+            savingItems = (Map)obj;
+            for(Serializable itemToLoad:savingItems.keySet()){
+                
+            }
+        }
+        catch(Exception ex){
+            throw new LoadingException();
+        }
     }
 
 }
