@@ -19,13 +19,17 @@ import java.io.Serializable;
  *
  * @author cmarino
  */
-public class GameInventorySingleton implements User, Iterable<Item>, Saveable{
+public class GameInventorySingleton extends User implements Iterable<Item>, Saveable, Serializable{
     
     private List<Item> inventory;
     private GameInventoryStrategy gis;
     private static GameInventorySingleton instance = null;
 
     private GameInventorySingleton(){
+        super();
+        super.name = "inventory";
+        super.mediator = QuestsManagerSingleton.getInstance();
+        mediator.addUser(this);
         
         this.inventory = new LinkedList<>();
         this.gis = new InventoryStrategyByTaken();
@@ -45,15 +49,11 @@ public class GameInventorySingleton implements User, Iterable<Item>, Saveable{
     
     @Override
     public void send(Message mess) {
-        
-        
-        
+        mediator.sendMessage(mess, this);
     }
 
     @Override
-    public void receive(Message mess) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    public void receive(Message mess) {}
 
     public int length(){
         return inventory.size();
@@ -67,7 +67,8 @@ public class GameInventorySingleton implements User, Iterable<Item>, Saveable{
     public int addItem(Item i) {
         
         int pos =  gis.addItem(inventory,i);
-        QuestsManagerSingleton.getInstance().sendMessage(new Message(i.getInfo(), true ), this);
+        Message msg = new Message(i.getInfo(), true ); //prepare the message with the added object
+        send(msg); //then sends it
         return pos;
     }
 
@@ -79,7 +80,8 @@ public class GameInventorySingleton implements User, Iterable<Item>, Saveable{
     public Item removeItem(int pos){
         
         Item ret = inventory.remove(pos);
-        QuestsManagerSingleton.getInstance().sendMessage(new Message(ret.getInfo(), false), this);
+        Message msg = new Message(ret.getInfo(), false ); //prepare the message with the removed object
+        send(msg); //then sends it
         return ret;
         
     }
@@ -94,7 +96,8 @@ public class GameInventorySingleton implements User, Iterable<Item>, Saveable{
         for( Item x : inventory ){
             if(x.getTitle().equals(title) ){
                 inventory.remove(x);
-                QuestsManagerSingleton.getInstance().sendMessage(new Message(x.getInfo(), false), this);
+                Message msg = new Message(x.getInfo(), false ); //prepare the message with the removed object
+                send(msg); //then sends it
                 return x;
             }
         }
@@ -148,12 +151,12 @@ public class GameInventorySingleton implements User, Iterable<Item>, Saveable{
 
     @Override
     public Serializable save() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return (Serializable) this.inventory; //cast to Serializable useful because ArrayList seems to not be Serializable
     }
 
     @Override
     public void load(Serializable obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.inventory = (List<Item>) obj;
     }
     
 }
