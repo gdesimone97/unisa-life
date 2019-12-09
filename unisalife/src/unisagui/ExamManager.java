@@ -21,7 +21,7 @@ public class ExamManager {
     
     private GameFrame gameframe = GameFrame.getInstance();
     private static final String EMPTY_TEXT = "";
-    protected static String RESULT =null;
+    protected static int RESULT=0;
     private int time = 0;
     private Timer timing;
     
@@ -33,7 +33,7 @@ public class ExamManager {
      * @param RESULT in this parameter the answer given by the user within the time limit will be saved.
      * If the user does not respond this parameter will remain equal to null
      */
-    protected static void setRESULT(String RESULT) {
+    protected static void setRESULT(int RESULT) {
         ExamManager.RESULT = RESULT;
     }
 
@@ -105,15 +105,16 @@ public class ExamManager {
     }
 
     
-    protected synchronized  String showExamDialog(String examName, String question, String answer1, String answer2, String answer3, String answer4, int time) throws InterruptedException{
+    protected synchronized  int showExamDialog(String examName, String question, String answer1, String answer2, String answer3, String answer4, int time) throws InterruptedException{
         this.fillExam(examName, question, answer1, answer2, answer3, answer4);
         this.time=time*1000;
         
         
+       /*
         while(!RESULT.equalsIgnoreCase("null") || !timing.isRunning()){
             
         }
-        
+        */
         // this.wait(time*1000);
         this.manageButtons(false);
         return (RESULT);

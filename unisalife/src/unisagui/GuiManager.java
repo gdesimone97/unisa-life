@@ -113,7 +113,7 @@ public class GuiManager {
      * @return
      * @throws InterruptedException 
      */
-    public String showExamDialog(String examName, String question, String answer1, String answer2, String answer3, String answer4, int time) throws InterruptedException{
+    public int showExamDialog(String examName, String question, String answer1, String answer2, String answer3, String answer4, int time) throws InterruptedException{
        return  exammanager.showExamDialog(examName,question,answer1,answer2,answer3,answer4,time);
     }
     
