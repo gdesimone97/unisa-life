@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package language.adapters;
+package saving;
 
 import java.io.Serializable;
 import java.util.List;
@@ -19,7 +19,7 @@ import saving.exceptions.LoadingException;
  *
  * @author Giuseppe De Simone
  */
-public class TextManagerAdapter extends TextManager implements Saveable {
+class TextManagerAdapter extends TextManager implements Saveable {
 
     private static final TextManagerAdapter instance = new TextManagerAdapter();
 
@@ -27,22 +27,33 @@ public class TextManagerAdapter extends TextManager implements Saveable {
         return instance;
     }
 
+    /**
+     * Not implemented
+     */
     @Override
     public Set<String> getAvailableLanguages() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    @Override
+    /**
+     * Not implemented
+     */
     public List<String> getString(Information obj) throws TextFinderException {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Serializable save() {
         String lang = getCurrentLanguage();
         return lang;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void load(Serializable obj) throws LoadingException {
         try {
