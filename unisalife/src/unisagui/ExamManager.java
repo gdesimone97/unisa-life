@@ -21,7 +21,7 @@ public class ExamManager {
     
     private GameFrame gameframe = GameFrame.getInstance();
     private static final String EMPTY_TEXT = "";
-    protected static String RESULT = "null";
+    protected static String RESULT =null;
     private int time = 0;
     private Timer timing;
     
@@ -60,6 +60,7 @@ public class ExamManager {
      * This method sets all the text fields of the Exam label
      */
     private void fillExam(String examName, String question, String answer1, String answer2, String answer3, String answer4) {
+        this.manageButtons(true);
         this.clearExam();
         SwingUtilities.invokeLater(() -> gameframe.ExamTextArea.setText(question));
         SwingUtilities.invokeLater(() -> gameframe.FirstAnswer.setText(answer1));
@@ -71,6 +72,18 @@ public class ExamManager {
             
         
     }
+    /**
+     * 
+     * @param enable  if is false all the button wll be disabled and viceversa
+     */
+    private void manageButtons(boolean enable){
+        SwingUtilities.invokeLater(() -> gameframe.FirstAnswer.setEnabled(enable));
+        SwingUtilities.invokeLater(() -> gameframe.SecondAnswer.setEnabled(enable));
+        SwingUtilities.invokeLater(() -> gameframe.ThirdAnswer.setEnabled(enable));
+        SwingUtilities.invokeLater(() -> gameframe.FourthAnswer.setEnabled(enable));
+        
+    }
+    
     /**
      * This method updates in real time the time remaining for the user to answer the question 
      * (in the respective label). This is done using the Swing Timer.
@@ -102,7 +115,7 @@ public class ExamManager {
         }
         
         // this.wait(time*1000);
-        
+        this.manageButtons(false);
         return (RESULT);
         
         
