@@ -39,6 +39,10 @@ public class GameInventory implements Iterable<Item>, Serializable{
         gis = new InventoryStrategyByTaken();
     }
     
+    
+    public List<Item> getInventory(){
+        return (List)this.inventory;
+    }
     /**
      * 
      * @return the number of elements stored in the inventory 

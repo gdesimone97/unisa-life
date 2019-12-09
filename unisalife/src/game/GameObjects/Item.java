@@ -23,10 +23,13 @@ public class Item extends GameObject implements Renderable,Interactable,Serializ
     private final String info;
     private BufferedImage facingDownImage;
     private LocalDateTime taken;
+    private int mapToSpawn;
 
     
-    public Item(float x,float y,ObjectId i,String path,String title,String info){
+    
+    public Item(float x,float y,ObjectId i,String path,String title,String info,int mts){
         super(x,y,i);
+        this.mapToSpawn=mts;
         this.title=title;
 	this.info=info;
         try {
@@ -51,6 +54,10 @@ public class Item extends GameObject implements Renderable,Interactable,Serializ
             return 1;
        return info.compareTo(o.getInfo());
 }
+    
+    public int getMapToSpawn(){
+        return this.mapToSpawn;
+    }
 
     public void setTaken(){
         this.taken=LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS);
