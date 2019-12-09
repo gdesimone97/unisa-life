@@ -7,8 +7,6 @@
 package exam;
 import exam.question.*;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import unisagui.*;
 
 /**
@@ -21,7 +19,6 @@ import unisagui.*;
 public class Exam implements Runnable {
     private final Questions questions;
     private final Materia subject;
-    private int answered;
     private final int questionTime;
     private int score;
     private float sum;
@@ -87,56 +84,38 @@ public class Exam implements Runnable {
 //    public float getCurrentScore(){
 //        return this.sum;
 //    }
-    
-    public synchronized void setAnswered(int position){
-        this.answered = position;
-        this.notify();
-    }
-    
-     public synchronized int pause() {
-        long start;
-        long elapsed;
-        
-        System.out.println("Ciao porco dio bastardo");
-         
-        //beginning of the time passing
-        start = System.nanoTime();
-        try {
-            this.wait(this.questionTime*1000);
-        } catch (InterruptedException ex) {}
-        finally{
-            elapsed = System.nanoTime() - start;
-        }
-        System.out.println("Ciao porca madonna in croce");
-        return (int) elapsed/1000000000;
-     }
             
 
     @Override
     public void run() {
         GuiManager gui = GuiManager.getInstance();
-        gui.showExamDialog(this.subject.toString(),true);
-        int elapsedTime;
         Question question;
-        int j=1;
+        int answer;
+        long start;
+        int elapsed;
         
-        while(iter.hasNext() && j<4){
+        while(iter.hasNext()){
             question = iter.next();
             gui.setExamQuestion(question.getQuestion());
             ArrayList<Answer> answers = question.getAnswers();
             
-            int i = 1;
-            for(Answer a : answers){
-                try {
-                    gui.setExamAnswer(a.toString(),i++);
-                } catch (Exception ex) {}
+            //init timer
+            start = System.nanoTime();
+            
+            answer = gui.showExamDialog(this.subject.toString(), question.getQuestion(), answers.get(0).getAnswer(), answers.get(1).getAnswer(), answers.get(2).getAnswer(), answers.get(3).getAnswer(), questionTime);
+            
+            elapsed = (int) ((System.nanoTime() - start) / 1000000000);
+            
+            if ( answer == 0) {
+                verifyAnswer(false, elapsed, question.getLevel());
+                System.out.println("Non hai risposto");
             }
-            elapsedTime = pause();
+            else {
+                verifyAnswer(question.isCorrect(answers.get(answer-1)), elapsed, question.getLevel());
+                System.out.println("Hai risposto: " + answers.get(answer-1) + " \nTempo passato: "  + elapsed);
+            }
             
-            boolean correctness = question.isCorrect(answers.get(this.answered-1));
             
-            verifyAnswer(correctness,elapsedTime,question.getLevel());
-            j++;
         }
         
         System.out.println("Voto: "+ getScore());
