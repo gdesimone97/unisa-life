@@ -24,6 +24,7 @@ public class ExamManager {
     private GameFrame gameframe = GameFrame.getInstance();
     private static final String EMPTY_TEXT = "";
     protected static int RESULT=0;
+    protected ResultGui rg;
     private int time = 0;
     private Timer timing;
     protected static ExamManager instance;
@@ -46,8 +47,8 @@ public class ExamManager {
      * If the user does not respond this parameter will remain equal to null
      */
     protected synchronized void setRESULT(int RESULT) {
-        this.RESULT = RESULT;
-        this.notify();
+        rg.setValue(RESULT);
+        
     }
    
 
@@ -120,15 +121,19 @@ public class ExamManager {
 
     
     protected synchronized  int showExamDialog(String examName, String question, String answer1, String answer2, String answer3, String answer4, int time){
+        rg= new ResultGui(time*1000);
         this.fillExam(examName, question, answer1, answer2, answer3, answer4);
         this.time=time*1000;
+        int value= rg.getValue();
+        this.manageButtons(false);
+        return (value);
         
-        
+        /* 
         try {
             this.wait(time*1000);
         } catch (InterruptedException ex) { }
-        this.manageButtons(false);
-        return (RESULT);
+        */
+        
         
         
         
