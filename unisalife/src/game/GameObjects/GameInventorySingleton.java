@@ -15,13 +15,14 @@ import quests.mediator.Message;
 import quests.mediator.User;
 import exam.booklet.Saveable;
 import java.io.Serializable;
+
 /**
  *
  * @author cmarino
  */
 public class GameInventorySingleton extends User implements Iterable<Item>, Saveable, Serializable{
     
-    private List<Item> inventory;
+    private LinkedList<Item> inventory;
     private GameInventoryStrategy gis;
     private static GameInventorySingleton instance = null;
 
@@ -37,6 +38,10 @@ public class GameInventorySingleton extends User implements Iterable<Item>, Save
         
     }
     
+    /**
+     *
+     * @return The instance of the singleton object 
+     */
     public GameInventorySingleton getInstance(){
         if (instance == null)
             synchronized (GameInventorySingleton.class){
@@ -55,13 +60,17 @@ public class GameInventorySingleton extends User implements Iterable<Item>, Save
     @Override
     public void receive(Message mess) {}
 
+    /**
+     *
+     * @return
+     */
     public int length(){
         return inventory.size();
     }
     
     /**
      * 
-     * @param i The item that has to be inserter
+     * @param i The item that has to be inserted
      * @return The position in the data structure where i has been inserted, -1 if the element was already inserter.
      */
     public int addItem(Item i) {
@@ -149,14 +158,22 @@ public class GameInventorySingleton extends User implements Iterable<Item>, Save
         return this.inventory.iterator();
     }
 
+    /**
+     *
+     * @return The object that need to be serialized
+     */
     @Override
     public Serializable save() {
-        return (Serializable) this.inventory; //cast to Serializable useful because ArrayList seems to not be Serializable
+        return this.inventory; //cast to Serializable useful because ArrayList seems to not be Serializable
     }
 
+    /**
+     *
+     * @param obj Load the state of the inventory by the serialized object "obj"
+     */
     @Override
     public void load(Serializable obj) {
-        this.inventory = (List<Item>) obj;
+        this.inventory = (LinkedList<Item>) obj;
     }
     
 }
