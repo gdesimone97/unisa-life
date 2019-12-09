@@ -7,6 +7,7 @@ package saving;
 
 import saving.exceptions.*;
 import exam.booklet.BookletSingleton;
+import game.GameResources.Game;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -37,6 +38,8 @@ public class SaveManager {
     private SaveManager() { // da completare quando abbiamo tutte le classi da salvare
         saveableComponents.add(BookletSingleton.getInstance());
         saveableComponents.add(TextManagerAdapter.getTextManagerAdpter());
+        saveableComponents.add(Game.getGame());
+        
     }
 
     public boolean isSaveSomething() {
