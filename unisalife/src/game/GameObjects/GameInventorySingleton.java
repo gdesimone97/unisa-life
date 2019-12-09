@@ -51,18 +51,25 @@ public class GameInventorySingleton extends User implements Iterable<Item>, Save
         return instance;
     }
     
-    
+    /**
+     * This method notifies the Quest Manager that an item is  added and so it's available to be used for related quests. 
+     * @param mess The message to send to QuestManager
+     */
     @Override
     public void send(Message mess) {
         mediator.sendMessage(mess, this);
     }
 
+    /**
+     * Since the inventory is not updated externally, this methods doesn't need to be implemented.
+     * @param mess The message to send to QuestManager
+     */
     @Override
     public void receive(Message mess) {}
 
     /**
      *
-     * @return
+     * @return The number of items contained in the inventory
      */
     public int length(){
         return inventory.size();
