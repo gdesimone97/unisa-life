@@ -7,6 +7,8 @@ package unisagui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 
@@ -24,19 +26,30 @@ public class ExamManager {
     protected static int RESULT=0;
     private int time = 0;
     private Timer timing;
+    protected static ExamManager instance;
     
-    protected ExamManager() {
+    
+    
+    
+    protected static ExamManager getInstance() {
+        if (instance == null) {
+            instance = new ExamManager();
+        }
 
+        return instance;
     }
+    
+    
     
     /**
      * @param RESULT in this parameter the answer given by the user within the time limit will be saved.
      * If the user does not respond this parameter will remain equal to null
      */
-    protected static void setRESULT(int RESULT) {
-        ExamManager.RESULT = RESULT;
+    protected synchronized void setRESULT(int RESULT) {
+        this.RESULT = RESULT;
+        this.notifyAll();
     }
-
+   
 
     /**
      * This method resets all text fields of the Exam label
@@ -62,6 +75,7 @@ public class ExamManager {
     private void fillExam(String examName, String question, String answer1, String answer2, String answer3, String answer4) {
         this.manageButtons(true);
         this.clearExam();
+        SwingUtilities.invokeLater(() -> gameframe.ExamDialog.setVisible(true));
         SwingUtilities.invokeLater(() -> gameframe.ExamTextArea.setText(question));
         SwingUtilities.invokeLater(() -> gameframe.FirstAnswer.setText(answer1));
         SwingUtilities.invokeLater(() -> gameframe.SecondAnswer.setText(answer2));
@@ -110,12 +124,9 @@ public class ExamManager {
         this.time=time*1000;
         
         
-       /*
-        while(!RESULT.equalsIgnoreCase("null") || !timing.isRunning()){
-            
-        }
-        */
-        // this.wait(time*1000);
+        try {
+            this.wait(time*1000);
+        } catch (InterruptedException ex) { }
         this.manageButtons(false);
         return (RESULT);
         
