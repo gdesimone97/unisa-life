@@ -1727,7 +1727,7 @@ public class GameFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_MainMenuDialogComponentShown
 
     private void FirstAnswerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FirstAnswerMouseClicked
-        ExamManager.getInstance().setRESULT(0);
+        ExamManager.getInstance().setRESULT(1);
     }//GEN-LAST:event_FirstAnswerMouseClicked
 
     private void SecondAnswerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SecondAnswerMouseClicked

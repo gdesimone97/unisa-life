@@ -23,7 +23,7 @@ public class ResultGui {
 
     public synchronized int getValue() {
         try {
-            wait(time);
+            this.wait(time);
         } catch (InterruptedException ex) {
         }
         return value;
@@ -31,7 +31,7 @@ public class ResultGui {
 
     public synchronized void setValue(int value) {
         this.value = value;
-        notifyAll();
+        this.notifyAll();
     }
 
 }
