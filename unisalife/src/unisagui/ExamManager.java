@@ -105,7 +105,7 @@ public class ExamManager {
     }
 
     
-    protected synchronized  int showExamDialog(String examName, String question, String answer1, String answer2, String answer3, String answer4, int time) throws InterruptedException{
+    protected synchronized  int showExamDialog(String examName, String question, String answer1, String answer2, String answer3, String answer4, int time){
         this.fillExam(examName, question, answer1, answer2, answer3, answer4);
         this.time=time*1000;
         
