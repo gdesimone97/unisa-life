@@ -2,3 +2,5 @@
 /unisalife/dist/
 *.class
 unisalife/build/built-jar.properties
+*.properties
+*.class
