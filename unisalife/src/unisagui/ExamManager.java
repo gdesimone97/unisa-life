@@ -46,7 +46,7 @@ public class ExamManager {
      * @param RESULT in this parameter the answer given by the user within the time limit will be saved.
      * If the user does not respond this parameter will remain equal to null
      */
-    protected synchronized void setRESULT(int RESULT) {
+    protected  void setRESULT(int RESULT) {
         rg.setValue(RESULT);
         
     }
