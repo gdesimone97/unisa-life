@@ -28,6 +28,7 @@ public class ExamManager {
     private int time = 0;
     private Timer timing;
     protected static ExamManager instance;
+    protected ResultGui rg2= new ResultGui(30000);
     
     
     
@@ -47,7 +48,7 @@ public class ExamManager {
      * If the user does not respond this parameter will remain equal to null
      */
     protected  void setRESULT(int RESULT) {
-        rg.setValue(RESULT);
+        rg2.setValue(RESULT);
         
     }
    
@@ -121,10 +122,10 @@ public class ExamManager {
 
     
     protected synchronized  int showExamDialog(String examName, String question, String answer1, String answer2, String answer3, String answer4, int time){
-        rg= new ResultGui(time*1000);
+        
         this.fillExam(examName, question, answer1, answer2, answer3, answer4);
         this.time=time*1000;
-        int value= rg.getValue();
+        int value= rg2.getValue();
         this.manageButtons(false);
         return (value);
         
