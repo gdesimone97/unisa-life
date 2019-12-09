@@ -47,6 +47,7 @@ public class ExamManager {
      */
     protected synchronized void setRESULT(int RESULT) {
         this.RESULT = RESULT;
+        System.out.println("porcodyo");
         this.notifyAll();
     }
    
