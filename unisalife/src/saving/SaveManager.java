@@ -39,7 +39,7 @@ public class SaveManager {
         saveableComponents.add(BookletSingleton.getInstance());
         saveableComponents.add(TextManagerAdapter.getTextManagerAdpter());
         saveableComponents.add(Game.getGame());
-        
+
     }
 
     public boolean isSaveSomething() {
@@ -66,15 +66,14 @@ public class SaveManager {
 
     public void load() throws LoadingException {
         try (FileInputStream filein = new FileInputStream(new File(PATH));
-                ObjectInputStream s = new ObjectInputStream(filein);
-                ){
+                ObjectInputStream s = new ObjectInputStream(filein);) {
             Object obj = s.readObject();
-            savingItems = (Map)obj;
-            for(Serializable itemToLoad:savingItems.keySet()){
-
+            savingItems = (Map) obj;
+            for(Saveable sav: saveableComponents){
+                Serializable item = savingItems.get(sav.getClass().getName());
+                sav.load(item);
             }
-        }
-        catch(Exception ex){
+        } catch (Exception ex) {
             throw new LoadingException();
         }
     }
