@@ -14,7 +14,7 @@ import saving.exceptions.*;
  *
  * @author
  */
-public interface Saveable extends Serializable{
+public interface Saveable extends Serializable {
 
     /**
      * This method has to be implemented by sub-classes.
