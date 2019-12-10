@@ -1786,7 +1786,7 @@ public class GameFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_ReturnToMainMenuButtonActionPerformed
 
     private void YesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_YesButtonActionPerformed
-        
+        SwingUtilities.invokeLater(() -> RequestManager.setRESULT(true));     
         SwingUtilities.invokeLater(() -> RequestDialog.setVisible(false));
     }//GEN-LAST:event_YesButtonActionPerformed
 
@@ -1894,6 +1894,7 @@ public class GameFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_HintDialogKeyPressed
 
     private void NoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NoButtonActionPerformed
+        SwingUtilities.invokeLater(() -> RequestManager.setRESULT(false));     
         SwingUtilities.invokeLater(() -> RequestDialog.setVisible(false));
     }//GEN-LAST:event_NoButtonActionPerformed
 

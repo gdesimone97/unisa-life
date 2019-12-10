@@ -22,7 +22,7 @@ public class RequestManager {
         
     }
     
-    protected void setRESULT(boolean RESULT){
+    protected static void setRESULT(boolean RESULT){
         rq.setValue(RESULT);
     }
     
