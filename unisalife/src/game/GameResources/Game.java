@@ -73,7 +73,7 @@ public class Game extends Canvas implements Runnable, Saveable {
     protected static Player player;
     protected int skin;
     protected String namePlayer;
-    private LinkedList<Item> listOfAllItem;
+    private LinkedList<Item> listOfAllItem=new LinkedList<Item>();
     /**
      * method that loads the resources of game(maps, objects, camera, handler
      * and key listener).
@@ -117,7 +117,7 @@ public class Game extends Canvas implements Runnable, Saveable {
         texturePlayer = new BufferedImage[12];
         try {
             BufferedImage characterImage = ImageIO.read(
-                    getClass().getResourceAsStream("/Sprites/character"+skin+".png")
+                    getClass().getResourceAsStream("/Sprites/character.png")
             );
             texturePlayer[0] = characterImage.getSubimage(32, 0, DIMENSIONSPRITE, DIMENSIONSPRITE);
             texturePlayer[1] = characterImage.getSubimage(0, 0, DIMENSIONSPRITE, DIMENSIONSPRITE);
