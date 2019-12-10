@@ -5,9 +5,7 @@
  */
 package game.GameObjects;
 
-import java.util.Collections;
 import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 import quests.QuestsManagerSingleton;
@@ -15,6 +13,11 @@ import quests.mediator.Message;
 import quests.mediator.User;
 import exam.booklet.Saveable;
 import java.io.Serializable;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  *
@@ -22,18 +25,20 @@ import java.io.Serializable;
  */
 public class GameInventorySingleton extends User implements Iterable<Item>, Saveable, Serializable{
     
-    private LinkedList<Item> inventory;
-    private GameInventoryStrategy gis;
+    private Map< ItemEnum, Item > items;
+    private List<Item> view;
+    private Comparator<Item> comp;
     private static GameInventorySingleton instance = null;
 
     private GameInventorySingleton(){
+        
         super();
         super.name = "inventory";
         super.mediator = QuestsManagerSingleton.getInstance();
         mediator.addUser(this);
         
-        this.inventory = new LinkedList<>();
-        this.gis = new InventoryStrategyByTaken();
+        this.items = new HashMap<>();
+        this.comp = new TakenComparator();
         
         
     }
@@ -72,7 +77,7 @@ public class GameInventorySingleton extends User implements Iterable<Item>, Save
      * @return The number of items contained in the inventory
      */
     public int length(){
-        return inventory.size();
+        return items.size();
     }
     
     /**
@@ -82,10 +87,16 @@ public class GameInventorySingleton extends User implements Iterable<Item>, Save
      */
     public int addItem(Item i) {
         
-        int pos =  gis.addItem(inventory,i);
-        Message msg = new Message(i.getInfo(), true ); //prepare the message with the added object
+        Item c = this.items.putIfAbsent(i.getEnumItem() , i);
+        if( c != null )
+            throw new RuntimeException("The item you're trying to add is already in the inventory");
+        i.setTaken();
+        Message msg = new Message(i.getEnumItem(), true ); //prepare the message with the added object
         send(msg); //then sends it
+        int pos = Arrays.binarySearch( (Item[])this.view.toArray() , i ,this.comp );
+        view.add(pos, i);
         return pos;
+        
     }
 
     /**
@@ -94,35 +105,21 @@ public class GameInventorySingleton extends User implements Iterable<Item>, Save
      * @return The removed element
      */
     public Item removeItem(int pos){
-        
-        Item ret = inventory.remove(pos);
-        Message msg = new Message(ret.getInfo(), false ); //prepare the message with the removed object
-        send(msg); //then sends it
-        return ret;
+     
+        Item i = view.remove(pos);
+        return removeItem(i);
         
     }
     
-    /**
-     * 
-     * @param title The title of the element the users want to remove.
-     * @return The removed element
-     */
-    public Item removeItem(String title) {
-        
-        for( Item x : inventory ){
-            if(x.getTitle().equals(title) ){
-                inventory.remove(x);
-                Message msg = new Message(x.getInfo(), false ); //prepare the message with the removed object
-                send(msg); //then sends it
-                return x;
-            }
-        }
-        
-        
-        
-        return null;
-        
+    public Item removeItem(Item i ){
+
+        Item r = items.remove(i.getEnumItem());
+        if( r == null )
+            throw new RuntimeException("Item is not in the inventory, impossible to remove");
+        return i;
     }
+    
+    
 
     /**
      * 
@@ -131,7 +128,7 @@ public class GameInventorySingleton extends User implements Iterable<Item>, Save
      */
     public List<Item> search(String s){
         //;
-        return inventory.stream().filter( gi -> gi.getTitle().toLowerCase().startsWith(s)).collect(Collectors.toList());
+        return items.values.filter( gi -> gi.getTitle().toLowerCase().startsWith(s)).collect(Collectors.toList());
     }
     
     /**
@@ -139,20 +136,21 @@ public class GameInventorySingleton extends User implements Iterable<Item>, Save
      * mechanism will change underneath.
      */
     public void sortByTaken() {
-        if(this.gis instanceof InventoryStrategyByName){
-            this.gis = new InventoryStrategyByTaken();
-            Collections.sort(this.inventory, this.gis);
+        if(! (this.comp instanceof TakenComparator) ){
+            this.comp = new TakenComparator();
+            Collections.sort(view, comp);
         }
+        
     }
     
     /**
      * Set the strategy, the list will be ordered by the name of the items
      * and so the add mechanism will change underneath.
      */
-    public void sortByName(){
-        if(this.gis instanceof InventoryStrategyByTaken){
-            this.gis = new InventoryStrategyByName();
-            Collections.sort(inventory, this.gis);
+    public void sortByTitle(){
+        if(! (this.comp instanceof TitleComparator) ){
+            this.comp = new TitleComparator();
+            Collections.sort(view, comp);
         }
     }
 
@@ -162,7 +160,7 @@ public class GameInventorySingleton extends User implements Iterable<Item>, Save
      */
     @Override
     public Iterator iterator() {
-        return this.inventory.iterator();
+        return this.view.iterator();
     }
 
     /**
@@ -171,7 +169,7 @@ public class GameInventorySingleton extends User implements Iterable<Item>, Save
      */
     @Override
     public Serializable save() {
-        return this.inventory; //cast to Serializable useful because ArrayList seems to not be Serializable
+        return (Serializable) this.items; //cast to Serializable useful because ArrayList seems to not be Serializable
     }
 
     /**
@@ -180,7 +178,41 @@ public class GameInventorySingleton extends User implements Iterable<Item>, Save
      */
     @Override
     public void load(Serializable obj) {
-        this.inventory = (LinkedList<Item>) obj;
+        this.items = (HashMap<ItemEnum,Item>) obj;
     }
+
+    private static class TakenComparator implements Comparator<Item> {
+
+        public TakenComparator() {
+        }
+
+
+        @Override
+        public int compare(Item o1, Item o2) {
+            if(o1 == null )
+                return o1==o2?0:-1;
+            if(o2 == null )
+                return 1;
+            return o1.getTaken().compareTo(o2.getTaken());
+        }
+    }
+
+    private static class TitleComparator implements Comparator<Item> {
+
+        public TitleComparator() {
+        }
+
+        @Override
+        public int compare(Item o1, Item o2) {
+            if(o1 == null )
+                return o1==o2?0:-1;
+            if(o2 == null )
+                return 1;
+            return o1.getTitle().compareTo(o2.getTitle());
+        }
+    }
+    
+    
+    
     
 }
