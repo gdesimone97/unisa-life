@@ -11,7 +11,10 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import quests.ItemDef;
 import quests.QuestsManagerSingleton;
+import quests.mediator.Message;
+import quests.quest.QuestsSingleton;
 
 /**
  *
@@ -51,8 +54,8 @@ public class QuestManagerTest {
     @Test
     public void sendTest(){
         QuestsManagerSingleton qms = QuestsManagerSingleton.getInstance();
-        Quests q = Quests.getInstance();
-        qms.sendMessage(new Message(EnumItem.MN1.toString(), True ), q);
+        QuestsSingleton q = QuestsSingleton.getInstance();
+        qms.sendMessage(new Message(ItemDef.MN1.toString(), True ), q);
         assertEquals(q.getActiveQuests().size(), 1);
     }
     
