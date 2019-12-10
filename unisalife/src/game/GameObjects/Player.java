@@ -35,7 +35,7 @@ public class Player extends GameObject implements Tickable,Renderable{
     protected FaceState face;
     private static Player uniqueIstance=null;
     protected Game game;
-    protected GameInventory inventory;
+    public GameInventory inventory;
     
     /*public Player(float x,float y,ObjectId i){
         super(x,y,i);

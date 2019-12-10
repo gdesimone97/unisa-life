@@ -29,11 +29,15 @@ public class Item extends GameObject implements Renderable, Interactable, Serial
     private final String info;
     private BufferedImage facingDownImage;
     private LocalDateTime taken;
+    private int mapToSpawn;
 
-    public Item(float x, float y, ObjectId i, String path, String title, String info) {
-        super(x, y, i);
-        this.title = title;
-        this.info = info;
+
+
+    public Item(float x,float y,ObjectId i,String path,String title,String info,int mts){
+        super(x,y,i);
+        this.mapToSpawn=mts;
+        this.title=title;
+	this.info=info;
         try {
             facingDownImage = ImageIO.read(
                     getClass().getResourceAsStream(path)
@@ -56,8 +60,11 @@ public class Item extends GameObject implements Renderable, Interactable, Serial
     public int compareTo(Item o) {
         if (o == null) {
             return 1;
-        }
-        return info.compareTo(o.getInfo());
+       return info.compareTo(o.getInfo());
+}
+
+    public int getMapToSpawn(){
+        return this.mapToSpawn;
     }
 
     public void setTaken() {

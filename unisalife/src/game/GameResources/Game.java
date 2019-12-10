@@ -13,6 +13,7 @@ import game.GameObjects.Item;
 import game.GameObjects.Destination;
 import game.GameObjects.Camera;
 import game.GameObjects.Block;
+import game.GameObjects.GameObject;
 import java.awt.Canvas;
 import java.awt.image.BufferStrategy;
 import java.awt.Graphics2D;
@@ -70,12 +71,23 @@ public class Game extends Canvas implements Runnable, Saveable {
     protected static int actualMap;
     protected static TileMap tileMap;
     protected static Player player;
-    protected static int skin;
-    private listOfAllItem;
+    protected int skin;
+    protected String namePlayer;
+    private LinkedList<Item> listOfAllItem;
     /**
      * method that loads the resources of game(maps, objects, camera, handler
      * and key listener).
      */
+    
+    public void setSkin(int s){
+        this.skin=s;
+    }
+    
+    public void setName(String s){
+        this.namePlayer=s;
+    }
+    
+    
     private void initResources() {
         TileMap t0 = new TileMap(32, 928, 928);
         t0.loadTiles("/Tilesets/tileset.gif");
@@ -86,7 +98,7 @@ public class Game extends Canvas implements Runnable, Saveable {
         maps[0] = new Map(t0);
         maps[0].addObject(new Block(150, 150, ObjectId.Block));
         maps[0].addObject(new Teleport(250, 250, ObjectId.Teleport, "Tileset/tileset.gif", 1, new Destination(20, 20)));
-        maps[0].addObject(new Item(300, 300, ObjectId.Item, "/Sprites/item.png", "Sfera pokè", "pok"));
+        maps[0].addObject(new Item(300, 300, ObjectId.Item, "/Sprites/item.png", "Sfera pokè", "pok",0));
         maps[1] = new Map(t1);
         maps[1].addObject(new Block(100, 70, ObjectId.Block));
         maps[1].addObject(new Block(70, 40, ObjectId.Block));
@@ -105,7 +117,7 @@ public class Game extends Canvas implements Runnable, Saveable {
         texturePlayer = new BufferedImage[12];
         try {
             BufferedImage characterImage = ImageIO.read(
-                    getClass().getResourceAsStream("/Sprites/character.png")
+                    getClass().getResourceAsStream("/Sprites/character"+skin+".png")
             );
             texturePlayer[0] = characterImage.getSubimage(32, 0, DIMENSIONSPRITE, DIMENSIONSPRITE);
             texturePlayer[1] = characterImage.getSubimage(0, 0, DIMENSIONSPRITE, DIMENSIONSPRITE);
@@ -133,10 +145,8 @@ public class Game extends Canvas implements Runnable, Saveable {
         player.setY(50);
 
     }
-
-    private void initInventory(){
-        
-    }
+    
+    
     
     @Override
     public void load(Serializable obj) throws LoadingException {
@@ -153,11 +163,12 @@ public class Game extends Canvas implements Runnable, Saveable {
                 player.setY((int) l.get(3));
                 player.setInventory((LinkedList)l.get(4));
                 /*initPlayer();
-                initInventory();   */     
+                initInventory();   */   
+                
             }
         }
     }
-
+    
     @Override
     public Serializable save() {
         ArrayList<Serializable> l = new ArrayList<>();
@@ -165,6 +176,7 @@ public class Game extends Canvas implements Runnable, Saveable {
         l.add(actualMap);
         l.add(player.getX());
         l.add(player.getY());
+        l.add(player.inventory);
         return l;
     }
 
@@ -192,10 +204,45 @@ public class Game extends Canvas implements Runnable, Saveable {
      /**
      * method that calls all other init methods.
      */
+    
+    private void initDefaultMaps(){
+        LinkedList<Item> listOfMap1ToSpawn = new LinkedList<>(listOfAllItem);
+        listOfMap1ToSpawn.removeIf(item->item.getMapToSpawn()==0);
+        LinkedList<Item> listOfMap0ToSpawn = new LinkedList<>(listOfAllItem);
+        listOfMap0ToSpawn.removeIf(item->item.getMapToSpawn()==1);
+        for(Item i:listOfMap0ToSpawn){
+            maps[0].addObject(i);
+        }
+        for(Item i:listOfMap1ToSpawn){
+            maps[1].addObject(i);
+        }
+    }
+    
+    private void initMaps(){
+        
+        LinkedList<Item> listOfMap1ToSpawn = new LinkedList<>(listOfAllItem);
+        listOfMap1ToSpawn.removeIf(item->item.getMapToSpawn()==0);
+        LinkedList<Item> listOfMap0ToSpawn = new LinkedList<>(listOfAllItem);
+        listOfMap0ToSpawn.removeIf(item->item.getMapToSpawn()==1);
+        listOfMap0ToSpawn.removeAll(player.inventory.getInventory());
+        listOfMap1ToSpawn.removeAll(player.inventory.getInventory());
+        for(Item i:listOfMap0ToSpawn){
+            maps[0].addObject(i);
+        }
+        for(Item i:listOfMap1ToSpawn){
+            maps[1].addObject(i);
+        }
+               
+        
+    }
+    
     private void init() {
-
         initResources();
         initPlayer();
+        if(player.inventory.length()!=0)
+            initMaps();
+        else
+            initDefaultMaps();
         handler = new Handler();
         camera = new Camera(0, 0, player);
     }
@@ -204,10 +251,10 @@ public class Game extends Canvas implements Runnable, Saveable {
      * method that run the thread
      */
     public synchronized void start() {
-        if (isRunning) {
+        if(isRunning){
             return;
         }
-        isRunning = true;
+        isRunning=true;
         thread = new Thread(this);
         thread.start();
     }
