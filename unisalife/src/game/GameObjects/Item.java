@@ -103,16 +103,6 @@ public class Item extends GameObject implements Renderable, Interactable, Serial
 
     @Override
     public void interact() {
-        /*
-        try {
-        FileTextManager textManager = FileTextManager.getFileTextManager();
-        String s = textManager.getString(this).get(0);
-        GuiManager guiManager = GuiManager.getInstance();
-        guiManager.showDialog(s);
-        } catch (Exception ex){
-            System.out.println("Errore");
-        }
-        */
         System.out.println("hai raccolto " + title);
     }
 
