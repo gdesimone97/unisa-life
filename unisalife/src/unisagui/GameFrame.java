@@ -1627,44 +1627,63 @@ public class GameFrame extends javax.swing.JFrame {
         HudPanel.setPreferredSize(new java.awt.Dimension(600, 175));
 
         LevelLabel.setBackground(new java.awt.Color(255, 255, 255));
-        LevelLabel.setText(".");
+        LevelLabel.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
+        LevelLabel.setForeground(new java.awt.Color(255, 255, 255));
+        LevelLabel.setText("LEVEL 1");
         LevelLabel.setMaximumSize(new java.awt.Dimension(225, 25));
         LevelLabel.setMinimumSize(new java.awt.Dimension(225, 25));
         LevelLabel.setPreferredSize(new java.awt.Dimension(225, 25));
 
+        MoneyIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/unisagui/resources/moneta.png"))); // NOI18N
         MoneyIcon.setText("jLabel2");
         MoneyIcon.setMaximumSize(new java.awt.Dimension(25, 25));
         MoneyIcon.setMinimumSize(new java.awt.Dimension(25, 25));
         MoneyIcon.setPreferredSize(new java.awt.Dimension(25, 25));
 
-        MoneyLabel.setText("jLabel3");
+        MoneyLabel.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
+        MoneyLabel.setForeground(new java.awt.Color(255, 255, 51));
+        MoneyLabel.setText("0");
         MoneyLabel.setMaximumSize(new java.awt.Dimension(125, 25));
         MoneyLabel.setMinimumSize(new java.awt.Dimension(125, 25));
         MoneyLabel.setPreferredSize(new java.awt.Dimension(125, 25));
 
+        EnergyProgressBar.setBackground(new java.awt.Color(204, 255, 255));
+        EnergyProgressBar.setForeground(new java.awt.Color(108, 212, 255));
+        EnergyProgressBar.setValue(70);
+        EnergyProgressBar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         EnergyProgressBar.setMaximumSize(new java.awt.Dimension(150, 25));
         EnergyProgressBar.setMinimumSize(new java.awt.Dimension(150, 25));
         EnergyProgressBar.setPreferredSize(new java.awt.Dimension(150, 25));
 
+        EnergyIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/unisagui/resources/ENERGY25.png"))); // NOI18N
         EnergyIcon.setText("jLabel2");
         EnergyIcon.setMaximumSize(new java.awt.Dimension(25, 25));
         EnergyIcon.setMinimumSize(new java.awt.Dimension(25, 25));
         EnergyIcon.setPreferredSize(new java.awt.Dimension(25, 25));
 
+        StressIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/unisagui/resources/STRESS25.png"))); // NOI18N
         StressIcon.setText("jLabel2");
         StressIcon.setMaximumSize(new java.awt.Dimension(25, 25));
         StressIcon.setMinimumSize(new java.awt.Dimension(25, 25));
         StressIcon.setPreferredSize(new java.awt.Dimension(25, 25));
 
+        HungerIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/unisagui/resources/HUNGERICON25.png"))); // NOI18N
         HungerIcon.setText("jLabel2");
         HungerIcon.setMaximumSize(new java.awt.Dimension(25, 25));
         HungerIcon.setMinimumSize(new java.awt.Dimension(25, 25));
         HungerIcon.setPreferredSize(new java.awt.Dimension(25, 25));
 
+        StressProgressBar.setBackground(new java.awt.Color(255, 255, 204));
+        StressProgressBar.setForeground(new java.awt.Color(254, 215, 102));
+        StressProgressBar.setValue(14);
+        StressProgressBar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         StressProgressBar.setMaximumSize(new java.awt.Dimension(150, 25));
         StressProgressBar.setMinimumSize(new java.awt.Dimension(150, 25));
         StressProgressBar.setPreferredSize(new java.awt.Dimension(150, 25));
 
+        HungerProgressBar.setBackground(new java.awt.Color(255, 204, 204));
+        HungerProgressBar.setForeground(new java.awt.Color(195, 60, 84));
+        HungerProgressBar.setValue(20);
         HungerProgressBar.setMaximumSize(new java.awt.Dimension(150, 25));
         HungerProgressBar.setMinimumSize(new java.awt.Dimension(150, 25));
         HungerProgressBar.setPreferredSize(new java.awt.Dimension(150, 25));
@@ -1682,14 +1701,14 @@ public class GameFrame extends javax.swing.JFrame {
                         .addComponent(HungerIcon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(HudPanelLayout.createSequentialGroup()
                         .addGap(50, 50, 50)
-                        .addGroup(HudPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(HudPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(HudPanelLayout.createSequentialGroup()
                                 .addComponent(MoneyIcon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(25, 25, 25)
+                                .addGap(10, 10, 10)
                                 .addComponent(MoneyLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(124, 124, 124)
+                                .addGap(139, 139, 139)
                                 .addComponent(StressProgressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(26, 26, 26)
+                                .addGap(25, 25, 25)
                                 .addComponent(StressIcon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(HudPanelLayout.createSequentialGroup()
                                 .addComponent(LevelLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
