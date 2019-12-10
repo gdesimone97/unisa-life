@@ -60,7 +60,7 @@ public class InventoryStrategyByName implements GameInventoryStrategy{
         if(o2 == null)
             return 1;
         
-        return o1.getTitle().compareTo(o2.getTitle());
+        return o1.getInfo().compareTo(o2.getInfo());
         
     }
     
