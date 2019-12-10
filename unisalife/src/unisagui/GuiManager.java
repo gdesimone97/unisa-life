@@ -40,7 +40,7 @@ public class GuiManager {
         dialogmanager = new DialogManager();
         mainmenumanager = new MainMenuManager();
         settingsmenumanager = new SettingsMenuManager();
-        exammanager = new ExamManager();
+        exammanager = ExamManager.getInstance();
         questmanager = new QuestManager();
         gameframe = GameFrame.getInstance();
         
