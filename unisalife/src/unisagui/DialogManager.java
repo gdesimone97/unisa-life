@@ -33,4 +33,12 @@ public class DialogManager {
     public void showConversation(String conversation, boolean show){
         //ancora dobbiamo crearle
     }
+
+    void showHint(String s) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    void showDialog(String s) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
