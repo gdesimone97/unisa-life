@@ -122,10 +122,11 @@ public class ExamManager {
 
     
     protected  void  showExamDialog(String examName, String question, String answer1, String answer2, String answer3, String answer4, int time,ResultGui lock){
-        this.fillExam(examName, question, answer1, answer2, answer3, answer4);
-        rg = lock;
         this.time=time*1000;
         this.showTimer();
+        this.fillExam(examName, question, answer1, answer2, answer3, answer4);
+        rg = lock;
+        
 
          
         /* 
