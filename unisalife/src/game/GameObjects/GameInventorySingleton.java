@@ -18,6 +18,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
+import quests.ItemDef;
 
 /**
  *
@@ -25,7 +26,7 @@ import java.util.Map;
  */
 public class GameInventorySingleton extends User implements Iterable<Item>, Saveable, Serializable{
     
-    private Map< ItemEnum, Item > items;
+    private Map< ItemDef, Item > items;
     private List<Item> view;
     private Comparator<Item> comp;
     private static GameInventorySingleton instance = null;
@@ -87,11 +88,11 @@ public class GameInventorySingleton extends User implements Iterable<Item>, Save
      */
     public int addItem(Item i) {
         
-        Item c = this.items.putIfAbsent(i.getEnumItem() , i);
+        Item c = this.items.putIfAbsent(i.getID() , i);
         if( c != null )
             throw new RuntimeException("The item you're trying to add is already in the inventory");
         i.setTaken();
-        Message msg = new Message(i.getEnumItem(), true ); //prepare the message with the added object
+        Message msg = new Message(i.getID().toString() , true ); //prepare the message with the added object
         send(msg); //then sends it
         int pos = Arrays.binarySearch( (Item[])this.view.toArray() , i ,this.comp );
         view.add(pos, i);
@@ -113,7 +114,7 @@ public class GameInventorySingleton extends User implements Iterable<Item>, Save
     
     public Item removeItem(Item i ){
 
-        Item r = items.remove(i.getEnumItem());
+        Item r = items.remove(i.getID());
         if( r == null )
             throw new RuntimeException("Item is not in the inventory, impossible to remove");
         return i;
@@ -128,7 +129,7 @@ public class GameInventorySingleton extends User implements Iterable<Item>, Save
      */
     public List<Item> search(String s){
         //;
-        return items.values.filter( gi -> gi.getTitle().toLowerCase().startsWith(s)).collect(Collectors.toList());
+        return ((items.values().stream())).filter( gi -> gi.getTitle().toLowerCase().startsWith(s)).collect(Collectors.toList());
     }
     
     /**
@@ -178,7 +179,7 @@ public class GameInventorySingleton extends User implements Iterable<Item>, Save
      */
     @Override
     public void load(Serializable obj) {
-        this.items = (HashMap<ItemEnum,Item>) obj;
+        this.items = (HashMap<ItemDef,Item>) obj;
     }
 
     private static class TakenComparator implements Comparator<Item> {

@@ -11,13 +11,15 @@ import exam.question.Materia;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.EnumMap;
+import java.util.List;
 import quests.QuestsManagerSingleton;
-
+import quests.mediator.Message;
+import quests.mediator.User;
 /**
  *
  * @author liovi
  */
-public class QuestsSingleton implements Saveable, Serializable{
+public class QuestsSingleton  implements Saveable, Serializable{
 
     private EnumMap<Materia, Quest> quests;
     private ArrayList<Quest> availableQuests;
@@ -43,6 +45,10 @@ public class QuestsSingleton implements Saveable, Serializable{
         return quests;
     }
     
+    public List<Quest> getAvailableQuest(){
+        return this.availableQuests;
+    }
+    
     @Override
     public Serializable save() {
         ArrayList<Serializable> list = new ArrayList<>();
@@ -57,5 +63,7 @@ public class QuestsSingleton implements Saveable, Serializable{
         this.quests = (EnumMap<Materia, Quest>) list.get(0);
         this.availableQuests = (ArrayList<Quest>) list.get(1);
     }
+
+    
     
 }

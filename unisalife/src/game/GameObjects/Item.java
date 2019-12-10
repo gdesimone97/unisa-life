@@ -14,6 +14,7 @@ import java.time.LocalDateTime;
 import java.io.Serializable;
 import java.time.temporal.ChronoUnit;
 import java.util.Objects;
+import quests.ItemDef;
 /**
  *
  * @author simon
@@ -23,12 +24,14 @@ public class Item extends GameObject implements Renderable,Interactable,Serializ
     private final String info;
     private BufferedImage facingDownImage;
     private LocalDateTime taken;
+    private ItemDef id;
 
     
-    public Item(float x,float y,ObjectId i,String path,String title,String info){
+    public Item(float x,float y,ObjectId i,String path,String title,String info, ItemDef id){
         super(x,y,i);
         this.title=title;
 	this.info=info;
+        this.id = id;
         try {
         facingDownImage = ImageIO.read(
 				getClass().getResourceAsStream(path)
@@ -69,6 +72,9 @@ public class Item extends GameObject implements Renderable,Interactable,Serializ
         return taken;
     }
 
+    public ItemDef getID(){
+        return this.id;
+    }
    
 
     @Override

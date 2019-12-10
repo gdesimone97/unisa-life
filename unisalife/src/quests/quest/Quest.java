@@ -46,6 +46,13 @@ public class Quest extends User implements  Serializable {
         return available;
     }
     
+    public void finish(){
+        this.done = true;
+    }
+    
+    public boolean isDone(){
+        return this.done;
+    }
     
     
     @Override
@@ -56,5 +63,5 @@ public class Quest extends User implements  Serializable {
         setAvailability(mess.getId(),mess.getBool());
     }
 
-    
-}
+ }
+

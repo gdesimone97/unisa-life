@@ -5,6 +5,7 @@
  */
 package quest;
 
+import exam.question.Materia;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -46,17 +47,14 @@ public class QuestManagerTest {
     //
     // @Test
     // public void hello() {}
-    @Test
-    public void forwardTest(){
-        
-    }
+    
     
     @Test
     public void sendTest(){
         QuestsManagerSingleton qms = QuestsManagerSingleton.getInstance();
         QuestsSingleton q = QuestsSingleton.getInstance();
-        qms.sendMessage(new Message(ItemDef.MN1.toString(), True ), q);
-        assertEquals(q.getActiveQuests().size(), 1);
+        qms.sendMessage(new Message(ItemDef.appuntidimatematica1.toString(), true ), q.getQuest().get(Materia.matematica));
+        assertEquals(q.getAvailableQuest().size(), 1);
     }
     
     @Test

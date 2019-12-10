@@ -15,6 +15,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import quests.ItemDef;
 import quests.quest.Quest;
 import quests.quest.QuestsSingleton;
 
@@ -59,19 +60,16 @@ public class QuestsSingletonTest {
         */
         
         
-        Map<EnumItem ,Boolean> itemMap = new HashMap<>();
-        itemMap.put(EnumItem.MN2, true);
-        SubjectEnum subj = SubjectEnum.PHYS;
-        Quest q2 = new Quest(SubjectEnum.PHYS, itemMap);
-        
+        Quest q_phy = new Quest(Materia.fisica.toString());
+        q_phy.setItemsExam(ItemDef.calcolatrice.toString());
         
         QuestsSingleton qs = QuestsSingleton.getInstance();
-        Quest q = qs.getQuest(SubjectEnum.PHYS.toString());
-        assertEquals(q,q2);
+        Quest q = qs.getQuest().get(Materia.valueOf(Materia.fisica.toString()));
+        assertEquals(q,q_phy);
         
     }
 
-    
+    @Test
     public void getActiveQuestsTest(){
         
         /*
@@ -91,12 +89,12 @@ public class QuestsSingletonTest {
         QuestsSingleton qs = QuestsSingleton.getInstance();
         
         
-        List<Quest> aqs = qs.getActiveQuests(); 
-        assertEquals(aqs.size(),3);
-        q = qs.getQuest(Materia.MATH.toString());
+        List<Quest> aqs = qs.getAvailableQuest(); 
+        assertEquals(aqs.size(),1);
+        Quest q = qs.getQuest().get(new Quest(Materia.fisica.toString()));
         q.finish();
-        aqs = qs.getActiveQuests();
-        assertEquals(aqs.size(),2);
+        aqs = qs.getAvailableQuest();
+        assertEquals(aqs.size(),0);
         
         
         

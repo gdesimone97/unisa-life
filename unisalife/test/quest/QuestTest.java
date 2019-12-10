@@ -8,13 +8,10 @@ package quest;
 import exam.question.Materia;
 import java.util.HashMap;
 import java.util.Map;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import quests.ItemDef;
+import quests.mediator.Message;
 import quests.quest.Quest;
 
 /**
@@ -26,73 +23,71 @@ public class QuestTest {
     public QuestTest() {
     }
     
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
-    @Before
-    public void setUp() {
-    }
-    
-    @After
-    public void tearDown() {
-    }
 
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:
     //
     // @Test
     // public void hello() {}
+    
+    /*
     @Test
     public void getIDTest(){
         Map<ItemDef ,Boolean> itemMap = new HashMap<>();
-        Materia subj = Materia.MATH;
-        Quest q = new Quest(Materia.MATH, itemMap);
-        String subjQ = q.getID();
-        assert(subjQ == null ? subj.toString() != null : !subjQ.equals(subj.toString()) );
+        Materia subj = Materia.matematica;
+        Quest q = new Quest(subj.toString());
     }
+    
     
     @Test
     public void toStringTest(){
         Map<ItemDef ,Boolean> itemMap = new HashMap<>();
-        Materia subj = Materia.MATH;
-        Quest q = new Quest(Materia.MATH, itemMap);
+        Materia subj = Materia.matematica;
+        Quest q = new Quest(Materia.matematica.toString());
         String desc = q.toString();
         assertNotNull(desc);
-        assertEquals(desc,"NOT TESTABLE YET");
+        assertEquals(desc,"matematica");
     }
-    
+    */
     
     
     @Test 
     public void isAvailableTest(){
-        Map<ItemDef ,Boolean> itemMap = new HashMap<>();
-        itemMap.put(ItemDef.MN1, true);
-        Materia subj = Materia.MATH;
-        Quest q = new Quest(subj, itemMap);
+        
+        Materia subj = Materia.matematica;
+        Quest q = new Quest(subj.toString());
+        q.setItemsExam(ItemDef.appuntidimatematica1.toString());
         assertFalse(q.isAvailable());
-        q.receive(new Message(ItemDef.MN1.toString(),true));
-        assertTtrue(q.isAvailable());
+        q.receive(new Message(ItemDef.appuntidimatematica1.toString(),true));
+        assertTrue(q.isAvailable());
+    }
+    
+    @Test
+    public void setAvailableTest(){
+        Materia subj = Materia.matematica;
+        Quest q = new Quest(subj.toString());
+        q.setItemsExam(ItemDef.appuntidimatematica1.toString());
+        q.setItemsExam(ItemDef.appuntidimatematica2.toString());
+        assertFalse(q.isAvailable());
+        q.send(new Message(ItemDef.appuntidimatematica1.toString(),true));
+        q.send(new Message(ItemDef.appuntidimatematica2.toString(),true));
+        assertTrue(q.isAvailable());
     }
     
     @Test
     public void isDoneTest(){
 
         Map<ItemDef ,Boolean> itemMap = new HashMap<>();
-        Quest q = new Quest(Materia.MATH, itemMap);
-        assertFalse(q.isFinished());
+        Quest q = new Quest(Materia.matematica.toString());
+        assertFalse(q.isDone());
         q.finish();
-        assertTrue(q.isFinished());
+        assertTrue(q.isDone());
 
     }
     
     @Test
     public void finishTest(){
-            Quest q = new Quest(Materia.MATH, itemMap);
+            Quest q = new Quest(Materia.matematica.toString());
             q.finish();
             assertTrue(q.isDone());
             
