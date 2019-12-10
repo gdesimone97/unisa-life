@@ -126,6 +126,7 @@ public class ExamManager {
             time = time - 1000;
         });
         timing.start();
+        
 
     }
 
@@ -145,6 +146,8 @@ public class ExamManager {
      * to the exam are called
      */
     protected void showExamDialog(String examName, String question, String answer1, String answer2, String answer3, String answer4, int time, ResultGui lock) {
+        if(level>0)
+            timing.stop();
         this.time = time * 1000;
         this.showTimer();
         level++;
