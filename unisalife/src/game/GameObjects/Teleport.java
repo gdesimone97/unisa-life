@@ -65,14 +65,6 @@ public class Teleport extends GameObject {
 
     /**
      *
-     * @return tilepath
-     */
-    public String getTilePath() {
-        return tilePath;
-    }
-
-    /**
-     *
      * @return index of map of destination
      */
     public int getMapDest() {
