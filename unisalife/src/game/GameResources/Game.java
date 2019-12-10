@@ -22,6 +22,7 @@ import javax.imageio.ImageIO;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.awt.Dimension;
+import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -74,7 +75,7 @@ public class Game extends Canvas implements Runnable, Saveable {
     protected static Player player;
     protected int skin;
     protected String namePlayer;
-    private LinkedList<Item> listOfAllItem;
+    private LinkedList<Item> listOfAllItem=new LinkedList<Item>();
     /**
      * method that loads the resources of game(maps, objects, camera, handler
      * and key listener).
@@ -91,6 +92,8 @@ public class Game extends Canvas implements Runnable, Saveable {
     
     private void initResources() {
         TileMap t0 = new TileMap(32, 928, 928);
+        File f=new File("../Tilesets/tileset.gif");
+        System.out.print(f.exists());
         t0.loadTiles("/Tilesets/tileset.gif");
         TileMap t1 = new TileMap(32, 928, 928);
         t1.loadTiles("/Tilesets/tileset.gif");
@@ -118,7 +121,7 @@ public class Game extends Canvas implements Runnable, Saveable {
         texturePlayer = new BufferedImage[12];
         try {
             BufferedImage characterImage = ImageIO.read(
-                    getClass().getResourceAsStream("/Sprites/character"+skin+".png")
+                    getClass().getResourceAsStream("/Sprites/character.png")
             );
             texturePlayer[0] = characterImage.getSubimage(32, 0, DIMENSIONSPRITE, DIMENSIONSPRITE);
             texturePlayer[1] = characterImage.getSubimage(0, 0, DIMENSIONSPRITE, DIMENSIONSPRITE);
