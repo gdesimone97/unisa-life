@@ -7,7 +7,6 @@ package game.GameObjects;
 
 import game.Interfaces.Interactable;
 import game.Interfaces.Renderable;
-import language.Information;
 import java.awt.Graphics;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -15,29 +14,22 @@ import java.time.LocalDateTime;
 import java.io.Serializable;
 import java.time.temporal.ChronoUnit;
 import java.util.Objects;
-import language.FileTextManager;
-import language.TextManager;
-import unisagui.GuiManager;
 
 /**
  *
  * @author simon
  */
-public class Item extends GameObject implements Renderable, Interactable, Serializable, Comparable<Item>, Information {
+public class Item extends GameObject implements Renderable, Interactable, Serializable, Comparable<Item> {
 
-    private final String title;
     private final String info;
     private BufferedImage facingDownImage;
     private LocalDateTime taken;
     private int mapToSpawn;
 
-
-
-    public Item(float x,float y,ObjectId i,String path,String title,String info,int mts){
-        super(x,y,i);
-        this.mapToSpawn=mts;
-        this.title=title;
-	this.info=info;
+    public Item(float x, float y, String path, String info, int mts) {
+        super(x, y);
+        this.mapToSpawn = mts;
+        this.info = info;
         try {
             facingDownImage = ImageIO.read(
                     getClass().getResourceAsStream(path)
@@ -58,12 +50,13 @@ public class Item extends GameObject implements Renderable, Interactable, Serial
 
     @Override
     public int compareTo(Item o) {
-        if (o == null)
+        if (o == null) {
             return 1;
-       return info.compareTo(o.getInfo());
-}
+        }
+        return info.compareTo(o.getInfo());
+    }
 
-    public int getMapToSpawn(){
+    public int getMapToSpawn() {
         return this.mapToSpawn;
     }
 
@@ -71,11 +64,6 @@ public class Item extends GameObject implements Renderable, Interactable, Serial
         this.taken = LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS);
     }
 
-    public String getTitle() {
-        return title;
-    }
-
-    @Override
     public String getInfo() {
         return this.info;
     }
@@ -93,7 +81,7 @@ public class Item extends GameObject implements Renderable, Interactable, Serial
 
     @Override
     public String toString() {
-        return "Object : " + this.title + " ( taken in " + this.taken + " )";
+        return "Object : " + this.info + " ( taken in " + this.taken + " )";
     }
 
     @Override
@@ -103,11 +91,7 @@ public class Item extends GameObject implements Renderable, Interactable, Serial
 
     @Override
     public void interact() {
-        System.out.println("hai raccolto " + title);
+        System.out.println("hai raccolto " + info);
     }
 
-    @Override
-    public Boolean isAvailable() {
-        return true;
-    }
 }
