@@ -82,7 +82,7 @@ public class GameInventory implements Iterable<Item>, Serializable{
     public Item removeItem(String title) {
         
         for( Item x : inventory ){
-            if(x.getTitle().equals(title) ){
+            if(x.getInfo().equals(title) ){
                 inventory.remove(x);
                 return x;
             }
@@ -99,7 +99,7 @@ public class GameInventory implements Iterable<Item>, Serializable{
      */
     public List<Item> search(String s){
         //;
-        return inventory.stream().filter( gi -> gi.getTitle().toLowerCase().startsWith(s)).collect(Collectors.toList());
+        return inventory.stream().filter( gi -> gi.getInfo().toLowerCase().startsWith(s)).collect(Collectors.toList());
     }
     
     /**
