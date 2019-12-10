@@ -106,14 +106,13 @@ public class ExamManager {
      */
     
     private void showTimer() {
-
         timing = new Timer(time, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (time == 0) {
                     timing.stop();
                 }
-                SwingUtilities.invokeLater(() -> gameframe.TimeLabel.setText(String.valueOf(time / 1000)));
+                SwingUtilities.invokeLater(() -> gameframe.TimeLabel.setText(Integer.toString(time / 1000)));
                 time -= 1000;
             }
         });
@@ -122,10 +121,11 @@ public class ExamManager {
 
     
     protected  void  showExamDialog(String examName, String question, String answer1, String answer2, String answer3, String answer4, int time,ResultGui lock){
-        this.fillExam(examName, question, answer1, answer2, answer3, answer4);
-        rg = lock;
         this.time=time*1000;
         this.showTimer();
+        this.fillExam(examName, question, answer1, answer2, answer3, answer4);
+        rg = lock;
+        
 
          
         /* 
