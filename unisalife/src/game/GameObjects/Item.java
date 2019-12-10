@@ -58,7 +58,7 @@ public class Item extends GameObject implements Renderable, Interactable, Serial
 
     @Override
     public int compareTo(Item o) {
-        if (o == null) {
+        if (o == null)
             return 1;
        return info.compareTo(o.getInfo());
 }
