@@ -28,7 +28,7 @@ public class ExamManager {
     private int time = 0;
     private Timer timing;
     protected static ExamManager instance;
-    protected ResultGui rg2= new ResultGui(30000);
+   // protected ResultGui rg2= new ResultGui(30000);
     
     
     
@@ -48,8 +48,8 @@ public class ExamManager {
      * If the user does not respond this parameter will remain equal to null
      */
     protected  void setRESULT(int RESULT) {
-        rg2.setValue(RESULT);
-        
+        rg.setValue(RESULT);
+        this.manageButtons(false);
     }
    
 
@@ -84,7 +84,7 @@ public class ExamManager {
         SwingUtilities.invokeLater(() -> gameframe.ThirdAnswer.setText(answer3));
         SwingUtilities.invokeLater(() -> gameframe.FourthAnswer.setText(answer4));
         SwingUtilities.invokeLater(() -> gameframe.NameOfExamLabel.setText(examName));
-        this.showTimer();
+       
             
         
     }
@@ -92,7 +92,7 @@ public class ExamManager {
      * 
      * @param enable  if is false all the button wll be disabled and viceversa
      */
-    private void manageButtons(boolean enable){
+    protected void manageButtons(boolean enable){
         SwingUtilities.invokeLater(() -> gameframe.FirstAnswer.setEnabled(enable));
         SwingUtilities.invokeLater(() -> gameframe.SecondAnswer.setEnabled(enable));
         SwingUtilities.invokeLater(() -> gameframe.ThirdAnswer.setEnabled(enable));
@@ -121,14 +121,13 @@ public class ExamManager {
     }
 
     
-    protected synchronized  int showExamDialog(String examName, String question, String answer1, String answer2, String answer3, String answer4, int time){
-        
+    protected  void  showExamDialog(String examName, String question, String answer1, String answer2, String answer3, String answer4, int time,ResultGui lock){
         this.fillExam(examName, question, answer1, answer2, answer3, answer4);
+        rg = lock;
         this.time=time*1000;
-        int value= rg2.getValue();
-        this.manageButtons(false);
-        return (value);
-        
+        this.showTimer();
+
+         
         /* 
         try {
             this.wait(time*1000);

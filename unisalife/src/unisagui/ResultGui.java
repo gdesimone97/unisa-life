@@ -23,7 +23,7 @@ public class ResultGui {
 
     public synchronized int getValue() {
         try {
-            this.wait(time);
+            this.wait(time*1000);
         } catch (InterruptedException ex) {
         }
         return value;

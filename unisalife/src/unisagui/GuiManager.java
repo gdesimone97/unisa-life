@@ -112,8 +112,8 @@ public class GuiManager {
      * @param time
      * @return
      */
-    public int showExamDialog(String examName, String question, String answer1, String answer2, String answer3, String answer4, int time){
-       return  exammanager.showExamDialog(examName,question,answer1,answer2,answer3,answer4,time);
+    public void showExamDialog(String examName, String question, String answer1, String answer2, String answer3, String answer4, int time,ResultGui lock){
+        exammanager.showExamDialog(examName,question,answer1,answer2,answer3,answer4,time,lock);
     }
     
     /**

@@ -1353,6 +1353,11 @@ public class GameFrame extends javax.swing.JFrame {
         AvatarOkButton.setMaximumSize(new java.awt.Dimension(75, 50));
         AvatarOkButton.setMinimumSize(new java.awt.Dimension(75, 50));
         AvatarOkButton.setPreferredSize(new java.awt.Dimension(75, 50));
+        AvatarOkButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                AvatarOkButtonMouseClicked(evt);
+            }
+        });
         AvatarOkButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AvatarOkButtonActionPerformed(evt);
@@ -1728,6 +1733,8 @@ public class GameFrame extends javax.swing.JFrame {
 
     private void FirstAnswerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FirstAnswerMouseClicked
         ExamManager.getInstance().setRESULT(1);
+        
+    
     }//GEN-LAST:event_FirstAnswerMouseClicked
 
     private void SecondAnswerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SecondAnswerMouseClicked
@@ -1741,6 +1748,10 @@ public class GameFrame extends javax.swing.JFrame {
     private void FourthAnswerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FourthAnswerMouseClicked
       ExamManager.getInstance().setRESULT(4);
     }//GEN-LAST:event_FourthAnswerMouseClicked
+
+    private void AvatarOkButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AvatarOkButtonMouseClicked
+        
+    }//GEN-LAST:event_AvatarOkButtonMouseClicked
     
     
         /**
