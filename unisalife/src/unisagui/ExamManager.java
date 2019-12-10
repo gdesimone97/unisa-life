@@ -86,7 +86,7 @@ public class ExamManager {
         SwingUtilities.invokeLater(() -> gameframe.ThirdAnswer.setText(answer3));
         SwingUtilities.invokeLater(() -> gameframe.FourthAnswer.setText(answer4));
         SwingUtilities.invokeLater(() -> gameframe.NameOfExamLabel.setText(examName));
-        SwingUtilities.invokeLater(() -> gameframe.LevelOfQuestionLabel.setText(Integer.toString(level)+"/3"));
+        SwingUtilities.invokeLater(() -> gameframe.LevelOfQuestionLabel.setText("Question "+Integer.toString(level)+"/3"));
        
             
         
