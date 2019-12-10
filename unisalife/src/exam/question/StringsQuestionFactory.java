@@ -45,11 +45,11 @@ public class StringsQuestionFactory extends QuestionFactory {
     */
     private void parseQuestions() {
         String[] strList = {"1#Qual è la capitale della Francia?#Parigi#Roma#Londra#Madrid",
-                            "2#Quanti stati ha un bit?#2#1#3",
-                            "3#Chi è lo scrubmastah di questo gruppo?#Tu#Giuseppe#Ritrovato",
+                            "2#Quanti stati ha un bit?#2#1#3#6",
+                            "3#Chi è lo scrubmastah di questo gruppo?#Tu#Giuseppe#Ritrovato#Davide",
                             "4#Virginia ha i capelli:#Rosa#Verdi#Rossi#Bianchi",
-                            "4#Chi è l'unica ragazza del gruppo 8?#Alfonso#Gennaro#Simone",
-                            "4#Peppe quante cose può guardare contemporaneamente?#Due#Una#Mille"};
+                            "4#Chi è l'unica ragazza del gruppo 8?#Alfonso#Gennaro#Simone#Virginia",
+                            "4#Peppe quante cose può guardare contemporaneamente?#Due#Una#Mille#Centomila"};
         
         Scanner sc;
         boolean count;

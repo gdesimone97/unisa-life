@@ -91,7 +91,7 @@ public class Exam implements Runnable {
         GuiManager gui = GuiManager.getInstance();
         ResultGui rg = new ResultGui(questionTime);
         Question question;
-        int answer;
+        int answer = 0;
         long start;
         int elapsed;
         
@@ -109,7 +109,7 @@ public class Exam implements Runnable {
             
             elapsed = (int) ((System.nanoTime() - start) / 1000000000);
             
-            if ( answer == 0) {
+            if ( answer == 0 ) {
                 verifyAnswer(false, elapsed, question.getLevel());
                 System.out.println("Non hai risposto");
             }
