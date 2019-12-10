@@ -109,15 +109,16 @@ public class ExamManager {
      */
     
     private void showTimer() {
-        timing = new Timer(time, new ActionListener() {
+        
+        timing = new Timer(1000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (time == 0) {
+                if (time <= 0) {
                     timing.stop();
+                    return; // for stop at time =0
                 }
-                SwingUtilities.invokeLater(() -> gameframe.TimeLabel.setText(Integer.toString(time / 1000)));
-                System.out.print(Integer.toString(time/1000));
-                time -= 1000;
+                SwingUtilities.invokeLater(() -> gameframe.TimeLabel.setText(String.valueOf(time/1000)));
+                time =time-1000;
             }
         });
      
@@ -142,6 +143,7 @@ public class ExamManager {
     public void setExamQuestion(String question){
          SwingUtilities.invokeLater(() -> gameframe.ExamTextArea.setText(question));
     }
+    
     
     /**
      * When called one of the exam question is written in the Exam Dialog
