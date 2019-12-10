@@ -32,5 +32,9 @@ public class RequestManager {
     public String getInfo(){
         return info;
     }
+
+    void showRequest(String s) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }
