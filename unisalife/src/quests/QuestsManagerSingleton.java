@@ -5,11 +5,14 @@
  */
 package quests;
 
+import exam.question.Materia;
 import java.util.ArrayList;
+import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.List;
 import quests.mediator.*;
-import quests.quest.QuestFactory;
+import quests.quest.Quest;
+import quests.quest.QuestsSingleton;
 
 /**
  * This class is used due to a necessity of manage the communication between
@@ -21,10 +24,13 @@ public class QuestsManagerSingleton implements QuestMessages{
     
     private static QuestsManagerSingleton instance = null;
     private List<User> users;
-    private HashMap<String,QuestFactory> quest;
+    private HashMap<String,Materia> item; //elenco di item e domande con associate ad una materia
+    private EnumMap<Materia, Quest> quests;
     
     private QuestsManagerSingleton(){
         this.users = new ArrayList<>();
+        QuestsSingleton instance = QuestsSingleton.getInstance();
+        quests = instance.getQuest();
     }
     
     /**
@@ -48,9 +54,9 @@ public class QuestsManagerSingleton implements QuestMessages{
      */
     @Override
     public void sendMessage(Message mess, User user) {
-        if(quest.containsKey(mess.getId())){
-            quest.get(mess.getId()).receive(mess);
-        }
+        Materia receiver = item.get(mess.getId());
+        Quest q = quests.get(receiver);
+        q.receive(mess);
     }
 
     /**

@@ -10,5 +10,7 @@ package quests;
  * @author liovi
  */
 public enum ItemDef {
-    
+    appuntidimatematica1,
+    appuntidimatematica2,
+    calcolatrice;
 }

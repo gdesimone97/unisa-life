@@ -5,6 +5,7 @@
  */
 package quest;
 
+import exam.question.Materia;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,6 +16,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import quests.quest.Quest;
+import quests.quest.QuestsSingleton;
 
 /**
  *
@@ -91,7 +93,7 @@ public class QuestsSingletonTest {
         
         List<Quest> aqs = qs.getActiveQuests(); 
         assertEquals(aqs.size(),3);
-        q = qs.getQuest(SubjectEnum.MATH.toString());
+        q = qs.getQuest(Materia.MATH.toString());
         q.finish();
         aqs = qs.getActiveQuests();
         assertEquals(aqs.size(),2);
