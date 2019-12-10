@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package game.Interfaces;
+package com.mycompany.justfortesting;
 
 /**
  *
- * @author cmarino
+ * @author alfon
  */
-public interface Information {
-    public String getInfo();
+public interface TestInterface {
+    String testMethod();
 }

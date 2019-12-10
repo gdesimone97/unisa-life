@@ -4,9 +4,11 @@
  * and open the template in the editor.
  */
 package game.GameObjects;
+
 import game.Interfaces.Interactable;
 import game.Interfaces.Renderable;
-import game.Interfaces.Information;
+import interaction.ItemInteractionManager;
+import language.Information;
 import java.awt.Graphics;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -14,62 +16,64 @@ import java.time.LocalDateTime;
 import java.io.Serializable;
 import java.time.temporal.ChronoUnit;
 import java.util.Objects;
+
 /**
  *
  * @author simon
  */
-public class Item extends GameObject implements Renderable,Interactable,Serializable,Comparable<Item>,Information {
+public class Item extends GameObject implements Renderable, Interactable, Serializable, Comparable<Item>, Information {
+
     private final String title;
     private final String info;
     private BufferedImage facingDownImage;
     private LocalDateTime taken;
 
-    
-    public Item(float x,float y,ObjectId i,String path,String title,String info){
-        super(x,y,i);
-        this.title=title;
-	this.info=info;
+    public Item(float x, float y, ObjectId i, String path, String title, String info) {
+        super(x, y, i);
+        this.title = title;
+        this.info = info;
         try {
-        facingDownImage = ImageIO.read(
-				getClass().getResourceAsStream(path)
-        );}
-        catch (Exception e) {
+            facingDownImage = ImageIO.read(
+                    getClass().getResourceAsStream(path)
+            );
+        } catch (Exception e) {
             System.exit(1);
+        }
     }
-    }
-        @Override
-	public boolean equals( Object o){
-            if(o==null||!(o instanceof Item))
-                return false;
-        return this.info.equals(((Item)o).getInfo());
-
-}
 
     @Override
-    public int compareTo(Item o){
-        if(o==null)
-            return 1;
-       return info.compareTo(o.getInfo());
-}
+    public boolean equals(Object o) {
+        if (o == null || !(o instanceof Item)) {
+            return false;
+        }
+        return this.info.equals(((Item) o).getInfo());
 
-    public void setTaken(){
-        this.taken=LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS);
     }
-    
+
+    @Override
+    public int compareTo(Item o) {
+        if (o == null) {
+            return 1;
+        }
+        return info.compareTo(o.getInfo());
+    }
+
+    public void setTaken() {
+        this.taken = LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS);
+    }
+
     public String getTitle() {
         return title;
     }
 
     @Override
-   public String getInfo(){
-	return this.info;
-}
-	
+    public String getInfo() {
+        return this.info;
+    }
+
     public LocalDateTime getTaken() {
         return taken;
     }
-
-   
 
     @Override
     public int hashCode() {
@@ -77,23 +81,21 @@ public class Item extends GameObject implements Renderable,Interactable,Serializ
         hash = 31 * hash + Objects.hashCode(this.info);
         return hash;
     }
-        
-    
-    @Override
-    public String toString(){
-        return "Object : " + this.title + " ( taken in "+ this.taken +" )";
-    }
-    
-    
-   @Override
-    public void render(Graphics g){
-        g.drawImage(facingDownImage, (int)x, (int)y, width, height, null);
-    }
-    
-    @Override
-    public void interact(){
-        System.out.println("hai raccolto "+title);
-    }
-    
-}
 
+    @Override
+    public String toString() {
+        return "Object : " + this.title + " ( taken in " + this.taken + " )";
+    }
+
+    @Override
+    public void render(Graphics g) {
+        g.drawImage(facingDownImage, (int) x, (int) y, width, height, null);
+    }
+
+    @Override
+    public void interact() {
+        ItemInteractionManager iim = new ItemInteractionManager();
+        iim.execute(this);
+    }
+
+}

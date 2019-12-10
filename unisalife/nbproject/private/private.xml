@@ -3,12 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/H:/PROGRAMMAZIONE/GITHUB/unisa-life/unisalife/src/language/ConcreteFileTextFinder.java</file>
-            <file>file:/H:/PROGRAMMAZIONE/GITHUB/unisa-life/unisalife/test/language/CacheFileTextFinderTest.java</file>
-            <file>file:/H:/PROGRAMMAZIONE/GITHUB/unisa-life/unisalife/test/language/FileLanguageManagerTest.java</file>
-            <file>file:/H:/PROGRAMMAZIONE/GITHUB/unisa-life/unisalife/src/language/CacheFileTextFinder.java</file>
-            <file>file:/H:/PROGRAMMAZIONE/GITHUB/unisa-life/unisalife/test/language/FileTextManagerTest.java</file>
-            <file>file:/H:/PROGRAMMAZIONE/GITHUB/unisa-life/unisalife/test/language/LanguageManagerTest.java</file>
+            <file>file:/C:/Users/alfon/Documents/NetBeansProjects/unisa-life/unisalife/src/language/TextManager.java</file>
+            <file>file:/C:/Users/alfon/Documents/NetBeansProjects/unisa-life/unisalife/src/unisagui/GuiManager.java</file>
+            <file>file:/C:/Users/alfon/Documents/NetBeansProjects/unisa-life/unisalife/src/language/Information.java</file>
+            <file>file:/C:/Users/alfon/Documents/NetBeansProjects/unisa-life/unisalife/src/language/MessageInformation.java</file>
+            <file>file:/C:/Users/alfon/Documents/NetBeansProjects/unisa-life/unisalife/src/language/FileTextManager.java</file>
+            <file>file:/C:/Users/alfon/Documents/NetBeansProjects/unisa-life/unisalife/src/language/FileTextFinder.java</file>
+            <file>file:/C:/Users/alfon/Documents/NetBeansProjects/unisa-life/unisalife/src/language/LanguageManager.java</file>
+            <file>file:/C:/Users/alfon/Documents/NetBeansProjects/unisa-life/unisalife/src/interaction/InteractionManager.java</file>
+            <file>file:/C:/Users/alfon/Documents/NetBeansProjects/unisa-life/unisalife/src/language/TextFinder.java</file>
+            <file>file:/C:/Users/alfon/Documents/NetBeansProjects/unisa-life/unisalife/src/interaction/ItemInteractionManager.java</file>
         </group>
     </open-files>
 </project-private>
