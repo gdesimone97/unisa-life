@@ -57,15 +57,16 @@ public class Exam implements Runnable {
      * for each answer
      */
     public void verifyAnswer(boolean answer, int seconds, int level){ //here the level is referred to the number of questions choosed
-        int x = (this.questionTime-(this.questionTime/(this.maxLevel-level))); //seconds from which the user loses points
         if(level!=maxLevel && answer){
+            int x = (this.questionTime-(this.questionTime/(this.maxLevel-level))); //seconds from which the user loses points
             this.sum += (seconds >= x ? 30 : 30-this.basicScore*(x-seconds));
         }else if(level!=maxLevel && !answer){
             this.count++;
             this.sum += (count <= (0.4*(maxLevel-1)) ? 18 : 0);                    
-        }else if (level == maxLevel && this.score == 30){
-            this.score += (answer ? 1 : -1);
+        }else if (level == maxLevel){
+            this.sum += (answer ? (30 + maxLevel) : (30 - maxLevel));
         }
+        System.out.println(getCurrentScore());
     }
     
     /**
@@ -73,7 +74,7 @@ public class Exam implements Runnable {
      * @return the final score of the exam
      */
     public int getScore(){
-        this.score = (int)this.sum/(maxLevel-1);
+        this.score = (int)this.sum/(maxLevel);
         return this.score;
     }
     
@@ -81,9 +82,9 @@ public class Exam implements Runnable {
      *
      * @return the sum of the score achieved during the exam
      */
-//    public float getCurrentScore(){
-//        return this.sum;
-//    }
+    public float getCurrentScore(){
+        return this.sum;
+    }
             
 
     @Override
@@ -94,6 +95,7 @@ public class Exam implements Runnable {
         int answer = 0;
         long start;
         int elapsed;
+        boolean correctness;
         
         while(iter.hasNext()){
             question = iter.next();
@@ -114,8 +116,9 @@ public class Exam implements Runnable {
                 System.out.println("Non hai risposto");
             }
             else {
-                verifyAnswer(question.isCorrect(answers.get(answer-1)), elapsed, question.getLevel());
-                System.out.println("Hai risposto: " + answers.get(answer-1) + " \nTempo passato: "  + elapsed);
+                correctness = question.isCorrect(answers.get(answer-1));
+                verifyAnswer(correctness, questionTime - elapsed, question.getLevel());
+                System.out.println("Hai risposto: " + answers.get(answer-1) + (correctness ? " CORRETTO!" : " SBAGLIATO!") + " \nTempo passato: "  + elapsed);
             }
             
             
