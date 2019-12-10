@@ -175,8 +175,8 @@ public class GuiManager {
      * @param go
      * @param show if true the JDialog appears, if false disappears
      */
-    public void showRequest (String s,RequestGui rq){
-        requestmanager.showRequest(s,rq);
+    public void showRequest (String s,RequestGui lock){
+        requestmanager.showRequest(s,lock);
     }
     
     

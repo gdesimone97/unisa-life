@@ -17,6 +17,7 @@ public class RequestManager {
     private String info;
     private final GameFrame gameframe = GameFrame.getInstance();
     private boolean RESULT=true;
+    protected  static RequestGui rq;
     
     protected RequestManager(){
         
@@ -40,7 +41,8 @@ public class RequestManager {
         return info;
     }
 
-    public void showRequest(String s,RequestGui rq) {
+    public void showRequest(String s,RequestGui lock) {
+        rq=lock;
        SwingUtilities.invokeLater(() -> gameframe.RequestLabel.setText(s));
        SwingUtilities.invokeLater(() -> gameframe.RequestDialog.setVisible(true));
     }
