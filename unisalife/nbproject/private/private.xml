@@ -3,12 +3,33 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/Users/cmarino/Documents/GitHub/unisa-life/unisalife/src/game/GameObjects/GameObject.java</file>
+            <file>file:/Users/cmarino/Documents/GitHub/unisa-life/unisalife/test/quest/QuestManagerTest.java</file>
             <file>file:/Users/cmarino/Documents/GitHub/unisa-life/unisalife/src/game/GameObjects/GameInventoryStrategy.java</file>
+            <file>file:/Users/cmarino/Documents/GitHub/unisa-life/unisalife/src/game/GameObjects/GameInventorySingletonn.java</file>
+            <file>file:/Users/cmarino/Documents/GitHub/unisa-life/unisalife/Resources/quest/QuestsSingleton.java</file>
+            <file>file:/Users/cmarino/Documents/GitHub/unisa-life/unisalife/src/quests/quest/Quest.java</file>
+            <file>file:/Users/cmarino/Documents/GitHub/unisa-life/unisalife/src/quests/mediator/Message.java</file>
+            <file>file:/Users/cmarino/Documents/GitHub/unisa-life/unisalife/test/exam/QuestionTest.java</file>
+            <file>file:/Users/cmarino/Documents/GitHub/unisa-life/unisalife/src/quests/mediator/User.java</file>
+            <file>file:/Users/cmarino/Documents/GitHub/unisa-life/unisalife/src/quests/QuestsManagerSingleton.java</file>
+            <file>file:/Users/cmarino/Documents/GitHub/unisa-life/unisalife/test/language/LanguageManagerTest.java</file>
+            <file>file:/Users/cmarino/Documents/GitHub/unisa-life/unisalife/test/language/CacheFileTextFinderTest.java</file>
+            <file>file:/Users/cmarino/Documents/GitHub/unisa-life/unisalife/src/quests/mediator/QuestMessages.java</file>
+            <file>file:/Users/cmarino/Documents/GitHub/unisa-life/unisalife/test/quest/SubjectEnum.java</file>
             <file>file:/Users/cmarino/Documents/GitHub/unisa-life/unisalife/src/exam/booklet/Saveable.java</file>
-            <file>file:/Users/cmarino/Documents/GitHub/unisa-life/unisalife/src/game/GameObjects/GameInventory.java</file>
+            <file>file:/Users/cmarino/Documents/GitHub/unisa-life/unisalife/test/quest/QuestsSingletonTest.java</file>
+            <file>file:/Users/cmarino/Documents/GitHub/unisa-life/unisalife/src/game/GameResources/Game.java</file>
             <file>file:/Users/cmarino/Documents/GitHub/unisa-life/unisalife/src/game/GameObjects/Item.java</file>
             <file>file:/Users/cmarino/Documents/GitHub/unisa-life/unisalife/src/exam/booklet/Subject.java</file>
             <file>file:/Users/cmarino/Documents/GitHub/unisa-life/unisalife/src/exam/booklet/BookletSingleton.java</file>
+            <file>file:/Users/cmarino/Documents/GitHub/unisa-life/unisalife/src/game/GameObjects/GameInventorySingleton.java</file>
+            <file>file:/Users/cmarino/Documents/GitHub/unisa-life/unisalife/test/exam/ExamTest.java</file>
+            <file>file:/Users/cmarino/Documents/GitHub/unisa-life/unisalife/test/quest/EnumItem.java</file>
+            <file>file:/Users/cmarino/Documents/GitHub/unisa-life/unisalife/test/quest/QuestTest.java</file>
+            <file>file:/Users/cmarino/Documents/GitHub/unisa-life/unisalife/src/game/GameObjects/GameInventory.java</file>
+            <file>file:/Users/cmarino/Documents/GitHub/unisa-life/unisalife/src/quests/quest/QuestFactory.java</file>
+            <file>file:/Users/cmarino/Documents/GitHub/unisa-life/unisalife/src/game/GameObjects/ObjectId.java</file>
         </group>
     </open-files>
 </project-private>
