@@ -89,6 +89,7 @@ public class Exam implements Runnable {
     @Override
     public void run() {
         GuiManager gui = GuiManager.getInstance();
+        ResultGui rg = new ResultGui(questionTime);
         Question question;
         int answer;
         long start;
@@ -98,11 +99,13 @@ public class Exam implements Runnable {
             question = iter.next();
             gui.setExamQuestion(question.getQuestion());
             ArrayList<Answer> answers = question.getAnswers();
+
+            gui.showExamDialog(this.subject.toString(), question.getQuestion(), answers.get(0).getAnswer(), answers.get(1).getAnswer(), answers.get(2).getAnswer(), answers.get(3).getAnswer(), questionTime, rg);
             
             //init timer
             start = System.nanoTime();
             
-            answer = gui.showExamDialog(this.subject.toString(), question.getQuestion(), answers.get(0).getAnswer(), answers.get(1).getAnswer(), answers.get(2).getAnswer(), answers.get(3).getAnswer(), questionTime);
+            answer = rg.getValue();
             
             elapsed = (int) ((System.nanoTime() - start) / 1000000000);
             
