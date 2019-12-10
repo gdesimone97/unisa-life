@@ -7,7 +7,9 @@ package unisagui;
 
 /**
  *
- * @author 1997g
+ * @author Davide
+ * This class allows  communication between RequestManager other classes without
+ * using other thread or active wait
  */
 public class RequestGui {
     protected boolean value;
@@ -16,9 +18,9 @@ public class RequestGui {
     }
 /**
  * 
- * @return 
- * This method returns the value of the given answer. It is put on hold for "time" seconds,
- * if it does not receive the reply within "time" seconds it returns the value 0
+ * @return  YES=true / NO=False
+ * This method returns the value of the given answer by the user.
+ * The method waits until the user chooses a response
  */
     public synchronized boolean getValue() {
         try {
@@ -29,7 +31,7 @@ public class RequestGui {
     }
     /**
      * 
-     * @param value 
+     * @param value is a booelan ( YES of user =true / NO of user =False)
      * This method accept the result of the user's response and calls a notify
      * to alert the thread that the value is ready
      */
