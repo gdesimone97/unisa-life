@@ -88,18 +88,13 @@ public class GuiManager {
      * @param show if true the textArea appears, if false disappears
      * @throws NotInteractiveException when the GameObject is not interactive 
      */
-    public void showDialog(GameObject go, String s, boolean show) throws NotInteractiveException {
-        
-        if(go instanceof Item)
-            dialogmanager.showHint(s,show);
-        else if(go instanceof Person)
-            dialogmanager.showConversation(s,show);
-        else
-            throw new NotInteractiveException();
+    public void showDialog(String s) {
+        dialogmanager.showDialog(s);
     }
     
-    
-    
+    public void showHint(String s){
+        dialogmanager.showHint(s);
+    }
     
     /**
      * When called a JDialog with the Exam appears or disappears on the screen 
@@ -171,10 +166,10 @@ public class GuiManager {
      * @param go
      * @param show if true the JDialog appears, if false disappears
      */
-    /*public void showRequest (GameObject go, boolean show){
-        requestmanager.showRequest(go.getId(),show);
+    public void showRequest (String s){
+        requestmanager.showRequest(s);
     }
-    */
+    
     
     /**
      * When called the JDialog with the quests is update with the new quest or the quest is deleted.
