@@ -26,7 +26,7 @@ public class ExamManager {
     protected static int RESULT=0;
     protected ResultGui rg;
     private int time = 0;
-    private Timer timing;
+    private  Timer timing;
     protected static ExamManager instance;
     private int level=0;
    // protected ResultGui rg2= new ResultGui(30000);
@@ -110,19 +110,17 @@ public class ExamManager {
     
     private void showTimer() {
         
-        timing = new Timer(1000, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (time <= 0) {
-                    timing.stop();
-                    return; // for stop at time =0
-                }
-                SwingUtilities.invokeLater(() -> gameframe.TimeLabel.setText(String.valueOf(time/1000)));
-                time =time-1000;
+        timing = new Timer(1000, (ActionEvent e) -> {
+            if (time <= 0) {
+                timing.stop();
+                return; // for stop at time =0
             }
+            SwingUtilities.invokeLater(() -> gameframe.TimeLabel.setText(String.valueOf(time/1000)));
+            time =time-1000;
         });
-     
         timing.start();
+      
+        
     }
 
     
