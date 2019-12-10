@@ -21,6 +21,7 @@ import javax.imageio.ImageIO;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.awt.Dimension;
+import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -90,6 +91,8 @@ public class Game extends Canvas implements Runnable, Saveable {
     
     private void initResources() {
         TileMap t0 = new TileMap(32, 928, 928);
+        File f=new File("../Tilesets/tileset.gif");
+        System.out.print(f.exists());
         t0.loadTiles("/Tilesets/tileset.gif");
         TileMap t1 = new TileMap(32, 928, 928);
         t1.loadTiles("/Tilesets/tileset.gif");
