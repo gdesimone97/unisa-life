@@ -15,15 +15,18 @@ import game.Interfaces.Interactable;
  */
 public class ProfessorInteractionManager implements InteractionManager {
 
+    public ProfessorInteractionManager() {
+    }
+
     @Override
     public void execute(Interactable obj) {
         // 1. trova la materia giusta in base al prof (il prof deve avere un attributo materia)
         
         // 2. verifica idonietà e requisiti
         
-        // 3. Start the exam session
-        // Thread esameThread = new Thread(new Exam(Materia.matematica));
-        // esameThread.start();
+        //3. Start the exam session
+        Thread esameThread = new Thread(new Exam(Materia.matematica));
+        esameThread.start();
         
         // 4. modifica stato e ricompense
     }
