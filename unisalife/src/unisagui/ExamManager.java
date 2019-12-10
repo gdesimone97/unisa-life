@@ -28,6 +28,7 @@ public class ExamManager {
     private int time = 0;
     private Timer timing;
     protected static ExamManager instance;
+    private int level=0;
    // protected ResultGui rg2= new ResultGui(30000);
     
     
@@ -85,6 +86,7 @@ public class ExamManager {
         SwingUtilities.invokeLater(() -> gameframe.ThirdAnswer.setText(answer3));
         SwingUtilities.invokeLater(() -> gameframe.FourthAnswer.setText(answer4));
         SwingUtilities.invokeLater(() -> gameframe.NameOfExamLabel.setText(examName));
+        SwingUtilities.invokeLater(() -> gameframe.LevelOfQuestionLabel.setText(Integer.toString(level)+"/3"));
        
             
         
@@ -126,6 +128,7 @@ public class ExamManager {
     protected void showExamDialog(String examName, String question, String answer1, String answer2, String answer3, String answer4, int time, ResultGui lock) {
         this.time = time * 1000;
         this.showTimer();
+        level++;
         this.fillExam(examName, question, answer1, answer2, answer3, answer4);
         rg = lock;
 
