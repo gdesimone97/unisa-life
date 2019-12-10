@@ -98,8 +98,10 @@ public class Exam implements Runnable {
     public void run() {
         GuiManager gui = GuiManager.getInstance();
         ResultGui rg = new ResultGui(questionTime);
+        RequestGui praiseRequest = new RequestGui();
         Question question;
-        int answer = 0;
+        int answer;
+        boolean answerRequest;
         long start;
         int elapsed;
         boolean correctness;
@@ -113,10 +115,10 @@ public class Exam implements Runnable {
                     continue;
                 }
                 
-                String risposta = JOptionPane.showInputDialog("Vuoi fare la domanda per la lode?");
-                System.out.println("Hai risposto " + risposta);
-
-                if (!(risposta.equalsIgnoreCase("si") || risposta.equalsIgnoreCase("yes"))) {
+                gui.showRequest("Your current vote is 30, do you also want to ask the praise? But be careful, if you miss the vote goes down.", praiseRequest);
+                answerRequest = praiseRequest.getValue();
+                
+                if (!answerRequest) {
                     iter.next();
                     continue;
                 }
