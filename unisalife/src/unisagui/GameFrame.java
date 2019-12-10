@@ -59,6 +59,7 @@ public class GameFrame extends javax.swing.JFrame {
         SwingUtilities.invokeLater(() -> HintDialog.setUndecorated(true));
         //SwingUtilities.invokeLater(() -> HintDialog.getRootPane().setOpaque(false));
         SwingUtilities.invokeLater(() -> HintDialog.setAlwaysOnTop(true));
+        SwingUtilities.invokeLater(() -> QuestDialog.setUndecorated(true));
     }
     
     private void settingLocations(GameFrame instance){
@@ -204,6 +205,12 @@ public class GameFrame extends javax.swing.JFrame {
         HintDialog = new javax.swing.JDialog();
         HintScrollPane = new javax.swing.JScrollPane();
         HintTextArea = new javax.swing.JTextArea();
+        QuestDialog = new javax.swing.JDialog();
+        QuestPanel = new javax.swing.JPanel();
+        QuestListScrollPane = new javax.swing.JScrollPane();
+        QuestList = new javax.swing.JList<>();
+        QuestTextScrollPane = new javax.swing.JScrollPane();
+        QuestTextArea = new javax.swing.JTextArea();
         HudPanel = new javax.swing.JPanel();
         LevelLabel = new javax.swing.JLabel();
         MoneyIcon = new javax.swing.JLabel();
@@ -216,7 +223,7 @@ public class GameFrame extends javax.swing.JFrame {
         HungerProgressBar = new javax.swing.JProgressBar();
         RightBorder = new javax.swing.JPanel();
         LeftBorder = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
+        UpperBorder = new javax.swing.JPanel();
 
         ExamDialog.setMinimumSize(new java.awt.Dimension(500, 500));
 
@@ -1447,9 +1454,7 @@ public class GameFrame extends javax.swing.JFrame {
 
         ConvDialog.setAlwaysOnTop(true);
         ConvDialog.setBackground(new java.awt.Color(0, 0, 0));
-        ConvDialog.setMaximumSize(new java.awt.Dimension(375, 100));
         ConvDialog.setMinimumSize(new java.awt.Dimension(375, 100));
-        ConvDialog.setPreferredSize(new java.awt.Dimension(375, 100));
         ConvDialog.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 ConvDialogKeyPressed(evt);
@@ -1485,9 +1490,7 @@ public class GameFrame extends javax.swing.JFrame {
             .addComponent(ConversationScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        HintDialog.setMaximumSize(new java.awt.Dimension(200, 50));
         HintDialog.setMinimumSize(new java.awt.Dimension(200, 50));
-        HintDialog.setPreferredSize(new java.awt.Dimension(200, 50));
         HintDialog.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 HintDialogKeyPressed(evt);
@@ -1525,6 +1528,81 @@ public class GameFrame extends javax.swing.JFrame {
             .addGroup(HintDialogLayout.createSequentialGroup()
                 .addComponent(HintScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        QuestDialog.setMaximumSize(new java.awt.Dimension(420, 400));
+        QuestDialog.setMinimumSize(new java.awt.Dimension(420, 400));
+        QuestDialog.setModal(true);
+
+        QuestPanel.setBackground(new java.awt.Color(93, 150, 199));
+        QuestPanel.setMaximumSize(new java.awt.Dimension(420, 400));
+        QuestPanel.setMinimumSize(new java.awt.Dimension(420, 400));
+        QuestPanel.setName(""); // NOI18N
+        QuestPanel.setPreferredSize(new java.awt.Dimension(420, 400));
+
+        QuestListScrollPane.setMaximumSize(new java.awt.Dimension(190, 350));
+        QuestListScrollPane.setMinimumSize(new java.awt.Dimension(190, 350));
+        QuestListScrollPane.setPreferredSize(new java.awt.Dimension(190, 350));
+
+        QuestList.setBorder(javax.swing.BorderFactory.createTitledBorder("Quest"));
+        QuestList.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Collect your first dollar!", "It's time to get Analisi 1!" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        QuestList.setMaximumSize(new java.awt.Dimension(190, 350));
+        QuestList.setMinimumSize(new java.awt.Dimension(190, 350));
+        QuestList.setPreferredSize(new java.awt.Dimension(190, 350));
+        QuestList.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                QuestListValueChanged(evt);
+            }
+        });
+        QuestListScrollPane.setViewportView(QuestList);
+
+        QuestTextScrollPane.setMaximumSize(new java.awt.Dimension(190, 350));
+        QuestTextScrollPane.setMinimumSize(new java.awt.Dimension(190, 350));
+        QuestTextScrollPane.setPreferredSize(new java.awt.Dimension(190, 350));
+
+        QuestTextArea.setEditable(false);
+        QuestTextArea.setColumns(20);
+        QuestTextArea.setRows(5);
+        QuestTextArea.setBorder(javax.swing.BorderFactory.createTitledBorder("Description"));
+        QuestTextArea.setMaximumSize(new java.awt.Dimension(190, 350));
+        QuestTextArea.setMinimumSize(new java.awt.Dimension(190, 350));
+        QuestTextArea.setPreferredSize(new java.awt.Dimension(190, 350));
+        QuestTextScrollPane.setViewportView(QuestTextArea);
+
+        javax.swing.GroupLayout QuestPanelLayout = new javax.swing.GroupLayout(QuestPanel);
+        QuestPanel.setLayout(QuestPanelLayout);
+        QuestPanelLayout.setHorizontalGroup(
+            QuestPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(QuestPanelLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(QuestListScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(0, 0, 0)
+                .addComponent(QuestTextScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20))
+        );
+        QuestPanelLayout.setVerticalGroup(
+            QuestPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(QuestPanelLayout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addGroup(QuestPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(QuestTextScrollPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(QuestListScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(25, 25, 25))
+        );
+
+        javax.swing.GroupLayout QuestDialogLayout = new javax.swing.GroupLayout(QuestDialog.getContentPane());
+        QuestDialog.getContentPane().setLayout(QuestDialogLayout);
+        QuestDialogLayout.setHorizontalGroup(
+            QuestDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(QuestPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        QuestDialogLayout.setVerticalGroup(
+            QuestDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(QuestPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -1671,19 +1749,19 @@ public class GameFrame extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jPanel1.setBackground(new java.awt.Color(93, 150, 199));
-        jPanel1.setMaximumSize(new java.awt.Dimension(500, 75));
-        jPanel1.setMinimumSize(new java.awt.Dimension(500, 75));
-        jPanel1.setPreferredSize(new java.awt.Dimension(500, 75));
+        UpperBorder.setBackground(new java.awt.Color(93, 150, 199));
+        UpperBorder.setMaximumSize(new java.awt.Dimension(500, 75));
+        UpperBorder.setMinimumSize(new java.awt.Dimension(500, 75));
+        UpperBorder.setPreferredSize(new java.awt.Dimension(500, 75));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout UpperBorderLayout = new javax.swing.GroupLayout(UpperBorder);
+        UpperBorder.setLayout(UpperBorderLayout);
+        UpperBorderLayout.setHorizontalGroup(
+            UpperBorderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        UpperBorderLayout.setVerticalGroup(
+            UpperBorderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 75, Short.MAX_VALUE)
         );
 
@@ -1697,7 +1775,7 @@ public class GameFrame extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(LeftBorder, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(UpperBorder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(0, 0, 0)
                 .addComponent(RightBorder, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -1708,7 +1786,7 @@ public class GameFrame extends javax.swing.JFrame {
                     .addComponent(RightBorder, javax.swing.GroupLayout.DEFAULT_SIZE, 575, Short.MAX_VALUE)
                     .addComponent(LeftBorder, javax.swing.GroupLayout.DEFAULT_SIZE, 575, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(UpperBorder, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(HudPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -1797,7 +1875,7 @@ public class GameFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_MainMenuDialogComponentShown
 
     private void FemaleWhiteButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FemaleWhiteButtonMouseClicked
-        
+        SwingUtilities.invokeLater(() -> QuestDialog.setVisible(true));
     }//GEN-LAST:event_FemaleWhiteButtonMouseClicked
 
     private void ConvDialogKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ConvDialogKeyPressed
@@ -1833,6 +1911,13 @@ public class GameFrame extends javax.swing.JFrame {
     private void NoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NoButtonActionPerformed
         SwingUtilities.invokeLater(() -> RequestDialog.setVisible(false));
     }//GEN-LAST:event_NoButtonActionPerformed
+
+    private void QuestListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_QuestListValueChanged
+        if(QuestList.getSelectedIndex()==0)
+            SwingUtilities.invokeLater(() -> QuestTextArea.setText("Collect your first dollar!\nKeep your eyes open,\nyou'll find others around\n the campus."));
+        else if(QuestList.getSelectedIndex()==0)
+            SwingUtilities.invokeLater(() -> QuestTextArea.setText("Ouch! It's time to get\nAnalisi 1 Exam!\nGo find a calculator."));
+    }//GEN-LAST:event_QuestListValueChanged
     
         /**
      * @param args the command line arguments
@@ -1985,6 +2070,12 @@ public class GameFrame extends javax.swing.JFrame {
     protected javax.swing.JButton NextButton;
     protected javax.swing.JButton NoButton;
     protected javax.swing.JLabel ProfLabel;
+    protected javax.swing.JDialog QuestDialog;
+    protected javax.swing.JList<String> QuestList;
+    protected javax.swing.JScrollPane QuestListScrollPane;
+    protected javax.swing.JPanel QuestPanel;
+    protected javax.swing.JTextArea QuestTextArea;
+    protected javax.swing.JScrollPane QuestTextScrollPane;
     protected javax.swing.JDialog RequestDialog;
     protected javax.swing.JLabel RequestLabel;
     protected javax.swing.JPanel RequestPanel;
@@ -2000,8 +2091,8 @@ public class GameFrame extends javax.swing.JFrame {
     protected javax.swing.JProgressBar StressProgressBar;
     protected javax.swing.JLabel StudentLabel;
     protected javax.swing.JButton ThirdAnswer;
+    protected javax.swing.JPanel UpperBorder;
     protected javax.swing.JButton YesButton;
     protected javax.swing.JLabel jLabel1;
-    protected javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
