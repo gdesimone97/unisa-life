@@ -69,7 +69,7 @@ public class SaveManager {
                 ObjectInputStream s = new ObjectInputStream(filein);) {
             Object obj = s.readObject();
             savingItems = (Map) obj;
-            for(Saveable sav: saveableComponents){
+            for (Saveable sav : saveableComponents) {
                 Serializable item = savingItems.get(sav.getClass().getName());
                 sav.load(item);
             }
