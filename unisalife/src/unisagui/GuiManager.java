@@ -119,6 +119,22 @@ public class GuiManager {
    public void closeExamDialog(){
        exammanager.closeExamDialog();
    }
+    /**
+     * When called the exam question is written on the Exam Dialog
+     * @param question is the question that has to be written
+     */
+    public void setExamQuestion(String question){
+        exammanager.setExamQuestion(question);
+    }
+    
+    /**
+     * When called one of the exam question is written in the Exam Dialog
+     * @param answer is the answer that has to be written
+     * @param postion is the position of the answer in the exam dialog, position <=4
+     */
+    public void setExamAnswer(String answer, int postion) throws Exception{
+        exammanager.setExamAnswer(answer, postion);
+    }
     
     /**
      * When called a JDialog with the Settings Menu appears or disappears on the screen
