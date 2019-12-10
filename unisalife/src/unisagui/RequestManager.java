@@ -5,6 +5,8 @@
  */
 package unisagui;
 
+import javax.swing.SwingUtilities;
+
 /**
  *
  * @author Virginia Cavallaro
@@ -14,9 +16,14 @@ public class RequestManager {
     
     private String info;
     private final GameFrame gameframe = GameFrame.getInstance();
+    private boolean RESULT=true;
     
     protected RequestManager(){
         
+    }
+    
+    protected void setRESULT(boolean RESULT){
+        rq.setValue(RESULT);
     }
     
     public void showRequest(String id, boolean show){
@@ -33,8 +40,9 @@ public class RequestManager {
         return info;
     }
 
-    void showRequest(String s) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void showRequest(String s,RequestGui rq) {
+       SwingUtilities.invokeLater(() -> gameframe.RequestLabel.setText(s));
+       SwingUtilities.invokeLater(() -> gameframe.RequestDialog.setVisible(true));
     }
     
 }

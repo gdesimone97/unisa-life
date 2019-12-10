@@ -1786,6 +1786,7 @@ public class GameFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_ReturnToMainMenuButtonActionPerformed
 
     private void YesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_YesButtonActionPerformed
+        
         SwingUtilities.invokeLater(() -> RequestDialog.setVisible(false));
     }//GEN-LAST:event_YesButtonActionPerformed
 
