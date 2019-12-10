@@ -75,10 +75,8 @@ public class TileMap {
 				getClass().getResourceAsStream(s)
 			);
 			numTilesOriz = tileset.getWidth() / tileSize;
-                        //numTilesVert = tileset.getHeight() / tileSize;
-                        //System.out.println("width:"+tileset.getWidth());
-                        //System.out.println("height:"+tileset.getHeight());
-                        //System.out.print("numtiles:"+numTilesOriz);
+                        
+                        //numTilesVert = tileset.getHeight() / tileSize
 			tiles = new Tile[2][numTilesOriz];
 			
 			BufferedImage subimage;
@@ -122,6 +120,8 @@ public class TileMap {
 			
 			numCols = Integer.parseInt(br.readLine()); //29
 			numRows = Integer.parseInt(br.readLine()); //29
+                        System.out.print(numCols);
+                        System.out.print(numRows);
 			map = new int[numRows][numCols];
 			width = numCols * tileSize;
 			height = numRows * tileSize;
@@ -153,82 +153,7 @@ public class TileMap {
 
     
     public int getHeight() { return height; }
-	/*
-	public int getTileSize() { return tileSize; }
-	public int getx() { return x; }
-	public int gety() { return y; }
-	
-	public int getNumRows() { return numRows; }
-	public int getNumCols() { return numCols; }
-	
-	public int getIndex(int row, int col) {
-		return map[row][col];
-	}
-	public boolean isMoving() { return moving; }
-	
-	public void setTile(int row, int col, int index) {
-		map[row][col] = index;
-	}
-	public void replace(int i1, int i2) {
-		for(int row = 0; row < numRows; row++) {
-			for(int col = 0; col < numCols; col++) {
-				if(map[row][col] == i1) map[row][col] = i2;
-			}
-		}
-	}
-	
-	public void setPosition(int x, int y) {
-		xdest = x;
-		ydest = y;
-	}
-	public void setPositionImmediately(int x, int y) {
-		this.x = x;
-		this.y = y;
-	}
-	
-	public void fixBounds() {
-		if(x < xmin) x = xmin;
-		if(y < ymin) y = ymin;
-		if(x > xmax) x = xmax;
-		if(y > ymax) y = ymax;
-	}
-	
-	public void update() {
-		if(x < xdest) {
-			x += speed;
-			if(x > xdest) {
-				x = xdest;
-			}
-		}
-		if(x > xdest) {
-			x -= speed;
-			if(x < xdest) {
-				x = xdest;
-			}
-		}
-		if(y < ydest) {
-			y += speed;
-			if(y > ydest) {
-				y = ydest;
-			}
-		}
-		if(y > ydest) {
-			y -= speed;
-			if(y < ydest) {
-				y = ydest;
-			}
-		}
-		
-		fixBounds();
-		
-		colOffset = -this.x / tileSize;
-		rowOffset = -this.y / tileSize;
-		
-		if(x != xdest || y != ydest) moving = true;
-		else moving = false;
-		
-	}
-	*/
+
 
    
     
@@ -237,16 +162,18 @@ public class TileMap {
                 System.out.println("col off"+colOffset);
                 System.out.println("righe"+numRowsToDraw);
                 System.out.println("colonne"+numColsToDraw);*/
-		for(int row = rowOffset; row < rowOffset + numRowsToDraw; row++) {
+		for(int row = 0; row < numRowsToDraw; row++) {
 		
 			if(row >= numRows) break;
 			
-			for(int col = colOffset; col < colOffset + numColsToDraw; col++) {
+			for(int col = 0; col <  numColsToDraw; col++) {
 				
 				if(col >= numCols) break;
 				if(map[row][col] == 0) continue;
 				
 				int rc = map[row][col];
+                                if(rc==8)
+                                    System.out.print("otto");
 				int r = rc / numTilesOriz;
 				int c = rc % numTilesOriz;
 				g.drawImage(					

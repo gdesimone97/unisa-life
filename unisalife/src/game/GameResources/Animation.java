@@ -66,7 +66,7 @@ public class Animation {
      * @param y y position of the frame
      */
     public void drawAnimation(Graphics g,int x,int y){
-            g.drawImage(currentImage, x, y, null);
+            //g.drawImage(currentImage, x, y, null);
         }
         
     /*

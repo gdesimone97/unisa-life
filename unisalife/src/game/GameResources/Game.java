@@ -63,8 +63,8 @@ public class Game extends Canvas implements Runnable, Saveable {
     public static final int WIDTHSCREEN = 500,
             HEIGHTSCREEN = 500,
             HEIGHTSCREEN2 = HEIGHTSCREEN + 32,
-            PLAYERSPEED = 2,
-            DIMENSIONSPRITE = 32;
+            PLAYERSPEED = 1,
+            DIMENSIONSPRITE = 16;
     private int WIDTHMAP, HEIGHTMAP;
 
     public final static double AMOUNTOFTICKS = 30.0;
@@ -91,14 +91,12 @@ public class Game extends Canvas implements Runnable, Saveable {
     
     
     private void initResources() {
-        TileMap t0 = new TileMap(32, 928, 928);
-        File f=new File("../Tilesets/tileset.gif");
-        System.out.print(f.exists());
-        t0.loadTiles("/Tilesets/tileset.gif");
-        TileMap t1 = new TileMap(32, 928, 928);
-        t1.loadTiles("/Tilesets/tileset.gif");
-        t0.loadMap("/Maps/map7.map");
-        t1.loadMap("/Maps/map8.map");
+        TileMap t0 = new TileMap(16, 960, 960);
+        t0.loadTiles("/Tilesets/ExtTileset.gif");
+        TileMap t1 = new TileMap(16, 960, 960);
+        t1.loadTiles("/Tilesets/ExtTileset.gif");
+        t0.loadMap("/Maps/ExtMap.map");
+        t1.loadMap("/Maps/ExtMap.map");
         maps[0] = new Map(t0);
         maps[0].addObject(new Block(150, 150));
         maps[0].addObject(new Teleport(250, 250, "Tileset/tileset.gif", 1, new Destination(20, 20)));
