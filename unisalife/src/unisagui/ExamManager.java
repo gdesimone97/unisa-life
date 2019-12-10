@@ -41,7 +41,9 @@ public class ExamManager {
         return instance;
     }
     
-    
+    protected void closeExamDialog(){
+        SwingUtilities.invokeLater(() -> gameframe.ExamDialog.setVisible(false));
+    }
     
     /**
      * @param RESULT in this parameter the answer given by the user within the time limit will be saved.
@@ -62,7 +64,6 @@ public class ExamManager {
         SwingUtilities.invokeLater(() -> gameframe.SecondAnswer.setText(EMPTY_TEXT));
         SwingUtilities.invokeLater(() -> gameframe.ThirdAnswer.setText(EMPTY_TEXT));
         SwingUtilities.invokeLater(() -> gameframe.FourthAnswer.setText(EMPTY_TEXT));
-        SwingUtilities.invokeLater(() -> gameframe.TimeLabel.setText(EMPTY_TEXT));
         SwingUtilities.invokeLater(() -> gameframe.NameOfExamLabel.setText(EMPTY_TEXT));
     }
     /**
@@ -113,60 +114,25 @@ public class ExamManager {
                     timing.stop();
                 }
                 SwingUtilities.invokeLater(() -> gameframe.TimeLabel.setText(Integer.toString(time / 1000)));
+                System.out.print(Integer.toString(time/1000));
                 time -= 1000;
             }
         });
+     
         timing.start();
     }
 
     
-    protected  void  showExamDialog(String examName, String question, String answer1, String answer2, String answer3, String answer4, int time,ResultGui lock){
-        this.time=time*1000;
+    protected void showExamDialog(String examName, String question, String answer1, String answer2, String answer3, String answer4, int time, ResultGui lock) {
+        this.time = time * 1000;
         this.showTimer();
         this.fillExam(examName, question, answer1, answer2, answer3, answer4);
         rg = lock;
-        
 
-         
-        /* 
-        try {
-            this.wait(time*1000);
-        } catch (InterruptedException ex) { }
-        */
-        
-        
-        
-        
     }
     
    
-    /**
-     * When called the exam question is written on the Exam Dialog
-     * @param question is the question that has to be written
-     */
-    public void setExamQuestion(String question){
-         SwingUtilities.invokeLater(() -> gameframe.ExamTextArea.setText(question));
-    }
-    
-    /**
-     * When called one of the exam question is written in the Exam Dialog
-     * @param answer is the answer that has to be written
-     * @param position is the position of the answer in the exam dialog, position <=4
-     */
-    public void setExamAnswer(String answer, int position) throws Exception {
-        if (position>4 || position<1)
-            throw new Exception();
-        if (position==1)
-            SwingUtilities.invokeLater(() -> gameframe.FirstAnswer.setText(answer));
-        else if (position==2)
-           SwingUtilities.invokeLater(() -> gameframe.SecondAnswer.setText(answer));
-        else if (position==3)
-            SwingUtilities.invokeLater(() -> gameframe.ThirdAnswer.setText(answer));
-        else
-            SwingUtilities.invokeLater(() -> gameframe.FourthAnswer.setText(answer));
-        
-        
-    }
+   
     
    
  

@@ -57,9 +57,10 @@ public class GameFrame extends javax.swing.JFrame {
         SwingUtilities.invokeLater(() ->MainMenuDialog.setLocation(instance.getLocation())); 
         SwingUtilities.invokeLater(() ->SettingsDialog.setLocation(instance.getLocation()));
         SwingUtilities.invokeLater(() ->RequestDialog.setLocation(instance.getLocation()));
-        SwingUtilities.invokeLater(() ->ExamDialog.setLocation(instance.getLocation()));
+        SwingUtilities.invokeLater(() ->ExamDialog.setLocation(instance.getLocation().x+50,instance.getLocation().y+75));
         SwingUtilities.invokeLater(() ->AvatarChooserDialog.setLocation(instance.getLocation()));
         SwingUtilities.invokeLater(() ->InventoryDialog.setLocation(instance.getLocation()));
+        
     }
     
     protected void settingLanguage(String s) throws Exception{
@@ -229,6 +230,11 @@ public class GameFrame extends javax.swing.JFrame {
         LevelOfQuestionLabel.setMinimumSize(new java.awt.Dimension(125, 25));
         LevelOfQuestionLabel.setPreferredSize(new java.awt.Dimension(125, 25));
 
+        TimeLabel.setBackground(new java.awt.Color(51, 51, 255));
+        TimeLabel.setMaximumSize(new java.awt.Dimension(75, 25));
+        TimeLabel.setMinimumSize(new java.awt.Dimension(75, 25));
+        TimeLabel.setPreferredSize(new java.awt.Dimension(75, 25));
+
         ExamScrollPane.setHorizontalScrollBar(null);
 
         ExamTextArea.setEditable(false);
@@ -288,10 +294,6 @@ public class GameFrame extends javax.swing.JFrame {
                 ConfirmAnswerActionPerformed(evt);
             }
         });
-
-        TimeLabel.setMaximumSize(new java.awt.Dimension(50, 25));
-        TimeLabel.setMinimumSize(new java.awt.Dimension(50, 25));
-        TimeLabel.setPreferredSize(new java.awt.Dimension(50, 25));
 
         javax.swing.GroupLayout ExamPanelLayout = new javax.swing.GroupLayout(ExamPanel);
         ExamPanel.setLayout(ExamPanelLayout);
