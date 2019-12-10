@@ -5,6 +5,8 @@
  */
 package game.GameObjects;
 
+import interaction.*;
+
 /**
  *
  * @author Giuseppe De Simone
@@ -20,5 +22,7 @@ public class Professor extends Person {
 
     @Override
     public void interact() {
+        InteractionManager profMìInteraction = new ProfessorInteractionManager();
+        profMìInteraction.execute(this);
     }
 }
