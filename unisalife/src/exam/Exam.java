@@ -3,20 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package exam;
+
 import exam.question.*;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import unisagui.*;
 
 /**
- * This class is used to do an exam of a given subject.
- * The number of questions is modifiable by changing maxLevel value and 
- * basicScore due to reach a maximum of 30 point (a little overflow is admitted)
+ * This class is used to do an exam of a given subject. The number of questions
+ * is modifiable by changing maxLevel value and basicScore due to reach a
+ * maximum of 30 point (a little overflow is admitted)
  *
  * @author liovi
  */
 public class Exam implements Runnable {
+
     private final Questions questions;
     private final Materia subject;
     private final int questionTime;
@@ -25,15 +27,17 @@ public class Exam implements Runnable {
     private int count;
     private final int maxLevel;
     private final float basicScore;
+    private int lastLevelAnswered = 0;
     QuestionsIterator iter;
-    
+
     /**
      * Constructor. Given a examSubject fetches the questions.
-     * 
-     * @param materia An object Materia needed to load the correct exam's questions
-     * 
+     *
+     * @param materia An object Materia needed to load the correct exam's
+     * questions
+     *
      */
-    public Exam(Materia materia){
+    public Exam(Materia materia) {
         this.subject = materia;
         QuestionFactory questionsFetch = new StringsQuestionFactory(subject);
         this.score = 0;
@@ -42,50 +46,53 @@ public class Exam implements Runnable {
         this.questionTime = 30;
         this.questions = questionsFetch.getQuestions();
         this.maxLevel = this.questions.getNumLevels();
-        this.basicScore = 12/(30-(30/(float)(this.maxLevel-1)));
+        this.basicScore = 12 / (30 - (30 / (float) (this.maxLevel - 1)));
         this.iter = questions.iterator();
     }
-    
+
     /**
-     * Verify if the given answer is correct and gives a score, 
-     * depending on the level of the question and on the time passed 
-     * before give the answer.
-     * 
-     * @param answer A boolean value that indicates if the answer is or not is correct
+     * Verify if the given answer is correct and gives a score, depending on the
+     * level of the question and on the time passed before give the answer.
+     *
+     * @param answer A boolean value that indicates if the answer is or not is
+     * correct
      * @param seconds Time passed before give the answer
      * @param level Difficulty level of the question used to give a rising value
      * for each answer
      */
-    public void verifyAnswer(boolean answer, int seconds, int level){ //here the level is referred to the number of questions choosed
-        if(level!=maxLevel && answer){
-            int x = (this.questionTime-(this.questionTime/(this.maxLevel-level))); //seconds from which the user loses points
-            this.sum += (seconds >= x ? 30 : 30-this.basicScore*(x-seconds));
-        }else if(level!=maxLevel && !answer){
+    public void verifyAnswer(boolean answer, int seconds, int level) { //here the level is referred to the number of questions choosed
+        if (level != maxLevel && answer) {
+            int x = (this.questionTime - (this.questionTime / (this.maxLevel - level))); //seconds from which the user loses points
+            this.sum += (seconds >= x ? 30 : 30 - this.basicScore * (x - seconds));
+        } else if (level != maxLevel && !answer) {
             this.count++;
-            this.sum += (count <= (0.4*(maxLevel-1)) ? 18 : 0);                    
-        }else if (level == maxLevel){
+            this.sum += (count <= (0.4 * (maxLevel - 1)) ? 18 : 0);
+        } else if (level == maxLevel) {
             this.sum += (answer ? (30 + maxLevel) : (30 - maxLevel));
         }
-        System.out.println(getCurrentScore());
+        lastLevelAnswered = level;
     }
-    
+
     /**
      *
      * @return the final score of the exam
      */
-    public int getScore(){
-        this.score = (int)this.sum/(maxLevel);
+    public int getScore() {
+        this.score = (int) this.sum / (maxLevel);
         return this.score;
     }
-    
+
     /**
      *
      * @return the sum of the score achieved during the exam
      */
-    public float getCurrentScore(){
+    private float getCurrentScore() {
         return this.sum;
     }
-            
+
+    private boolean isPraiseAvailable() {
+        return lastLevelAnswered == maxLevel - 1;
+    }
 
     @Override
     public void run() {
@@ -96,35 +103,50 @@ public class Exam implements Runnable {
         long start;
         int elapsed;
         boolean correctness;
-        
-        while(iter.hasNext()){
+
+        while (iter.hasNext()) {
+
+            if (isPraiseAvailable()) {
+                //Praise Question
+                if (getCurrentScore() != (maxLevel-1)*30) {
+                    iter.next();
+                    continue;
+                }
+                
+                String risposta = JOptionPane.showInputDialog("Vuoi fare la domanda per la lode?");
+                System.out.println("Hai risposto " + risposta);
+
+                if (!(risposta.equalsIgnoreCase("si") || risposta.equalsIgnoreCase("yes"))) {
+                    iter.next();
+                    continue;
+                }
+            }
+            
+            //print question
             question = iter.next();
             gui.setExamQuestion(question.getQuestion());
             ArrayList<Answer> answers = question.getAnswers();
-
             gui.showExamDialog(this.subject.toString(), question.getQuestion(), answers.get(0).getAnswer(), answers.get(1).getAnswer(), answers.get(2).getAnswer(), answers.get(3).getAnswer(), questionTime, rg);
-            
+
             //init timer
             start = System.nanoTime();
-            
             answer = rg.getValue();
-            
             elapsed = (int) ((System.nanoTime() - start) / 1000000000);
-            
-            if ( answer == 0 ) {
+
+            //check answer
+            if (answer == 0) {
                 verifyAnswer(false, elapsed, question.getLevel());
                 System.out.println("Non hai risposto");
-            }
-            else {
-                correctness = question.isCorrect(answers.get(answer-1));
+            } else {
+                correctness = question.isCorrect(answers.get(answer - 1));
                 verifyAnswer(correctness, questionTime - elapsed, question.getLevel());
-                System.out.println("Hai risposto: " + answers.get(answer-1) + (correctness ? " CORRETTO!" : " SBAGLIATO!") + " \nTempo passato: "  + elapsed);
+                System.out.println("Hai risposto: " + answers.get(answer - 1) + (correctness ? " CORRETTO!" : " SBAGLIATO!") + " \nTempo passato: " + elapsed);
             }
-            
             
         }
-        
-        System.out.println("Voto: "+ getScore());
+
+        gui.closeExamDialog();
+        System.out.println("Voto: " + getScore());
     }
-    
+
 }
