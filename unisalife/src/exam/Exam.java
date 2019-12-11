@@ -172,7 +172,7 @@ public class Exam implements Runnable {
         int voto = getScore();
 
         try {
-            if (voto >= 18) {
+            if (voto >= 18 && voto <= 30) {
                 gui.showHint(FileTextManager.getFileTextManager().getString(new MessageInformation("ScoreTaken")).get(0) + " " + voto);
             }
             else if (voto == 31) {

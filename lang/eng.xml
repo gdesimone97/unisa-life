@@ -53,7 +53,11 @@
 </MessageInformation>
 
 <MessageInformation info="NotAllowed">
-<message>This operation is not permitted</message>
+<message>You don't have all the requirements to do this</message>
+</MessageInformation>
+
+<MessageInformation info="ExamAlreadyDone">
+<message>You have already done this exam</message>
 </MessageInformation>
 
 </root>

@@ -32,18 +32,27 @@ public class ProfessorInteractionManager implements InteractionManager {
         // 1. Find the subject of the exam
         Professor p = (Professor)obj;
         Materia m = p.getSubject();
-        System.out.println(QuestsSingleton.getInstance().getQuest().get(m).isDone());
+        
         // 2. verifica idonietà e requisiti
         if(QuestsSingleton.getInstance().getQuest().get(m).isAvailable()){
             //3. Start the exam session
             Thread esameThread = new Thread(new Exam(m));
             esameThread.start();
-        }
-        else {
-            
-            //try {
-                GuiManager.getInstance().showHint("You do not have all the required items"/*FileTextManager.getFileTextManager().getString(new MessageInformation("Y")).get(0)*/);
-            //} catch (FileTextManagerException ex) { } catch (TextFinderException ex) { }
+        } else {
+            if (QuestsSingleton.getInstance().getQuest().get(m).isDone()) {
+                try {
+                    GuiManager.getInstance().showHint(FileTextManager.getFileTextManager().getString(new MessageInformation("ExamAlreadyDone")).get(0));
+                } catch (FileTextManagerException ex) {
+                } catch (TextFinderException ex) {
+                }
+            }
+            else {
+                try {
+                GuiManager.getInstance().showHint(FileTextManager.getFileTextManager().getString(new MessageInformation("NotAllowed")).get(0));
+            } catch (FileTextManagerException ex) {
+            } catch (TextFinderException ex) {
+            }
+            }
         }
         
         
