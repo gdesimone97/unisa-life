@@ -17,7 +17,7 @@ import javax.swing.Timer;
  * exam screen. It contains methods for updating text fields and for
  * communicating with the exam thread.
  */
-public class ExamManager {
+ class ExamManager { // package limited (default)
 
     private GameFrame gameframe = GameFrame.getInstance();
     private static final String EMPTY_TEXT = "";
@@ -29,7 +29,7 @@ public class ExamManager {
     protected static ExamManager instance;
     private int level = 0;
     private Color color;
-    private Color basecolor=new java.awt.Color(75,125,167);
+    private final Color basecolor=new java.awt.Color(75,125,167);
 
     /**
      *
