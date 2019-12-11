@@ -65,8 +65,15 @@ public class ExamManager {
         rg.setValue(result);
         this.manageButtons(false);
     }
+    /**
+     * 
+     * @param correctness arrive from thred exam and says if the user has given the right answer
+     * @param confirm  is an instance of RequestGui
+     * This method decides, based on correctness, which response to illuminate and what color
+     */
     protected void isCorrect(boolean correctness,RequestGui confirm){
         this.confirm=confirm;
+        timing.stop();
         if(correctness){
             switch (RESULT) {
                 case 1:
