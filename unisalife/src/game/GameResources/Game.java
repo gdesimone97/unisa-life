@@ -110,9 +110,9 @@ public class Game extends Canvas implements Runnable, Saveable {
         t1.loadMap("/Maps/ExtMap.map");
         maps[0] = new Map(t0);
         maps[0].addObject(new Block(150, 150));
-        maps[0].addObject(new Item(300, 300, "/Sprites/calculator.png", "Calcolatrice", 0,ItemDef.calcolatrice));
-        maps[0].addObject(new Item(150, 200, "/Sprites/note.png", "Calcolatrice", 0,ItemDef.appuntidimatematica1));
-        maps[0].addObject(new Item(200, 150, "/Sprites/note.png", "Calcolatrice", 0,ItemDef.appuntidimatematica2));
+        maps[0].addObject(new Item(300, 300, "/Sprites/calculator.png", ItemDef.calcolatrice.toString(), 0,ItemDef.calcolatrice));
+        maps[0].addObject(new Item(150, 200, "/Sprites/note.png", ItemDef.appuntidimatematica1.toString(), 0,ItemDef.appuntidimatematica1));
+        maps[0].addObject(new Item(200, 150, "/Sprites/note.png", ItemDef.appuntidimatematica2.toString(), 0,ItemDef.appuntidimatematica2));
         maps[0].addObject(new Professor("Foggia", 200, 200, "/Sprites/foggia.png",Materia.matematica));
         actualMap = 0;
         WIDTHMAP = maps[actualMap].getTileMap().getWidth();
