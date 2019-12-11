@@ -78,7 +78,7 @@ public class Exam implements Runnable {
      * @return the final score of the exam
      */
     public int getScore() {
-        this.score = (int) this.sum / (maxLevel);
+        this.score = (int) this.sum / (lastLevelAnswered);
         return this.score;
     }
 
@@ -117,6 +117,7 @@ public class Exam implements Runnable {
                 
                 gui.showRequest("Your current vote is 30." + System.getProperty("line.separator") + "Do you also want to ask the praise?" + System.getProperty("line.separator") + "But be careful, if you miss the vote goes down.", praiseRequest);
                 answerRequest = praiseRequest.getValue();
+                System.out.println("Current score: " + getCurrentScore());
                 
                 if (!answerRequest) {
                     iter.next();
@@ -144,6 +145,8 @@ public class Exam implements Runnable {
                 verifyAnswer(correctness, questionTime - elapsed, question.getLevel());
                 System.out.println("Hai risposto: " + answers.get(answer - 1) + (correctness ? " CORRETTO!" : " SBAGLIATO!") + " \nTempo passato: " + elapsed);
             }
+            
+            System.out.println("Current score: " + getCurrentScore());
             
         }
 
