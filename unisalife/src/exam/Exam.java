@@ -169,13 +169,21 @@ public class Exam implements Runnable {
 
         }
 
+        int voto = getScore();
+
         try {
-            gui.showHint(FileTextManager.getFileTextManager().getString(new MessageInformation("ScoreTaken")).get(0) + getScore());
+            if (voto >= 18) {
+                gui.showHint(FileTextManager.getFileTextManager().getString(new MessageInformation("ScoreTaken")).get(0) + voto);
+            } else {
+                gui.showHint(FileTextManager.getFileTextManager().getString(new MessageInformation("ExamFailed")).get(0));
+            }
         } catch (TextFinderException ex) {
-            System.out.println(ex);
+            ex.printStackTrace();
         } catch (FileTextManagerException ex) {
-            System.out.println(ex);
+            ex.printStackTrace();
         }
+
+        //SEGNARE ESAME SUL LIBRETTO
         gui.closeExamDialog();
     }
 
