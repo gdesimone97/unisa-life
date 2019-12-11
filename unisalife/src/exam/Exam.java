@@ -30,7 +30,7 @@ public class Exam implements Runnable {
     private final int maxLevel;
     private final float basicScore;
     private int lastLevelAnswered = 0;
-    private examResult er;
+    private ExamResult er;
     QuestionsIterator iter;
 
     /**
@@ -40,7 +40,7 @@ public class Exam implements Runnable {
      * questions
      *
      */
-    public Exam(Materia materia, examResult er) {
+    public Exam(Materia materia, ExamResult er) {
         this.subject = materia;
         QuestionFactory questionsFetch = new StringsQuestionFactory(subject);
         this.score = 0;

@@ -9,10 +9,10 @@ package exam;
  *
  * @author 1997g
  */
-public class examResult {
+public class ExamResult {
     protected int value = 0;
 
-    public examResult() {
+    public ExamResult() {
     }
 /**
  * 
