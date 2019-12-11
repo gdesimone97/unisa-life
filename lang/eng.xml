@@ -24,6 +24,14 @@
 <message>Calculator</message>
 </Item>
 
+<Item info="appuntidimatematica1">
+<message>Math notes 1</message>
+</Item>
+
+<Item info="appuntidimatematica2">
+<message>Math notes 2</message>
+</Item>
+
 <MessageInformation info="ItemFound">
 <message>You've just found a new item!</message>
 </MessageInformation>
