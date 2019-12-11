@@ -14,6 +14,7 @@ import quests.mediator.User;
 import exam.booklet.Saveable;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -94,8 +95,9 @@ public class GameInventorySingleton extends User implements Iterable<Item>, Save
         i.setTaken();
         Message msg = new Message(i.getID().toString() , true ); //prepare the message with the added object
         send(msg); //then sends it
-        int pos = view.indexOf(i);
-        view.add(pos+1, i);
+        int pos = Arrays.binarySearch( view.toArray(new Item[view.size()]), i, comp);
+        //int pos = view.indexOf(i);
+        view.add(-(pos+1), i);
         return pos;
         
     }

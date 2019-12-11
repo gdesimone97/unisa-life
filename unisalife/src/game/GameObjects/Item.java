@@ -22,7 +22,7 @@ import quests.ItemDef;
  *
  * @author simon
  */
-public class Item extends GameObject implements Renderable, Interactable, Serializable, Comparable<Item> {
+public class Item extends GameObject implements Renderable, Interactable, Serializable, Comparable<Item>,Information {
 
     private final String info;
     private BufferedImage facingDownImage;

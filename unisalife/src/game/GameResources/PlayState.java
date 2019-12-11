@@ -28,7 +28,7 @@ public class PlayState extends GameState{
     @Override
     public void render(Graphics g){
         Graphics2D g2d = (Graphics2D)g;
-        g.setColor(Color.white);
+        g.setColor(new Color(170,226,103));
             g.fillRect(0, 0, Game.WIDTHSCREEN, Game.HEIGHTSCREEN2);
             g2d.translate(Game.camera.getX(), Game.camera.getY());
             Game.handler.render(g2d);
