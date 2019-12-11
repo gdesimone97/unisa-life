@@ -17,10 +17,10 @@ import unisagui.GuiManager;
 
 /**
  * InteractionManager implemented for Item collection
+ *
  * @author alfon
  */
 public class ItemInteractionManager implements InteractionManager {
-    
 
     @Override
     public void execute(Interactable obj) {
@@ -32,21 +32,19 @@ public class ItemInteractionManager implements InteractionManager {
             tm = FileTextManager.getFileTextManager();
             MessageInformation ms = new MessageInformation("ItemFound");
             toShow = tm.getString(ms).get(0) + " " + tm.getString((Information) obj).get(0);
+            
+            // show pop up (should be shown until the user says so)
+            GuiManager.getInstance().showHint(toShow);
 
-        } catch (FileTextManagerException | TextFinderException ex) {
+            // add element to the inventory
+            GameInventorySingleton.getInstance().addItem((Item) obj);
+
+            // remove element from the the map
+            Game.getGame().getActualMap().getList().remove((GameObject) obj);
+
+        } catch (Exception ex) {
             // decide what to do when an error with string retriving occurs
         }
-
-        // show pop up (should be shown until the user says so)
-        GuiManager.getInstance().showHint(toShow);
-
-        // add element to the inventory
-        GameInventorySingleton.getInstance().addItem((Item) obj);
-
-        // remove element from the the map
-        Game.getGame().getActualMap().getList().remove((GameObject) obj);
-        
-
     }
 
 }
