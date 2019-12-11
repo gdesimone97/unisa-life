@@ -5,6 +5,8 @@
  */
 package unisagui;
 
+import javax.swing.SwingUtilities;
+
 /**
  *
  * @author Virginia Cavallaro
@@ -12,41 +14,41 @@ package unisagui;
  */
 public class DialogManager {
     
+    private final GameFrame gameframe;
+    
     protected DialogManager(){
-        
+        gameframe = GameFrame.getInstance();
     }
     /**
-     * 
+     * show an hint in a small text area that can be closed using a button
      * @param hint
-     * @param show 
-     * show an hint in a small text area that can be closed using "ENTER" key
+     * 
      */
-    public void showHint(String hint, boolean show){
-        //ancora dobbiamo crearle
+    public void showHint(String hint){
+        SwingUtilities.invokeLater(() -> gameframe.HintTextArea.setText(hint));
+        SwingUtilities.invokeLater(() -> gameframe.HintScrollPane.setVisible(true));
+        SwingUtilities.invokeLater(() -> gameframe.HintDialog.setVisible(true));
+    }
+    
+    public void hideHint(){
+        SwingUtilities.invokeLater(() -> gameframe.HintTextArea.setText(""));
+        SwingUtilities.invokeLater(() -> gameframe.HintScrollPane.setVisible(false));
+        SwingUtilities.invokeLater(() -> gameframe.HintDialog.setVisible(false));
     }
     /**
-     * 
+     * show a little conversation 
      * @param conversation
-     * @param show 
-     * show conversation between us and a GameObject of type Person that can be closed using "ENTER" key
+     * s
      */
-    public void showConversation(String conversation, boolean show){
-        //ancora dobbiamo crearle
+    public void showDialog(String conversation){
+        SwingUtilities.invokeLater(() -> gameframe.ConversationTextArea.setText(conversation));
+        SwingUtilities.invokeLater(() -> gameframe.ConversationScrollPane.setVisible(true));
+        SwingUtilities.invokeLater(() -> gameframe.ConvDialog.setVisible(true));
     }
-
-    void showHint(String s) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    void showDialog(String s) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    void hideDialog() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    void hideHint() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    
+    public void hideDialog(){
+        SwingUtilities.invokeLater(() -> gameframe.ConversationTextArea.setText(""));
+        SwingUtilities.invokeLater(() -> gameframe.ConversationScrollPane.setVisible(false));
+        SwingUtilities.invokeLater(() -> gameframe.ConvDialog.setVisible(false));;
     }
 }
