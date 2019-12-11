@@ -11,7 +11,7 @@
 <message>3#Definition of the Fourier Series:#an infinite series of trigonometric functions#an infinte series of polynomial functions#a trilogy on cool engineering books#a Netflix TV-Series by director Fourier</message>
 <message>3#The solution of the differential equation y=y' with y(0)=1 is:#e^x#x#log(x)#0</message>
 <message>3#Sum (1/3)^n from 0 to +inf is:#1.5#1#2#0.5</message>
-<message>4#####</message>
+<message>4#If f(z) is an holomorphic function defined in a simply connected space, its integral on a closed path is:#0#f(0)#Not enough information#+inf</message>
 <message>4#####</message>
 <message>4#####</message>
 </Materia>
@@ -46,6 +46,10 @@
 
 <MessageInformation info="Lode">
 <message>You've passed this exam with distinction!</message>
+</MessageInformation>
+
+<MessageInformation info="LodeRequest">
+<message>Your current score is 30. Do you also want another question to take the distinction? Keep in mind that you can lose some points too.</message>
 </MessageInformation>
 
 <MessageInformation info="ExamFailed">
