@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+
+<Professor info="Foggia">
+<message>1#####</message>
+<message>1#####</message>
+<message>1#####</message>
+<message>1#####</message>
+<message>1#####</message>
+<message>2#####</message>
+<message>2#####</message>
+<message>2#####</message>
+<message>2#####</message>
+<message>2#####</message>
+<message>3#####</message>
+<message>3#####</message>
+<message>3#####</message>
+<message>3#####</message>
+<message>3#####</message>
+<message>4#####</message>
+<message>4#####</message>
+<message>4#####</message>
+<message>4#####</message>
+<message>4#####</message>
+</Professor>
+
+<Item info="calcolatrice">
+<message></message>
+</Item>
+
+<MessageInformation info="ItemFound">
+<message>You've just found a new item!</message>
+</MessageInformation>
+
+<MessageInformation info="ItemFound">
+<message>You've just found a new item!</message>
+</MessageInformation>
+
+<MessageInformation info="ScoreTaken">
+<message>You've passed the exam with</message>
+</MessageInformation>
+
+<MessageInformation info="ExamFailed">
+<message>Sorry, you should study a little more...</message>
+</MessageInformation>
+
+<MessageInformation info="NotAllowed">
+<message>This operation is not permitted</message>
+</MessageInformation>
+
+</root>
