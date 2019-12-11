@@ -102,12 +102,10 @@ public class Game extends Canvas implements Runnable, Saveable {
         t1.loadMap("/Maps/ExtMap.map");
         maps[0] = new Map(t0);
         maps[0].addObject(new Block(150, 150));
-        maps[0].addObject(new Teleport(250, 250, "Tileset/tileset.gif", 1, new Destination(20, 20)));
-        maps[0].addObject(new Item(300, 300, "/Sprites/item.png", "Sfera pokè", 0,ItemDef.calcolatrice));
-        maps[1] = new Map(t1);
-        maps[1].addObject(new Block(100, 70));
-        maps[1].addObject(new Block(70, 40));
-        maps[1].addObject(new Professor("Foggia", 200, 200, "/Sprites/foggia.png",Materia.matematica));
+        maps[0].addObject(new Item(300, 300, "/Sprites/calculator.png", "Calcolatrice", 0,ItemDef.calcolatrice));
+        maps[0].addObject(new Item(150, 200, "/Sprites/note.png", "Calcolatrice", 0,ItemDef.appuntidimatematica1));
+        maps[0].addObject(new Item(200, 150, "/Sprites/note.png", "Calcolatrice", 0,ItemDef.appuntidimatematica2));
+        maps[0].addObject(new Professor("Foggia", 200, 200, "/Sprites/foggia.png",Materia.matematica));
         actualMap = 0;
         WIDTHMAP = maps[actualMap].getTileMap().getWidth();
         HEIGHTMAP = maps[actualMap].getTileMap().getHeight();
