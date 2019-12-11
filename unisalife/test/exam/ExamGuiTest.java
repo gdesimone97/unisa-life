@@ -25,6 +25,7 @@ public class ExamGuiTest {
         
         int finalVote = er.getValue();
         
+        //GuiManager.getInstance().showHint(FileTextManager.getFileTextManager().getString(new MessageInformation("ScoreTaken")).get(0) + getScore());
         System.out.println("il tuo voto: " + finalVote);
     }
     
