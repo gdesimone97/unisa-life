@@ -29,6 +29,7 @@ public class Exam implements Runnable {
     private final int maxLevel;
     private final float basicScore;
     private int lastLevelAnswered = 0;
+    private examResult er;
     QuestionsIterator iter;
 
     /**
@@ -38,7 +39,7 @@ public class Exam implements Runnable {
      * questions
      *
      */
-    public Exam(Materia materia) {
+    public Exam(Materia materia, examResult er) {
         this.subject = materia;
         QuestionFactory questionsFetch = new StringsQuestionFactory(subject);
         this.score = 0;
@@ -49,6 +50,7 @@ public class Exam implements Runnable {
         this.maxLevel = this.questions.getNumLevels();
         this.basicScore = 12 / (30 - (30 / (float) (this.maxLevel - 1)));
         this.iter = questions.iterator();
+        this.er = er;
     }
 
     /**
@@ -150,10 +152,10 @@ public class Exam implements Runnable {
             }
             
         }
-          
+        
         //gui.showHint(FileTextManager.getFileTextManager().getString(new MessageInformation("ScoreTaken")).get(0) + getScore());
         gui.closeExamDialog();
-        System.out.println("Voto: " + getScore());
+        er.setValue(getScore());
     }
 
 }

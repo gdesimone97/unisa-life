@@ -17,10 +17,15 @@ public class ExamGuiTest {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Exam esame = new Exam(Materia.matematica);
-        Thread esameThread = new Thread(esame);
         
+        examResult er = new examResult();
+        Exam esame = new Exam(Materia.matematica, er);
+        Thread esameThread = new Thread(esame);
         esameThread.start();
+        
+        int finalVote = er.getValue();
+        
+        System.out.println("il tuo voto: " + finalVote);
     }
     
 }
