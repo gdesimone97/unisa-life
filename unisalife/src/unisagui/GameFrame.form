@@ -38,6 +38,9 @@
       <SubComponents>
         <Container class="javax.swing.JPanel" name="ExamPanel">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="c7" green="96" red="5d" type="rgb"/>
+            </Property>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[500, 500]"/>
             </Property>
@@ -75,7 +78,7 @@
                           <Component id="ThirdAnswer" min="-2" max="-2" attributes="0"/>
                           <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
                               <Group type="102" attributes="0">
-                                  <Component id="TimeLabel" min="-2" max="-2" attributes="0"/>
+                                  <Component id="TimeLabel" min="-2" pref="50" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
                                   <Component id="ConfirmAnswer" min="-2" max="-2" attributes="0"/>
                               </Group>
@@ -116,17 +119,17 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="ConfirmAnswer" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="StudentLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
+                              <Component id="StudentLabel" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                              <Component id="TimeLabel" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="ConfirmAnswer" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="TimeLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
-                      <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -134,7 +137,10 @@
           <SubComponents>
             <Component class="javax.swing.JLabel" name="ProfLabel">
               <Properties>
-                <Property name="text" type="java.lang.String" value="prof img"/>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/unisagui/resources/professor75.png"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="jLabel1"/>
                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[75, 75]"/>
                 </Property>
@@ -151,15 +157,8 @@
             </Component>
             <Component class="javax.swing.JLabel" name="StudentLabel">
               <Properties>
-                <Property name="text" type="java.lang.String" value="jLabel2"/>
-                <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[75, 75]"/>
-                </Property>
-                <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[75, 75]"/>
-                </Property>
-                <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[75, 75]"/>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/unisagui/resources/man75.png"/>
                 </Property>
               </Properties>
               <AuxValues>
@@ -168,6 +167,12 @@
             </Component>
             <Component class="javax.swing.JLabel" name="NameOfExamLabel">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Arial Black" size="13" style="1"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="ExamName"/>
                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[125, 25]"/>
@@ -185,6 +190,12 @@
             </Component>
             <Component class="javax.swing.JLabel" name="LevelOfQuestionLabel">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Arial Black" size="12" style="0"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="LevelOfQuestion"/>
                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[125, 25]"/>
@@ -236,15 +247,16 @@
                 <Component class="javax.swing.JTextArea" name="ExamTextArea">
                   <Properties>
                     <Property name="editable" type="boolean" value="false"/>
-                    <Property name="columns" type="int" value="20"/>
+                    <Property name="columns" type="int" value="8"/>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Arial" size="16" style="0"/>
+                    </Property>
+                    <Property name="lineWrap" type="boolean" value="true"/>
                     <Property name="rows" type="int" value="5"/>
                     <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[300, 100]"/>
                     </Property>
                     <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                      <Dimension value="[300, 100]"/>
-                    </Property>
-                    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[300, 100]"/>
                     </Property>
                   </Properties>
@@ -256,7 +268,15 @@
             </Container>
             <Component class="javax.swing.JButton" name="FirstAnswer">
               <Properties>
-                <Property name="text" type="java.lang.String" value="jButton1"/>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="a7" green="7d" red="4b" type="rgb"/>
+                </Property>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Arial Black" size="12" style="0"/>
+                </Property>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="null"/>
+                </Property>
                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[300, 25]"/>
                 </Property>
@@ -276,7 +296,18 @@
             </Component>
             <Component class="javax.swing.JButton" name="SecondAnswer">
               <Properties>
-                <Property name="text" type="java.lang.String" value="jButton1"/>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="a7" green="7d" red="4b" type="rgb"/>
+                </Property>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Arial Black" size="12" style="0"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="null"/>
+                </Property>
                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[300, 25]"/>
                 </Property>
@@ -296,7 +327,18 @@
             </Component>
             <Component class="javax.swing.JButton" name="ThirdAnswer">
               <Properties>
-                <Property name="text" type="java.lang.String" value="jButton1"/>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="a7" green="7d" red="4b" type="rgb"/>
+                </Property>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Arial Black" size="12" style="0"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="null"/>
+                </Property>
                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[300, 25]"/>
                 </Property>
@@ -316,7 +358,15 @@
             </Component>
             <Component class="javax.swing.JButton" name="FourthAnswer">
               <Properties>
-                <Property name="text" type="java.lang.String" value="jButton1"/>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="a7" green="7d" red="4b" type="rgb"/>
+                </Property>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Arial Black" size="12" style="0"/>
+                </Property>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="null"/>
+                </Property>
                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[300, 25]"/>
                 </Property>
@@ -336,7 +386,19 @@
             </Component>
             <Component class="javax.swing.JButton" name="ConfirmAnswer">
               <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="a7" green="7d" red="4b" type="rgb"/>
+                </Property>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Arial Black" size="13" style="0"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Confirm"/>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="null"/>
+                </Property>
                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[125, 25]"/>
                 </Property>
@@ -355,7 +417,16 @@
               </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="4"/>
+                <AuxValue name="JavaCodeGenerator_allCodePost" type="java.lang.String" value="ConfirmAnswer.setVisible(false);"/>
               </AuxValues>
+            </Component>
+            <Component class="javax.swing.JLabel" name="TimeLabel1">
+              <Properties>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="0"/>
+              </Properties>
             </Component>
           </SubComponents>
         </Container>
@@ -459,7 +530,7 @@
             <Component class="javax.swing.JLabel" name="MainMenuLabel">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/unisagui/resources/MAIN MENU NERO.png"/>
+                  <Image iconType="3" name="/unisagui/resources/MAIN MENU AZZURRINO.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="                   MAIN MENU"/>
                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -478,15 +549,14 @@
             </Component>
             <Component class="javax.swing.JButton" name="SettingsButton">
               <Properties>
-                <Property name="text" type="java.lang.String" value="SETT"/>
-                <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[75, 75]"/>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="c7" green="96" red="5d" type="rgb"/>
                 </Property>
-                <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[75, 75]"/>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/unisagui/resources/settingsICON75.png"/>
                 </Property>
-                <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[75, 75]"/>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="null"/>
                 </Property>
               </Properties>
               <Events>
@@ -498,15 +568,14 @@
             </Component>
             <Component class="javax.swing.JButton" name="ExitButton">
               <Properties>
-                <Property name="text" type="java.lang.String" value="EXIT"/>
-                <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[75, 75]"/>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="c7" green="96" red="5d" type="rgb"/>
                 </Property>
-                <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[75, 75]"/>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/unisagui/resources/EXIT75.png"/>
                 </Property>
-                <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[75, 75]"/>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="null"/>
                 </Property>
               </Properties>
               <Events>
@@ -518,7 +587,19 @@
             </Component>
             <Component class="javax.swing.JButton" name="NewGameButton">
               <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="a7" green="7d" red="4b" type="rgb"/>
+                </Property>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Arial Black" size="18" style="1"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="NEW GAME"/>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="null"/>
+                </Property>
                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[200, 50]"/>
                 </Property>
@@ -538,7 +619,20 @@
             </Component>
             <Component class="javax.swing.JButton" name="ResumeGameButton">
               <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="a7" green="7d" red="4b" type="rgb"/>
+                </Property>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Arial Black" size="18" style="1"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="RESUME GAME"/>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="null"/>
+                </Property>
+                <Property name="enabled" type="boolean" value="false"/>
                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[200, 50]"/>
                 </Property>
@@ -558,7 +652,20 @@
             </Component>
             <Component class="javax.swing.JButton" name="CreditsButton">
               <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="a7" green="7d" red="4b" type="rgb"/>
+                </Property>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Arial Black" size="18" style="1"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="CREDITS"/>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="null"/>
+                </Property>
+                <Property name="enabled" type="boolean" value="false"/>
                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[200, 50]"/>
                 </Property>
@@ -1921,7 +2028,7 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
+                  <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="200" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Component id="LanguageComboBox" min="-2" max="-2" attributes="0"/>
@@ -1938,12 +2045,14 @@
                       </Group>
                       <EmptySpace min="-2" pref="200" max="-2" attributes="0"/>
                   </Group>
+                  <Component id="SettingsCloseButton" alignment="1" min="-2" max="-2" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="175" max="-2" attributes="0"/>
+                      <Component id="SettingsCloseButton" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="150" max="-2" attributes="0"/>
                       <Component id="SettingsLayer" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -1965,15 +2074,8 @@
             <Component class="javax.swing.JLabel" name="SettingsLayer">
               <Properties>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="text" type="java.lang.String" value="SETTINGS"/>
-                <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[200, 75]"/>
-                </Property>
-                <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[200, 75]"/>
-                </Property>
-                <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[200, 75]"/>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/unisagui/resources/SETTINGS AZZURRINO.png"/>
                 </Property>
               </Properties>
               <AuxValues>
@@ -1982,15 +2084,15 @@
             </Component>
             <Component class="javax.swing.JButton" name="AudioButton">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Sounds&#xa;"/>
-                <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[75, 75]"/>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="c7" green="96" red="5d" type="rgb"/>
                 </Property>
-                <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[75, 75]"/>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/unisagui/resources/SOUND75.png"/>
                 </Property>
-                <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[75, 75]"/>
+                <Property name="toolTipText" type="java.lang.String" value=""/>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="null"/>
                 </Property>
               </Properties>
               <Events>
@@ -2002,15 +2104,14 @@
             </Component>
             <Component class="javax.swing.JButton" name="MusicButton">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Music&#xa;"/>
-                <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[75, 75]"/>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="c7" green="96" red="5d" type="rgb"/>
                 </Property>
-                <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[75, 75]"/>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/unisagui/resources/MUSIC75.png"/>
                 </Property>
-                <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[75, 75]"/>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="null"/>
                 </Property>
               </Properties>
               <AuxValues>
@@ -2019,7 +2120,20 @@
             </Component>
             <Component class="javax.swing.JButton" name="KeyboardButton">
               <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="a7" green="7d" red="4b" type="rgb"/>
+                </Property>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Arial Black" size="12" style="1"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="KEYBOARD SETTINGS"/>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="null"/>
+                </Property>
+                <Property name="enabled" type="boolean" value="false"/>
                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[200, 50]"/>
                 </Property>
@@ -2039,7 +2153,19 @@
             </Component>
             <Component class="javax.swing.JButton" name="ReturnToMainMenuButton">
               <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="a7" green="7d" red="4b" type="rgb"/>
+                </Property>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Arial Black" size="18" style="1"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="MAIN MENU"/>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="null"/>
+                </Property>
                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[200, 50]"/>
                 </Property>
@@ -2059,10 +2185,19 @@
             </Component>
             <Component class="javax.swing.JComboBox" name="LanguageComboBox">
               <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="a7" green="7d" red="4b" type="rgb"/>
+                </Property>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Arial Black" size="18" style="1"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="2">
                     <StringItem index="0" value="English"/>
-                    <StringItem index="1" value="Italian"/>
+                    <StringItem index="1" value=" "/>
                   </StringArray>
                 </Property>
                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -2081,6 +2216,22 @@
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>
+            </Component>
+            <Component class="javax.swing.JButton" name="SettingsCloseButton">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="c7" green="96" red="5d" type="rgb"/>
+                </Property>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/unisagui/resources/exitbutton24.png"/>
+                </Property>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="null"/>
+                </Property>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="SettingsCloseButtonActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -2119,6 +2270,9 @@
       <SubComponents>
         <Container class="javax.swing.JPanel" name="RequestPanel">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="c7" green="96" red="5d" type="rgb"/>
+            </Property>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[250, 175]"/>
             </Property>
@@ -2133,34 +2287,31 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="RequestScrollPane" pref="0" max="32767" attributes="0"/>
+                          <Group type="102" attributes="0">
                               <Component id="YesButton" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+                              <EmptySpace pref="50" max="32767" attributes="0"/>
                               <Component id="NoButton" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
-                          </Group>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                      <Component id="RequestScrollPane" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="YesButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="NoButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="NoButton" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="YesButton" alignment="1" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -2168,7 +2319,15 @@
           <SubComponents>
             <Component class="javax.swing.JButton" name="YesButton">
               <Properties>
-                <Property name="text" type="java.lang.String" value="YES"/>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="c7" green="96" red="5d" type="rgb"/>
+                </Property>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/unisagui/resources/YESBUTTON50.png"/>
+                </Property>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="null"/>
+                </Property>
                 <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[75, 50]"/>
                 </Property>
@@ -2179,7 +2338,15 @@
             </Component>
             <Component class="javax.swing.JButton" name="NoButton">
               <Properties>
-                <Property name="text" type="java.lang.String" value="NO"/>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="c7" green="96" red="5d" type="rgb"/>
+                </Property>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/unisagui/resources/NOBUTTON50.png"/>
+                </Property>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="null"/>
+                </Property>
                 <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[75, 50]"/>
                 </Property>
@@ -2188,26 +2355,30 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="NoButtonActionPerformed"/>
               </Events>
             </Component>
-            <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+            <Container class="javax.swing.JScrollPane" name="RequestScrollPane">
               <AuxValues>
                 <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
               </AuxValues>
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JTextArea" name="RequestTextArea">
+                <Component class="javax.swing.JTextArea" name="RequestLabel">
                   <Properties>
                     <Property name="editable" type="boolean" value="false"/>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="c7" green="96" red="5d" type="rgb"/>
+                    </Property>
                     <Property name="columns" type="int" value="20"/>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Arial Black" size="11" style="0"/>
+                    </Property>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                    </Property>
+                    <Property name="lineWrap" type="boolean" value="true"/>
                     <Property name="rows" type="int" value="5"/>
-                    <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                      <Dimension value="[200, 50]"/>
-                    </Property>
-                    <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                      <Dimension value="[200, 50]"/>
-                    </Property>
-                    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                      <Dimension value="[200, 50]"/>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="null"/>
                     </Property>
                   </Properties>
                 </Component>
@@ -2364,6 +2535,9 @@
       <SubComponents>
         <Container class="javax.swing.JPanel" name="AvatarChooserPanel">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="c7" green="96" red="5d" type="rgb"/>
+            </Property>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[600, 750]"/>
             </Property>
@@ -2400,7 +2574,7 @@
                               <Component id="AvatarImage" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="100" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="100" max="-2" attributes="0"/>
                       <Component id="AvatarOkButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                   </Group>
@@ -2444,7 +2618,13 @@
           <SubComponents>
             <Component class="javax.swing.JTextField" name="AvatarName">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Name"/>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Arial Black" size="16" style="0"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="c7" green="96" red="5d" type="rgb"/>
+                </Property>
+                <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[200, 50]"/>
                 </Property>
@@ -2461,6 +2641,12 @@
             </Component>
             <Component class="javax.swing.JLabel" name="AvatarNameLabel">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Arial Black" size="18" style="0"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Your name:"/>
                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[200, 25]"/>
@@ -2475,17 +2661,19 @@
             </Component>
             <Component class="javax.swing.JButton" name="MaleWhiteButton">
               <Properties>
-                <Property name="text" type="java.lang.String" value="MB"/>
-                <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[75, 75]"/>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="c7" green="96" red="5d" type="rgb"/>
                 </Property>
-                <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[75, 75]"/>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/unisagui/resources/man75.png"/>
                 </Property>
-                <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[75, 75]"/>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="null"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MaleWhiteButtonActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="AvatarImage">
               <Properties>
@@ -2507,44 +2695,50 @@
             </Component>
             <Component class="javax.swing.JButton" name="MaleBlackButton">
               <Properties>
-                <Property name="text" type="java.lang.String" value="MN"/>
-                <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[75, 75]"/>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="c7" green="96" red="5d" type="rgb"/>
                 </Property>
-                <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[75, 75]"/>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/unisagui/resources/BLACKman75.png"/>
                 </Property>
-                <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[75, 75]"/>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="null"/>
                 </Property>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MaleBlackButtonActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="FemaleBlackButton">
               <Properties>
-                <Property name="text" type="java.lang.String" value="DN"/>
-                <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[75, 75]"/>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="c7" green="96" red="5d" type="rgb"/>
                 </Property>
-                <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[75, 75]"/>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/unisagui/resources/BLACKwoman75.png"/>
                 </Property>
-                <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[75, 75]"/>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="null"/>
                 </Property>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="FemaleBlackButtonActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="FemaleWhiteButton">
               <Properties>
-                <Property name="text" type="java.lang.String" value="DB"/>
-                <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[75, 75]"/>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="c7" green="96" red="5d" type="rgb"/>
                 </Property>
-                <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[75, 75]"/>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/unisagui/resources/woman75.png"/>
                 </Property>
-                <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[75, 75]"/>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="null"/>
                 </Property>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <AccessibilityProperties>
                 <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="FemaleButton"/>
@@ -2556,6 +2750,9 @@
             </Component>
             <Component class="javax.swing.JLabel" name="AvatarIcon">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/unisagui/resources/AVATAR AZZURRINO.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="                 AVATAR"/>
                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[200, 75]"/>
@@ -2573,7 +2770,19 @@
             </Component>
             <Component class="javax.swing.JButton" name="AvatarOkButton">
               <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="a7" green="7d" red="4b" type="rgb"/>
+                </Property>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Arial" size="18" style="1"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="OK"/>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="null"/>
+                </Property>
                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[75, 50]"/>
                 </Property>
@@ -2783,6 +2992,185 @@
         </Container>
       </SubComponents>
     </Container>
+    <Container class="javax.swing.JDialog" name="QuestDialog">
+      <Properties>
+        <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[420, 400]"/>
+        </Property>
+        <Property name="modal" type="boolean" value="true"/>
+      </Properties>
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Component id="QuestPanel" alignment="0" max="-2" attributes="0"/>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Component id="QuestPanel" alignment="0" max="-2" attributes="0"/>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Container class="javax.swing.JPanel" name="QuestPanel">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="c7" green="96" red="5d" type="rgb"/>
+            </Property>
+            <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[420, 400]"/>
+            </Property>
+            <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[420, 400]"/>
+            </Property>
+            <Property name="name" type="java.lang.String" value="" noResource="true"/>
+            <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[420, 400]"/>
+            </Property>
+          </Properties>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                      <Component id="QuestListScrollPane" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                      <Component id="QuestTextScrollPane" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="20" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <Component id="ExitQuestDialogLabel" min="-2" pref="25" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Component id="ExitQuestDialogLabel" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="QuestTextScrollPane" alignment="1" max="-2" attributes="0"/>
+                          <Component id="QuestListScrollPane" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Container class="javax.swing.JScrollPane" name="QuestListScrollPane">
+              <Properties>
+                <Property name="toolTipText" type="java.lang.String" value=""/>
+                <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                  <Dimension value="[190, 350]"/>
+                </Property>
+                <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                  <Dimension value="[190, 350]"/>
+                </Property>
+                <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                  <Dimension value="[190, 350]"/>
+                </Property>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+              </AuxValues>
+
+              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+              <SubComponents>
+                <Component class="javax.swing.JList" name="QuestList">
+                  <Properties>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                        <TitledBorder title="Quest"/>
+                      </Border>
+                    </Property>
+                    <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
+                      <StringArray count="3">
+                        <StringItem index="0" value="Collect your first dollar!"/>
+                        <StringItem index="1" value="It&apos;s time to get Math Exam!"/>
+                        <StringItem index="2" value=" "/>
+                      </StringArray>
+                    </Property>
+                    <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[190, 350]"/>
+                    </Property>
+                    <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[190, 350]"/>
+                    </Property>
+                    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[190, 350]"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="valueChanged" listener="javax.swing.event.ListSelectionListener" parameters="javax.swing.event.ListSelectionEvent" handler="QuestListValueChanged"/>
+                  </Events>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                  </AuxValues>
+                </Component>
+              </SubComponents>
+            </Container>
+            <Container class="javax.swing.JScrollPane" name="QuestTextScrollPane">
+              <Properties>
+                <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                  <Dimension value="[190, 350]"/>
+                </Property>
+                <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                  <Dimension value="[190, 350]"/>
+                </Property>
+                <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                  <Dimension value="[190, 350]"/>
+                </Property>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+              </AuxValues>
+
+              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+              <SubComponents>
+                <Component class="javax.swing.JTextArea" name="QuestTextArea">
+                  <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
+                    <Property name="columns" type="int" value="20"/>
+                    <Property name="lineWrap" type="boolean" value="true"/>
+                    <Property name="rows" type="int" value="5"/>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                        <TitledBorder title="Description"/>
+                      </Border>
+                    </Property>
+                    <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[190, 350]"/>
+                    </Property>
+                    <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[190, 350]"/>
+                    </Property>
+                    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[190, 350]"/>
+                    </Property>
+                  </Properties>
+                </Component>
+              </SubComponents>
+            </Container>
+            <Component class="javax.swing.JLabel" name="ExitQuestDialogLabel">
+              <Properties>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="cc" type="rgb"/>
+                </Property>
+                <Property name="horizontalAlignment" type="int" value="0"/>
+                <Property name="text" type="java.lang.String" value="X"/>
+              </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="ExitQuestDialogLabelMouseClicked"/>
+              </Events>
+            </Component>
+          </SubComponents>
+        </Container>
+      </SubComponents>
+    </Container>
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
@@ -2837,7 +3225,7 @@
           <Group type="102" alignment="1" attributes="0">
               <Component id="LeftBorder" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-              <Component id="jPanel1" max="32767" attributes="0"/>
+              <Component id="UpperBorder" max="32767" attributes="0"/>
               <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
               <Component id="RightBorder" min="-2" max="-2" attributes="0"/>
           </Group>
@@ -2850,8 +3238,8 @@
                   <Component id="RightBorder" pref="575" max="32767" attributes="0"/>
                   <Component id="LeftBorder" pref="575" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
-                      <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="UpperBorder" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="500" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <Component id="HudPanel" min="-2" max="-2" attributes="0"/>
@@ -2883,32 +3271,33 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
+                  <EmptySpace min="50" pref="50" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <EmptySpace min="349" pref="349" max="-2" attributes="0"/>
-                          <Component id="HungerProgressBar" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="26" pref="26" max="-2" attributes="0"/>
-                          <Component id="HungerIcon" min="-2" max="-2" attributes="0"/>
+                          <Component id="LevelLabel" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="75" pref="75" max="-2" attributes="0"/>
+                          <Component id="EnergyProgressBar" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="25" pref="25" max="-2" attributes="0"/>
+                          <Component id="EnergyIcon" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="50" pref="50" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Component id="MoneyIcon" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-                                  <Component id="MoneyLabel" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="124" pref="124" max="-2" attributes="0"/>
-                                  <Component id="StressProgressBar" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="26" pref="26" max="-2" attributes="0"/>
-                                  <Component id="StressIcon" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" attributes="0">
-                                  <Component id="LevelLabel" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="75" pref="75" max="-2" attributes="0"/>
-                                  <Component id="EnergyProgressBar" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="25" pref="25" max="-2" attributes="0"/>
-                                  <Component id="EnergyIcon" min="-2" max="-2" attributes="0"/>
-                              </Group>
+                      <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="SettingsButtonFrame" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="QuestButtonFrame" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="HungerProgressBar" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="26" pref="26" max="-2" attributes="0"/>
+                              <Component id="HungerIcon" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Component id="MoneyIcon" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                              <Component id="MoneyLabel" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="139" max="-2" attributes="0"/>
+                              <Component id="StressProgressBar" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                              <Component id="StressIcon" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -2934,12 +3323,14 @@
                       <Component id="StressProgressBar" min="-2" max="-2" attributes="0"/>
                       <Component id="StressIcon" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="25" pref="25" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="HungerProgressBar" min="-2" max="-2" attributes="0"/>
                       <Component id="HungerIcon" min="-2" max="-2" attributes="0"/>
+                      <Component id="SettingsButtonFrame" min="-2" max="-2" attributes="0"/>
+                      <Component id="QuestButtonFrame" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -2948,9 +3339,15 @@
         <Component class="javax.swing.JLabel" name="LevelLabel">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="c7" green="96" red="5d" type="rgb"/>
+            </Property>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Arial Black" size="18" style="0"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="."/>
+            <Property name="text" type="java.lang.String" value="LEVEL 1"/>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[225, 25]"/>
             </Property>
@@ -2967,6 +3364,9 @@
         </Component>
         <Component class="javax.swing.JLabel" name="MoneyIcon">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/unisagui/resources/moneta.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="jLabel2"/>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[25, 25]"/>
@@ -2984,7 +3384,13 @@
         </Component>
         <Component class="javax.swing.JLabel" name="MoneyLabel">
           <Properties>
-            <Property name="text" type="java.lang.String" value="jLabel3"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Arial Black" size="18" style="0"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="33" green="ff" red="ff" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="0"/>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[125, 25]"/>
             </Property>
@@ -3001,6 +3407,13 @@
         </Component>
         <Component class="javax.swing.JProgressBar" name="EnergyProgressBar">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="cc" type="rgb"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="d4" red="6c" type="rgb"/>
+            </Property>
+            <Property name="value" type="int" value="70"/>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[150, 25]"/>
             </Property>
@@ -3017,6 +3430,9 @@
         </Component>
         <Component class="javax.swing.JLabel" name="EnergyIcon">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/unisagui/resources/ENERGY25.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="jLabel2"/>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[25, 25]"/>
@@ -3034,6 +3450,9 @@
         </Component>
         <Component class="javax.swing.JLabel" name="StressIcon">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/unisagui/resources/STRESS25.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="jLabel2"/>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[25, 25]"/>
@@ -3051,6 +3470,9 @@
         </Component>
         <Component class="javax.swing.JLabel" name="HungerIcon">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/unisagui/resources/HUNGERICON25.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="jLabel2"/>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[25, 25]"/>
@@ -3068,6 +3490,13 @@
         </Component>
         <Component class="javax.swing.JProgressBar" name="StressProgressBar">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="cc" green="ff" red="ff" type="rgb"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="66" green="d7" red="fe" type="rgb"/>
+            </Property>
+            <Property name="value" type="int" value="14"/>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[150, 25]"/>
             </Property>
@@ -3084,6 +3513,13 @@
         </Component>
         <Component class="javax.swing.JProgressBar" name="HungerProgressBar">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="cc" green="cc" red="ff" type="rgb"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="54" green="3c" red="c3" type="rgb"/>
+            </Property>
+            <Property name="value" type="int" value="20"/>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[150, 25]"/>
             </Property>
@@ -3097,6 +3533,38 @@
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="4"/>
           </AuxValues>
+        </Component>
+        <Component class="javax.swing.JButton" name="SettingsButtonFrame">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="c7" green="96" red="5d" type="rgb"/>
+            </Property>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/unisagui/resources/settingsICON25.png"/>
+            </Property>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="null"/>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="SettingsButtonFrameActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="QuestButtonFrame">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="c7" green="96" red="5d" type="rgb"/>
+            </Property>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/unisagui/resources/questbutton24.png"/>
+            </Property>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="null"/>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="QuestButtonFrameActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -3113,15 +3581,39 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="50" max="32767" attributes="0"/>
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace min="0" pref="25" max="32767" attributes="0"/>
+                  <Component id="GameCloseButton" min="-2" max="-2" attributes="0"/>
+              </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="575" max="32767" attributes="0"/>
+              <Group type="102" alignment="0" attributes="0">
+                  <Component id="GameCloseButton" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+              </Group>
           </Group>
         </DimensionLayout>
       </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JButton" name="GameCloseButton">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="c7" green="96" red="5d" type="rgb"/>
+            </Property>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/unisagui/resources/exitbutton24.png"/>
+            </Property>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="null"/>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="GameCloseButtonActionPerformed"/>
+          </Events>
+        </Component>
+      </SubComponents>
     </Container>
     <Container class="javax.swing.JPanel" name="LeftBorder">
       <Properties>
@@ -3146,7 +3638,7 @@
         </DimensionLayout>
       </Layout>
     </Container>
-    <Container class="javax.swing.JPanel" name="jPanel1">
+    <Container class="javax.swing.JPanel" name="UpperBorder">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="c7" green="96" red="5d" type="rgb"/>

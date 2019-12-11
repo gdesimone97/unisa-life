@@ -80,41 +80,33 @@ public class GuiManager {
     }
 
     /**
-     * When called a textArea appears or disappears on the screen
-     *
-     * @param go
+     * When called the Conversation Area appears  on the screen
      * @param s is the text in the text area
-     * @param show if true the textArea appears, if false disappears
-     * @throws NotInteractiveException when the GameObject is not interactive
-     */
-    public void showDialog(GameObject go, String s, boolean show) throws NotInteractiveException {
-
-        if(go instanceof Item)
-            dialogmanager.showHint(s,show);
-        else if(go instanceof Person)
-            dialogmanager.showConversation(s,show);
-        else
-            throw new NotInteractiveException();
-    }
-
-
-    public void showHint(String s, boolean show){
-        dialogmanager.showHint(s, show);
-    }
-
-    /**
-     * When called a JDialog with the Exam appears or disappears on the screen
-     * @param examName is the name of the exam
-     * @param show if true the JDialog appears, if false disappears
+     * 
      */
     public void showDialog(String s) {
         dialogmanager.showDialog(s);
     }
-
-    public void showHint(String s) {
+    /**
+     * When called the Conversation Area disappears
+     */
+    public void hideDialog(){
+        dialogmanager.hideDialog();
+    }
+    /**
+     * When called the Hint Area appears on the screen
+     * @param s is the text of the hint
+     */
+    public void showHint(String s){
         dialogmanager.showHint(s);
     }
-
+    /**
+     * When called the Hint Area disappears
+     */
+    public void hideHint(){
+        dialogmanager.hideHint();
+    }
+    
     /**
      *
      * @param examName Subject of the exam
