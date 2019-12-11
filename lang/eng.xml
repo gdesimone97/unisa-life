@@ -62,4 +62,8 @@
 <message>You have already done this exam</message>
 </MessageInformation>
 
+<MessageInformation info="QuestionsNotFound">
+<message>Sorry, couldn't obtain the questions...</message>
+</MessageInformation>
+
 </root>
