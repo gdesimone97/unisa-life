@@ -18,7 +18,7 @@ public class ExamGuiTest {
      */
     public static void main(String[] args) {
         
-        examResult er = new examResult();
+        ExamResult er = new ExamResult();
         Exam esame = new Exam(Materia.matematica, er);
         Thread esameThread = new Thread(esame);
         esameThread.start();

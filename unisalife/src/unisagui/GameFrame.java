@@ -65,8 +65,8 @@ public class GameFrame extends javax.swing.JFrame {
     private void settingLocations(GameFrame instance){
         SwingUtilities.invokeLater(() ->MainMenuDialog.setLocation(instance.getLocation()));
         SwingUtilities.invokeLater(() ->SettingsDialog.setLocation(instance.getLocation()));
-        SwingUtilities.invokeLater(() ->RequestDialog.setLocation(instance.getLocation().x+75, instance.getLocation().y+450));
-        SwingUtilities.invokeLater(() ->ExamDialog.setLocation(instance.getLocation()));
+        SwingUtilities.invokeLater(() ->RequestDialog.setLocation(instance.getLocation().x+75, instance.getLocation().y+250));
+        SwingUtilities.invokeLater(() ->ExamDialog.setLocation(instance.getLocation().x+50, instance.getLocation().y+75));
         SwingUtilities.invokeLater(() ->AvatarChooserDialog.setLocation(instance.getLocation()));
         SwingUtilities.invokeLater(() ->InventoryDialog.setLocation(instance.getLocation()));
         SwingUtilities.invokeLater(() ->ConvDialog.setLocation(instance.getLocation().x+200, instance.getLocation().y+275));
@@ -280,6 +280,7 @@ public class GameFrame extends javax.swing.JFrame {
 
         FirstAnswer.setBackground(new java.awt.Color(75, 125, 167));
         FirstAnswer.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        FirstAnswer.setForeground(new java.awt.Color(255, 255, 255));
         FirstAnswer.setBorder(null);
         FirstAnswer.setMaximumSize(new java.awt.Dimension(300, 25));
         FirstAnswer.setMinimumSize(new java.awt.Dimension(300, 25));
@@ -318,6 +319,7 @@ public class GameFrame extends javax.swing.JFrame {
 
         FourthAnswer.setBackground(new java.awt.Color(75, 125, 167));
         FourthAnswer.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        FourthAnswer.setForeground(new java.awt.Color(255, 255, 255));
         FourthAnswer.setBorder(null);
         FourthAnswer.setMaximumSize(new java.awt.Dimension(300, 25));
         FourthAnswer.setMinimumSize(new java.awt.Dimension(300, 25));
@@ -408,7 +410,6 @@ public class GameFrame extends javax.swing.JFrame {
         );
 
         ConfirmAnswer.getAccessibleContext().setAccessibleDescription("");
-        ConfirmAnswer.setVisible(false);
 
         javax.swing.GroupLayout ExamDialogLayout = new javax.swing.GroupLayout(ExamDialog.getContentPane());
         ExamDialog.getContentPane().setLayout(ExamDialogLayout);
