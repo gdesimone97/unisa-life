@@ -28,6 +28,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import language.FileTextManager;
 import saving.Saveable;
 import saving.exceptions.LoadingException;
 import quests.ItemDef;
@@ -47,6 +48,12 @@ public class Game extends Canvas implements Runnable, Saveable {
     private final static Game instance = new Game();
 
     private Game() {
+        try{
+        FileTextManager fileManager = FileTextManager.getFileTextManager();
+        fileManager.setLanguage("eng");
+        } catch (Exception ex){
+            ex.printStackTrace();
+        }
     }
 
     public static Game getGame() {
@@ -66,12 +73,13 @@ public class Game extends Canvas implements Runnable, Saveable {
     public static final int WIDTHSCREEN = 500,
             HEIGHTSCREEN = 500,
             HEIGHTSCREEN2 = HEIGHTSCREEN + 32,
-            PLAYERSPEED = 1,
-            DIMENSIONSPRITE = 16;
+            PLAYERSPEED = 2,
+            ANIMATIONSPEED=4,
+            DIMENSIONSPRITE = 32;
     private int WIDTHMAP, HEIGHTMAP;
 
     public final static double AMOUNTOFTICKS = 30.0;
-    protected GameState state = new NotGameState(this);
+    protected GameState state = new PlayState(this);
     protected static Map[] maps = new Map[5];
     protected static int actualMap;
     protected static TileMap tileMap;
@@ -120,7 +128,7 @@ public class Game extends Canvas implements Runnable, Saveable {
         texturePlayer = new BufferedImage[12];
         try {
             BufferedImage characterImage = ImageIO.read(
-                    getClass().getResourceAsStream("/Sprites/character.png")
+                    getClass().getResourceAsStream("/Sprites/sprite32.png")
             );
             texturePlayer[0] = characterImage.getSubimage(32, 0, DIMENSIONSPRITE, DIMENSIONSPRITE);
             texturePlayer[1] = characterImage.getSubimage(0, 0, DIMENSIONSPRITE, DIMENSIONSPRITE);
@@ -138,12 +146,12 @@ public class Game extends Canvas implements Runnable, Saveable {
             System.exit(4);
         }
         player = Player.getIstance(this);
-        player.changeFaceSet(Game.texturePlayer[0], Game.texturePlayer[3], Game.texturePlayer[6], Game.texturePlayer[9]);
+        player.changeFaceSet(Game.texturePlayer[6], Game.texturePlayer[3], Game.texturePlayer[9], Game.texturePlayer[0]);
 
-        player.changeAnimationSet(new Animation(PLAYERSPEED, texturePlayer[1], texturePlayer[2]),
-                new Animation(PLAYERSPEED, texturePlayer[4], texturePlayer[5]),
-                new Animation(PLAYERSPEED, texturePlayer[7], texturePlayer[8]),
-                new Animation(PLAYERSPEED, texturePlayer[10], texturePlayer[11]));
+        player.changeAnimationSet(new Animation(ANIMATIONSPEED, texturePlayer[7], texturePlayer[8]),
+                new Animation(ANIMATIONSPEED, texturePlayer[4], texturePlayer[5]),
+                new Animation(ANIMATIONSPEED, texturePlayer[10], texturePlayer[11]),
+                new Animation(ANIMATIONSPEED, texturePlayer[1], texturePlayer[2]));
         player.setX(50);
         player.setY(50);
 

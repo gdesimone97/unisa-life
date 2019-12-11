@@ -66,7 +66,7 @@ public class Animation {
      * @param y y position of the frame
      */
     public void drawAnimation(Graphics g,int x,int y){
-            //g.drawImage(currentImage, x, y, null);
+            g.drawImage(currentImage, x,y, null);
         }
         
     /*
@@ -79,7 +79,7 @@ public class Animation {
      * @param scaleY height dimension of the frame
      */
     public void drawAnimation(Graphics g,int x,int y,int scaleX,int scaleY){
-            g.drawImage(currentImage, x, y, scaleX, scaleY, null);
+            g.drawImage(currentImage, x, y, null);
         }
      
         
