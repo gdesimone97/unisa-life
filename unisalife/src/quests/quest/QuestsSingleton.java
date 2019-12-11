@@ -6,15 +6,11 @@
 package quests.quest;
 
 import exam.booklet.Saveable;
-import exam.booklet.Subject;
 import exam.question.Materia;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.EnumMap;
-import java.util.List;
 import quests.QuestsManagerSingleton;
-import quests.mediator.Message;
-import quests.mediator.User;
 /**
  *
  * @author liovi
@@ -45,7 +41,7 @@ public class QuestsSingleton  implements Saveable, Serializable{
         return quests;
     }
     
-    public List<Quest> getAvailableQuest(){
+    public ArrayList<Quest> getAvailableQuest(){
         return this.availableQuests;
     }
     
