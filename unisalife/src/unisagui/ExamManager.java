@@ -29,6 +29,7 @@ public class ExamManager {
     protected static ExamManager instance;
     private int level = 0;
     private Color color;
+    private Color basecolor=new java.awt.Color(93, 150, 199);
 
     /**
      *
@@ -111,10 +112,10 @@ public class ExamManager {
         SwingUtilities.invokeLater(() -> gameframe.SecondAnswer.setText(EMPTY_TEXT));
         SwingUtilities.invokeLater(() -> gameframe.ThirdAnswer.setText(EMPTY_TEXT));
         SwingUtilities.invokeLater(() -> gameframe.FourthAnswer.setText(EMPTY_TEXT));
-        SwingUtilities.invokeLater(() -> gameframe.FirstAnswer.setBackground(new java.awt.Color(93, 150, 199)));
-        SwingUtilities.invokeLater(() -> gameframe.SecondAnswer.setBackground(new java.awt.Color(93, 150, 199)));
-        SwingUtilities.invokeLater(() -> gameframe.ThirdAnswer.setBackground(new java.awt.Color(93, 150, 199)));
-        SwingUtilities.invokeLater(() -> gameframe.FourthAnswer.setBackground(new java.awt.Color(93, 150, 199)));
+        SwingUtilities.invokeLater(() -> gameframe.FirstAnswer.setBackground(basecolor));
+        SwingUtilities.invokeLater(() -> gameframe.SecondAnswer.setBackground(basecolor));
+        SwingUtilities.invokeLater(() -> gameframe.ThirdAnswer.setBackground(basecolor));
+        SwingUtilities.invokeLater(() -> gameframe.FourthAnswer.setBackground(basecolor));
         SwingUtilities.invokeLater(() -> gameframe.NameOfExamLabel.setText(EMPTY_TEXT));
     }
 
