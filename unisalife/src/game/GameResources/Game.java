@@ -44,9 +44,10 @@ public class Game extends Canvas implements Runnable, Saveable {
      */
     public boolean isRunning = false;
     private final static Game instance = new Game();
-    
-    private Game(){
+
+    private Game() {
     }
+
     public static Game getGame() {
         return instance;
     }
@@ -76,21 +77,21 @@ public class Game extends Canvas implements Runnable, Saveable {
     protected static Player player;
     protected int skin;
     protected String namePlayer;
-    private LinkedList<Item> listOfAllItem=new LinkedList<Item>();
+    private LinkedList<Item> listOfAllItem = new LinkedList<Item>();
+
     /**
      * method that loads the resources of game(maps, objects, camera, handler
      * and key listener).
      */
-    
-    public void setSkin(int s){
-        this.skin=s;
+
+    public void setSkin(int s) {
+        this.skin = s;
     }
-    
-    public void setName(String s){
-        this.namePlayer=s;
+
+    public void setName(String s) {
+        this.namePlayer = s;
     }
-    
-    
+
     private void initResources() {
         TileMap t0 = new TileMap(16, 960, 960);
         t0.loadTiles("/Tilesets/ExtTileset.gif");
@@ -101,7 +102,7 @@ public class Game extends Canvas implements Runnable, Saveable {
         maps[0] = new Map(t0);
         maps[0].addObject(new Block(150, 150));
         maps[0].addObject(new Teleport(250, 250, "Tileset/tileset.gif", 1, new Destination(20, 20)));
-        maps[0].addObject(new Item(300, 300,"/Sprites/item.png", "Sfera pokè",0));
+        maps[0].addObject(new Item(300, 300, "/Sprites/item.png", "Sfera pokè", 0));
         maps[1] = new Map(t1);
         maps[1].addObject(new Block(100, 70));
         maps[1].addObject(new Block(70, 40));
@@ -148,30 +149,26 @@ public class Game extends Canvas implements Runnable, Saveable {
         player.setY(50);
 
     }
-    
-    
-    
+
     @Override
     public void load(Serializable obj) throws LoadingException {
         if (!(obj instanceof ArrayList)) {
             throw new LoadingException();
-        } 
-        else 
-        {
+        } else {
             ArrayList<Serializable> l = (ArrayList) obj;
             {
                 skin = (int) l.get(0);
                 actualMap = (int) l.get(1);
                 player.setX((int) l.get(2));
                 player.setY((int) l.get(3));
-                player.setInventory((LinkedList)l.get(4));
+                player.setInventory((LinkedList) l.get(4));
                 /*initPlayer();
-                initInventory();   */   
-                
+                initInventory();   */
+
             }
         }
     }
-    
+
     @Override
     public Serializable save() {
         ArrayList<Serializable> l = new ArrayList<>();
@@ -207,45 +204,44 @@ public class Game extends Canvas implements Runnable, Saveable {
      /**
      * method that calls all other init methods.
      */
-    
-    private void initDefaultMaps(){
+    private void initDefaultMaps() {
         LinkedList<Item> listOfMap1ToSpawn = new LinkedList<>(listOfAllItem);
-        listOfMap1ToSpawn.removeIf(item->item.getMapToSpawn()==0);
+        listOfMap1ToSpawn.removeIf(item -> item.getMapToSpawn() == 0);
         LinkedList<Item> listOfMap0ToSpawn = new LinkedList<>(listOfAllItem);
-        listOfMap0ToSpawn.removeIf(item->item.getMapToSpawn()==1);
-        for(Item i:listOfMap0ToSpawn){
+        listOfMap0ToSpawn.removeIf(item -> item.getMapToSpawn() == 1);
+        for (Item i : listOfMap0ToSpawn) {
             maps[0].addObject(i);
         }
-        for(Item i:listOfMap1ToSpawn){
+        for (Item i : listOfMap1ToSpawn) {
             maps[1].addObject(i);
         }
     }
-    
-    private void initMaps(){
-        
+
+    private void initMaps() {
+
         LinkedList<Item> listOfMap1ToSpawn = new LinkedList<>(listOfAllItem);
-        listOfMap1ToSpawn.removeIf(item->item.getMapToSpawn()==0);
+        listOfMap1ToSpawn.removeIf(item -> item.getMapToSpawn() == 0);
         LinkedList<Item> listOfMap0ToSpawn = new LinkedList<>(listOfAllItem);
-        listOfMap0ToSpawn.removeIf(item->item.getMapToSpawn()==1);
+        listOfMap0ToSpawn.removeIf(item -> item.getMapToSpawn() == 1);
         listOfMap0ToSpawn.removeAll(player.inventory.getInventory());
         listOfMap1ToSpawn.removeAll(player.inventory.getInventory());
-        for(Item i:listOfMap0ToSpawn){
+        for (Item i : listOfMap0ToSpawn) {
             maps[0].addObject(i);
         }
-        for(Item i:listOfMap1ToSpawn){
+        for (Item i : listOfMap1ToSpawn) {
             maps[1].addObject(i);
         }
-               
-        
+
     }
-    
+
     private void init() {
         initResources();
         initPlayer();
-        if(player.inventory.length()!=0)
+        if (player.inventory.length() != 0) {
             initMaps();
-        else
+        } else {
             initDefaultMaps();
+        }
         handler = new Handler();
         camera = new Camera(0, 0, player);
     }
@@ -254,10 +250,10 @@ public class Game extends Canvas implements Runnable, Saveable {
      * method that run the thread
      */
     public synchronized void start() {
-        if(isRunning){
+        if (isRunning) {
             return;
         }
-        isRunning=true;
+        isRunning = true;
         thread = new Thread(this);
         thread.start();
     }
