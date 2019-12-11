@@ -28,6 +28,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import language.FileTextManager;
 import saving.Saveable;
 import saving.exceptions.LoadingException;
 import quests.ItemDef;
@@ -47,6 +48,12 @@ public class Game extends Canvas implements Runnable, Saveable {
     private final static Game instance = new Game();
 
     private Game() {
+        try{
+        FileTextManager fileManager = FileTextManager.getFileTextManager();
+        fileManager.setLanguage("eng");
+        } catch (Exception ex){
+            ex.printStackTrace();
+        }
     }
 
     public static Game getGame() {
