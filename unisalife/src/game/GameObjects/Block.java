@@ -14,16 +14,17 @@ import java.util.LinkedList;
  *
  * @author simon
  */
-public class Block extends GameObject{
-    
+public class Block extends GameObject {
+
     /**
-     *constructor returns a new istance of block
+     * constructor returns a new istance of block
+     *
      * @param x x position of the block
      * @param y y position of the block
-     * @param i ObjectId of the block
+     * @param i SubjectEnum of the block
      */
-    public Block(float x,float y,ObjectId i){
-        super(x,y,i);
+    public Block(float x, float y) {
+        super(x, y);
         /*try {
         sprite = ImageIO.read(
 				getClass().getResourceAsStream("/Sprites/gatto.png")
@@ -32,14 +33,14 @@ public class Block extends GameObject{
             System.exit(1);
     }*/
     }
-    
+
     /**
      * method tick is void because a block
+     *
      * @param object
      */
-    
-    public void tick(LinkedList<GameObject> object){
-        
+    public void tick(LinkedList<GameObject> object) {
+
     }
 
     /**
@@ -52,5 +53,4 @@ public class Block extends GameObject{
         g.fillRect((int)x,(int)y, width, height);
         //g.drawImage(image, (int)x,(int) y, (int)width, (int)height, null);
     }*/
-    
 }

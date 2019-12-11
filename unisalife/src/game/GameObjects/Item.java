@@ -21,16 +21,16 @@ import java.util.Objects;
  *
  * @author simon
  */
-public class Item extends GameObject implements Renderable, Interactable, Serializable, Comparable<Item>, Information {
+public class Item extends GameObject implements Renderable, Interactable, Serializable, Comparable<Item> {
 
-    private final String title;
     private final String info;
     private BufferedImage facingDownImage;
     private LocalDateTime taken;
+    private int mapToSpawn;
 
-    public Item(float x, float y, ObjectId i, String path, String title, String info) {
-        super(x, y, i);
-        this.title = title;
+    public Item(float x, float y, String path, String info, int mts) {
+        super(x, y);
+        this.mapToSpawn = mts;
         this.info = info;
         try {
             facingDownImage = ImageIO.read(
@@ -58,15 +58,14 @@ public class Item extends GameObject implements Renderable, Interactable, Serial
         return info.compareTo(o.getInfo());
     }
 
+    public int getMapToSpawn() {
+        return this.mapToSpawn;
+    }
+
     public void setTaken() {
         this.taken = LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS);
     }
 
-    public String getTitle() {
-        return title;
-    }
-
-    @Override
     public String getInfo() {
         return this.info;
     }
@@ -84,7 +83,7 @@ public class Item extends GameObject implements Renderable, Interactable, Serial
 
     @Override
     public String toString() {
-        return "Object : " + this.title + " ( taken in " + this.taken + " )";
+        return "Object : " + this.info + " ( taken in " + this.taken + " )";
     }
 
     @Override
