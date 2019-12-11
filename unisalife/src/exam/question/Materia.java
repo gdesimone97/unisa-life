@@ -5,16 +5,25 @@
  */
 package exam.question;
 
-import java.io.Serializable;
-
 /**
  * This Enumeration contains all the subjects of the game
  * @author 1997g
  */
-public enum Materia implements Serializable{
-    matematica,
-    fisica, 
-    programmazioneadoggetti,
-    retidicalcolatori,
-    database;
+public enum Materia {
+    matematica("Matematica"),
+    fisica ("Fisica"), 
+    programmazioneadoggetti ("Programmazione ad oggetti"),
+    retidicalcolatori ("Reti di Calcolatori"),
+    database ("Database");
+    
+    private String subject;
+
+    private Materia(String subject) {
+        this.subject = subject;
+    }
+    
+    @Override
+    public String toString() {
+        return subject;
+    }
 }

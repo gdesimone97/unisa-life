@@ -56,7 +56,7 @@ public class QuestManagerTest {
         QuestsSingleton quests = QuestsSingleton.getInstance();
         quests.getQuest().get(Materia.fisica).setItemsExam(ItemDef.appuntidimatematica1.toString()); 
         qms.sendMessage(new Message(ItemDef.appuntidimatematica1.toString(), true ), quests.getQuest().get(Materia.fisica));
-        assertEquals(quests.getAvailableQuest().size(), 1);
+        assertEquals(quests.getQuest().get(Materia.fisica).isAvailable(), true);
     }
     
     @Test

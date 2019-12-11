@@ -10,7 +10,6 @@ import exam.question.Materia;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.EnumMap;
-import quests.QuestsManagerSingleton;
 /**
  *
  * @author liovi
@@ -18,7 +17,6 @@ import quests.QuestsManagerSingleton;
 public class QuestsSingleton  implements Saveable, Serializable{
 
     private EnumMap<Materia, Quest> quests;
-    private ArrayList<Quest> availableQuests;
     private static QuestsSingleton instance = null;
     
     private QuestsSingleton(){
@@ -30,7 +28,7 @@ public class QuestsSingleton  implements Saveable, Serializable{
     
     public static QuestsSingleton getInstance(){
         if (instance == null)
-            synchronized (QuestsManagerSingleton.class){
+            synchronized (QuestsSingleton.class){
                 if(instance == null)
                     instance = new QuestsSingleton();
             }
@@ -41,15 +39,10 @@ public class QuestsSingleton  implements Saveable, Serializable{
         return quests;
     }
     
-    public ArrayList<Quest> getAvailableQuest(){
-        return this.availableQuests;
-    }
-    
     @Override
     public Serializable save() {
         ArrayList<Serializable> list = new ArrayList<>();
         list.add(quests);
-        list.add(availableQuests);
         return list;
     }
 
@@ -57,7 +50,6 @@ public class QuestsSingleton  implements Saveable, Serializable{
     public void load(Serializable obj) {
         ArrayList<Serializable> list = (ArrayList<Serializable>) obj;
         this.quests = (EnumMap<Materia, Quest>) list.get(0);
-        this.availableQuests = (ArrayList<Quest>) list.get(1);
     }
 
     

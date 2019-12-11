@@ -29,8 +29,8 @@ public class QuestsManagerSingleton implements QuestMessages{
     
     private QuestsManagerSingleton(){
         this.users = new ArrayList<>();
-        QuestsSingleton instance = QuestsSingleton.getInstance();
-        quests = instance.getQuest();
+        QuestsSingleton instanceQuests = QuestsSingleton.getInstance();
+        quests = instanceQuests.getQuest();
     }
     
     /**
