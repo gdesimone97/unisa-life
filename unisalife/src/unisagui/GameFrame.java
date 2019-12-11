@@ -233,10 +233,12 @@ public class GameFrame extends javax.swing.JFrame {
 
         ExamDialog.setMinimumSize(new java.awt.Dimension(500, 500));
 
+        ExamPanel.setBackground(new java.awt.Color(93, 150, 199));
         ExamPanel.setMaximumSize(new java.awt.Dimension(500, 500));
         ExamPanel.setMinimumSize(new java.awt.Dimension(500, 500));
         ExamPanel.setPreferredSize(new java.awt.Dimension(500, 500));
 
+        ProfLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/unisagui/resources/professor75.png"))); // NOI18N
         ProfLabel.setText("jLabel1");
         ProfLabel.setMaximumSize(new java.awt.Dimension(75, 75));
         ProfLabel.setMinimumSize(new java.awt.Dimension(75, 75));
@@ -247,11 +249,15 @@ public class GameFrame extends javax.swing.JFrame {
         StudentLabel.setMinimumSize(new java.awt.Dimension(75, 75));
         StudentLabel.setPreferredSize(new java.awt.Dimension(75, 75));
 
+        NameOfExamLabel.setFont(new java.awt.Font("Arial Black", 1, 13)); // NOI18N
+        NameOfExamLabel.setForeground(new java.awt.Color(255, 255, 255));
         NameOfExamLabel.setText("ExamName");
         NameOfExamLabel.setMaximumSize(new java.awt.Dimension(125, 25));
         NameOfExamLabel.setMinimumSize(new java.awt.Dimension(125, 25));
         NameOfExamLabel.setPreferredSize(new java.awt.Dimension(125, 25));
 
+        LevelOfQuestionLabel.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        LevelOfQuestionLabel.setForeground(new java.awt.Color(255, 255, 255));
         LevelOfQuestionLabel.setText("LevelOfQuestion");
         LevelOfQuestionLabel.setMaximumSize(new java.awt.Dimension(125, 25));
         LevelOfQuestionLabel.setMinimumSize(new java.awt.Dimension(125, 25));
@@ -260,33 +266,43 @@ public class GameFrame extends javax.swing.JFrame {
         ExamScrollPane.setHorizontalScrollBar(null);
 
         ExamTextArea.setEditable(false);
-        ExamTextArea.setColumns(20);
+        ExamTextArea.setColumns(8);
+        ExamTextArea.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
+        ExamTextArea.setLineWrap(true);
         ExamTextArea.setRows(5);
         ExamTextArea.setMaximumSize(new java.awt.Dimension(300, 100));
         ExamTextArea.setMinimumSize(new java.awt.Dimension(300, 100));
-        ExamTextArea.setPreferredSize(new java.awt.Dimension(300, 100));
         ExamScrollPane.setViewportView(ExamTextArea);
 
-        FirstAnswer.setText("jButton1");
+        FirstAnswer.setBackground(new java.awt.Color(75, 125, 167));
+        FirstAnswer.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         FirstAnswer.setMaximumSize(new java.awt.Dimension(300, 25));
         FirstAnswer.setMinimumSize(new java.awt.Dimension(300, 25));
         FirstAnswer.setPreferredSize(new java.awt.Dimension(300, 25));
 
-        SecondAnswer.setText("jButton1");
+        SecondAnswer.setBackground(new java.awt.Color(75, 125, 167));
+        SecondAnswer.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        SecondAnswer.setForeground(new java.awt.Color(255, 255, 255));
         SecondAnswer.setMaximumSize(new java.awt.Dimension(300, 25));
         SecondAnswer.setMinimumSize(new java.awt.Dimension(300, 25));
         SecondAnswer.setPreferredSize(new java.awt.Dimension(300, 25));
 
-        ThirdAnswer.setText("jButton1");
+        ThirdAnswer.setBackground(new java.awt.Color(75, 125, 167));
+        ThirdAnswer.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        ThirdAnswer.setForeground(new java.awt.Color(255, 255, 255));
         ThirdAnswer.setMaximumSize(new java.awt.Dimension(300, 25));
         ThirdAnswer.setMinimumSize(new java.awt.Dimension(300, 25));
         ThirdAnswer.setPreferredSize(new java.awt.Dimension(300, 25));
 
-        FourthAnswer.setText("jButton1");
+        FourthAnswer.setBackground(new java.awt.Color(75, 125, 167));
+        FourthAnswer.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         FourthAnswer.setMaximumSize(new java.awt.Dimension(300, 25));
         FourthAnswer.setMinimumSize(new java.awt.Dimension(300, 25));
         FourthAnswer.setPreferredSize(new java.awt.Dimension(300, 25));
 
+        ConfirmAnswer.setBackground(new java.awt.Color(75, 125, 167));
+        ConfirmAnswer.setFont(new java.awt.Font("Arial Black", 0, 13)); // NOI18N
+        ConfirmAnswer.setForeground(new java.awt.Color(255, 255, 255));
         ConfirmAnswer.setText("Confirm");
         ConfirmAnswer.setMaximumSize(new java.awt.Dimension(125, 25));
         ConfirmAnswer.setMinimumSize(new java.awt.Dimension(125, 25));
@@ -350,6 +366,7 @@ public class GameFrame extends javax.swing.JFrame {
         );
 
         ConfirmAnswer.getAccessibleContext().setAccessibleDescription("");
+        ConfirmAnswer.setVisible(false);
 
         javax.swing.GroupLayout ExamDialogLayout = new javax.swing.GroupLayout(ExamDialog.getContentPane());
         ExamDialog.getContentPane().setLayout(ExamDialogLayout);
@@ -1366,6 +1383,11 @@ public class GameFrame extends javax.swing.JFrame {
         MaleWhiteButton.setMaximumSize(new java.awt.Dimension(75, 75));
         MaleWhiteButton.setMinimumSize(new java.awt.Dimension(75, 75));
         MaleWhiteButton.setPreferredSize(new java.awt.Dimension(75, 75));
+        MaleWhiteButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MaleWhiteButtonActionPerformed(evt);
+            }
+        });
 
         AvatarImage.setText("immagine avatar");
         AvatarImage.setMaximumSize(new java.awt.Dimension(200, 200));
@@ -1377,11 +1399,21 @@ public class GameFrame extends javax.swing.JFrame {
         MaleBlackButton.setMaximumSize(new java.awt.Dimension(75, 75));
         MaleBlackButton.setMinimumSize(new java.awt.Dimension(75, 75));
         MaleBlackButton.setPreferredSize(new java.awt.Dimension(75, 75));
+        MaleBlackButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MaleBlackButtonActionPerformed(evt);
+            }
+        });
 
         FemaleBlackButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/unisagui/resources/BLACKwoman75.png"))); // NOI18N
         FemaleBlackButton.setMaximumSize(new java.awt.Dimension(75, 75));
         FemaleBlackButton.setMinimumSize(new java.awt.Dimension(75, 75));
         FemaleBlackButton.setPreferredSize(new java.awt.Dimension(75, 75));
+        FemaleBlackButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                FemaleBlackButtonActionPerformed(evt);
+            }
+        });
 
         FemaleWhiteButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/unisagui/resources/woman75.png"))); // NOI18N
         FemaleWhiteButton.setMaximumSize(new java.awt.Dimension(75, 75));
@@ -1942,7 +1974,7 @@ public class GameFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_AvatarNameActionPerformed
 
     private void FemaleWhiteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FemaleWhiteButtonActionPerformed
-                
+          SwingUtilities.invokeLater(() ->StudentLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/unisagui/resources/woman75.png"))));      
     }//GEN-LAST:event_FemaleWhiteButtonActionPerformed
 
     private void ExitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitButtonActionPerformed
@@ -2044,6 +2076,19 @@ public class GameFrame extends javax.swing.JFrame {
     private void QuestButtonFrameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_QuestButtonFrameActionPerformed
         SwingUtilities.invokeLater(() -> QuestDialog.setVisible(true));
     }//GEN-LAST:event_QuestButtonFrameActionPerformed
+
+    private void MaleWhiteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MaleWhiteButtonActionPerformed
+        SwingUtilities.invokeLater(() ->StudentLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/unisagui/resources/man75.png"))));
+    }//GEN-LAST:event_MaleWhiteButtonActionPerformed
+
+    private void FemaleBlackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FemaleBlackButtonActionPerformed
+        SwingUtilities.invokeLater(() ->StudentLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/unisagui/resources/BLACKwoman75.png"))));
+    }//GEN-LAST:event_FemaleBlackButtonActionPerformed
+
+    private void MaleBlackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MaleBlackButtonActionPerformed
+        SwingUtilities.invokeLater(() ->StudentLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/unisagui/resources/BLACKman75.png"))));
+        SwingUtilities.invokeLater(() ->ExamDialog.setVisible(true));
+    }//GEN-LAST:event_MaleBlackButtonActionPerformed
     
         /**
      * @param args the command line arguments
