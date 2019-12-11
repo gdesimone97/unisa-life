@@ -6,16 +6,9 @@
 package interaction;
 
 import exam.Exam;
-import exam.ExamResult;
 import exam.question.Materia;
 import game.GameObjects.Professor;
 import game.Interfaces.Interactable;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import language.*;
-import language.exceptions.FileTextManagerException;
-import language.exceptions.TextFinderException;
-import unisagui.GuiManager;
 
 /**
  * InteractionManager implemented for Professor's exam process
@@ -34,18 +27,9 @@ public class ProfessorInteractionManager implements InteractionManager {
         // 2. verifica idonietà e requisiti
         
         //3. Start the exam session
-        ExamResult er = new ExamResult();
-        Thread esameThread = new Thread(new Exam(m, er));
+        Thread esameThread = new Thread(new Exam(m));
         esameThread.start();
         
-        int finalVote = er.getValue();
-        try {
-            GuiManager.getInstance().showHint(FileTextManager.getFileTextManager().getString(new MessageInformation("ScoreTaken")).get(0) + finalVote);
-        } catch (TextFinderException ex) {
-            GuiManager.getInstance().showHint("ERRORE - " + ex);
-        } catch (FileTextManagerException ex) {
-            GuiManager.getInstance().showHint("ERRORE - " + ex);
-        }
         
         // 4. modifica stato e ricompense
         

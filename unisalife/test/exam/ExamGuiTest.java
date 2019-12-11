@@ -19,14 +19,10 @@ public class ExamGuiTest {
     public static void main(String[] args) {
         
         ExamResult er = new ExamResult();
-        Exam esame = new Exam(Materia.matematica, er);
+        Exam esame = new Exam(Materia.matematica);
         Thread esameThread = new Thread(esame);
         esameThread.start();
         
-        int finalVote = er.getValue();
-        
-        //GuiManager.getInstance().showHint(FileTextManager.getFileTextManager().getString(new MessageInformation("ScoreTaken")).get(0) + getScore());
-        System.out.println("il tuo voto: " + finalVote);
     }
     
 }
