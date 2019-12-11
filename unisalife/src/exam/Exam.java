@@ -153,7 +153,6 @@ public class Exam implements Runnable {
             
         }
         
-        //gui.showHint(FileTextManager.getFileTextManager().getString(new MessageInformation("ScoreTaken")).get(0) + getScore());
         gui.closeExamDialog();
         er.setValue(getScore());
     }
