@@ -5,6 +5,7 @@ import java.awt.Frame;
 import java.awt.event.KeyEvent;
 import javax.swing.SwingUtilities;
 import game.GameResources.*;
+import java.awt.Dialog;
 
 /**
  * @author Virginia Cavallaro
@@ -101,7 +102,7 @@ public class GameFrame extends javax.swing.JFrame {
         FourthAnswer = new javax.swing.JButton();
         ConfirmAnswer = new javax.swing.JButton();
         TimeLabel1 = new javax.swing.JLabel();
-        MainMenuDialog = new javax.swing.JDialog();
+        MainMenuDialog = new javax.swing.JDialog((Dialog)null);
         MainMenuPanel = new javax.swing.JPanel();
         MainMenuLabel = new javax.swing.JLabel();
         SettingsButton = new javax.swing.JButton();
@@ -190,7 +191,7 @@ public class GameFrame extends javax.swing.JFrame {
         CareerScrollPane = new javax.swing.JScrollPane();
         ExamTable = new javax.swing.JTable();
         CareerLabel = new javax.swing.JLabel();
-        AvatarChooserDialog = new javax.swing.JDialog();
+        AvatarChooserDialog = new javax.swing.JDialog((Dialog)null);
         AvatarChooserPanel = new javax.swing.JPanel();
         AvatarName = new javax.swing.JTextField();
         AvatarNameLabel = new javax.swing.JLabel();
@@ -2107,7 +2108,7 @@ public class GameFrame extends javax.swing.JFrame {
         if (MainMenuDialog.isVisible()){
            //SwingUtilities.invokeLater(() ->this.validate());
            //SwingUtilities.invokeLater(() -> this.invalidate());
-           SwingUtilities.invokeLater(() -> this.setEnabled(false));
+           SwingUtilities.invokeLater(() -> this.setVisible(false));
 
         }
     }//GEN-LAST:event_MainMenuDialogComponentShown
@@ -2204,7 +2205,7 @@ public class GameFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_QuestButtonFrameActionPerformed
 
     private void MaleWhiteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MaleWhiteButtonActionPerformed
-       GuiManager.getInstance().showHint("ciao");
+        GuiManager.getInstance().showHint("ciao");
         SwingUtilities.invokeLater(() ->StudentLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/unisagui/resources/man75.png"))));        
     }//GEN-LAST:event_MaleWhiteButtonActionPerformed
 
