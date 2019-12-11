@@ -45,7 +45,7 @@ public class Exam implements Runnable {
      * questions
      *
      */
-    public Exam(Materia materia) {
+    public Exam(Materia materia) throws FileTextManagerException, TextFinderException {
         this.subject = materia;
         QuestionFactory questionsFetch = new StringsQuestionFactory(subject);
         this.score = 0;
