@@ -6,6 +6,7 @@
 package quest;
 
 import exam.question.Materia;
+import java.util.EnumMap;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -54,15 +55,11 @@ public class QuestManagerTest {
     public void sendTest(){
         QuestsManagerSingleton qms = QuestsManagerSingleton.getInstance();
         QuestsSingleton quests = QuestsSingleton.getInstance();
-        quests.getQuest().get(Materia.fisica).setItemsExam(ItemDef.appuntidimatematica1.toString()); 
+        String appunto = ItemDef.appuntidimatematica1.toString();
+        EnumMap<Materia, Quest> test = quests.getQuest(); 
+        qms.setItem(appunto, Materia.fisica);
         qms.sendMessage(new Message(ItemDef.appuntidimatematica1.toString(), true ), quests.getQuest().get(Materia.fisica));
         assertEquals(quests.getQuest().get(Materia.fisica).isAvailable(), true);
     }
     
-    @Test
-    public void receiveTest(){
-        /*
-            Not implemented yet.
-        */
-    }
 }

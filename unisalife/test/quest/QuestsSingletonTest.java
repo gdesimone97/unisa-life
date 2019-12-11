@@ -61,8 +61,8 @@ public class QuestsSingletonTest {
         */
         QuestsManagerSingleton qms = QuestsManagerSingleton.getInstance();
         QuestsSingleton qs = QuestsSingleton.getInstance();
-        Quest q = qs.getQuest().get(Materia.valueOf(Materia.fisica.toString()));
-        assertEquals(q,qs.getQuest().get(Materia.valueOf(Materia.fisica.toString())));
+        Quest q = qs.getQuest().get(Materia.fisica);
+        assertEquals(q,qs.getQuest().get(Materia.fisica));
         
     }
 

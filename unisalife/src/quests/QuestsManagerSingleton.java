@@ -25,12 +25,10 @@ public class QuestsManagerSingleton implements QuestMessages{
     private static QuestsManagerSingleton instance = null;
     private List<User> users;
     private HashMap<String,Materia> item; //elenco di item e domande con associate ad una materia
-    private EnumMap<Materia, Quest> quests;
     
     private QuestsManagerSingleton(){
         this.users = new ArrayList<>();
-        QuestsSingleton instanceQuests = QuestsSingleton.getInstance();
-        quests = instanceQuests.getQuest();
+        this.item = new HashMap<>();
     }
     
     /**
@@ -55,7 +53,7 @@ public class QuestsManagerSingleton implements QuestMessages{
     @Override
     public void sendMessage(Message mess, User user) {
         Materia receiver = item.get(mess.getId());
-        Quest q = quests.get(receiver);
+        Quest q = QuestsSingleton.getInstance().getQuest().get(receiver);
         q.receive(mess);
     }
 
@@ -68,5 +66,12 @@ public class QuestsManagerSingleton implements QuestMessages{
     public void addUser(User user) {
         this.users.add(user);
     }
+    
+    /* This method must be raplaced in the costructor. Now is insered due to the necessity of have at least one item to test all the dependencies */
+    public void setItem(String item, Materia subj) {
+        this.item.put(item, subj);
+    }
+    
+    
     
 }

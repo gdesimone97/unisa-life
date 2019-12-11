@@ -22,7 +22,7 @@ public class QuestsSingleton  implements Saveable, Serializable{
     private QuestsSingleton(){
         this.quests = new EnumMap(Materia.class);
         for (Materia x : Materia.values()){
-            quests.put(x, new Quest(x.toString()));
+            this.quests.put(x, new Quest(x.toString()));
         }
     }
     
@@ -36,7 +36,7 @@ public class QuestsSingleton  implements Saveable, Serializable{
     }
 
     public EnumMap<Materia, Quest> getQuest() {
-        return quests;
+        return this.quests;
     }
     
     @Override
