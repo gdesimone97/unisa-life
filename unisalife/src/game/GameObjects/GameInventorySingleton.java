@@ -48,7 +48,7 @@ public class GameInventorySingleton extends User implements Iterable<Item>, Save
      *
      * @return The instance of the singleton object 
      */
-    public GameInventorySingleton getInstance(){
+    public static GameInventorySingleton getInstance(){
         if (instance == null)
             synchronized (GameInventorySingleton.class){
                 if(instance == null)
@@ -129,7 +129,7 @@ public class GameInventorySingleton extends User implements Iterable<Item>, Save
      */
     public List<Item> search(String s){
         //;
-        return ((items.values().stream())).filter( gi -> gi.getTitle().toLowerCase().startsWith(s)).collect(Collectors.toList());
+        return ((items.values().stream())).filter( gi -> gi.getInfo().toLowerCase().startsWith(s)).collect(Collectors.toList());
     }
     
     /**
@@ -209,7 +209,7 @@ public class GameInventorySingleton extends User implements Iterable<Item>, Save
                 return o1==o2?0:-1;
             if(o2 == null )
                 return 1;
-            return o1.getTitle().compareTo(o2.getTitle());
+            return o1.getInfo().compareTo(o2.getInfo());
         }
     }
     
