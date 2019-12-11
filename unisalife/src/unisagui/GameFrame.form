@@ -8,6 +8,10 @@
           <Dimension value="[500, 500]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="windowDeactivated" listener="java.awt.event.WindowListener" parameters="java.awt.event.WindowEvent" handler="ExamDialogWindowDeactivated"/>
+        <EventHandler event="windowOpened" listener="java.awt.event.WindowListener" parameters="java.awt.event.WindowEvent" handler="ExamDialogWindowOpened"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -2858,6 +2862,7 @@
         </Property>
       </Properties>
       <Events>
+        <EventHandler event="windowLostFocus" listener="java.awt.event.WindowFocusListener" parameters="java.awt.event.WindowEvent" handler="ConvDialogWindowLostFocus"/>
         <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="ConvDialogKeyPressed"/>
         <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="ConvDialogKeyTyped"/>
       </Events>
@@ -2930,6 +2935,8 @@
         </Property>
       </Properties>
       <Events>
+        <EventHandler event="windowGainedFocus" listener="java.awt.event.WindowFocusListener" parameters="java.awt.event.WindowEvent" handler="HintDialogWindowGainedFocus"/>
+        <EventHandler event="windowLostFocus" listener="java.awt.event.WindowFocusListener" parameters="java.awt.event.WindowEvent" handler="HintDialogWindowLostFocus"/>
         <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="HintDialogKeyPressed"/>
         <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="HintDialogKeyTyped"/>
       </Events>
@@ -3011,6 +3018,9 @@
         </Property>
         <Property name="modal" type="boolean" value="true"/>
       </Properties>
+      <Events>
+        <EventHandler event="windowLostFocus" listener="java.awt.event.WindowFocusListener" parameters="java.awt.event.WindowEvent" handler="QuestDialogWindowLostFocus"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
