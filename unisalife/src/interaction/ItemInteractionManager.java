@@ -15,10 +15,11 @@ import language.exceptions.TextFinderException;
 import unisagui.GuiManager;
 
 /**
- *
+ * InteractionManager implemented for Item collection
  * @author alfon
  */
 public class ItemInteractionManager implements InteractionManager {
+    
 
     @Override
     public void execute(Interactable obj) {

@@ -11,7 +11,7 @@ import game.GameObjects.Professor;
 import game.Interfaces.Interactable;
 
 /**
- *
+ * InteractionManager implemented for Professor's exam process
  * @author 1997g
  */
 public class ProfessorInteractionManager implements InteractionManager {
