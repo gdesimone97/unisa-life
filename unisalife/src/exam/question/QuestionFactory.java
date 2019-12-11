@@ -27,5 +27,11 @@ public abstract class QuestionFactory {
     * @return Questions an instance of the object Questions, prepared from the specific implementation of the factory
     */
     public abstract Questions getQuestions();
+
+    public Materia getMateria() {
+        return materia;
+    }
+    
+    
     
 }
