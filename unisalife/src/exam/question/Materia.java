@@ -5,14 +5,40 @@
  */
 package exam.question;
 
+import language.Information;
+
 /**
  * This Enumeration contains all the subjects of the game
  * @author 1997g
  */
-public enum Materia {
-    matematica,
-    fisica, 
-    programmazioneadoggetti,
-    retidicalcolatori,
-    database;
+public enum Materia implements Information{
+    matematica("Matematica"),
+    fisica ("Fisica"), 
+    programmazioneadoggetti ("Programmazione ad oggetti"),
+    retidicalcolatori ("Reti di Calcolatori"),
+    database ("Database");
+    
+    private String subject;
+
+    private Materia(String subject) {
+        this.subject = subject;
+    }
+    
+    @Override
+    public String toString() {
+        return subject;
+    }
+
+    @Override
+    public String getInfo() {
+        return subject;
+    }
+
+    @Override
+    public Boolean isAvailable() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    
+    
 }
