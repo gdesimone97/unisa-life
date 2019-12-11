@@ -16,6 +16,7 @@ import java.time.LocalDateTime;
 import java.io.Serializable;
 import java.time.temporal.ChronoUnit;
 import java.util.Objects;
+import quests.ItemDef;
 
 /**
  *
@@ -27,11 +28,13 @@ public class Item extends GameObject implements Renderable, Interactable, Serial
     private BufferedImage facingDownImage;
     private LocalDateTime taken;
     private int mapToSpawn;
+    private ItemDef id;
 
-    public Item(float x, float y, String path, String info, int mts) {
+    public Item(float x, float y, String path, String info, int mts,ItemDef id) {
         super(x, y);
         this.mapToSpawn = mts;
         this.info = info;
+        this.id = id;
         try {
             facingDownImage = ImageIO.read(
                     getClass().getResourceAsStream(path)
@@ -95,6 +98,10 @@ public class Item extends GameObject implements Renderable, Interactable, Serial
     public void interact() {
         ItemInteractionManager iim = new ItemInteractionManager();
         iim.execute(this);
+    }
+
+    public ItemDef getID(){
+        return this.id;
     }
 
 }

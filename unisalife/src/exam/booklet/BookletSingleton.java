@@ -6,7 +6,10 @@
 
 package exam.booklet;
 import exam.question.Materia;
+import java.io.Serializable;
 import java.util.EnumMap;
+import quests.QuestsManagerSingleton;
+import quests.mediator.*;
 
 /**
  * This class is used due to the necessity of have a booklet for our
@@ -20,12 +23,18 @@ import java.util.EnumMap;
  * @author liovi
  */
 
-public class BookletSingleton {
+public class BookletSingleton extends User implements Serializable, Saveable{
     
     private static BookletSingleton instance = null;
     private EnumMap<Materia,Subject> booklet;
     
     private BookletSingleton(){
+        super();
+        super.name = "booklet";
+        super.mediator = QuestsManagerSingleton.getInstance();
+        mediator.addUser(this);
+        
+        
         this.booklet = new EnumMap(Materia.class);
         for (Materia x : Materia.values()){
             booklet.put(x, new Subject());
@@ -65,6 +74,8 @@ public class BookletSingleton {
         newScore.setScore(score);
         newScore.setAvailable(false);
         booklet.replace(subject, newScore);
+        Message msg = new Message(subject.toString(), false); //the exam is not available if it's passed
+        send(msg);
     }
     
     /**
@@ -82,5 +93,40 @@ public class BookletSingleton {
             }
         return instance;
     }
+
+    /**
+     * This method is used to save the booklet
+     * @return a Serializable object that represents the booklet state
+     */
+    @Override
+    public Serializable save() {
+        return this.booklet;
+    }
+
+    /**
+     * This method is used to load the booklet 
+     * @param obj is a Serializable. Downcast is necessary before load the obj
+     */
+    @Override
+    public void load(Serializable obj) {
+        this.booklet = (EnumMap<Materia,Subject>) obj;
+    }
+
+    /**
+     * This method is used to send a message to the Mediator who forwards it
+     * to the receiver
+     * @param mess is the message that the class would send
+     */
+    @Override
+    public void send(Message mess) {
+        mediator.sendMessage(mess, this);
+    }
+
+    /**
+     * This method can be used to receive a message 
+     * @param mess is the message that the class can receive
+     */
+    @Override
+    public void receive(Message mess) {}
     
 }

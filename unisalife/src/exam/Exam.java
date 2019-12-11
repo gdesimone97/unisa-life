@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package exam;
-
+import character.Status;
 import exam.question.*;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -24,6 +24,7 @@ public class Exam implements Runnable {
     private final Materia subject;
     private final int questionTime;
     private int score;
+    private int coinReward;
     private float sum;
     private int count;
     private final int maxLevel;
@@ -46,6 +47,7 @@ public class Exam implements Runnable {
         this.sum = 0;
         this.count = 0;
         this.questionTime = 30;
+        this.coinReward = 100;
         this.questions = questionsFetch.getQuestions();
         this.maxLevel = this.questions.getNumLevels();
         this.basicScore = 12 / (30 - (30 / (float) (this.maxLevel - 1)));
@@ -77,11 +79,22 @@ public class Exam implements Runnable {
     }
 
     /**
+     * This method is used to calculate the final score of the exam and calculate
+     * the amount of money that the user has lose/win
      *
      * @return the final score of the exam
      */
     public int getScore() {
         this.score = (int) this.sum / (lastLevelAnswered);
+        
+        if (this.score >= 18)
+            Status.setMoney((this.score - 18)*this.coinReward);
+            //can be used also this expression. In fact if the user
+            //doesn't pass the exame, he/she loses an amount of money that depends
+            //on which is slow him/her score.
+        else
+            Status.setMoney(-50);
+
         return this.score;
     }
 
@@ -118,16 +131,16 @@ public class Exam implements Runnable {
                     iter.next();
                     continue;
                 }
-                
+
                 gui.showRequest("Your current vote is 30." + System.getProperty("line.separator") + "Do you also want to ask the praise?" + System.getProperty("line.separator") + "But be careful, if you miss the vote goes down.", praiseRequest);
                 answerRequest = praiseRequest.getValue();
-                
+
                 if (!answerRequest) {
                     iter.next();
                     continue;
                 }
             }
-            
+
             //print question
             question = iter.next();
             gui.setExamQuestion(question.getQuestion());
@@ -150,9 +163,9 @@ public class Exam implements Runnable {
                 nextQuestion.getValue();
 //                System.out.println("Hai risposto: " + answers.get(answer - 1) + (correctness ? " CORRETTO!" : " SBAGLIATO!") + " \nTempo passato: " + elapsed);
             }
-            
+
         }
-        
+
         gui.closeExamDialog();
         er.setValue(getScore());
     }

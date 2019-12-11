@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package exam.booklet;
-import exam.question.Materia;
+import java.io.Serializable;
 
 /**
  * This class is used to give a structure for storing a score of an exam and
@@ -12,7 +12,7 @@ import exam.question.Materia;
  * 
  * @author liovi
  */
-public class Subject{
+public class Subject implements Serializable{
     private int score;
     private boolean available; 
 

@@ -30,6 +30,7 @@ import java.util.LinkedList;
 import java.util.List;
 import saving.Saveable;
 import saving.exceptions.LoadingException;
+import quests.ItemDef;
 import unisagui.GuiManager;
 
 /**
@@ -102,7 +103,7 @@ public class Game extends Canvas implements Runnable, Saveable {
         maps[0] = new Map(t0);
         maps[0].addObject(new Block(150, 150));
         maps[0].addObject(new Teleport(250, 250, "Tileset/tileset.gif", 1, new Destination(20, 20)));
-        maps[0].addObject(new Item(300, 300, "/Sprites/item.png", "Sfera pokè", 0));
+        maps[0].addObject(new Item(300, 300, "/Sprites/item.png", "Sfera pokè", 0,ItemDef.calcolatrice));
         maps[1] = new Map(t1);
         maps[1].addObject(new Block(100, 70));
         maps[1].addObject(new Block(70, 40));
@@ -183,10 +184,10 @@ public class Game extends Canvas implements Runnable, Saveable {
     /*da completare
      @Override
      public Serializable save(){
-        
+
      }/*
-    
-    
+
+
      //da completare
      @Override
      public void load(Serializable obj){
@@ -195,10 +196,10 @@ public class Game extends Canvas implements Runnable, Saveable {
      List<Serializable> l = (List)obj;
      for(Serializable s:l)
      {
-                
+
      }
      }
-            
+
      }
      /*
      /**
