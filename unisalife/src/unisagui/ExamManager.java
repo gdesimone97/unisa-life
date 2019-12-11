@@ -29,7 +29,7 @@ public class ExamManager {
     protected static ExamManager instance;
     private int level = 0;
     private Color color;
-    private Color basecolor=new java.awt.Color(93, 150, 199);
+    private Color basecolor=new java.awt.Color(75,125,167);
 
     /**
      *

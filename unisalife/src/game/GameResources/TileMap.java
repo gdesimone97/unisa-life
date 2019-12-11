@@ -120,8 +120,6 @@ public class TileMap {
 			
 			numCols = Integer.parseInt(br.readLine()); //29
 			numRows = Integer.parseInt(br.readLine()); //29
-                        System.out.print(numCols);
-                        System.out.print(numRows);
 			map = new int[numRows][numCols];
 			width = numCols * tileSize;
 			height = numRows * tileSize;
@@ -172,8 +170,6 @@ public class TileMap {
 				if(map[row][col] == 0) continue;
 				
 				int rc = map[row][col];
-                                if(rc==8)
-                                    System.out.print("otto");
 				int r = rc / numTilesOriz;
 				int c = rc % numTilesOriz;
 				g.drawImage(					
