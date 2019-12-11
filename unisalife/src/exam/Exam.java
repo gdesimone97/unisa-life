@@ -173,8 +173,12 @@ public class Exam implements Runnable {
 
         try {
             if (voto >= 18) {
-                gui.showHint(FileTextManager.getFileTextManager().getString(new MessageInformation("ScoreTaken")).get(0) + voto);
-            } else {
+                gui.showHint(FileTextManager.getFileTextManager().getString(new MessageInformation("ScoreTaken")).get(0) + " " + voto);
+            }
+            else if (voto == 31) {
+                gui.showHint(FileTextManager.getFileTextManager().getString(new MessageInformation("Lode")).get(0));
+            }
+            else {
                 gui.showHint(FileTextManager.getFileTextManager().getString(new MessageInformation("ExamFailed")).get(0));
             }
         } catch (TextFinderException ex) {

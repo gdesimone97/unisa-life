@@ -7,6 +7,7 @@ package quests.quest;
 
 import java.io.Serializable;
 import java.util.HashMap;
+import quests.ItemDef;
 import quests.QuestsManagerSingleton;
 import quests.mediator.Message;
 import quests.mediator.User;
