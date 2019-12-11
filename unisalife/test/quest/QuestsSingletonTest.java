@@ -6,8 +6,8 @@
 package quest;
 
 import exam.question.Materia;
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -60,7 +60,7 @@ public class QuestsSingletonTest {
         */
         
         
-        Quest q_phy = new Quest(Materia.fisica.toString());
+        Quest q_phy = new Quest(Materia.matematica.toString());
         q_phy.setItemsExam(ItemDef.calcolatrice.toString());
         
         QuestsSingleton qs = QuestsSingleton.getInstance();
@@ -89,7 +89,7 @@ public class QuestsSingletonTest {
         QuestsSingleton qs = QuestsSingleton.getInstance();
         
         
-        List<Quest> aqs = qs.getAvailableQuest(); 
+        ArrayList<Quest> aqs = qs.getAvailableQuest(); 
         assertEquals(aqs.size(),1);
         Quest q = qs.getQuest().get(new Quest(Materia.fisica.toString()));
         q.finish();

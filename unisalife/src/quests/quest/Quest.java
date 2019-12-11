@@ -41,7 +41,7 @@ public class Quest extends User implements  Serializable {
     public boolean isAvailable() {
         boolean available = true;
         for(Boolean b : items.values())
-            available = available & b;
+            available = available && b;
         
         return available;
     }

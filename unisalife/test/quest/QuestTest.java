@@ -6,11 +6,10 @@
 package quest;
 
 import exam.question.Materia;
-import java.util.HashMap;
-import java.util.Map;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import quests.ItemDef;
+import quests.QuestsManagerSingleton;
 import quests.mediator.Message;
 import quests.quest.Quest;
 
@@ -53,7 +52,7 @@ public class QuestTest {
     
     @Test 
     public void isAvailableTest(){
-        
+        QuestsManagerSingleton instance = QuestsManagerSingleton.getInstance();
         Materia subj = Materia.matematica;
         Quest q = new Quest(subj.toString());
         q.setItemsExam(ItemDef.appuntidimatematica1.toString());
@@ -64,33 +63,28 @@ public class QuestTest {
     
     @Test
     public void setAvailableTest(){
+        QuestsManagerSingleton instance = QuestsManagerSingleton.getInstance();
         Materia subj = Materia.matematica;
         Quest q = new Quest(subj.toString());
         q.setItemsExam(ItemDef.appuntidimatematica1.toString());
         q.setItemsExam(ItemDef.appuntidimatematica2.toString());
         assertFalse(q.isAvailable());
-        q.send(new Message(ItemDef.appuntidimatematica1.toString(),true));
-        q.send(new Message(ItemDef.appuntidimatematica2.toString(),true));
-        assertTrue(q.isAvailable());
     }
     
     @Test
     public void isDoneTest(){
-
-        Map<ItemDef ,Boolean> itemMap = new HashMap<>();
+        QuestsManagerSingleton instance = QuestsManagerSingleton.getInstance();
         Quest q = new Quest(Materia.matematica.toString());
         assertFalse(q.isDone());
         q.finish();
         assertTrue(q.isDone());
-
     }
     
     @Test
     public void finishTest(){
+        QuestsManagerSingleton instance = QuestsManagerSingleton.getInstance();
             Quest q = new Quest(Materia.matematica.toString());
             q.finish();
-            assertTrue(q.isDone());
-            
-        
+            assertTrue(q.isDone());        
     }
 }

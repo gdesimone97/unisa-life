@@ -15,6 +15,7 @@ import static org.junit.Assert.*;
 import quests.ItemDef;
 import quests.QuestsManagerSingleton;
 import quests.mediator.Message;
+import quests.quest.Quest;
 import quests.quest.QuestsSingleton;
 
 /**
@@ -52,9 +53,10 @@ public class QuestManagerTest {
     @Test
     public void sendTest(){
         QuestsManagerSingleton qms = QuestsManagerSingleton.getInstance();
-        QuestsSingleton q = QuestsSingleton.getInstance();
-        qms.sendMessage(new Message(ItemDef.appuntidimatematica1.toString(), true ), q.getQuest().get(Materia.matematica));
-        assertEquals(q.getAvailableQuest().size(), 1);
+        QuestsSingleton quests = QuestsSingleton.getInstance();
+        quests.getQuest().get(Materia.fisica).setItemsExam(ItemDef.appuntidimatematica1.toString()); 
+        qms.sendMessage(new Message(ItemDef.appuntidimatematica1.toString(), true ), quests.getQuest().get(Materia.fisica));
+        assertEquals(quests.getAvailableQuest().size(), 1);
     }
     
     @Test
