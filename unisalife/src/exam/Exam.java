@@ -111,7 +111,7 @@ public class Exam implements Runnable {
         return this.sum;
     }
 
-    private boolean isPraiseAvailable() {
+    private boolean isDistinctionAvailable() {
         return lastLevelAnswered == maxLevel - 1;
     }
 
@@ -130,8 +130,8 @@ public class Exam implements Runnable {
 
         while (iter.hasNext()) {
 
-            if (isPraiseAvailable()) {
-                //Praise Question
+            if (isDistinctionAvailable()) {
+                //Distinction Question
                 if (getCurrentScore() != (maxLevel-1)*30) {
                     iter.next();
                     continue;
