@@ -450,6 +450,9 @@
       <Events>
         <EventHandler event="componentShown" listener="java.awt.event.ComponentListener" parameters="java.awt.event.ComponentEvent" handler="MainMenuDialogComponentShown"/>
       </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JDialog((Dialog)null)"/>
+      </AuxValues>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -2532,6 +2535,9 @@
           <Dimension value="[600, 750]"/>
         </Property>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JDialog((Dialog)null)"/>
+      </AuxValues>
 
       <Layout>
         <DimensionLayout dim="0">
