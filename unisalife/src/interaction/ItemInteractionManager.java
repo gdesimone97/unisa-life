@@ -38,11 +38,12 @@ public class ItemInteractionManager implements InteractionManager {
         // show pop up (should be shown until the user says so)
         GuiManager.getInstance().showHint(toShow, true);
 
-        // add element to the inventory
+        // add element to the iiiiiiiiiiiiiiinventory
         GameInventorySingleton.getInstance().addItem((Item) obj);
 
         // remove element from the the map
         Game.getGame().getActualMap().getList().remove((GameObject) obj);
+        
 
     }
 
