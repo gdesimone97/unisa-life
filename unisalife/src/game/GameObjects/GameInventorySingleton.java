@@ -13,11 +13,10 @@ import quests.mediator.Message;
 import quests.mediator.User;
 import exam.booklet.Saveable;
 import java.io.Serializable;
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
-import java.util.Map;
 import quests.ItemDef;
 
 /**
@@ -26,8 +25,8 @@ import quests.ItemDef;
  */
 public class GameInventorySingleton extends User implements Iterable<Item>, Saveable, Serializable{
     
-    private Map< ItemDef, Item > items;
-    private List<Item> view;
+    private HashMap< ItemDef, Item > items;
+    private ArrayList<Item> view;
     private Comparator<Item> comp;
     private static GameInventorySingleton instance = null;
 
@@ -38,6 +37,7 @@ public class GameInventorySingleton extends User implements Iterable<Item>, Save
         super.mediator = QuestsManagerSingleton.getInstance();
         mediator.addUser(this);
         
+        this.view = new ArrayList<>();
         this.items = new HashMap<>();
         this.comp = new TakenComparator();
         
@@ -94,8 +94,8 @@ public class GameInventorySingleton extends User implements Iterable<Item>, Save
         i.setTaken();
         Message msg = new Message(i.getID().toString() , true ); //prepare the message with the added object
         send(msg); //then sends it
-        int pos = Arrays.binarySearch( (Item[])this.view.toArray() , i ,this.comp );
-        view.add(pos, i);
+        int pos = view.indexOf(i);
+        view.add(pos+1, i);
         return pos;
         
     }
@@ -170,7 +170,7 @@ public class GameInventorySingleton extends User implements Iterable<Item>, Save
      */
     @Override
     public Serializable save() {
-        return (Serializable) this.items; //cast to Serializable useful because ArrayList seems to not be Serializable
+        return this.items; //cast to Serializable useful because ArrayList seems to not be Serializable
     }
 
     /**

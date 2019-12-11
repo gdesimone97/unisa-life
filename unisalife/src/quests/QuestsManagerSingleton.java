@@ -29,7 +29,9 @@ public class QuestsManagerSingleton implements QuestMessages{
     private QuestsManagerSingleton(){
         this.users = new ArrayList<>();
         this.item = new HashMap<>();
-        item.put(ItemDef.calcolatrice.toString(),Materia.fisica);
+        item.put(ItemDef.calcolatrice.toString(),Materia.matematica);
+        item.put(ItemDef.appuntidimatematica1.toString(), Materia.matematica);
+        item.put(ItemDef.appuntidimatematica2.toString(), Materia.matematica);
     }
     
     /**

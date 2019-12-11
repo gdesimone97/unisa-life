@@ -12,7 +12,7 @@ import javax.swing.SwingUtilities;
  * @author Virginia Cavallaro
  * @author Davide Coppola
  */
-public class RequestManager {
+ class RequestManager { //visibilità di package (default)
 
     private String info;
     private final GameFrame gameframe = GameFrame.getInstance();
