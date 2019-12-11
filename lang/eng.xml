@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <root>
 
-<Materia info="matematica">
+<Materia info="Matematica">
 <message>1#The area of a triangle is:#(b*h)/2#b+h#b*h+2#b/2+h/2</message>
 <message>1#Neper number is equal to#2.7#2.8#3.14#9.81</message>
 <message>1#What is the value of the ratio between the biggest 4-digit natural number and the smallest natural number?#9999#infinito#0,9999#1</message>
