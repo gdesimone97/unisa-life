@@ -8,6 +8,7 @@ package exam;
 import exam.question.*;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import language.FileTextManager;
 import unisagui.*;
 
 /**
@@ -117,7 +118,6 @@ public class Exam implements Runnable {
                 
                 gui.showRequest("Your current vote is 30." + System.getProperty("line.separator") + "Do you also want to ask the praise?" + System.getProperty("line.separator") + "But be careful, if you miss the vote goes down.", praiseRequest);
                 answerRequest = praiseRequest.getValue();
-                System.out.println("Current score: " + getCurrentScore());
                 
                 if (!answerRequest) {
                     iter.next();
@@ -139,19 +139,21 @@ public class Exam implements Runnable {
             //check answer
             if (answer == 0) {
                 verifyAnswer(false, elapsed, question.getLevel());
-                System.out.println("Non hai risposto");
+//                System.out.println("Non hai risposto");
             } else {
                 correctness = question.isCorrect(answers.get(answer - 1));
                 verifyAnswer(correctness, questionTime - elapsed, question.getLevel());
-                System.out.println("Hai risposto: " + answers.get(answer - 1) + (correctness ? " CORRETTO!" : " SBAGLIATO!") + " \nTempo passato: " + elapsed);
+//                System.out.println("Hai risposto: " + answers.get(answer - 1) + (correctness ? " CORRETTO!" : " SBAGLIATO!") + " \nTempo passato: " + elapsed);
             }
             
-            System.out.println("Current score: " + getCurrentScore());
             
         }
-
+               
+        gui.showHint("Voto preso: " + getScore());
+        //gui.showHint(FileTextManager.getFileTextManager().getString(new MessageInformation("ScoreTaken")).get(0) + getScore());
         gui.closeExamDialog();
-        System.out.println("Voto: " + getScore());
+        
+//        System.out.println("Voto: " + getScore());
     }
 
 }

@@ -34,6 +34,11 @@ public enum Materia implements Information{
         return subject;
     }
 
+    @Override
+    public Boolean isAvailable() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     
     
 }
