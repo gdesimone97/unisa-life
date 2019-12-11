@@ -149,8 +149,7 @@ public class Exam implements Runnable {
             
         }
                
-        gui.showHint("Voto preso: " + getScore());
-        //gui.showHint(FileTextManager.getFileTextManager().getString(new MessageInformation("ScoreTaken")).get(0) + getScore());
+        gui.showHint(FileTextManager.getFileTextManager().getString(new MessageInformation("ScoreTaken")).get(0) + getScore());
         gui.closeExamDialog();
         
 //        System.out.println("Voto: " + getScore());
