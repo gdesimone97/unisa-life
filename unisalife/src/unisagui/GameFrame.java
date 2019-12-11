@@ -1649,6 +1649,11 @@ public class GameFrame extends javax.swing.JFrame {
         HintTextArea.setMaximumSize(new java.awt.Dimension(200, 50));
         HintTextArea.setMinimumSize(new java.awt.Dimension(200, 50));
         HintTextArea.setPreferredSize(new java.awt.Dimension(200, 50));
+        HintTextArea.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                HintTextAreaMouseClicked(evt);
+            }
+        });
         HintScrollPane.setViewportView(HintTextArea);
 
         javax.swing.GroupLayout HintDialogLayout = new javax.swing.GroupLayout(HintDialog.getContentPane());
@@ -2166,6 +2171,7 @@ public class GameFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_QuestButtonFrameActionPerformed
 
     private void MaleWhiteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MaleWhiteButtonActionPerformed
+       GuiManager.getInstance().showHint("ciao");
         SwingUtilities.invokeLater(() ->StudentLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/unisagui/resources/man75.png"))));        
     }//GEN-LAST:event_MaleWhiteButtonActionPerformed
 
@@ -2175,11 +2181,16 @@ public class GameFrame extends javax.swing.JFrame {
 
     private void MaleBlackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MaleBlackButtonActionPerformed
         SwingUtilities.invokeLater(() ->StudentLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/unisagui/resources/BLACKman75.png"))));
+        
     }//GEN-LAST:event_MaleBlackButtonActionPerformed
 
     private void ExitQuestDialogLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ExitQuestDialogLabelMouseClicked
         SwingUtilities.invokeLater(() -> QuestDialog.setVisible(false));
     }//GEN-LAST:event_ExitQuestDialogLabelMouseClicked
+
+    private void HintTextAreaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HintTextAreaMouseClicked
+        SwingUtilities.invokeLater(() -> HintDialog.setFocusable(true));
+    }//GEN-LAST:event_HintTextAreaMouseClicked
 
 
         /**
