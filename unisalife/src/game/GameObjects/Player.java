@@ -244,13 +244,6 @@ public class Player extends GameObject implements Tickable, Renderable {
         for (GameObject g : l) {
             if (g instanceof Interactable && visualViewOfPlayer().intersects(g.getBounds())) {
                 ((Interactable) g).interact();
-                if (g instanceof Item) {
-                    this.inventory.addItem((Item) g);
-                    l.remove(g);
-                    for (Item i : inventory) {
-                        System.out.print(i.getInfo()); // da cancellare
-                    }
-                }
                 break;
             }
         }
