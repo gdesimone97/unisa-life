@@ -9,8 +9,8 @@
 <message>2#The derivative of a function in its maximum is:#0#infinito##</message>
 <message>2#The integral of sin(x)cos(x) from 0 to 2pi is:#0#pi#pi^2#undefined</message>
 <message>3#Definition of the Fourier Series:#an infinite series of trigonometric functions#an infinte series of polynomial functions#a trilogy on cool engineering books#a Netflix TV-Series by director Fourier</message>
-<message>3#####</message>
-<message>3#####</message>
+<message>3#The solution of the differential equation y=y' with y(0)=1 is:#e^x#x#log(x)#0</message>
+<message>3#Sum (1/3)^n from 0 to +inf is:#1.5#1#2#0.5</message>
 <message>4#####</message>
 <message>4#####</message>
 <message>4#####</message>
@@ -45,7 +45,7 @@
 </MessageInformation>
 
 <MessageInformation info="Lode">
-<message>You got the praise for this exam!</message>
+<message>You've passed this exam with distinction!</message>
 </MessageInformation>
 
 <MessageInformation info="ExamFailed">
@@ -53,7 +53,11 @@
 </MessageInformation>
 
 <MessageInformation info="NotAllowed">
-<message>This operation is not permitted</message>
+<message>You don't have all the requirements to do this</message>
+</MessageInformation>
+
+<MessageInformation info="ExamAlreadyDone">
+<message>You have already done this exam</message>
 </MessageInformation>
 
 </root>

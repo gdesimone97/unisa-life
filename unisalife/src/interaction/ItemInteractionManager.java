@@ -31,8 +31,7 @@ public class ItemInteractionManager implements InteractionManager {
         try {
             tm = FileTextManager.getFileTextManager();
             MessageInformation ms = new MessageInformation("ItemFound");
-            toShow = tm.getString(ms).get(0);
-            toShow.concat(" " + tm.getString((Information) obj).get(0));
+            toShow = tm.getString(ms).get(0) + " " + tm.getString((Information) obj).get(0);
 
         } catch (FileTextManagerException | TextFinderException ex) {
             // decide what to do when an error with string retriving occurs
