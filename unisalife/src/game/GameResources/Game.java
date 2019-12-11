@@ -28,6 +28,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import language.FileTextManager;
 import saving.Saveable;
 import saving.exceptions.LoadingException;
 import quests.ItemDef;
@@ -47,6 +48,12 @@ public class Game extends Canvas implements Runnable, Saveable {
     private final static Game instance = new Game();
 
     private Game() {
+        try{
+        FileTextManager fileManager = FileTextManager.getFileTextManager();
+        fileManager.setLanguage("eng");
+        } catch (Exception ex){
+            ex.printStackTrace();
+        }
     }
 
     public static Game getGame() {
@@ -66,12 +73,13 @@ public class Game extends Canvas implements Runnable, Saveable {
     public static final int WIDTHSCREEN = 500,
             HEIGHTSCREEN = 500,
             HEIGHTSCREEN2 = HEIGHTSCREEN + 32,
-            PLAYERSPEED = 1,
-            DIMENSIONSPRITE = 16;
+            PLAYERSPEED = 2,
+            ANIMATIONSPEED=4,
+            DIMENSIONSPRITE = 32;
     private int WIDTHMAP, HEIGHTMAP;
 
     public final static double AMOUNTOFTICKS = 30.0;
-    protected GameState state = new NotGameState(this);
+    protected GameState state = new PlayState(this);
     protected static Map[] maps = new Map[5];
     protected static int actualMap;
     protected static TileMap tileMap;
@@ -102,12 +110,10 @@ public class Game extends Canvas implements Runnable, Saveable {
         t1.loadMap("/Maps/ExtMap.map");
         maps[0] = new Map(t0);
         maps[0].addObject(new Block(150, 150));
-        maps[0].addObject(new Teleport(250, 250, "Tileset/tileset.gif", 1, new Destination(20, 20)));
-        maps[0].addObject(new Item(300, 300, "/Sprites/item.png", "Sfera pokè", 0,ItemDef.calcolatrice));
-        maps[1] = new Map(t1);
-        maps[1].addObject(new Block(100, 70));
-        maps[1].addObject(new Block(70, 40));
-        maps[1].addObject(new Professor("Foggia", 200, 200, "/Sprites/foggia.png",Materia.matematica));
+        maps[0].addObject(new Item(300, 300, "/Sprites/calculator.png", ItemDef.calcolatrice.toString(), 0,ItemDef.calcolatrice));
+        maps[0].addObject(new Item(150, 200, "/Sprites/note.png", ItemDef.appuntidimatematica1.toString(), 0,ItemDef.appuntidimatematica1));
+        maps[0].addObject(new Item(200, 150, "/Sprites/note.png", ItemDef.appuntidimatematica2.toString(), 0,ItemDef.appuntidimatematica2));
+        maps[0].addObject(new Professor("Foggia", 200, 200, "/Sprites/foggia.png",Materia.matematica));
         actualMap = 0;
         WIDTHMAP = maps[actualMap].getTileMap().getWidth();
         HEIGHTMAP = maps[actualMap].getTileMap().getHeight();
@@ -122,7 +128,7 @@ public class Game extends Canvas implements Runnable, Saveable {
         texturePlayer = new BufferedImage[12];
         try {
             BufferedImage characterImage = ImageIO.read(
-                    getClass().getResourceAsStream("/Sprites/character.png")
+                    getClass().getResourceAsStream("/Sprites/sprite32.png")
             );
             texturePlayer[0] = characterImage.getSubimage(32, 0, DIMENSIONSPRITE, DIMENSIONSPRITE);
             texturePlayer[1] = characterImage.getSubimage(0, 0, DIMENSIONSPRITE, DIMENSIONSPRITE);
@@ -140,12 +146,12 @@ public class Game extends Canvas implements Runnable, Saveable {
             System.exit(4);
         }
         player = Player.getIstance(this);
-        player.changeFaceSet(Game.texturePlayer[0], Game.texturePlayer[3], Game.texturePlayer[6], Game.texturePlayer[9]);
+        player.changeFaceSet(Game.texturePlayer[6], Game.texturePlayer[3], Game.texturePlayer[9], Game.texturePlayer[0]);
 
-        player.changeAnimationSet(new Animation(PLAYERSPEED, texturePlayer[1], texturePlayer[2]),
-                new Animation(PLAYERSPEED, texturePlayer[4], texturePlayer[5]),
-                new Animation(PLAYERSPEED, texturePlayer[7], texturePlayer[8]),
-                new Animation(PLAYERSPEED, texturePlayer[10], texturePlayer[11]));
+        player.changeAnimationSet(new Animation(ANIMATIONSPEED, texturePlayer[7], texturePlayer[8]),
+                new Animation(ANIMATIONSPEED, texturePlayer[4], texturePlayer[5]),
+                new Animation(ANIMATIONSPEED, texturePlayer[10], texturePlayer[11]),
+                new Animation(ANIMATIONSPEED, texturePlayer[1], texturePlayer[2]));
         player.setX(50);
         player.setY(50);
 

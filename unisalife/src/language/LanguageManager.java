@@ -17,7 +17,7 @@ import language.exceptions.*;
  */
 abstract class LanguageManager {
 
-    private String currentLanguage;
+    private String currentLanguage = "eng";
 
     /**
      * Method to obtain all available game's languages

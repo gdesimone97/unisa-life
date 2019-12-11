@@ -49,7 +49,7 @@ public class Item extends GameObject implements Renderable, Interactable, Serial
         if (o == null || !(o instanceof Item)) {
             return false;
         }
-        return this.info.equals(((Item) o).getInfo());
+        return this.id.equals(((Item) o).getID());
 
     }
 
@@ -58,7 +58,7 @@ public class Item extends GameObject implements Renderable, Interactable, Serial
         if (o == null) {
             return 1;
         }
-        return info.compareTo(o.getInfo());
+        return id.compareTo(o.getID());
     }
 
     public int getMapToSpawn() {
@@ -80,7 +80,7 @@ public class Item extends GameObject implements Renderable, Interactable, Serial
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 31 * hash + Objects.hashCode(this.info);
+        hash = 31 * hash + Objects.hashCode(this.id);
         return hash;
     }
 
