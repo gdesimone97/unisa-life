@@ -119,6 +119,10 @@ public class GuiManager {
     public void closeExamDialog() {
         exammanager.closeExamDialog();
     }
+    public void isCorrect(boolean correctness,RequestGui confirm){
+        exammanager.isCorrect(correctness ,confirm);
+        
+    }
 
     /**
      * When called the exam question is written on the Exam Dialog

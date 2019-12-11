@@ -177,9 +177,10 @@ public class GameFrame extends javax.swing.JFrame {
         LanguageComboBox = new javax.swing.JComboBox<>();
         RequestDialog = new javax.swing.JDialog();
         RequestPanel = new javax.swing.JPanel();
-        RequestLabel = new javax.swing.JLabel();
         YesButton = new javax.swing.JButton();
         NoButton = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        RequestTextArea = new javax.swing.JTextArea();
         CareerDialog = new javax.swing.JDialog();
         CareerPanel = new javax.swing.JPanel();
         CareerScrollPane = new javax.swing.JScrollPane();
@@ -1167,11 +1168,6 @@ public class GameFrame extends javax.swing.JFrame {
         RequestPanel.setMinimumSize(new java.awt.Dimension(250, 175));
         RequestPanel.setPreferredSize(new java.awt.Dimension(250, 175));
 
-        RequestLabel.setText("Request Label");
-        RequestLabel.setMaximumSize(new java.awt.Dimension(200, 50));
-        RequestLabel.setMinimumSize(new java.awt.Dimension(200, 50));
-        RequestLabel.setPreferredSize(new java.awt.Dimension(200, 50));
-
         YesButton.setText("YES");
         YesButton.setPreferredSize(new java.awt.Dimension(75, 50));
         YesButton.addActionListener(new java.awt.event.ActionListener() {
@@ -1188,26 +1184,36 @@ public class GameFrame extends javax.swing.JFrame {
             }
         });
 
+        RequestTextArea.setEditable(false);
+        RequestTextArea.setColumns(20);
+        RequestTextArea.setRows(5);
+        RequestTextArea.setMaximumSize(new java.awt.Dimension(200, 50));
+        RequestTextArea.setMinimumSize(new java.awt.Dimension(200, 50));
+        RequestTextArea.setPreferredSize(new java.awt.Dimension(200, 50));
+        jScrollPane1.setViewportView(RequestTextArea);
+
         javax.swing.GroupLayout RequestPanelLayout = new javax.swing.GroupLayout(RequestPanel);
         RequestPanel.setLayout(RequestPanelLayout);
         RequestPanelLayout.setHorizontalGroup(
             RequestPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(RequestPanelLayout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addGroup(RequestPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(RequestLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(RequestPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(RequestPanelLayout.createSequentialGroup()
+                        .addGap(25, 25, 25)
                         .addComponent(YesButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(50, 50, 50)
-                        .addComponent(NoButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(25, 25, 25))
+                        .addComponent(NoButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(RequestPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         RequestPanelLayout.setVerticalGroup(
             RequestPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RequestPanelLayout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(RequestLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25)
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(RequestPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(YesButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(NoButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -1487,9 +1493,7 @@ public class GameFrame extends javax.swing.JFrame {
 
         ConvDialog.setAlwaysOnTop(true);
         ConvDialog.setBackground(new java.awt.Color(0, 0, 0));
-        ConvDialog.setMaximumSize(new java.awt.Dimension(375, 100));
         ConvDialog.setMinimumSize(new java.awt.Dimension(375, 100));
-        ConvDialog.setPreferredSize(new java.awt.Dimension(375, 100));
         ConvDialog.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 ConvDialogKeyPressed(evt);
@@ -1525,9 +1529,7 @@ public class GameFrame extends javax.swing.JFrame {
             .addComponent(ConversationScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        HintDialog.setMaximumSize(new java.awt.Dimension(200, 50));
         HintDialog.setMinimumSize(new java.awt.Dimension(200, 50));
-        HintDialog.setPreferredSize(new java.awt.Dimension(200, 50));
         HintDialog.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 HintDialogKeyPressed(evt);
@@ -1758,7 +1760,7 @@ public class GameFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ConfirmAnswerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfirmAnswerActionPerformed
-        // TODO add your handling code here:
+         ExamManager.getInstance().setConfirm();
     }//GEN-LAST:event_ConfirmAnswerActionPerformed
 
     private void AudioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AudioButtonActionPerformed
@@ -2050,8 +2052,8 @@ public class GameFrame extends javax.swing.JFrame {
     protected javax.swing.JButton NoButton;
     protected javax.swing.JLabel ProfLabel;
     protected javax.swing.JDialog RequestDialog;
-    protected javax.swing.JLabel RequestLabel;
     protected javax.swing.JPanel RequestPanel;
+    protected javax.swing.JTextArea RequestTextArea;
     protected javax.swing.JButton ResumeGameButton;
     protected javax.swing.JButton ReturnToMainMenuButton;
     protected javax.swing.JPanel RightBorder;
@@ -2068,5 +2070,6 @@ public class GameFrame extends javax.swing.JFrame {
     protected javax.swing.JButton YesButton;
     protected javax.swing.JLabel jLabel1;
     protected javax.swing.JPanel jPanel1;
+    protected javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

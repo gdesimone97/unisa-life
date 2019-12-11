@@ -22,6 +22,7 @@ public class ExamManager {
     private static final String EMPTY_TEXT = "";
     protected static int RESULT = 0;
     protected ResultGui rg;
+    protected RequestGui confirm;
     private int time = 0;
     private Timer timing;
     protected static ExamManager instance;
@@ -49,6 +50,10 @@ public class ExamManager {
     protected void closeExamDialog() {
         SwingUtilities.invokeLater(() -> gameframe.ExamDialog.setVisible(false));
     }
+    protected void setConfirm(){
+        this.confirm.setValue(true);
+        
+    }
 
     /**
      * @param RESULT in this parameter the answer given by the user within the
@@ -58,6 +63,37 @@ public class ExamManager {
     protected void setRESULT(int RESULT) {
         rg.setValue(RESULT);
         this.manageButtons(false);
+    }
+    protected void isCorrect(boolean correctness,RequestGui confirm){
+        this.confirm=confirm;
+        if(correctness){
+            switch (RESULT) {
+                case 1:
+                    SwingUtilities.invokeLater(() -> gameframe.FirstAnswer.setBackground(new java.awt.Color(115,205,105)));
+                    break;
+                case 2:
+                    SwingUtilities.invokeLater(() -> gameframe.SecondAnswer.setBackground(new java.awt.Color(115,205,105)));
+                    break;
+                case 3:
+                    SwingUtilities.invokeLater(() -> gameframe.ThirdAnswer.setBackground(new java.awt.Color(115,205,105)));
+                    break;
+                default:
+                    SwingUtilities.invokeLater(() -> gameframe.FourthAnswer.setBackground(new java.awt.Color(115,205,105)));
+                    break;
+            }
+
+        }
+        else
+            if(RESULT==1)
+                 SwingUtilities.invokeLater(() -> gameframe.FirstAnswer.setBackground(new java.awt.Color(195,60,84)));
+            else if( RESULT==2)
+                   SwingUtilities.invokeLater(() -> gameframe.SecondAnswer.setBackground(new java.awt.Color(195,60,84)));
+            else if (RESULT==3)
+                   SwingUtilities.invokeLater(() -> gameframe.ThirdAnswer.setBackground(new java.awt.Color(195,60,84)));
+            else
+                   SwingUtilities.invokeLater(() -> gameframe.FourthAnswer.setBackground(new java.awt.Color(195,60,84)));
+            
+        
     }
 
     /**
