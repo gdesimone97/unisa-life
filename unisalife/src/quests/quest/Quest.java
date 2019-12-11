@@ -55,6 +55,10 @@ public class Quest extends User implements  Serializable {
         return this.done;
     }
     
+    public void setDone(boolean bool){
+        this.done = bool;
+    }
+    
     
     @Override
     public void send(Message mess) {}

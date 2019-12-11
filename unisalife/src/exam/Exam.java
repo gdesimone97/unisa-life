@@ -5,6 +5,7 @@
  */
 package exam;
 import character.Status;
+import exam.booklet.BookletSingleton;
 import exam.question.*;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -90,13 +91,14 @@ public class Exam implements Runnable {
     public int getScore() {
         this.score = (int) this.sum / (lastLevelAnswered);
         
-        if (this.score >= 18)
+        if (this.score >= 18){
             Status.setMoney((this.score - 18)*this.coinReward);
             //can be used also this expression. In fact if the user
             //doesn't pass the exame, he/she loses an amount of money that depends
             //on which is slow him/her score.
-        else
+        }else{
             Status.setMoney(-50);
+        }
 
         return this.score;
     }
@@ -109,7 +111,7 @@ public class Exam implements Runnable {
         return this.sum;
     }
 
-    private boolean isPraiseAvailable() {
+    private boolean isDistinctionAvailable() {
         return lastLevelAnswered == maxLevel - 1;
     }
 
@@ -128,8 +130,8 @@ public class Exam implements Runnable {
 
         while (iter.hasNext()) {
 
-            if (isPraiseAvailable()) {
-                //Praise Question
+            if (isDistinctionAvailable()) {
+                //Distinction Question
                 if (getCurrentScore() != (maxLevel-1)*30) {
                     iter.next();
                     continue;
@@ -170,13 +172,15 @@ public class Exam implements Runnable {
         }
 
         int voto = getScore();
-
+        
         try {
             if (voto >= 18 && voto <= 30) {
                 gui.showHint(FileTextManager.getFileTextManager().getString(new MessageInformation("ScoreTaken")).get(0) + " " + voto);
+                BookletSingleton.getInstance().setScore(subject, voto);
             }
             else if (voto == 31) {
                 gui.showHint(FileTextManager.getFileTextManager().getString(new MessageInformation("Lode")).get(0));
+                BookletSingleton.getInstance().setScore(subject, voto);
             }
             else {
                 gui.showHint(FileTextManager.getFileTextManager().getString(new MessageInformation("ExamFailed")).get(0));
@@ -186,7 +190,7 @@ public class Exam implements Runnable {
         } catch (FileTextManagerException ex) {
             ex.printStackTrace();
         }
-
+             
         //SEGNARE ESAME SUL LIBRETTO
         gui.closeExamDialog();
     }

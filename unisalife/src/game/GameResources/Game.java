@@ -5,6 +5,7 @@
  */
 package game.GameResources;
 
+import exam.booklet.BookletSingleton;
 import exam.question.Materia;
 import game.GameObjects.Teleport;
 import game.GameObjects.Player;
@@ -14,6 +15,7 @@ import game.GameObjects.Item;
 import game.GameObjects.Destination;
 import game.GameObjects.Camera;
 import game.GameObjects.Block;
+import game.GameObjects.GameInventorySingleton;
 import game.GameObjects.GameObject;
 import game.GameObjects.Professor;
 import java.awt.Canvas;
@@ -32,6 +34,8 @@ import language.FileTextManager;
 import saving.Saveable;
 import saving.exceptions.LoadingException;
 import quests.ItemDef;
+import quests.QuestsManagerSingleton;
+import quests.quest.QuestsSingleton;
 import unisagui.GuiManager;
 
 /**
@@ -78,7 +82,7 @@ public class Game extends Canvas implements Runnable, Saveable {
             DIMENSIONSPRITE = 32;
     private int WIDTHMAP, HEIGHTMAP;
 
-    public final static double AMOUNTOFTICKS = 30.0;
+    public final static double AMOUNTOFTICKS = 60.0;
     protected GameState state = new PlayState(this);
     protected static Map[] maps = new Map[5];
     protected static int actualMap;
@@ -109,15 +113,18 @@ public class Game extends Canvas implements Runnable, Saveable {
         t0.loadMap("/Maps/ExtMap.map");
         t1.loadMap("/Maps/ExtMap.map");
         maps[0] = new Map(t0);
-        maps[0].addObject(new Item(300, 300, "/Sprites/calculator.png", ItemDef.calcolatrice.toString(), 0,ItemDef.calcolatrice));
-        maps[0].addObject(new Item(150, 200, "/Sprites/note.png", ItemDef.appuntidimatematica1.toString(), 0,ItemDef.appuntidimatematica1));
-        maps[0].addObject(new Item(200, 150, "/Sprites/note.png", ItemDef.appuntidimatematica2.toString(), 0,ItemDef.appuntidimatematica2));
+        maps[0].addObject(new Item(650, 130, "/Sprites/calculator.png", ItemDef.calcolatrice.toString(), 0,ItemDef.calcolatrice));
+        maps[0].addObject(new Item(150, 600, "/Sprites/note.png", ItemDef.appuntidimatematica1.toString(), 0,ItemDef.appuntidimatematica1));
+        maps[0].addObject(new Item(400, 150, "/Sprites/note.png", ItemDef.appuntidimatematica2.toString(), 0,ItemDef.appuntidimatematica2));
         maps[0].addObject(new Professor("Foggia", 200, 200, "/Sprites/foggia.png",Materia.matematica));
         actualMap = 0;
         WIDTHMAP = maps[actualMap].getTileMap().getWidth();
         HEIGHTMAP = maps[actualMap].getTileMap().getHeight();
         this.addKeyListener(new KeyInput(handler, this));
-
+        QuestsManagerSingleton.getInstance();
+        QuestsSingleton.getInstance();
+        BookletSingleton.getInstance();
+        GameInventorySingleton.getInstance();
     }
 
     /**
@@ -211,32 +218,32 @@ public class Game extends Canvas implements Runnable, Saveable {
      * method that calls all other init methods.
      */
     private void initDefaultMaps() {
-        LinkedList<Item> listOfMap1ToSpawn = new LinkedList<>(listOfAllItem);
-        listOfMap1ToSpawn.removeIf(item -> item.getMapToSpawn() == 0);
+//        LinkedList<Item> listOfMap1ToSpawn = new LinkedList<>(listOfAllItem);
+//        listOfMap1ToSpawn.removeIf(item -> item.getMapToSpawn() == 0);
         LinkedList<Item> listOfMap0ToSpawn = new LinkedList<>(listOfAllItem);
         listOfMap0ToSpawn.removeIf(item -> item.getMapToSpawn() == 1);
         for (Item i : listOfMap0ToSpawn) {
             maps[0].addObject(i);
         }
-        for (Item i : listOfMap1ToSpawn) {
-            maps[1].addObject(i);
-        }
+//        for (Item i : listOfMap1ToSpawn) {
+//            maps[1].addObject(i);
+//        }
     }
 
     private void initMaps() {
 
-        LinkedList<Item> listOfMap1ToSpawn = new LinkedList<>(listOfAllItem);
-        listOfMap1ToSpawn.removeIf(item -> item.getMapToSpawn() == 0);
+//        LinkedList<Item> listOfMap1ToSpawn = new LinkedList<>(listOfAllItem);
+//        listOfMap1ToSpawn.removeIf(item -> item.getMapToSpawn() == 0);
         LinkedList<Item> listOfMap0ToSpawn = new LinkedList<>(listOfAllItem);
         listOfMap0ToSpawn.removeIf(item -> item.getMapToSpawn() == 1);
         listOfMap0ToSpawn.removeAll(player.inventory.getInventory());
-        listOfMap1ToSpawn.removeAll(player.inventory.getInventory());
+//        listOfMap1ToSpawn.removeAll(player.inventory.getInventory());
         for (Item i : listOfMap0ToSpawn) {
             maps[0].addObject(i);
         }
-        for (Item i : listOfMap1ToSpawn) {
-            maps[1].addObject(i);
-        }
+//        for (Item i : listOfMap1ToSpawn) {
+//            maps[1].addObject(i);
+//        }
 
     }
 

@@ -10,6 +10,7 @@ import java.io.Serializable;
 import java.util.EnumMap;
 import quests.QuestsManagerSingleton;
 import quests.mediator.*;
+import quests.quest.QuestsSingleton;
 
 /**
  * This class is used due to the necessity of have a booklet for our
@@ -74,8 +75,7 @@ public class BookletSingleton extends User implements Serializable, Saveable{
         newScore.setScore(score);
         newScore.setAvailable(false);
         booklet.replace(subject, newScore);
-        Message msg = new Message(subject.toString(), false); //the exam is not available if it's passed
-        send(msg);
+        QuestsSingleton.getInstance().getQuest().get(subject).setDone(true);
     }
     
     /**

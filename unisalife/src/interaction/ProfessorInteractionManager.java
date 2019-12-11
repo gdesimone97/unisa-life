@@ -32,9 +32,11 @@ public class ProfessorInteractionManager implements InteractionManager {
         // 1. Find the subject of the exam
         Professor p = (Professor)obj;
         Materia m = p.getSubject();
-        
+
         // 2. verifica idonietà e requisiti
-        if(QuestsSingleton.getInstance().getQuest().get(m).isAvailable()){
+        if(QuestsSingleton.getInstance().getQuest().get(m).isDone()){
+           GuiManager.getInstance().showHint("You have already passed this exam"/*FileTextManager.getFileTextManager().getString(new MessageInformation("Y")).get(0)*/); 
+        }else if(QuestsSingleton.getInstance().getQuest().get(m).isAvailable()){
             //3. Start the exam session
             Thread esameThread = new Thread(new Exam(m));
             esameThread.start();
