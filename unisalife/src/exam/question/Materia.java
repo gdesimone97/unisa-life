@@ -5,11 +5,13 @@
  */
 package exam.question;
 
+import language.Information;
+
 /**
  * This Enumeration contains all the subjects of the game
  * @author 1997g
  */
-public enum Materia {
+public enum Materia implements Information{
     matematica("Matematica"),
     fisica ("Fisica"), 
     programmazioneadoggetti ("Programmazione ad oggetti"),
@@ -26,8 +28,17 @@ public enum Materia {
     public String toString() {
         return subject;
     }
-    
-    
+
+    @Override
+    public String getInfo() {
+        return subject;
+    }
+
+    @Override
+    public Boolean isAvailable() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     
     
 }

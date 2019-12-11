@@ -8,6 +8,7 @@ package exam;
 import exam.question.*;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import language.FileTextManager;
 import unisagui.*;
 
 /**
@@ -78,7 +79,7 @@ public class Exam implements Runnable {
      * @return the final score of the exam
      */
     public int getScore() {
-        this.score = (int) this.sum / (maxLevel);
+        this.score = (int) this.sum / (lastLevelAnswered);
         return this.score;
     }
 
@@ -138,17 +139,20 @@ public class Exam implements Runnable {
             //check answer
             if (answer == 0) {
                 verifyAnswer(false, elapsed, question.getLevel());
-                System.out.println("Non hai risposto");
+//                System.out.println("Non hai risposto");
             } else {
                 correctness = question.isCorrect(answers.get(answer - 1));
                 verifyAnswer(correctness, questionTime - elapsed, question.getLevel());
-                System.out.println("Hai risposto: " + answers.get(answer - 1) + (correctness ? " CORRETTO!" : " SBAGLIATO!") + " \nTempo passato: " + elapsed);
+//                System.out.println("Hai risposto: " + answers.get(answer - 1) + (correctness ? " CORRETTO!" : " SBAGLIATO!") + " \nTempo passato: " + elapsed);
             }
             
+            
         }
-
+               
+        gui.showHint(FileTextManager.getFileTextManager().getString(new MessageInformation("ScoreTaken")).get(0) + getScore());
         gui.closeExamDialog();
-        System.out.println("Voto: " + getScore());
+        
+//        System.out.println("Voto: " + getScore());
     }
 
 }
