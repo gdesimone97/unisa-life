@@ -40,7 +40,7 @@ public class GameFrame extends javax.swing.JFrame {
         SwingUtilities.invokeLater(() ->MainMenuDialog.isAlwaysOnTop());
         SwingUtilities.invokeLater(() ->MainMenuDialog.setVisible(true));
         //SwingUtilities.invokeLater(() ->instance.setState(Frame.ICONIFIED));
-        SwingUtilities.invokeLater(() ->instance.setVisible(false));   
+        //SwingUtilities.invokeLater(() ->instance.setVisible(false));   
         SwingUtilities.invokeLater(() ->instance.validate());
         
  
@@ -65,12 +65,13 @@ public class GameFrame extends javax.swing.JFrame {
     private void settingLocations(GameFrame instance){
         SwingUtilities.invokeLater(() ->MainMenuDialog.setLocation(instance.getLocation())); 
         SwingUtilities.invokeLater(() ->SettingsDialog.setLocation(instance.getLocation()));
-        SwingUtilities.invokeLater(() ->RequestDialog.setLocation(instance.getLocation()));
+        SwingUtilities.invokeLater(() ->RequestDialog.setLocation(instance.getLocation().x+75, instance.getLocation().y+450));
         SwingUtilities.invokeLater(() ->ExamDialog.setLocation(instance.getLocation()));
         SwingUtilities.invokeLater(() ->AvatarChooserDialog.setLocation(instance.getLocation()));
         SwingUtilities.invokeLater(() ->InventoryDialog.setLocation(instance.getLocation()));
         SwingUtilities.invokeLater(() ->ConvDialog.setLocation(instance.getLocation().x+200, instance.getLocation().y+275));
         SwingUtilities.invokeLater(() ->HintDialog.setLocation(instance.getLocation().x+75, instance.getLocation().y+450));
+        SwingUtilities.invokeLater(() ->QuestDialog.setLocation(instance.getLocation().x+90, instance.getLocation().y+125));
     }
     
     protected void settingLanguage(String s) throws Exception{
@@ -179,9 +180,10 @@ public class GameFrame extends javax.swing.JFrame {
         SettingsCloseButton = new javax.swing.JButton();
         RequestDialog = new javax.swing.JDialog();
         RequestPanel = new javax.swing.JPanel();
-        RequestLabel = new javax.swing.JLabel();
         YesButton = new javax.swing.JButton();
         NoButton = new javax.swing.JButton();
+        RequestScrollPane = new javax.swing.JScrollPane();
+        RequestLabel = new javax.swing.JTextArea();
         CareerDialog = new javax.swing.JDialog();
         CareerPanel = new javax.swing.JPanel();
         CareerScrollPane = new javax.swing.JScrollPane();
@@ -223,6 +225,7 @@ public class GameFrame extends javax.swing.JFrame {
         StressProgressBar = new javax.swing.JProgressBar();
         HungerProgressBar = new javax.swing.JProgressBar();
         SettingsButtonFrame = new javax.swing.JButton();
+        QuestButtonFrame = new javax.swing.JButton();
         RightBorder = new javax.swing.JPanel();
         GameCloseButton = new javax.swing.JButton();
         LeftBorder = new javax.swing.JPanel();
@@ -412,6 +415,7 @@ public class GameFrame extends javax.swing.JFrame {
         NewGameButton.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
         NewGameButton.setForeground(new java.awt.Color(255, 255, 255));
         NewGameButton.setText("NEW GAME");
+        NewGameButton.setBorder(null);
         NewGameButton.setMaximumSize(new java.awt.Dimension(200, 50));
         NewGameButton.setMinimumSize(new java.awt.Dimension(200, 50));
         NewGameButton.setPreferredSize(new java.awt.Dimension(200, 50));
@@ -1105,6 +1109,11 @@ public class GameFrame extends javax.swing.JFrame {
         SettingsCloseButton.setMaximumSize(new java.awt.Dimension(25, 25));
         SettingsCloseButton.setMinimumSize(new java.awt.Dimension(25, 25));
         SettingsCloseButton.setPreferredSize(new java.awt.Dimension(25, 25));
+        SettingsCloseButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SettingsCloseButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout SettingsPanelLayout = new javax.swing.GroupLayout(SettingsPanel);
         SettingsPanel.setLayout(SettingsPanelLayout);
@@ -1173,11 +1182,6 @@ public class GameFrame extends javax.swing.JFrame {
         RequestPanel.setMinimumSize(new java.awt.Dimension(250, 175));
         RequestPanel.setPreferredSize(new java.awt.Dimension(250, 175));
 
-        RequestLabel.setText("Request Label");
-        RequestLabel.setMaximumSize(new java.awt.Dimension(200, 50));
-        RequestLabel.setMinimumSize(new java.awt.Dimension(200, 50));
-        RequestLabel.setPreferredSize(new java.awt.Dimension(200, 50));
-
         YesButton.setBackground(new java.awt.Color(93, 150, 199));
         YesButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/unisagui/resources/YESBUTTON50.png"))); // NOI18N
         YesButton.setPreferredSize(new java.awt.Dimension(75, 50));
@@ -1196,14 +1200,21 @@ public class GameFrame extends javax.swing.JFrame {
             }
         });
 
+        RequestLabel.setEditable(false);
+        RequestLabel.setBackground(new java.awt.Color(93, 150, 199));
+        RequestLabel.setColumns(20);
+        RequestLabel.setForeground(new java.awt.Color(255, 255, 255));
+        RequestLabel.setRows(5);
+        RequestScrollPane.setViewportView(RequestLabel);
+
         javax.swing.GroupLayout RequestPanelLayout = new javax.swing.GroupLayout(RequestPanel);
         RequestPanel.setLayout(RequestPanelLayout);
         RequestPanelLayout.setHorizontalGroup(
             RequestPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(RequestPanelLayout.createSequentialGroup()
                 .addGap(25, 25, 25)
-                .addGroup(RequestPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(RequestLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(RequestPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(RequestScrollPane)
                     .addGroup(RequestPanelLayout.createSequentialGroup()
                         .addComponent(YesButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(50, 50, 50)
@@ -1213,9 +1224,9 @@ public class GameFrame extends javax.swing.JFrame {
         RequestPanelLayout.setVerticalGroup(
             RequestPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RequestPanelLayout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(RequestLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25)
+                .addGap(10, 10, 10)
+                .addComponent(RequestScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
                 .addGroup(RequestPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(YesButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(NoButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -1667,7 +1678,7 @@ public class GameFrame extends javax.swing.JFrame {
         HudPanel.setMinimumSize(new java.awt.Dimension(600, 175));
         HudPanel.setPreferredSize(new java.awt.Dimension(600, 175));
 
-        LevelLabel.setBackground(new java.awt.Color(255, 255, 255));
+        LevelLabel.setBackground(new java.awt.Color(93, 150, 199));
         LevelLabel.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
         LevelLabel.setForeground(new java.awt.Color(255, 255, 255));
         LevelLabel.setText("LEVEL 1");
@@ -1738,6 +1749,17 @@ public class GameFrame extends javax.swing.JFrame {
             }
         });
 
+        QuestButtonFrame.setBackground(new java.awt.Color(93, 150, 199));
+        QuestButtonFrame.setIcon(new javax.swing.ImageIcon(getClass().getResource("/unisagui/resources/questbutton24.png"))); // NOI18N
+        QuestButtonFrame.setMaximumSize(new java.awt.Dimension(25, 25));
+        QuestButtonFrame.setMinimumSize(new java.awt.Dimension(25, 25));
+        QuestButtonFrame.setPreferredSize(new java.awt.Dimension(25, 25));
+        QuestButtonFrame.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                QuestButtonFrameActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout HudPanelLayout = new javax.swing.GroupLayout(HudPanel);
         HudPanel.setLayout(HudPanelLayout);
         HudPanelLayout.setHorizontalGroup(
@@ -1754,6 +1776,8 @@ public class GameFrame extends javax.swing.JFrame {
                     .addGroup(HudPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addGroup(HudPanelLayout.createSequentialGroup()
                             .addComponent(SettingsButtonFrame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(QuestButtonFrame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(HungerProgressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(26, 26, 26)
@@ -1787,7 +1811,8 @@ public class GameFrame extends javax.swing.JFrame {
                 .addGroup(HudPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(HungerProgressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(HungerIcon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(SettingsButtonFrame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(SettingsButtonFrame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(QuestButtonFrame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(23, 23, 23))
         );
 
@@ -1799,6 +1824,11 @@ public class GameFrame extends javax.swing.JFrame {
         GameCloseButton.setMaximumSize(new java.awt.Dimension(25, 25));
         GameCloseButton.setMinimumSize(new java.awt.Dimension(25, 25));
         GameCloseButton.setPreferredSize(new java.awt.Dimension(25, 25));
+        GameCloseButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GameCloseButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout RightBorderLayout = new javax.swing.GroupLayout(RightBorder);
         RightBorder.setLayout(RightBorderLayout);
@@ -1921,16 +1951,14 @@ public class GameFrame extends javax.swing.JFrame {
 
     private void KeyboardButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_KeyboardButtonActionPerformed
         //SwingUtilities.invokeLater(() -> KeyboardSettingsDialog.setVisible(true));
-        System.out.println("MAMMT");
-        SwingUtilities.invokeLater(() -> ConvDialog.setVisible(true));
-        SwingUtilities.invokeLater(()-> SettingsDialog.setVisible(false));
+        /*SwingUtilities.invokeLater(() -> ConvDialog.setVisible(true));
+        SwingUtilities.invokeLater(()-> SettingsDialog.setVisible(false));*/
     }//GEN-LAST:event_KeyboardButtonActionPerformed
 
     private void AvatarOkButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AvatarOkButtonActionPerformed
-        SwingUtilities.invokeLater(() -> AvatarChooserDialog.setVisible(false));        
+        SwingUtilities.invokeLater(() -> AvatarChooserDialog.setVisible(false));
         SwingUtilities.invokeLater(() -> this.setVisible(true));
-        
-         
+        SwingUtilities.invokeLater(() -> this.setEnabled(true));
         
     }//GEN-LAST:event_AvatarOkButtonActionPerformed
 
@@ -1948,14 +1976,15 @@ public class GameFrame extends javax.swing.JFrame {
     private void MainMenuDialogComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_MainMenuDialogComponentShown
         
         if (MainMenuDialog.isVisible()){
-           SwingUtilities.invokeLater(() ->this.setVisible(false));
-           SwingUtilities.invokeLater(() ->this.validate());
+           //SwingUtilities.invokeLater(() ->this.validate());
+           //SwingUtilities.invokeLater(() -> this.invalidate());
+           SwingUtilities.invokeLater(() -> this.setEnabled(false));
 
         }
     }//GEN-LAST:event_MainMenuDialogComponentShown
 
     private void FemaleWhiteButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FemaleWhiteButtonMouseClicked
-        SwingUtilities.invokeLater(() -> QuestDialog.setVisible(true));
+        
     }//GEN-LAST:event_FemaleWhiteButtonMouseClicked
 
     private void ConvDialogKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ConvDialogKeyPressed
@@ -2003,6 +2032,18 @@ public class GameFrame extends javax.swing.JFrame {
         SwingUtilities.invokeLater(() -> SettingsDialog.setVisible(true));
         //Chiamata a simone che mette il gioco in not game state
     }//GEN-LAST:event_SettingsButtonFrameActionPerformed
+
+    private void GameCloseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GameCloseButtonActionPerformed
+        SwingUtilities.invokeLater(() -> System.exit(0));
+    }//GEN-LAST:event_GameCloseButtonActionPerformed
+
+    private void SettingsCloseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SettingsCloseButtonActionPerformed
+        SwingUtilities.invokeLater(() -> SettingsDialog.setVisible(false));
+    }//GEN-LAST:event_SettingsCloseButtonActionPerformed
+
+    private void QuestButtonFrameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_QuestButtonFrameActionPerformed
+        SwingUtilities.invokeLater(() -> QuestDialog.setVisible(true));
+    }//GEN-LAST:event_QuestButtonFrameActionPerformed
     
         /**
      * @param args the command line arguments
@@ -2156,6 +2197,7 @@ public class GameFrame extends javax.swing.JFrame {
     protected javax.swing.JButton NextButton;
     protected javax.swing.JButton NoButton;
     protected javax.swing.JLabel ProfLabel;
+    protected javax.swing.JButton QuestButtonFrame;
     protected javax.swing.JDialog QuestDialog;
     protected javax.swing.JList<String> QuestList;
     protected javax.swing.JScrollPane QuestListScrollPane;
@@ -2163,8 +2205,9 @@ public class GameFrame extends javax.swing.JFrame {
     protected javax.swing.JTextArea QuestTextArea;
     protected javax.swing.JScrollPane QuestTextScrollPane;
     protected javax.swing.JDialog RequestDialog;
-    protected javax.swing.JLabel RequestLabel;
+    protected javax.swing.JTextArea RequestLabel;
     protected javax.swing.JPanel RequestPanel;
+    protected javax.swing.JScrollPane RequestScrollPane;
     protected javax.swing.JButton ResumeGameButton;
     protected javax.swing.JButton ReturnToMainMenuButton;
     protected javax.swing.JPanel RightBorder;

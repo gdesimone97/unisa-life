@@ -82,16 +82,17 @@ public class GuiManager {
     
     
     /**
-     * When called a textArea appears  or disappears on the screen
-     * @param go 
+     * When called a Conversation Area appears  on the screen
      * @param s is the text in the text area
-     * @param show if true the textArea appears, if false disappears
-     * @throws NotInteractiveException when the GameObject is not interactive 
+     * 
      */
     public void showDialog(String s) {
         dialogmanager.showDialog(s);
     }
-    
+    /**
+     * When called a Hint Area appears on the screen
+     * @param s is the text of the hint
+     */
     public void showHint(String s){
         dialogmanager.showHint(s);
     }
@@ -162,9 +163,8 @@ public class GuiManager {
         questmanager.showQuestDialog(show);
     }
     /**
-     * When called a JDialog with the Request appears or disappears on the screen
-     * @param go
-     * @param show if true the JDialog appears, if false disappears
+     * When called a Yes/No Request appears on the screen
+     * @param s is the text of the request 
      */
     public void showRequest (String s){
         requestmanager.showRequest(s);
