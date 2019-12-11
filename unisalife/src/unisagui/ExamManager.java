@@ -60,14 +60,15 @@ public class ExamManager {
      * time limit will be saved. If the user does not respond this parameter
      * will remain equal to 0
      */
-    protected void setRESULT(int RESULT) {
-        rg.setValue(RESULT);
+    protected void setRESULT(int result) {
+        RESULT=result;
+        rg.setValue(result);
         this.manageButtons(false);
     }
     protected void isCorrect(boolean correctness,RequestGui confirm){
         this.confirm=confirm;
         if(correctness){
-            switch (this.RESULT) {
+            switch (RESULT) {
                 case 1:
                     SwingUtilities.invokeLater(() -> gameframe.FirstAnswer.setBackground(new java.awt.Color(115,205,105)));
                     break;
@@ -84,7 +85,7 @@ public class ExamManager {
 
         }
         else{
-            switch (this.RESULT) {
+            switch (RESULT) {
                 case 1:
                     SwingUtilities.invokeLater(() -> gameframe.FirstAnswer.setBackground(new java.awt.Color(195,60,84)));
                     break;
