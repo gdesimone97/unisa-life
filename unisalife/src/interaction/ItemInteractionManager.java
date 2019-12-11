@@ -5,6 +5,7 @@
  */
 package interaction;
 
+import game.GameObjects.GameInventorySingleton;
 import game.GameObjects.GameObject;
 import game.Interfaces.Interactable;
 import game.GameObjects.Item;
