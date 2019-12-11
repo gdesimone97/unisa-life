@@ -100,6 +100,7 @@ public class Exam implements Runnable {
         GuiManager gui = GuiManager.getInstance();
         ResultGui rg = new ResultGui(questionTime);
         RequestGui praiseRequest = new RequestGui();
+        RequestGui nextQuestion = new RequestGui();
         Question question;
         int answer;
         boolean answerRequest;
@@ -143,16 +144,16 @@ public class Exam implements Runnable {
             } else {
                 correctness = question.isCorrect(answers.get(answer - 1));
                 verifyAnswer(correctness, questionTime - elapsed, question.getLevel());
+                gui.isCorrect(correctness, nextQuestion);
+                nextQuestion.getValue();
 //                System.out.println("Hai risposto: " + answers.get(answer - 1) + (correctness ? " CORRETTO!" : " SBAGLIATO!") + " \nTempo passato: " + elapsed);
             }
             
-            
         }
-               
-        gui.showHint(FileTextManager.getFileTextManager().getString(new MessageInformation("ScoreTaken")).get(0) + getScore());
+          
+        //gui.showHint(FileTextManager.getFileTextManager().getString(new MessageInformation("ScoreTaken")).get(0) + getScore());
         gui.closeExamDialog();
-        
-//        System.out.println("Voto: " + getScore());
+        System.out.println("Voto: " + getScore());
     }
 
 }
