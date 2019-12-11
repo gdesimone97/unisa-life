@@ -56,7 +56,7 @@ public class ExamManager {
     }
 
     /**
-     * @param RESULT in this parameter the answer given by the user within the
+     * @param result in this parameter the answer given by the user within the
      * time limit will be saved. If the user does not respond this parameter
      * will remain equal to 0
      */
@@ -113,6 +113,10 @@ public class ExamManager {
         SwingUtilities.invokeLater(() -> gameframe.SecondAnswer.setText(EMPTY_TEXT));
         SwingUtilities.invokeLater(() -> gameframe.ThirdAnswer.setText(EMPTY_TEXT));
         SwingUtilities.invokeLater(() -> gameframe.FourthAnswer.setText(EMPTY_TEXT));
+        SwingUtilities.invokeLater(() -> gameframe.FirstAnswer.setBackground(new java.awt.Color(93,150,199)));
+        SwingUtilities.invokeLater(() -> gameframe.SecondAnswer.setBackground(new java.awt.Color(93,150,199)));
+        SwingUtilities.invokeLater(() -> gameframe.ThirdAnswer.setBackground(new java.awt.Color(93,150,199)));
+        SwingUtilities.invokeLater(() -> gameframe.FourthAnswer.setBackground(new java.awt.Color(93,150,199)));
         SwingUtilities.invokeLater(() -> gameframe.NameOfExamLabel.setText(EMPTY_TEXT));
     }
 
