@@ -29,6 +29,7 @@ public class QuestsManagerSingleton implements QuestMessages{
     private QuestsManagerSingleton(){
         this.users = new ArrayList<>();
         this.item = new HashMap<>();
+        item.put(ItemDef.calcolatrice.toString(),Materia.fisica);
     }
     
     /**
