@@ -82,7 +82,7 @@ public class Game extends Canvas implements Runnable, Saveable {
             DIMENSIONSPRITE = 32;
     private int WIDTHMAP, HEIGHTMAP;
 
-    public final static double AMOUNTOFTICKS = 60.0;
+    public final static double AMOUNTOFTICKS = 30.0;
     protected GameState state = new PlayState(this);
     protected static Map[] maps = new Map[5];
     protected static int actualMap;
