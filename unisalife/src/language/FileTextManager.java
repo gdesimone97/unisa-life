@@ -37,8 +37,6 @@ public class FileTextManager extends TextManager {
         super();
         fileLanguageManager = FileLanguageManager.getLanguageManager();
         String currentLang = fileLanguageManager.getCurrentLanguage();
-        if(currentLang.equals(""))
-            throw new LanguageNotSetted();
         String filename = currentLang + FORMAT;
         fileTextFinder = FileTextFinder.getFileTextFinder(filename);
     }
