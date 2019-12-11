@@ -27,15 +27,19 @@ public class FileTextManager extends TextManager {
     static {
         try {
             instance = new FileTextManager();
-        } catch (FileLanguageManagerException | InvalidFileNameException | TextFinderException ex) {
+        } catch (LanguageNotSetted | FileLanguageManagerException | InvalidFileNameException | TextFinderException ex) {
+            ex.printStackTrace();
             instance = null;
         }
     }
 
-    private FileTextManager() throws FileLanguageManagerException, FileNotSetException, InvalidFileNameException, TextFinderException {
+    private FileTextManager() throws FileLanguageManagerException, FileNotSetException, InvalidFileNameException, TextFinderException,LanguageNotSetted {
         super();
         fileLanguageManager = FileLanguageManager.getLanguageManager();
-        String filename = fileLanguageManager.getCurrentLanguage() + FORMAT;
+        String currentLang = fileLanguageManager.getCurrentLanguage();
+        if(currentLang.equals(""))
+            throw new LanguageNotSetted();
+        String filename = currentLang + FORMAT;
         fileTextFinder = FileTextFinder.getFileTextFinder(filename);
     }
 
