@@ -99,7 +99,9 @@ public class GuiManager {
     }
     
     
-    
+    public void showHint(String s, boolean show){
+        dialogmanager.showHint(s, show);
+    }
     
     /**
      * When called a JDialog with the Exam appears or disappears on the screen 

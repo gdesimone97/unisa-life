@@ -58,17 +58,12 @@ public abstract class FileTextFinder implements TextFinder {
      */
     protected String computeExpression(Information obj) throws InvalidObjectInformationException {
         String expression = null;
-        if (obj.isAvailable()) {
-            String info = obj.getInfo();
-            if (info.equals("") || (info == null)) {
-                throw new InvalidObjectInformationException();
-            }
-            String lastClass = obj.getClass().getSimpleName();
-            expression = "//" + lastClass + "[@info = \'" + info + "\']";
+        String info = obj.getInfo();
+        if (info.equals("") || (info == null)) {
+            throw new InvalidObjectInformationException();
         }
-        else{
-            expression ="//Warnings [@info = \'NotAvailable\']";
-        }
+        String lastClass = obj.getClass().getSimpleName();
+        expression = "//" + lastClass + "[@info = \'" + info + "\']";
         return expression;
 
     }

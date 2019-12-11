@@ -18,11 +18,5 @@ public interface Information {
      */
     String getInfo();
     
-    /**
-     * Method to inform the language handler if the appropriate string for that object can be displayed or not.
-     * An error message (to be shown) is returned if the object is not yet accessible in the storyline.
-     * @return a boolean value
-     */
-    Boolean isAvailable();
     
 }
