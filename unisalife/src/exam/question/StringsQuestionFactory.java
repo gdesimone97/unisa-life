@@ -6,8 +6,11 @@
 package exam.question;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import language.FileTextManager;
+import language.exceptions.FileTextManagerException;
+import language.exceptions.TextFinderException;
 
 /**
  * This class is an extention of QuestionFactory abstract class
@@ -25,7 +28,7 @@ public class StringsQuestionFactory extends QuestionFactory {
     * The constructor creates an instance of the object Questions and starts the parsing of the strings
     * @param materia is the subject in which we want questions
     */
-    public StringsQuestionFactory(Materia materia) {
+    public StringsQuestionFactory(Materia materia) throws FileTextManagerException, TextFinderException {
         super(materia);
         questions = new Questions();
         this.parseQuestions();
@@ -44,15 +47,16 @@ public class StringsQuestionFactory extends QuestionFactory {
     * It aims to take a list of strings passed by another class, and divide it in parts,
     * so that it can create an object Question, made of Answers also, and add to the object Questions
     */
-    private void parseQuestions() {
+    private void parseQuestions() throws FileTextManagerException, TextFinderException {
         
-        String[] strList = {"1#Qual è la capitale della Francia?#Parigi#Roma#Londra#Madrid",
-                            "2#Quanti stati ha un bit?#2#1#3#6",
-                            "3#Chi è lo scrubmastah di questo gruppo?#Tu#Giuseppe#Ritrovato#Davide",
-                            "4#Virginia ha i capelli:#Rosa#Verdi#Rossi#Bianchi",
-                            "4#Chi è l'unica ragazza del gruppo 8?#Alfonso#Gennaro#Simone#Virginia",
-                            "4#Peppe quante cose può guardare contemporaneamente?#Due#Una#Mille#Centomila"};
-        //List<String> strList = FileTextManager.getFileTextManager().getString(super.getMateria());
+//        String[] strList = {"1#Qual è la capitale della Francia?#Parigi#Roma#Londra#Madrid",
+//                            "2#Quanti stati ha un bit?#2#1#3#6",
+//                            "3#Chi è lo scrubmastah di questo gruppo?#Tu#Giuseppe#Ritrovato#Davide",
+//                            "4#Virginia ha i capelli:#Rosa#Verdi#Rossi#Bianchi",
+//                            "4#Chi è l'unica ragazza del gruppo 8?#Alfonso#Gennaro#Simone#Virginia",
+//                            "4#Peppe quante cose può guardare contemporaneamente?#Due#Una#Mille#Centomila"};
+        List<String> strList = FileTextManager.getFileTextManager().getString(super.getMateria());
+        System.out.println(strList);
         Scanner sc;
         boolean count;
         Integer level;

@@ -34,34 +34,30 @@ public class ProfessorInteractionManager implements InteractionManager {
         Materia m = p.getSubject();
 
         // 2. verifica idonietà e requisiti
-        if(QuestsSingleton.getInstance().getQuest().get(m).isDone()){
-           GuiManager.getInstance().showHint("You have already passed this exam"/*FileTextManager.getFileTextManager().getString(new MessageInformation("Y")).get(0)*/); 
-        }else if(QuestsSingleton.getInstance().getQuest().get(m).isAvailable()){
-            //3. Start the exam session
-            Thread esameThread = new Thread(new Exam(m));
-            esameThread.start();
-        } else {
+        try {
             if (QuestsSingleton.getInstance().getQuest().get(m).isDone()) {
-                try {
+                GuiManager.getInstance().showHint(FileTextManager.getFileTextManager().getString(new MessageInformation("ExamAlreadyDone")).get(0));
+
+            } else if (QuestsSingleton.getInstance().getQuest().get(m).isAvailable()) {
+
+                //3. Start the exam session
+                Thread esameThread = new Thread(new Exam(m));
+                esameThread.start();
+            } else {
+                if (QuestsSingleton.getInstance().getQuest().get(m).isDone()) {
                     GuiManager.getInstance().showHint(FileTextManager.getFileTextManager().getString(new MessageInformation("ExamAlreadyDone")).get(0));
-                } catch (FileTextManagerException ex) {
-                } catch (TextFinderException ex) {
+
+                } else {
+                    GuiManager.getInstance().showHint(FileTextManager.getFileTextManager().getString(new MessageInformation("NotAllowed")).get(0));
+
                 }
             }
-            else {
-                try {
-                GuiManager.getInstance().showHint(FileTextManager.getFileTextManager().getString(new MessageInformation("NotAllowed")).get(0));
-            } catch (FileTextManagerException ex) {
-            } catch (TextFinderException ex) {
-            }
-            }
+
+        } catch (FileTextManagerException ex) {
+        } catch (TextFinderException ex) {
         }
-        
-        
-        
-        
+
         // 4. modifica stato e ricompense
-        
     }
-    
+
 }
