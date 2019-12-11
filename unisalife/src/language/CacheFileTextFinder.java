@@ -35,6 +35,9 @@ public class CacheFileTextFinder extends FileTextFinder {
             this.freq++;
         }
 
+        public List<String> getMessages() {
+            return this.messages;
+        }
     }
 
     private static CacheFileTextFinder instance = null;
@@ -84,6 +87,7 @@ public class CacheFileTextFinder extends FileTextFinder {
             this.addToCache(exp, returnList);
         } else {
             this.updateCache(returnNode);
+            returnList = returnNode.getMessages();
         }
         return returnList;
     }

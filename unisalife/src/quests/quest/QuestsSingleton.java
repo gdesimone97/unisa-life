@@ -10,6 +10,7 @@ import exam.question.Materia;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.EnumMap;
+import quests.ItemDef;
 /**
  *
  * @author liovi
@@ -24,6 +25,9 @@ public class QuestsSingleton  implements Saveable, Serializable{
         for (Materia x : Materia.values()){
             this.quests.put(x, new Quest(x.toString()));
         }
+//        this.quests.get(Materia.matematica).setItemsExam(ItemDef.appuntidimatematica1.toString());
+//        this.quests.get(Materia.matematica).setItemsExam(ItemDef.appuntidimatematica2.toString());
+        this.quests.get(Materia.matematica).setItemsExam(ItemDef.calcolatrice.toString());
     }
     
     public static QuestsSingleton getInstance(){
