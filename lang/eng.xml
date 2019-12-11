@@ -6,7 +6,7 @@
 <message>1#Neper number is equal to#2.7#2.8#3.14#9.81</message>
 <message>1#What is the value of the ratio between the biggest 4-digit natural number and the smallest natural number?#9999#infinito#0,9999#1</message>
 <message>2#The derivate of log(x) is:#1/x#1+x#log(x)#x^2</message>
-<message>2#The derivative of a function in its maximum is:#0#infinito##</message>
+<message>2#The derivative of a function in its maximum is:#0#+inf#-inf#Not enough informations</message>
 <message>2#The integral of sin(x)cos(x) from 0 to 2pi is:#0#pi#pi^2#undefined</message>
 <message>3#Definition of the Fourier Series:#an infinite series of trigonometric functions#an infinte series of polynomial functions#a trilogy on cool engineering books#a Netflix TV-Series by director Fourier</message>
 <message>3#The solution of the differential equation y=y' with y(0)=1 is:#e^x#x#log(x)#0</message>
