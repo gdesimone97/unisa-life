@@ -181,12 +181,11 @@ public class Player extends GameObject implements Tickable, Renderable {
         if (velY < 0) {
             face = new UpFaceState(this);
         }
-        if (x + velX > 0 && x + velX < game.getWidthMap() - width) {
-            x += velX;
-        }
-        if (y + velY > 0 && y + velY < game.getHeightMap() - height) {
-            y += velY;
-        }
+        
+        if(x+velX>10&&x+velX<game.getWidthMap()-width)
+            x+=velX;
+        if(y+velY>10&&y+velY<game.getHeightMap()-1.5*height)
+            y+=velY;
         collisions(game.getActualMap().getList());
         downWalk.runAnimation();
         leftWalk.runAnimation();

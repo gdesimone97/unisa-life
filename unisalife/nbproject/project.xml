@@ -6,8 +6,8 @@
             <name>unisalife</name>
             <source-roots>
                 <root id="src.dir"/>
-                <root id="src.Resources.dir"/>
                 <root id="src.bin.dir"/>
+                <root id="src.Resources.dir"/>
             </source-roots>
             <test-roots>
                 <root id="test.src.dir"/>

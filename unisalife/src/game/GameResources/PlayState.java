@@ -50,11 +50,12 @@ public class PlayState extends GameState{
      */
     @Override
     public void performPressAction(int k){
-        if(k==KeyEvent.VK_M)game.state=new NotGameState(game);
-        if(k==KeyEvent.VK_RIGHT) Game.player.setVelX(game.PLAYERSPEED);
-        if(k==KeyEvent.VK_LEFT) Game.player.setVelX(-game.PLAYERSPEED);
-        if(k==KeyEvent.VK_DOWN) Game.player.setVelY(game.PLAYERSPEED);
-        if(k==KeyEvent.VK_UP) Game.player.setVelY(-game.PLAYERSPEED);
+        //if(k==KeyEvent.VK_M)game.state=new NotGameState(game);
+        
+        if(k==KeyEvent.VK_RIGHT && Game.player.getVelY()==0) Game.player.setVelX(game.PLAYERSPEED);
+        if(k==KeyEvent.VK_LEFT && Game.player.getVelY()==0) Game.player.setVelX(-game.PLAYERSPEED);
+        if(k==KeyEvent.VK_DOWN && Game.player.getVelX() == 0) Game.player.setVelY(game.PLAYERSPEED);
+        if(k==KeyEvent.VK_UP && Game.player.getVelX() ==0 ) Game.player.setVelY(-game.PLAYERSPEED);
         if(k==KeyEvent.VK_SPACE) Game.player.dialog(game.getActualMap().getList());
     }
 
