@@ -29,6 +29,7 @@ public class Exam implements Runnable {
     private final int maxLevel;
     private final float basicScore;
     private int lastLevelAnswered = 0;
+    private examResult er;
     QuestionsIterator iter;
 
     /**
@@ -38,7 +39,7 @@ public class Exam implements Runnable {
      * questions
      *
      */
-    public Exam(Materia materia) {
+    public Exam(Materia materia, examResult er) {
         this.subject = materia;
         QuestionFactory questionsFetch = new StringsQuestionFactory(subject);
         this.score = 0;
@@ -49,6 +50,7 @@ public class Exam implements Runnable {
         this.maxLevel = this.questions.getNumLevels();
         this.basicScore = 12 / (30 - (30 / (float) (this.maxLevel - 1)));
         this.iter = questions.iterator();
+        this.er = er;
     }
 
     /**
@@ -100,6 +102,7 @@ public class Exam implements Runnable {
         GuiManager gui = GuiManager.getInstance();
         ResultGui rg = new ResultGui(questionTime);
         RequestGui praiseRequest = new RequestGui();
+        RequestGui nextQuestion = new RequestGui();
         Question question;
         int answer;
         boolean answerRequest;
@@ -143,16 +146,15 @@ public class Exam implements Runnable {
             } else {
                 correctness = question.isCorrect(answers.get(answer - 1));
                 verifyAnswer(correctness, questionTime - elapsed, question.getLevel());
+                gui.isCorrect(correctness, nextQuestion);
+                nextQuestion.getValue();
 //                System.out.println("Hai risposto: " + answers.get(answer - 1) + (correctness ? " CORRETTO!" : " SBAGLIATO!") + " \nTempo passato: " + elapsed);
             }
             
-            
         }
-               
-        gui.showHint(FileTextManager.getFileTextManager().getString(new MessageInformation("ScoreTaken")).get(0) + getScore());
-        gui.closeExamDialog();
         
-//        System.out.println("Voto: " + getScore());
+        gui.closeExamDialog();
+        er.setValue(getScore());
     }
 
 }

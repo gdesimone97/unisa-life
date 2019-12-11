@@ -139,6 +139,16 @@ public class GuiManager {
     public void closeExamDialog() {
         exammanager.closeExamDialog();
     }
+    /**
+     * 
+     * @param correctness arrive from thred exam and says if the user has given the right answer
+     * @param confirm  is an instance of RequestGui
+     * This method calls methods useful for dynamic illumination of responses
+     */
+    public void isCorrect(boolean correctness,RequestGui confirm){
+        exammanager.isCorrect(correctness ,confirm);
+        
+    }
 
     /**
      * When called the exam question is written on the Exam Dialog
