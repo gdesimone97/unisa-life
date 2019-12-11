@@ -13,6 +13,7 @@ import quests.mediator.Message;
 import quests.mediator.User;
 import exam.booklet.Saveable;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
@@ -38,6 +39,7 @@ public class GameInventorySingleton extends User implements Iterable<Item>, Save
         super.mediator = QuestsManagerSingleton.getInstance();
         mediator.addUser(this);
         
+        this.view = new ArrayList<>();
         this.items = new HashMap<>();
         this.comp = new TakenComparator();
         
@@ -48,7 +50,7 @@ public class GameInventorySingleton extends User implements Iterable<Item>, Save
      *
      * @return The instance of the singleton object 
      */
-    public GameInventorySingleton getInstance(){
+    public static GameInventorySingleton getInstance(){
         if (instance == null)
             synchronized (GameInventorySingleton.class){
                 if(instance == null)
@@ -94,8 +96,8 @@ public class GameInventorySingleton extends User implements Iterable<Item>, Save
         i.setTaken();
         Message msg = new Message(i.getID().toString() , true ); //prepare the message with the added object
         send(msg); //then sends it
-        int pos = Arrays.binarySearch( (Item[])this.view.toArray() , i ,this.comp );
-        view.add(pos, i);
+        int pos = Arrays.binarySearch(view.toArray(new Item[view.size()]),i,comp);
+        view.add(-(pos+1), i);
         return pos;
         
     }
@@ -160,7 +162,7 @@ public class GameInventorySingleton extends User implements Iterable<Item>, Save
      * @return An iterator over the original data structure. 
      */
     @Override
-    public Iterator iterator() {
+    public Iterator<Item> iterator() {
         return this.view.iterator();
     }
 
