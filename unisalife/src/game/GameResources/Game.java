@@ -5,6 +5,7 @@
  */
 package game.GameResources;
 
+import exam.question.Materia;
 import game.GameObjects.Teleport;
 import game.GameObjects.Player;
 import game.GameObjects.Person;
@@ -104,7 +105,7 @@ public class Game extends Canvas implements Runnable, Saveable {
         maps[1] = new Map(t1);
         maps[1].addObject(new Block(100, 70));
         maps[1].addObject(new Block(70, 40));
-        maps[1].addObject(new Professor(200, 200, "/Sprites/foggia.png",SubjectEnum.Programming));
+        maps[1].addObject(new Professor("Foggia", 200, 200, "/Sprites/foggia.png",Materia.matematica));
         actualMap = 0;
         WIDTHMAP = maps[actualMap].getTileMap().getWidth();
         HEIGHTMAP = maps[actualMap].getTileMap().getHeight();

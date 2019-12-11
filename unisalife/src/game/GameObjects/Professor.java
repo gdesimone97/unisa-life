@@ -5,18 +5,22 @@
  */
 package game.GameObjects;
 
+import exam.question.Materia;
 import interaction.*;
+import language.Information;
 
 /**
  *
  * @author Giuseppe De Simone
  */
-public class Professor extends Person {
+public class Professor extends Person implements Information {
 
-    private SubjectEnum subject;
+    private Materia subject;
+    private String nome;
 
-    public Professor(float x, float y, String path, SubjectEnum subject) {
+    public Professor(String nome, float x, float y, String path, Materia subject) {
         super(x, y, path);
+        this.nome = nome;
         this.subject = subject;
     }
 
@@ -25,4 +29,16 @@ public class Professor extends Person {
         InteractionManager profMìInteraction = new ProfessorInteractionManager();
         profMìInteraction.execute(this);
     }
+
+    public Materia getSubject() {
+        return subject;
+    }
+
+    @Override
+    public String getInfo() {
+        return this.nome;
+    }
+    
+
+
 }

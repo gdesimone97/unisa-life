@@ -7,6 +7,7 @@ package interaction;
 
 import exam.Exam;
 import exam.question.Materia;
+import game.GameObjects.Professor;
 import game.Interfaces.Interactable;
 
 /**
@@ -21,11 +22,12 @@ public class ProfessorInteractionManager implements InteractionManager {
     @Override
     public void execute(Interactable obj) {
         // 1. trova la materia giusta in base al prof (il prof deve avere un attributo materia)
-        
+        Professor p = (Professor)obj;
+        Materia m = p.getSubject();
         // 2. verifica idonietà e requisiti
         
         //3. Start the exam session
-        Thread esameThread = new Thread(new Exam(Materia.matematica));
+        Thread esameThread = new Thread(new Exam(m));
         esameThread.start();
         
         // 4. modifica stato e ricompense
