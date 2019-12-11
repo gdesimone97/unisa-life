@@ -2178,8 +2178,7 @@ public class GameFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_MaleBlackButtonActionPerformed
 
     private void ExitQuestDialogLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ExitQuestDialogLabelMouseClicked
-        SwingUtilities.invokeLater(() ->QuestDialog.setVisible(false));
-        SwingUtilities.invokeLater(() -> QuestDialog.setFocusable(false));
+        SwingUtilities.invokeLater(() -> QuestDialog.setVisible(false));
     }//GEN-LAST:event_ExitQuestDialogLabelMouseClicked
 
 
