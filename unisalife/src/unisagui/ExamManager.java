@@ -77,21 +77,28 @@ public class ExamManager {
                 case 3:
                     SwingUtilities.invokeLater(() -> gameframe.ThirdAnswer.setBackground(new java.awt.Color(115,205,105)));
                     break;
-                default:
+                case 4:
                     SwingUtilities.invokeLater(() -> gameframe.FourthAnswer.setBackground(new java.awt.Color(115,205,105)));
                     break;
             }
 
         }
-        else
-            if(RESULT==1)
-                 SwingUtilities.invokeLater(() -> gameframe.FirstAnswer.setBackground(new java.awt.Color(195,60,84)));
-            else if( RESULT==2)
-                   SwingUtilities.invokeLater(() -> gameframe.SecondAnswer.setBackground(new java.awt.Color(195,60,84)));
-            else if (RESULT==3)
-                   SwingUtilities.invokeLater(() -> gameframe.ThirdAnswer.setBackground(new java.awt.Color(195,60,84)));
-            else
-                   SwingUtilities.invokeLater(() -> gameframe.FourthAnswer.setBackground(new java.awt.Color(195,60,84)));
+        else{
+            switch (RESULT) {
+                case 1:
+                    SwingUtilities.invokeLater(() -> gameframe.FirstAnswer.setBackground(new java.awt.Color(195,60,84)));
+                    break;
+                case 2:
+                    SwingUtilities.invokeLater(() -> gameframe.SecondAnswer.setBackground(new java.awt.Color(195,60,84)));
+                    break;
+                case 3:
+                    SwingUtilities.invokeLater(() -> gameframe.ThirdAnswer.setBackground(new java.awt.Color(195,60,84)));
+                    break;
+                case 4:
+                    SwingUtilities.invokeLater(() -> gameframe.FourthAnswer.setBackground(new java.awt.Color(195,60,84)));
+                    break;
+            }
+        }
             
         
     }
