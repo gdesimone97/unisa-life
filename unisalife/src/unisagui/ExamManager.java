@@ -5,6 +5,7 @@
  */
 package unisagui;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
@@ -27,6 +28,7 @@ public class ExamManager {
     private Timer timing;
     protected static ExamManager instance;
     private int level = 0;
+    private Color color;
 
     /**
      *
@@ -50,9 +52,10 @@ public class ExamManager {
     protected void closeExamDialog() {
         SwingUtilities.invokeLater(() -> gameframe.ExamDialog.setVisible(false));
     }
-    protected void setConfirm(){
+
+    protected void setConfirm() {
         this.confirm.setValue(true);
-        
+
     }
 
     /**
@@ -61,54 +64,42 @@ public class ExamManager {
      * will remain equal to 0
      */
     protected void setRESULT(int result) {
-        RESULT=result;
+        RESULT = result;
         rg.setValue(result);
         this.manageButtons(false);
     }
-    /**
-     * 
-     * @param correctness arrive from thred exam and says if the user has given the right answer
-     * @param confirm  is an instance of RequestGui
-     * This method decides, based on correctness, which response to illuminate and what color
-     */
-    protected void isCorrect(boolean correctness,RequestGui confirm){
-        this.confirm=confirm;
-        timing.stop();
-        if(correctness){
-            switch (RESULT) {
-                case 1:
-                    SwingUtilities.invokeLater(() -> gameframe.FirstAnswer.setBackground(new java.awt.Color(115,205,105)));
-                    break;
-                case 2:
-                    SwingUtilities.invokeLater(() -> gameframe.SecondAnswer.setBackground(new java.awt.Color(115,205,105)));
-                    break;
-                case 3:
-                    SwingUtilities.invokeLater(() -> gameframe.ThirdAnswer.setBackground(new java.awt.Color(115,205,105)));
-                    break;
-                case 4:
-                    SwingUtilities.invokeLater(() -> gameframe.FourthAnswer.setBackground(new java.awt.Color(115,205,105)));
-                    break;
-            }
 
+    /**
+     *
+     * @param correctness arrive from thred exam and says if the user has given
+     * the right answer
+     * @param confirm is an instance of RequestGui This method decides, based on
+     * correctness, which response to illuminate and what color
+     */
+    protected void isCorrect(boolean correctness, RequestGui confirm) {
+        this.confirm = confirm;
+        if (correctness) {
+            color = new java.awt.Color(115, 205, 105);//green
+        } else {
+            color = new java.awt.Color(195, 60, 84); //red
         }
-        else{
-            switch (RESULT) {
-                case 1:
-                    SwingUtilities.invokeLater(() -> gameframe.FirstAnswer.setBackground(new java.awt.Color(195,60,84)));
-                    break;
-                case 2:
-                    SwingUtilities.invokeLater(() -> gameframe.SecondAnswer.setBackground(new java.awt.Color(195,60,84)));
-                    break;
-                case 3:
-                    SwingUtilities.invokeLater(() -> gameframe.ThirdAnswer.setBackground(new java.awt.Color(195,60,84)));
-                    break;
-                case 4:
-                    SwingUtilities.invokeLater(() -> gameframe.FourthAnswer.setBackground(new java.awt.Color(195,60,84)));
-                    break;
-            }
+        timing.stop();
+
+        switch (RESULT) {
+            case 1:
+                SwingUtilities.invokeLater(() -> gameframe.FirstAnswer.setBackground(color));
+                break;
+            case 2:
+                SwingUtilities.invokeLater(() -> gameframe.SecondAnswer.setBackground(color));
+                break;
+            case 3:
+                SwingUtilities.invokeLater(() -> gameframe.ThirdAnswer.setBackground(color));
+                break;
+            case 4:
+                SwingUtilities.invokeLater(() -> gameframe.FourthAnswer.setBackground(color));
+                break;
         }
-            
-        
+
     }
 
     /**
@@ -120,10 +111,10 @@ public class ExamManager {
         SwingUtilities.invokeLater(() -> gameframe.SecondAnswer.setText(EMPTY_TEXT));
         SwingUtilities.invokeLater(() -> gameframe.ThirdAnswer.setText(EMPTY_TEXT));
         SwingUtilities.invokeLater(() -> gameframe.FourthAnswer.setText(EMPTY_TEXT));
-        SwingUtilities.invokeLater(() -> gameframe.FirstAnswer.setBackground(new java.awt.Color(93,150,199)));
-        SwingUtilities.invokeLater(() -> gameframe.SecondAnswer.setBackground(new java.awt.Color(93,150,199)));
-        SwingUtilities.invokeLater(() -> gameframe.ThirdAnswer.setBackground(new java.awt.Color(93,150,199)));
-        SwingUtilities.invokeLater(() -> gameframe.FourthAnswer.setBackground(new java.awt.Color(93,150,199)));
+        SwingUtilities.invokeLater(() -> gameframe.FirstAnswer.setBackground(new java.awt.Color(93, 150, 199)));
+        SwingUtilities.invokeLater(() -> gameframe.SecondAnswer.setBackground(new java.awt.Color(93, 150, 199)));
+        SwingUtilities.invokeLater(() -> gameframe.ThirdAnswer.setBackground(new java.awt.Color(93, 150, 199)));
+        SwingUtilities.invokeLater(() -> gameframe.FourthAnswer.setBackground(new java.awt.Color(93, 150, 199)));
         SwingUtilities.invokeLater(() -> gameframe.NameOfExamLabel.setText(EMPTY_TEXT));
     }
 
@@ -146,10 +137,11 @@ public class ExamManager {
         SwingUtilities.invokeLater(() -> gameframe.ThirdAnswer.setText(answer3));
         SwingUtilities.invokeLater(() -> gameframe.FourthAnswer.setText(answer4));
         SwingUtilities.invokeLater(() -> gameframe.NameOfExamLabel.setText(examName));
-        if(level==4)
+        if (level == 4) {
             SwingUtilities.invokeLater(() -> gameframe.LevelOfQuestionLabel.setText("Laud Question "));
-        else
+        } else {
             SwingUtilities.invokeLater(() -> gameframe.LevelOfQuestionLabel.setText("Question " + Integer.toString(level) + "/3"));
+        }
 
     }
 
@@ -181,7 +173,6 @@ public class ExamManager {
             time = time - 1000;
         });
         timing.start();
-        
 
     }
 
@@ -201,8 +192,9 @@ public class ExamManager {
      * to the exam are called
      */
     protected void showExamDialog(String examName, String question, String answer1, String answer2, String answer3, String answer4, int time, ResultGui lock) {
-        if(level>0)
+        if (level > 0) {
             timing.stop();
+        }
         this.time = time * 1000;
         this.showTimer();
         level++;
@@ -231,14 +223,19 @@ public class ExamManager {
         if (position > 4 || position < 1) {
             throw new Exception();
         }
-        if (position == 1) {
-            SwingUtilities.invokeLater(() -> gameframe.FirstAnswer.setText(answer));
-        } else if (position == 2) {
-            SwingUtilities.invokeLater(() -> gameframe.SecondAnswer.setText(answer));
-        } else if (position == 3) {
-            SwingUtilities.invokeLater(() -> gameframe.ThirdAnswer.setText(answer));
-        } else {
-            SwingUtilities.invokeLater(() -> gameframe.FourthAnswer.setText(answer));
+        switch (position) {
+            case 1:
+                SwingUtilities.invokeLater(() -> gameframe.FirstAnswer.setText(answer));
+                break;
+            case 2:
+                SwingUtilities.invokeLater(() -> gameframe.SecondAnswer.setText(answer));
+                break;
+            case 3:
+                SwingUtilities.invokeLater(() -> gameframe.ThirdAnswer.setText(answer));
+                break;
+            default:
+                SwingUtilities.invokeLater(() -> gameframe.FourthAnswer.setText(answer));
+                break;
         }
 
     }
