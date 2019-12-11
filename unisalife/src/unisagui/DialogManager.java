@@ -25,15 +25,18 @@ public class DialogManager {
      * 
      */
     public void showHint(String hint){
+        SwingUtilities.invokeLater(() -> gameframe.HintDialog.setAlwaysOnTop(true));
         SwingUtilities.invokeLater(() -> gameframe.HintTextArea.setText(hint));
         SwingUtilities.invokeLater(() -> gameframe.HintScrollPane.setVisible(true));
         SwingUtilities.invokeLater(() -> gameframe.HintDialog.setVisible(true));
+        SwingUtilities.invokeLater(() -> gameframe.HintDialog.setFocusable(true));
     }
     
     public void hideHint(){
         SwingUtilities.invokeLater(() -> gameframe.HintTextArea.setText(""));
         SwingUtilities.invokeLater(() -> gameframe.HintScrollPane.setVisible(false));
         SwingUtilities.invokeLater(() -> gameframe.HintDialog.setVisible(false));
+        SwingUtilities.invokeLater(() -> gameframe.HintDialog.setFocusable(false));
     }
     /**
      * show a little conversation 
@@ -41,14 +44,17 @@ public class DialogManager {
      * s
      */
     public void showDialog(String conversation){
+        SwingUtilities.invokeLater(() -> gameframe.ConvDialog.setAlwaysOnTop(true));
         SwingUtilities.invokeLater(() -> gameframe.ConversationTextArea.setText(conversation));
         SwingUtilities.invokeLater(() -> gameframe.ConversationScrollPane.setVisible(true));
         SwingUtilities.invokeLater(() -> gameframe.ConvDialog.setVisible(true));
+        SwingUtilities.invokeLater(() -> gameframe.ConvDialog.setFocusable(true));
     }
     
     public void hideDialog(){
         SwingUtilities.invokeLater(() -> gameframe.ConversationTextArea.setText(""));
         SwingUtilities.invokeLater(() -> gameframe.ConversationScrollPane.setVisible(false));
-        SwingUtilities.invokeLater(() -> gameframe.ConvDialog.setVisible(false));;
+        SwingUtilities.invokeLater(() -> gameframe.ConvDialog.setVisible(false));
+        SwingUtilities.invokeLater(() -> gameframe.ConvDialog.setFocusable(false));
     }
 }
