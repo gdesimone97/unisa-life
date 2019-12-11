@@ -30,7 +30,8 @@ public class ItemInteractionManager implements InteractionManager {
 
         try {
             tm = FileTextManager.getFileTextManager();
-            toShow = tm.getString(new MessageInformation("ItemFound")).get(0);
+            MessageInformation ms = new MessageInformation("ItemFound");
+            toShow = tm.getString(ms).get(0);
             toShow.concat(" " + tm.getString((Information) obj).get(0));
 
         } catch (FileTextManagerException | TextFinderException ex) {

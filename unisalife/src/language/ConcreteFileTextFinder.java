@@ -108,13 +108,11 @@ public class ConcreteFileTextFinder extends FileTextFinder {
         FileInputStream inputFile;
         try {
             inputFile = new FileInputStream(FileTextFinder.getFileName());
-
         } catch (FileNotFoundException ex) {
             throw new TextFinderException();
         }
 
         Document doc = this.createDocument(inputFile);
-
         NodeList nodeList = null;
         try {
             nodeList = (NodeList) this.querier.compile(exp).evaluate(doc, XPathConstants.NODESET);
@@ -136,7 +134,11 @@ public class ConcreteFileTextFinder extends FileTextFinder {
         if (returnList.size() <= 0) {
             throw new StringNotFoundException();
         }
-        this.documentBuilder.reset();
+        try {
+            this.documentBuilder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+        } catch (ParserConfigurationException ex) {
+            throw new XMLFileException();
+        }
         return returnList;
     }
 }
