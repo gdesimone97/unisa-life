@@ -67,7 +67,7 @@ public class ExamManager {
     protected void isCorrect(boolean correctness,RequestGui confirm){
         this.confirm=confirm;
         if(correctness){
-            switch (RESULT) {
+            switch (this.RESULT) {
                 case 1:
                     SwingUtilities.invokeLater(() -> gameframe.FirstAnswer.setBackground(new java.awt.Color(115,205,105)));
                     break;
@@ -84,7 +84,7 @@ public class ExamManager {
 
         }
         else{
-            switch (RESULT) {
+            switch (this.RESULT) {
                 case 1:
                     SwingUtilities.invokeLater(() -> gameframe.FirstAnswer.setBackground(new java.awt.Color(195,60,84)));
                     break;
