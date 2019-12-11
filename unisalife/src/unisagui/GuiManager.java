@@ -82,7 +82,7 @@ public class GuiManager {
     
     
     /**
-     * When called a Conversation Area appears  on the screen
+     * When called the Conversation Area appears  on the screen
      * @param s is the text in the text area
      * 
      */
@@ -90,11 +90,23 @@ public class GuiManager {
         dialogmanager.showDialog(s);
     }
     /**
-     * When called a Hint Area appears on the screen
+     * When called the Conversation Area disappears
+     */
+    public void hideDialog(){
+        dialogmanager.hideDialog();
+    }
+    /**
+     * When called the Hint Area appears on the screen
      * @param s is the text of the hint
      */
     public void showHint(String s){
         dialogmanager.showHint(s);
+    }
+    /**
+     * When called the Hint Area disappears
+     */
+    public void hideHint(){
+        dialogmanager.hideHint();
     }
     
     /**
