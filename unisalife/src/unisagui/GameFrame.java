@@ -333,7 +333,7 @@ public class GameFrame extends javax.swing.JFrame {
         ConfirmAnswer.setBackground(new java.awt.Color(75, 125, 167));
         ConfirmAnswer.setFont(new java.awt.Font("Arial Black", 0, 13)); // NOI18N
         ConfirmAnswer.setForeground(new java.awt.Color(255, 255, 255));
-        ConfirmAnswer.setText("Confirm");
+        ConfirmAnswer.setText("Next Question");
         ConfirmAnswer.setBorder(null);
         ConfirmAnswer.setMaximumSize(new java.awt.Dimension(125, 25));
         ConfirmAnswer.setMinimumSize(new java.awt.Dimension(125, 25));
@@ -1927,7 +1927,7 @@ public class GameFrame extends javax.swing.JFrame {
         RightBorderLayout.setHorizontalGroup(
             RightBorderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RightBorderLayout.createSequentialGroup()
-                .addGap(0, 25, Short.MAX_VALUE)
+                .addGap(0, 26, Short.MAX_VALUE)
                 .addComponent(GameCloseButton))
         );
         RightBorderLayout.setVerticalGroup(
@@ -2079,20 +2079,24 @@ public class GameFrame extends javax.swing.JFrame {
 
     private void FirstAnswerMouseClicked(java.awt.event.MouseEvent evt) {
         ExamManager.getInstance().setRESULT(1);
+        SwingUtilities.invokeLater(() -> ConfirmAnswer.setEnabled(true));
 
 
     }
 
     private void SecondAnswerMouseClicked(java.awt.event.MouseEvent evt) {
         ExamManager.getInstance().setRESULT(2);
+        SwingUtilities.invokeLater(() -> ConfirmAnswer.setEnabled(true));
     }
 
     private void ThirdAnswerMouseClicked(java.awt.event.MouseEvent evt) {
         ExamManager.getInstance().setRESULT(3);
+        SwingUtilities.invokeLater(() -> ConfirmAnswer.setEnabled(true));
     }
 
     private void FourthAnswerMouseClicked(java.awt.event.MouseEvent evt) {
       ExamManager.getInstance().setRESULT(4);
+      SwingUtilities.invokeLater(() -> ConfirmAnswer.setEnabled(true));
     }
 
     private void AvatarOkButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AvatarOkButtonMouseClicked
