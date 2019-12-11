@@ -137,7 +137,11 @@ public class Exam implements Runnable {
                     continue;
                 }
 
-                gui.showRequest("Your current vote is 30." + System.getProperty("line.separator") + "Do you also want to ask the praise?" + System.getProperty("line.separator") + "But be careful, if you miss the vote goes down.", praiseRequest);
+                try {
+                    gui.showRequest(FileTextManager.getFileTextManager().getString(new MessageInformation("LodeRequest")).get(0), praiseRequest);
+                } catch (TextFinderException ex) {
+                } catch (FileTextManagerException ex) {
+                }
                 answerRequest = praiseRequest.getValue();
 
                 if (!answerRequest) {
