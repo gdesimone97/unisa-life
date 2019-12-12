@@ -233,6 +233,7 @@ public class GameFrame extends javax.swing.JFrame {
         GameCloseButton = new javax.swing.JButton();
         LeftBorder = new javax.swing.JPanel();
         UpperBorder = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
 
         ExamDialog.setMinimumSize(new java.awt.Dimension(500, 500));
         ExamDialog.setModalityType(java.awt.Dialog.ModalityType.APPLICATION_MODAL);
@@ -1563,7 +1564,6 @@ public class GameFrame extends javax.swing.JFrame {
                         .addGap(25, 25, 25))))
         );
 
-        AvatarImage.getAccessibleContext().setAccessibleName("");
         FemaleWhiteButton.getAccessibleContext().setAccessibleName("FemaleButton");
 
         javax.swing.GroupLayout AvatarChooserDialogLayout = new javax.swing.GroupLayout(AvatarChooserDialog.getContentPane());
@@ -1976,7 +1976,7 @@ public class GameFrame extends javax.swing.JFrame {
         RightBorderLayout.setHorizontalGroup(
             RightBorderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RightBorderLayout.createSequentialGroup()
-                .addGap(0, 25, Short.MAX_VALUE)
+                .addGap(0, 26, Short.MAX_VALUE)
                 .addComponent(GameCloseButton))
         );
         RightBorderLayout.setVerticalGroup(
@@ -2005,15 +2005,27 @@ public class GameFrame extends javax.swing.JFrame {
         UpperBorder.setMinimumSize(new java.awt.Dimension(500, 75));
         UpperBorder.setPreferredSize(new java.awt.Dimension(500, 75));
 
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/unisagui/resources/Title.png"))); // NOI18N
+        jLabel2.setMaximumSize(new java.awt.Dimension(210, 70));
+        jLabel2.setMinimumSize(new java.awt.Dimension(210, 70));
+        jLabel2.setPreferredSize(new java.awt.Dimension(210, 70));
+        jLabel2.setRequestFocusEnabled(false);
+        jLabel2.setVerifyInputWhenFocusTarget(false);
+
         javax.swing.GroupLayout UpperBorderLayout = new javax.swing.GroupLayout(UpperBorder);
         UpperBorder.setLayout(UpperBorderLayout);
         UpperBorderLayout.setHorizontalGroup(
             UpperBorderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(UpperBorderLayout.createSequentialGroup()
+                .addGap(145, 145, 145)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(145, 145, 145))
         );
         UpperBorderLayout.setVerticalGroup(
             UpperBorderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 75, Short.MAX_VALUE)
+            .addGroup(UpperBorderLayout.createSequentialGroup()
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 5, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -2472,5 +2484,6 @@ public class GameFrame extends javax.swing.JFrame {
     protected javax.swing.JPanel UpperBorder;
     protected javax.swing.JButton YesButton;
     protected javax.swing.JLabel jLabel1;
+    protected javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }
