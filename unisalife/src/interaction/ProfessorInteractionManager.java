@@ -37,7 +37,7 @@ public class ProfessorInteractionManager implements InteractionManager {
         // 2. verifica idonietà e requisiti
         try {
             if (QuestsSingleton.getInstance().getQuest().get(m).isDone()) {
-                GuiManager.getInstance().showHint(FileTextManager.getFileTextManager().getString(new MessageInformation("ExamAlreadyDone")).get(0));
+                GuiManager.getInstance().showDialog(FileTextManager.getFileTextManager().getString(new MessageInformation("ExamAlreadyDone")).get(0));
 
                 
             } else if (QuestsSingleton.getInstance().getQuest().get(m).isAvailable()) {
@@ -47,10 +47,10 @@ public class ProfessorInteractionManager implements InteractionManager {
                 esameThread.start();
             } else {
                 if (QuestsSingleton.getInstance().getQuest().get(m).isDone()) {
-                    GuiManager.getInstance().showHint(FileTextManager.getFileTextManager().getString(new MessageInformation("ExamAlreadyDone")).get(0));
+                    GuiManager.getInstance().showDialog(FileTextManager.getFileTextManager().getString(new MessageInformation("ExamAlreadyDone")).get(0));
 
                 } else {
-                    GuiManager.getInstance().showHint(FileTextManager.getFileTextManager().getString(new MessageInformation("NotAllowed")).get(0));
+                    GuiManager.getInstance().showDialog(FileTextManager.getFileTextManager().getString(new MessageInformation("NotAllowed")).get(0));
 
                 }
             }
