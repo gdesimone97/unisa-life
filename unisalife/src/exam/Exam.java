@@ -174,6 +174,8 @@ public class Exam implements Runnable {
             }
 
         }
+        
+        gui.closeExamDialog();
 
         int voto = getScore();
         
@@ -196,7 +198,6 @@ public class Exam implements Runnable {
         }
              
         //SEGNARE ESAME SUL LIBRETTO
-        gui.closeExamDialog();
     }
 
 }
