@@ -1241,6 +1241,7 @@ public class GameFrame extends javax.swing.JFrame {
         );
 
         RequestDialog.setMinimumSize(new java.awt.Dimension(250, 175));
+        RequestDialog.setModalExclusionType(java.awt.Dialog.ModalExclusionType.APPLICATION_EXCLUDE);
         RequestDialog.setType(java.awt.Window.Type.POPUP);
 
         RequestPanel.setBackground(new java.awt.Color(93, 150, 199));
@@ -2151,7 +2152,7 @@ public class GameFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_FemaleWhiteButtonMouseClicked
 
     private void ConvDialogKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ConvDialogKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+        if(evt.getKeyCode()==KeyEvent.VK_SPACE){
             SwingUtilities.invokeLater(() -> ConvDialog.setVisible(false));
             SwingUtilities.invokeLater(() -> ConversationTextArea.setText(EMPTY_TEXT));
             SwingUtilities.invokeLater(() -> ConvDialog.setFocusable(false));
@@ -2159,7 +2160,7 @@ public class GameFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_ConvDialogKeyPressed
 
     private void HintDialogKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_HintDialogKeyTyped
-        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+        if(evt.getKeyCode()==KeyEvent.VK_SPACE){
             SwingUtilities.invokeLater(() -> HintDialog.setVisible(false));
             SwingUtilities.invokeLater(() -> HintTextArea.setText(EMPTY_TEXT));
             SwingUtilities.invokeLater(() -> HintDialog.setFocusable(false));
@@ -2168,7 +2169,7 @@ public class GameFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_HintDialogKeyTyped
 
     private void ConvDialogKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ConvDialogKeyTyped
-        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+        if(evt.getKeyCode()==KeyEvent.VK_SPACE){
             SwingUtilities.invokeLater(() -> ConvDialog.setVisible(false));
             SwingUtilities.invokeLater(() -> ConversationTextArea.setText(EMPTY_TEXT));
             SwingUtilities.invokeLater(() -> ConvDialog.setFocusable(false));
@@ -2177,7 +2178,7 @@ public class GameFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_ConvDialogKeyTyped
 
     private void HintDialogKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_HintDialogKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+        if(evt.getKeyCode()==KeyEvent.VK_SPACE){
             SwingUtilities.invokeLater(() -> HintDialog.setVisible(false));
             SwingUtilities.invokeLater(() -> HintTextArea.setText(EMPTY_TEXT));
             SwingUtilities.invokeLater(() -> HintDialog.setFocusable(false));
@@ -2216,8 +2217,7 @@ public class GameFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_QuestButtonFrameActionPerformed
 
     private void MaleWhiteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MaleWhiteButtonActionPerformed
-        GuiManager.getInstance().showHint("ciao");
-        SwingUtilities.invokeLater(() ->StudentLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/unisagui/resources/man75.png"))));        
+         SwingUtilities.invokeLater(() ->StudentLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/unisagui/resources/man75.png"))));        
     }//GEN-LAST:event_MaleWhiteButtonActionPerformed
 
     private void FemaleBlackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FemaleBlackButtonActionPerformed

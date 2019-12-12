@@ -2258,6 +2258,9 @@
         <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[250, 175]"/>
         </Property>
+        <Property name="modalExclusionType" type="java.awt.Dialog$ModalExclusionType" editor="org.netbeans.modules.form.editors.EnumEditor">
+          <Value id="APPLICATION_EXCLUDE"/>
+        </Property>
         <Property name="type" type="java.awt.Window$Type" editor="org.netbeans.modules.form.editors.EnumEditor">
           <Value id="POPUP"/>
         </Property>
