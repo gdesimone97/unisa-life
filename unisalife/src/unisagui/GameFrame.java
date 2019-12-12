@@ -235,6 +235,7 @@ public class GameFrame extends javax.swing.JFrame {
         UpperBorder = new javax.swing.JPanel();
 
         ExamDialog.setMinimumSize(new java.awt.Dimension(500, 500));
+        ExamDialog.setModalityType(java.awt.Dialog.ModalityType.APPLICATION_MODAL);
         ExamDialog.addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowDeactivated(java.awt.event.WindowEvent evt) {
                 ExamDialogWindowDeactivated(evt);
@@ -283,6 +284,7 @@ public class GameFrame extends javax.swing.JFrame {
         ExamTextArea.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
         ExamTextArea.setLineWrap(true);
         ExamTextArea.setRows(5);
+        ExamTextArea.setWrapStyleWord(true);
         ExamTextArea.setMaximumSize(new java.awt.Dimension(300, 100));
         ExamTextArea.setMinimumSize(new java.awt.Dimension(300, 100));
         ExamScrollPane.setViewportView(ExamTextArea);
