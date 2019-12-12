@@ -179,15 +179,15 @@ public class Exam implements Runnable {
         
         try {
             if (voto >= 18 && voto <= 30) {
-                gui.showHint(FileTextManager.getFileTextManager().getString(new MessageInformation("ScoreTaken")).get(0) + " " + voto);
+                gui.showDialog(FileTextManager.getFileTextManager().getString(new MessageInformation("ScoreTaken")).get(0) + " " + voto);
                 BookletSingleton.getInstance().setScore(subject, voto);
             }
             else if (voto == 31) {
-                gui.showHint(FileTextManager.getFileTextManager().getString(new MessageInformation("Lode")).get(0));
+                gui.showDialog(FileTextManager.getFileTextManager().getString(new MessageInformation("Lode")).get(0));
                 BookletSingleton.getInstance().setScore(subject, voto);
             }
             else {
-                gui.showHint(FileTextManager.getFileTextManager().getString(new MessageInformation("ExamFailed")).get(0));
+                gui.showDialog(FileTextManager.getFileTextManager().getString(new MessageInformation("ExamFailed")).get(0));
             }
         } catch (TextFinderException ex) {
             ex.printStackTrace();
