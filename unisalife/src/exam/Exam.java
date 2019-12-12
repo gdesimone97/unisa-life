@@ -154,7 +154,7 @@ public class Exam implements Runnable {
             question = iter.next();
             gui.setExamQuestion(question.getQuestion());
             ArrayList<Answer> answers = question.getAnswers();
-            gui.showExamDialog(this.subject.toString(), question.getQuestion(), answers.get(0).getAnswer(), answers.get(1).getAnswer(), answers.get(2).getAnswer(), answers.get(3).getAnswer(), questionTime, rg);
+            gui.showExamDialog(this.subject.toString(), question.getQuestion(), answers.get(0).getAnswer(), answers.get(1).getAnswer(), answers.get(2).getAnswer(), answers.get(3).getAnswer(), questionTime, rg, question.getLevel());
 
             //init timer
             start = System.nanoTime();
@@ -179,15 +179,15 @@ public class Exam implements Runnable {
         
         try {
             if (voto >= 18 && voto <= 30) {
-                gui.showHint(FileTextManager.getFileTextManager().getString(new MessageInformation("ScoreTaken")).get(0) + " " + voto);
+                gui.showDialog(FileTextManager.getFileTextManager().getString(new MessageInformation("ScoreTaken")).get(0) + " " + voto);
                 BookletSingleton.getInstance().setScore(subject, voto);
             }
             else if (voto == 31) {
-                gui.showHint(FileTextManager.getFileTextManager().getString(new MessageInformation("Lode")).get(0));
+                gui.showDialog(FileTextManager.getFileTextManager().getString(new MessageInformation("Lode")).get(0));
                 BookletSingleton.getInstance().setScore(subject, voto);
             }
             else {
-                gui.showHint(FileTextManager.getFileTextManager().getString(new MessageInformation("ExamFailed")).get(0));
+                gui.showDialog(FileTextManager.getFileTextManager().getString(new MessageInformation("ExamFailed")).get(0));
             }
         } catch (TextFinderException ex) {
             ex.printStackTrace();
