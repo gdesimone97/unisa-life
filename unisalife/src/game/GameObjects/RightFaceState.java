@@ -29,6 +29,6 @@ public class RightFaceState extends FaceState {
     }
     @Override
     public Rectangle nextStep(){
-        return new Rectangle((int)player.getX()+player.getWidth(),(int)player.getY(),(int)Game.PLAYERSPEED+1,player.getHeight());
+        return new Rectangle((int)player.getX()+player.getWidth(),(int)player.getY(),(int)Game.PLAYERSPEED,player.getHeight());
     }
 }

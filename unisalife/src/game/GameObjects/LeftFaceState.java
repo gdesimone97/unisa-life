@@ -29,7 +29,7 @@ public class LeftFaceState extends FaceState{
     }
     @Override
     public Rectangle nextStep(){
-        return new Rectangle((int)player.getX()-Game.PLAYERSPEED-1,(int)player.getY(),(int)Game.PLAYERSPEED,player.getHeight());
+        return new Rectangle((int)player.getX()-Game.PLAYERSPEED,(int)player.getY(),(int)Game.PLAYERSPEED,player.getHeight());
     }
     
 }

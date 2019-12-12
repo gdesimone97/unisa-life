@@ -27,7 +27,7 @@ public class DownFaceState extends FaceState{
     }
     @Override
     public Rectangle nextStep(){
-        return new Rectangle((int)player.getX(),(int)player.getY()+player.getHeight(),(int)player.getWidth(),Game.PLAYERSPEED+1);
+        return new Rectangle((int)player.getX(),(int)player.getY()+player.getHeight(),(int)player.getWidth(),Game.PLAYERSPEED);
     }
     
 }

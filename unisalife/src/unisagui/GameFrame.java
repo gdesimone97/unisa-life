@@ -178,7 +178,7 @@ public class GameFrame extends javax.swing.JFrame {
         MusicButton = new javax.swing.JButton();
         KeyboardButton = new javax.swing.JButton();
         ReturnToMainMenuButton = new javax.swing.JButton();
-        LanguageComboBox = new javax.swing.JComboBox<>();
+        LanguageComboBox = new javax.swing.JComboBox<String>();
         SettingsCloseButton = new javax.swing.JButton();
         RequestDialog = new javax.swing.JDialog();
         RequestPanel = new javax.swing.JPanel();
@@ -213,7 +213,7 @@ public class GameFrame extends javax.swing.JFrame {
         QuestDialog = new javax.swing.JDialog();
         QuestPanel = new javax.swing.JPanel();
         QuestListScrollPane = new javax.swing.JScrollPane();
-        QuestList = new javax.swing.JList<>();
+        QuestList = new javax.swing.JList<String>();
         QuestTextScrollPane = new javax.swing.JScrollPane();
         QuestTextArea = new javax.swing.JTextArea();
         ExitQuestDialogLabel = new javax.swing.JLabel();
@@ -1162,7 +1162,7 @@ public class GameFrame extends javax.swing.JFrame {
         LanguageComboBox.setBackground(new java.awt.Color(75, 125, 167));
         LanguageComboBox.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
         LanguageComboBox.setForeground(new java.awt.Color(255, 255, 255));
-        LanguageComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "English", " " }));
+        LanguageComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "English", " " }));
         LanguageComboBox.setMaximumSize(new java.awt.Dimension(200, 50));
         LanguageComboBox.setMinimumSize(new java.awt.Dimension(200, 50));
         LanguageComboBox.setPreferredSize(new java.awt.Dimension(200, 50));
@@ -1614,6 +1614,9 @@ public class GameFrame extends javax.swing.JFrame {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 ConvDialogKeyPressed(evt);
             }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                ConvDialogKeyReleased(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 ConvDialogKeyTyped(evt);
             }
@@ -1659,6 +1662,9 @@ public class GameFrame extends javax.swing.JFrame {
         HintDialog.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 HintDialogKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                HintDialogKeyReleased(evt);
             }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 HintDialogKeyTyped(evt);
@@ -1725,10 +1731,10 @@ public class GameFrame extends javax.swing.JFrame {
         QuestListScrollPane.setPreferredSize(new java.awt.Dimension(190, 350));
 
         QuestList.setBorder(javax.swing.BorderFactory.createTitledBorder("Quest"));
-        QuestList.setModel(new javax.swing.AbstractListModel<String>() {
+        QuestList.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Collect your first dollar!", "It's time to get Math Exam!" };
             public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
+            public Object getElementAt(int i) { return strings[i]; }
         });
         QuestList.setMaximumSize(new java.awt.Dimension(190, 350));
         QuestList.setMinimumSize(new java.awt.Dimension(190, 350));
@@ -1971,7 +1977,7 @@ public class GameFrame extends javax.swing.JFrame {
         RightBorderLayout.setHorizontalGroup(
             RightBorderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RightBorderLayout.createSequentialGroup()
-                .addGap(0, 26, Short.MAX_VALUE)
+                .addGap(0, 25, Short.MAX_VALUE)
                 .addComponent(GameCloseButton))
         );
         RightBorderLayout.setVerticalGroup(
@@ -2152,11 +2158,12 @@ public class GameFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_FemaleWhiteButtonMouseClicked
 
     private void ConvDialogKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ConvDialogKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_SPACE){
+        /*if(evt.getKeyCode()==KeyEvent.VK_SPACE){
             SwingUtilities.invokeLater(() -> ConvDialog.setVisible(false));
             SwingUtilities.invokeLater(() -> ConversationTextArea.setText(EMPTY_TEXT));
             SwingUtilities.invokeLater(() -> ConvDialog.setFocusable(false));
         }
+        */
     }//GEN-LAST:event_ConvDialogKeyPressed
 
     private void HintDialogKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_HintDialogKeyTyped
@@ -2178,12 +2185,13 @@ public class GameFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_ConvDialogKeyTyped
 
     private void HintDialogKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_HintDialogKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_SPACE){
+        /*if(evt.getKeyCode()==KeyEvent.VK_SPACE){
             SwingUtilities.invokeLater(() -> HintDialog.setVisible(false));
             SwingUtilities.invokeLater(() -> HintTextArea.setText(EMPTY_TEXT));
             SwingUtilities.invokeLater(() -> HintDialog.setFocusable(false));
             //SwingUtilities.invokeLater(() -> this.setEnabled(true));
         }
+        */
     }//GEN-LAST:event_HintDialogKeyPressed
 
     private void NoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NoButtonActionPerformed
@@ -2260,6 +2268,26 @@ public class GameFrame extends javax.swing.JFrame {
     private void HintDialogWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_HintDialogWindowGainedFocus
         // TODO add your handling code here:
     }//GEN-LAST:event_HintDialogWindowGainedFocus
+
+    private void HintDialogKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_HintDialogKeyReleased
+        // TODO add your handling code here:
+        if(evt.getKeyCode()==KeyEvent.VK_SPACE){
+            SwingUtilities.invokeLater(() -> HintDialog.setVisible(false));
+            SwingUtilities.invokeLater(() -> HintTextArea.setText(EMPTY_TEXT));
+            SwingUtilities.invokeLater(() -> HintDialog.setFocusable(false));
+            //SwingUtilities.invokeLater(() -> this.setEnabled(true));
+        }
+    }//GEN-LAST:event_HintDialogKeyReleased
+
+    private void ConvDialogKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ConvDialogKeyReleased
+        // TODO add your handling code here:
+        if(evt.getKeyCode()==KeyEvent.VK_SPACE){
+            SwingUtilities.invokeLater(() -> ConvDialog.setVisible(false));
+            SwingUtilities.invokeLater(() -> ConversationTextArea.setText(EMPTY_TEXT));
+            SwingUtilities.invokeLater(() -> ConvDialog.setFocusable(false));
+        }
+        
+    }//GEN-LAST:event_ConvDialogKeyReleased
 
 
         /**

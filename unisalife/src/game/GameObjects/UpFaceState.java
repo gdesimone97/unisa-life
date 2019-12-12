@@ -18,6 +18,7 @@ import java.awt.Rectangle;
 public class UpFaceState extends FaceState{
     public UpFaceState(Player player){
         super(player);
+        
     }
     
     @Override
@@ -31,6 +32,6 @@ public class UpFaceState extends FaceState{
     }
     @Override
     public Rectangle nextStep(){
-        return new Rectangle((int)player.getX(),(int)player.getY()-Game.PLAYERSPEED-1,(int)player.getWidth(),Game.PLAYERSPEED);
+        return new Rectangle((int)player.getX(),(int)player.getY()-Game.PLAYERSPEED,(int)player.getWidth(),Game.PLAYERSPEED);
     }
 }
