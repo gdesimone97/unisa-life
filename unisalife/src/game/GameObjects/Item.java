@@ -91,7 +91,7 @@ public class Item extends GameObject implements Renderable, Interactable, Serial
 
     @Override
     public void render(Graphics g) {
-        g.drawImage(facingDownImage, (int) x, (int) y, width, height, null);
+        g.drawImage(facingDownImage, (int) x, (int) y, width-10, height-10, null);
     }
 
     @Override
