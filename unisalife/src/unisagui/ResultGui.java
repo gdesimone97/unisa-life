@@ -26,6 +26,7 @@ public class ResultGui {
  * if it does not receive the reply within "time" seconds it returns the value 0
  */
     public synchronized int getValue() {
+        this.value=0;
         try {
             this.wait(time*1000);
         } catch (InterruptedException ex) {
