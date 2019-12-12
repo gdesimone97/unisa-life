@@ -96,6 +96,10 @@ public class Game extends Canvas implements Runnable, Saveable {
      * method that loads the resources of game(maps, objects, camera, handler
      * and key listener).
      */
+    
+    public void setState(GameState s){
+        this.state=s;
+    }
 
     public void setSkin(int s) {
         this.skin = s;
@@ -117,6 +121,18 @@ public class Game extends Canvas implements Runnable, Saveable {
         maps[0].addObject(new Item(150, 600, "/Sprites/note.png", ItemDef.appuntidimatematica1.toString(), 0,ItemDef.appuntidimatematica1));
         maps[0].addObject(new Item(400, 150, "/Sprites/note.png", ItemDef.appuntidimatematica2.toString(), 0,ItemDef.appuntidimatematica2));
         maps[0].addObject(new Professor("Foggia", 200, 200, "/Sprites/foggia.png",Materia.matematica));
+        maps[0].addObject(new Block(256+16,208+16,160,128)); //blocco E
+        maps[0].addObject(new Block(528+16,400+16,160,128)); //F
+        maps[0].addObject(new Block(160+16,592+16,160,128));  //D
+        maps[0].addObject(new Block(480+16,240+16,144,64));  //fontana alberi sinistra
+        maps[0].addObject(new Block(656+16,240+16,144,64)); //fontana alberi destra
+        maps[0].addObject(new Block(560+16,160+16,160,64));  //fontana
+        maps[0].addObject(new Block(480+16,112+16,320,32));  //panchine
+        maps[0].addObject(new Block(240+16,448+16,48,64));   //Alberi1
+        maps[0].addObject(new Block(400+16,832+16,48,64));   //alberi2
+        maps[0].addObject(new Block(80+16,816+16,48,64));   //alberi3
+        maps[0].addObject(new Block(688+16,736+16,112,64));   //alberi4
+        
         actualMap = 0;
         WIDTHMAP = maps[actualMap].getTileMap().getWidth();
         HEIGHTMAP = maps[actualMap].getTileMap().getHeight();

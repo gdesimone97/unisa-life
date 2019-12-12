@@ -18,5 +18,6 @@ public abstract class FaceState {
     }
     public abstract Rectangle visualViewOfPlayer();
     public abstract void drawFace(Graphics g);
+    public abstract Rectangle nextStep();
     
 }

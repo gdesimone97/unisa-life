@@ -5,6 +5,7 @@
  */
 package game.GameObjects;
 
+import game.Interfaces.Renderable;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.LinkedList;
@@ -22,7 +23,16 @@ public class Block extends GameObject {
      * @param x x position of the block
      * @param y y position of the block
      * @param i SubjectEnum of the block
+     * @param width width of block
+     * @param height height of block
      */
+    
+    public Block(float x, float y,int width,int height) {
+        super(x, y);
+        this.height=height;
+        this.width=width;
+    }
+    
     public Block(float x, float y) {
         super(x, y);
         /*try {
@@ -47,8 +57,8 @@ public class Block extends GameObject {
      *
      * @param g
      */
-    /*
-    public void render(Graphics g){
+    
+    /*public void render(Graphics g){
         g.setColor(Color.black);
         g.fillRect((int)x,(int)y, width, height);
         //g.drawImage(image, (int)x,(int) y, (int)width, (int)height, null);
