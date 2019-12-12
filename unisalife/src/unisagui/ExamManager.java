@@ -117,6 +117,7 @@ import javax.swing.Timer;
         SwingUtilities.invokeLater(() -> gameframe.ThirdAnswer.setBackground(basecolor));
         SwingUtilities.invokeLater(() -> gameframe.FourthAnswer.setBackground(basecolor));
         SwingUtilities.invokeLater(() -> gameframe.NameOfExamLabel.setText(EMPTY_TEXT));
+        SwingUtilities.invokeLater(() -> gameframe.ConfirmAnswer.setEnabled(false));
     }
 
     /**
@@ -195,7 +196,7 @@ import javax.swing.Timer;
      */
      protected void showExamDialog(String examName, String question, String answer1, String answer2, String answer3, String answer4, int time, ResultGui lock,int level) {
         this.level=level;
-        if (level > 0) {
+        if (level > 1) {
             timing.stop();
         }
         this.time = time * 1000;
