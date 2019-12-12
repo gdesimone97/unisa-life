@@ -25,8 +25,8 @@ public class QuestsSingleton  implements Saveable, Serializable{
         for (Materia x : Materia.values()){
             this.quests.put(x, new Quest(x.toString()));
         }
-//        this.quests.get(Materia.matematica).setItemsExam(ItemDef.appuntidimatematica1.toString());
-//        this.quests.get(Materia.matematica).setItemsExam(ItemDef.appuntidimatematica2.toString());
+        this.quests.get(Materia.matematica).setItemsExam(ItemDef.appuntidimatematica1.toString());
+        this.quests.get(Materia.matematica).setItemsExam(ItemDef.appuntidimatematica2.toString());
         this.quests.get(Materia.matematica).setItemsExam(ItemDef.calcolatrice.toString());
     }
     
