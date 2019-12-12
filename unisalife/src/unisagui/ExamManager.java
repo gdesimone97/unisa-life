@@ -128,9 +128,10 @@ import javax.swing.Timer;
      * @param answer4 fourth answer This method sets all the text fields of the
      * Exam label
      */
-    private void fillExam(String examName, String question, String answer1, String answer2, String answer3, String answer4) {
+   private void fillExam(String examName, String question, String answer1, String answer2, String answer3, String answer4) {
         this.manageButtons(true);
         this.clearExam();
+        SwingUtilities.invokeLater(() -> gameframe.ConfirmAnswer.setEnabled(false));
         SwingUtilities.invokeLater(() -> gameframe.ExamDialog.setVisible(true));
         SwingUtilities.invokeLater(() -> gameframe.ExamTextArea.setText(question));
         SwingUtilities.invokeLater(() -> gameframe.FirstAnswer.setText(answer1));
@@ -192,13 +193,13 @@ import javax.swing.Timer;
      * In this method all the methods useful for updating the interface relative
      * to the exam are called
      */
-    protected void showExamDialog(String examName, String question, String answer1, String answer2, String answer3, String answer4, int time, ResultGui lock) {
+     protected void showExamDialog(String examName, String question, String answer1, String answer2, String answer3, String answer4, int time, ResultGui lock,int level) {
+        this.level=level;
         if (level > 0) {
             timing.stop();
         }
         this.time = time * 1000;
         this.showTimer();
-        level++;
         this.fillExam(examName, question, answer1, answer2, answer3, answer4);
         rg = lock;
 

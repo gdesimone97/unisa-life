@@ -2115,20 +2115,24 @@ public class GameFrame extends javax.swing.JFrame {
 
     private void FirstAnswerMouseClicked(java.awt.event.MouseEvent evt) {
         ExamManager.getInstance().setRESULT(1);
+        SwingUtilities.invokeLater(() -> ConfirmAnswer.setEnabled(true));
 
 
     }
 
     private void SecondAnswerMouseClicked(java.awt.event.MouseEvent evt) {
         ExamManager.getInstance().setRESULT(2);
+        SwingUtilities.invokeLater(() -> ConfirmAnswer.setEnabled(true));
     }
 
     private void ThirdAnswerMouseClicked(java.awt.event.MouseEvent evt) {
         ExamManager.getInstance().setRESULT(3);
+        SwingUtilities.invokeLater(() -> ConfirmAnswer.setEnabled(true));
     }
 
     private void FourthAnswerMouseClicked(java.awt.event.MouseEvent evt) {
       ExamManager.getInstance().setRESULT(4);
+      SwingUtilities.invokeLater(() -> ConfirmAnswer.setEnabled(true));
     }
 
     private void AvatarOkButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AvatarOkButtonMouseClicked
