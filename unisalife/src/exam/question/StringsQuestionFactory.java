@@ -48,15 +48,7 @@ public class StringsQuestionFactory extends QuestionFactory {
     * so that it can create an object Question, made of Answers also, and add to the object Questions
     */
     private void parseQuestions() throws FileTextManagerException, TextFinderException {
-        
-//        String[] strList = {"1#Qual è la capitale della Francia?#Parigi#Roma#Londra#Madrid",
-//                            "2#Quanti stati ha un bit?#2#1#3#6",
-//                            "3#Chi è lo scrubmastah di questo gruppo?#Tu#Giuseppe#Ritrovato#Davide",
-//                            "4#Virginia ha i capelli:#Rosa#Verdi#Rossi#Bianchi",
-//                            "4#Chi è l'unica ragazza del gruppo 8?#Alfonso#Gennaro#Simone#Virginia",
-//                            "4#Peppe quante cose può guardare contemporaneamente?#Due#Una#Mille#Centomila"};
         List<String> strList = FileTextManager.getFileTextManager().getString(super.getMateria());
-        System.out.println(strList);
         Scanner sc;
         boolean count;
         Integer level;

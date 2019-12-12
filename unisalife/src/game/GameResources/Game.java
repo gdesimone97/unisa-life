@@ -117,9 +117,11 @@ public class Game extends Canvas implements Runnable, Saveable {
         t0.loadMap("/Maps/ExtMap.map");
         t1.loadMap("/Maps/ExtMap.map");
         maps[0] = new Map(t0);
-        maps[0].addObject(new Item(650, 130, "/Sprites/calculator.png", ItemDef.calcolatrice.toString(), 0,ItemDef.calcolatrice));
-        maps[0].addObject(new Item(150, 600, "/Sprites/note.png", ItemDef.appuntidimatematica1.toString(), 0,ItemDef.appuntidimatematica1));
-        maps[0].addObject(new Item(400, 150, "/Sprites/note.png", ItemDef.appuntidimatematica2.toString(), 0,ItemDef.appuntidimatematica2));
+
+        maps[0].addObject(new Item(100, 170, "/Sprites/calculator.png", ItemDef.calcolatrice.toString(), 0,ItemDef.calcolatrice));
+        maps[0].addObject(new Item(100, 200, "/Sprites/note.png", ItemDef.appuntidimatematica1.toString(), 0,ItemDef.appuntidimatematica1));
+        maps[0].addObject(new Item(100, 230, "/Sprites/note.png", ItemDef.appuntidimatematica2.toString(), 0,ItemDef.appuntidimatematica2));
+
         maps[0].addObject(new Professor("Foggia", 200, 200, "/Sprites/foggia.png",Materia.matematica));
         maps[0].addObject(new Block(256+16,208+16,160,128)); //blocco E
         maps[0].addObject(new Block(528+16,400+16,160,128)); //F

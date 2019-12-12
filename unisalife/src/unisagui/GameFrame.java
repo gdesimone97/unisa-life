@@ -5,6 +5,7 @@ import java.awt.Frame;
 import java.awt.event.KeyEvent;
 import javax.swing.SwingUtilities;
 import game.GameResources.*;
+import java.awt.Dialog;
 
 /**
  * @author Virginia Cavallaro
@@ -101,7 +102,7 @@ public class GameFrame extends javax.swing.JFrame {
         FourthAnswer = new javax.swing.JButton();
         ConfirmAnswer = new javax.swing.JButton();
         TimeLabel1 = new javax.swing.JLabel();
-        MainMenuDialog = new javax.swing.JDialog();
+        MainMenuDialog = new javax.swing.JDialog((Dialog)null);
         MainMenuPanel = new javax.swing.JPanel();
         MainMenuLabel = new javax.swing.JLabel();
         SettingsButton = new javax.swing.JButton();
@@ -190,7 +191,7 @@ public class GameFrame extends javax.swing.JFrame {
         CareerScrollPane = new javax.swing.JScrollPane();
         ExamTable = new javax.swing.JTable();
         CareerLabel = new javax.swing.JLabel();
-        AvatarChooserDialog = new javax.swing.JDialog();
+        AvatarChooserDialog = new javax.swing.JDialog((Dialog)null);
         AvatarChooserPanel = new javax.swing.JPanel();
         AvatarName = new javax.swing.JTextField();
         AvatarNameLabel = new javax.swing.JLabel();
@@ -234,6 +235,15 @@ public class GameFrame extends javax.swing.JFrame {
         UpperBorder = new javax.swing.JPanel();
 
         ExamDialog.setMinimumSize(new java.awt.Dimension(500, 500));
+        ExamDialog.setModalityType(java.awt.Dialog.ModalityType.APPLICATION_MODAL);
+        ExamDialog.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowDeactivated(java.awt.event.WindowEvent evt) {
+                ExamDialogWindowDeactivated(evt);
+            }
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                ExamDialogWindowOpened(evt);
+            }
+        });
 
         ExamPanel.setBackground(new java.awt.Color(93, 150, 199));
         ExamPanel.setMaximumSize(new java.awt.Dimension(500, 500));
@@ -274,6 +284,7 @@ public class GameFrame extends javax.swing.JFrame {
         ExamTextArea.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
         ExamTextArea.setLineWrap(true);
         ExamTextArea.setRows(5);
+        ExamTextArea.setWrapStyleWord(true);
         ExamTextArea.setMaximumSize(new java.awt.Dimension(300, 100));
         ExamTextArea.setMinimumSize(new java.awt.Dimension(300, 100));
         ExamScrollPane.setViewportView(ExamTextArea);
@@ -333,7 +344,7 @@ public class GameFrame extends javax.swing.JFrame {
         ConfirmAnswer.setBackground(new java.awt.Color(75, 125, 167));
         ConfirmAnswer.setFont(new java.awt.Font("Arial Black", 0, 13)); // NOI18N
         ConfirmAnswer.setForeground(new java.awt.Color(255, 255, 255));
-        ConfirmAnswer.setText("Confirm");
+        ConfirmAnswer.setText("Next Question");
         ConfirmAnswer.setBorder(null);
         ConfirmAnswer.setMaximumSize(new java.awt.Dimension(125, 25));
         ConfirmAnswer.setMinimumSize(new java.awt.Dimension(125, 25));
@@ -1591,6 +1602,13 @@ public class GameFrame extends javax.swing.JFrame {
         ConvDialog.setAlwaysOnTop(true);
         ConvDialog.setBackground(new java.awt.Color(0, 0, 0));
         ConvDialog.setMinimumSize(new java.awt.Dimension(375, 100));
+        ConvDialog.addWindowFocusListener(new java.awt.event.WindowFocusListener() {
+            public void windowGainedFocus(java.awt.event.WindowEvent evt) {
+            }
+            public void windowLostFocus(java.awt.event.WindowEvent evt) {
+                ConvDialogWindowLostFocus(evt);
+            }
+        });
         ConvDialog.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 ConvDialogKeyPressed(evt);
@@ -1609,7 +1627,9 @@ public class GameFrame extends javax.swing.JFrame {
 
         ConversationTextArea.setEditable(false);
         ConversationTextArea.setColumns(20);
+        ConversationTextArea.setLineWrap(true);
         ConversationTextArea.setRows(5);
+        ConversationTextArea.setWrapStyleWord(true);
         ConversationTextArea.setMaximumSize(new java.awt.Dimension(375, 100));
         ConversationTextArea.setMinimumSize(new java.awt.Dimension(375, 100));
         ConversationTextArea.setPreferredSize(new java.awt.Dimension(375, 100));
@@ -1627,6 +1647,14 @@ public class GameFrame extends javax.swing.JFrame {
         );
 
         HintDialog.setMinimumSize(new java.awt.Dimension(200, 50));
+        HintDialog.addWindowFocusListener(new java.awt.event.WindowFocusListener() {
+            public void windowGainedFocus(java.awt.event.WindowEvent evt) {
+                HintDialogWindowGainedFocus(evt);
+            }
+            public void windowLostFocus(java.awt.event.WindowEvent evt) {
+                HintDialogWindowLostFocus(evt);
+            }
+        });
         HintDialog.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 HintDialogKeyPressed(evt);
@@ -1645,7 +1673,9 @@ public class GameFrame extends javax.swing.JFrame {
 
         HintTextArea.setEditable(false);
         HintTextArea.setColumns(20);
+        HintTextArea.setLineWrap(true);
         HintTextArea.setRows(5);
+        HintTextArea.setWrapStyleWord(true);
         HintTextArea.setMaximumSize(new java.awt.Dimension(200, 50));
         HintTextArea.setMinimumSize(new java.awt.Dimension(200, 50));
         HintTextArea.setPreferredSize(new java.awt.Dimension(200, 50));
@@ -1673,6 +1703,14 @@ public class GameFrame extends javax.swing.JFrame {
 
         QuestDialog.setMinimumSize(new java.awt.Dimension(420, 400));
         QuestDialog.setModal(true);
+        QuestDialog.setResizable(false);
+        QuestDialog.addWindowFocusListener(new java.awt.event.WindowFocusListener() {
+            public void windowGainedFocus(java.awt.event.WindowEvent evt) {
+            }
+            public void windowLostFocus(java.awt.event.WindowEvent evt) {
+                QuestDialogWindowLostFocus(evt);
+            }
+        });
 
         QuestPanel.setBackground(new java.awt.Color(93, 150, 199));
         QuestPanel.setMaximumSize(new java.awt.Dimension(420, 400));
@@ -1687,7 +1725,7 @@ public class GameFrame extends javax.swing.JFrame {
 
         QuestList.setBorder(javax.swing.BorderFactory.createTitledBorder("Quest"));
         QuestList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Collect your first dollar!", "It's time to get Math Exam!", " " };
+            String[] strings = { "Collect your first dollar!", "It's time to get Math Exam!" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
@@ -1932,7 +1970,7 @@ public class GameFrame extends javax.swing.JFrame {
         RightBorderLayout.setHorizontalGroup(
             RightBorderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RightBorderLayout.createSequentialGroup()
-                .addGap(0, 25, Short.MAX_VALUE)
+                .addGap(0, 26, Short.MAX_VALUE)
                 .addComponent(GameCloseButton))
         );
         RightBorderLayout.setVerticalGroup(
@@ -2077,27 +2115,31 @@ public class GameFrame extends javax.swing.JFrame {
         if (MainMenuDialog.isVisible()){
            //SwingUtilities.invokeLater(() ->this.validate());
            //SwingUtilities.invokeLater(() -> this.invalidate());
-           SwingUtilities.invokeLater(() -> this.setEnabled(false));
+           SwingUtilities.invokeLater(() -> this.setVisible(false));
 
         }
     }//GEN-LAST:event_MainMenuDialogComponentShown
 
     private void FirstAnswerMouseClicked(java.awt.event.MouseEvent evt) {
         ExamManager.getInstance().setRESULT(1);
+        SwingUtilities.invokeLater(() -> ConfirmAnswer.setEnabled(true));
 
 
     }
 
     private void SecondAnswerMouseClicked(java.awt.event.MouseEvent evt) {
         ExamManager.getInstance().setRESULT(2);
+        SwingUtilities.invokeLater(() -> ConfirmAnswer.setEnabled(true));
     }
 
     private void ThirdAnswerMouseClicked(java.awt.event.MouseEvent evt) {
         ExamManager.getInstance().setRESULT(3);
+        SwingUtilities.invokeLater(() -> ConfirmAnswer.setEnabled(true));
     }
 
     private void FourthAnswerMouseClicked(java.awt.event.MouseEvent evt) {
       ExamManager.getInstance().setRESULT(4);
+      SwingUtilities.invokeLater(() -> ConfirmAnswer.setEnabled(true));
     }
 
     private void AvatarOkButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AvatarOkButtonMouseClicked
@@ -2110,8 +2152,9 @@ public class GameFrame extends javax.swing.JFrame {
 
     private void ConvDialogKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ConvDialogKeyPressed
         if(evt.getKeyCode()==KeyEvent.VK_ENTER){
-            SwingUtilities.invokeLater(() -> HintDialog.setVisible(false));
-            SwingUtilities.invokeLater(() -> HintTextArea.setText(EMPTY_TEXT));
+            SwingUtilities.invokeLater(() -> ConvDialog.setVisible(false));
+            SwingUtilities.invokeLater(() -> ConversationTextArea.setText(EMPTY_TEXT));
+            SwingUtilities.invokeLater(() -> ConvDialog.setFocusable(false));
         }
     }//GEN-LAST:event_ConvDialogKeyPressed
 
@@ -2119,6 +2162,7 @@ public class GameFrame extends javax.swing.JFrame {
         if(evt.getKeyCode()==KeyEvent.VK_ENTER){
             SwingUtilities.invokeLater(() -> HintDialog.setVisible(false));
             SwingUtilities.invokeLater(() -> HintTextArea.setText(EMPTY_TEXT));
+            SwingUtilities.invokeLater(() -> HintDialog.setFocusable(false));
         }
 
     }//GEN-LAST:event_HintDialogKeyTyped
@@ -2137,6 +2181,7 @@ public class GameFrame extends javax.swing.JFrame {
             SwingUtilities.invokeLater(() -> HintDialog.setVisible(false));
             SwingUtilities.invokeLater(() -> HintTextArea.setText(EMPTY_TEXT));
             SwingUtilities.invokeLater(() -> HintDialog.setFocusable(false));
+            //SwingUtilities.invokeLater(() -> this.setEnabled(true));
         }
     }//GEN-LAST:event_HintDialogKeyPressed
 
@@ -2171,7 +2216,7 @@ public class GameFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_QuestButtonFrameActionPerformed
 
     private void MaleWhiteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MaleWhiteButtonActionPerformed
-       GuiManager.getInstance().showHint("ciao");
+        GuiManager.getInstance().showHint("ciao");
         SwingUtilities.invokeLater(() ->StudentLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/unisagui/resources/man75.png"))));        
     }//GEN-LAST:event_MaleWhiteButtonActionPerformed
 
@@ -2191,6 +2236,30 @@ public class GameFrame extends javax.swing.JFrame {
     private void HintTextAreaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HintTextAreaMouseClicked
         SwingUtilities.invokeLater(() -> HintDialog.setFocusable(true));
     }//GEN-LAST:event_HintTextAreaMouseClicked
+
+    private void HintDialogWindowLostFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_HintDialogWindowLostFocus
+        SwingUtilities.invokeLater(() -> HintDialog.setVisible(false));
+    }//GEN-LAST:event_HintDialogWindowLostFocus
+
+    private void ConvDialogWindowLostFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_ConvDialogWindowLostFocus
+        SwingUtilities.invokeLater(() -> ConvDialog.setVisible(false));
+    }//GEN-LAST:event_ConvDialogWindowLostFocus
+
+    private void ExamDialogWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_ExamDialogWindowOpened
+        //SwingUtilities.invokeLater(() -> this.setEnabled(false));
+    }//GEN-LAST:event_ExamDialogWindowOpened
+
+    private void QuestDialogWindowLostFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_QuestDialogWindowLostFocus
+        SwingUtilities.invokeLater(() -> QuestDialog.setVisible(false));
+    }//GEN-LAST:event_QuestDialogWindowLostFocus
+
+    private void ExamDialogWindowDeactivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_ExamDialogWindowDeactivated
+        
+    }//GEN-LAST:event_ExamDialogWindowDeactivated
+
+    private void HintDialogWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_HintDialogWindowGainedFocus
+        // TODO add your handling code here:
+    }//GEN-LAST:event_HintDialogWindowGainedFocus
 
 
         /**
