@@ -1625,7 +1625,9 @@ public class GameFrame extends javax.swing.JFrame {
 
         ConversationTextArea.setEditable(false);
         ConversationTextArea.setColumns(20);
+        ConversationTextArea.setLineWrap(true);
         ConversationTextArea.setRows(5);
+        ConversationTextArea.setWrapStyleWord(true);
         ConversationTextArea.setMaximumSize(new java.awt.Dimension(375, 100));
         ConversationTextArea.setMinimumSize(new java.awt.Dimension(375, 100));
         ConversationTextArea.setPreferredSize(new java.awt.Dimension(375, 100));
@@ -1669,7 +1671,9 @@ public class GameFrame extends javax.swing.JFrame {
 
         HintTextArea.setEditable(false);
         HintTextArea.setColumns(20);
+        HintTextArea.setLineWrap(true);
         HintTextArea.setRows(5);
+        HintTextArea.setWrapStyleWord(true);
         HintTextArea.setMaximumSize(new java.awt.Dimension(200, 50));
         HintTextArea.setMinimumSize(new java.awt.Dimension(200, 50));
         HintTextArea.setPreferredSize(new java.awt.Dimension(200, 50));
@@ -1697,6 +1701,7 @@ public class GameFrame extends javax.swing.JFrame {
 
         QuestDialog.setMinimumSize(new java.awt.Dimension(420, 400));
         QuestDialog.setModal(true);
+        QuestDialog.setResizable(false);
         QuestDialog.addWindowFocusListener(new java.awt.event.WindowFocusListener() {
             public void windowGainedFocus(java.awt.event.WindowEvent evt) {
             }
@@ -1718,7 +1723,7 @@ public class GameFrame extends javax.swing.JFrame {
 
         QuestList.setBorder(javax.swing.BorderFactory.createTitledBorder("Quest"));
         QuestList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Collect your first dollar!", "It's time to get Math Exam!", " " };
+            String[] strings = { "Collect your first dollar!", "It's time to get Math Exam!" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
@@ -2141,8 +2146,8 @@ public class GameFrame extends javax.swing.JFrame {
 
     private void ConvDialogKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ConvDialogKeyPressed
         if(evt.getKeyCode()==KeyEvent.VK_ENTER){
-            SwingUtilities.invokeLater(() -> HintDialog.setVisible(false));
-            SwingUtilities.invokeLater(() -> HintTextArea.setText(EMPTY_TEXT));
+            SwingUtilities.invokeLater(() -> ConvDialog.setVisible(false));
+            SwingUtilities.invokeLater(() -> ConversationTextArea.setText(EMPTY_TEXT));
             SwingUtilities.invokeLater(() -> ConvDialog.setFocusable(false));
         }
     }//GEN-LAST:event_ConvDialogKeyPressed
