@@ -8,6 +8,7 @@ package interaction;
 import exam.Exam;
 import exam.question.Materia;
 import game.GameObjects.Professor;
+import game.GameResources.GameState;
 import game.Interfaces.Interactable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -38,6 +39,7 @@ public class ProfessorInteractionManager implements InteractionManager {
             if (QuestsSingleton.getInstance().getQuest().get(m).isDone()) {
                 GuiManager.getInstance().showHint(FileTextManager.getFileTextManager().getString(new MessageInformation("ExamAlreadyDone")).get(0));
 
+                
             } else if (QuestsSingleton.getInstance().getQuest().get(m).isAvailable()) {
 
                 //3. Start the exam session
