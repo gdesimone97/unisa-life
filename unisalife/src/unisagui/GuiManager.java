@@ -122,8 +122,8 @@ public class GuiManager {
      * This method requires  all the methods useful for updating the interface relative
      * to the exam
      */
-    public void showExamDialog(String examName, String question, String answer1, String answer2, String answer3, String answer4, int time, ResultGui lock) {
-        exammanager.showExamDialog(examName, question, answer1, answer2, answer3, answer4, time, lock);
+     public void showExamDialog(String examName, String question, String answer1, String answer2, String answer3, String answer4, int time, ResultGui lock,int level) {
+        exammanager.showExamDialog(examName, question, answer1, answer2, answer3, answer4, time, lock,level);
     }
     /**
      * This method requires close the ExamDialog
