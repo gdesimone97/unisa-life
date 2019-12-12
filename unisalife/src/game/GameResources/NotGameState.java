@@ -26,8 +26,7 @@ public class NotGameState extends GameState {
      */
     @Override
     public void render(Graphics g){
-        g.setColor(Color.BLACK);
-        g.fillRect(0,0,Game.WIDTHSCREEN,Game.HEIGHTSCREEN2 );
+        
     }
 
     /**
@@ -42,7 +41,7 @@ public class NotGameState extends GameState {
      */
     @Override
     public void performPressAction(int k){
-        if(k==KeyEvent.VK_M)game.state=new PlayState(game);
+        
     }
     
     /**

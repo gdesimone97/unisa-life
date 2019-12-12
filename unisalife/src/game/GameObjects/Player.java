@@ -254,6 +254,8 @@ public class Player extends GameObject implements Tickable, Renderable {
     public void dialog(LinkedList<GameObject> l) {
         for (GameObject g : l) {
             if (g instanceof Interactable && visualViewOfPlayer().intersects(g.getBounds())) {
+                this.setVelX(0);
+                this.setVelY(0);
                 this.game.setState(new NotGameState(game));
                 ((Interactable) g).interact();
                 this.game.setState(new PlayState(game));
