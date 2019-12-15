@@ -57,6 +57,8 @@ public class Quest extends User implements  Serializable {
     
     public void finish(){
         this.done = true;
+        this.send(new Message(this.name,true));
+        
     }
     
     public boolean isDone(){
@@ -101,7 +103,11 @@ public class Quest extends User implements  Serializable {
     
     
     @Override
-    public void send(Message mess) {}
+    public void send(Message mess) {
+        
+        this.mediator.sendMessage(mess, this );
+        
+    }
 
     @Override
     public void receive(Message mess) {

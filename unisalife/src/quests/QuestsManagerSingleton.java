@@ -58,6 +58,8 @@ public class QuestsManagerSingleton implements QuestMessages{
         q.receive(mess);
     }
 
+    
+    
     /**
      * This method is used to register a new user to the list
      * 
