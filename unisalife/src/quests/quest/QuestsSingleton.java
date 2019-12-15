@@ -8,18 +8,23 @@ package quests.quest;
 import exam.booklet.Saveable;
 import java.io.Serializable;
 import java.util.HashMap;
+import quests.mediator.Message;
+import quests.mediator.User;
 
 /**
  *
  * @author liovi
  */
-public class QuestsSingleton  implements Saveable, Serializable{
+public class QuestsSingleton  extends User implements Saveable, Serializable{
 
     private HashMap<String,Quest> quests;
+    private int currentLevel;
     private static QuestsSingleton instance = null;
     private int currentLevel = 0;
     
     private QuestsSingleton(){
+        super();
+        this.name = "QuestsSingleton";
         this.quests = new HashMap<>();
     }
     
@@ -49,6 +54,32 @@ public class QuestsSingleton  implements Saveable, Serializable{
 
     @Override
     public void load(Serializable obj) {
+        
+    }
+
+    @Override
+    public void send(Message mess) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void loadNewQuests(){
+        
+    }
+    
+    @Override
+    public void receive(Message mess) {
+        //Messaggio = stringa +  bool -> se bool è true --> ho fatto quest'esame
+        String quest = mess.getId();
+        if(mess.getBool()){
+            
+            quests.remove(quest);
+            
+        }
+        
+        if(quests.isEmpty()){
+            this.currentLevel++;
+            this.loadNewQuests();
+        }
         
     }
 
