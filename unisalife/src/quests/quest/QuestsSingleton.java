@@ -20,6 +20,7 @@ public class QuestsSingleton  extends User implements Saveable, Serializable{
     private HashMap<String,Quest> quests;
     private int currentLevel;
     private static QuestsSingleton instance = null;
+    private int currentLevel = 0;
     
     private QuestsSingleton(){
         super();
