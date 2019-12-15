@@ -6,7 +6,6 @@
 package game.GameResources;
 
 import exam.booklet.BookletSingleton;
-import exam.question.Materia;
 import game.GameObjects.Teleport;
 import game.GameObjects.Player;
 import game.GameObjects.Person;
