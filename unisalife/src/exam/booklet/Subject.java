@@ -6,6 +6,7 @@
 package exam.booklet;
 
 import java.io.Serializable;
+import java.util.Objects;
 import language.Information;
 
 /**
@@ -70,6 +71,32 @@ public class Subject implements Information, Serializable {
         return subject;
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 79 * hash + Objects.hashCode(this.subject);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Subject other = (Subject) obj;
+        if (!Objects.equals(this.subject, other.subject)) {
+            return false;
+        }
+        return true;
+    }
+
+    
     @Override
     public String getInfo() {
         return subject;

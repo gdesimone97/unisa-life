@@ -5,7 +5,6 @@
  */
 
 package exam.booklet;
-import exam.question.Materia;
 import java.io.Serializable;
 import java.util.EnumMap;
 import quests.QuestsManagerSingleton;

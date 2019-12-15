@@ -5,9 +5,10 @@
  */
 package quests.quest;
 
+import exam.booklet.Subject;
 import java.io.Serializable;
 import java.util.HashMap;
-import quests.ItemDef;
+import java.util.Objects;
 import quests.QuestsManagerSingleton;
 import quests.mediator.Message;
 import quests.mediator.User;
@@ -19,19 +20,25 @@ import quests.mediator.User;
 public class Quest extends User implements  Serializable {
 
     private HashMap<String,Boolean> items;
+    private Subject subject;
+    private int level;
     private boolean done;
 
-    public Quest(String name) {
+    public Quest(String name, int level, Subject subject ) throws QuestNotValidException {
         super();
         super.name = name;
         super.mediator = QuestsManagerSingleton.getInstance();
         mediator.addUser(this);
         
+        if(level < 0 )
+            throw new QuestNotValidException("The level you entered is not a positive integer");
+        
+        this.subject = subject;
         this.items = new HashMap<>();
         this.done = false;
     }   
 
-    public void setItemsExam(String item) {
+    public void putItem(String item) {
         this.items.put(item, false);
     }
     
@@ -40,6 +47,7 @@ public class Quest extends User implements  Serializable {
     }
 
     public boolean isAvailable() {
+        
         boolean available = true;
         for(Boolean b : items.values())
             available = available && b;
@@ -57,6 +65,36 @@ public class Quest extends User implements  Serializable {
     
     public void setDone(boolean bool){
         this.done = bool;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 29 * hash + Objects.hashCode(this.subject);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Quest other = (Quest) obj;
+        if (!Objects.equals(this.subject, other.subject)) {
+            return false;
+        }
+        return true;
+    }
+    
+    
+    public Subject getSubject(){
+        return this.subject;
     }
     
     

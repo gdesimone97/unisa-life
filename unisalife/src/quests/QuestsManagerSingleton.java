@@ -5,7 +5,6 @@
  */
 package quests;
 
-import exam.question.Materia;
 import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.HashMap;
@@ -24,14 +23,13 @@ public class QuestsManagerSingleton implements QuestMessages{
     
     private static QuestsManagerSingleton instance = null;
     private List<User> users;
-    private HashMap<String,Materia> item; //elenco di item e domande con associate ad una materia
+    private HashMap<String,String> item; // Item : Subject associative colleciton
     
     private QuestsManagerSingleton(){
+        
         this.users = new ArrayList<>();
         this.item = new HashMap<>();
-        item.put(ItemDef.calcolatrice.toString(),Materia.matematica);
-        item.put(ItemDef.appuntidimatematica1.toString(), Materia.matematica);
-        item.put(ItemDef.appuntidimatematica2.toString(), Materia.matematica);
+        
     }
     
     /**
@@ -55,8 +53,8 @@ public class QuestsManagerSingleton implements QuestMessages{
      */
     @Override
     public void sendMessage(Message mess, User user) {
-        Materia receiver = item.get(mess.getId());
-        Quest q = QuestsSingleton.getInstance().getQuest().get(receiver);
+        String receiver = item.get(mess.getId());
+        Quest q = QuestsSingleton.getInstance().getQuest(receiver);
         q.receive(mess);
     }
 
@@ -70,10 +68,6 @@ public class QuestsManagerSingleton implements QuestMessages{
         this.users.add(user);
     }
     
-    /* This method must be raplaced in the costructor. Now is insered due to the necessity of have at least one item to test all the dependencies */
-    public void setItem(String item, Materia subj) {
-        this.item.put(item, subj);
-    }
     
     
     
