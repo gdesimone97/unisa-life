@@ -24,9 +24,9 @@ public class Quest extends User implements  Serializable {
     private int level;
     private boolean done;
 
-    public Quest(String name, int level, Subject subject ) throws QuestNotValidException {
+    public Quest( int level, Subject subject ) throws QuestNotValidException {
         super();
-        super.name = name;
+        super.name = subject.getInfo();
         super.mediator = QuestsManagerSingleton.getInstance();
         mediator.addUser(this);
         
@@ -96,6 +96,8 @@ public class Quest extends User implements  Serializable {
     public Subject getSubject(){
         return this.subject;
     }
+    
+    
     
     
     @Override
