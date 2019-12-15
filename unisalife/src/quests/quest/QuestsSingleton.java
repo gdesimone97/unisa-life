@@ -17,6 +17,7 @@ public class QuestsSingleton  implements Saveable, Serializable{
 
     private HashMap<String,Quest> quests;
     private static QuestsSingleton instance = null;
+    private int currentLevel = 0;
     
     private QuestsSingleton(){
         this.quests = new HashMap<>();
