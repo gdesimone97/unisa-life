@@ -9,6 +9,7 @@ import exam.booklet.Subject;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Objects;
+import java.util.Set;
 import quests.QuestsManagerSingleton;
 import quests.mediator.Message;
 import quests.mediator.User;
@@ -99,7 +100,9 @@ public class Quest extends User implements  Serializable {
         return this.subject;
     }
     
-    
+    public Set<String> getItemList(){
+        return this.items.keySet();
+    }
     
     
     @Override
