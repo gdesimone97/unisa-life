@@ -16,10 +16,10 @@ public class SettingsManager {
     private static final SettingsManager instance = new SettingsManager();
     private int moveUp = KeyEvent.VK_W;
     private int moveDown = KeyEvent.VK_S;
-    private int moveLeft=KeyEvent.VK_A;
-    private int moveRight=KeyEvent.VK_D;
-    private int interactButton;
-    private int pauseButton;
+    private int moveLeft = KeyEvent.VK_A;
+    private int moveRight = KeyEvent.VK_D;
+    private int interactButton = KeyEvent.VK_SPACE;
+    private int pauseButton = KeyEvent.VK_P;
 
     private SettingsManager() {
     }
