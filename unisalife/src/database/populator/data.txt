@@ -3,3 +3,7 @@ item %4%3%ciao%ciao%4
 quest %1%matematica1%calcolatrice%appuntidimatematica1
 quest %1%fisica1%appuntidifisica1%quartieri
 quest %1%fondamentidiprorgammazione%pc%deitel
+quest %2%matematica2%appuntidimatematica2
+quest %2%fisica2%appuntidifisica2%quartieri2
+quest %2%fondamentidiprorgammazione2%pc2%deitel2
+professor %Foggia%12%12%path%matematica

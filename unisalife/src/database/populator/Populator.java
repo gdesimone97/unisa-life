@@ -31,7 +31,7 @@ public class Populator {
     public Populator( String filepath ) throws FileNotSetException{
         
         this.filepath = filepath;
-        Database.setPath("../prova.db");
+        //Database.setPath("../prova.db");
         this.db = Database.getInstance();
     }
     
@@ -54,7 +54,7 @@ public class Populator {
             
             SaveableCreator s = CreatorsEnum.valueOf(type).getFactory();
             Saveable sitem = s.create(arguments);
-            System.out.println(sitem.getClass());
+            //System.out.println(sitem.getClass());
             ObjectRepository repo = db.getDatabase().getRepository(sitem.getClass());
             repo.insert(sitem);
             

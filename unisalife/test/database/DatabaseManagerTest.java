@@ -5,9 +5,13 @@
  */
 package database;
 
+import database.populator.Populator;
+import database.populator.exceptions.InvalidGameDataFormatException;
 import exam.booklet.Subject;
 import game.GameObjects.Destination;
 import game.GameObjects.GameObject;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import org.junit.After;
@@ -29,8 +33,10 @@ public class DatabaseManagerTest {
     }
     
     @BeforeClass
-    public static void setUpClass() {
-        
+    public static void setUpClass() throws FileNotSetException, IOException, FileNotFoundException, InvalidGameDataFormatException {
+        DatabaseManager dmb = DatabaseManager.getDatabaseManager();
+        Populator p = new Populator("..//unisalife/src/database/populator/data.txt");
+        p.populate();
     }
     
     @AfterClass
@@ -53,9 +59,7 @@ public class DatabaseManagerTest {
         System.out.println("getDatabaseManager");
         DatabaseManager expResult = null;
         DatabaseManager result = DatabaseManager.getDatabaseManager();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertNotEquals(expResult, result);
     }
 
     /**
@@ -64,13 +68,11 @@ public class DatabaseManagerTest {
     @Test
     public void testGetQuestsFromLevel() throws Exception {
         System.out.println("getQuestsFromLevel");
-        int level = 0;
-        DatabaseManager instance = null;
-        List<Quest> expResult = null;
-        List<Quest> result = instance.getQuestsFromLevel(level);
+        int level = 1;
+        DatabaseManager instance = DatabaseManager.getDatabaseManager();
+        int expResult = 3;
+        int result = instance.getQuestsFromLevel(level).size();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
