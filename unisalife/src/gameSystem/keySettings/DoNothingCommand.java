@@ -18,7 +18,6 @@ public class DoNothingCommand extends KeyCommand {
     public void visitPlayState(PlayState playState) {
         player.setVelX(0);
         player.setVelY(0);
-        System.out.println("stop");
     }
 
     @Override
