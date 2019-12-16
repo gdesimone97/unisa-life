@@ -37,7 +37,7 @@ public class QuestsSingleton  extends User implements Saveable, Serializable{
         return instance;
     }
 
-    public Quest getQuest( String s) {
+    public Quest getQuest(String s) {
         return this.quests.get(s);
     }
     
@@ -63,20 +63,7 @@ public class QuestsSingleton  extends User implements Saveable, Serializable{
     }
 
     public void loadNewQuests(List<Quest> q){
-        // prima volta:
-        /*
-        list<quest>, list<item> = dbms.getQuestsFromLevel(0);
-        QuestsSingleton.getInstance().loadNewQeuests(list);
-        */
 
-        // lista fornita dal game manager, che ha già effettuato l'accesso al database
-        /*  {esempio di comportamento del game manager}
-        ....-> dopo che è stata fatta la finish
-        DatabaseManagaer dbms = new...
-        list<quest>, list<item> = dbms.getQuestsFromLevel(QuestsSingleton.getInstance().getCurrentLevele());
-        QuestsSingleton.getInstance().loadNewQeuests(list);
-        ..ora metto nella mappa tutti gli oggetti presenti nella lista
-        */
         this.quests = new HashMap<>();
         for(Quest quest: q){
             this.quests.put(quest.getSubject().toString(), quest);
