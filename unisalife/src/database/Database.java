@@ -58,4 +58,9 @@ public class Database {
         return this.db;
     }
 
+    public void close(){
+        this.db.commit();
+        this.db.close();
+    }
+    
 }

@@ -62,8 +62,9 @@ public class DatabaseManager {
             Professor p = this.findProfessor(questSubject);
             returnMap.put(new Destination(p.getX(), p.getY()), p);
         }
-        if(returnMap.size()<=0)
+        if (returnMap.size() <= 0) {
             throw new ObjectNotFoundException();
+        }
         return returnMap;
     }
 
@@ -88,19 +89,24 @@ public class DatabaseManager {
     }
 
     public void save(List<Saveable> elems) throws ErrorWhileSavingException {
-       ObjectRepository repo =  db.getDatabase().getRepository(Saveable.class);
-       repo.drop();
-       WriteResult ws = repo.insert(elems.toArray());
-       if(ws.getAffectedCount()!=elems.size())
-           throw new ErrorWhileSavingException();
-        
+        ObjectRepository repo = db.getDatabase().getRepository(Saveable.class);
+        repo.drop();
+        WriteResult ws = repo.insert(elems.toArray());
+        if (ws.getAffectedCount() != elems.size()) {
+            throw new ErrorWhileSavingException();
+        }
+
     }
 
     public List<Saveable> load() {
         return db.getDatabase().getRepository(Saveable.class).find().toList();
     }
-    
-    public boolean isSaved(){
-        return this.load().size() >= 0 ;
+
+    public boolean isSaved() {
+        return this.load().size() >= 0;
+    }
+
+    public void close() {
+        this.db.close();
     }
 }
