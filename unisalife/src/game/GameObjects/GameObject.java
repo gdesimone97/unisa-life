@@ -27,6 +27,10 @@ public abstract class GameObject {
     public GameObject(Position p) {
         this.p=p;
     }
+    
+    public Position getPosition(){
+        return this.p;
+    } 
 
     /**
      *

@@ -21,8 +21,8 @@ public abstract class Person extends GameObject implements Renderable, Interacta
     protected BufferedImage facingDownImage;
     protected Position p;
     
-    public Person(Position p, String path) {
-        this.p=p;
+    public Person(Position p,String path) {
+        super(p);
         try {
             facingDownImage = ImageIO.read(
                     getClass().getResourceAsStream(path)

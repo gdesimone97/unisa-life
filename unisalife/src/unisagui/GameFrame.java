@@ -178,7 +178,7 @@ public class GameFrame extends javax.swing.JFrame {
         MusicButton = new javax.swing.JButton();
         KeyboardButton = new javax.swing.JButton();
         ReturnToMainMenuButton = new javax.swing.JButton();
-        LanguageComboBox = new javax.swing.JComboBox<>();
+        LanguageComboBox = new javax.swing.JComboBox<String>();
         SettingsCloseButton = new javax.swing.JButton();
         RequestDialog = new javax.swing.JDialog();
         RequestPanel = new javax.swing.JPanel();
@@ -213,7 +213,7 @@ public class GameFrame extends javax.swing.JFrame {
         QuestDialog = new javax.swing.JDialog();
         QuestPanel = new javax.swing.JPanel();
         QuestListScrollPane = new javax.swing.JScrollPane();
-        QuestList = new javax.swing.JList<>();
+        QuestList = new javax.swing.JList<String>();
         QuestTextScrollPane = new javax.swing.JScrollPane();
         QuestTextArea = new javax.swing.JTextArea();
         ExitQuestDialogLabel = new javax.swing.JLabel();
@@ -251,13 +251,13 @@ public class GameFrame extends javax.swing.JFrame {
         ExamPanel.setMinimumSize(new java.awt.Dimension(500, 500));
         ExamPanel.setPreferredSize(new java.awt.Dimension(500, 500));
 
-        ProfLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/unisagui/resources/professor75.png"))); // NOI18N
+        ProfLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/professor75.png"))); // NOI18N
         ProfLabel.setText("jLabel1");
         ProfLabel.setMaximumSize(new java.awt.Dimension(75, 75));
         ProfLabel.setMinimumSize(new java.awt.Dimension(75, 75));
         ProfLabel.setPreferredSize(new java.awt.Dimension(75, 75));
 
-        StudentLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/unisagui/resources/man75.png"))); // NOI18N
+        StudentLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/man75.png"))); // NOI18N
 
         NameOfExamLabel.setFont(new java.awt.Font("Arial Black", 1, 13)); // NOI18N
         NameOfExamLabel.setForeground(new java.awt.Color(255, 255, 255));
@@ -455,14 +455,14 @@ public class GameFrame extends javax.swing.JFrame {
         MainMenuPanel.setMaximumSize(new java.awt.Dimension(600, 750));
         MainMenuPanel.setMinimumSize(new java.awt.Dimension(600, 750));
 
-        MainMenuLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/unisagui/resources/MAIN MENU AZZURRINO.png"))); // NOI18N
+        MainMenuLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/MAIN MENU AZZURRINO.png"))); // NOI18N
         MainMenuLabel.setText("                   MAIN MENU");
         MainMenuLabel.setMaximumSize(new java.awt.Dimension(200, 75));
         MainMenuLabel.setMinimumSize(new java.awt.Dimension(200, 75));
         MainMenuLabel.setPreferredSize(new java.awt.Dimension(200, 75));
 
         SettingsButton.setBackground(new java.awt.Color(93, 150, 199));
-        SettingsButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/unisagui/resources/settingsICON75.png"))); // NOI18N
+        SettingsButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/settingsICON75.png"))); // NOI18N
         SettingsButton.setBorder(null);
         SettingsButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -471,7 +471,7 @@ public class GameFrame extends javax.swing.JFrame {
         });
 
         ExitButton.setBackground(new java.awt.Color(93, 150, 199));
-        ExitButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/unisagui/resources/EXIT75.png"))); // NOI18N
+        ExitButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/EXIT75.png"))); // NOI18N
         ExitButton.setBorder(null);
         ExitButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1115,10 +1115,10 @@ public class GameFrame extends javax.swing.JFrame {
         SettingsPanel.setMinimumSize(new java.awt.Dimension(600, 750));
 
         SettingsLayer.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        SettingsLayer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/unisagui/resources/SETTINGS AZZURRINO.png"))); // NOI18N
+        SettingsLayer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/SETTINGS AZZURRINO.png"))); // NOI18N
 
         AudioButton.setBackground(new java.awt.Color(93, 150, 199));
-        AudioButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/unisagui/resources/SOUND75.png"))); // NOI18N
+        AudioButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/SOUND75.png"))); // NOI18N
         AudioButton.setToolTipText("");
         AudioButton.setBorder(null);
         AudioButton.addActionListener(new java.awt.event.ActionListener() {
@@ -1128,7 +1128,7 @@ public class GameFrame extends javax.swing.JFrame {
         });
 
         MusicButton.setBackground(new java.awt.Color(93, 150, 199));
-        MusicButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/unisagui/resources/MUSIC75.png"))); // NOI18N
+        MusicButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/MUSIC75.png"))); // NOI18N
         MusicButton.setBorder(null);
 
         KeyboardButton.setBackground(new java.awt.Color(75, 125, 167));
@@ -1163,7 +1163,7 @@ public class GameFrame extends javax.swing.JFrame {
         LanguageComboBox.setBackground(new java.awt.Color(75, 125, 167));
         LanguageComboBox.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
         LanguageComboBox.setForeground(new java.awt.Color(255, 255, 255));
-        LanguageComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "English", " " }));
+        LanguageComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "English", " " }));
         LanguageComboBox.setMaximumSize(new java.awt.Dimension(200, 50));
         LanguageComboBox.setMinimumSize(new java.awt.Dimension(200, 50));
         LanguageComboBox.setPreferredSize(new java.awt.Dimension(200, 50));
@@ -1174,7 +1174,7 @@ public class GameFrame extends javax.swing.JFrame {
         });
 
         SettingsCloseButton.setBackground(new java.awt.Color(93, 150, 199));
-        SettingsCloseButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/unisagui/resources/exitbutton24.png"))); // NOI18N
+        SettingsCloseButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/exitbutton24.png"))); // NOI18N
         SettingsCloseButton.setBorder(null);
         SettingsCloseButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1252,7 +1252,7 @@ public class GameFrame extends javax.swing.JFrame {
         RequestPanel.setPreferredSize(new java.awt.Dimension(250, 175));
 
         YesButton.setBackground(new java.awt.Color(93, 150, 199));
-        YesButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/unisagui/resources/YESBUTTON50.png"))); // NOI18N
+        YesButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/YESBUTTON50.png"))); // NOI18N
         YesButton.setBorder(null);
         YesButton.setPreferredSize(new java.awt.Dimension(75, 50));
         YesButton.addActionListener(new java.awt.event.ActionListener() {
@@ -1262,7 +1262,7 @@ public class GameFrame extends javax.swing.JFrame {
         });
 
         NoButton.setBackground(new java.awt.Color(93, 150, 199));
-        NoButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/unisagui/resources/NOBUTTON50.png"))); // NOI18N
+        NoButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/NOBUTTON50.png"))); // NOI18N
         NoButton.setBorder(null);
         NoButton.setPreferredSize(new java.awt.Dimension(75, 50));
         NoButton.addActionListener(new java.awt.event.ActionListener() {
@@ -1439,7 +1439,7 @@ public class GameFrame extends javax.swing.JFrame {
         AvatarNameLabel.setPreferredSize(new java.awt.Dimension(200, 25));
 
         MaleWhiteButton.setBackground(new java.awt.Color(93, 150, 199));
-        MaleWhiteButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/unisagui/resources/man75.png"))); // NOI18N
+        MaleWhiteButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/man75.png"))); // NOI18N
         MaleWhiteButton.setBorder(null);
         MaleWhiteButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1453,7 +1453,7 @@ public class GameFrame extends javax.swing.JFrame {
         AvatarImage.setPreferredSize(new java.awt.Dimension(200, 200));
 
         MaleBlackButton.setBackground(new java.awt.Color(93, 150, 199));
-        MaleBlackButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/unisagui/resources/BLACKman75.png"))); // NOI18N
+        MaleBlackButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/BLACKman75.png"))); // NOI18N
         MaleBlackButton.setBorder(null);
         MaleBlackButton.setEnabled(false);
         MaleBlackButton.addActionListener(new java.awt.event.ActionListener() {
@@ -1463,7 +1463,7 @@ public class GameFrame extends javax.swing.JFrame {
         });
 
         FemaleBlackButton.setBackground(new java.awt.Color(93, 150, 199));
-        FemaleBlackButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/unisagui/resources/BLACKwoman75.png"))); // NOI18N
+        FemaleBlackButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/BLACKwoman75.png"))); // NOI18N
         FemaleBlackButton.setBorder(null);
         FemaleBlackButton.setEnabled(false);
         FemaleBlackButton.addActionListener(new java.awt.event.ActionListener() {
@@ -1473,7 +1473,7 @@ public class GameFrame extends javax.swing.JFrame {
         });
 
         FemaleWhiteButton.setBackground(new java.awt.Color(93, 150, 199));
-        FemaleWhiteButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/unisagui/resources/woman75.png"))); // NOI18N
+        FemaleWhiteButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/woman75.png"))); // NOI18N
         FemaleWhiteButton.setBorder(null);
         FemaleWhiteButton.setEnabled(false);
         FemaleWhiteButton.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1487,7 +1487,7 @@ public class GameFrame extends javax.swing.JFrame {
             }
         });
 
-        AvatarIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/unisagui/resources/AVATAR AZZURRINO.png"))); // NOI18N
+        AvatarIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/AVATAR AZZURRINO.png"))); // NOI18N
         AvatarIcon.setText("                 AVATAR");
         AvatarIcon.setMaximumSize(new java.awt.Dimension(200, 75));
         AvatarIcon.setMinimumSize(new java.awt.Dimension(200, 75));
@@ -1730,10 +1730,10 @@ public class GameFrame extends javax.swing.JFrame {
         QuestListScrollPane.setPreferredSize(new java.awt.Dimension(190, 350));
 
         QuestList.setBorder(javax.swing.BorderFactory.createTitledBorder("Quest"));
-        QuestList.setModel(new javax.swing.AbstractListModel<String>() {
+        QuestList.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Collect your first dollar!", "It's time to get Math Exam!" };
             public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
+            public Object getElementAt(int i) { return strings[i]; }
         });
         QuestList.setMaximumSize(new java.awt.Dimension(190, 350));
         QuestList.setMinimumSize(new java.awt.Dimension(190, 350));
@@ -1833,7 +1833,7 @@ public class GameFrame extends javax.swing.JFrame {
         LevelLabel.setMinimumSize(new java.awt.Dimension(225, 25));
         LevelLabel.setPreferredSize(new java.awt.Dimension(225, 25));
 
-        MoneyIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/unisagui/resources/moneta.png"))); // NOI18N
+        MoneyIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/moneta.png"))); // NOI18N
         MoneyIcon.setText("jLabel2");
         MoneyIcon.setMaximumSize(new java.awt.Dimension(25, 25));
         MoneyIcon.setMinimumSize(new java.awt.Dimension(25, 25));
@@ -1853,19 +1853,19 @@ public class GameFrame extends javax.swing.JFrame {
         EnergyProgressBar.setMinimumSize(new java.awt.Dimension(150, 25));
         EnergyProgressBar.setPreferredSize(new java.awt.Dimension(150, 25));
 
-        EnergyIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/unisagui/resources/ENERGY25.png"))); // NOI18N
+        EnergyIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/ENERGY25.png"))); // NOI18N
         EnergyIcon.setText("jLabel2");
         EnergyIcon.setMaximumSize(new java.awt.Dimension(25, 25));
         EnergyIcon.setMinimumSize(new java.awt.Dimension(25, 25));
         EnergyIcon.setPreferredSize(new java.awt.Dimension(25, 25));
 
-        StressIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/unisagui/resources/STRESS25.png"))); // NOI18N
+        StressIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/STRESS25.png"))); // NOI18N
         StressIcon.setText("jLabel2");
         StressIcon.setMaximumSize(new java.awt.Dimension(25, 25));
         StressIcon.setMinimumSize(new java.awt.Dimension(25, 25));
         StressIcon.setPreferredSize(new java.awt.Dimension(25, 25));
 
-        HungerIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/unisagui/resources/HUNGERICON25.png"))); // NOI18N
+        HungerIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/HUNGERICON25.png"))); // NOI18N
         HungerIcon.setText("jLabel2");
         HungerIcon.setMaximumSize(new java.awt.Dimension(25, 25));
         HungerIcon.setMinimumSize(new java.awt.Dimension(25, 25));
@@ -1886,7 +1886,7 @@ public class GameFrame extends javax.swing.JFrame {
         HungerProgressBar.setPreferredSize(new java.awt.Dimension(150, 25));
 
         SettingsButtonFrame.setBackground(new java.awt.Color(93, 150, 199));
-        SettingsButtonFrame.setIcon(new javax.swing.ImageIcon(getClass().getResource("/unisagui/resources/settingsICON25.png"))); // NOI18N
+        SettingsButtonFrame.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/settingsICON25.png"))); // NOI18N
         SettingsButtonFrame.setBorder(null);
         SettingsButtonFrame.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1895,7 +1895,7 @@ public class GameFrame extends javax.swing.JFrame {
         });
 
         QuestButtonFrame.setBackground(new java.awt.Color(93, 150, 199));
-        QuestButtonFrame.setIcon(new javax.swing.ImageIcon(getClass().getResource("/unisagui/resources/questbutton24.png"))); // NOI18N
+        QuestButtonFrame.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/questbutton24.png"))); // NOI18N
         QuestButtonFrame.setBorder(null);
         QuestButtonFrame.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1963,7 +1963,7 @@ public class GameFrame extends javax.swing.JFrame {
         RightBorder.setPreferredSize(new java.awt.Dimension(50, 100));
 
         GameCloseButton.setBackground(new java.awt.Color(93, 150, 199));
-        GameCloseButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/unisagui/resources/exitbutton24.png"))); // NOI18N
+        GameCloseButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/exitbutton24.png"))); // NOI18N
         GameCloseButton.setBorder(null);
         GameCloseButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1976,7 +1976,7 @@ public class GameFrame extends javax.swing.JFrame {
         RightBorderLayout.setHorizontalGroup(
             RightBorderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RightBorderLayout.createSequentialGroup()
-                .addGap(0, 26, Short.MAX_VALUE)
+                .addGap(0, 49, Short.MAX_VALUE)
                 .addComponent(GameCloseButton))
         );
         RightBorderLayout.setVerticalGroup(
@@ -2005,7 +2005,7 @@ public class GameFrame extends javax.swing.JFrame {
         UpperBorder.setMinimumSize(new java.awt.Dimension(500, 75));
         UpperBorder.setPreferredSize(new java.awt.Dimension(500, 75));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/unisagui/resources/Title.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/Title.png"))); // NOI18N
         jLabel2.setMaximumSize(new java.awt.Dimension(210, 70));
         jLabel2.setMinimumSize(new java.awt.Dimension(210, 70));
         jLabel2.setPreferredSize(new java.awt.Dimension(210, 70));

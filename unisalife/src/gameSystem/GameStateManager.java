@@ -12,7 +12,7 @@ import java.awt.Graphics2D;
  * @author 1997g
  */
 public class GameStateManager {
-    private GameState gm;
+    private GameState gs;
     private static GameStateManager instance;
     
     public static GameStateManager getInstance(){
@@ -23,22 +23,22 @@ public class GameStateManager {
     }
     
     public void GameStateManager() {
-        gm = PlayState.getInstance();
+        gs = PlayState.getInstance();
     }
     
     public void setState(GameState state) {
-        gm = state;
+        gs = state;
     }
     
     public GameState getState() {
-        return gm;
+        return gs;
     }
     
     public void tick() {
-        gm.tick();
+        gs.tick();
     }
     
     public void render(Graphics2D g) {
-        gm.render(g);
+        gs.render(g);
     }
 }

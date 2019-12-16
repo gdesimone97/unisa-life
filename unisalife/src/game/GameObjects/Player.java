@@ -7,6 +7,8 @@ package game.GameObjects;
 
 import game.GameResources.Animation;
 import game.GameResources.Game;
+import static game.GameResources.Game.ANIMATIONSPEED;
+import static game.GameResources.Game.DIMENSIONSPRITE;
 import game.GameResources.Handler;
 import game.GameResources.NotGameState;
 import game.GameResources.PlayState;
@@ -17,6 +19,7 @@ import java.util.LinkedList;
 import java.awt.image.BufferedImage;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import javax.imageio.ImageIO;
 
 /**
  *
@@ -65,14 +68,14 @@ public class Player extends GameObject implements Tickable, Renderable {
          */
     }
     
-    public void changeFaceSet(BufferedImage down, BufferedImage left, BufferedImage right, BufferedImage up) {
+    private void changeFaceSet(BufferedImage down, BufferedImage left, BufferedImage right, BufferedImage up) {
         facingLeftImage = left;
         facingRightImage = right;
         facingUpImage = up;
         facingDownImage = down;
     }
     
-    public void changeAnimationSet(Animation down, Animation left, Animation right, Animation up) {
+    private void changeAnimationSet(Animation down, Animation left, Animation right, Animation up) {
         upWalk = up;
         downWalk = down;
         leftWalk = left;
@@ -84,6 +87,39 @@ public class Player extends GameObject implements Tickable, Renderable {
      * @return
      *
      */
+    
+    public void initialize(int skin,String name){
+        BufferedImage texturePlayer[] = new BufferedImage[12];
+        try {
+            BufferedImage characterImage = ImageIO.read(
+                    getClass().getResourceAsStream("/Sprites/sprite"+32+".png")
+            );
+            texturePlayer[0] = characterImage.getSubimage(32, 0, DIMENSIONSPRITE, DIMENSIONSPRITE);
+            texturePlayer[1] = characterImage.getSubimage(0, 0, DIMENSIONSPRITE, DIMENSIONSPRITE);
+            texturePlayer[2] = characterImage.getSubimage(64, 0, DIMENSIONSPRITE, DIMENSIONSPRITE);
+            texturePlayer[3] = characterImage.getSubimage(32, 32, DIMENSIONSPRITE, DIMENSIONSPRITE);
+            texturePlayer[4] = characterImage.getSubimage(0, 32, DIMENSIONSPRITE, DIMENSIONSPRITE);
+            texturePlayer[5] = characterImage.getSubimage(64, 32, DIMENSIONSPRITE, DIMENSIONSPRITE);
+            texturePlayer[6] = characterImage.getSubimage(32, 64, DIMENSIONSPRITE, DIMENSIONSPRITE);
+            texturePlayer[7] = characterImage.getSubimage(0, 64, DIMENSIONSPRITE, DIMENSIONSPRITE);
+            texturePlayer[8] = characterImage.getSubimage(64, 64, DIMENSIONSPRITE, DIMENSIONSPRITE);
+            texturePlayer[9] = characterImage.getSubimage(32, 96, DIMENSIONSPRITE, DIMENSIONSPRITE);
+            texturePlayer[10] = characterImage.getSubimage(0, 96, DIMENSIONSPRITE, DIMENSIONSPRITE);
+            texturePlayer[11] = characterImage.getSubimage(64, 96, DIMENSIONSPRITE, DIMENSIONSPRITE);
+        } catch (Exception e) {
+            System.exit(4);
+        }
+        changeFaceSet(texturePlayer[6], texturePlayer[3], texturePlayer[9], texturePlayer[0]);
+
+        changeAnimationSet(new Animation(ANIMATIONSPEED, texturePlayer[7], texturePlayer[8]),
+            new Animation(ANIMATIONSPEED, texturePlayer[4], texturePlayer[5]),
+            new Animation(ANIMATIONSPEED, texturePlayer[10], texturePlayer[11]),
+            new Animation(ANIMATIONSPEED, texturePlayer[1], texturePlayer[2]));
+        setX(50);
+        setY(50);
+        
+    }
+    
     public static Player getIstance() {
         if (uniqueIstance == null) {
             return new Player(new Position(50,50));
@@ -179,7 +215,7 @@ public class Player extends GameObject implements Tickable, Renderable {
      *
      * @param ObjectsManager
      */
-    public void collisions(ObjectManager objMan) {
+    private void collisions(ObjectManager objMan) {
         GameObject g = objMan.get(face.nextStep());
             if (g!=null)
             {   
@@ -237,10 +273,10 @@ public class Player extends GameObject implements Tickable, Renderable {
     //dialog deve lavorare solo con oggetti interactable (item e persone per adesso)
     public void dialog(ObjectManager o) {
         GameObject g = o.get(face.nextStep());
-        if (g==null || !(g instanceof Interactable))
+        if (!(g instanceof Interactable))
         {
-                this.setVelX(0);
-                this.setVelY(0);
+                setVelX(0);
+                setVelY(0);
                 Game.getGame().setState(new NotGameState(Game.getGame()));
                 ((Interactable) g).interact();
                 Game.getGame().setState(new PlayState(Game.getGame()));

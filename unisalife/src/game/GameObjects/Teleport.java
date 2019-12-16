@@ -31,8 +31,8 @@ public class Teleport extends GameObject {
      * of game.
      * @param d destination in terms of x and y of the player in the new map
      */
-    public Teleport(float x, float y, String t, int map, Position d) {
-        super(x, y);
+    public Teleport(Position p, String t, int map, Position d) {
+        super(p);
         mapDest = map;
         this.d = d;
     }
@@ -44,7 +44,7 @@ public class Teleport extends GameObject {
      */
     public void render(Graphics g) {
         g.setColor(Color.blue);
-        g.fillRect((int) x, (int) y, (int) width, (int) height);
+        g.fillRect(p.getX(), p.getY(), (int) width, (int) height);
     }
     //tick is void because the collision is handled by Player's tick method.
 

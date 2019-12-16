@@ -17,6 +17,7 @@ public class ObjectManager extends HashMap<Position,GameObject> {
     }
     
     
+    
     public GameObject removeObject(Position p)throws Exception{
         if(this.containsKey(p))
             return this.remove(p);

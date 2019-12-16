@@ -73,6 +73,6 @@ public class PlayState extends GameState{
         if(k==KeyEvent.VK_LEFT) Game.player.setVelX(0);
         if(k==KeyEvent.VK_DOWN) Game.player.setVelY(0);
         if(k==KeyEvent.VK_UP) Game.player.setVelY(0);
-        if(k==KeyEvent.VK_SPACE)Game.player.dialog(game.getActualMap().getList());        
+        if(k==KeyEvent.VK_SPACE)Game.player.dialog(game.getActualMap().getObjectManager());        
     }
     }

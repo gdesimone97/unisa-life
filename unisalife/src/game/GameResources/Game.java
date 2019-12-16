@@ -174,14 +174,15 @@ public class Game extends Canvas implements Runnable, Saveable {
             System.exit(4);
         }
         player = Player.getIstance();
-        player.changeFaceSet(Game.texturePlayer[6], Game.texturePlayer[3], Game.texturePlayer[9], Game.texturePlayer[0]);
+        //player.changeFaceSet(Game.texturePlayer[6], Game.texturePlayer[3], Game.texturePlayer[9], Game.texturePlayer[0]);
 
-        player.changeAnimationSet(new Animation(ANIMATIONSPEED, texturePlayer[7], texturePlayer[8]),
+        /*player.changeAnimationSet(new Animation(ANIMATIONSPEED, texturePlayer[7], texturePlayer[8]),
                 new Animation(ANIMATIONSPEED, texturePlayer[4], texturePlayer[5]),
                 new Animation(ANIMATIONSPEED, texturePlayer[10], texturePlayer[11]),
                 new Animation(ANIMATIONSPEED, texturePlayer[1], texturePlayer[2]));
         player.setX(50);
         player.setY(50);
+        */
 
     }
 
@@ -358,7 +359,7 @@ public class Game extends Canvas implements Runnable, Saveable {
     public static void main(String[] args) {
         // TODO code application logic here
         GuiManager guiManager = GuiManager.getInstance();
-        guiManager.startGame(Game.getGame());
+        guiManager.startGame();
 
     }
 

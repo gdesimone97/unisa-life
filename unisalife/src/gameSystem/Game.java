@@ -8,7 +8,9 @@ package gameSystem;
 import static game.GameResources.Game.AMOUNTOFTICKS;
 import gameSystem.keySettings.HandlerInput;
 import java.awt.Canvas;
+import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 
 /**
@@ -71,6 +73,7 @@ public class Game extends Canvas implements Runnable {
         running = true;
 //        image = new BufferedImage(WIDTH, HEIGHT, 1);
 //        g = (Graphics2D) image.getGraphics();
+        
         this.addKeyListener(new HandlerInput());
     }
     
@@ -79,6 +82,16 @@ public class Game extends Canvas implements Runnable {
     }
     
     private void render() {
-        gsm.render(g);
+        BufferStrategy bs = this.getBufferStrategy();
+        if (bs == null) {
+            this.createBufferStrategy(3);
+            return;
+        }
+        Graphics g = bs.getDrawGraphics();
+        Graphics2D g2d = (Graphics2D) g;
+        gsm.render(g2d);
+        g.dispose();
+        bs.show();
+        
     }
 }

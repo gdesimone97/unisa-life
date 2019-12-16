@@ -52,7 +52,7 @@ public class GameManager {
     public void initGame() {
         gsm = GameStateManager.getInstance();
 //        mm = MapManager.getInstance();
-//        player = Player.getIstance();
+        player = Player.getIstance();
         booklet = BookletSingleton.getInstance();
         
         QuestsManagerSingleton.getInstance();

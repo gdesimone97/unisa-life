@@ -62,7 +62,8 @@ public class Item extends GameObject implements Renderable, Interactable, Serial
     }
 
     
-
+    
+    
     public void setTaken() {
         this.taken = LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS);
     }
