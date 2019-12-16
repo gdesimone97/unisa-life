@@ -5,6 +5,7 @@
  */
 package gameSystem;
 
+import gameSystem.keySettings.KeyCommand;
 import java.awt.Graphics2D;
 
 /**
@@ -21,28 +22,25 @@ public class PauseState extends GameState {
         }
         return instance;
     }
-
-
+    
     @Override
     public void init() {
         
     }
-
+    
     @Override
     public void update() {
         
     }
-
+    
     @Override
     public void draw(Graphics2D g) {
         
     }
-
+    
     @Override
-    public void handleInput() {
-        
+    public void handleInput(KeyCommand cmd) {
+        cmd.visitPauseState(this);
     }
-    
-    
     
 }

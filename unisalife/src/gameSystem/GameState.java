@@ -5,6 +5,7 @@
  */
 package gameSystem;
 
+import gameSystem.keySettings.KeyCommand;
 import java.awt.Graphics2D;
 
 /**
@@ -22,5 +23,5 @@ public abstract class GameState {
 
     public abstract void draw(Graphics2D g);
 
-    public abstract void handleInput();
+    public abstract void handleInput(KeyCommand cmd);
 }
