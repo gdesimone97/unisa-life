@@ -13,7 +13,7 @@ import gameSystem.PlayState;
  *
  * @author Giuseppe De Simone
  */
-public class PauseCommand extends KeyCommand {
+public class PauseCommand extends KeyCommand implements ActionCommand{
 
     private final GameStateManager stateManager = GameStateManager.getInstance();
 
