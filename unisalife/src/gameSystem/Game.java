@@ -23,7 +23,7 @@ public class Game extends Canvas implements Runnable {
     public static final int WIDTHSCREEN = 500,
             HEIGHTSCREEN = 500,
             HEIGHTSCREEN2 = HEIGHTSCREEN + 32,
-            PLAYERSPEED = 2,
+            PLAYERSPEED = 32,
             ANIMATIONSPEED=4,
             DIMENSIONSPRITE = 32;
     private int WIDTHMAP, HEIGHTMAP;
