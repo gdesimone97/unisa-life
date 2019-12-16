@@ -8,11 +8,8 @@ package database;
 import database.populator.Populator;
 import database.populator.exceptions.InvalidGameDataFormatException;
 import exam.booklet.Subject;
-import game.GameObjects.Destination;
-import game.GameObjects.GameObject;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -20,7 +17,6 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import quests.quest.Quest;
 import saving.Saveable;
 
 /**
@@ -29,15 +25,14 @@ import saving.Saveable;
  */
 public class DatabaseManagerTest {
 
-    public DatabaseManagerTest()throws FileNotSetException, IOException, FileNotFoundException, InvalidGameDataFormatException {
-        DatabaseManager dmb = DatabaseManager.getDatabaseManager();
-        Populator p = new Populator("..//unisalife/src/database/populator/data.txt");
-        p.populate();
-        
+    public DatabaseManagerTest() {
     }
 
     @BeforeClass
-    public static void setUpClass()  {
+    public static void setUpClass() throws FileNotSetException, IOException, FileNotFoundException, InvalidGameDataFormatException {
+        DatabaseManager dmb = DatabaseManager.getDatabaseManager();
+        Populator p = new Populator("..//unisalife/src/database/populator/data.txt");
+        p.populate();
     }
 
     @AfterClass
@@ -46,10 +41,12 @@ public class DatabaseManagerTest {
 
     @Before
     public void setUp() {
+
     }
 
     @After
-    public void tearDown() {
+    public void tearDown() throws FileNotSetException {
+        DatabaseManager.getDatabaseManager().close();
     }
 
     /**
@@ -99,8 +96,6 @@ public class DatabaseManagerTest {
         String expResult = "matematica";
         List<Subject> result = instance.getSubjects();
         assertTrue(expResult.equals(result.get(0).getInfo()));
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -112,8 +107,6 @@ public class DatabaseManagerTest {
         List<Saveable> elems = null;
         DatabaseManager instance = null;
         instance.save(elems);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -126,8 +119,6 @@ public class DatabaseManagerTest {
         List<Saveable> expResult = null;
         List<Saveable> result = instance.load();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -140,8 +131,6 @@ public class DatabaseManagerTest {
         boolean expResult = false;
         boolean result = instance.isSaved();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -152,8 +141,6 @@ public class DatabaseManagerTest {
         System.out.println("close");
         DatabaseManager instance = null;
         instance.close();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
 }

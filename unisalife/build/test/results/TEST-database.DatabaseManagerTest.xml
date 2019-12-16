@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="3" failures="0" hostname="LAPTOP-8KD38SFS" name="database.DatabaseManagerTest" skipped="0" tests="4" time="1.706" timestamp="2019-12-16T15:30:13">
+<testsuite errors="1" failures="0" hostname="LAPTOP-8KD38SFS" name="database.DatabaseManagerTest" skipped="0" tests="0" time="1.219" timestamp="2019-12-16T16:56:30">
   <properties>
     <property name="libs.jsp-compiler.javadoc" value="" />
     <property name="netbeans.autoupdate.country" value="IT" />
@@ -52,7 +52,7 @@
     <property name="src.bin.dir" value="bin" />
     <property name="copylibs.rebase" value="true" />
     <property name="libs.spring-webmvc3.0.maven-pom" value="" />
-    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner database.DatabaseManagerTest skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,C:\Users\alfon\Documents\NetBeansProjects\unisa-life\unisalife\build\test\results\TEST-database.DatabaseManagerTest.xml crashfile=C:\Users\alfon\Documents\NetBeansProjects\unisa-life\unisalife\build\junitvmwatcher8617548282145589487.properties propsfile=C:\Users\alfon\Documents\NetBeansProjects\unisa-life\unisalife\build\junit625804503040040272.properties" />
+    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner database.DatabaseManagerTest skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,C:\Users\alfon\Documents\NetBeansProjects\unisa-life\unisalife\build\test\results\TEST-database.DatabaseManagerTest.xml crashfile=C:\Users\alfon\Documents\NetBeansProjects\unisa-life\unisalife\build\junitvmwatcher3579234035242681702.properties propsfile=C:\Users\alfon\Documents\NetBeansProjects\unisa-life\unisalife\build\junit7400100162958168370.properties" />
     <property name="build.classes.dir" value="build/classes" />
     <property name="ant.file.type.unisalife" value="file" />
     <property name="build.sysclasspath" value="ignore" />
@@ -99,7 +99,7 @@
     <property name="javac.debug" value="true" />
     <property name="javadoc.splitindex" value="true" />
     <property name="file.separator" value="\" />
-    <property name="javac.includesfile.binary" value="C:\Users\alfon\Documents\NetBeansProjects\unisa-life\unisalife\null2142329809" />
+    <property name="javac.includesfile.binary" value="C:\Users\alfon\Documents\NetBeansProjects\unisa-life\unisalife\null130272809" />
     <property name="ant.file.unisalife" value="C:\Users\alfon\Documents\NetBeansProjects\unisa-life\unisalife\build.xml" />
     <property name="libs.junit_4.maven-pom" value="" />
     <property name="mkdist.disabled" value="false" />
@@ -401,38 +401,21 @@
     <property name="awt.toolkit" value="sun.awt.windows.WToolkit" />
     <property name="libs.javaee-web-api-7.0.javadoc" value="C:\Program Files\NetBeans-11.2\netbeans\enterprise\docs\javaee-doc-api.jar" />
   </properties>
-  <testcase classname="database.DatabaseManagerTest" name="testGetQuestsFromLevel" time="0.047">
-    <error type="database.ObjectNotFoundException">database.ObjectNotFoundException
-	at database.DatabaseManager.getQuestsFromLevel(DatabaseManager.java:48)
-	at database.DatabaseManagerTest.testGetQuestsFromLevel(DatabaseManagerTest.java:75)
+  <testcase classname="junit.framework.TestSuite" name="database.DatabaseManagerTest" time="0.0">
+    <error message="NO2.3006: compound index on field subject is not supported" type="org.dizitart.no2.exceptions.InvalidOperationException">org.dizitart.no2.exceptions.InvalidOperationException: NO2.3006: compound index on field subject is not supported
+	at org.dizitart.no2.util.ValidationUtils.validateObjectIndexField(ValidationUtils.java:239)
+	at org.dizitart.no2.util.ObjectUtils.populateIndex(ObjectUtils.java:271)
+	at org.dizitart.no2.util.ObjectUtils.extractIndices(ObjectUtils.java:109)
+	at org.dizitart.no2.objects.DefaultObjectRepository.createIndexes(DefaultObjectRepository.java:305)
+	at org.dizitart.no2.objects.DefaultObjectRepository.initRepository(DefaultObjectRepository.java:300)
+	at org.dizitart.no2.objects.DefaultObjectRepository.&lt;init&gt;(DefaultObjectRepository.java:57)
+	at org.dizitart.no2.objects.RepositoryFactory.open(RepositoryFactory.java:46)
+	at org.dizitart.no2.Nitrite.getRepository(Nitrite.java:140)
+	at database.populator.Populator.populate(Populator.java:58)
+	at database.DatabaseManagerTest.setUpClass(DatabaseManagerTest.java:35)
 </error>
   </testcase>
-  <testcase classname="database.DatabaseManagerTest" name="testGetObjectsFromLevel" time="0.047">
-    <error type="database.ObjectNotFoundException">database.ObjectNotFoundException
-	at database.DatabaseManager.getQuestsFromLevel(DatabaseManager.java:48)
-	at database.DatabaseManager.getObjectsFromLevel(DatabaseManager.java:55)
-	at database.DatabaseManagerTest.testGetObjectsFromLevel(DatabaseManagerTest.java:88)
-</error>
-  </testcase>
-  <testcase classname="database.DatabaseManagerTest" name="testGetSubjects" time="0.078">
-    <error message="NO2.9002: Cannot construct instance of `exam.booklet.Subject` (although at least one Creator exists): cannot deserialize from Object value (no delegate- or property-based Creator)&#xa; at [Source: UNKNOWN; line: -1, column: -1]" type="org.dizitart.no2.exceptions.ObjectMappingException">org.dizitart.no2.exceptions.ObjectMappingException: NO2.9002: Cannot construct instance of `exam.booklet.Subject` (although at least one Creator exists): cannot deserialize from Object value (no delegate- or property-based Creator)
- at [Source: UNKNOWN; line: -1, column: -1]
-	at org.dizitart.no2.mapper.JacksonFacade.asObject(JacksonFacade.java:140)
-	at org.dizitart.no2.mapper.GenericMapper.asObjectInternal(GenericMapper.java:53)
-	at org.dizitart.no2.mapper.AbstractMapper.asObject(AbstractMapper.java:76)
-	at org.dizitart.no2.objects.ObjectCursor$ObjectCursorIterator.next(ObjectCursor.java:116)
-	at org.dizitart.no2.util.Iterables.toList(Iterables.java:63)
-	at org.dizitart.no2.objects.ObjectCursor.toList(ObjectCursor.java:92)
-	at database.DatabaseManager.getSubjects(DatabaseManager.java:88)
-	at database.DatabaseManagerTest.testGetSubjects(DatabaseManagerTest.java:100)
-</error>
-  </testcase>
-  <testcase classname="database.DatabaseManagerTest" name="testGetDatabaseManager" time="0.0" />
-  <system-out><![CDATA[getQuestsFromLevel
-getObjectsFromLevel
-getSubjects
-getDatabaseManager
-]]></system-out>
+  <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
 SLF4J: Defaulting to no-operation (NOP) logger implementation
 SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.

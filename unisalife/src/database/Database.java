@@ -20,7 +20,7 @@ import saving.Saveable;
 public class Database {
 
     private static String path = null;
-    private Nitrite db;
+    private Nitrite db = null;
     private static Database instance;
 
     public static String getPath() {
@@ -32,17 +32,20 @@ public class Database {
     }
 
     private Database() {
-        this.db = Nitrite.builder().compressed().filePath(Database.getPath()).openOrCreate("group08", "hntbae");
-        init();
+        if (this.db == null) {
+            this.db = Nitrite.builder().compressed().filePath(Database.getPath()).openOrCreate("group08", "hntbae");
+            init();
+        }
     }
 
     private void init() {
+        /*
         if (this.db.listRepositories().size() <= 0) {
-            db.getRepository(Item.class).createIndex("name", indexOptions(IndexType.Unique));
+            db.getRepository(Item.class).createIndex("info", indexOptions(IndexType.Unique));
             db.getRepository(Professor.class).createIndex("subject", indexOptions(IndexType.Unique));
             db.getRepository(Quest.class).createIndex("level", indexOptions(IndexType.NonUnique));
             db.getRepository(Saveable.class);
-        }
+        }*/
     }
 
     public static Database getInstance() throws FileNotSetException {

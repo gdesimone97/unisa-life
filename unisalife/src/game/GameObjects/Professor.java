@@ -10,13 +10,19 @@ import exam.booklet.Subject;
 import interaction.*;
 import java.io.Serializable;
 import language.Information;
+import org.dizitart.no2.IndexType;
+import org.dizitart.no2.objects.Id;
+import org.dizitart.no2.objects.Index;
+import org.dizitart.no2.objects.Indices;
 
 /**
  *
  * @author Giuseppe De Simone
  */
+@Indices({
+        @Index(value = "subject", type = IndexType.Unique)
+})
 public class Professor extends Person implements Information, Saveable {
-
     private Subject subject;
     private String nome;
 

@@ -35,8 +35,7 @@ StringTokenizer st = new StringTokenizer(s,SaveableCreator.DELIMETER);
         try{
         
         //Retrieve subject from the DB
-        Subject subject = null;
-        Professor p = new Professor(st.nextToken(),Float.parseFloat(st.nextToken()),Float.parseFloat(st.nextToken()),st.nextToken(),subject);
+        Professor p = new Professor(st.nextToken(),Float.parseFloat(st.nextToken()),Float.parseFloat(st.nextToken()),st.nextToken(),new Subject(st.nextToken()));
         return p;
         
         }catch( NoSuchElementException | NumberFormatException e ){

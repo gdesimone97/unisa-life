@@ -15,7 +15,7 @@ import language.Information;
  *
  * @author liovi
  */
-public class Subject implements Information, Serializable, Saveable {
+public class Subject implements Information, Serializable, Saveable, Comparable {
 
     private int score;
     private String subject;
@@ -110,5 +110,11 @@ public class Subject implements Information, Serializable, Saveable {
     @Override
     public void load(Serializable obj) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        if (this.equals(o)== true) return 0;
+        else return 1;
     }
 }

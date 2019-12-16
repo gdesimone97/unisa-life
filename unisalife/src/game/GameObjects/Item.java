@@ -17,14 +17,15 @@ import java.time.LocalDateTime;
 import java.io.Serializable;
 import java.time.temporal.ChronoUnit;
 import java.util.Objects;
+import org.dizitart.no2.objects.Id;
 import quests.ItemDef;
 
 /**
  *
  * @author simon
  */
-public class Item extends GameObject implements Renderable, Interactable, Serializable, Comparable<Item>,Information, Saveable {
-
+public class Item extends GameObject implements Renderable, Interactable, Serializable, Comparable<Item>, Information, Saveable {
+    @Id
     private final String info;
     private BufferedImage facingDownImage;
     private LocalDateTime taken;
@@ -43,7 +44,7 @@ public class Item extends GameObject implements Renderable, Interactable, Serial
         } catch (Exception e) {
             System.exit(1);
         }
-        */
+         */
     }
 
     @Override
@@ -93,7 +94,7 @@ public class Item extends GameObject implements Renderable, Interactable, Serial
 
     @Override
     public void render(Graphics g) {
-        g.drawImage(facingDownImage, (int) x, (int) y, width-10, height-10, null);
+        g.drawImage(facingDownImage, (int) x, (int) y, width - 10, height - 10, null);
     }
 
     @Override
@@ -102,7 +103,7 @@ public class Item extends GameObject implements Renderable, Interactable, Serial
         iim.execute(this);
     }
 
-    public ItemDef getID(){
+    public ItemDef getID() {
         return this.id;
     }
 

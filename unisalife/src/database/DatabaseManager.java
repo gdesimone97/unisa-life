@@ -48,6 +48,10 @@ public class DatabaseManager {
         }
         return list;
     }
+    
+    public Database getDatabase(){
+        return this.db;
+    }
 
     public HashMap<Destination, GameObject> getObjectsFromLevel(int level) throws ObjectNotFoundException {
         HashMap<Destination, GameObject> returnMap = new HashMap<>();
@@ -68,7 +72,7 @@ public class DatabaseManager {
     }
 
     private Item findItem(String itemName) throws ObjectNotFoundException {
-        Item res = db.getDatabase().getRepository(Item.class).find(eq("name", itemName)).firstOrDefault();
+        Item res = db.getDatabase().getRepository(Item.class).find(eq("info", itemName)).firstOrDefault();
         if (res == null) {
             throw new ObjectNotFoundException();
         }
@@ -76,7 +80,7 @@ public class DatabaseManager {
     }
 
     private Professor findProfessor(Subject s) throws ObjectNotFoundException {
-        Professor prof = db.getDatabase().getRepository(Professor.class).find(eq("subject", s.getInfo())).firstOrDefault();
+        Professor prof = db.getDatabase().getRepository(Professor.class).find(eq("subject", s)).firstOrDefault();
         if (prof == null) {
             throw new ObjectNotFoundException();
         }

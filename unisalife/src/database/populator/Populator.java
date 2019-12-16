@@ -32,7 +32,7 @@ public class Populator {
         
         this.filepath = filepath;
         //Database.setPath("../prova.db");
-        this.db = Database.getInstance();
+        this.db = DatabaseManager.getDatabaseManager().getDatabase();
     }
     
     public void populate() throws FileNotFoundException, IOException, InvalidGameDataFormatException, FileNotSetException{
@@ -57,7 +57,6 @@ public class Populator {
             //System.out.println(sitem.getClass());
             ObjectRepository repo = db.getDatabase().getRepository(sitem.getClass());
             repo.insert(sitem);
-            
             //Get class from S and add it to the corresponding repository
             /*
             Class<Saveable> runTimeClass = sitem.getClass().asSubclass((Saveable.class)
