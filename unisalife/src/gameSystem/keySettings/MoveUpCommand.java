@@ -12,11 +12,12 @@ import gameSystem.PlayState;
  *
  * @author Giuseppe De Simone
  */
-class MoveUpCommand extends KeyCommand {
+class MoveUpCommand extends KeyCommand implements MovingCommand{
 
     @Override
     public void visitPlayState(PlayState playState) {
         player.setVelY(-speed);
+        System.out.println("up");
     }
 
     @Override

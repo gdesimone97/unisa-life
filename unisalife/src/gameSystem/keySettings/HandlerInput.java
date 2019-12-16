@@ -29,17 +29,22 @@ public class HandlerInput extends KeyAdapter {
     @Override
     public void keyReleased(KeyEvent e) {
         KeyCommand cmd = selectCommand(e);
-        if(cmd != null){
+        if (cmd != null) {
             GameState state = stateManager.getState();
-            state.handleInput(doNothing);
+            if (cmd instanceof MovingCommand) {
+                state.handleInput(doNothing);
+            }
+            else{
+                state.handleInput(cmd);
+            }
         }
-    
+
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
         KeyCommand cmd = selectCommand(e);
-        if (cmd != null) {
+        if (cmd != null && cmd instanceof MovingCommand) {
             GameState state = stateManager.getState();
             state.handleInput(cmd);
         }

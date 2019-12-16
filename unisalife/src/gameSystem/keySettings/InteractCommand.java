@@ -12,7 +12,7 @@ import gameSystem.PlayState;
  *
  * @author Giuseppe De Simone
  */
-public class InteractCommand extends KeyCommand {
+public class InteractCommand extends KeyCommand implements ActionCommand{
 
     @Override
     public void visitPlayState(PlayState playState) {
