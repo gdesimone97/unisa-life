@@ -15,7 +15,7 @@ import language.Information;
  *
  * @author liovi
  */
-public class Subject implements Information, Serializable {
+public class Subject implements Information, Serializable, Saveable {
 
     private int score;
     private String subject;
@@ -100,5 +100,15 @@ public class Subject implements Information, Serializable {
     @Override
     public String getInfo() {
         return subject;
+    }
+
+    @Override
+    public Serializable save() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void load(Serializable obj) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

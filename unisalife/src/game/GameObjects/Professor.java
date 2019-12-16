@@ -5,15 +5,17 @@
  */
 package game.GameObjects;
 
+import exam.booklet.Saveable;
 import exam.booklet.Subject;
 import interaction.*;
+import java.io.Serializable;
 import language.Information;
 
 /**
  *
  * @author Giuseppe De Simone
  */
-public class Professor extends Person implements Information {
+public class Professor extends Person implements Information, Saveable {
 
     private Subject subject;
     private String nome;
@@ -37,6 +39,16 @@ public class Professor extends Person implements Information {
     @Override
     public String getInfo() {
         return this.nome;
+    }
+
+    @Override
+    public Serializable save() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void load(Serializable obj) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 

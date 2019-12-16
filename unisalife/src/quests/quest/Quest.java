@@ -5,6 +5,7 @@
  */
 package quests.quest;
 
+import exam.booklet.Saveable;
 import exam.booklet.Subject;
 import java.io.Serializable;
 import java.util.HashMap;
@@ -18,7 +19,7 @@ import quests.mediator.User;
  *
  * @author liovi
  */
-public class Quest extends User implements  Serializable {
+public class Quest extends User implements  Serializable, Saveable {
 
     private HashMap<String,Boolean> items;
     private Subject subject;
@@ -115,6 +116,16 @@ public class Quest extends User implements  Serializable {
     @Override
     public void receive(Message mess) {
         setAvailability(mess.getId(),mess.getBool());
+    }
+
+    @Override
+    public Serializable save() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void load(Serializable obj) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
  }

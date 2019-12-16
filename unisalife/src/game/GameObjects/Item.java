@@ -5,6 +5,7 @@
  */
 package game.GameObjects;
 
+import exam.booklet.Saveable;
 import game.Interfaces.Interactable;
 import game.Interfaces.Renderable;
 import interaction.ItemInteractionManager;
@@ -22,7 +23,7 @@ import quests.ItemDef;
  *
  * @author simon
  */
-public class Item extends GameObject implements Renderable, Interactable, Serializable, Comparable<Item>,Information {
+public class Item extends GameObject implements Renderable, Interactable, Serializable, Comparable<Item>,Information, Saveable {
 
     private final String info;
     private BufferedImage facingDownImage;
@@ -30,11 +31,11 @@ public class Item extends GameObject implements Renderable, Interactable, Serial
     private int mapToSpawn;
     private ItemDef id;
 
-    public Item(float x, float y, String path, String info, int mts,ItemDef id) {
+    public Item(float x, float y, String path, String info, int mts) {
         super(x, y);
         this.mapToSpawn = mts;
         this.info = info;
-        this.id = id;
+        //this.id = id;
         try {
             facingDownImage = ImageIO.read(
                     getClass().getResourceAsStream(path)
@@ -102,6 +103,16 @@ public class Item extends GameObject implements Renderable, Interactable, Serial
 
     public ItemDef getID(){
         return this.id;
+    }
+
+    @Override
+    public Serializable save() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void load(Serializable obj) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }
