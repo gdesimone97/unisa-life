@@ -5,7 +5,7 @@
  */
 package game.GameObjects;
 
-import game.GameResources.Game;
+import gameSystem.Game;
 import java.awt.Rectangle;
 
 /**

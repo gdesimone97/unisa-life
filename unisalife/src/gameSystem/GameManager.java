@@ -30,7 +30,6 @@ public class GameManager {
     
     private GameManager() {
         game = new Game();
-        camera = new Camera(0, 0, player);
     }
     
     public static GameManager getInstance(){
@@ -56,7 +55,7 @@ public class GameManager {
 //        mm = MapManager.getInstance();
         player = Player.getIstance();
         booklet = BookletSingleton.getInstance();
-        
+        camera = new Camera(0, 0, player);
         QuestsManagerSingleton.getInstance();
         QuestsSingleton.getInstance();
         BookletSingleton.getInstance();

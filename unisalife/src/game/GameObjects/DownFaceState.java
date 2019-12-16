@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package game.GameObjects;
-import game.GameResources.Game;
+import gameSystem.Game;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 /**

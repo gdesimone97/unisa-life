@@ -5,19 +5,27 @@
  */
 package gameSystem;
 
-import static game.GameResources.Game.AMOUNTOFTICKS;
+import exam.question.Materia;
+import game.GameObjects.Item;
+import game.GameObjects.Position;
+import game.GameObjects.Professor;
+import game.GameResources.Map;
+import game.GameResources.TileMap;
 import gameSystem.keySettings.HandlerInput;
 import java.awt.Canvas;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
+import quests.ItemDef;
 
 /**
  *
  * @author 1997g
  */
 public class Game extends Canvas implements Runnable {
+    private Map[] maps = new Map[5];
+    private int actualMap;
     
     public static final int WIDTH = 128;
     public static final int HEIGHT = 128;
@@ -27,8 +35,9 @@ public class Game extends Canvas implements Runnable {
             HEIGHTSCREEN2 = HEIGHTSCREEN + 32,
             PLAYERSPEED = 32,
             ANIMATIONSPEED=4,
+            AMOUNTOFTICKS=30,
             DIMENSIONSPRITE = 32;
-    private int WIDTHMAP, HEIGHTMAP;
+    public static int WIDTHMAP, HEIGHTMAP;
     
     private boolean running = false;
     private final int FPS = 30;
@@ -39,6 +48,11 @@ public class Game extends Canvas implements Runnable {
     
     private GameStateManager gsm = GameStateManager.getInstance();
 	
+    public Map getActualMap(){
+        return maps[this.actualMap];
+    }
+    
+    
     
     @Override
     public void run() {
@@ -50,6 +64,21 @@ public class Game extends Canvas implements Runnable {
         long timer = System.currentTimeMillis();
         int updates = 0;
         int frames = 0;
+        TileMap t0 = new TileMap(32,288, 288);
+        t0.loadTiles("/Tilesets/PT.gif");
+        TileMap t1 = new TileMap(32, 288, 288);
+        t1.loadTiles("/Tilesets/PT.gif");
+        t0.loadMap("/Maps/map9.map");
+        t1.loadMap("/Maps/map9.map");
+        maps[0] = new Map(t0);
+        Position p= new Position(440,270);
+        maps[0].addObject(p,new Item(new Position(440,270), "/Sprites/calculator.png", ItemDef.calcolatrice.toString(),ItemDef.calcolatrice));
+        p=new Position(300,160);
+        maps[0].addObject(p,new Item(p, "/Sprites/note.png", ItemDef.appuntidimatematica1.toString(),ItemDef.appuntidimatematica1));
+        p=new Position(300,360);
+        maps[0].addObject(p,new Item(p, "/Sprites/note.png", ItemDef.appuntidimatematica2.toString(),ItemDef.appuntidimatematica2));
+        p=new Position(200,200);
+        maps[0].addObject(p,new Professor("Foggia",p, "/Sprites/foggia.png",Materia.matematica));
         while (running) {
             long now = System.nanoTime();
             delta += (now - lastTime) / ns;

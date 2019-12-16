@@ -5,7 +5,7 @@
  */
 package game.GameObjects;
 
-import game.GameResources.Game;
+import gameSystem.Game;
 import game.Interfaces.Tickable;
 
 /**
@@ -14,7 +14,7 @@ import game.Interfaces.Tickable;
  * @author simon
  */
 public class Camera implements Tickable {
-    private float x,y;
+    private int x,y;
     private Player player;
 
     /**
@@ -22,7 +22,7 @@ public class Camera implements Tickable {
      * @param x x starting position of camera
      * @param y y starting position of camera
      */
-    public Camera(float x,float y,Player p){
+    public Camera(int x,int y,Player p){
         this.x=x;
         this.y=y;
         player=p;
@@ -32,7 +32,7 @@ public class Camera implements Tickable {
      *
      * @param x
      */
-    public void setX(float x){
+    public void setX(int x){
         this.x=x;
     }
 
@@ -40,7 +40,7 @@ public class Camera implements Tickable {
      *
      * @param y
      */
-    public void setY(float y){
+    public void setY(int y){
         this.y=y;
     }
     

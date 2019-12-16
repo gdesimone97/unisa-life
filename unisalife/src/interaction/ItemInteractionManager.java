@@ -9,7 +9,8 @@ import game.GameObjects.GameInventorySingleton;
 import game.GameObjects.GameObject;
 import game.Interfaces.Interactable;
 import game.GameObjects.Item;
-import game.GameResources.Game;
+import gameSystem.Game;
+import gameSystem.GameManager;
 import language.*;
 import language.exceptions.FileTextManagerException;
 import language.exceptions.TextFinderException;
@@ -40,8 +41,8 @@ public class ItemInteractionManager implements InteractionManager {
             GameInventorySingleton.getInstance().addItem((Item) obj);
 
             // remove element from the the map
-            
-            Game.getGame().getActualMap().getObjectManager().remove(((Item)obj).getPosition());
+            Game g = GameManager.getInstance().getGame();
+            g.getActualMap().getObjectManager().remove(((Item)obj).getPosition());
         } catch (Exception ex) {
             // decide what to do when an error with string retriving occurs
         }

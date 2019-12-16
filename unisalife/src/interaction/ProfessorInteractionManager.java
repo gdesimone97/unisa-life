@@ -8,7 +8,7 @@ package interaction;
 import exam.Exam;
 import exam.question.Materia;
 import game.GameObjects.Professor;
-import game.GameResources.GameState;
+import gameSystem.GameState;
 import game.Interfaces.Interactable;
 import java.util.logging.Level;
 import java.util.logging.Logger;

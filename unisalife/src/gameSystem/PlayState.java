@@ -62,7 +62,7 @@ public class PlayState extends GameState {
     @Override
     public void render(Graphics2D g) {
         g.setColor(new Color(170,226,103));
-        g.fillRect(0, 0, game.GameResources.Game.WIDTHSCREEN, game.GameResources.Game.HEIGHTSCREEN2);
+        g.fillRect(0, 0, Game.WIDTHSCREEN, Game.HEIGHTSCREEN2);
         g.translate(camera.getX(), camera.getY());
         
         //render the player and the map

@@ -6,15 +6,18 @@
 package game.GameObjects;
 
 import game.GameResources.Animation;
-import game.GameResources.Game;
-import static game.GameResources.Game.ANIMATIONSPEED;
-import static game.GameResources.Game.DIMENSIONSPRITE;
-import game.GameResources.Handler;
-import game.GameResources.NotGameState;
-import game.GameResources.PlayState;
+import gameSystem.Game;
+
+
+import gameSystem.PlayState;
 import game.Interfaces.Tickable;
 import game.Interfaces.Interactable;
 import game.Interfaces.Renderable;
+import static gameSystem.Game.ANIMATIONSPEED;
+import static gameSystem.Game.DIMENSIONSPRITE;
+import gameSystem.GameManager;
+import gameSystem.GameStateManager;
+import gameSystem.PauseState;
 import java.util.LinkedList;
 import java.awt.image.BufferedImage;
 import java.awt.Graphics;
@@ -122,7 +125,7 @@ public class Player extends GameObject implements Tickable, Renderable {
     
     public static Player getIstance() {
         if (uniqueIstance == null) {
-            return new Player(new Position(50,50));
+            uniqueIstance = new Player(new Position(50,50));
         }
         return uniqueIstance;
     }
@@ -197,11 +200,13 @@ public class Player extends GameObject implements Tickable, Renderable {
         } else if (velY < 0) {
             face = new UpFaceState(this);
         }
-        collisions(Game.getGame().getActualMap().getObjectManager());
-        if (x + velX > 0 && x + velX < Game.getGame().getWidthMap() - Game.DIMENSIONSPRITE && nextMove == true) {
+        
+        Game g = GameManager.getInstance().getGame();
+        collisions(g.getActualMap().getObjectManager());
+        if (x + velX > 0 && x + velX < 900 - Game.DIMENSIONSPRITE && nextMove == true) {
             x += velX;
         }
-        if (y + velY > 0 && y + velY < Game.getGame().getHeightMap() - Game.DIMENSIONSPRITE && nextMove == true) {
+        if (y + velY > 0 && y + velY < 900 - Game.DIMENSIONSPRITE && nextMove == true) {
             y += velY;
         }
         //collisions(game.getActualMap().getList());
@@ -228,10 +233,11 @@ public class Player extends GameObject implements Tickable, Renderable {
                  System.out.print(t.mapPath);
                  Game.tileMap.loadTiles(t.tilePath);
                  */
-                    Game.getGame().updateActualMap(t.getMapDest());
+                   /* Game.getGame().updateActualMap(t.getMapDest());
                     Game.getGame().setWidthMap(Game.getGame().getActualMap().getTileMap().getWidth());
                     Game.getGame().setHeightMap(Game.getGame().getActualMap().getTileMap().getHeight());
                     Game.getGame().setHandler(new Handler());
+                    */
                     p.setX(t.getDestination().getX());
                     p.setY(t.getDestination().getY());
                 }
@@ -277,9 +283,10 @@ public class Player extends GameObject implements Tickable, Renderable {
         {
                 setVelX(0);
                 setVelY(0);
-                Game.getGame().setState(new NotGameState(Game.getGame()));
+                GameStateManager.getInstance().setState(PauseState.getInstance());
+                
                 ((Interactable) g).interact();
-                Game.getGame().setState(new PlayState(Game.getGame()));
+                GameStateManager.getInstance().setState(PlayState.getInstance());
                 
         }    
     }
