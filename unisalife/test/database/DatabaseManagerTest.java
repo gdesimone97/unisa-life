@@ -28,25 +28,26 @@ import saving.Saveable;
  * @author alfon
  */
 public class DatabaseManagerTest {
-    
-    public DatabaseManagerTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() throws FileNotSetException, IOException, FileNotFoundException, InvalidGameDataFormatException {
+
+    public DatabaseManagerTest()throws FileNotSetException, IOException, FileNotFoundException, InvalidGameDataFormatException {
         DatabaseManager dmb = DatabaseManager.getDatabaseManager();
         Populator p = new Populator("..//unisalife/src/database/populator/data.txt");
         p.populate();
+        
     }
-    
+
+    @BeforeClass
+    public static void setUpClass()  {
+    }
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -81,25 +82,23 @@ public class DatabaseManagerTest {
     @Test
     public void testGetObjectsFromLevel() throws Exception {
         System.out.println("getObjectsFromLevel");
-        int level = 0;
-        DatabaseManager instance = null;
-        HashMap<Destination, GameObject> expResult = null;
-        HashMap<Destination, GameObject> result = instance.getObjectsFromLevel(level);
+        int level = 1;
+        DatabaseManager instance = DatabaseManager.getDatabaseManager();
+        int expResult = 6;
+        int result = instance.getObjectsFromLevel(level).size();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
      * Test of getSubjects method, of class DatabaseManager.
      */
     @Test
-    public void testGetSubjects() {
+    public void testGetSubjects() throws FileNotSetException {
         System.out.println("getSubjects");
-        DatabaseManager instance = null;
-        List<Subject> expResult = null;
+        DatabaseManager instance = DatabaseManager.getDatabaseManager();
+        String expResult = "matematica";
         List<Subject> result = instance.getSubjects();
-        assertEquals(expResult, result);
+        assertTrue(expResult.equals(result.get(0).getInfo()));
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -107,7 +106,7 @@ public class DatabaseManagerTest {
     /**
      * Test of save method, of class DatabaseManager.
      */
-    @Test
+    //@Test
     public void testSave() throws Exception {
         System.out.println("save");
         List<Saveable> elems = null;
@@ -120,7 +119,7 @@ public class DatabaseManagerTest {
     /**
      * Test of load method, of class DatabaseManager.
      */
-    @Test
+    //@Test
     public void testLoad() {
         System.out.println("load");
         DatabaseManager instance = null;
@@ -134,7 +133,7 @@ public class DatabaseManagerTest {
     /**
      * Test of isSaved method, of class DatabaseManager.
      */
-    @Test
+    //@Test
     public void testIsSaved() {
         System.out.println("isSaved");
         DatabaseManager instance = null;
@@ -148,7 +147,7 @@ public class DatabaseManagerTest {
     /**
      * Test of close method, of class DatabaseManager.
      */
-    @Test
+    //@Test
     public void testClose() {
         System.out.println("close");
         DatabaseManager instance = null;
@@ -156,5 +155,5 @@ public class DatabaseManagerTest {
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
-    
+
 }

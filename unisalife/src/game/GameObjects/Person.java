@@ -22,6 +22,7 @@ public abstract class Person extends GameObject implements Renderable, Interacta
 
     public Person(float x, float y, String path) {
         super(x, y);
+        /*
         try {
             facingDownImage = ImageIO.read(
                     getClass().getResourceAsStream(path)
@@ -29,6 +30,7 @@ public abstract class Person extends GameObject implements Renderable, Interacta
         } catch (Exception e) {
             System.exit(1);
         }
+        */
     }
 
     @Override

@@ -14,7 +14,7 @@ import game.GameObjects.Professor;
 import java.util.HashMap;
 import java.util.List;
 import org.dizitart.no2.WriteResult;
-import static org.dizitart.no2.filters.Filters.eq;
+import static org.dizitart.no2.objects.filters.ObjectFilters.eq;
 import org.dizitart.no2.objects.ObjectFilter;
 import org.dizitart.no2.objects.ObjectRepository;
 import quests.quest.Quest;
@@ -43,7 +43,7 @@ public class DatabaseManager {
 
     public List<Quest> getQuestsFromLevel(int level) throws ObjectNotFoundException {
 
-        List<Quest> list = db.getDatabase().getRepository(Quest.class).find((ObjectFilter) eq("level", level)).toList();
+        List<Quest> list = db.getDatabase().getRepository(Quest.class).find(eq("level", level)).toList();
         if (list.size() <= 0) {
             throw new ObjectNotFoundException();
         }
@@ -69,7 +69,7 @@ public class DatabaseManager {
     }
 
     private Item findItem(String itemName) throws ObjectNotFoundException {
-        Item res = db.getDatabase().getRepository(Item.class).find((ObjectFilter) eq("name", itemName)).firstOrDefault();
+        Item res = db.getDatabase().getRepository(Item.class).find(eq("name", itemName)).firstOrDefault();
         if (res == null) {
             throw new ObjectNotFoundException();
         }
@@ -77,7 +77,7 @@ public class DatabaseManager {
     }
 
     private Professor findProfessor(Subject s) throws ObjectNotFoundException {
-        Professor prof = db.getDatabase().getRepository(Professor.class).find((ObjectFilter) eq("subject", s.getInfo())).firstOrDefault();
+        Professor prof = db.getDatabase().getRepository(Professor.class).find(eq("subject", s.getInfo())).firstOrDefault();
         if (prof == null) {
             throw new ObjectNotFoundException();
         }
