@@ -30,7 +30,7 @@ public abstract class QuestionFactory {
     */
     public abstract Questions getQuestions();
 
-    public Subject getMateria() {
+    public Subject getSubject() {
         return subject;
     }
     

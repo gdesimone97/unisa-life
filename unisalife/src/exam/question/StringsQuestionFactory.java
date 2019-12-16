@@ -5,6 +5,7 @@
  */
 package exam.question;
 
+import exam.booklet.Subject;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -28,8 +29,8 @@ public class StringsQuestionFactory extends QuestionFactory {
     * The constructor creates an instance of the object Questions and starts the parsing of the strings
     * @param materia is the subject in which we want questions
     */
-    public StringsQuestionFactory(Materia materia) throws FileTextManagerException, TextFinderException {
-        super(materia);
+    public StringsQuestionFactory(Subject subject) throws FileTextManagerException, TextFinderException {
+        super(subject);
         questions = new Questions();
         this.parseQuestions();
     }
@@ -48,7 +49,7 @@ public class StringsQuestionFactory extends QuestionFactory {
     * so that it can create an object Question, made of Answers also, and add to the object Questions
     */
     private void parseQuestions() throws FileTextManagerException, TextFinderException {
-        List<String> strList = FileTextManager.getFileTextManager().getString(super.getMateria());
+        List<String> strList = FileTextManager.getFileTextManager().getString(super.getSubject());
         Scanner sc;
         boolean count;
         Integer level;

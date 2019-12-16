@@ -9,6 +9,9 @@ package database;
  *
  * @author alfon
  */
-public class database {
+public class ObjectNotFoundException extends Exception {
+
+    public ObjectNotFoundException() {
+    }
     
 }

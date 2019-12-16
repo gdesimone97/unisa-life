@@ -6,6 +6,7 @@
 package game.GameResources;
 
 import exam.booklet.BookletSingleton;
+import exam.booklet.Subject;
 import game.GameObjects.Teleport;
 import game.GameObjects.Player;
 import game.GameObjects.Person;
@@ -121,7 +122,7 @@ public class Game extends Canvas implements Runnable, Saveable {
         maps[0].addObject(new Item(300, 160, "/Sprites/note.png", ItemDef.appuntidimatematica1.toString(), 0,ItemDef.appuntidimatematica1));
         maps[0].addObject(new Item(300, 360, "/Sprites/note.png", ItemDef.appuntidimatematica2.toString(), 0,ItemDef.appuntidimatematica2));
 
-        maps[0].addObject(new Professor("Foggia", 200, 200, "/Sprites/foggia.png",Materia.matematica));
+        maps[0].addObject(new Professor("Foggia", 200, 200, "/Sprites/foggia.png",new Subject("matematica")));
         maps[0].addObject(new Block(256+16,208+16,160,128)); //blocco E
         maps[0].addObject(new Block(528+16,400+16,160,128)); //F
         maps[0].addObject(new Block(160+16,592+16,160,128));  //D

@@ -66,7 +66,7 @@ public class QuestsManagerSingleton implements QuestMessages {
             String currentQuest = q.getSubject().toString();
             // prendere tutti gli elementi
             // elemento per elemento, aggiungerlo alla map associando la quest corretta
-            for(String item: q.getItemList()){
+            for (String item : q.getItemList()) {
                 this.item.put(item, currentQuest);
             }
         }
