@@ -11,12 +11,12 @@ import game.GameObjects.Destination;
 import game.GameObjects.GameObject;
 import game.GameObjects.Item;
 import game.GameObjects.Professor;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import org.dizitart.no2.WriteResult;
 import static org.dizitart.no2.filters.Filters.eq;
-import org.dizitart.no2.objects.Cursor;
 import org.dizitart.no2.objects.ObjectFilter;
+import org.dizitart.no2.objects.ObjectRepository;
 import quests.quest.Quest;
 
 /**
@@ -41,15 +41,11 @@ public class DatabaseManager {
 
     public List<Quest> getQuestsFromLevel(int level) throws ObjectNotFoundException {
 
-        Cursor<Quest> c = db.getDatabase().getRepository(Quest.class).find((ObjectFilter) eq("level", level));
-        if (c.size() <= 0) {
+        List<Quest> list = db.getDatabase().getRepository(Quest.class).find((ObjectFilter) eq("level", level)).toList();
+        if (list.size() <= 0) {
             throw new ObjectNotFoundException();
         }
-        ArrayList<Quest> returnList = new ArrayList<>();
-        for (Quest q : c) {
-            returnList.add(q);
-        }
-        return returnList;
+        return list;
     }
 
     public HashMap<Destination, GameObject> getObjectsFromLevel(int level) throws ObjectNotFoundException {
@@ -86,13 +82,23 @@ public class DatabaseManager {
     }
 
     public List<Subject> getSubjects() {
-        return null;
+        return db.getDatabase().getRepository(Subject.class).find().toList();
     }
 
-    public void save(List<Saveable> elems) {
+    public void save(List<Saveable> elems) throws ErrorWhileSavingException {
+       ObjectRepository repo =  db.getDatabase().getRepository(Saveable.class);
+       repo.drop();
+       WriteResult ws = repo.insert(elems.toArray());
+       if(ws.getAffectedCount()!=elems.size())
+           throw new ErrorWhileSavingException();
+        
     }
 
     public List<Saveable> load() {
-        return null;
+        return db.getDatabase().getRepository(Saveable.class).find().toList();
+    }
+    
+    public boolean isSaved(){
+        return this.load().size() >= 0 ;
     }
 }
