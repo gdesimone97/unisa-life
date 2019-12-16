@@ -27,12 +27,14 @@ public class DatabaseManager {
 
     private static DatabaseManager instance = null;
     private Database db;
+    private final String path = "..//db/game.db";
 
-    private DatabaseManager() {
+    private DatabaseManager() throws FileNotSetException {
+        Database.setPath(path);
         this.db = Database.getInstance();
     }
 
-    public static synchronized DatabaseManager getDatabaseManager() {
+    public static synchronized DatabaseManager getDatabaseManager() throws FileNotSetException {
         if (DatabaseManager.instance == null) {
             DatabaseManager.instance = new DatabaseManager();
         }

@@ -19,7 +19,7 @@ import saving.Saveable;
  */
 public class Database {
 
-    private static String path;
+    private static String path = null;
     private Nitrite db;
     private static Database instance;
 
@@ -45,7 +45,9 @@ public class Database {
         }
     }
 
-    public static Database getInstance() {
+    public static Database getInstance() throws FileNotSetException {
+        if (Database.getPath() == null)
+            throw new FileNotSetException();
         if (Database.instance == null) {
             Database.instance = new Database();
         }
