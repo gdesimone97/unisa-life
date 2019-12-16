@@ -5,6 +5,8 @@
  */
 package exam.question;
 
+import exam.booklet.Subject;
+
 /**
  * Factory Method abstract class: specifies the methods to be implemented if questions are needed to be 
  * loaded in the memory of the program. The class has one abstract method getQuestions that changes its
@@ -12,14 +14,14 @@ package exam.question;
  * @author 1997g
  */
 public abstract class QuestionFactory {
-    private Materia materia;
+    private Subject subject;
     
     /**
     * The constructor initializes the QuestionFactory
     * @params matter is the specific matter where the set of questions is needed
     */
-    public QuestionFactory(Materia materia) {
-        this.materia = materia;
+    public QuestionFactory(Subject subject) {
+        this.subject = subject;
     }
     
     /** 
@@ -28,8 +30,8 @@ public abstract class QuestionFactory {
     */
     public abstract Questions getQuestions();
 
-    public Materia getMateria() {
-        return materia;
+    public Subject getMateria() {
+        return subject;
     }
     
     
