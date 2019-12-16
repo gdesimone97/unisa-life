@@ -1,2 +1,5 @@
 subject %matematica
 item %4%3%ciao%ciao%4
+quest %1%matematica1%calcolatrice%appuntidimatematica1
+quest %1%fisica1%appuntidifisica1%quartieri
+quest %1%fondamentidiprorgammazione%pc%deitel

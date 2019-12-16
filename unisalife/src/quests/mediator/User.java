@@ -18,7 +18,7 @@ public abstract class User {
     /**
      * Is an instance of the mediator
      */
-    protected QuestsManagerSingleton mediator;
+    protected transient QuestsManagerSingleton mediator;
 
     /**
      * Is a string who represents the user
