@@ -20,6 +20,7 @@ import java.util.LinkedList;
 public class Map {
     private TileMap tMap;
     private LinkedList<GameObject> mapObjects;
+    //private ObjectManager mapObjects = new ObjectManager();
     
     
     /**

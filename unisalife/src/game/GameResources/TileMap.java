@@ -75,29 +75,26 @@ public class TileMap {
 				getClass().getResourceAsStream(s)
 			);
 			numTilesOriz = tileset.getWidth() / tileSize;
-                        
+                        numTilesVert = tileset.getHeight()/tileSize;
                         //numTilesVert = tileset.getHeight() / tileSize
-			tiles = new Tile[2][numTilesOriz];
+			tiles = new Tile[numTilesVert][numTilesOriz];
 			
 			BufferedImage subimage;
 			for(int col = 0; col < numTilesOriz; col++)     
                         {
+                            
+                            for(int row = 0;row < numTilesVert;row++){
 				subimage = tileset.getSubimage(
 							col * tileSize,
-							0,
+							row * tileSize,
 							tileSize,
 							tileSize
 						);
-				tiles[0][col] = new Tile(subimage);
+				tiles[row][col] = new Tile(subimage);
                                // MatrixToTiles.put(new Tuple(row,col),)
                                 
-				subimage = tileset.getSubimage(
-							col * tileSize,
-							tileSize,
-							tileSize,
-							tileSize
-						);
-				tiles[1][col] = new Tile(subimage);
+				
+                            }
 			}
 			
 		}

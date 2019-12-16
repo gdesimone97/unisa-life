@@ -76,6 +76,7 @@ public class GuiManager {
         SwingUtilities.invokeLater(() -> gameframe.pack());
         gameframe.setVisible(true);
         SwingUtilities.invokeLater(() -> game.setVisible(true));
+        
         game.start();
     }
 

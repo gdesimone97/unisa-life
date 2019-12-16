@@ -110,12 +110,12 @@ public class Game extends Canvas implements Runnable, Saveable {
     }
 
     private void initResources() {
-        TileMap t0 = new TileMap(16, 960, 960);
-        t0.loadTiles("/Tilesets/ExtTileset.gif");
-        TileMap t1 = new TileMap(16, 960, 960);
-        t1.loadTiles("/Tilesets/ExtTileset.gif");
-        t0.loadMap("/Maps/ExtMap.map");
-        t1.loadMap("/Maps/ExtMap.map");
+        TileMap t0 = new TileMap(32,288, 288);
+        t0.loadTiles("/Tilesets/PT.gif");
+        TileMap t1 = new TileMap(32, 288, 288);
+        t1.loadTiles("/Tilesets/PT.gif");
+        t0.loadMap("/Maps/map9.map");
+        t1.loadMap("/Maps/map9.map");
         maps[0] = new Map(t0);
 
         maps[0].addObject(new Item(440, 270, "/Sprites/calculator.png", ItemDef.calcolatrice.toString(), 0,ItemDef.calcolatrice));
