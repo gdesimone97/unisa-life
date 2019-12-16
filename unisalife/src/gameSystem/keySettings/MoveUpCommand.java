@@ -12,7 +12,12 @@ package gameSystem.keySettings;
 class MoveUpCommand extends KeyCommand {
 
     @Override
-    protected void execute() {
+    protected void visitPlayState() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    protected void visitNotPlayState() {
     }
 
 }

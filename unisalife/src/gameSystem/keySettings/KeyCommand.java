@@ -9,7 +9,7 @@ package gameSystem.keySettings;
  *
  * @author Giuseppe De Simone
  */
-abstract class KeyCommand {
+public abstract class KeyCommand {
 
     private Player player = player.getPalyer();
 
