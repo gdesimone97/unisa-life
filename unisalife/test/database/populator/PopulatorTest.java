@@ -8,6 +8,8 @@ package database.populator;
 
 import database.Database;
 import database.FileNotSetException;
+import exam.booklet.Saveable;
+import exam.booklet.Subject;
 import game.GameObjects.Item;
 import static org.junit.Assert.assertTrue;
 import org.junit.Test;
@@ -31,6 +33,11 @@ public class PopulatorTest {
         System.out.println("populate");
         Populator p = new Populator("..//unisalife/src/database/populator/data.txt");
         p.populate();
+        for(String o: Database.getInstance().getDatabase().listRepositories())
+            System.out.println(o);
+        
+        assertTrue(Database.getInstance().getDatabase().hasRepository(Subject.class));
+
     }
     
     

@@ -26,7 +26,6 @@ public class Populator {
     
     
     private final String filepath;
-    private DatabaseManager dbms;
     private Database db;
     
     public Populator( String filepath ) throws FileNotSetException{
@@ -69,6 +68,8 @@ public class Populator {
             line = r.readLine();
             
         }
+        
+        db.close();
         
     }
     
