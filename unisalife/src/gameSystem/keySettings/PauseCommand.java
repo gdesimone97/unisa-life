@@ -5,6 +5,7 @@
  */
 package gameSystem.keySettings;
 
+import gameSystem.GameStateManager;
 import gameSystem.PauseState;
 import gameSystem.PlayState;
 
@@ -14,16 +15,16 @@ import gameSystem.PlayState;
  */
 public class PauseCommand extends KeyCommand {
 
+    private final GameStateManager stateManager = GameStateManager.getInstance();
+
     @Override
     public void visitPlayState(PlayState playState) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        stateManager.setState(PauseState.getInstance());
     }
 
     @Override
     public void visitPauseState(PauseState pauseState) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        stateManager.setState(PlayState.getInstance());
     }
-
-    
 
 }
