@@ -34,10 +34,15 @@ public class PlayState extends GameState {
         }
         return instance;
     }
+    
+    private PlayState() {
+        init();
+    }
 
     @Override
     public void init() {
         gameManager = GameManager.getInstance();
+        player = Player.getIstance();
         camera = gameManager.getCamera();
         height = gameManager.getGame().HEIGHTSCREEN2;
         width = gameManager.getGame().WIDTHSCREEN;

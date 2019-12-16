@@ -40,7 +40,6 @@ public class Player extends GameObject implements Tickable, Renderable {
     protected FaceState face;
     private static Player uniqueIstance = null;
     private boolean nextMove = true;
-    private Position p;
     
     /*public Player(float x,float y,SubjectEnum i){
      super(x,y,i);
@@ -48,6 +47,7 @@ public class Player extends GameObject implements Tickable, Renderable {
     private Player(Position p) {
         super(p);
         face = new DownFaceState(this);
+        initialize(32, "Ciao");
         
         /*try {
          image = ImageIO.read(
@@ -88,7 +88,7 @@ public class Player extends GameObject implements Tickable, Renderable {
      *
      */
     
-    public void initialize(int skin,String name){
+    private void initialize(int skin,String name){
         BufferedImage texturePlayer[] = new BufferedImage[12];
         try {
             BufferedImage characterImage = ImageIO.read(
@@ -115,8 +115,8 @@ public class Player extends GameObject implements Tickable, Renderable {
             new Animation(ANIMATIONSPEED, texturePlayer[4], texturePlayer[5]),
             new Animation(ANIMATIONSPEED, texturePlayer[10], texturePlayer[11]),
             new Animation(ANIMATIONSPEED, texturePlayer[1], texturePlayer[2]));
-        setX(50);
-        setY(50);
+        p.setX(50);
+        p.setY(50);
         
     }
     
