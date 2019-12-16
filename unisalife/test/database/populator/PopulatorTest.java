@@ -33,6 +33,7 @@ public class PopulatorTest {
         System.out.println("populate");
         Populator p = new Populator("..//unisalife/src/database/populator/data.txt");
         p.populate();
+        System.out.println("Population finished");
         for(String o: Database.getInstance().getDatabase().listRepositories())
             System.out.println(o);
         

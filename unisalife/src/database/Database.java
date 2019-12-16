@@ -46,8 +46,9 @@ public class Database {
     }
 
     public static Database getInstance() throws FileNotSetException {
-        if (Database.getPath() == null)
+        if (Database.getPath() == null) {
             throw new FileNotSetException();
+        }
         if (Database.instance == null) {
             Database.instance = new Database();
         }
@@ -55,12 +56,19 @@ public class Database {
     }
 
     public Nitrite getDatabase() {
+        if (this.db.isClosed()) {
+            this.db = this.db = Nitrite.builder().compressed().filePath(Database.getPath()).openOrCreate("group08", "hntbae");
+            init();
+        }
         return this.db;
     }
 
-    public void close(){
+    public void close() {
         this.db.commit();
         this.db.close();
     }
-    
+
+    public void clear() {
+
+    }
 }
