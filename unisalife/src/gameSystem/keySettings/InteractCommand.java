@@ -5,6 +5,9 @@
  */
 package gameSystem.keySettings;
 
+import gameSystem.PauseState;
+import gameSystem.PlayState;
+
 /**
  *
  * @author Giuseppe De Simone
@@ -12,8 +15,14 @@ package gameSystem.keySettings;
 public class InteractCommand extends KeyCommand {
 
     @Override
-    protected void execute() {
+    public void visitPlayState(PlayState playState) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public void visitPauseState(PauseState pauseState) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 
 }

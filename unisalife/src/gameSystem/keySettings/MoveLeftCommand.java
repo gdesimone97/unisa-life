@@ -5,6 +5,9 @@
  */
 package gameSystem.keySettings;
 
+import gameSystem.PauseState;
+import gameSystem.PlayState;
+
 /**
  *
  * @author Giuseppe De Simone
@@ -12,7 +15,12 @@ package gameSystem.keySettings;
 public class MoveLeftCommand extends KeyCommand {
 
     @Override
-    protected void execute() {
+    public void visitPlayState(PlayState playState) {
+        player.setVelX(-speed);
+    }
+
+    @Override
+    public void visitPauseState(PauseState pauseState) {
 
     }
 

@@ -5,15 +5,24 @@
  */
 package gameSystem.keySettings;
 
+import gameSystem.PauseState;
+import gameSystem.PlayState;
+
 /**
  *
  * @author Giuseppe De Simone
  */
-public class DoNothingCommand extends KeyCommand{
+public class DoNothingCommand extends KeyCommand {
 
     @Override
-    protected void execute() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void visitPlayState(PlayState playState) {
+        player.setVelX(0);
+        player.setVelY(0);
     }
-    
+
+    @Override
+    public void visitPauseState(PauseState pauseState) {
+
+    }
+
 }

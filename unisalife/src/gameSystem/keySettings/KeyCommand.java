@@ -5,17 +5,22 @@
  */
 package gameSystem.keySettings;
 
+import game.GameObjects.Player;
+import gameSystem.Game;
+import gameSystem.PauseState;
+import gameSystem.PlayState;
+
 /**
  *
  * @author Giuseppe De Simone
  */
 public abstract class KeyCommand {
 
-    private Player player = player.getPalyer();
+    protected final int speed = Game.PLAYERSPEED;
+    protected final Player player = Player.getIstance();
 
-    protected abstract void execute();
+    public abstract void visitPlayState(PlayState playState);
 
-    public Player getPlayer() {
-        return player;
-    }
+    public abstract void visitPauseState(PauseState pauseState);
+
 }

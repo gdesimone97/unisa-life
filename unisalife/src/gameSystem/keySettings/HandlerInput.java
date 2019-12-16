@@ -5,6 +5,8 @@
  */
 package gameSystem.keySettings;
 
+import gameSystem.GameState;
+import gameSystem.GameStateManager;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
@@ -21,18 +23,22 @@ public class HandlerInput extends KeyAdapter {
     private final KeyCommand interactCommand = new InteractCommand();
     private final KeyCommand pauseCommand = new PauseCommand();
     private final KeyCommand doNothing = new DoNothingCommand();
+    private final GameStateManager stateManager = GameStateManager.getInstance();
     private final SettingsManager settingsManager = SettingsManager.getSettingsManager();
 
     @Override
     public void keyReleased(KeyEvent e) {
-        doNothing.execute();
+        GameState state = stateManager.getState();
+        state.handleInput(doNothing);
+
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
-        KeyCommand cmd  = selectCommand(e);
-        if(cmd != null){
-            cmd.execute();
+        KeyCommand cmd = selectCommand(e);
+        if (cmd != null) {
+            GameState state = stateManager.getState();
+            state.handleInput(cmd);
         }
     }
 

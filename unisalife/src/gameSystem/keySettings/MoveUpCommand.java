@@ -5,6 +5,9 @@
  */
 package gameSystem.keySettings;
 
+import gameSystem.PauseState;
+import gameSystem.PlayState;
+
 /**
  *
  * @author Giuseppe De Simone
@@ -12,12 +15,14 @@ package gameSystem.keySettings;
 class MoveUpCommand extends KeyCommand {
 
     @Override
-    protected void visitPlayState() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void visitPlayState(PlayState playState) {
+        player.setVelY(-speed);
     }
 
     @Override
-    protected void visitNotPlayState() {
+    public void visitPauseState(PauseState pauseState) {
     }
+
+
 
 }
