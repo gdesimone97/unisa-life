@@ -34,11 +34,11 @@ public class GameStateManager {
         return gm;
     }
     
-    public void update() {
-        gm.update();
+    public void tick() {
+        gm.tick();
     }
     
-    public void draw(Graphics2D g) {
-        gm.draw(g);
+    public void render(Graphics2D g) {
+        gm.render(g);
     }
 }

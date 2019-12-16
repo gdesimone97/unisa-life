@@ -5,6 +5,7 @@
  */
 package gameSystem;
 
+import static game.GameResources.Game.AMOUNTOFTICKS;
 import gameSystem.keySettings.HandlerInput;
 import java.awt.Canvas;
 import java.awt.Graphics2D;
@@ -37,35 +38,31 @@ public class Game extends Canvas implements Runnable {
     private GameStateManager gsm = GameStateManager.getInstance();
 	
     
-        @Override
+    @Override
     public void run() {
         init();
-
-        long start;
-        long elapsed;
-        long wait;
-
-        // game loop
+        this.requestFocus();
+        long lastTime = System.nanoTime();
+        double ns = 1000000000 / AMOUNTOFTICKS;
+        double delta = 0;
+        long timer = System.currentTimeMillis();
+        int updates = 0;
+        int frames = 0;
         while (running) {
-            start = System.nanoTime();
-
-            update();
-            draw();
-            drawToScreen();
-
-            elapsed = System.nanoTime() - start;
-            
-            System.out.println("CIAO" + elapsed);
-
-            wait = TARGET_TIME - elapsed / 1000000;
-            if (wait < 0) {
-                wait = TARGET_TIME;
+            long now = System.nanoTime();
+            delta += (now - lastTime) / ns;
+            lastTime = now;
+            while (delta >= 1) {
+                tick();
+                updates++;
+                delta--;
             }
-
-            try {
-                Thread.sleep(wait);
-            } catch (Exception e) {
-                e.printStackTrace();
+            render();
+            frames++;
+            if (System.currentTimeMillis() - timer > 1000) {
+                timer += 1000;
+                frames = 0;
+                updates = 0;
             }
         }
     }
@@ -77,18 +74,11 @@ public class Game extends Canvas implements Runnable {
         this.addKeyListener(new HandlerInput());
     }
     
-    private void update() {
-        gsm.update();
+    private void tick() {
+        gsm.tick();
     }
     
-    private void draw() {
-        gsm.draw(g);
+    private void render() {
+        gsm.render(g);
     }
-    
-    private void drawToScreen() {
-//        Graphics g2 = getGraphics();
-//        g2.drawImage(image, 0, 0, WIDTH * SCALE, HEIGHT2 * SCALE, null);
-//        g2.dispose();
-    }
-
 }
