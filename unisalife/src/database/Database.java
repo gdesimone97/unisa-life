@@ -5,16 +5,20 @@
  */
 package database;
 
-
+import game.GameObjects.Item;
+import game.GameObjects.Professor;
+import static org.dizitart.no2.IndexOptions.indexOptions;
+import org.dizitart.no2.IndexType;
 import org.dizitart.no2.Nitrite;
-
+import quests.quest.Quest;
+import saving.Saveable;
 
 /**
  *
  * @author alfon
  */
 public class Database {
-    
+
     private static String path;
     private Nitrite db;
     private static Database instance;
@@ -26,19 +30,30 @@ public class Database {
     public static void setPath(String path) {
         Database.path = path;
     }
-    
-    private Database(){
-        this.db =  Nitrite.builder().compressed().filePath(Database.getPath()).openOrCreate("group08", "hntbae");
+
+    private Database() {
+        this.db = Nitrite.builder().compressed().filePath(Database.getPath()).openOrCreate("group08", "hntbae");
+        init();
     }
-    
-    public static Database getInstance(){
-        if(Database.instance==null)
+
+    private void init() {
+        if (this.db.listRepositories().size() <= 0) {
+            db.getRepository(Item.class).createIndex("name", indexOptions(IndexType.Unique));
+            db.getRepository(Professor.class).createIndex("subject", indexOptions(IndexType.Unique));
+            db.getRepository(Quest.class).createIndex("level", indexOptions(IndexType.NonUnique));
+            db.getRepository(Saveable.class);
+        }
+    }
+
+    public static Database getInstance() {
+        if (Database.instance == null) {
             Database.instance = new Database();
+        }
         return instance;
     }
-    
-    public Nitrite getDatabase(){
+
+    public Nitrite getDatabase() {
         return this.db;
     }
-    
+
 }
