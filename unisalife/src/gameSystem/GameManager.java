@@ -50,12 +50,14 @@ public class GameManager {
     }
     
     public void initGame() {
+        player = Player.getIstance();
+        camera = new Camera(0, 0, player);
+        
         gsm = GameStateManager.getInstance();
         gsm.setState(PlayState.getInstance());
 //        mm = MapManager.getInstance();
-        player = Player.getIstance();
         booklet = BookletSingleton.getInstance();
-        camera = new Camera(0, 0, player);
+        
         QuestsManagerSingleton.getInstance();
         QuestsSingleton.getInstance();
         BookletSingleton.getInstance();
@@ -81,7 +83,6 @@ public class GameManager {
     public Camera getCamera() {
         return camera;
     }
-    
     
     public static void main(String[] args) {
         // TODO code application logic here

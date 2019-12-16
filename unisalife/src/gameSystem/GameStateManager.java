@@ -22,10 +22,6 @@ public class GameStateManager {
         return instance;
     }
     
-    public void GameStateManager() {
-        gs = PlayState.getInstance();
-    }
-    
     public void setState(GameState state) {
         gs = state;
     }
