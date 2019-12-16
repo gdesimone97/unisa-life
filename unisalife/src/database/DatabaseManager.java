@@ -15,7 +15,6 @@ import java.util.HashMap;
 import java.util.List;
 import org.dizitart.no2.WriteResult;
 import static org.dizitart.no2.objects.filters.ObjectFilters.eq;
-import org.dizitart.no2.objects.ObjectFilter;
 import org.dizitart.no2.objects.ObjectRepository;
 import quests.quest.Quest;
 
