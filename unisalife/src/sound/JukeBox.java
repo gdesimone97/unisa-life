@@ -6,8 +6,14 @@
 package sound;
 
 import java.io.BufferedInputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.HashMap;
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
@@ -21,17 +27,42 @@ import javax.sound.sampled.UnsupportedAudioFileException;
  *
  * @author Davide e Virginia
  */
-public class JukeBox {
+public class JukeBox implements Serializable{
     
-    private static HashMap<String,Clip> clips;
+    private static HashMap<String,Clip> sounds;
+    private static HashMap<String,Clip> audios;
     private static int frame;
+    private static boolean soundIsActive;
+    private static boolean audioIsActive;
+    private static final String pathFileSounds = "";
+    private static final String pathFileAudios = "";
     
     public static void JukeBox() {
-        clips = new HashMap<>();
+        try{
+        sounds = readFile(pathFileSounds);
+        audios = readFile(pathFileAudios);
+        }catch (Exception ex){
+            System.out.println("Error loading track audio");
+        }
         frame = 0;
+        soundIsActive = true;
+        audioIsActive = true;
+        
     }
     
-    public static void load(String path, String key) {
+    /**
+     * 
+     * @param path
+     * @param key
+     * @param sound if true is a sound, if false is an audio
+     */
+    public static void load(String path, String key, boolean sound ) {
+        HashMap<String,Clip> clips;
+        if(sound)
+            clips = sounds;
+        else
+            clips = audios;
+        
         if (clips.get(key) != null) {
             return;
         }
@@ -57,13 +88,36 @@ public class JukeBox {
         } catch (IOException | LineUnavailableException | UnsupportedAudioFileException e) {
             e.printStackTrace();
         }
-    }   
-    
-    public static void play(String s) {
-        play(s, frame);
     }
 
-    private static void play(String s, int i) {
+    public boolean isSoundIsActive() {
+        return soundIsActive;
+    }
+
+    public boolean isAudioIsActive() {
+        return audioIsActive;
+    }
+
+    public void setSoundIsActive(boolean soundIsActive) {
+        this.soundIsActive = soundIsActive;
+    }
+
+    public void setAudioIsActive(boolean audioIsActive) {
+        this.audioIsActive = audioIsActive;
+    }
+    
+    
+    public static void play(String s, boolean sound) {
+        play(s, frame, sound);
+    }
+
+    private static void play(String s, int i, boolean sound) {
+        HashMap<String,Clip> clips;
+        if(sound)
+            clips = sounds;
+        else
+            clips = audios;
+        
         Clip c = clips.get(s);
         if (c == null) {
             return;
@@ -77,7 +131,14 @@ public class JukeBox {
         }
     }
 
-    public static void stop(String s) {
+    public static void stop(String s, boolean sound) {
+        
+        HashMap<String,Clip> clips;
+        if(sound)
+            clips = sounds;
+        else
+            clips = audios;
+        
         if (clips.get(s) == null) {
             return;
         }
@@ -86,27 +147,12 @@ public class JukeBox {
         }
     }
 
-    public static void resume(String s) {
-        if (clips.get(s).isRunning()) {
-            return;
-        }
-        clips.get(s).start();
-    }
-
-    public static void resumeLoop(String s) {
-        Clip c = clips.get(s);
-        if (c == null) {
-            return;
-        }
-        c.loop(Clip.LOOP_CONTINUOUSLY);
-    }
-
     public static void loop(String s) {
-        loop(s, frame, frame, clips.get(s).getFrameLength() - 1);
+            loop(s, frame, frame, audios.get(s).getFrameLength() - 1);
     }
 
     public static void loop(String s, int frame) {
-        loop(s, frame, JukeBox.frame, clips.get(s).getFrameLength() - 1);
+            loop(s, frame, JukeBox.frame, audios.get(s).getFrameLength() - 1);        
     }
 
     public static void loop(String s, int start, int end) {
@@ -114,7 +160,7 @@ public class JukeBox {
     }
 
     public static void loop(String s, int frame, int start, int end) {
-        Clip c = clips.get(s);
+        Clip c = audios.get(s);
         if (c == null) {
             return;
         }
@@ -126,24 +172,28 @@ public class JukeBox {
         c.loop(Clip.LOOP_CONTINUOUSLY);
     }
 
-    public static void setPosition(String s, int frame) {
-        clips.get(s).setFramePosition(frame);
+
+    public static void close(String s, boolean sound) {
+        
+        HashMap<String,Clip> clips;
+        if(sound){
+            stop(s,sound);
+            sounds.get(s).close();
+        }
+        else{
+            stop(s,sound);
+            audios.get(s).close();
+        }
     }
 
-    public static int getFrames(String s) {
-        return clips.get(s).getFrameLength();
-    }
-
-    public static int getPosition(String s) {
-        return clips.get(s).getFramePosition();
-    }
-
-    public static void close(String s) {
-        stop(s);
-        clips.get(s).close();
-    }
-
-    public static void setVolume(String s, float f) {
+    public static void setVolume(String s, float f, boolean sound) {
+        
+        HashMap<String,Clip> clips;
+        if(sound)
+            clips = sounds;
+        else
+            clips = audios;
+        
         Clip c = clips.get(s);
         if (c == null) {
             return;
@@ -151,14 +201,24 @@ public class JukeBox {
         FloatControl vol = (FloatControl) c.getControl(FloatControl.Type.MASTER_GAIN);
         vol.setValue(f);
     }
-
-    public static boolean isPlaying(String s) {
-        Clip c = clips.get(s);
-        if (c == null) {
-            return false;
+    
+    public void updateFile(String path, boolean sound) throws FileNotFoundException, IOException{
+        
+         try (ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(path))) {
+            if(sound)
+                return;
+                //sounds.writeObject();
+            else
+                return;
+                //audios.writeObject();
         }
-        return c.isRunning();
+    
     }
-
+    
+    public static HashMap<String,Clip> readFile(String path) throws Exception{
+        try (ObjectInputStream is = new ObjectInputStream(new FileInputStream(path))) {
+            return (HashMap<String, Clip>) is.readObject();
+        }
+    }
 }
 
