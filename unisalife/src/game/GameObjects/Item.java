@@ -29,10 +29,10 @@ public class Item extends GameObject implements Renderable, Interactable, Serial
     private LocalDateTime taken;
     private int mapToSpawn;
     private ItemDef id;
+    private Position p;
 
-    public Item(float x, float y, String path, String info, int mts,ItemDef id) {
-        super(x, y);
-        this.mapToSpawn = mts;
+    public Item(Position p,String path, String info,ItemDef id) {
+        super(p);
         this.info = info;
         this.id = id;
         try {
@@ -61,9 +61,7 @@ public class Item extends GameObject implements Renderable, Interactable, Serial
         return id.compareTo(o.getID());
     }
 
-    public int getMapToSpawn() {
-        return this.mapToSpawn;
-    }
+    
 
     public void setTaken() {
         this.taken = LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS);
@@ -91,7 +89,7 @@ public class Item extends GameObject implements Renderable, Interactable, Serial
 
     @Override
     public void render(Graphics g) {
-        g.drawImage(facingDownImage, (int) x, (int) y, width-10, height-10, null);
+        g.drawImage(facingDownImage, p.getX(),p.getY(), width, height, null);
     }
 
     @Override

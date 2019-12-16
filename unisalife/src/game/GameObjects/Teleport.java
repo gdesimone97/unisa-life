@@ -5,7 +5,7 @@
  */
 package game.GameObjects;
 
-import game.GameObjects.Destination;
+import game.GameObjects.Position;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.LinkedList;
@@ -17,7 +17,7 @@ import java.util.LinkedList;
 public class Teleport extends GameObject {
 
     private int mapDest;
-    private Destination d;
+    private Position d;
 
     /**
      **Class Teleport represents a point in the map that allows the player to
@@ -31,7 +31,7 @@ public class Teleport extends GameObject {
      * of game.
      * @param d destination in terms of x and y of the player in the new map
      */
-    public Teleport(float x, float y, String t, int map, Destination d) {
+    public Teleport(float x, float y, String t, int map, Position d) {
         super(x, y);
         mapDest = map;
         this.d = d;
@@ -59,7 +59,7 @@ public class Teleport extends GameObject {
      *
      * @return destination of the teleport
      */
-    public Destination getDestination() {
+    public Position getDestination() {
         return d;
     }
 

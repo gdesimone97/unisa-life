@@ -19,9 +19,10 @@ import java.util.LinkedList;
 public abstract class Person extends GameObject implements Renderable, Interactable {
 
     protected BufferedImage facingDownImage;
-
-    public Person(float x, float y, String path) {
-        super(x, y);
+    protected Position p;
+    
+    public Person(Position p, String path) {
+        this.p=p;
         try {
             facingDownImage = ImageIO.read(
                     getClass().getResourceAsStream(path)
@@ -33,7 +34,7 @@ public abstract class Person extends GameObject implements Renderable, Interacta
 
     @Override
     public void render(Graphics g) {
-        g.drawImage(facingDownImage, (int) x, (int) y, width, height, null);
+        g.drawImage(facingDownImage, p.getX(), p.getY(), width, height, null);
     }
     /*@Override
         public void tick(LinkedList<GameObject> l){

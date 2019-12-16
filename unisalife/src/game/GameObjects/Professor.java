@@ -18,8 +18,8 @@ public class Professor extends Person implements Information {
     private Materia subject;
     private String nome;
 
-    public Professor(String nome, float x, float y, String path, Materia subject) {
-        super(x, y, path);
+    public Professor(String nome, Position p, String path, Materia subject) {
+        super(p,path);
         this.nome = nome;
         this.subject = subject;
     }

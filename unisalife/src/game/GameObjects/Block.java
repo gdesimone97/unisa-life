@@ -20,6 +20,7 @@ public class Block extends GameObject {
     /**
      * constructor returns a new istance of block
      *
+     * @param p
      * @param x x position of the block
      * @param y y position of the block
      * @param i SubjectEnum of the block
@@ -27,14 +28,14 @@ public class Block extends GameObject {
      * @param height height of block
      */
     
-    public Block(float x, float y,int width,int height) {
-        super(x, y);
+    public Block(Position p, int width,int height) {
+        super(p);
         this.height=height;
         this.width=width;
     }
     
-    public Block(float x, float y) {
-        super(x, y);
+    public Block(Position p) {
+        super(p);
         /*try {
         sprite = ImageIO.read(
 				getClass().getResourceAsStream("/Sprites/gatto.png")
@@ -49,9 +50,6 @@ public class Block extends GameObject {
      *
      * @param object
      */
-    public void tick(LinkedList<GameObject> object) {
-
-    }
 
     /**
      *

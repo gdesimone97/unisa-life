@@ -6,20 +6,20 @@
 package game.GameObjects;
 
 /**
- * Destination represents a tuple of x and y coordinates used for 
- * updating the position of the player in the map.
+ * Position represents a tuple of x and y coordinates used for 
+ updating the position of the player in the map.
  * @author simon
  */
-public class Destination {
-    private float x=0;
-    private float y=0;
+public class Position {
+    private int x=0;
+    private int y=0;
     
     /**
      *
      * @param x
      * @param y
      */
-    public Destination(float x,float y){
+    public Position(int x,int y){
         this.x=x;
         this.y=y;
     }
@@ -28,7 +28,7 @@ public class Destination {
      *
      * @return
      */
-    public float getX(){
+    public int getX(){
         return x;
     }
     
@@ -36,8 +36,16 @@ public class Destination {
      *
      * @return
      */
-    public float getY(){
+    public int getY(){
         return y;
     }
+    
+    public void setX(int x){
+        this.x=x;
+    } 
+    
+    public void setY(int y){
+        this.y=y;
+    } 
     
 }

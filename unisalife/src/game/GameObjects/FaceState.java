@@ -16,8 +16,8 @@ public abstract class FaceState {
     public FaceState(Player player){
         this.player=player;
     }
-    public abstract Rectangle visualViewOfPlayer();
+    public abstract Position visualViewOfPlayer();
     public abstract void drawFace(Graphics g);
-    public abstract Rectangle nextStep();
+    public abstract Position nextStep();
     
 }

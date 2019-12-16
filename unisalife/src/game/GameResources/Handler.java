@@ -5,6 +5,8 @@
  */
 package game.GameResources;
 import game.GameObjects.GameObject;
+import game.GameObjects.ObjectManager;
+import game.GameObjects.Position;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.LinkedList;
@@ -21,7 +23,7 @@ public class Handler {
     /**
      *
      */
-    public LinkedList<GameObject> objects=Game.maps[Game.actualMap].getList();
+    public ObjectManager objects=Game.maps[Game.actualMap].getObjectManager();
     //private TileMap map;
     
     /**
@@ -35,8 +37,8 @@ public class Handler {
      *
      * @param l
      */
-    public Handler(LinkedList<GameObject> l){
-        objects=l;
+    public Handler(ObjectManager o){
+        objects=o;
     }
     
     //private GameObject tempObj;
@@ -64,7 +66,7 @@ public class Handler {
             tempObj.render(g);
         }*/
         Game.player.render(g);
-        for(GameObject go:objects){
+        for(GameObject go:objects.values()){
             if(go instanceof Renderable)
                 ((Renderable)go).render(g);
         }
@@ -83,15 +85,25 @@ public class Handler {
      */
     
     
-    public void addObject(GameObject g){
-        Game.maps[Game.actualMap].getList().add(g);
+    public void addObject(Position p,GameObject g){
+        try{
+        Game.maps[Game.actualMap].getObjectManager().addObject(p, g);
+        }
+        catch(Exception e){
+        System.exit(4);
+    }
     }
     
     /**
      *
      * @param g
      */
-    public void removeObject(GameObject g){
-        Game.maps[Game.actualMap].getList().remove(g);
+    public void removeObject(Position p,GameObject g){
+        try{
+        Game.maps[Game.actualMap].getObjectManager().remove(g);
+        }
+        catch(Exception e){
+            System.exit(4);
+        }
     }
 }

@@ -5,6 +5,9 @@
  */
 package game.GameResources;
 import game.GameObjects.GameObject;
+import game.GameObjects.ObjectManager;
+import game.GameObjects.Position;
+import java.util.HashMap;
 import java.util.LinkedList;
 /**
  *
@@ -19,7 +22,7 @@ import java.util.LinkedList;
 */
 public class Map {
     private TileMap tMap;
-    private LinkedList<GameObject> mapObjects;
+    private ObjectManager mapObjects;
     //private ObjectManager mapObjects = new ObjectManager();
     
     
@@ -30,39 +33,52 @@ public class Map {
      */     
     public Map(TileMap t){
         tMap=t;
-        mapObjects=new LinkedList<>();
+        mapObjects=new ObjectManager();
     }
     
     /**
      * Constructor that initializes tMap with the passed TileMap t and
      * the mapObject with the passed LinkedList l.
      * @param t Tmap
-     * @param l LinkedList of GameObject objects
+     * @param hm HashMap of GameObject objects
      */
-    public Map(TileMap t,LinkedList<GameObject> l){
+    public Map(TileMap t,ObjectManager o ){
         tMap=t;
-        mapObjects=l;
+        mapObjects=o;
     }
     /**
      * Add a new GameObject object g to the list.
      * @param g GameObject
      */
-    public void addObject(GameObject g){
-        mapObjects.add(g);
+    public void addObject(Position p,GameObject g){
+       try{
+           mapObjects.addObject(p, g);
+       }
+       catch(Exception e){
+           System.exit(-1);
+       }
+       
     }
     /**
      * Remove(if presents) the GameObject object g from the list.
      * @param g 
      * @return true if the object was present and has been removed or false if it was not present.
      */
-    public boolean removeObject(GameObject g){
-        return mapObjects.remove(g);
+    public GameObject removeObject(Position p){
+        GameObject o = null;
+        try{
+            o = mapObjects.removeObject(p);
+        }
+        catch(Exception e){
+            System.exit(-1);
+        }
+        return o;
     }
     /**
      * 
      * @return mapObjects List.
      */
-    public LinkedList<GameObject> getList(){
+    public ObjectManager getObjectManager(){
         return mapObjects;
     }
     

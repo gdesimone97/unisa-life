@@ -12,7 +12,7 @@ import game.GameObjects.Player;
 import game.GameObjects.Person;
 import game.GameObjects.SubjectEnum;
 import game.GameObjects.Item;
-import game.GameObjects.Destination;
+import game.GameObjects.Position;
 import game.GameObjects.Camera;
 import game.GameObjects.Block;
 import game.GameObjects.GameInventorySingleton;
@@ -49,7 +49,7 @@ public class Game extends Canvas implements Runnable, Saveable {
      * variable that says if the game has started.
      */
     public boolean isRunning = false;
-    private final static Game instance = new Game();
+    private static Game instance;
 
     private Game() {
         try{
@@ -61,6 +61,8 @@ public class Game extends Canvas implements Runnable, Saveable {
     }
 
     public static Game getGame() {
+        if (instance==null)
+            instance = new Game();
         return instance;
     }
     /**
@@ -117,13 +119,15 @@ public class Game extends Canvas implements Runnable, Saveable {
         t0.loadMap("/Maps/map9.map");
         t1.loadMap("/Maps/map9.map");
         maps[0] = new Map(t0);
-
-        maps[0].addObject(new Item(440, 270, "/Sprites/calculator.png", ItemDef.calcolatrice.toString(), 0,ItemDef.calcolatrice));
-        maps[0].addObject(new Item(300, 160, "/Sprites/note.png", ItemDef.appuntidimatematica1.toString(), 0,ItemDef.appuntidimatematica1));
-        maps[0].addObject(new Item(300, 360, "/Sprites/note.png", ItemDef.appuntidimatematica2.toString(), 0,ItemDef.appuntidimatematica2));
-
-        maps[0].addObject(new Professor("Foggia", 200, 200, "/Sprites/foggia.png",Materia.matematica));
-        maps[0].addObject(new Block(256+16,208+16,160,128)); //blocco E
+        Position p= new Position(440,270);
+        maps[0].addObject(p,new Item(new Position(440,270), "/Sprites/calculator.png", ItemDef.calcolatrice.toString(),ItemDef.calcolatrice));
+        p=new Position(300,160);
+        maps[0].addObject(p,new Item(p, "/Sprites/note.png", ItemDef.appuntidimatematica1.toString(),ItemDef.appuntidimatematica1));
+        p=new Position(300,360);
+        maps[0].addObject(p,new Item(p, "/Sprites/note.png", ItemDef.appuntidimatematica2.toString(),ItemDef.appuntidimatematica2));
+        p=new Position(200,200);
+        maps[0].addObject(p,new Professor("Foggia",p, "/Sprites/foggia.png",Materia.matematica));
+        /*maps[0].addObject(new Block(256+16,208+16,160,128)); //blocco E
         maps[0].addObject(new Block(528+16,400+16,160,128)); //F
         maps[0].addObject(new Block(160+16,592+16,160,128));  //D
         maps[0].addObject(new Block(480+16,240+16,144,64));  //fontana alberi sinistra
@@ -134,7 +138,7 @@ public class Game extends Canvas implements Runnable, Saveable {
         maps[0].addObject(new Block(400+16,832+16,48,64));   //alberi2
         maps[0].addObject(new Block(80+16,816+16,48,64));   //alberi3
         maps[0].addObject(new Block(688+16,736+16,112,64));   //alberi4
-        
+        */
         actualMap = 0;
         WIDTHMAP = maps[actualMap].getTileMap().getWidth();
         HEIGHTMAP = maps[actualMap].getTileMap().getHeight();
@@ -169,7 +173,7 @@ public class Game extends Canvas implements Runnable, Saveable {
         } catch (Exception e) {
             System.exit(4);
         }
-        player = Player.getIstance(this);
+        player = Player.getIstance();
         player.changeFaceSet(Game.texturePlayer[6], Game.texturePlayer[3], Game.texturePlayer[9], Game.texturePlayer[0]);
 
         player.changeAnimationSet(new Animation(ANIMATIONSPEED, texturePlayer[7], texturePlayer[8]),
@@ -190,9 +194,9 @@ public class Game extends Canvas implements Runnable, Saveable {
             {
                 skin = (int) l.get(0);
                 actualMap = (int) l.get(1);
-                player.setX((int) l.get(2));
+                player.setX(((int) l.get(2)));
                 player.setY((int) l.get(3));
-                player.setInventory((LinkedList) l.get(4));
+                
                 /*initPlayer();
                 initInventory();   */
 
@@ -207,7 +211,6 @@ public class Game extends Canvas implements Runnable, Saveable {
         l.add(actualMap);
         l.add(player.getX());
         l.add(player.getY());
-        l.add(player.inventory);
         return l;
     }
 
@@ -235,44 +238,20 @@ public class Game extends Canvas implements Runnable, Saveable {
      /**
      * method that calls all other init methods.
      */
-    private void initDefaultMaps() {
-//        LinkedList<Item> listOfMap1ToSpawn = new LinkedList<>(listOfAllItem);
-//        listOfMap1ToSpawn.removeIf(item -> item.getMapToSpawn() == 0);
-        LinkedList<Item> listOfMap0ToSpawn = new LinkedList<>(listOfAllItem);
-        listOfMap0ToSpawn.removeIf(item -> item.getMapToSpawn() == 1);
-        for (Item i : listOfMap0ToSpawn) {
-            maps[0].addObject(i);
-        }
-//        for (Item i : listOfMap1ToSpawn) {
-//            maps[1].addObject(i);
-//        }
-    }
-
-    private void initMaps() {
-
-//        LinkedList<Item> listOfMap1ToSpawn = new LinkedList<>(listOfAllItem);
-//        listOfMap1ToSpawn.removeIf(item -> item.getMapToSpawn() == 0);
-        LinkedList<Item> listOfMap0ToSpawn = new LinkedList<>(listOfAllItem);
-        listOfMap0ToSpawn.removeIf(item -> item.getMapToSpawn() == 1);
-        listOfMap0ToSpawn.removeAll(player.inventory.getInventory());
-//        listOfMap1ToSpawn.removeAll(player.inventory.getInventory());
-        for (Item i : listOfMap0ToSpawn) {
-            maps[0].addObject(i);
-        }
+  
 //        for (Item i : listOfMap1ToSpawn) {
 //            maps[1].addObject(i);
 //        }
 
-    }
+  
+//        for (Item i : listOfMap1ToSpawn) {
+//            maps[1].addObject(i);
+//        }
 
+    
     private void init() {
         initResources();
         initPlayer();
-        if (player.inventory.length() != 0) {
-            initMaps();
-        } else {
-            initDefaultMaps();
-        }
         handler = new Handler();
         camera = new Camera(0, 0, player);
     }

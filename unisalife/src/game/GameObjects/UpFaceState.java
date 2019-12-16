@@ -25,7 +25,7 @@ public class UpFaceState extends FaceState{
     public void drawFace(Graphics g){
         g.drawImage(player.facingUpImage, (int)player.getX(),(int)player.getY(), null);
     }
-    
+    /*
     @Override
     public Rectangle visualViewOfPlayer(){
         return new Rectangle((int)player.getX()+player.getWidth()/4,(int)player.getY()-player.getHeight()/2,(int)player.getWidth()/2,player.getHeight()/2);
@@ -33,5 +33,14 @@ public class UpFaceState extends FaceState{
     @Override
     public Rectangle nextStep(){
         return new Rectangle((int)player.getX(),(int)player.getY()-Game.PLAYERSPEED,(int)player.getWidth(),Game.PLAYERSPEED);
+    }
+    */
+    @Override
+    public Position visualViewOfPlayer(){
+        return new Position(player.getX(),player.getY()-Game.DIMENSIONSPRITE);
+    }
+    @Override
+    public Position nextMove(){
+        return new Position(player.getX(),player.getY()-Game.DIMENSIONSPRITE);
     }
 }

@@ -21,8 +21,19 @@ public class LeftFaceState extends FaceState{
     
     public void drawFace(Graphics g){
         g.drawImage(player.facingLeftImage, (int)player.getX(),(int)player.getY(), null);
-        return;
     }
+    
+    @Override
+    public Position visualViewOfPlayer(){
+        return new Position(player.getX()-Game.DIMENSIONSPRITE,player.getY());
+    }
+    
+    @Override
+    public Position nextStep(){
+        return new Position(player.getX()-Game.DIMENSIONSPRITE,player.getY());
+    }
+    
+    /*
     @Override
     public Rectangle visualViewOfPlayer(){
         return new Rectangle((int)player.getX()-player.getWidth()/2,(int)player.getY()+player.getHeight()/4,player.getWidth()/2,player.getHeight()/2);
@@ -31,5 +42,6 @@ public class LeftFaceState extends FaceState{
     public Rectangle nextStep(){
         return new Rectangle((int)player.getX()-Game.PLAYERSPEED,(int)player.getY(),(int)Game.PLAYERSPEED,player.getHeight());
     }
+    */
     
 }

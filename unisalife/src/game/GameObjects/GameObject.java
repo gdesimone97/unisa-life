@@ -15,19 +15,17 @@ import java.awt.Rectangle;
  */
 public abstract class GameObject {
 
-    protected float x, y;
 
     protected int width = Game.DIMENSIONSPRITE;
     protected int height = Game.DIMENSIONSPRITE;
-
+    protected Position p;
     /**
      *
      * @param x
      * @param y
      */
-    public GameObject(float x, float y) {
-        this.x = x;
-        this.y = y;
+    public GameObject(Position p) {
+        this.p=p;
     }
 
     /**
@@ -45,34 +43,12 @@ public abstract class GameObject {
      *
      * @return
      */
-    public float getX() {
-        return x;
-    }
-
-    /**
-     *
-     * @return
-     */
-    public float getY() {
-        return y;
-
-    }
 
     /**
      *
      * @param x
      */
-    public void setX(float x) {
-        this.x = x;
-    }
 
-    /**
-     *
-     * @param y
-     */
-    public void setY(float y) {
-        this.y = y;
-    }
 
     /*public int getHeight(){
         return this.height;
@@ -85,8 +61,6 @@ public abstract class GameObject {
      *
      * @return
      */
-    public Rectangle getBounds() {
-        return new Rectangle((int) x, (int) y, (int) width, (int) height);
-    }
+    
 
 }
