@@ -36,13 +36,13 @@ public class QuestFactory extends SaveableCreator{
         try{
             
         //Retrieve subject from the DB itself
-        Subject subject = null;
-        Quest q = new Quest(Integer.parseInt(st.nextToken()),subject);
+        Quest q = new Quest(Integer.parseInt(st.nextToken()),new Subject(st.nextToken()));
         
         while(st.hasMoreTokens())
             q.putItem(st.nextToken());
         
         return q;
+        
         }catch( NoSuchElementException | NumberFormatException | QuestNotValidException e ){
             throw new InvalidArgumentListException();
         }
