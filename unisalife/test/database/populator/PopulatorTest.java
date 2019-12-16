@@ -5,8 +5,8 @@
  */
 package database.populator;
 
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
+
+import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 /**
@@ -18,13 +18,7 @@ public class PopulatorTest {
     public PopulatorTest() {
     }
     
-    @BeforeClass
-    public static void setUpClass() {
-    }
     
-    @AfterClass
-    public static void tearDownClass() {
-    }
 
     /**
      * Test of populate method, of class Populator.
@@ -32,7 +26,7 @@ public class PopulatorTest {
     @Test
     public void testPopulateScript() throws Exception {
         System.out.println("populate");
-        Populator p = new Populator("data.txt");
+        Populator p = new Populator("..//unisalife/src/database/populator/data.txt");
         p.populate();
     }
     

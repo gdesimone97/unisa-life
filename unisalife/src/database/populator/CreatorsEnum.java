@@ -23,12 +23,12 @@ public enum CreatorsEnum {
     }, subject("subject"){
         @Override
         public SaveableCreator getFactory(){
-            return new QuestFactory();
+            return new SubjectFactory();
         }
     }, quest("quest"){
         @Override
         public SaveableCreator getFactory(){
-            return new SubjectFactory();
+            return new QuestFactory();
         }
     };
     

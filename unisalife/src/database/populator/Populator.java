@@ -5,12 +5,14 @@
  */
 package database.populator;
 
+import database.Database;
 import database.populator.exceptions.InvalidGameDataFormatException;
 import exam.booklet.Saveable;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import org.dizitart.no2.objects.ObjectRepository;
 
 
 /**
@@ -22,11 +24,12 @@ public class Populator {
     
     
     private final String filepath;
-    
+    private Database db;
     
     public Populator( String filepath ){
         
         this.filepath = filepath;
+        this.db = Database.getInstance();
         
     }
     
@@ -39,20 +42,31 @@ public class Populator {
         while(line != null ){
             
             String[] tokens = line.split(" ");
+            
             if( tokens.length != 2 )
                 throw new InvalidGameDataFormatException();
             
+            
             String type = tokens[0].toLowerCase();
             String arguments = tokens[1];
+
             
-            Saveable s = CreatorsEnum.valueOf(type).getFactory().create(arguments);
-            
+            SaveableCreator s = CreatorsEnum.valueOf(type).getFactory();
+            Saveable sitem = s.create(arguments);
             //Get class from S and add it to the corresponding repository
-            
-            System.out.println(s);
+            /*
+            Class<Saveable> runTimeClass = sitem.getClass().asSubclass((Saveable.class)
+            ObjectRepository repo = db.getDatabase().getRepository(sitem.getClass());
+            repo.insert((runTimeClass)sitem);
+            */
+            line = r.readLine();
             
         }
         
+    }
+    
+    public String getPath(){
+        return this.filepath;
     }
     
     

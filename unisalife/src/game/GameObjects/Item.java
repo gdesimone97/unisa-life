@@ -36,13 +36,14 @@ public class Item extends GameObject implements Renderable, Interactable, Serial
         this.mapToSpawn = mts;
         this.info = info;
         //this.id = id;
-        try {
+        /*try {
             facingDownImage = ImageIO.read(
                     getClass().getResourceAsStream(path)
             );
         } catch (Exception e) {
             System.exit(1);
         }
+        */
     }
 
     @Override
