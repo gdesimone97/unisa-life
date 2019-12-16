@@ -6,6 +6,8 @@
 package database.populator;
 
 import database.Database;
+import database.DatabaseManager;
+import database.FileNotSetException;
 import database.populator.exceptions.InvalidGameDataFormatException;
 import exam.booklet.Saveable;
 import java.io.BufferedReader;
@@ -24,20 +26,20 @@ public class Populator {
     
     
     private final String filepath;
+    private DatabaseManager dbms;
     private Database db;
     
-    public Populator( String filepath ){
+    public Populator( String filepath ) throws FileNotSetException{
         
         this.filepath = filepath;
+        Database.setPath("../prova.db");
         this.db = Database.getInstance();
-        
     }
     
-    public void populate() throws FileNotFoundException, IOException, InvalidGameDataFormatException{
+    public void populate() throws FileNotFoundException, IOException, InvalidGameDataFormatException, FileNotSetException{
         
         BufferedReader r = new BufferedReader(new FileReader(filepath));
         String line = r.readLine();
-        
         
         while(line != null ){
             
@@ -53,12 +55,17 @@ public class Populator {
             
             SaveableCreator s = CreatorsEnum.valueOf(type).getFactory();
             Saveable sitem = s.create(arguments);
+            
+            ObjectRepository repo = db.getDatabase().getRepository(s.getClass());
+            repo.insert(sitem);
+            
             //Get class from S and add it to the corresponding repository
             /*
             Class<Saveable> runTimeClass = sitem.getClass().asSubclass((Saveable.class)
             ObjectRepository repo = db.getDatabase().getRepository(sitem.getClass());
             repo.insert((runTimeClass)sitem);
             */
+            
             line = r.readLine();
             
         }

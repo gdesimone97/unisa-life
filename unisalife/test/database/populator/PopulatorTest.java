@@ -6,6 +6,9 @@
 package database.populator;
 
 
+import database.Database;
+import database.FileNotSetException;
+import game.GameObjects.Item;
 import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
@@ -29,5 +32,7 @@ public class PopulatorTest {
         Populator p = new Populator("..//unisalife/src/database/populator/data.txt");
         p.populate();
     }
+    
+    
     
 }
