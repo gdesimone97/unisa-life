@@ -5,7 +5,8 @@
  */
 package unisagui;
 
-import game.GameResources.*;
+import gameSystem.Game;
+import gameSystem.GameManager;
 import javax.swing.SwingUtilities;
 
 /**
@@ -65,7 +66,10 @@ public class GuiManager {
      *
      * @param game
      */
-    public void startGame(Game game) {
+    public void startGame() {
+        GameManager gm = GameManager.getInstance();
+        Game game = gm.getGame();
+        
         SwingUtilities.invokeLater(() -> game.setMaximumSize(new java.awt.Dimension((int) Game.WIDTHSCREEN, (int) Game.HEIGHTSCREEN)));
         SwingUtilities.invokeLater(() -> game.setMinimumSize(new java.awt.Dimension((int) Game.WIDTHSCREEN, (int) Game.HEIGHTSCREEN)));
         SwingUtilities.invokeLater(() -> game.setPreferredSize(new java.awt.Dimension((int) Game.WIDTHSCREEN, (int) Game.HEIGHTSCREEN)));
@@ -77,7 +81,7 @@ public class GuiManager {
         gameframe.setVisible(true);
         SwingUtilities.invokeLater(() -> game.setVisible(true));
         
-        game.start();
+        gm.initGame();
     }
 
     /**
