@@ -25,6 +25,7 @@ public class PlayState extends GameState {
     private Player player;
     private GameManager gameManager;
     private Camera camera;
+    private Color color = new Color(170,226,103);
     private int height;
     private int width;
 
@@ -61,7 +62,7 @@ public class PlayState extends GameState {
 
     @Override
     public void render(Graphics2D g) {
-        g.setColor(new Color(170,226,103));
+        g.setColor(color);
         g.fillRect(0, 0, Game.WIDTHSCREEN, Game.HEIGHTSCREEN2);
         g.translate(camera.getX(), camera.getY());
         
