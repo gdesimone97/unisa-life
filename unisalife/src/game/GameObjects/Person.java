@@ -19,7 +19,6 @@ import java.util.LinkedList;
 public abstract class Person extends GameObject implements Renderable, Interactable {
 
     protected BufferedImage facingDownImage;
-    protected Position p;
     
     public Person(Position p,String path) {
         super(p);

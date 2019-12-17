@@ -72,7 +72,7 @@ public class Game extends Canvas implements Runnable {
             
         while (running) {
                 start = System.nanoTime();
-
+                
                 tick();
                 render();
 

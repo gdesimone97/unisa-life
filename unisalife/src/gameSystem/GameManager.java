@@ -89,13 +89,13 @@ public class GameManager {
         
         // ecc...
         
-        startGame();
+        //startGame();
     }
     
     /**
      * creates and runs the Game thread
      */
-    private void startGame() {
+    public void startGame() {
         Thread t = new Thread(game);
         t.start();
     }
