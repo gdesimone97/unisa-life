@@ -69,7 +69,6 @@ public class Camera implements Tickable {
     public void tick(){
         x=(-player.getX()+Game.WIDTHSCREEN/2);
         y=(-player.getY()+Game.HEIGHTSCREEN2/2);
-        System.out.println(x + " " + y);
         /*x=(-player.getX()+Toolkit.getDefaultToolkit().getScreenSize().width/2);
         y=(-player.getY()+Toolkit.getDefaultToolkit().getScreenSize().height/2);*/
     }

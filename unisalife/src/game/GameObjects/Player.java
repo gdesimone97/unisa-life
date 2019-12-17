@@ -203,12 +203,12 @@ public class Player extends GameObject implements Tickable, Renderable {
         }
         
         collisions(MapManager.getInstance().getMap().getObjectManager());
-        if (x + velX > 0 && x + velX < 900 - Game.DIMENSIONSPRITE && nextMove == true) {
+        //if (x + velX > 0 && x + velX < 900 - Game.DIMENSIONSPRITE && nextMove == true) {
             x += velX;
-        }
-        if (y + velY > 0 && y + velY < 900 - Game.DIMENSIONSPRITE && nextMove == true) {
+        //}
+        //if (y + velY > 0 && y + velY < 900 - Game.DIMENSIONSPRITE && nextMove == true) {
             y += velY;
-        }
+        //}
         //collisions(game.getActualMap().getList());
         downWalk.runAnimation();
         leftWalk.runAnimation();
