@@ -112,6 +112,9 @@ public class Map {
     
     public int getHeightMap(){
         return this.tMap.getHeight();
+
+    public GameObject getGameObject(Position p){
+        return mapObjects.getObjectInNextPosition(p);
     }
     
     /**

@@ -5,8 +5,12 @@
  */
 package gameSystem.keySettings;
 
+import game.GameObjects.GameObject;
+import game.GameObjects.Position;
+import game.Interfaces.Interactable;
 import gameSystem.PauseState;
 import gameSystem.PlayState;
+import gameSystem.map.MapManager;
 
 /**
  *
@@ -16,7 +20,11 @@ public class InteractCommand extends KeyCommand implements ActionCommand{
 
     @Override
     public void visitPlayState(PlayState playState) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Position p = player.getFace().nextStep();
+        GameObject obj =  MapManager.getInstance().getMap().getGameObject(p);
+        if(obj instanceof Interactable){
+            ((Interactable) obj).interact();
+        }
     }
 
     @Override

@@ -77,6 +77,10 @@ public class Player extends GameObject implements Tickable, Renderable,Saveable 
          */
     }
     
+    public FaceState getFace(){
+        return face;
+    }
+    
     private void changeFaceSet(BufferedImage down, BufferedImage left, BufferedImage right, BufferedImage up) {
         facingLeftImage = left;
         facingRightImage = right;
