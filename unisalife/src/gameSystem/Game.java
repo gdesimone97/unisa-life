@@ -66,7 +66,6 @@ public class Game extends Canvas implements Runnable {
 
         
         
-        //Simo, questa è la versione del loop di Diamond Hunter, funziona uguale e consuma meno... 
         long start;
         long elapsed;
         long wait;

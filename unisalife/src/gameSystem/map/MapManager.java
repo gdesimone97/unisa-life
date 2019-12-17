@@ -5,6 +5,8 @@
  */
 package gameSystem.map;
 
+import game.GameResources.Map;
+import java.awt.Graphics2D;
 import java.util.HashMap;
 
 
@@ -13,24 +15,38 @@ import java.util.HashMap;
  * @author liovi
  */
 public class MapManager {
+    private int actualMap;
     
-    private HashMap<Integer, Mappa> mappe;
-
-    public MapManager(int numMaps, String[] nomimappe) {
-        mappe = new HashMap<>();
-        
-        for (int i=0; i<numMaps; i++){
-            mappe.put(i, new Mappa(nomimappe[0]));
+    private Mappa[] maps;
+    public static MapManager instance;
+    
+    public static MapManager getInstance() {
+        if (instance == null) {
+            instance = new MapManager();
         }
+        return instance;
+    }
+
+    public MapManager() {
+        maps[0] = new Mappa("2TilesetMap");
+//        maps[1] = new Mappa();
+        actualMap = 0;
     }
     
-    public Mappa getMap(int n){
-        return this.mappe.get(n);
+    public int getActualMap(){
+        return actualMap;
     }
     
-    public void setMap(int n, Mappa map){
-        this.mappe.replace(n, map);
+    public Mappa getMap() {
+        return maps[actualMap];
     }
     
+    public void setMap(int n){
+        this.actualMap = n;
+    }
+    
+    public void render(Graphics2D g) {
+        this.maps[actualMap].render(g);
+    }
     
 }

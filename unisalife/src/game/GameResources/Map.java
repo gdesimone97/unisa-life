@@ -4,11 +4,20 @@
  * and open the template in the editor.
  */
 package game.GameResources;
+import exam.question.Materia;
 import game.GameObjects.GameObject;
+import game.GameObjects.Item;
 import game.GameObjects.ObjectManager;
 import game.GameObjects.Position;
+import game.GameObjects.Professor;
+import game.Interfaces.Renderable;
+import gameSystem.map.Mappa;
+import java.awt.Graphics2D;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import quests.ItemDef;
 /**
  *
  * @author simon
@@ -31,9 +40,25 @@ public class Map {
      * the mapObject with an empty list.
      * @param t TileMap
      */     
-    public Map(TileMap t){
-        tMap=t;
+    public Map(){
         mapObjects=new ObjectManager();
+        
+        tMap = new TileMap(32, 288, 288);
+        tMap.loadTiles("/Tilesets/PT.gif");
+        tMap.loadMap("/Maps/map9.map");
+        try {
+            Position p = new Position(60, 70);
+            mapObjects.addObject(p, new Item(p, "/Sprites/calculator.png", ItemDef.calcolatrice.toString(), ItemDef.calcolatrice));
+            p = new Position(300, 160);
+            mapObjects.addObject(p, new Item(p, "/Sprites/note.png", ItemDef.appuntidimatematica1.toString(), ItemDef.appuntidimatematica1));
+            p = new Position(300, 360);
+            mapObjects.addObject(p, new Item(p, "/Sprites/note.png", ItemDef.appuntidimatematica2.toString(), ItemDef.appuntidimatematica2));
+            p = new Position(200, 200);
+            mapObjects.addObject(p, new Professor("Foggia", p, "/Sprites/foggia.png", Materia.matematica));
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        
     }
     
     /**
@@ -90,5 +115,16 @@ public class Map {
         return tMap;
     }
     
+    public void render(Graphics2D g) {
+        tMap.render(g);
+        for(GameObject go : mapObjects.values()) {
+            if(go instanceof Renderable) {
+                ((Renderable) go).render(g);
+            }
+        }
+    }
     
+    public GameObject removeObject(Position p) throws Exception{
+        return this.objects.removeObject(p);
+    }
 }

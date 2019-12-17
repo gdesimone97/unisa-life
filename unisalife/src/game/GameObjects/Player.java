@@ -18,6 +18,7 @@ import static gameSystem.Game.DIMENSIONSPRITE;
 import gameSystem.GameManager;
 import gameSystem.GameStateManager;
 import gameSystem.PauseState;
+import gameSystem.map.MapManager;
 import java.util.LinkedList;
 import java.awt.image.BufferedImage;
 import java.awt.Graphics;
@@ -201,8 +202,7 @@ public class Player extends GameObject implements Tickable, Renderable {
             face = new UpFaceState(this);
         }
         
-        Game g = GameManager.getInstance().getGame();
-        collisions(g.getActualMap().getObjectManager());
+        collisions(MapManager.getInstance().getMap().getObjectManager());
         if (x + velX > 0 && x + velX < 900 - Game.DIMENSIONSPRITE && nextMove == true) {
             x += velX;
         }
