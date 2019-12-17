@@ -20,6 +20,10 @@ public abstract class GameObject {
     protected int width = Game.DIMENSIONSPRITE;
     protected int height = Game.DIMENSIONSPRITE;
 
+    protected GameObject(){
+        
+    }
+    
     /**
      *
      * @param x

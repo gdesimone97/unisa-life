@@ -32,6 +32,11 @@ public class Item extends GameObject implements Renderable, Interactable, Serial
     private int mapToSpawn;
     private ItemDef id;
 
+    public Item(){
+        super(1,1);
+        this.info = "info";
+    }
+    
     public Item(float x, float y, String path, String info, int mts) {
         super(x, y);
         this.mapToSpawn = mts;

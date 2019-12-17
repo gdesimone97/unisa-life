@@ -7,7 +7,6 @@ package database;
 
 import database.populator.Populator;
 import database.populator.exceptions.InvalidGameDataFormatException;
-import exam.booklet.Subject;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
@@ -93,9 +92,9 @@ public class DatabaseManagerTest {
     public void testGetSubjects() throws FileNotSetException {
         System.out.println("getSubjects");
         DatabaseManager instance = DatabaseManager.getDatabaseManager();
-        String expResult = "matematica";
-        List<Subject> result = instance.getSubjects();
-        assertTrue(expResult.equals(result.get(0).getInfo()));
+        int expResult = 3;
+        int result = instance.getSubjects().size();
+        assertEquals(expResult,result);
     }
 
     /**

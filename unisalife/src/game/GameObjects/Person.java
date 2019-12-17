@@ -32,6 +32,10 @@ public abstract class Person extends GameObject implements Renderable, Interacta
         }
         */
     }
+    
+    protected Person(){
+        super();
+    }
 
     @Override
     public void render(Graphics g) {

@@ -29,6 +29,10 @@ public class Subject implements Information, Serializable, Saveable, Comparable 
         this.score = 0;
         this.available = true;
     }
+    
+    private Subject(){
+        
+    }
 
     /**
      * This method sets the score of corresponding exam
@@ -114,7 +118,11 @@ public class Subject implements Information, Serializable, Saveable, Comparable 
 
     @Override
     public int compareTo(Object o) {
-        if (this.equals(o)== true) return 0;
-        else return 1;
+        if(o == null )
+            return 1;
+        if(!(o instanceof Subject))
+            return 1;
+        return this.subject.compareTo(((Subject)o).toString());
+        
     }
 }

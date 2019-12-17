@@ -54,15 +54,12 @@ public class Populator {
             
             SaveableCreator s = CreatorsEnum.valueOf(type).getFactory();
             Saveable sitem = s.create(arguments);
-            //System.out.println(sitem.getClass());
+            
+            
             ObjectRepository repo = db.getDatabase().getRepository(sitem.getClass());
             repo.insert(sitem);
-            //Get class from S and add it to the corresponding repository
-            /*
-            Class<Saveable> runTimeClass = sitem.getClass().asSubclass((Saveable.class)
-            ObjectRepository repo = db.getDatabase().getRepository(sitem.getClass());
-            repo.insert((runTimeClass)sitem);
-            */
+            
+            
             
             line = r.readLine();
             

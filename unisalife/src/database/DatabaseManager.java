@@ -43,6 +43,7 @@ public class DatabaseManager {
     public List<Quest> getQuestsFromLevel(int level) throws ObjectNotFoundException {
 
         List<Quest> list = db.getDatabase().getRepository(Quest.class).find(eq("level", level)).toList();
+        
         if (list.size() <= 0) {
             throw new ObjectNotFoundException();
         }
@@ -80,7 +81,7 @@ public class DatabaseManager {
     }
 
     private Professor findProfessor(Subject s) throws ObjectNotFoundException {
-        Professor prof = db.getDatabase().getRepository(Professor.class).find(eq("subject", s)).firstOrDefault();
+        Professor prof = db.getDatabase().getRepository(Professor.class).find(eq("subjectName", s.getInfo())).firstOrDefault();
         if (prof == null) {
             throw new ObjectNotFoundException();
         }

@@ -32,8 +32,13 @@ public class Quest extends User implements Serializable, Saveable {
     private Subject subject;
     private boolean done;
 
+    private Quest(){
+    
+    }
+    
     public Quest(int level, Subject subject) throws QuestNotValidException {
         super();
+        this.level = level;
         super.name = subject.getInfo();
         super.mediator = QuestsManagerSingleton.getInstance();
         mediator.addUser(this);
@@ -104,6 +109,11 @@ public class Quest extends User implements Serializable, Saveable {
         return true;
     }
 
+    
+    public int getLeve(){
+        return this.level;
+    }
+    
     public Subject getSubject() {
         return this.subject;
     }
