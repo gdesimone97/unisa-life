@@ -8,6 +8,7 @@ package exam.booklet;
 import java.io.Serializable;
 import java.util.Objects;
 import language.Information;
+import saving.Saveable;
 
 /**
  * This class is used to give a structure for storing a score of an exam and its

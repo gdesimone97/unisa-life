@@ -5,20 +5,25 @@
  */
 package game.GameObjects;
 
-import exam.booklet.Saveable;
+import saving.Saveable;
 import exam.booklet.Subject;
 import interaction.*;
 import java.io.Serializable;
 import language.Information;
-import org.dizitart.no2.objects.Id;
+import org.dizitart.no2.IndexType;
+import org.dizitart.no2.objects.Index;
+import org.dizitart.no2.objects.Indices;
 
 /**
  *
  * @author Giuseppe De Simone
  */
+
+@Indices({
+    @Index(value = "subject.subject", type = IndexType.NonUnique)
+})
 public class Professor extends Person implements Information, Saveable {
-    @Id
-    private String subjectName;
+    
     private Subject subject;
     private String nome;
 
@@ -30,7 +35,6 @@ public class Professor extends Person implements Information, Saveable {
         super(x, y, path);
         this.nome = nome;
         this.subject = subject;
-        this.subjectName = subject.getInfo();
     }
 
     @Override

@@ -7,8 +7,10 @@ package database;
 
 import database.populator.Populator;
 import database.populator.exceptions.InvalidGameDataFormatException;
+import game.GameObjects.Item;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -45,7 +47,9 @@ public class DatabaseManagerTest {
 
     @After
     public void tearDown() throws FileNotSetException {
+        DatabaseManager.getDatabaseManager().getDatabase().clear();
         DatabaseManager.getDatabaseManager().close();
+
     }
 
     /**
@@ -80,7 +84,7 @@ public class DatabaseManagerTest {
         System.out.println("getObjectsFromLevel");
         int level = 1;
         DatabaseManager instance = DatabaseManager.getDatabaseManager();
-        int expResult = 6;
+        int expResult = 9;
         int result = instance.getObjectsFromLevel(level).size();
         assertEquals(expResult, result);
     }
@@ -94,29 +98,35 @@ public class DatabaseManagerTest {
         DatabaseManager instance = DatabaseManager.getDatabaseManager();
         int expResult = 3;
         int result = instance.getSubjects().size();
-        assertEquals(expResult,result);
+        assertEquals(expResult, result);
     }
 
     /**
      * Test of save method, of class DatabaseManager.
      */
-    //@Test
+    @Test
     public void testSave() throws Exception {
         System.out.println("save");
-        List<Saveable> elems = null;
-        DatabaseManager instance = null;
+        Item x = new Item();
+        Item y = new Item();
+        List<Saveable> elems = new ArrayList<>();
+        elems.add(x);
+        elems.add(y);
+        DatabaseManager instance = DatabaseManager.getDatabaseManager();
         instance.save(elems);
+        testLoad();
+        testIsSaved();
     }
 
     /**
      * Test of load method, of class DatabaseManager.
      */
     //@Test
-    public void testLoad() {
+    public void testLoad() throws FileNotSetException {
         System.out.println("load");
-        DatabaseManager instance = null;
-        List<Saveable> expResult = null;
-        List<Saveable> result = instance.load();
+        int expResult = 1;
+        DatabaseManager instance = DatabaseManager.getDatabaseManager();
+        int result = instance.load().size();
         assertEquals(expResult, result);
     }
 
@@ -124,10 +134,10 @@ public class DatabaseManagerTest {
      * Test of isSaved method, of class DatabaseManager.
      */
     //@Test
-    public void testIsSaved() {
+    public void testIsSaved() throws FileNotSetException {
         System.out.println("isSaved");
-        DatabaseManager instance = null;
-        boolean expResult = false;
+        DatabaseManager instance = DatabaseManager.getDatabaseManager();
+        boolean expResult = true;
         boolean result = instance.isSaved();
         assertEquals(expResult, result);
     }

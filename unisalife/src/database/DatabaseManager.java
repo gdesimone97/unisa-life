@@ -11,11 +11,16 @@ import game.GameObjects.Destination;
 import game.GameObjects.GameObject;
 import game.GameObjects.Item;
 import game.GameObjects.Professor;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 import org.dizitart.no2.WriteResult;
+import org.dizitart.no2.objects.Cursor;
 import static org.dizitart.no2.objects.filters.ObjectFilters.eq;
 import org.dizitart.no2.objects.ObjectRepository;
+import org.dizitart.no2.objects.filters.ObjectFilters;
 import quests.quest.Quest;
 
 /**
@@ -42,15 +47,15 @@ public class DatabaseManager {
 
     public List<Quest> getQuestsFromLevel(int level) throws ObjectNotFoundException {
 
-        List<Quest> list = db.getDatabase().getRepository(Quest.class).find(eq("level", level)).toList();
-        
+        List<Quest> list = db.getNitriteDatabase().getRepository(Quest.class).find(eq("level", level)).toList();
+
         if (list.size() <= 0) {
             throw new ObjectNotFoundException();
         }
         return list;
     }
-    
-    public Database getDatabase(){
+
+    public Database getDatabase() {
         return this.db;
     }
 
@@ -59,9 +64,7 @@ public class DatabaseManager {
         List<Quest> questList = this.getQuestsFromLevel(level);
         for (Quest q : questList) {
             Subject questSubject = q.getSubject();
-            System.out.println("Current quest: " + questSubject.getInfo());
             for (String itemName : q.getItemList()) {
-                System.out.println(itemName);
                 Item i = this.findItem(itemName);
                 returnMap.put(new Destination(i.getX(), i.getY()), i);
             }
@@ -75,8 +78,7 @@ public class DatabaseManager {
     }
 
     private Item findItem(String itemName) throws ObjectNotFoundException {
-        Item res = db.getDatabase().getRepository(Item.class).find(eq("info", itemName)).firstOrDefault();
-        System.out.println("Result for " + itemName + " is: " + res);
+        Item res = db.getNitriteDatabase().getRepository(Item.class).find(eq("info", itemName)).firstOrDefault();
         if (res == null) {
             throw new ObjectNotFoundException();
         }
@@ -84,8 +86,7 @@ public class DatabaseManager {
     }
 
     private Professor findProfessor(Subject s) throws ObjectNotFoundException {
-        Professor prof = db.getDatabase().getRepository(Professor.class).find(eq("subjectName", s.getInfo())).firstOrDefault();
-        System.out.println("Result for " + s.getInfo() + " is: " + prof.getInfo());
+        Professor prof = db.getNitriteDatabase().getRepository(Professor.class).find(eq("subject.subject", s.getInfo())).firstOrDefault();
         if (prof == null) {
             throw new ObjectNotFoundException();
         }
@@ -93,21 +94,32 @@ public class DatabaseManager {
     }
 
     public List<Subject> getSubjects() {
-        return db.getDatabase().getRepository(Subject.class).find().toList();
+        return db.getNitriteDatabase().getRepository(Subject.class).find().toList();
     }
 
     public void save(List<Saveable> elems) throws ErrorWhileSavingException {
-        ObjectRepository repo = db.getDatabase().getRepository(Saveable.class);
-        repo.drop();
-        WriteResult ws = repo.insert(elems.toArray());
+        List<SaveableObject> finalList = elems.stream().map(e -> new SaveableObject(e)).collect(Collectors.toList());
+        finalList.stream().forEach((obj) -> {
+            System.out.println(obj);
+        });
+        ObjectRepository repo = db.getNitriteDatabase().getRepository(SaveableObject.class);
+        repo.remove(ObjectFilters.ALL);
+        WriteResult ws = repo.insert(finalList.toArray());
         if (ws.getAffectedCount() != elems.size()) {
             throw new ErrorWhileSavingException();
         }
-
     }
 
     public List<Saveable> load() {
-        return db.getDatabase().getRepository(Saveable.class).find().toList();
+        Cursor<SaveableObject> c = db.getNitriteDatabase().getRepository(SaveableObject.class).find(ObjectFilters.ALL);
+        System.out.println(c.size());
+        List<Saveable> returnList = new ArrayList<>();
+        for (SaveableObject obj : c) {
+            System.out.println(obj);
+            System.out.println(obj.getInnerObj());
+            returnList.add((Saveable) obj.getInnerObj());
+        }
+        return returnList; //l.stream().map(e -> e.getInnerObj()).collect(Collectors.toList());
     }
 
     public boolean isSaved() {
@@ -116,5 +128,9 @@ public class DatabaseManager {
 
     public void close() {
         this.db.close();
+    }
+
+    public void clearDatabase() {
+        this.db.clear();
     }
 }

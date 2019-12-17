@@ -5,7 +5,7 @@
  */
 package database.populator;
 
-import exam.booklet.Saveable;
+import saving.Saveable;
 
 /**
  *

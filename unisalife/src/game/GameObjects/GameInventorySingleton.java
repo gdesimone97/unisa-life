@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 import quests.QuestsManagerSingleton;
 import quests.mediator.Message;
 import quests.mediator.User;
-import exam.booklet.Saveable;
+import saving.Saveable;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;

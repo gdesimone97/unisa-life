@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="1" failures="0" hostname="LAPTOP-8KD38SFS" name="database.DatabaseManagerTest" skipped="0" tests="4" time="2.36" timestamp="2019-12-17T09:18:34">
+<testsuite errors="1" failures="0" hostname="LAPTOP-8KD38SFS" name="database.DatabaseManagerTest" skipped="0" tests="5" time="2.267" timestamp="2019-12-17T11:05:09">
   <properties>
     <property name="libs.jsp-compiler.javadoc" value="" />
     <property name="netbeans.autoupdate.country" value="IT" />
@@ -52,7 +52,7 @@
     <property name="src.bin.dir" value="bin" />
     <property name="copylibs.rebase" value="true" />
     <property name="libs.spring-webmvc3.0.maven-pom" value="" />
-    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner database.DatabaseManagerTest skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,C:\Users\alfon\Documents\NetBeansProjects\unisa-life\unisalife\build\test\results\TEST-database.DatabaseManagerTest.xml crashfile=C:\Users\alfon\Documents\NetBeansProjects\unisa-life\unisalife\build\junitvmwatcher6295008992831620974.properties propsfile=C:\Users\alfon\Documents\NetBeansProjects\unisa-life\unisalife\build\junit3745733912608142490.properties" />
+    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner database.DatabaseManagerTest skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,C:\Users\alfon\Documents\NetBeansProjects\unisa-life\unisalife\build\test\results\TEST-database.DatabaseManagerTest.xml crashfile=C:\Users\alfon\Documents\NetBeansProjects\unisa-life\unisalife\build\junitvmwatcher2161586872401097136.properties propsfile=C:\Users\alfon\Documents\NetBeansProjects\unisa-life\unisalife\build\junit3533442559214633306.properties" />
     <property name="build.classes.dir" value="build/classes" />
     <property name="ant.file.type.unisalife" value="file" />
     <property name="build.sysclasspath" value="ignore" />
@@ -99,7 +99,7 @@
     <property name="javac.debug" value="true" />
     <property name="javadoc.splitindex" value="true" />
     <property name="file.separator" value="\" />
-    <property name="javac.includesfile.binary" value="C:\Users\alfon\Documents\NetBeansProjects\unisa-life\unisalife\null1565143605" />
+    <property name="javac.includesfile.binary" value="C:\Users\alfon\Documents\NetBeansProjects\unisa-life\unisalife\null111000255" />
     <property name="ant.file.unisalife" value="C:\Users\alfon\Documents\NetBeansProjects\unisa-life\unisalife\build.xml" />
     <property name="libs.junit_4.maven-pom" value="" />
     <property name="mkdist.disabled" value="false" />
@@ -401,35 +401,26 @@
     <property name="awt.toolkit" value="sun.awt.windows.WToolkit" />
     <property name="libs.javaee-web-api-7.0.javadoc" value="C:\Program Files\NetBeans-11.2\netbeans\enterprise\docs\javaee-doc-api.jar" />
   </properties>
-  <testcase classname="database.DatabaseManagerTest" name="testGetQuestsFromLevel" time="0.14" />
-  <testcase classname="database.DatabaseManagerTest" name="testGetObjectsFromLevel" time="0.204">
-    <error type="java.lang.NullPointerException">java.lang.NullPointerException
-	at database.DatabaseManager.findProfessor(DatabaseManager.java:88)
-	at database.DatabaseManager.getObjectsFromLevel(DatabaseManager.java:68)
-	at database.DatabaseManagerTest.testGetObjectsFromLevel(DatabaseManagerTest.java:84)
+  <testcase classname="database.DatabaseManagerTest" name="testGetQuestsFromLevel" time="0.156" />
+  <testcase classname="database.DatabaseManagerTest" name="testSave" time="0.094">
+    <error message="java.util.LinkedHashMap cannot be cast to saving.Saveable" type="java.lang.ClassCastException">java.lang.ClassCastException: java.util.LinkedHashMap cannot be cast to saving.Saveable
+	at database.DatabaseManager.load(DatabaseManager.java:120)
+	at database.DatabaseManagerTest.testLoad(DatabaseManagerTest.java:129)
+	at database.DatabaseManagerTest.testSave(DatabaseManagerTest.java:117)
 </error>
   </testcase>
-  <testcase classname="database.DatabaseManagerTest" name="testGetSubjects" time="0.062" />
+  <testcase classname="database.DatabaseManagerTest" name="testGetObjectsFromLevel" time="0.14" />
+  <testcase classname="database.DatabaseManagerTest" name="testGetSubjects" time="0.079" />
   <testcase classname="database.DatabaseManagerTest" name="testGetDatabaseManager" time="0.0" />
   <system-out><![CDATA[getQuestsFromLevel
+save
+Item
+Item
+load
+2
+LinkedHashMap
+{x=1.0, y=1.0, width=32, height=32, info=info, facingDownImage=null, taken=null, mapToSpawn=0, id=null}
 getObjectsFromLevel
-Current quest: matematica1
-calcolatrice
-Result for calcolatrice is: Object : calcolatrice ( taken in null )
-appuntidimatematica1
-Result for appuntidimatematica1 is: Object : appuntidimatematica1 ( taken in null )
-Result for matematica1 is: Foggia
-Current quest: fisica1
-quartieri
-Result for quartieri is: Object : quartieri ( taken in null )
-appuntidifisica1
-Result for appuntidifisica1 is: Object : appuntidifisica1 ( taken in null )
-Result for fisica1 is: Falanga
-Current quest: fondamentidiprorgammazione
-pc
-Result for pc is: Object : pc ( taken in null )
-deitel
-Result for deitel is: Object : deitel ( taken in null )
 getSubjects
 getDatabaseManager
 ]]></system-out>

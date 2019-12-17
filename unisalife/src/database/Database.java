@@ -5,13 +5,8 @@
  */
 package database;
 
-import game.GameObjects.Item;
-import game.GameObjects.Professor;
-import static org.dizitart.no2.IndexOptions.indexOptions;
-import org.dizitart.no2.IndexType;
+import java.io.File;
 import org.dizitart.no2.Nitrite;
-import quests.quest.Quest;
-import saving.Saveable;
 
 /**
  *
@@ -34,18 +29,7 @@ public class Database {
     private Database() {
         if (this.db == null) {
             this.db = Nitrite.builder().compressed().filePath(Database.getPath()).openOrCreate("group08", "hntbae");
-            init();
         }
-    }
-
-    private void init() {
-        /*
-        if (this.db.listRepositories().size() <= 0) {
-            db.getRepository(Item.class).createIndex("info", indexOptions(IndexType.Unique));
-            db.getRepository(Professor.class).createIndex("subject", indexOptions(IndexType.Unique));
-            db.getRepository(Quest.class).createIndex("level", indexOptions(IndexType.NonUnique));
-            db.getRepository(Saveable.class);
-        }*/
     }
 
     public static Database getInstance() throws FileNotSetException {
@@ -58,10 +42,9 @@ public class Database {
         return instance;
     }
 
-    public Nitrite getDatabase() {
+    public Nitrite getNitriteDatabase() {
         if (this.db.isClosed()) {
             this.db = this.db = Nitrite.builder().compressed().filePath(Database.getPath()).openOrCreate("group08", "hntbae");
-            init();
         }
         return this.db;
     }
@@ -72,6 +55,15 @@ public class Database {
     }
 
     public void clear() {
+        for (String s : this.db.listRepositories()) {
+            try {
+                this.db.getRepository(s, Class.forName(s)).drop();
+            } catch (ClassNotFoundException ex) {
+
+            }
+        }
+        File f = new File(Database.getPath());
+        f.delete();
 
     }
 }

@@ -5,13 +5,12 @@
  */
 package game.GameObjects;
 
-import exam.booklet.Saveable;
+import saving.Saveable;
 import game.Interfaces.Interactable;
 import game.Interfaces.Renderable;
 import interaction.ItemInteractionManager;
 import language.Information;
 import java.awt.Graphics;
-import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.time.LocalDateTime;
 import java.io.Serializable;

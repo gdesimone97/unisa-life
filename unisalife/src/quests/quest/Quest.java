@@ -5,7 +5,7 @@
  */
 package quests.quest;
 
-import exam.booklet.Saveable;
+import saving.Saveable;
 import exam.booklet.Subject;
 import java.io.Serializable;
 import java.util.HashMap;

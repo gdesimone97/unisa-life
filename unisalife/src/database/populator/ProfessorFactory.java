@@ -6,7 +6,7 @@
 package database.populator;
 
 import database.populator.exceptions.InvalidArgumentListException;
-import exam.booklet.Saveable;
+import saving.Saveable;
 import exam.booklet.Subject;
 import game.GameObjects.Professor;
 import java.util.NoSuchElementException;

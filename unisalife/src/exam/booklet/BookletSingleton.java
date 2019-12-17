@@ -10,7 +10,7 @@ import java.util.HashMap;
 import quests.QuestsManagerSingleton;
 import quests.mediator.*;
 import quests.quest.QuestsSingleton;
-
+import saving.Saveable;
 /**
  * This class is used due to the necessity of have a booklet for our
  * character.

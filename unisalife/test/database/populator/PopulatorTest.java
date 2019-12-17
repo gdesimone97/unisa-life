@@ -7,10 +7,7 @@ package database.populator;
 
 
 import database.Database;
-import database.FileNotSetException;
-import exam.booklet.Saveable;
 import exam.booklet.Subject;
-import game.GameObjects.Item;
 import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
@@ -34,10 +31,10 @@ public class PopulatorTest {
         Populator p = new Populator("..//unisalife/src/database/populator/data.txt");
         p.populate();
         System.out.println("Population finished");
-        for(String o: Database.getInstance().getDatabase().listRepositories())
+        for(String o: Database.getInstance().getNitriteDatabase().listRepositories())
             System.out.println(o);
         
-        assertTrue(Database.getInstance().getDatabase().hasRepository(Subject.class));
+        assertTrue(Database.getInstance().getNitriteDatabase().hasRepository(Subject.class));
 
     }
     

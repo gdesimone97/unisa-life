@@ -9,7 +9,7 @@ import database.Database;
 import database.DatabaseManager;
 import database.FileNotSetException;
 import database.populator.exceptions.InvalidGameDataFormatException;
-import exam.booklet.Saveable;
+import saving.Saveable;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -56,7 +56,7 @@ public class Populator {
             Saveable sitem = s.create(arguments);
             
             
-            ObjectRepository repo = db.getDatabase().getRepository(sitem.getClass());
+            ObjectRepository repo = db.getNitriteDatabase().getRepository(sitem.getClass());
             repo.insert(sitem);
             
             

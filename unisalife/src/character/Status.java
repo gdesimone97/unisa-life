@@ -5,7 +5,7 @@
  */
 package character;
 
-import exam.booklet.Saveable;
+import saving.Saveable;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
