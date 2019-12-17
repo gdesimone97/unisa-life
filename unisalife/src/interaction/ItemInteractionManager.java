@@ -6,15 +6,10 @@
 package interaction;
 
 import game.GameObjects.GameInventorySingleton;
-import game.GameObjects.GameObject;
 import game.Interfaces.Interactable;
 import game.GameObjects.Item;
-import gameSystem.Game;
-import gameSystem.GameManager;
 import gameSystem.map.MapManager;
 import language.*;
-import language.exceptions.FileTextManagerException;
-import language.exceptions.TextFinderException;
 import unisagui.GuiManager;
 
 /**
