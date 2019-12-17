@@ -30,7 +30,6 @@ public class SaveManager {
     private static SaveManager instance = new SaveManager();
     private List<Saveable> saveableComponents = new ArrayList<>();
     private Map<String, Serializable> savingItems = new HashMap<>();
-    private final GameManager gm = GameManager.getInstance();
     private final String PATH = "../save/save.game"; // path per la cartella di salvataggio
 
     public synchronized static SaveManager getSaveManager() {
