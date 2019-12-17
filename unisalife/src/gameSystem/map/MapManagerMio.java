@@ -13,24 +13,23 @@ import java.awt.Graphics2D;
  */
 
 
-public class MapManager {
+public class MapManagerMio {
     private final int NUMBEROFMAPS = 2;
     private int actualMap;
     
-    private Map[] maps= new Map[NUMBEROFMAPS];
-    public static MapManager instance;
+    private MappaMia[] maps;
+    public static MapManagerMio instance;
     
-    public static MapManager getInstance() {
+    public static MapManagerMio getInstance() {
         if (instance == null) {
-            instance = new MapManager();
+            instance = new MapManagerMio();
         }
         return instance;
     }
 
-    public MapManager() {
-//        maps[0] = new Mappa("2TilesetMap");
-        maps[0] = new Map();
-//        maps[1] = new Mappa();
+    private MapManagerMio() {
+        maps[0] = new MappaMia("ModernTownMap.tmx");
+//        maps[1] = new Mappa("2TilesetMap");
         actualMap = 0;
     }
     
@@ -38,7 +37,7 @@ public class MapManager {
         return actualMap;
     }
     
-    public Map getMap() {
+    public MappaMia getMap() {
         return maps[actualMap];
     }
     

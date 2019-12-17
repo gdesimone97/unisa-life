@@ -7,6 +7,9 @@ import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
@@ -14,7 +17,7 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 
 
 
-public class Mappa extends ApplicationAdapter implements InputProcessor{
+public class MappaMia extends ApplicationAdapter implements InputProcessor{
     private TiledMap map;
     private AssetManager manager;
     private int tileWidth, tileHeight,
@@ -22,16 +25,25 @@ public class Mappa extends ApplicationAdapter implements InputProcessor{
 	            mapWidthInPixels, mapHeightInPixels;
     private OrthographicCamera camera;
     private OrthogonalTiledMapRenderer renderer;
-   
+    private final String mapFileName;
+    SpriteBatch sb;
+    Texture texture;
+    Sprite sprite;
+
+    public MappaMia(String mapFileName) {
+        this.mapFileName = mapFileName;
+    }
+    
+    
 
      @Override
 	public void create () {
 		// Map loading
 		manager = new AssetManager();
 		manager.setLoader(TiledMap.class, new TmxMapLoader());
-		manager.load("ModernTownMap.tmx", TiledMap.class);
+		manager.load(mapFileName, TiledMap.class);
 		manager.finishLoading();
-		map = manager.get("ModernTownMap.tmx", TiledMap.class);
+		map = manager.get(mapFileName, TiledMap.class);
 		
 		// Read properties
 		MapProperties properties = map.getProperties();
@@ -47,7 +59,13 @@ public class Mappa extends ApplicationAdapter implements InputProcessor{
                 camera.setToOrtho(false,mapWidthInPixels*.5f,mapHeightInPixels*.5f);
 		camera.position.x = mapWidthInPixels * .5f;
 		camera.position.y = mapHeightInPixels * .35f;
-		
+                camera.zoom = 1.2f;
+		Gdx.input.setInputProcessor(this);
+                
+                sb = new SpriteBatch();
+                texture = new Texture(Gdx.files.internal("foggia.png"));
+                sprite = new Sprite(texture);
+                sprite.setPosition(mapWidthInPixels * .5f, mapHeightInPixels * .5f);
 		// Instantiation of the render for the map object
 		renderer = new OrthogonalTiledMapRenderer(map);
 	}
@@ -61,7 +79,11 @@ public class Mappa extends ApplicationAdapter implements InputProcessor{
             camera.update();
             renderer.setView(camera);
             renderer.render();
-            Gdx.input.setInputProcessor(this);
+            sb.setProjectionMatrix(camera.combined);
+            
+            sb.begin();
+            sprite.draw(sb);
+            sb.end();
     }    
     
     @Override
@@ -78,15 +100,21 @@ public class Mappa extends ApplicationAdapter implements InputProcessor{
     
     @Override
     public boolean keyUp(int keycode) {
-        if(keycode == Input.Keys.LEFT)
+        if(keycode == Input.Keys.LEFT){
             camera.translate(-32,0);
-        if(keycode == Input.Keys.RIGHT)
+            sprite.translate(-32, 0);
+        }
+        if(keycode == Input.Keys.RIGHT){
             camera.translate(32,0);
-        if(keycode == Input.Keys.UP)
+            sprite.translate(32, 0);
+        }   
+        if(keycode == Input.Keys.UP){
             camera.translate(0,32);
-        if(keycode == Input.Keys.DOWN)
+            sprite.translate(0,32);
+        }if(keycode == Input.Keys.DOWN){
             camera.translate(0,-32);
-        if(keycode == Input.Keys.NUM_1)
+            sprite.translate(0,-32);
+        }if(keycode == Input.Keys.NUM_1)
             map.getLayers().get(0).setVisible(!map.getLayers().get(0).isVisible());
         if(keycode == Input.Keys.NUM_2)
             map.getLayers().get(1).setVisible(!map.getLayers().get(1).isVisible());
