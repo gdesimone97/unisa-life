@@ -7,9 +7,23 @@ package database.populator;
 
 
 import database.Database;
+import database.FileNotSetException;
 import exam.booklet.Subject;
+import game.GameObjects.Item;
+import game.GameObjects.Professor;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.stream.Collectors;
+import org.dizitart.no2.Nitrite;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import org.junit.Test;
+import quests.quest.Quest;
 
 /**
  *
@@ -27,15 +41,20 @@ public class PopulatorTest {
      */
     @Test
     public void testPopulateScript() throws Exception {
-        System.out.println("populate");
-        Populator p = new Populator("..//unisalife/src/database/populator/data.txt");
-        p.populate();
-        System.out.println("Population finished");
-        for(String o: Database.getInstance().getNitriteDatabase().listRepositories())
-            System.out.println(o);
         
-        assertTrue(Database.getInstance().getNitriteDatabase().hasRepository(Subject.class));
-
+        
+            System.out.println("populate");
+            Populator p = new Populator("..//unisalife/src/database/populator/data.txt");
+            p.populate();
+            Nitrite ndb = Database.getInstance().getNitriteDatabase();
+            List<Class> classList = Arrays.asList(new Class[]{Subject.class, Quest.class, Professor.class, Item.class});
+            
+            for( Class c : classList )
+                assertTrue(ndb.hasRepository(c));
+        
+        
+     
+ 
     }
     
     

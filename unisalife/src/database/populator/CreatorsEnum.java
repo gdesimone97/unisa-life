@@ -6,9 +6,13 @@
 package database.populator;
 
 /**
- *
+ * This enumeration works as a map between the objects that need to be managed
+ * (load/save) by the internal database and the factory method to create them.
+ * 
  * @author cmarino
  */
+
+
 public enum CreatorsEnum {
     item("item"){
         @Override

@@ -16,6 +16,7 @@ import saving.Saveable;
  *
  * @author liovi
  */
+
 public class Subject implements Information, Serializable, Saveable, Comparable {
 
     private int score;
