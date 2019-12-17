@@ -23,13 +23,18 @@ import java.util.LinkedList;
 import java.awt.image.BufferedImage;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.imageio.ImageIO;
+import saving.Saveable;
+import saving.exceptions.LoadingException;
 
 /**
  *
  * @author simon
  */
-public class Player extends GameObject implements Tickable, Renderable {
+public class Player extends GameObject implements Tickable, Renderable,Saveable {
     
     private float velX = 0;
     protected float velY = 0;
@@ -329,5 +334,20 @@ public class Player extends GameObject implements Tickable, Renderable {
     public int getHeight() {
         return height;
     }
-    
+
+    @Override
+    public Serializable save() {
+        ArrayList<Serializable> list = new ArrayList<>();
+        list.add(getX());
+        list.add(getY());
+        return list;
+    }
+
+    @Override
+    public void load(Serializable obj) throws LoadingException {
+        List<Serializable> list = (List<Serializable>) obj;
+        setX((int) list.get(0));
+        setY((int) list.get(1));
+    }
+
 }
