@@ -80,7 +80,6 @@ public class GameManager {
         QuestsSingleton.getInstance();
         BookletSingleton.getInstance();
         GameInventorySingleton.getInstance();
-        StatusManager.getInstance();
         
         try{
         FileTextManager fileManager = FileTextManager.getFileTextManager();
@@ -91,13 +90,15 @@ public class GameManager {
         
         // ecc...
         
-        //startGame();
     }
     
     /**
      * creates and runs the Game thread
      */
     public void startGame() {
+        //Status bars have to start only when the game starts
+        StatusManager.getInstance();
+        
         Thread t = new Thread(game);
         t.start();
     }

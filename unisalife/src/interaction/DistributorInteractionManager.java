@@ -5,12 +5,8 @@
  */
 package interaction;
 
-import game.GameObjects.GameInventorySingleton;
-import game.GameObjects.Item;
 import game.Interfaces.Interactable;
-import gameSystem.map.MapManager;
 import language.FileTextManager;
-import language.Information;
 import language.MessageInformation;
 import unisagui.GuiManager;
 import unisagui.RequestGui;
