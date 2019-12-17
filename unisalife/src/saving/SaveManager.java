@@ -7,7 +7,7 @@ package saving;
 
 import saving.exceptions.*;
 import exam.booklet.BookletSingleton;
-import game.GameResources.Game;
+import gameSystem.GameManager;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -29,6 +29,7 @@ public class SaveManager {
     private static SaveManager instance = new SaveManager();
     private List<Saveable> saveableComponents = new ArrayList<>();
     private Map<String, Serializable> savingItems = new HashMap<>();
+    private final GameManager gm = GameManager.getInstance();
     private final String PATH = "../save/save.game"; // path per la cartella di salvataggio
 
     public synchronized static SaveManager getSaveManager() {
@@ -36,9 +37,9 @@ public class SaveManager {
     }
 
     private SaveManager() { // da completare quando abbiamo tutte le classi da salvare
-        //saveableComponents.add(BookletSingleton.getInstance());
         saveableComponents.add(TextManagerAdapter.getTextManagerAdpter());
-//        saveableComponents.add(Game.getGame());
+        saveableComponents.add(BookletSingleton.getInstance());
+        saveableComponents.add(Player)
 
     }
 
