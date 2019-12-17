@@ -23,25 +23,24 @@ import javax.sound.sampled.UnsupportedAudioFileException;
  *
  * @author Davide e Virginia
  */
-public class JukeBoxMusic implements JukeBox {
-
+public class JukeBoxSound implements  JukeBox{
+    
     private static HashMap<String, Clip> clips;
     private static int frame;
     private static boolean isActive;
     private final String pathFile = "";
-
-    public void JukeBoxMusic() {
-
-        try {
+    
+    public void JukeBoxSound() {
+        try{
             readFile(pathFile);
-        } catch (Exception ex) {
+        }catch (Exception ex){
             System.out.println("Error loading track audio");
         }
         frame = 0;
         isActive = true;
     }
     
-    @Override
+     @Override
     public void play(String s) {
         Clip c = clips.get(s);
         if (c == null) {
@@ -119,20 +118,5 @@ public class JukeBoxMusic implements JukeBox {
         FloatControl vol = (FloatControl) c.getControl(FloatControl.Type.MASTER_GAIN);
         vol.setValue(f);
     }
-    
-    public void loop(String s) {
-        int end = clips.get(s).getFrameLength() - 1;
-        Clip c = clips.get(s);
-        if (c == null) {
-            return;
-        }
-        if (c.isRunning()) {
-            c.stop();
-        }
-        c.setLoopPoints(frame, end);
-        c.setFramePosition(frame);
-        c.loop(Clip.LOOP_CONTINUOUSLY);
-    }
-
-
 }
+

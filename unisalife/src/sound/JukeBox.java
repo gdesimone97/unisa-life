@@ -9,7 +9,11 @@ package sound;
  *
  * @author Davide e Virginia
  */
-public interface JukeBox {
+interface JukeBox {
     
-    
+    public abstract void play(String s);   
+    public abstract void stop(String s);
+    public abstract void readFile(String path)throws Exception;
+    public abstract void setVolume(String s, float f);
+    public abstract void load(String path, String key) throws Exception;    
 }
