@@ -37,7 +37,7 @@ public class ItemInteractionManager implements InteractionManager {
             GameInventorySingleton.getInstance().addItem((Item) obj);
 
             // remove element from the the map
-            MapManager.getInstance().getMap().removeObject(((Item)obj).getPosition());
+            MapManager.getInstance().getMap().removeObject(((Item)obj).getPosition().getScaledPosition());
         } catch (Exception ex) {
             // decide what to do when an error with string retriving occurs
         }

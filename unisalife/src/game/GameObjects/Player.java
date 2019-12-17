@@ -284,20 +284,20 @@ public class Player extends GameObject implements Tickable, Renderable,Saveable 
     
 
     //dialog deve lavorare solo con oggetti interactable (item e persone per adesso)
-    public void dialog(ObjectManager o) {
+    /*public void dialog(ObjectManager o) {
         GameObject g = o.get(face.nextStep());
-        if (!(g instanceof Interactable))
+        if (g instanceof Interactable)
         {
-                setVelX(0);
-                setVelY(0);
-                GameStateManager.getInstance().setState(PauseState.getInstance());
+                
+                
+                System.out.print("la velocita e:"+this.getVelX()+this.getVelY());
+               
                 
                 ((Interactable) g).interact();
-                GameStateManager.getInstance().setState(PlayState.getInstance());
+                
                 
         }    
-    }
-
+    }*/
     /**
      *
      * @param g

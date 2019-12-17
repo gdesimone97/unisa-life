@@ -8,6 +8,7 @@ package gameSystem.keySettings;
 import game.GameObjects.GameObject;
 import game.GameObjects.Position;
 import game.Interfaces.Interactable;
+import gameSystem.GameStateManager;
 import gameSystem.PauseState;
 import gameSystem.PlayState;
 import gameSystem.map.MapManager;
@@ -23,7 +24,11 @@ public class InteractCommand extends KeyCommand implements ActionCommand{
         Position p = player.getFace().nextStep();
         GameObject obj =  MapManager.getInstance().getMap().getGameObject(p);
         if(obj instanceof Interactable){
+            GameStateManager.getInstance().setState(PauseState.getInstance());
+            player.setVelX(0);
+            player.setVelY(0);
             ((Interactable) obj).interact();
+            GameStateManager.getInstance().setState(PlayState.getInstance());
         }
     }
 

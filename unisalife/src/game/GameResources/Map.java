@@ -48,7 +48,7 @@ public class Map {
         tMap.loadMap("/Maps/map9.map");
         try {
             Position p = new Position(640, 640);
-            mapObjects.addObject(, new Professor("Foggia", p, "/Sprites/foggia.png", Materia.matematica));
+            mapObjects.addObject(p.getScaledPosition(), new Professor("Foggia", p, "/Sprites/foggia.png", Materia.matematica));
             p = new Position(320, 160);
             mapObjects.addObject(new Position(10,5), new Item(p, "/Sprites/note.png", ItemDef.appuntidimatematica1.toString(), ItemDef.appuntidimatematica1));
             p = new Position(320, 64);
