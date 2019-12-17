@@ -47,8 +47,8 @@ public class MapManagerMio {
         this.actualMap = n;
     }
     
-    public void render(Graphics2D g) {
-        this.maps[actualMap].render(g);
-    }
+//    public void render(Graphics2D g) {
+//        this.maps[actualMap].render(g);
+//    }
     
 }
