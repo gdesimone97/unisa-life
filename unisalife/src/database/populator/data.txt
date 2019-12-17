@@ -16,7 +16,7 @@ quest %1%fisica1%appuntidifisica1%quartieri
 quest %1%fondamentidiprorgammazione%pc%deitel
 quest %2%matematica2%appuntidimatematica2
 quest %2%fisica2%appuntidifisica2%quartieri2
-quest %2%fondamentidiprorgammazione2%pc2%deitel2
+quest %2%fondamentidiprogrammazione2%pc2%deitel2
 professor %Foggia%12%12%path%matematica1
 professor %Falanga%12%12%path%fisica1
 professor %DellaCioppa%12%12%path%fondamentidiprogrammazione
