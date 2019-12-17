@@ -106,6 +106,10 @@ public class Map {
         return mapObjects;
     }
     
+    public GameObject getGameObject(Position p){
+        return mapObjects.getObjectInNextPosition(p);
+    }
+    
     /**
      * 
      * @return tMap TileMap.
