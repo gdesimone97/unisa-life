@@ -20,7 +20,7 @@ public class InteractCommand extends KeyCommand implements ActionCommand{
 
     @Override
     public void visitPlayState(PlayState playState) {
-        Position p = player.getFace().nextStep();
+        Position p = player.getFace().nextStep().getScaledPosition();
         GameObject obj =  MapManager.getInstance().getMap().getGameObject(p);
         if(obj instanceof Interactable){
             ((Interactable) obj).interact();
