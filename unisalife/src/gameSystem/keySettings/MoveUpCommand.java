@@ -18,6 +18,7 @@ class MoveUpCommand extends KeyCommand implements MovingCommand{
     public void visitPlayState(PlayState playState) {
         
         player.setVelY(-speed);
+        player.setVelX(0);
         
     }
 

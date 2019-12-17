@@ -17,6 +17,7 @@ class MoveLeftCommand extends KeyCommand implements MovingCommand{
     @Override
     public void visitPlayState(PlayState playState) {
         player.setVelX(-speed);
+        player.setVelY(0);
     }
 
     @Override
