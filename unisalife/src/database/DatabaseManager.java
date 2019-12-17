@@ -59,7 +59,9 @@ public class DatabaseManager {
         List<Quest> questList = this.getQuestsFromLevel(level);
         for (Quest q : questList) {
             Subject questSubject = q.getSubject();
+            System.out.println("Current quest: " + questSubject.getInfo());
             for (String itemName : q.getItemList()) {
+                System.out.println(itemName);
                 Item i = this.findItem(itemName);
                 returnMap.put(new Destination(i.getX(), i.getY()), i);
             }
@@ -74,6 +76,7 @@ public class DatabaseManager {
 
     private Item findItem(String itemName) throws ObjectNotFoundException {
         Item res = db.getDatabase().getRepository(Item.class).find(eq("info", itemName)).firstOrDefault();
+        System.out.println("Result for " + itemName + " is: " + res);
         if (res == null) {
             throw new ObjectNotFoundException();
         }
@@ -82,6 +85,7 @@ public class DatabaseManager {
 
     private Professor findProfessor(Subject s) throws ObjectNotFoundException {
         Professor prof = db.getDatabase().getRepository(Professor.class).find(eq("subjectName", s.getInfo())).firstOrDefault();
+        System.out.println("Result for " + s.getInfo() + " is: " + prof.getInfo());
         if (prof == null) {
             throw new ObjectNotFoundException();
         }
