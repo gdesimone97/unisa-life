@@ -71,8 +71,12 @@
 </MessageInformation>
 
 <MessageInformation info="SleepResidences">
-<message>After a stressful day like this, a good night's sleep is what you need. Good night!
-</message>
+<message>After a stressful day like this, a good night's sleep is what you need. Good night!</message>
+</MessageInformation>
+
+
+<MessageInformation info="DistributorRequest">
+<message>Do you want some snacks?</message>
 </MessageInformation>
 
 </root>
