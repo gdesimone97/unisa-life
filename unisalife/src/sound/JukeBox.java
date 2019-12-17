@@ -6,15 +6,19 @@
 package sound;
 
 import java.io.BufferedInputStream;
+import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.HashMap;
+import java.util.Locale;
+import java.util.Scanner;
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -39,8 +43,8 @@ public class JukeBox implements Serializable{
     
     public static void JukeBox() {
         try{
-        sounds = readFile(pathFileSounds);
-        audios = readFile(pathFileAudios);
+        readFile(pathFileSounds);
+        readFile(pathFileAudios);
         }catch (Exception ex){
             System.out.println("Error loading track audio");
         }
@@ -215,10 +219,25 @@ public class JukeBox implements Serializable{
     
     }
     
-    public static HashMap<String,Clip> readFile(String path) throws Exception{
-        try (ObjectInputStream is = new ObjectInputStream(new FileInputStream(path))) {
-            return (HashMap<String, Clip>) is.readObject();
+    public static void readFile(String path) throws Exception{
+        
+        String key;
+        String value;
+        boolean sound = true;
+        
+        Scanner sc = new Scanner(new BufferedReader(new FileReader(path))).useDelimiter("\\s*\n\\s*");
+        try{
+            while(sc.hasNext()){
+                key=sc.next();
+                value=sc.next();
+                System.out.println("Inserito");
+                load(value, key, sound);
+            }
         }
+        finally{
+            sc.close();
+        }
+        
     }
 }
 
