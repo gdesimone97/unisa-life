@@ -25,8 +25,6 @@ import quests.ItemDef;
  * @author 1997g
  */
 public class Game extends Canvas implements Runnable {
-    private Map[] maps = new Map[5];
-    private int actualMap;
     
     public static final int WIDTH = 128;
     public static final int HEIGHT = 128;
@@ -48,10 +46,6 @@ public class Game extends Canvas implements Runnable {
     private Graphics2D g2d;
     
     private GameStateManager gsm;
-	
-    public Map getActualMap(){
-        return maps[this.actualMap];
-    }
     
     /**
      * This method initializes the game and runs continuously until the game
@@ -69,23 +63,6 @@ public class Game extends Canvas implements Runnable {
         long timer = System.currentTimeMillis();
         int updates = 0;
         int frames = 0;
-
-        //DA TOGLIERE QUANDO ABBIAMO MapManager
-        TileMap t0 = new TileMap(32, 288, 288);
-        t0.loadTiles("/Tilesets/PT.gif");
-        TileMap t1 = new TileMap(32, 288, 288);
-        t1.loadTiles("/Tilesets/PT.gif");
-        t0.loadMap("/Maps/map9.map");
-        t1.loadMap("/Maps/map9.map");
-        maps[0] = new Map(t0);
-        Position p = new Position(60, 70);
-        maps[0].addObject(p, new Item(p, "/Sprites/calculator.png", ItemDef.calcolatrice.toString(), ItemDef.calcolatrice));
-        p = new Position(300, 160);
-        maps[0].addObject(p, new Item(p, "/Sprites/note.png", ItemDef.appuntidimatematica1.toString(), ItemDef.appuntidimatematica1));
-        p = new Position(300, 360);
-        maps[0].addObject(p, new Item(p, "/Sprites/note.png", ItemDef.appuntidimatematica2.toString(), ItemDef.appuntidimatematica2));
-        p = new Position(200, 200);
-        maps[0].addObject(p, new Professor("Foggia", p, "/Sprites/foggia.png", Materia.matematica));
 
         
         
