@@ -8,7 +8,6 @@ package game.GameObjects;
 import game.GameResources.Animation;
 import gameSystem.Game;
 
-
 import gameSystem.PlayState;
 import game.Interfaces.Tickable;
 import game.Interfaces.Interactable;
@@ -34,8 +33,8 @@ import saving.exceptions.LoadingException;
  *
  * @author simon
  */
-public class Player extends GameObject implements Tickable, Renderable,Saveable {
-    
+public class Player extends GameObject implements Tickable, Renderable, Saveable {
+
     private int velX = 0;
     protected int velY = 0;
     protected Animation upWalk;
@@ -49,7 +48,11 @@ public class Player extends GameObject implements Tickable, Renderable,Saveable 
     protected FaceState face;
     private static Player uniqueIstance = null;
     private boolean nextMove = true;
-    
+    private boolean isMoving = false;
+    private int deltaX = 0;
+    private int deltaY = 0;
+    private int i = 0;
+
     /*public Player(float x,float y,SubjectEnum i){
      super(x,y,i);
      }*/
@@ -57,7 +60,7 @@ public class Player extends GameObject implements Tickable, Renderable,Saveable 
         super(p);
         face = new DownFaceState(this);
         initialize(32, "Ciao");
-        
+
         /*try {
          image = ImageIO.read(
          getClass().getResourceAsStream("/Sprites/gatto.png")
@@ -76,18 +79,18 @@ public class Player extends GameObject implements Tickable, Renderable,Saveable 
     
          */
     }
-    
-    public FaceState getFace(){
+
+    public FaceState getFace() {
         return face;
     }
-    
+
     private void changeFaceSet(BufferedImage down, BufferedImage left, BufferedImage right, BufferedImage up) {
         facingLeftImage = left;
         facingRightImage = right;
         facingUpImage = up;
         facingDownImage = down;
     }
-    
+
     private void changeAnimationSet(Animation down, Animation left, Animation right, Animation up) {
         upWalk = up;
         downWalk = down;
@@ -100,12 +103,11 @@ public class Player extends GameObject implements Tickable, Renderable,Saveable 
      * @return
      *
      */
-    
-    private void initialize(int skin,String name){
+    private void initialize(int skin, String name) {
         BufferedImage texturePlayer[] = new BufferedImage[12];
         try {
             BufferedImage characterImage = ImageIO.read(
-                    getClass().getResourceAsStream("/Sprites/sprite"+32+".png")
+                    getClass().getResourceAsStream("/Sprites/sprite" + 32 + ".png")
             );
             texturePlayer[0] = characterImage.getSubimage(32, 0, DIMENSIONSPRITE, DIMENSIONSPRITE);
             texturePlayer[1] = characterImage.getSubimage(0, 0, DIMENSIONSPRITE, DIMENSIONSPRITE);
@@ -125,26 +127,26 @@ public class Player extends GameObject implements Tickable, Renderable,Saveable 
         changeFaceSet(texturePlayer[6], texturePlayer[3], texturePlayer[9], texturePlayer[0]);
 
         changeAnimationSet(new Animation(ANIMATIONSPEED, texturePlayer[7], texturePlayer[8]),
-            new Animation(ANIMATIONSPEED, texturePlayer[4], texturePlayer[5]),
-            new Animation(ANIMATIONSPEED, texturePlayer[10], texturePlayer[11]),
-            new Animation(ANIMATIONSPEED, texturePlayer[1], texturePlayer[2]));
+                new Animation(ANIMATIONSPEED, texturePlayer[4], texturePlayer[5]),
+                new Animation(ANIMATIONSPEED, texturePlayer[10], texturePlayer[11]),
+                new Animation(ANIMATIONSPEED, texturePlayer[1], texturePlayer[2]));
     }
-    
+
     public static Player getIstance() {
         if (uniqueIstance == null) {
-            uniqueIstance = new Player(new Position(0,0));
+            uniqueIstance = new Player(new Position(0, 0));
         }
         return uniqueIstance;
     }
-    
-    public void setX(int x){
+
+    public void setX(int x) {
         this.p.setX(x);
     }
-    
-    public void setY(int y){
+
+    public void setY(int y) {
         this.p.setY(y);
     }
-    
+
     /**
      *
      * @param a
@@ -153,15 +155,14 @@ public class Player extends GameObject implements Tickable, Renderable,Saveable 
      *
      * @return
      */
-    
-    public int getX(){
+    public int getX() {
         return p.getX();
     }
-    
-    public int getY(){
+
+    public int getY() {
         return p.getY();
     }
-    
+
     public int getVelX() {
         return velX;
     }
@@ -190,36 +191,56 @@ public class Player extends GameObject implements Tickable, Renderable,Saveable 
         this.velY = velY;
     }
 
-
-    
-     
     @Override
     public void tick(/*LinkedList<GameObject> objects*/) {
-        int x=p.getX();
-        int y=p.getY();
-        nextMove = true;
-        if (velX > 0) {
-            face = new RightFaceState(this);
-        } else if (velX < 0) {
-            face = new LeftFaceState(this);
-        } else if (velY > 0) {
-            face = new DownFaceState(this);
-        } else if (velY < 0) {
-            face = new UpFaceState(this);
+        nextMove=true;
+        int x = p.getX();
+        int y = p.getY();
+        if(x%32!=0){            
+            p.setX(x+deltaX);
         }
+        if(y%32!=0){
+            p.setY(y+deltaY);
+        }
+        if(y%32==0&&x%32==0)
+        {
+            if (velX > 0) {
+                face = new RightFaceState(this);
+            } else if (velX < 0) {
+                face = new LeftFaceState(this);
+            } else if (velY > 0) {
+                face = new DownFaceState(this);
+            } else if (velY < 0) {
+                face = new UpFaceState(this);
+            }
+
+            collisions(MapManager.getInstance().getMap().getObjectManager());
+
+                if (x + velX > 0 && x + velX < MapManager.getInstance().getMap().getWidthMap() - Game.DIMENSIONSPRITE && nextMove == true) {
+                //p.setX(p.getX() +velX);
+                    System.out.println("velX:"+velX);
+                    deltaX = velX/4;
+                    System.out.println("deltaX:"+deltaX);
+                    p.setX(x+deltaX);
+                
+            } else {
+                if (y + velY > 0 && y + velY < MapManager.getInstance().getMap().getHeightMap() - Game.DIMENSIONSPRITE && nextMove == true) {
+                    //p.setY(p.getY()+velY);
+                   System.out.println("velY:"+velY);
+                    deltaY = velY/4;
+                    System.out.println("deltaY:"+deltaY);
+                    p.setY(y+deltaY);
+                }
+            }
+        }  
+            //collisions(game.getActualMap().getList());
+            downWalk.runAnimation();
+            leftWalk.runAnimation();
+            rightWalk.runAnimation();
+            upWalk.runAnimation();
         
-        collisions(MapManager.getInstance().getMap().getObjectManager());
-        if (x + velX > 0 && x + velX < MapManager.getInstance().getMap().getWidthMap() - Game.DIMENSIONSPRITE && nextMove == true) {
-            p.setX(p.getX() +velX);
-        }
-        if (y + velY > 0 && y + velY < MapManager.getInstance().getMap().getHeightMap() - Game.DIMENSIONSPRITE && nextMove == true) {
-            p.setY(p.getY()+velY);
-        }
-        //collisions(game.getActualMap().getList());
-        downWalk.runAnimation();
-        leftWalk.runAnimation();
-        rightWalk.runAnimation();
-        upWalk.runAnimation();
+        
+
     }
 
     /**
@@ -228,76 +249,72 @@ public class Player extends GameObject implements Tickable, Renderable,Saveable 
      */
     private void collisions(ObjectManager objMan) {
         GameObject g = objMan.get(face.nextStep());
-        
-            if (g!=null)
-            {   
-                
-                if(g instanceof Teleport){
-                    Teleport t = (Teleport)g;
+
+        if (g != null) {
+
+            if (g instanceof Teleport) {
+                Teleport t = (Teleport) g;
                 /*
                  System.out.print("hello");
                  System.out.print("tile"+t.tilePath);
                  System.out.print(t.mapPath);
                  Game.tileMap.loadTiles(t.tilePath);
                  */
-                   /* Game.getGame().updateActualMap(t.getMapDest());
-                    Game.getGame().setWidthMap(Game.getGame().getActualMap().getTileMap().getWidth());
-                    Game.getGame().setHeightMap(Game.getGame().getActualMap().getTileMap().getHeight());
-                    Game.getGame().setHandler(new Handler());
-                    */
-                    p.setX(t.getDestination().getX());
-                    p.setY(t.getDestination().getY());
-                }
-                
-                nextMove=false;
-                
-                
+                /* Game.getGame().updateActualMap(t.getMapDest());
+                 Game.getGame().setWidthMap(Game.getGame().getActualMap().getTileMap().getWidth());
+                 Game.getGame().setHeightMap(Game.getGame().getActualMap().getTileMap().getHeight());
+                 Game.getGame().setHandler(new Handler());
+                 */
+                p.setX(t.getDestination().getX());
+                p.setY(t.getDestination().getY());
             }
-            //if (face.nextStep().intersects(g.getBounds())) {
-                
-            /*
-             if (getBottomBounds().intersects(g.getBounds()))//&&g.getId()!=SubjectEnum.Teleport)
-             {
-                
-             y = g.getY() - height-1;
-             break;
-             }
 
-             if (getTopBounds().intersects(g.getBounds())) {//&&g.getId()!=SubjectEnum.Tel){
-                
-             y = g.getY() + g.height+1;
-             break;
-             }
-             if (getLeftBounds().intersects(g.getBounds())) {//&&g.getId()!=SubjectEnum.Block){
-             nextMove=false;
-             x = g.getX() + g.width +1;
-             break;
-             }
-             if (getRightBounds().intersects(g.getBounds())) {//&&g.getId()!=SubjectEnum.Block){
-             nextMove=false;
-             x = g.getX() - width - 1;
-             break;
-             }
-             */
+            nextMove = false;
+
         }
-        
-    
+            //if (face.nextStep().intersects(g.getBounds())) {
+
+        /*
+         if (getBottomBounds().intersects(g.getBounds()))//&&g.getId()!=SubjectEnum.Teleport)
+         {
+                
+         y = g.getY() - height-1;
+         break;
+         }
+
+         if (getTopBounds().intersects(g.getBounds())) {//&&g.getId()!=SubjectEnum.Tel){
+                
+         y = g.getY() + g.height+1;
+         break;
+         }
+         if (getLeftBounds().intersects(g.getBounds())) {//&&g.getId()!=SubjectEnum.Block){
+         nextMove=false;
+         x = g.getX() + g.width +1;
+         break;
+         }
+         if (getRightBounds().intersects(g.getBounds())) {//&&g.getId()!=SubjectEnum.Block){
+         nextMove=false;
+         x = g.getX() - width - 1;
+         break;
+         }
+         */
+    }
 
     //dialog deve lavorare solo con oggetti interactable (item e persone per adesso)
     /*public void dialog(ObjectManager o) {
-        GameObject g = o.get(face.nextStep());
-        if (g instanceof Interactable)
-        {
+     GameObject g = o.get(face.nextStep());
+     if (g instanceof Interactable)
+     {
                 
                 
-                System.out.print("la velocita e:"+this.getVelX()+this.getVelY());
+     System.out.print("la velocita e:"+this.getVelX()+this.getVelY());
                
                 
-                ((Interactable) g).interact();
+     ((Interactable) g).interact();
                 
                 
-        }    
-    }*/
+     }    
+     }*/
     /**
      *
      * @param g
@@ -305,10 +322,10 @@ public class Player extends GameObject implements Tickable, Renderable,Saveable 
     @Override
     public void render(Graphics g) {
         if (velX > 0) {
-            rightWalk.drawAnimation(g,p.getX(), p.getY(), width, height);
+            rightWalk.drawAnimation(g, p.getX(), p.getY(), width, height);
             return;
         }
-        
+
         if (velX < 0) {
             leftWalk.drawAnimation(g, p.getX(), p.getY(), width, height);
             return;
@@ -317,22 +334,22 @@ public class Player extends GameObject implements Tickable, Renderable,Saveable 
             downWalk.drawAnimation(g, p.getX(), p.getY(), width, height);
             return;
         }
-        
+
         if (velY < 0) {
             upWalk.drawAnimation(g, p.getX(), p.getY(), width, height);
             return;
         }
         face.drawFace(g);
     }
-    
+
     private Position visualViewOfPlayer() {
         return face.visualViewOfPlayer();
     }
-    
+
     public int getWidth() {
         return width;
     }
-    
+
     public int getHeight() {
         return height;
     }

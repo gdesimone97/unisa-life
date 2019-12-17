@@ -35,7 +35,7 @@ public class Game extends Canvas implements Runnable {
             HEIGHTSCREEN2 = HEIGHTSCREEN + 32,
             PLAYERSPEED = 32,
             ANIMATIONSPEED = 4,
-            AMOUNTOFTICKS = 24,
+            AMOUNTOFTICKS = 10,
             DIMENSIONSPRITE = 32;
     public static int WIDTHMAP, HEIGHTMAP;
 
