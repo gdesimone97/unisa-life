@@ -124,9 +124,6 @@ public class Player extends GameObject implements Tickable, Renderable,Saveable 
             new Animation(ANIMATIONSPEED, texturePlayer[4], texturePlayer[5]),
             new Animation(ANIMATIONSPEED, texturePlayer[10], texturePlayer[11]),
             new Animation(ANIMATIONSPEED, texturePlayer[1], texturePlayer[2]));
-        p.setX(0);
-        p.setY(0);
-        
     }
     
     public static Player getIstance() {
@@ -208,10 +205,10 @@ public class Player extends GameObject implements Tickable, Renderable,Saveable 
         }
         
         collisions(MapManager.getInstance().getMap().getObjectManager());
-        if (x + velX > 0 && x + velX < 900 - Game.DIMENSIONSPRITE && nextMove == true) {
+        if (x + velX > 0 && x + velX < MapManager.getInstance().getMap().getWidthMap() - Game.DIMENSIONSPRITE && nextMove == true) {
             p.setX(p.getX() +velX);
         }
-        if (y + velY > 0 && y + velY < 900 - Game.DIMENSIONSPRITE && nextMove == true) {
+        if (y + velY > 0 && y + velY < MapManager.getInstance().getMap().getHeightMap() - Game.DIMENSIONSPRITE && nextMove == true) {
             p.setY(p.getY()+velY);
         }
         //collisions(game.getActualMap().getList());
@@ -227,6 +224,7 @@ public class Player extends GameObject implements Tickable, Renderable,Saveable 
      */
     private void collisions(ObjectManager objMan) {
         GameObject g = objMan.get(face.nextStep());
+        
             if (g!=null)
             {   
                 

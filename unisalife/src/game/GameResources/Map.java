@@ -48,13 +48,13 @@ public class Map {
         tMap.loadMap("/Maps/map9.map");
         try {
             Position p = new Position(640, 640);
-            mapObjects.addObject(p, new Professor("Foggia", p, "/Sprites/foggia.png", Materia.matematica));
+            mapObjects.addObject(new Position(20,20), new Professor("Foggia", p, "/Sprites/foggia.png", Materia.matematica));
             p = new Position(320, 160);
-            mapObjects.addObject(p, new Item(p, "/Sprites/note.png", ItemDef.appuntidimatematica1.toString(), ItemDef.appuntidimatematica1));
+            mapObjects.addObject(new Position(10,5), new Item(p, "/Sprites/note.png", ItemDef.appuntidimatematica1.toString(), ItemDef.appuntidimatematica1));
             p = new Position(320, 64);
-            mapObjects.addObject(p, new Item(p, "/Sprites/note.png", ItemDef.appuntidimatematica2.toString(), ItemDef.appuntidimatematica2));
+            mapObjects.addObject(new Position(10,2), new Item(p, "/Sprites/note.png", ItemDef.appuntidimatematica2.toString(), ItemDef.appuntidimatematica2));
             p = new Position(320, 320);
-            mapObjects.addObject(p, new Item(p, "/Sprites/calculator.png", ItemDef.calcolatrice.toString(), ItemDef.calcolatrice));
+            mapObjects.addObject(new Position(10,10), new Item(p, "/Sprites/calculator.png", ItemDef.calcolatrice.toString(), ItemDef.calcolatrice));
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -104,6 +104,14 @@ public class Map {
      */
     public ObjectManager getObjectManager(){
         return mapObjects;
+    }
+    
+    public int getWidthMap(){
+        return this.tMap.getWidth();
+    }
+    
+    public int getHeightMap(){
+        return this.tMap.getHeight();
     }
     
     /**
