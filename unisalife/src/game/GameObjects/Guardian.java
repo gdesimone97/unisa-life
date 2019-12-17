@@ -14,8 +14,9 @@ import language.Information;
  * @author 1997g
  */
 public class Guardian extends Person implements Information {
+    private String nome;
 
-    public Guardian(Position p, String path) {
+    public Guardian(String nome, Position p, String path) {
         super(p, path);
     }
 
@@ -27,7 +28,7 @@ public class Guardian extends Person implements Information {
 
     @Override
     public String getInfo() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.nome;
     }
     
 }

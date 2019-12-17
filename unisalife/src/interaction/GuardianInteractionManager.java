@@ -26,9 +26,9 @@ public class GuardianInteractionManager implements InteractionManager {
         try {
             tm = FileTextManager.getFileTextManager();
             MessageInformation ms = new MessageInformation("EatCanteen");
-            toShow = tm.getString(ms).get(0) + " " + tm.getString((Information) obj).get(0);
+            toShow = tm.getString(ms).get(0);
 
-            // show pop up (should be shown until the user says so)
+            // show pop up
             GuiManager.getInstance().showHint(toShow);
 
             // restore status bars

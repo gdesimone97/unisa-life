@@ -5,6 +5,7 @@
  */
 package gameSystem;
 
+import character.StatusManager;
 import exam.booklet.BookletSingleton;
 import game.GameObjects.Camera;
 import game.GameObjects.GameInventorySingleton;
@@ -79,6 +80,7 @@ public class GameManager {
         QuestsSingleton.getInstance();
         BookletSingleton.getInstance();
         GameInventorySingleton.getInstance();
+        StatusManager.getInstance();
         
         try{
         FileTextManager fileManager = FileTextManager.getFileTextManager();

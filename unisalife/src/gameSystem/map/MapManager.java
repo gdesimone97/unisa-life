@@ -5,7 +5,9 @@
  */
 package gameSystem.map;
 
+import game.GameResources.Map;
 import java.awt.Graphics2D;
+
 
 /**
  *
@@ -46,8 +48,8 @@ public class MapManager {
         this.actualMap = n;
     }
     
-    public void render() {
-        this.maps[actualMap].render();
+    public void render(Graphics2D g) {
+        this.maps[actualMap].render(g);
     }
     
 }
