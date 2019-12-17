@@ -5,6 +5,8 @@
  */
 package game.GameObjects;
 
+import interaction.DistributorInteractionManager;
+import interaction.InteractionManager;
 import quests.ItemDef;
 
 /**
@@ -15,6 +17,12 @@ public class Distributor extends Item {
     
     public Distributor(Position p, String path, String info, ItemDef id) {
         super(p, path, info, id);
+    }
+    
+    @Override
+    public void interact() {
+        InteractionManager im = new DistributorInteractionManager();
+        im.execute(this);
     }
     
 }
