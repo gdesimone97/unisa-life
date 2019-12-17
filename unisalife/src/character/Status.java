@@ -13,23 +13,24 @@ import saving.Saveable;
 import saving.exceptions.LoadingException;
 
 /**
- * This class represents the state of the character in terms of sleep, hunger 
+ * This class represents the state of the character in terms of sleep, hunger
  * and stress level. Are also available character's money.
- * 
+ *
  * @author liovi
  */
-public class Status implements Serializable, Saveable{
-    private static int sleepLevel = 0;
+public class Status implements Serializable, Saveable {
+
+    private static int energyLevel = 100;
     private static int hungerLevel = 0;
     private static int stressLevel = 0;
     private static int money = 0;
 
     /**
-     * 
+     *
      * @return the sleep level of the character
      */
-    public static int getSleepLevel() {
-        return sleepLevel;
+    public static int getEnergyLevel() {
+        return energyLevel;
     }
 
     /**
@@ -58,10 +59,16 @@ public class Status implements Serializable, Saveable{
 
     /**
      *
-     * @param sleepLevel used to increase/decrease this parameter
+     * @param energyLevel used to increase/decrease this parameter
      */
-    public static void setSleepLevel(int sleepLevel) {
-        Status.sleepLevel += sleepLevel;
+    public static void setEnergyLevel(int energyLevel) {
+        if (energyLevel < 0) {
+            energyLevel = 0;
+        }
+        if (energyLevel > 100) {
+            energyLevel = 100;
+        }
+        Status.energyLevel = energyLevel;
     }
 
     /**
@@ -69,7 +76,13 @@ public class Status implements Serializable, Saveable{
      * @param hungerLevel used to increase/decrease this parameter
      */
     public static void setHungerLevel(int hungerLevel) {
-        Status.hungerLevel += hungerLevel;
+        if (hungerLevel < 0) {
+            hungerLevel = 0;
+        }
+        if (hungerLevel > 100) {
+            hungerLevel = 100;
+        }
+        Status.hungerLevel = hungerLevel;
     }
 
     /**
@@ -77,7 +90,13 @@ public class Status implements Serializable, Saveable{
      * @param stressLevel used to increase/decrease this parameter
      */
     public static void setStressLevel(int stressLevel) {
-        Status.stressLevel += stressLevel;
+        if (stressLevel < 0) {
+            stressLevel = 0;
+        }
+        if (stressLevel > 100) {
+            stressLevel = 100;
+        }
+        Status.stressLevel = stressLevel;
     }
 
     /**
@@ -85,7 +104,7 @@ public class Status implements Serializable, Saveable{
      * @param money used to increase/decrease the amount of money
      */
     public static void setMoney(int money) {
-        Status.money += money;
+        Status.money = money;
     }
 
     /**
@@ -95,7 +114,7 @@ public class Status implements Serializable, Saveable{
     @Override
     public Serializable save() {
         List<Integer> stat = new ArrayList<>();
-        stat.add(sleepLevel);
+        stat.add(energyLevel);
         stat.add(hungerLevel);
         stat.add(stressLevel);
         stat.add(money);
@@ -109,12 +128,10 @@ public class Status implements Serializable, Saveable{
     @Override
     public void load(Serializable obj)throws LoadingException {
         List<Integer> stat = (ArrayList<Integer>) obj;
-        sleepLevel = stat.get(0);
+        energyLevel = stat.get(0);
         hungerLevel = stat.get(1);
         stressLevel = stat.get(2);
         money = stat.get(3);
     }
-    
-    
-    
+
 }
