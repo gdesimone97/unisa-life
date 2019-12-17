@@ -5,6 +5,7 @@ import java.awt.Frame;
 import java.awt.event.KeyEvent;
 import javax.swing.SwingUtilities;
 import game.GameResources.*;
+import gameSystem.GameManager;
 import java.awt.Dialog;
 
 /**
@@ -2114,7 +2115,7 @@ public class GameFrame extends javax.swing.JFrame {
         SwingUtilities.invokeLater(() -> AvatarChooserDialog.setVisible(false));
         SwingUtilities.invokeLater(() -> this.setVisible(true));
         SwingUtilities.invokeLater(() -> this.setEnabled(true));
-
+        GameManager.getInstance().startGame();
     }//GEN-LAST:event_AvatarOkButtonActionPerformed
 
     private void LanguageComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LanguageComboBoxActionPerformed

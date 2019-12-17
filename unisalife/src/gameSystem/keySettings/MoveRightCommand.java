@@ -12,11 +12,12 @@ import gameSystem.PlayState;
  *
  * @author Giuseppe De Simone
  */
-public class MoveRightCommand extends KeyCommand implements MovingCommand{
+class MoveRightCommand extends KeyCommand implements MovingCommand{
 
     @Override
     public void visitPlayState(PlayState playState) {
         player.setVelX(speed);
+        player.setVelY(0);
     }
 
     @Override

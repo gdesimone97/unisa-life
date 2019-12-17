@@ -37,10 +37,10 @@ public class UpFaceState extends FaceState{
     */
     @Override
     public Position visualViewOfPlayer(){
-        return new Position(player.getX(),player.getY()-Game.DIMENSIONSPRITE);
+        return new Position(player.getX()/Game.DIMENSIONSPRITE,player.getY()/Game.DIMENSIONSPRITE-1);
     }
     @Override
     public Position nextStep(){
-        return new Position(player.getX(),player.getY()-Game.DIMENSIONSPRITE);
+        return new Position(player.getX()/Game.DIMENSIONSPRITE,player.getY()/Game.DIMENSIONSPRITE-1);
     }
 }

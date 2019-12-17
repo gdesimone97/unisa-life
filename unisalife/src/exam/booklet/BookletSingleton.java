@@ -11,6 +11,8 @@ import java.util.EnumMap;
 import quests.QuestsManagerSingleton;
 import quests.mediator.*;
 import quests.quest.QuestsSingleton;
+import saving.Saveable;
+import saving.exceptions.LoadingException;
 
 /**
  * This class is used due to the necessity of have a booklet for our
@@ -24,7 +26,7 @@ import quests.quest.QuestsSingleton;
  * @author liovi
  */
 
-public class BookletSingleton extends User implements Serializable, Saveable{
+public class BookletSingleton extends User implements Serializable,Saveable {
     
     private static BookletSingleton instance = null;
     private EnumMap<Materia,Subject> booklet;
@@ -108,7 +110,7 @@ public class BookletSingleton extends User implements Serializable, Saveable{
      * @param obj is a Serializable. Downcast is necessary before load the obj
      */
     @Override
-    public void load(Serializable obj) {
+    public void load(Serializable obj) throws LoadingException {
         this.booklet = (EnumMap<Materia,Subject>) obj;
     }
 

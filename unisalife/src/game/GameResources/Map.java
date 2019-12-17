@@ -47,18 +47,17 @@ public class Map {
         tMap.loadTiles("/Tilesets/PT.gif");
         tMap.loadMap("/Maps/map9.map");
         try {
-            Position p = new Position(60, 70);
-            mapObjects.addObject(p, new Item(p, "/Sprites/calculator.png", ItemDef.calcolatrice.toString(), ItemDef.calcolatrice));
-            p = new Position(300, 160);
-            mapObjects.addObject(p, new Item(p, "/Sprites/note.png", ItemDef.appuntidimatematica1.toString(), ItemDef.appuntidimatematica1));
-            p = new Position(300, 360);
-            mapObjects.addObject(p, new Item(p, "/Sprites/note.png", ItemDef.appuntidimatematica2.toString(), ItemDef.appuntidimatematica2));
-            p = new Position(200, 200);
-            mapObjects.addObject(p, new Professor("Foggia", p, "/Sprites/foggia.png", Materia.matematica));
+            Position p = new Position(640, 640);
+            mapObjects.addObject(p.getScaledPosition(), new Professor("Foggia", p, "/Sprites/foggia.png", Materia.matematica));
+            p = new Position(320, 160);
+            mapObjects.addObject(new Position(10,5), new Item(p, "/Sprites/note.png", ItemDef.appuntidimatematica1.toString(), ItemDef.appuntidimatematica1));
+            p = new Position(320, 64);
+            mapObjects.addObject(new Position(10,2), new Item(p, "/Sprites/note.png", ItemDef.appuntidimatematica2.toString(), ItemDef.appuntidimatematica2));
+            p = new Position(320, 320);
+            mapObjects.addObject(new Position(10,10), new Item(p, "/Sprites/calculator.png", ItemDef.calcolatrice.toString(), ItemDef.calcolatrice));
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        
     }
     
     /**
@@ -95,7 +94,7 @@ public class Map {
             o = mapObjects.removeObject(p);
         }
         catch(Exception e){
-            System.exit(-1);
+            e.printStackTrace();
         }
         return o;
     }
@@ -105,6 +104,17 @@ public class Map {
      */
     public ObjectManager getObjectManager(){
         return mapObjects;
+    }
+    
+    public int getWidthMap(){
+        return this.tMap.getWidth();
+    }
+    
+    public int getHeightMap(){
+        return this.tMap.getHeight();
+    } 
+    public GameObject getGameObject(Position p){
+        return mapObjects.getObjectInNextPosition(p);
     }
     
     /**
@@ -124,7 +134,4 @@ public class Map {
         }
     }
     
-    public GameObject removeObject(Position p) throws Exception{
-        return this.objects.removeObject(p);
-    }
 }

@@ -23,16 +23,21 @@ import java.util.LinkedList;
 import java.awt.image.BufferedImage;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.imageio.ImageIO;
+import saving.Saveable;
+import saving.exceptions.LoadingException;
 
 /**
  *
  * @author simon
  */
-public class Player extends GameObject implements Tickable, Renderable {
+public class Player extends GameObject implements Tickable, Renderable,Saveable {
     
-    private float velX = 0;
-    protected float velY = 0;
+    private int velX = 0;
+    protected int velY = 0;
     protected Animation upWalk;
     protected Animation downWalk;
     protected Animation leftWalk;
@@ -70,6 +75,10 @@ public class Player extends GameObject implements Tickable, Renderable {
          facingUpImage=Game.texturePlayer[9];
     
          */
+    }
+    
+    public FaceState getFace(){
+        return face;
     }
     
     private void changeFaceSet(BufferedImage down, BufferedImage left, BufferedImage right, BufferedImage up) {
@@ -119,14 +128,11 @@ public class Player extends GameObject implements Tickable, Renderable {
             new Animation(ANIMATIONSPEED, texturePlayer[4], texturePlayer[5]),
             new Animation(ANIMATIONSPEED, texturePlayer[10], texturePlayer[11]),
             new Animation(ANIMATIONSPEED, texturePlayer[1], texturePlayer[2]));
-        p.setX(50);
-        p.setY(50);
-        
     }
     
     public static Player getIstance() {
         if (uniqueIstance == null) {
-            uniqueIstance = new Player(new Position(50,50));
+            uniqueIstance = new Player(new Position(0,0));
         }
         return uniqueIstance;
     }
@@ -156,7 +162,7 @@ public class Player extends GameObject implements Tickable, Renderable {
         return p.getY();
     }
     
-    public float getVelX() {
+    public int getVelX() {
         return velX;
     }
 
@@ -164,7 +170,7 @@ public class Player extends GameObject implements Tickable, Renderable {
      *
      * @return
      */
-    public float getVelY() {
+    public int getVelY() {
         return velY;
     }
 
@@ -172,7 +178,7 @@ public class Player extends GameObject implements Tickable, Renderable {
      *
      * @param velX
      */
-    public void setVelX(float velX) {
+    public void setVelX(int velX) {
         this.velX = velX;
     }
 
@@ -180,7 +186,7 @@ public class Player extends GameObject implements Tickable, Renderable {
      *
      * @param velY
      */
-    public void setVelY(float velY) {
+    public void setVelY(int velY) {
         this.velY = velY;
     }
 
@@ -203,11 +209,11 @@ public class Player extends GameObject implements Tickable, Renderable {
         }
         
         collisions(MapManager.getInstance().getMap().getObjectManager());
-        if (x + velX > 0 && x + velX < 900 - Game.DIMENSIONSPRITE && nextMove == true) {
-            x += velX;
+        if (x + velX > 0 && x + velX < MapManager.getInstance().getMap().getWidthMap() - Game.DIMENSIONSPRITE && nextMove == true) {
+            p.setX(p.getX() +velX);
         }
-        if (y + velY > 0 && y + velY < 900 - Game.DIMENSIONSPRITE && nextMove == true) {
-            y += velY;
+        if (y + velY > 0 && y + velY < MapManager.getInstance().getMap().getHeightMap() - Game.DIMENSIONSPRITE && nextMove == true) {
+            p.setY(p.getY()+velY);
         }
         //collisions(game.getActualMap().getList());
         downWalk.runAnimation();
@@ -222,6 +228,7 @@ public class Player extends GameObject implements Tickable, Renderable {
      */
     private void collisions(ObjectManager objMan) {
         GameObject g = objMan.get(face.nextStep());
+        
             if (g!=null)
             {   
                 
@@ -277,20 +284,20 @@ public class Player extends GameObject implements Tickable, Renderable {
     
 
     //dialog deve lavorare solo con oggetti interactable (item e persone per adesso)
-    public void dialog(ObjectManager o) {
+    /*public void dialog(ObjectManager o) {
         GameObject g = o.get(face.nextStep());
-        if (!(g instanceof Interactable))
+        if (g instanceof Interactable)
         {
-                setVelX(0);
-                setVelY(0);
-                GameStateManager.getInstance().setState(PauseState.getInstance());
+                
+                
+                System.out.print("la velocita e:"+this.getVelX()+this.getVelY());
+               
                 
                 ((Interactable) g).interact();
-                GameStateManager.getInstance().setState(PlayState.getInstance());
+                
                 
         }    
-    }
-
+    }*/
     /**
      *
      * @param g
@@ -329,5 +336,20 @@ public class Player extends GameObject implements Tickable, Renderable {
     public int getHeight() {
         return height;
     }
-    
+
+    @Override
+    public Serializable save() {
+        ArrayList<Serializable> list = new ArrayList<>();
+        list.add(getX());
+        list.add(getY());
+        return list;
+    }
+
+    @Override
+    public void load(Serializable obj) throws LoadingException {
+        List<Serializable> list = (List<Serializable>) obj;
+        setX((int) list.get(0));
+        setY((int) list.get(1));
+    }
+
 }

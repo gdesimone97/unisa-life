@@ -7,16 +7,17 @@ package gameSystem.map;
 
 import java.awt.Graphics2D;
 
-
-
 /**
  *
  * @author liovi
  */
+
+
 public class MapManager {
+    private final int NUMBEROFMAPS = 2;
     private int actualMap;
     
-    private Mappa[] maps;
+    private Map[] maps= new Map[NUMBEROFMAPS];
     public static MapManager instance;
     
     public static MapManager getInstance() {
@@ -27,7 +28,8 @@ public class MapManager {
     }
 
     public MapManager() {
-        maps[0] = new Mappa("2TilesetMap");
+//        maps[0] = new Mappa("2TilesetMap");
+        maps[0] = new Map();
 //        maps[1] = new Mappa();
         actualMap = 0;
     }
@@ -36,7 +38,7 @@ public class MapManager {
         return actualMap;
     }
     
-    public Mappa getMap() {
+    public Map getMap() {
         return maps[actualMap];
     }
     

@@ -13,6 +13,7 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 
 
+
 public class Mappa extends ApplicationAdapter implements InputProcessor{
     private TiledMap map;
     private AssetManager manager;
@@ -69,11 +70,12 @@ public class Mappa extends ApplicationAdapter implements InputProcessor{
             manager.dispose();
     }
     
+
     @Override
     public boolean keyDown(int keycode) {
         return false;
     }
-
+    
     @Override
     public boolean keyUp(int keycode) {
         if(keycode == Input.Keys.LEFT)
@@ -123,5 +125,5 @@ public class Mappa extends ApplicationAdapter implements InputProcessor{
     public boolean scrolled(int amount) {
         return false;
     }
-    
+
 }

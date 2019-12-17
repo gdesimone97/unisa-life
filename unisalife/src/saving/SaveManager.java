@@ -7,7 +7,8 @@ package saving;
 
 import saving.exceptions.*;
 import exam.booklet.BookletSingleton;
-import game.GameResources.Game;
+import game.GameObjects.Player;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -19,10 +20,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import quests.quest.QuestsSingleton;
 
 /**
  *
- * @author
+ * @author Giuseppe De Simone
+ * @author Simone Serritiello
  */
 public class SaveManager {
 
@@ -36,10 +39,10 @@ public class SaveManager {
     }
 
     private SaveManager() { // da completare quando abbiamo tutte le classi da salvare
-        //saveableComponents.add(BookletSingleton.getInstance());
         saveableComponents.add(TextManagerAdapter.getTextManagerAdpter());
-//        saveableComponents.add(Game.getGame());
-
+        saveableComponents.add(BookletSingleton.getInstance());
+        saveableComponents.add(Player.getIstance());
+        saveableComponents.add(QuestsSingleton.getInstance());
     }
 
     public boolean isSaveSomething() {

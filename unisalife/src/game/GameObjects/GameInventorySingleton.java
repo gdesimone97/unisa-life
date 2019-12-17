@@ -11,7 +11,6 @@ import java.util.stream.Collectors;
 import quests.QuestsManagerSingleton;
 import quests.mediator.Message;
 import quests.mediator.User;
-import exam.booklet.Saveable;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -19,6 +18,8 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import quests.ItemDef;
+import saving.Saveable;
+import saving.exceptions.LoadingException;
 
 /**
  *
@@ -180,7 +181,7 @@ public class GameInventorySingleton extends User implements Iterable<Item>, Save
      * @param obj Load the state of the inventory by the serialized object "obj"
      */
     @Override
-    public void load(Serializable obj) {
+    public void load(Serializable obj)throws LoadingException {
         this.items = (HashMap<ItemDef,Item>) obj;
     }
 

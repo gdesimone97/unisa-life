@@ -6,14 +6,10 @@
 package interaction;
 
 import game.GameObjects.GameInventorySingleton;
-import game.GameObjects.GameObject;
 import game.Interfaces.Interactable;
 import game.GameObjects.Item;
-import gameSystem.Game;
-import gameSystem.GameManager;
+import gameSystem.map.MapManager;
 import language.*;
-import language.exceptions.FileTextManagerException;
-import language.exceptions.TextFinderException;
 import unisagui.GuiManager;
 
 /**
@@ -41,8 +37,7 @@ public class ItemInteractionManager implements InteractionManager {
             GameInventorySingleton.getInstance().addItem((Item) obj);
 
             // remove element from the the map
-            Game g = GameManager.getInstance().getGame();
-            g.getActualMap().getObjectManager().remove(((Item)obj).getPosition());
+            MapManager.getInstance().getMap().removeObject(((Item)obj).getPosition().getScaledPosition());
         } catch (Exception ex) {
             // decide what to do when an error with string retriving occurs
         }

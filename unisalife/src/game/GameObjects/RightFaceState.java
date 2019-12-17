@@ -34,10 +34,10 @@ public class RightFaceState extends FaceState {
     */
     @Override
     public Position visualViewOfPlayer(){
-        return new Position(player.getX()+Game.DIMENSIONSPRITE,player.getY());
+        return new Position(player.getX()/Game.DIMENSIONSPRITE+1,player.getY()/Game.DIMENSIONSPRITE);
     }
     @Override
     public Position nextStep(){
-        return new Position(player.getX()+Game.DIMENSIONSPRITE,player.getY());
+        return new Position(player.getX()/Game.DIMENSIONSPRITE+1,player.getY()/Game.DIMENSIONSPRITE);
     }
 }

@@ -10,6 +10,7 @@ import game.GameObjects.GameObject;
 import game.GameObjects.Player;
 import game.Interfaces.Renderable;
 import gameSystem.keySettings.KeyCommand;
+import gameSystem.map.MapManager;
 import java.awt.Color;
 import java.awt.Graphics2D;
 
@@ -67,9 +68,9 @@ public class PlayState extends GameState {
         g.translate(camera.getX(), camera.getY());
         
         //render the player and the map
+        MapManager.getInstance().render(g); 
         player.render(g);
-//        mapManager.render(g); -> la map mantiene ObjectManager e deve renderizzare tutti gli oggetti presenti nella mappa
-
+        
         g.translate(-camera.getX(), -camera.getY());
     }
 

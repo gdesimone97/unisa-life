@@ -26,8 +26,8 @@ public class Professor extends Person implements Information {
 
     @Override
     public void interact() {
-        InteractionManager profMìInteraction = new ProfessorInteractionManager();
-        profMìInteraction.execute(this);
+        InteractionManager profInteraction = new ProfessorInteractionManager();
+        profInteraction.execute(this);
     }
 
     public Materia getSubject() {
