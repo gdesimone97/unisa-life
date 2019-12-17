@@ -68,8 +68,8 @@ public class PlayState extends GameState {
         g.translate(camera.getX(), camera.getY());
         
         //render the player and the map
-        player.render(g);
         MapManager.getInstance().render(g); 
+        player.render(g);
         
         g.translate(-camera.getX(), -camera.getY());
     }
