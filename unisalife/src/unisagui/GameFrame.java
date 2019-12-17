@@ -20,6 +20,7 @@ public class GameFrame extends javax.swing.JFrame {
 
     private static GameFrame instance;
     private final static String EMPTY_TEXT="";
+    private static JukeBoxSound sound = JukeBoxSound.getInstance();
 
 
     private GameFrame() {
@@ -472,7 +473,7 @@ public class GameFrame extends javax.swing.JFrame {
         });
 
         ExitButton.setBackground(new java.awt.Color(93, 150, 199));
-        ExitButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/unisagui/resources/EXIT75.png"))); // NOI18N
+        ExitButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Sound/calculator24.png"))); // NOI18N
         ExitButton.setBorder(null);
         ExitButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1977,7 +1978,7 @@ public class GameFrame extends javax.swing.JFrame {
         RightBorderLayout.setHorizontalGroup(
             RightBorderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RightBorderLayout.createSequentialGroup()
-                .addGap(0, 26, Short.MAX_VALUE)
+                .addGap(0, 25, Short.MAX_VALUE)
                 .addComponent(GameCloseButton))
         );
         RightBorderLayout.setVerticalGroup(
@@ -2070,7 +2071,7 @@ public class GameFrame extends javax.swing.JFrame {
     private void NewGameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewGameButtonActionPerformed
         SwingUtilities.invokeLater(() -> AvatarChooserDialog.setVisible(true));
         SwingUtilities.invokeLater(() -> MainMenuDialog.setVisible(false));
-        JukeBoxSound.getInstance().play("award");
+        sound.play("award");
     }//GEN-LAST:event_NewGameButtonActionPerformed
 
     private void SettingsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SettingsButtonActionPerformed

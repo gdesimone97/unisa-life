@@ -30,7 +30,7 @@ public class JukeBoxMusic implements JukeBox {
     private static boolean isActive;
     private final String pathFile = "";
 
-    public void JukeBoxMusic() {
+    public JukeBoxMusic() {
 
         try {
             readFile(pathFile);

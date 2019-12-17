@@ -32,19 +32,23 @@ public class JukeBoxSound implements  JukeBox{
     private static JukeBoxSound instance;
     
     
-    private void JukeBoxSound() {
-        try{
-            readFile(pathFile);
-        }catch (Exception ex){
-            System.out.println("Error loading track audio");
+    private JukeBoxSound() {
+        System.out.println("INSTANZIATO JUKEBOX");
+        try {
+            this.readFile(pathFile);
+        } catch (Exception ex) {
+            System.out.println("Error loading file");
         }
+            System.out.println("INSTANZIATO JUKEBOX");
         frame = 0;
         isActive = true;
     }
     
     public static JukeBoxSound getInstance(){
-        if( instance ==null)
-            instance= new JukeBoxSound();
+        if( instance ==null){
+            System.out.println("INSTANZIATO JUKEBOX");
+            instance = new JukeBoxSound();
+        }
         return instance;
     }
     
@@ -74,20 +78,26 @@ public class JukeBoxSound implements  JukeBox{
     }
 
     @Override
-    public void readFile(String path) throws Exception {
+    public void readFile(String pathFile) throws Exception{
         String key;
         String value;
         boolean sound = true;
-
-        Scanner sc = new Scanner(new BufferedReader(new FileReader(path))).useDelimiter("\\s*\n\\s*");
+        
+        System.out.println("PROVA!");
+        InputStream in = getClass().getResourceAsStream(s);
+        Scanner sc = new Scanner(new BufferedReader(new FileReader(pathFile))).useDelimiter("\\s*\n\\s*");
+        System.out.println("PROVA!");
+        
         try {
+            
             while (sc.hasNext()) {
                 key = sc.next();
                 value = sc.next();
-                System.out.println("Inserito");
                 load(value, key);
+                System.out.println("Inserito");
+                
             }
-        } finally {
+        } finally{
             sc.close();
         }
     }
