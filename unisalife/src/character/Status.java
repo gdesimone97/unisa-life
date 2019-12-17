@@ -5,10 +5,12 @@
  */
 package character;
 
-import exam.booklet.Saveable;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import saving.Saveable;
+import saving.exceptions.LoadingException;
 
 /**
  * This class represents the state of the character in terms of sleep, hunger 
@@ -105,7 +107,7 @@ public class Status implements Serializable, Saveable{
      * @param obj is a Serializable. Downcast is necessary before load the obj
      */
     @Override
-    public void load(Serializable obj) {
+    public void load(Serializable obj)throws LoadingException {
         List<Integer> stat = (ArrayList<Integer>) obj;
         sleepLevel = stat.get(0);
         hungerLevel = stat.get(1);
