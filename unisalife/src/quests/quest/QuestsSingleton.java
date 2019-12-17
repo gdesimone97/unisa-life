@@ -5,12 +5,13 @@
  */
 package quests.quest;
 
-import exam.booklet.Saveable;
 import exam.question.Materia;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.EnumMap;
 import quests.ItemDef;
+import saving.Saveable;
+import saving.exceptions.LoadingException;
 /**
  *
  * @author liovi
@@ -51,7 +52,7 @@ public class QuestsSingleton  implements Saveable, Serializable{
     }
 
     @Override
-    public void load(Serializable obj) {
+    public void load(Serializable obj) throws LoadingException {
         ArrayList<Serializable> list = (ArrayList<Serializable>) obj;
         this.quests = (EnumMap<Materia, Quest>) list.get(0);
     }
