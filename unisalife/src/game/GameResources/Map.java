@@ -47,18 +47,17 @@ public class Map {
         tMap.loadTiles("/Tilesets/PT.gif");
         tMap.loadMap("/Maps/map9.map");
         try {
-            Position p = new Position(60, 70);
-            mapObjects.addObject(p, new Item(p, "/Sprites/calculator.png", ItemDef.calcolatrice.toString(), ItemDef.calcolatrice));
+            Position p = new Position(600, 600);
+            mapObjects.addObject(p, new Professor("Foggia", p, "/Sprites/foggia.png", Materia.matematica));
             p = new Position(300, 160);
             mapObjects.addObject(p, new Item(p, "/Sprites/note.png", ItemDef.appuntidimatematica1.toString(), ItemDef.appuntidimatematica1));
             p = new Position(300, 360);
             mapObjects.addObject(p, new Item(p, "/Sprites/note.png", ItemDef.appuntidimatematica2.toString(), ItemDef.appuntidimatematica2));
             p = new Position(200, 200);
-            mapObjects.addObject(p, new Professor("Foggia", p, "/Sprites/foggia.png", Materia.matematica));
+            mapObjects.addObject(p, new Item(p, "/Sprites/calculator.png", ItemDef.calcolatrice.toString(), ItemDef.calcolatrice));
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        
     }
     
     /**
@@ -124,7 +123,4 @@ public class Map {
         }
     }
     
-    public GameObject removeObject(Position p) throws Exception{
-        return this.objects.removeObject(p);
-    }
 }

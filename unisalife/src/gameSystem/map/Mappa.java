@@ -5,6 +5,8 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import game.GameObjects.GameObject;
 import game.GameObjects.ObjectManager;
 import game.GameObjects.Position;
+import game.Interfaces.Renderable;
+import java.awt.Graphics2D;
 
 public class Mappa{
     TiledMap tiledMap;
@@ -19,14 +21,22 @@ public class Mappa{
         return this.objects.getObjectInNextPosition(p);
     }
     
-    public void removeObject(Position p) throws Exception{
-        this.objects.removeObject(p);
+    public GameObject removeObject(Position p) throws Exception{
+        return this.objects.removeObject(p);
     }
     
     public void addObject(Position p, GameObject g) throws Exception{
         this.objects.addObject(p, g);
     }
     
+//    public void render(Graphics2D g) {
+//        tiledMap.render(g);
+//        for(GameObject go : mapObjects.values()) {
+//            if(go instanceof Renderable) {
+//                ((Renderable) go).render(g);
+//            }
+//        }
+//    }
     
     
 }

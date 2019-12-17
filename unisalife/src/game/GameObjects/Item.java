@@ -27,9 +27,7 @@ public class Item extends GameObject implements Renderable, Interactable, Serial
     private final String info;
     private BufferedImage facingDownImage;
     private LocalDateTime taken;
-    private int mapToSpawn;
     private ItemDef id;
-    private Position p;
 
     public Item(Position p,String path, String info,ItemDef id) {
         super(p);
@@ -90,7 +88,7 @@ public class Item extends GameObject implements Renderable, Interactable, Serial
 
     @Override
     public void render(Graphics g) {
-        g.drawImage(facingDownImage, p.getX(),p.getY(), width, height, null);
+        g.drawImage(facingDownImage, this.p.getX(),this.p.getY(), width, height, null);
     }
 
     @Override
