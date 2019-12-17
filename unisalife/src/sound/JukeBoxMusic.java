@@ -7,9 +7,10 @@ package sound;
 
 /**
  *
- * @author Davide e Virginia
+ * @author Davide
  */
-public interface JukeBox {
+public class JukeBoxMusic implements JukeBox{
+    
     
     
 }
