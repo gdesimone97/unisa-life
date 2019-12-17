@@ -7,15 +7,15 @@ package interaction;
 
 import game.Interfaces.Interactable;
 import language.FileTextManager;
-import language.Information;
 import language.MessageInformation;
 import unisagui.GuiManager;
+import unisagui.RequestGui;
 
 /**
  *
  * @author 1997g
  */
-public class GuardianInteractionManager implements InteractionManager {
+public class DistributorInteractionManager implements InteractionManager {
 
     @Override
     public void execute(Interactable obj) {
@@ -25,17 +25,20 @@ public class GuardianInteractionManager implements InteractionManager {
 
         try {
             tm = FileTextManager.getFileTextManager();
-            MessageInformation ms = new MessageInformation("EatCanteen");
+            MessageInformation ms = new MessageInformation("DistributorRequest");
             toShow = tm.getString(ms).get(0);
-
+            
             // show pop up
-            GuiManager.getInstance().showHint(toShow);
-
-            // restore status bars
-//            BehaviouralStatus b = new EatCantee();
-//            b.execute();
+            RequestGui request = new RequestGui();
+            GuiManager.getInstance().showRequest(toShow, request);
+            if(request.getValue()) {
+                // restore status bars
+//              BehaviouralStatus b = new DistributorBehaviour();
+//              b.execute();
+            }
         } catch (Exception ex) {
             // decide what to do when an error with string retriving occurs
         }
     }
+    
 }

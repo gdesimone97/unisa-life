@@ -34,7 +34,7 @@ import saving.exceptions.LoadingException;
  * @author simon
  */
 public class Player extends GameObject implements Tickable, Renderable, Saveable {
-
+    private static final int DELAY = 4; 
     private int velX = 0;
     protected int velY = 0;
     protected Animation upWalk;
@@ -196,14 +196,10 @@ public class Player extends GameObject implements Tickable, Renderable, Saveable
         nextMove=true;
         int x = p.getX();
         int y = p.getY();
-        if(x%32!=0){            
-            p.setX(x+deltaX);
-        }
-        if(y%32!=0){
-            p.setY(y+deltaY);
-        }
+        
         if(y%32==0&&x%32==0)
         {
+            
             if (velX > 0) {
                 face = new RightFaceState(this);
             } else if (velX < 0) {
@@ -213,26 +209,32 @@ public class Player extends GameObject implements Tickable, Renderable, Saveable
             } else if (velY < 0) {
                 face = new UpFaceState(this);
             }
-
             collisions(MapManager.getInstance().getMap().getObjectManager());
-
-                if (x + velX > 0 && x + velX < MapManager.getInstance().getMap().getWidthMap() - Game.DIMENSIONSPRITE && nextMove == true) {
-                //p.setX(p.getX() +velX);
-                    System.out.println("velX:"+velX);
-                    deltaX = velX/4;
-                    System.out.println("deltaX:"+deltaX);
+                
+                if (velX!=0 && x + velX > 0 && x + velX < MapManager.getInstance().getMap().getWidthMap() - Game.DIMENSIONSPRITE && nextMove == true) {
+                                    
+                    deltaX = velX/DELAY;
                     p.setX(x+deltaX);
                 
-            } else {
-                if (y + velY > 0 && y + velY < MapManager.getInstance().getMap().getHeightMap() - Game.DIMENSIONSPRITE && nextMove == true) {
-                    //p.setY(p.getY()+velY);
-                   System.out.println("velY:"+velY);
-                    deltaY = velY/4;
-                    System.out.println("deltaY:"+deltaY);
+            } 
+                else {
+                
+                    if (velY!=0 && y + velY > 0 && y + velY < MapManager.getInstance().getMap().getHeightMap() - Game.DIMENSIONSPRITE && nextMove == true) {
+                    
+                    deltaY = velY/DELAY;
+                    
                     p.setY(y+deltaY);
                 }
             }
-        }  
+        }else{
+            
+            if(x%32!=0)
+                p.setX(x+deltaX);
+            
+            if(y%32!=0)
+                p.setY(y+deltaY);
+            
+        }
             //collisions(game.getActualMap().getList());
             downWalk.runAnimation();
             leftWalk.runAnimation();

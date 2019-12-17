@@ -5,6 +5,7 @@
  */
 package gameSystem;
 
+import character.StatusManager;
 import exam.booklet.BookletSingleton;
 import game.GameObjects.Camera;
 import game.GameObjects.GameInventorySingleton;
@@ -89,13 +90,15 @@ public class GameManager {
         
         // ecc...
         
-        //startGame();
     }
     
     /**
      * creates and runs the Game thread
      */
     public void startGame() {
+        //Status bars have to start only when the game starts
+        StatusManager.getInstance();
+        
         Thread t = new Thread(game);
         t.start();
     }
