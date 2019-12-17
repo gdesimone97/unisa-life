@@ -25,11 +25,13 @@ public class HandlerInput extends KeyAdapter {
     private final KeyCommand doNothing = new DoNothingCommand();
     private final GameStateManager stateManager = GameStateManager.getInstance();
     private final SettingsManager settingsManager = SettingsManager.getSettingsManager();
-
+    private boolean isPressed = false;
+    
     @Override
     public void keyReleased(KeyEvent e) {
         KeyCommand cmd = selectCommand(e);
         if (cmd != null) {
+            isPressed = false;
             GameState state = stateManager.getState();
             if (cmd instanceof MovingCommand) {
                 state.handleInput(doNothing);
@@ -44,7 +46,8 @@ public class HandlerInput extends KeyAdapter {
     @Override
     public void keyPressed(KeyEvent e) {
         KeyCommand cmd = selectCommand(e);
-        if (cmd != null && cmd instanceof MovingCommand) {
+        if (cmd != null && cmd instanceof MovingCommand && !isPressed) {
+            isPressed = true;
             GameState state = stateManager.getState();
             state.handleInput(cmd);
         }
