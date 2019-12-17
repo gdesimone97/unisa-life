@@ -15,10 +15,10 @@ import java.util.logging.Logger;
  * @author mariodesio
  */
 public class HudUpdater implements Runnable {
-    private StatusManager manager;
+   
 
-    public HudUpdater(StatusManager manager) {
-        this.manager = manager;
+    public HudUpdater() {
+       
     }
 
     @Override
@@ -33,7 +33,7 @@ public class HudUpdater implements Runnable {
             
             // Updating stress
             if (energyValue <30 && hungerValue > 80) {
-                StatusManager.updateStress(1);
+                StatusManager.getInstance().updateStress(1);
             }
             
             
@@ -43,7 +43,7 @@ public class HudUpdater implements Runnable {
             } catch (InterruptedException ex) {
                 Logger.getLogger(HudUpdater.class.getName()).log(Level.SEVERE, null, ex);
             }
-            StatusManager.updateEnergy(-1);
+            StatusManager.getInstance().updateEnergy(-1);
             
              // Updating hunger
             try {
@@ -51,7 +51,7 @@ public class HudUpdater implements Runnable {
             } catch (InterruptedException ex) {
                 Logger.getLogger(HudUpdater.class.getName()).log(Level.SEVERE, null, ex);
             }
-            StatusManager.updateHunger(1);
+            StatusManager.getInstance().updateHunger(1);
             
             
         }

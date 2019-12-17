@@ -5,6 +5,7 @@
  */
 package character;
 
+import hud.HudUpdater;
 import unisagui.GameFrame;
 import unisagui.GuiManager;
 
@@ -14,7 +15,22 @@ import unisagui.GuiManager;
  */
 public class StatusManager {
 
-    public final GameFrame gameframe = GameFrame.getInstance();
+    private final GameFrame gameframe = GameFrame.getInstance();
+    private HudUpdater updater;
+    private static StatusManager instance;
+    
+    private StatusManager() {
+        this.updater = new HudUpdater();
+        Thread up = new Thread(updater);
+        up.start();
+    }
+    
+    public static StatusManager getInstance(){
+        if(instance == null) {
+            instance = new StatusManager();
+        }
+        return instance;
+    }
 
     public static synchronized void updateEnergy(int increment) {
         int newValue = Status.getEnergyLevel() + increment;
