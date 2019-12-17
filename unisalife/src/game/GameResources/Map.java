@@ -94,7 +94,7 @@ public class Map {
             o = mapObjects.removeObject(p);
         }
         catch(Exception e){
-            System.exit(-1);
+            e.printStackTrace();
         }
         return o;
     }
@@ -112,7 +112,7 @@ public class Map {
     
     public int getHeightMap(){
         return this.tMap.getHeight();
-
+    } 
     public GameObject getGameObject(Position p){
         return mapObjects.getObjectInNextPosition(p);
     }
