@@ -5,9 +5,8 @@
  */
 package gameSystem.map;
 
-import game.GameResources.Map;
 import java.awt.Graphics2D;
-import java.util.HashMap;
+
 
 
 /**
@@ -45,8 +44,8 @@ public class MapManager {
         this.actualMap = n;
     }
     
-    public void render(Graphics2D g) {
-        this.maps[actualMap].render(g);
+    public void render() {
+        this.maps[actualMap].render();
     }
     
 }
