@@ -179,7 +179,7 @@ public class GameFrame extends javax.swing.JFrame {
         MusicButton = new javax.swing.JButton();
         KeyboardButton = new javax.swing.JButton();
         ReturnToMainMenuButton = new javax.swing.JButton();
-        LanguageComboBox = new javax.swing.JComboBox<>();
+        LanguageComboBox = new javax.swing.JComboBox<String>();
         SettingsCloseButton = new javax.swing.JButton();
         RequestDialog = new javax.swing.JDialog();
         RequestPanel = new javax.swing.JPanel();
@@ -214,7 +214,7 @@ public class GameFrame extends javax.swing.JFrame {
         QuestDialog = new javax.swing.JDialog();
         QuestPanel = new javax.swing.JPanel();
         QuestListScrollPane = new javax.swing.JScrollPane();
-        QuestList = new javax.swing.JList<>();
+        QuestList = new javax.swing.JList<String>();
         QuestTextScrollPane = new javax.swing.JScrollPane();
         QuestTextArea = new javax.swing.JTextArea();
         ExitQuestDialogLabel = new javax.swing.JLabel();
@@ -1164,7 +1164,7 @@ public class GameFrame extends javax.swing.JFrame {
         LanguageComboBox.setBackground(new java.awt.Color(75, 125, 167));
         LanguageComboBox.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
         LanguageComboBox.setForeground(new java.awt.Color(255, 255, 255));
-        LanguageComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "English", " " }));
+        LanguageComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "English", " " }));
         LanguageComboBox.setMaximumSize(new java.awt.Dimension(200, 50));
         LanguageComboBox.setMinimumSize(new java.awt.Dimension(200, 50));
         LanguageComboBox.setPreferredSize(new java.awt.Dimension(200, 50));
@@ -1731,10 +1731,10 @@ public class GameFrame extends javax.swing.JFrame {
         QuestListScrollPane.setPreferredSize(new java.awt.Dimension(190, 350));
 
         QuestList.setBorder(javax.swing.BorderFactory.createTitledBorder("Quest"));
-        QuestList.setModel(new javax.swing.AbstractListModel<String>() {
+        QuestList.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Collect your first dollar!", "It's time to get Math Exam!" };
             public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
+            public Object getElementAt(int i) { return strings[i]; }
         });
         QuestList.setMaximumSize(new java.awt.Dimension(190, 350));
         QuestList.setMinimumSize(new java.awt.Dimension(190, 350));
@@ -1849,6 +1849,7 @@ public class GameFrame extends javax.swing.JFrame {
 
         EnergyProgressBar.setBackground(new java.awt.Color(204, 255, 255));
         EnergyProgressBar.setForeground(new java.awt.Color(108, 212, 255));
+        EnergyProgressBar.setValue(70);
         EnergyProgressBar.setMaximumSize(new java.awt.Dimension(150, 25));
         EnergyProgressBar.setMinimumSize(new java.awt.Dimension(150, 25));
         EnergyProgressBar.setPreferredSize(new java.awt.Dimension(150, 25));
@@ -1873,12 +1874,14 @@ public class GameFrame extends javax.swing.JFrame {
 
         StressProgressBar.setBackground(new java.awt.Color(255, 255, 204));
         StressProgressBar.setForeground(new java.awt.Color(254, 215, 102));
+        StressProgressBar.setValue(14);
         StressProgressBar.setMaximumSize(new java.awt.Dimension(150, 25));
         StressProgressBar.setMinimumSize(new java.awt.Dimension(150, 25));
         StressProgressBar.setPreferredSize(new java.awt.Dimension(150, 25));
 
         HungerProgressBar.setBackground(new java.awt.Color(255, 204, 204));
         HungerProgressBar.setForeground(new java.awt.Color(195, 60, 84));
+        HungerProgressBar.setValue(20);
         HungerProgressBar.setMaximumSize(new java.awt.Dimension(150, 25));
         HungerProgressBar.setMinimumSize(new java.awt.Dimension(150, 25));
         HungerProgressBar.setPreferredSize(new java.awt.Dimension(150, 25));
@@ -1974,7 +1977,7 @@ public class GameFrame extends javax.swing.JFrame {
         RightBorderLayout.setHorizontalGroup(
             RightBorderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RightBorderLayout.createSequentialGroup()
-                .addGap(0, 26, Short.MAX_VALUE)
+                .addGap(0, 49, Short.MAX_VALUE)
                 .addComponent(GameCloseButton))
         );
         RightBorderLayout.setVerticalGroup(

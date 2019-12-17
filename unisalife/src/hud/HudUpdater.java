@@ -17,6 +17,9 @@ import java.util.logging.Logger;
 public class HudUpdater implements Runnable {
    
 
+    public HudUpdater() {
+       
+    }
 
     @Override
     public void run() {
