@@ -6,6 +6,7 @@ import java.awt.event.KeyEvent;
 import javax.swing.SwingUtilities;
 import game.GameResources.*;
 import java.awt.Dialog;
+import sound.JukeBoxSound;
 
 /**
  * @author Virginia Cavallaro
@@ -2069,6 +2070,7 @@ public class GameFrame extends javax.swing.JFrame {
     private void NewGameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewGameButtonActionPerformed
         SwingUtilities.invokeLater(() -> AvatarChooserDialog.setVisible(true));
         SwingUtilities.invokeLater(() -> MainMenuDialog.setVisible(false));
+        JukeBoxSound.getInstance().play("award");
     }//GEN-LAST:event_NewGameButtonActionPerformed
 
     private void SettingsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SettingsButtonActionPerformed

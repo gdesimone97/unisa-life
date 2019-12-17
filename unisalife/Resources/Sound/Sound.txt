@@ -1,0 +1,6 @@
+award
+/Sound/STRM_AWARD.wav
+button
+/Sound/STRM_BUTTON2.wav
+fireworks
+/Sound/STRM_FIREWORKS1.wav

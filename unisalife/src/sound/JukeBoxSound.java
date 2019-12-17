@@ -28,9 +28,11 @@ public class JukeBoxSound implements  JukeBox{
     private static HashMap<String, Clip> clips;
     private static int frame;
     private static boolean isActive;
-    private final String pathFile = "";
+    private final String pathFile = "/Sound/Sound.txt";
+    private static JukeBoxSound instance;
     
-    public void JukeBoxSound() {
+    
+    private void JukeBoxSound() {
         try{
             readFile(pathFile);
         }catch (Exception ex){
@@ -38,6 +40,12 @@ public class JukeBoxSound implements  JukeBox{
         }
         frame = 0;
         isActive = true;
+    }
+    
+    public static JukeBoxSound getInstance(){
+        if( instance ==null)
+            instance= new JukeBoxSound();
+        return instance;
     }
     
      @Override
