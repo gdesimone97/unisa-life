@@ -19,34 +19,35 @@ import java.awt.image.BufferStrategy;
 import quests.ItemDef;
 
 /**
- * This class is the main thread of the game, it calls render() and tick() methods 
- * on the GameStateManager; it keeps some info about the width and height of the screen
- * 
+ * This class is the main thread of the game, it calls render() and tick()
+ * methods on the GameStateManager; it keeps some info about the width and
+ * height of the screen
+ *
  * @author 1997g
  */
 public class Game extends Canvas implements Runnable {
-    
+
     public static final int WIDTH = 128;
     public static final int HEIGHT = 128;
-    
+
     public static final int WIDTHSCREEN = 500,
             HEIGHTSCREEN = 500,
             HEIGHTSCREEN2 = HEIGHTSCREEN + 32,
             PLAYERSPEED = 32,
-            ANIMATIONSPEED=4,
-            AMOUNTOFTICKS=30,
+            ANIMATIONSPEED = 4,
+            AMOUNTOFTICKS = 30,
             DIMENSIONSPRITE = 32;
     public static int WIDTHMAP, HEIGHTMAP;
-    
+
     private boolean running = false;
     private final int FPS = 30;
     private final int TARGET_TIME = 1000 / FPS;
-    
+
     private Graphics g;
     private Graphics2D g2d;
-    
+
     private GameStateManager gsm;
-    
+
     /**
      * This method initializes the game and runs continuously until the game
      * stops. Here 2 main methods are called: tick() and render(), that are
@@ -64,63 +65,61 @@ public class Game extends Canvas implements Runnable {
         int updates = 0;
         int frames = 0;
 
-        
-        
         long start;
         long elapsed;
         long wait;
-            
-        while (running) {
-                start = System.nanoTime();
+        /*     
+         while (running) {
+         start = System.nanoTime();
                 
+         tick();
+         render();
+
+         elapsed = System.nanoTime() - start;
+
+         wait = TARGET_TIME - elapsed / 1000000;
+         if (wait < 0) {
+         wait = TARGET_TIME;
+         }
+
+         try {
+         Thread.sleep(wait);
+         } catch (Exception e) {
+         e.printStackTrace();
+         }
+
+         }
+         */
+        while (running) {
+            long now = System.nanoTime();
+            delta += (now - lastTime) / ns;
+            lastTime = now;
+            while (delta >= 1) {
                 tick();
-                render();
-
-                elapsed = System.nanoTime() - start;
-
-                wait = TARGET_TIME - elapsed / 1000000;
-                if (wait < 0) {
-                    wait = TARGET_TIME;
-                }
-
-                try {
-                    Thread.sleep(wait);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
+                updates++;
+                delta--;
             }
-
-//        while (running) {
-//            long now = System.nanoTime();
-//            delta += (now - lastTime) / ns;
-//            lastTime = now;
-//            while (delta >= 1) {
-//                tick();
-//                updates++;
-//                delta--;
-//            }
-//            render();
-//            frames++;
-//            if (System.currentTimeMillis() - timer > 1000) {
-//                timer += 1000;
-//                System.out.println(frames + " " + updates);
-//                frames = 0;
-//                updates = 0;
-//            }
-//        }
+            render();
+            frames++;
+            if (System.currentTimeMillis() - timer > 1000) {
+                timer += 1000;
+                
+                frames = 0;
+                updates = 0;
+            }
+        }
     }
-    
+
     private void init() {
         gsm = GameStateManager.getInstance();
         this.addKeyListener(new HandlerInput());
         running = true;
     }
-    
+
     private void tick() {
         gsm.tick();
     }
-    
+
     private void render() {
         BufferStrategy bs = this.getBufferStrategy();
         if (bs == null) {
@@ -133,7 +132,7 @@ public class Game extends Canvas implements Runnable {
         g.dispose();
         bs.show();
     }
-    
+
     public void stopGame() {
         running = false;
     }

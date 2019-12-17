@@ -16,7 +16,9 @@ class MoveUpCommand extends KeyCommand implements MovingCommand{
 
     @Override
     public void visitPlayState(PlayState playState) {
+        
         player.setVelY(-speed);
+        
     }
 
     @Override

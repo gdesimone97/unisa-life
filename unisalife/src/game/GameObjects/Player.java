@@ -36,8 +36,8 @@ import saving.exceptions.LoadingException;
  */
 public class Player extends GameObject implements Tickable, Renderable,Saveable {
     
-    private float velX = 0;
-    protected float velY = 0;
+    private int velX = 0;
+    protected int velY = 0;
     protected Animation upWalk;
     protected Animation downWalk;
     protected Animation leftWalk;
@@ -124,14 +124,14 @@ public class Player extends GameObject implements Tickable, Renderable,Saveable 
             new Animation(ANIMATIONSPEED, texturePlayer[4], texturePlayer[5]),
             new Animation(ANIMATIONSPEED, texturePlayer[10], texturePlayer[11]),
             new Animation(ANIMATIONSPEED, texturePlayer[1], texturePlayer[2]));
-        p.setX(50);
-        p.setY(50);
+        p.setX(0);
+        p.setY(0);
         
     }
     
     public static Player getIstance() {
         if (uniqueIstance == null) {
-            uniqueIstance = new Player(new Position(50,50));
+            uniqueIstance = new Player(new Position(0,0));
         }
         return uniqueIstance;
     }
@@ -161,7 +161,7 @@ public class Player extends GameObject implements Tickable, Renderable,Saveable 
         return p.getY();
     }
     
-    public float getVelX() {
+    public int getVelX() {
         return velX;
     }
 
@@ -169,7 +169,7 @@ public class Player extends GameObject implements Tickable, Renderable,Saveable 
      *
      * @return
      */
-    public float getVelY() {
+    public int getVelY() {
         return velY;
     }
 
@@ -177,7 +177,7 @@ public class Player extends GameObject implements Tickable, Renderable,Saveable 
      *
      * @param velX
      */
-    public void setVelX(float velX) {
+    public void setVelX(int velX) {
         this.velX = velX;
     }
 
@@ -185,7 +185,7 @@ public class Player extends GameObject implements Tickable, Renderable,Saveable 
      *
      * @param velY
      */
-    public void setVelY(float velY) {
+    public void setVelY(int velY) {
         this.velY = velY;
     }
 
@@ -208,12 +208,12 @@ public class Player extends GameObject implements Tickable, Renderable,Saveable 
         }
         
         collisions(MapManager.getInstance().getMap().getObjectManager());
-        //if (x + velX > 0 && x + velX < 900 - Game.DIMENSIONSPRITE && nextMove == true) {
-            x += velX;
-        //}
-        //if (y + velY > 0 && y + velY < 900 - Game.DIMENSIONSPRITE && nextMove == true) {
-            y += velY;
-        //}
+        if (x + velX > 0 && x + velX < 900 - Game.DIMENSIONSPRITE && nextMove == true) {
+            p.setX(p.getX() +velX);
+        }
+        if (y + velY > 0 && y + velY < 900 - Game.DIMENSIONSPRITE && nextMove == true) {
+            p.setY(p.getY()+velY);
+        }
         //collisions(game.getActualMap().getList());
         downWalk.runAnimation();
         leftWalk.runAnimation();

@@ -47,13 +47,13 @@ public class Map {
         tMap.loadTiles("/Tilesets/PT.gif");
         tMap.loadMap("/Maps/map9.map");
         try {
-            Position p = new Position(600, 600);
+            Position p = new Position(640, 640);
             mapObjects.addObject(p, new Professor("Foggia", p, "/Sprites/foggia.png", Materia.matematica));
-            p = new Position(300, 160);
+            p = new Position(320, 160);
             mapObjects.addObject(p, new Item(p, "/Sprites/note.png", ItemDef.appuntidimatematica1.toString(), ItemDef.appuntidimatematica1));
-            p = new Position(300, 360);
+            p = new Position(320, 64);
             mapObjects.addObject(p, new Item(p, "/Sprites/note.png", ItemDef.appuntidimatematica2.toString(), ItemDef.appuntidimatematica2));
-            p = new Position(200, 200);
+            p = new Position(320, 320);
             mapObjects.addObject(p, new Item(p, "/Sprites/calculator.png", ItemDef.calcolatrice.toString(), ItemDef.calcolatrice));
         } catch (Exception ex) {
             ex.printStackTrace();
