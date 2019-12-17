@@ -31,6 +31,9 @@ public abstract class GameObject {
     public Position getPosition(){
         return this.p;
     } 
+    public Position getScaledPosition(){
+        return this.p.getScaledPosition();
+    }
 
     /**
      *

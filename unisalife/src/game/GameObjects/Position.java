@@ -5,6 +5,8 @@
  */
 package game.GameObjects;
 
+import gameSystem.Game;
+
 /**
  * Position represents a tuple of x and y coordinates used for 
  updating the position of the player in the map.
@@ -78,6 +80,8 @@ public class Position{
         return true;
     }
     
-    
+    public Position getScaledPosition(){
+        return new Position(this.x/Game.DIMENSIONSPRITE,this.y/Game.DIMENSIONSPRITE);
+    }
     
 }
