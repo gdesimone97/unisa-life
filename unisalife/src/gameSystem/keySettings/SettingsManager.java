@@ -22,6 +22,10 @@ public class SettingsManager {
     private int pauseButton = KeyEvent.VK_P;
     private final int SaveButton = KeyEvent.VK_S;
 
+    public int getSaveButton() {
+        return SaveButton;
+    }
+
     private SettingsManager() {
     }
 

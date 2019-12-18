@@ -55,7 +55,8 @@ public class HandlerInput extends KeyAdapter {
 
     private KeyCommand selectCommand(KeyEvent e) {
         int keyCode = e.getKeyCode();
-        if ((((e.getModifiers() & KeyEvent.CTRL_MASK) != 0) && e.getKeyCode() == KeyEvent.VK_S)) {
+        // Da cancellare
+        if ((((e.getModifiers() & KeyEvent.CTRL_MASK) != 0) && e.getKeyCode() == settingsManager.getSaveButton())) {
             return saveCommand;
         }
         if (keyCode == settingsManager.getMoveUp()) {

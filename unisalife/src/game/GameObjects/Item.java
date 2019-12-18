@@ -26,19 +26,19 @@ import quests.ItemDef;
 public class Item extends GameObject implements Renderable, Interactable, Serializable, Comparable<Item>, Information, Saveable {
     @Id
     private final String info;
-    private BufferedImage facingDownImage;
+    transient private BufferedImage facingDownImage;
     private LocalDateTime taken;
 
     public Item(Position p,String path, String info) {
         super(p);
         this.info = info;
-    }	
-		
+    }
+
     public Item(){
         super(new Position(1,1));
         this.info = "info";
     }
-    
+
 
     @Override
     public boolean equals(Object o) {
@@ -83,7 +83,7 @@ public class Item extends GameObject implements Renderable, Interactable, Serial
 
     @Override
     public void render(Graphics g) {
-        g.drawImage(facingDownImage, this.p.getX(),this.p.getY(), width, height, null);
+        g.drawImage(facingDownImage, this.p.getX(), this.p.getY(), width, height, null);
     }
 
     @Override
