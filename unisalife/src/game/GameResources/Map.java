@@ -16,6 +16,7 @@ import game.GameObjects.Professor;
 import game.GameObjects.Teleport;
 import game.Interfaces.Renderable;
 import java.awt.Graphics2D;
+import java.io.Serializable;
 /**
  *
  * @author simon
@@ -27,7 +28,7 @@ import java.awt.Graphics2D;
  * considering Player. If an objects is collected by the Player, it must be removed from the list.
  *
 */
-public class Map {
+public class Map implements Serializable{
     private TileMap tMap;
     private ObjectManager mapObjects;
 

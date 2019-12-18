@@ -9,6 +9,8 @@ import gameSystem.GameState;
 import gameSystem.GameStateManager;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import saving.SaveManager;
+import saving.exceptions.LoadingException;
 
 /**
  * This class allow to component that add it to listen keyboard keys
@@ -55,6 +57,13 @@ public class HandlerInput extends KeyAdapter {
     @Override
     public void keyPressed(KeyEvent e) {
         KeyCommand cmd = selectCommand(e);
+        if (e.getKeyCode() == KeyEvent.VK_O) {
+            try {
+                SaveManager.getSaveManager().load();
+            } catch (LoadingException ex) {
+                ex.printStackTrace();
+            }
+        }
         if (cmd != null && cmd instanceof MovingCommand && !isPressed) {
             isPressed = true;
             GameState state = stateManager.getState();

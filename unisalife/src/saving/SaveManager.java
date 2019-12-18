@@ -9,6 +9,8 @@ import saving.exceptions.*;
 import exam.booklet.BookletSingleton;
 import game.GameObjects.GameInventorySingleton;
 import game.GameObjects.Player;
+import gameSystem.GameManager;
+import gameSystem.map.MapManager;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -41,6 +43,7 @@ public class SaveManager {
 
     private SaveManager() { // da completare quando abbiamo tutte le classi da salvare
         saveableComponents.add(TextManagerAdapter.getTextManagerAdpter());
+        saveableComponents.add(MapManager.getInstance());
         saveableComponents.add(BookletSingleton.getInstance());
         saveableComponents.add(Player.getIstance());
         saveableComponents.add(GameInventorySingleton.getInstance());
@@ -65,6 +68,7 @@ public class SaveManager {
             s.writeObject(savingItems);
 
         } catch (IOException ex) {
+            ex.printStackTrace();
             throw new SavingException();
         }
     }
@@ -79,6 +83,7 @@ public class SaveManager {
                 sav.load(item);
             }
         } catch (Exception ex) {
+            ex.printStackTrace();
             throw new LoadingException();
         }
     }
