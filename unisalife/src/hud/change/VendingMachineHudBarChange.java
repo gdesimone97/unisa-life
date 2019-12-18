@@ -5,10 +5,17 @@
  */
 package hud.change;
 
+import character.StatusManager;
+
 /**
  *
  * @author mariodesio
  */
-public class VendingMachineHudBarChange {
+public class VendingMachineHudBarChange implements HudBarChange {
+
+    @Override
+    public void execute() {
+        StatusManager.getInstance().updateHunger(-30);
+    }
     
 }
