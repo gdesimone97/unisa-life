@@ -5,7 +5,6 @@
  */
 package saving;
 
-import gameSystem.GameManager;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
