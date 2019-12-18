@@ -6,12 +6,8 @@
 package sound;
 
 import java.io.BufferedInputStream;
-import java.io.BufferedReader;
-import java.io.FileReader;
+import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.URL;
 import java.util.HashMap;
 import java.util.Scanner;
 import javax.sound.sampled.AudioFormat;
@@ -26,12 +22,12 @@ import javax.sound.sampled.UnsupportedAudioFileException;
  *
  * @author Davide e Virginia
  */
-public class JukeBoxSound implements  JukeBox{
+public final class JukeBoxSound implements  JukeBox{
     
-    private static HashMap<String, Clip> clips;
+    private static HashMap<String, Clip> clips = new HashMap<>();
     private static int frame;
     private static boolean isActive;
-    private final String pathFile = "/Sound/Sound.txt";
+    private final String pathFile = "./Resources/Sound/Sound.txt";
     private static JukeBoxSound instance;
     
     
@@ -40,8 +36,9 @@ public class JukeBoxSound implements  JukeBox{
         try {
             readFile(this.pathFile);
         } catch (Exception ex) {
-            System.out.println("Error loading file");
-            System.out.println(ex.getCause() +" "+ex.getMessage());
+            ex.printStackTrace();
+            //System.out.println("Error loading file");
+            //System.out.println(ex.getCause() +" "+ex.getMessage());
         }
             System.out.println("INSTANZIATO JUKEBOX");
         frame = 0;
@@ -88,10 +85,9 @@ public class JukeBoxSound implements  JukeBox{
         boolean sound = true;
         
         System.out.println("PROVA!!");
-       // URL resource = getClass().getClassLoader().getResource(pathFile);
-        //System.out.println(resource.getFile());
-        //Scanner sc = new Scanner(new BufferedReader(new FileReader(resource.getFile()))).useDelimiter("\\s*\n\\s*");
-        Scanner sc = new Scanner(new BufferedReader(new InputStreamReader(getClass().getResourceAsStream(pathFile))));
+        File f = new File(pathFile);
+        System.err.println(f.getName());
+        Scanner sc = new Scanner(f);
         System.out.println("PROVA2!");
         
         try {
