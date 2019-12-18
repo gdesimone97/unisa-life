@@ -2101,7 +2101,7 @@ public class GameFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_AvatarNameActionPerformed
 
     private void FemaleWhiteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FemaleWhiteButtonActionPerformed
-         SwingUtilities.invokeLater(() ->StudentLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/unisagui/resources/woman75.png"))));
+         SwingUtilities.invokeLater(() ->StudentLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/woman75.png"))));
          SwingUtilities.invokeLater(() ->AvatarOkButton.setEnabled(true));
          SwingUtilities.invokeLater(() ->avatar=1);
     }//GEN-LAST:event_FemaleWhiteButtonActionPerformed
