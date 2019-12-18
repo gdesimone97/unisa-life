@@ -7,6 +7,7 @@ package sound;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
@@ -25,10 +26,10 @@ import javax.sound.sampled.UnsupportedAudioFileException;
  */
 public class JukeBoxMusic implements JukeBox {
 
-    private static HashMap<String, Clip> clips;
+    private static HashMap<String, Clip> clips = new HashMap<>();
     private static int frame;
     private static boolean isActive;
-    private final String pathFile = "";
+    private final String pathFile = "./Resources/Music/Music.txt";
 
     public JukeBoxMusic() {
 
@@ -71,8 +72,10 @@ public class JukeBoxMusic implements JukeBox {
         String key;
         String value;
         boolean sound = true;
-
-        Scanner sc = new Scanner(new BufferedReader(new FileReader(path))).useDelimiter("\\s*\n\\s*");
+        
+        File f = new File(pathFile);
+        Scanner sc = new Scanner(f);
+        
         try {
             while (sc.hasNext()) {
                 key = sc.next();

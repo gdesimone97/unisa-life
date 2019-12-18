@@ -84,11 +84,8 @@ public final class JukeBoxSound implements  JukeBox{
         String value;
         boolean sound = true;
         
-        System.out.println("PROVA!!");
         File f = new File(pathFile);
-        System.err.println(f.getName());
         Scanner sc = new Scanner(f);
-        System.out.println("PROVA2!");
         
         try {
             
