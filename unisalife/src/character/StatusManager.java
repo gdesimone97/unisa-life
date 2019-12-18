@@ -32,19 +32,19 @@ public class StatusManager {
         return instance;
     }
 
-    public static synchronized void updateEnergy(int increment) {
+    public synchronized void updateEnergy(int increment) {
         int newValue = Status.getEnergyLevel() + increment;
         Status.setEnergyLevel(newValue);
         GuiManager.getInstance().updateEnergyBar(newValue);
     }
 
-    public static synchronized void updateHunger(int increment) {
+    public synchronized void updateHunger(int increment) {
         int newValue = Status.getHungerLevel() + increment;
         Status.setHungerLevel(newValue);
         GuiManager.getInstance().updateHungerBar(newValue);
     }
 
-    public static synchronized void updateStress(int increment) {
+    public synchronized void updateStress(int increment) {
         int newValue = Status.getStressLevel() + increment;
         Status.setStressLevel(newValue);
         GuiManager.getInstance().updateStressBar(newValue);

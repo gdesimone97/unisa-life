@@ -20,6 +20,8 @@ public class GameFrame extends javax.swing.JFrame {
 
     private static GameFrame instance;
     private final static String EMPTY_TEXT="";
+    private String name = "";
+    private int avatar = 0;
 
 
     private GameFrame() {
@@ -1456,7 +1458,6 @@ public class GameFrame extends javax.swing.JFrame {
         MaleBlackButton.setBackground(new java.awt.Color(93, 150, 199));
         MaleBlackButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/BLACKman75.png"))); // NOI18N
         MaleBlackButton.setBorder(null);
-        MaleBlackButton.setEnabled(false);
         MaleBlackButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MaleBlackButtonActionPerformed(evt);
@@ -1466,7 +1467,6 @@ public class GameFrame extends javax.swing.JFrame {
         FemaleBlackButton.setBackground(new java.awt.Color(93, 150, 199));
         FemaleBlackButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/BLACKwoman75.png"))); // NOI18N
         FemaleBlackButton.setBorder(null);
-        FemaleBlackButton.setEnabled(false);
         FemaleBlackButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 FemaleBlackButtonActionPerformed(evt);
@@ -1476,7 +1476,6 @@ public class GameFrame extends javax.swing.JFrame {
         FemaleWhiteButton.setBackground(new java.awt.Color(93, 150, 199));
         FemaleWhiteButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/woman75.png"))); // NOI18N
         FemaleWhiteButton.setBorder(null);
-        FemaleWhiteButton.setEnabled(false);
         FemaleWhiteButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 FemaleWhiteButtonMouseClicked(evt);
@@ -1499,6 +1498,7 @@ public class GameFrame extends javax.swing.JFrame {
         AvatarOkButton.setForeground(new java.awt.Color(255, 255, 255));
         AvatarOkButton.setText("OK");
         AvatarOkButton.setBorder(null);
+        AvatarOkButton.setEnabled(false);
         AvatarOkButton.setMaximumSize(new java.awt.Dimension(75, 50));
         AvatarOkButton.setMinimumSize(new java.awt.Dimension(75, 50));
         AvatarOkButton.setPreferredSize(new java.awt.Dimension(75, 50));
@@ -1974,7 +1974,7 @@ public class GameFrame extends javax.swing.JFrame {
         RightBorderLayout.setHorizontalGroup(
             RightBorderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RightBorderLayout.createSequentialGroup()
-                .addGap(0, 26, Short.MAX_VALUE)
+                .addGap(0, 25, Short.MAX_VALUE)
                 .addComponent(GameCloseButton))
         );
         RightBorderLayout.setVerticalGroup(
@@ -2067,6 +2067,7 @@ public class GameFrame extends javax.swing.JFrame {
     private void NewGameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewGameButtonActionPerformed
         SwingUtilities.invokeLater(() -> AvatarChooserDialog.setVisible(true));
         SwingUtilities.invokeLater(() -> MainMenuDialog.setVisible(false));
+        SwingUtilities.invokeLater(() -> AvatarName.setText(EMPTY_TEXT));
     }//GEN-LAST:event_NewGameButtonActionPerformed
 
     private void SettingsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SettingsButtonActionPerformed
@@ -2095,7 +2096,9 @@ public class GameFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_AvatarNameActionPerformed
 
     private void FemaleWhiteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FemaleWhiteButtonActionPerformed
-          SwingUtilities.invokeLater(() ->StudentLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/unisagui/resources/woman75.png"))));
+         SwingUtilities.invokeLater(() ->StudentLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/unisagui/resources/woman75.png"))));
+         SwingUtilities.invokeLater(() ->AvatarOkButton.setEnabled(true));
+         SwingUtilities.invokeLater(() ->avatar=1);
     }//GEN-LAST:event_FemaleWhiteButtonActionPerformed
 
     private void ExitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitButtonActionPerformed
@@ -2109,10 +2112,14 @@ public class GameFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_KeyboardButtonActionPerformed
 
     private void AvatarOkButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AvatarOkButtonActionPerformed
-        SwingUtilities.invokeLater(() -> AvatarChooserDialog.setVisible(false));
-        SwingUtilities.invokeLater(() -> this.setVisible(true));
-        SwingUtilities.invokeLater(() -> this.setEnabled(true));
-        GameManager.getInstance().startGame();
+        name = AvatarName.getText();
+        if(!name.equals("")){
+            SwingUtilities.invokeLater(() -> AvatarChooserDialog.setVisible(false));
+            SwingUtilities.invokeLater(() -> this.setVisible(true));
+            SwingUtilities.invokeLater(() -> this.setEnabled(true));
+            GameManager.getInstance().startGame(avatar,name);
+        }
+        else return;
     }//GEN-LAST:event_AvatarOkButtonActionPerformed
 
     private void LanguageComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LanguageComboBoxActionPerformed
@@ -2234,15 +2241,22 @@ public class GameFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_QuestButtonFrameActionPerformed
 
     private void MaleWhiteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MaleWhiteButtonActionPerformed
-         SwingUtilities.invokeLater(() ->StudentLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/unisagui/resources/man75.png"))));        
+         SwingUtilities.invokeLater(() ->StudentLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/man75.png")))); 
+         SwingUtilities.invokeLater(() ->AvatarOkButton.setEnabled(true));
+         SwingUtilities.invokeLater(() ->avatar=0);
+         
     }//GEN-LAST:event_MaleWhiteButtonActionPerformed
 
     private void FemaleBlackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FemaleBlackButtonActionPerformed
-        SwingUtilities.invokeLater(() ->StudentLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/unisagui/resources/BLACKwoman75.png"))));
+        SwingUtilities.invokeLater(() ->StudentLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/BLACKwoman75.png"))));
+         SwingUtilities.invokeLater(() ->AvatarOkButton.setEnabled(true));
+         SwingUtilities.invokeLater(() ->avatar=3);
     }//GEN-LAST:event_FemaleBlackButtonActionPerformed
 
     private void MaleBlackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MaleBlackButtonActionPerformed
-        SwingUtilities.invokeLater(() ->StudentLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/unisagui/resources/BLACKman75.png"))));
+        SwingUtilities.invokeLater(() ->StudentLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/BLACKman75.png"))));
+        SwingUtilities.invokeLater(() ->AvatarOkButton.setEnabled(true));
+        SwingUtilities.invokeLater(() ->avatar=2);
         
     }//GEN-LAST:event_MaleBlackButtonActionPerformed
 
