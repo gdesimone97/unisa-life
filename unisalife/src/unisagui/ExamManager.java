@@ -9,6 +9,7 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
+import sound.JukeBoxSound;
 
 /**
  *
@@ -81,8 +82,10 @@ import javax.swing.Timer;
         this.confirm = confirm;
         if (correctness) {
             color = new java.awt.Color(115, 205, 105);//green
+            SwingUtilities.invokeLater(() -> JukeBoxSound.getInstance().play("correct"));
         } else {
             color = new java.awt.Color(195, 60, 84); //red
+            SwingUtilities.invokeLater(() -> JukeBoxSound.getInstance().play("wrong"));
         }
         timing.stop();
 

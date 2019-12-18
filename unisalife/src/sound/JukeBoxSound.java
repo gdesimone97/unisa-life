@@ -29,25 +29,22 @@ public final class JukeBoxSound implements  JukeBox{
     private static boolean isActive;
     private final String pathFile = "./Resources/Sound/Sound.txt";
     private static JukeBoxSound instance;
+    private float VOLUME =6;
     
     
     private JukeBoxSound() {
-        System.out.println("INSTANZIATO JUKEBOX");
         try {
             readFile(this.pathFile);
         } catch (Exception ex) {
             ex.printStackTrace();
-            //System.out.println("Error loading file");
-            //System.out.println(ex.getCause() +" "+ex.getMessage());
+            
         }
-            System.out.println("INSTANZIATO JUKEBOX");
         frame = 0;
         isActive = true;
     }
     
     public static JukeBoxSound getInstance(){
         if( instance ==null){
-            System.out.println("INSTANZIATO JUKEBOX");
             instance = new JukeBoxSound();
         }
         return instance;
@@ -55,7 +52,11 @@ public final class JukeBoxSound implements  JukeBox{
     
      @Override
     public void play(String s) {
+        if(!isActive)
+            return;
         Clip c = clips.get(s);
+        FloatControl vol = (FloatControl) c.getControl(FloatControl.Type.MASTER_GAIN);
+        vol.setValue(VOLUME);
         if (c == null) {
             return;
         }
@@ -93,12 +94,19 @@ public final class JukeBoxSound implements  JukeBox{
                 key = sc.next();
                 value = sc.next();
                 load(value, key);
-                System.out.println("Inserito");
                 
             }
         } finally{
             sc.close();
         }
+    }
+
+    public static boolean isActive() {
+        return isActive;
+    }
+
+    public static void setIsActive(boolean isActive) {
+        JukeBoxSound.isActive = isActive;
     }
 
     @Override

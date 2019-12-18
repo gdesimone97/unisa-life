@@ -30,6 +30,9 @@ public class JukeBoxMusic implements JukeBox {
     private static int frame;
     private static boolean isActive;
     private final String pathFile = "./Resources/Music/Music.txt";
+    private float VOLUME=3;
+
+    
 
     public JukeBoxMusic() {
 
@@ -44,7 +47,11 @@ public class JukeBoxMusic implements JukeBox {
     
     @Override
     public void play(String s) {
+        if(! isActive)
+            return;
         Clip c = clips.get(s);
+        FloatControl vol = (FloatControl) c.getControl(FloatControl.Type.MASTER_GAIN);
+        vol.setValue(VOLUME);
         if (c == null) {
             return;
         }
@@ -68,7 +75,7 @@ public class JukeBoxMusic implements JukeBox {
     }
 
     @Override
-    public void readFile(String path) throws Exception {
+     public void readFile(String path) throws Exception {
         String key;
         String value;
         boolean sound = true;
@@ -86,6 +93,14 @@ public class JukeBoxMusic implements JukeBox {
         } finally {
             sc.close();
         }
+    }
+    
+    public static boolean isActive() {
+        return isActive;
+    }
+
+    public static void setIsActive(boolean isActive) {
+        JukeBoxMusic.isActive = isActive;
     }
 
     @Override
