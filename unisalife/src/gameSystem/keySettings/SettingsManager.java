@@ -9,7 +9,7 @@ import java.awt.event.KeyEvent;
 
 /**
  * This class declares the methods to set and get keyboard keys used to move the
- * avatar and perform game's actions like to interact with game's objects or to
+ * avatar and performs game's actions like to interact with game's objects or to
  * enter in pause modality
  *
  * @author Giuseppe De Simone
