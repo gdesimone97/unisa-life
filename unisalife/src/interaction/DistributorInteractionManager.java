@@ -36,6 +36,7 @@ public class DistributorInteractionManager implements InteractionManager {
 //              BehaviouralStatus b = new DistributorBehaviour();
 //              b.execute();
             }
+            
         } catch (Exception ex) {
             // decide what to do when an error with string retriving occurs
         }
