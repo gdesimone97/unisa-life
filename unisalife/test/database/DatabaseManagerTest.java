@@ -7,18 +7,14 @@ package database;
 
 import database.populator.Populator;
 import database.populator.exceptions.InvalidGameDataFormatException;
-import game.GameObjects.Item;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import saving.Saveable;
 
 /**
  *
@@ -100,10 +96,8 @@ public class DatabaseManagerTest {
         int result = instance.getSubjects().size();
         assertEquals(expResult, result);
     }
-
-    /**
-     * Test of save method, of class DatabaseManager.
-     */
+    
+    /*
     @Test
     public void testSave() throws Exception {
         System.out.println("save");
@@ -118,9 +112,7 @@ public class DatabaseManagerTest {
         testIsSaved();
     }
 
-    /**
-     * Test of load method, of class DatabaseManager.
-     */
+
     //@Test
     public void testLoad() throws FileNotSetException {
         System.out.println("load");
@@ -130,9 +122,7 @@ public class DatabaseManagerTest {
         assertEquals(expResult, result);
     }
 
-    /**
-     * Test of isSaved method, of class DatabaseManager.
-     */
+
     //@Test
     public void testIsSaved() throws FileNotSetException {
         System.out.println("isSaved");
@@ -142,14 +132,12 @@ public class DatabaseManagerTest {
         assertEquals(expResult, result);
     }
 
-    /**
-     * Test of close method, of class DatabaseManager.
-     */
     //@Test
     public void testClose() {
         System.out.println("close");
         DatabaseManager instance = null;
         instance.close();
     }
+    */
 
 }

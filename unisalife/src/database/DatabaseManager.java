@@ -5,22 +5,14 @@
  */
 package database;
 
-import saving.Saveable;
 import exam.booklet.Subject;
 import game.GameObjects.Destination;
 import game.GameObjects.GameObject;
 import game.GameObjects.Item;
 import game.GameObjects.Professor;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.stream.Collectors;
-import org.dizitart.no2.WriteResult;
-import org.dizitart.no2.objects.Cursor;
 import static org.dizitart.no2.objects.filters.ObjectFilters.eq;
-import org.dizitart.no2.objects.ObjectRepository;
-import org.dizitart.no2.objects.filters.ObjectFilters;
 import quests.quest.Quest;
 
 /**
@@ -97,6 +89,7 @@ public class DatabaseManager {
         return db.getNitriteDatabase().getRepository(Subject.class).find().toList();
     }
 
+    /*
     public void save(List<Saveable> elems) throws ErrorWhileSavingException {
         List<SaveableObject> finalList = elems.stream().map(e -> new SaveableObject(e)).collect(Collectors.toList());
         finalList.stream().forEach((obj) -> {
@@ -121,11 +114,11 @@ public class DatabaseManager {
         }
         return returnList; //l.stream().map(e -> e.getInnerObj()).collect(Collectors.toList());
     }
-
+     
     public boolean isSaved() {
         return this.load().size() >= 0;
     }
-
+     */
     public void close() {
         this.db.close();
     }
