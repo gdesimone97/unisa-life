@@ -6,6 +6,10 @@
 package game.GameObjects;
 
 import game.GameObjects.Position;
+import game.Interfaces.Interactable;
+import interaction.InteractionManager;
+import interaction.ItemInteractionManager;
+import interaction.TeleportInteractionManager;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.LinkedList;
@@ -14,10 +18,10 @@ import java.util.LinkedList;
  *
  * @author simon
  */
-public class Teleport extends GameObject {
+public class Teleport extends GameObject implements Interactable{
 
-    private int mapDest;
-    private Position d;
+    private final int mapDest;
+    private final Position d;
 
     /**
      **Class Teleport represents a point in the map that allows the player to
@@ -26,12 +30,11 @@ public class Teleport extends GameObject {
      * @param x x position of the teleport in the map.
      * @param y y position of the teleport in the map
      * @param i objectId of the teleport
-     * @param t string that represent the path of the tileset to be loaded
      * @param map int that represent the index of new map in the array of maps
      * of game.
      * @param d destination in terms of x and y of the player in the new map
      */
-    public Teleport(Position p, String t, int map, Position d) {
+    public Teleport(Position p,int map, Position d) {
         super(p);
         mapDest = map;
         this.d = d;
@@ -42,7 +45,7 @@ public class Teleport extends GameObject {
      *
      * @param g
      */
-    public void render(Graphics g) {
+    /*public void render(Graphics g) {
         g.setColor(Color.blue);
         g.fillRect(p.getX(), p.getY(), (int) width, (int) height);
     }
@@ -52,14 +55,12 @@ public class Teleport extends GameObject {
      *
      * @param objects
      */
-    public void tick(LinkedList<GameObject> objects) {
-    }
 
     /**
      *
      * @return destination of the teleport
      */
-    public Position getDestination() {
+    public Position getPositionDestination() {
         return d;
     }
 
@@ -67,8 +68,15 @@ public class Teleport extends GameObject {
      *
      * @return index of map of destination
      */
-    public int getMapDest() {
+    public int getMapDestination() {
         return mapDest;
+    }
+
+    @Override
+    public void interact() {
+        InteractionManager im = new TeleportInteractionManager();
+        
+        im.execute(this);
     }
 
 }

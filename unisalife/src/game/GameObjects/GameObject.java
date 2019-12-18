@@ -7,13 +7,14 @@ package game.GameObjects;
 
 import gameSystem.Game;
 import java.awt.Rectangle;
+import java.io.Serializable;
 
 /**
  * represents an object of the game(player, character, block, teleport, item).
  *
  * @author simon
  */
-public abstract class GameObject {
+public abstract class GameObject implements Serializable{
 
 
     protected int width = Game.DIMENSIONSPRITE;

@@ -6,6 +6,7 @@
 package game.GameObjects;
 
 import gameSystem.Game;
+import java.io.Serializable;
 
 /**
  * Position represents a tuple of x and y coordinates used for updating the
@@ -13,7 +14,8 @@ import gameSystem.Game;
  *
  * @author simon
  */
-public class Position {
+
+public class Position implements Serializable {
 
     private int x = 0;
     private int y = 0;

@@ -20,14 +20,11 @@ import java.awt.image.BufferStrategy;
  */
 public class Game extends Canvas implements Runnable {
 
-    public static final int WIDTH = 128;
-    public static final int HEIGHT = 128;
-
     public static final int WIDTHSCREEN = 500,
             HEIGHTSCREEN = 500,
             HEIGHTSCREEN2 = HEIGHTSCREEN + 32,
             PLAYERSPEED = 32,
-            ANIMATIONSPEED = 4,
+            ANIMATIONSPEED = 1,
             AMOUNTOFTICKS = 24,
             DIMENSIONSPRITE = 32;
     public static int WIDTHMAP, HEIGHTMAP;
@@ -50,7 +47,7 @@ public class Game extends Canvas implements Runnable {
     @Override
     public void run() {
         init();
-        this.requestFocus();
+        //this.requestFocus();
         long lastTime = System.nanoTime();
         double ns = 1000000000 / AMOUNTOFTICKS;
         double delta = 0;
@@ -64,7 +61,7 @@ public class Game extends Canvas implements Runnable {
 
         while (running) {
             start = System.nanoTime();
-            
+
             delta += (start - lastTime) / ns;
             lastTime = start;
             while (delta >= 1) {
@@ -76,7 +73,7 @@ public class Game extends Canvas implements Runnable {
             frames++;
             if (System.currentTimeMillis() - timer > 1000) {
                 timer += 1000;
-                
+
                 frames = 0;
                 updates = 0;
             }
@@ -95,7 +92,7 @@ public class Game extends Canvas implements Runnable {
             }
 
         }
-        
+
         /*while (running) {
             long now = System.nanoTime();
             delta += (now - lastTime) / ns;
@@ -109,7 +106,7 @@ public class Game extends Canvas implements Runnable {
             frames++;
             if (System.currentTimeMillis() - timer > 1000) {
                 timer += 1000;
-                
+
                 frames = 0;
                 updates = 0;
             }
