@@ -25,12 +25,13 @@ import quests.ItemDef;
  * @author simon
  */
 public class Item extends GameObject implements Renderable, Interactable, Serializable, Comparable<Item>, Information, Saveable {
+
     @Id
     private final String info;
     transient private BufferedImage facingDownImage;
     private LocalDateTime taken;
 
-    public Item(Position p,String path, String info) {
+    public Item(Position p, String path, String info) {
         super(p);
         this.info = info;
         try {
@@ -42,11 +43,10 @@ public class Item extends GameObject implements Renderable, Interactable, Serial
         }
     }
 
-    public Item(){
-        super(new Position(1,1));
+    public Item() {
+        super(new Position(1, 1));
         this.info = "info";
     }
-
 
     @Override
     public boolean equals(Object o) {
