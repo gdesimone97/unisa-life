@@ -5,18 +5,12 @@
  */
 package gameSystem;
 
-import exam.question.Materia;
-import game.GameObjects.Item;
-import game.GameObjects.Position;
-import game.GameObjects.Professor;
-import game.GameResources.Map;
-import game.GameResources.TileMap;
+
 import gameSystem.keySettings.HandlerInput;
 import java.awt.Canvas;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferStrategy;
-import quests.ItemDef;
 
 /**
  * This class is the main thread of the game, it calls render() and tick()
@@ -27,15 +21,12 @@ import quests.ItemDef;
  */
 public class Game extends Canvas implements Runnable {
 
-    public static final int WIDTH = 128;
-    public static final int HEIGHT = 128;
-
     public static final int WIDTHSCREEN = 500,
             HEIGHTSCREEN = 500,
             HEIGHTSCREEN2 = HEIGHTSCREEN + 32,
             PLAYERSPEED = 32,
-            ANIMATIONSPEED = 4,
-            AMOUNTOFTICKS = 10,
+            ANIMATIONSPEED = 1,
+            AMOUNTOFTICKS = 24,
             DIMENSIONSPRITE = 32;
     public static int WIDTHMAP, HEIGHTMAP;
 
@@ -57,7 +48,7 @@ public class Game extends Canvas implements Runnable {
     @Override
     public void run() {
         init();
-        this.requestFocus();
+        //this.requestFocus();
         long lastTime = System.nanoTime();
         double ns = 1000000000 / AMOUNTOFTICKS;
         double delta = 0;
@@ -68,29 +59,42 @@ public class Game extends Canvas implements Runnable {
         long start;
         long elapsed;
         long wait;
-        /*     
-         while (running) {
-         start = System.nanoTime();
-                
-         tick();
-         render();
 
-         elapsed = System.nanoTime() - start;
-
-         wait = TARGET_TIME - elapsed / 1000000;
-         if (wait < 0) {
-         wait = TARGET_TIME;
-         }
-
-         try {
-         Thread.sleep(wait);
-         } catch (Exception e) {
-         e.printStackTrace();
-         }
-
-         }
-         */
         while (running) {
+            start = System.nanoTime();
+            
+            delta += (start - lastTime) / ns;
+            lastTime = start;
+            while (delta >= 1) {
+                tick();
+                updates++;
+                delta--;
+            }
+            render();
+            frames++;
+            if (System.currentTimeMillis() - timer > 1000) {
+                timer += 1000;
+                
+                frames = 0;
+                updates = 0;
+            }
+
+            elapsed = System.nanoTime() - start;
+
+            wait = TARGET_TIME - elapsed / 1000000;
+            if (wait < 0) {
+                wait = TARGET_TIME;
+            }
+
+            try {
+                Thread.sleep(wait);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+        
+        /*while (running) {
             long now = System.nanoTime();
             delta += (now - lastTime) / ns;
             lastTime = now;
@@ -107,7 +111,7 @@ public class Game extends Canvas implements Runnable {
                 frames = 0;
                 updates = 0;
             }
-        }
+        }*/
     }
 
     private void init() {
@@ -132,7 +136,7 @@ public class Game extends Canvas implements Runnable {
         g.dispose();
         bs.show();
     }
-
+    
     public void stopGame() {
         running = false;
     }

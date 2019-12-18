@@ -10,6 +10,7 @@ import game.GameObjects.Item;
 import game.GameObjects.ObjectManager;
 import game.GameObjects.Position;
 import game.GameObjects.Professor;
+import game.GameObjects.Teleport;
 import game.Interfaces.Renderable;
 import gameSystem.map.Mappa;
 import java.awt.Graphics2D;
@@ -55,6 +56,8 @@ public class Map {
             mapObjects.addObject(new Position(10,2), new Item(p, "/Sprites/note.png", ItemDef.appuntidimatematica2.toString(), ItemDef.appuntidimatematica2));
             p = new Position(320, 320);
             mapObjects.addObject(new Position(10,10), new Item(p, "/Sprites/calculator.png", ItemDef.calcolatrice.toString(), ItemDef.calcolatrice));
+            p = new Position(0,128);
+            mapObjects.addObject(p.getScaledPosition(), new Teleport(p,0,new Position(0,0)));
         } catch (Exception ex) {
             ex.printStackTrace();
         }

@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package game.GameResources;
+import gameSystem.Game;
 import java.awt.image.BufferedImage;
 import java.awt.Graphics;
 /**
@@ -13,26 +14,24 @@ import java.awt.Graphics;
  * @author simon
  */
 public class Animation {
-    private int speed;
-    private int frames;
+    
+    private final int frames;
     private int index=0;
     private int count=0;
-    private BufferedImage[] images;
+    private final BufferedImage[] images;
     private BufferedImage currentImage;
     
     /**
      * Constructor takes a sequence of BufferedImage objects.
      *
-     * @param s
+     * 
      * @param args
      */
-    public Animation(int s,BufferedImage... args){
-        speed=s;
+    public Animation(BufferedImage... args){
+        
         images=new BufferedImage[args.length];
-        frames=args.length;
-        for(int i=0;i<frames;i++){
-            images[i]=args[i];
-        }
+        frames=args.length;        
+        System.arraycopy(args, 0, images, 0, frames);
     }
     
     /**
@@ -40,7 +39,7 @@ public class Animation {
      */
     public void runAnimation(){
         index++;
-        if(index>speed){
+        if(index>Game.ANIMATIONSPEED){
             index=0;
             nextFrame();
         }
