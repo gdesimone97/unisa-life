@@ -23,10 +23,11 @@ public class HandlerInput extends KeyAdapter {
     private final KeyCommand interactCommand = new InteractCommand();
     private final KeyCommand pauseCommand = new PauseCommand();
     private final KeyCommand doNothing = new DoNothingCommand();
+    private final KeyCommand saveCommand = new SavingCommand();
     private final GameStateManager stateManager = GameStateManager.getInstance();
     private final SettingsManager settingsManager = SettingsManager.getSettingsManager();
     private boolean isPressed = false;
-    
+
     @Override
     public void keyReleased(KeyEvent e) {
         KeyCommand cmd = selectCommand(e);
@@ -35,8 +36,7 @@ public class HandlerInput extends KeyAdapter {
             GameState state = stateManager.getState();
             if (cmd instanceof MovingCommand) {
                 state.handleInput(doNothing);
-            }
-            else{
+            } else {
                 state.handleInput(cmd);
             }
         }
@@ -55,6 +55,10 @@ public class HandlerInput extends KeyAdapter {
 
     private KeyCommand selectCommand(KeyEvent e) {
         int keyCode = e.getKeyCode();
+        // Da cancellare
+        if ((((e.getModifiers() & KeyEvent.CTRL_MASK) != 0) && e.getKeyCode() == settingsManager.getSaveButton())) {
+            return saveCommand;
+        }
         if (keyCode == settingsManager.getMoveUp()) {
             return moveUp;
         } else if (keyCode == settingsManager.getMoveDown()) {

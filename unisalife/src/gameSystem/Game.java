@@ -68,29 +68,42 @@ public class Game extends Canvas implements Runnable {
         long start;
         long elapsed;
         long wait;
-        /*     
-         while (running) {
-         start = System.nanoTime();
-                
-         tick();
-         render();
 
-         elapsed = System.nanoTime() - start;
-
-         wait = TARGET_TIME - elapsed / 1000000;
-         if (wait < 0) {
-         wait = TARGET_TIME;
-         }
-
-         try {
-         Thread.sleep(wait);
-         } catch (Exception e) {
-         e.printStackTrace();
-         }
-
-         }
-         */
         while (running) {
+            start = System.nanoTime();
+            
+            delta += (start - lastTime) / ns;
+            lastTime = start;
+            while (delta >= 1) {
+                tick();
+                updates++;
+                delta--;
+            }
+            render();
+            frames++;
+            if (System.currentTimeMillis() - timer > 1000) {
+                timer += 1000;
+                
+                frames = 0;
+                updates = 0;
+            }
+
+            elapsed = System.nanoTime() - start;
+
+            wait = TARGET_TIME - elapsed / 1000000;
+            if (wait < 0) {
+                wait = TARGET_TIME;
+            }
+
+            try {
+                Thread.sleep(wait);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+        
+        /*while (running) {
             long now = System.nanoTime();
             delta += (now - lastTime) / ns;
             lastTime = now;
@@ -107,7 +120,7 @@ public class Game extends Canvas implements Runnable {
                 frames = 0;
                 updates = 0;
             }
-        }
+        }*/
     }
 
     private void init() {
