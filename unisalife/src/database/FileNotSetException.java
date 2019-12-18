@@ -13,5 +13,9 @@ public class FileNotSetException extends Exception {
 
     public FileNotSetException() {
     }
+
+    FileNotSetException(String no_filename_specified) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }
