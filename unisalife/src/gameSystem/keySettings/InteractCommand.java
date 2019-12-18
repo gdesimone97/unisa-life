@@ -9,21 +9,27 @@ import game.GameObjects.GameObject;
 import game.GameObjects.Position;
 import game.Interfaces.Interactable;
 import gameSystem.GameStateManager;
+import gameSystem.LoadingState;
 import gameSystem.PauseState;
 import gameSystem.PlayState;
 import gameSystem.map.MapManager;
 
 /**
+ * Class to handle the interact key command
  *
  * @author Giuseppe De Simone
  */
-public class InteractCommand extends KeyCommand implements ActionCommand{
+public class InteractCommand extends KeyCommand implements ActionCommand {
 
+    /**
+     * {@inheritDoc}
+     *
+     */
     @Override
     public void visitPlayState(PlayState playState) {
         Position p = player.getFace().nextStep();
-        GameObject obj =  MapManager.getInstance().getMap().getGameObject(p);
-        if(obj instanceof Interactable){
+        GameObject obj = MapManager.getInstance().getMap().getGameObject(p);
+        if (obj instanceof Interactable) {
             GameStateManager.getInstance().setState(PauseState.getInstance());
             player.setVelX(0);
             player.setVelY(0);
@@ -32,9 +38,21 @@ public class InteractCommand extends KeyCommand implements ActionCommand{
         }
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     */
     @Override
     public void visitPauseState(PauseState pauseState) {
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     */
+    @Override
+    public void visitiLoadingState(LoadingState loadState) {
+
+    }
 
 }

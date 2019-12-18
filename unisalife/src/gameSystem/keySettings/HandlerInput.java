@@ -11,6 +11,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 /**
+ * This class allow to component that add it to listen keyboard keys
  *
  * @author Giuseppe De Simone
  */
@@ -28,6 +29,10 @@ public class HandlerInput extends KeyAdapter {
     private final SettingsManager settingsManager = SettingsManager.getSettingsManager();
     private boolean isPressed = false;
 
+    /**
+     *
+     * {@inheritDoc}
+     */
     @Override
     public void keyReleased(KeyEvent e) {
         KeyCommand cmd = selectCommand(e);
@@ -43,6 +48,10 @@ public class HandlerInput extends KeyAdapter {
 
     }
 
+    /**
+     *
+     * {@inheritDoc}
+     */
     @Override
     public void keyPressed(KeyEvent e) {
         KeyCommand cmd = selectCommand(e);

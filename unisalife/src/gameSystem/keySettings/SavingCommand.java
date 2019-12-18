@@ -5,12 +5,14 @@
  */
 package gameSystem.keySettings;
 
+import gameSystem.LoadingState;
 import gameSystem.PauseState;
 import gameSystem.PlayState;
 import saving.SaveManager;
 import saving.exceptions.SavingException;
 
 /**
+ * Class to handle the save key command
  *
  * @author Giuseppe De Simone
  */
@@ -21,6 +23,10 @@ class SavingCommand extends KeyCommand implements ActionCommand {
         System.out.println("Salvato");
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     */
     @Override
     public void visitPlayState(PlayState playState) {
         try {
@@ -30,6 +36,10 @@ class SavingCommand extends KeyCommand implements ActionCommand {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     */
     @Override
     public void visitPauseState(PauseState pauseState) {
         try {
@@ -39,4 +49,12 @@ class SavingCommand extends KeyCommand implements ActionCommand {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     */
+    @Override
+    public void visitiLoadingState(LoadingState loadState) {
+
+    }
 }
