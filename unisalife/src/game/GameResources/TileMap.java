@@ -16,13 +16,14 @@ import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.Serializable;
 import javax.imageio.ImageIO;
 
 /**
  *
  * @author simon
  */
-public class TileMap {
+public class TileMap implements Serializable{
 	
 	// position
 	private int x;
@@ -48,10 +49,10 @@ public class TileMap {
 	
 	// tileset
         
-	private BufferedImage tileset;
+	transient private BufferedImage tileset;
 	private int numTilesOriz;
         private int numTilesVert;
-	private Tile[][] tiles;
+        private Tile[][] tiles;
 	
 	// drawing
 	private int rowOffset;
