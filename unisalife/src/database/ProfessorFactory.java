@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package database.populator;
+package database;
 
 import database.populator.exceptions.InvalidArgumentListException;
 import saving.Saveable;
@@ -32,7 +32,9 @@ public class ProfessorFactory extends SaveableCreator {
      */
     @Override
     public Saveable create(String s) throws InvalidArgumentListException {
+        
         StringTokenizer st = new StringTokenizer(s, SaveableCreator.DELIMETER);
+        
         try {
 
             //Retrieve subject from the DB

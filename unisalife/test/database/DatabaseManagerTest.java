@@ -5,7 +5,6 @@
  */
 package database;
 
-import database.populator.Populator;
 import database.populator.exceptions.InvalidGameDataFormatException;
 import java.io.FileNotFoundException;
 import java.io.IOException;

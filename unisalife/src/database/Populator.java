@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package database.populator;
+package database;
 
 import database.Database;
 import database.DatabaseManager;
@@ -55,15 +55,15 @@ public class Populator {
         
         while(line != null ){
             
-            String[] tokens = line.split(" ");
+            String[] tokens = line.split(" ",2);
             
-            if( tokens.length != 2 )
+            if( !line.matches("^(?!\\s*$).+[' ']{1}[%]{1}.*") )
                 throw new InvalidGameDataFormatException();
             
             
             String type = tokens[0].toLowerCase();
             String arguments = tokens[1];
-
+            
             
             SaveableCreator s = CreatorsEnum.valueOf(type).getFactory();
             Saveable sitem = s.create(arguments);

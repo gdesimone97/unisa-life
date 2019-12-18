@@ -5,6 +5,7 @@
  */
 package database.populator;
 
+import database.Populator;
 import database.DatabaseManager;
 import database.Database;
 import database.FileNotSetException;
