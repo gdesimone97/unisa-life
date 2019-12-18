@@ -40,6 +40,7 @@ public class Map {
     public Map(){
         mapObjects=new ObjectManager();
 
+
         tMap = new TileMap(32, 3200, 3200);
         tMap.loadTiles("/Tilesets/TilesetConSfondo.png");
         tMap.loadMap("/Maps/Mappa.map");
@@ -62,7 +63,7 @@ public class Map {
 //            mapObjects.addObject(p.getScaledPosition(), new Guardian("Guardiano",p,"/Sprites/foggia.png"));
         } catch (Exception ex) {
             ex.printStackTrace();
-        }
+        }*/
     }
 
     /**

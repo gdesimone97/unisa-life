@@ -9,6 +9,9 @@ import exam.booklet.Subject;
 import interaction.*;
 import java.io.Serializable;
 import language.Information;
+import org.dizitart.no2.IndexType;
+import org.dizitart.no2.objects.Index;
+import org.dizitart.no2.objects.Indices;
 import saving.Saveable;
 import saving.exceptions.LoadingException;
 
@@ -16,18 +19,21 @@ import saving.exceptions.LoadingException;
  *
  * @author Giuseppe De Simone
  */
+@Indices({
+    @Index(value = "subject.subject", type = IndexType.NonUnique)
+})
 public class Professor extends Person implements Information, Saveable {
 
     private Subject subject;
     private String nome;
 
     public Professor(String nome, Position p, String path, Subject subject) {
-        super(p,path);
+        super(p, path);
         this.nome = nome;
         this.subject = subject;
     }
-	
-	private Professor(){
+
+    private Professor() {
         super();
     }
 
@@ -55,7 +61,5 @@ public class Professor extends Person implements Information, Saveable {
     public void load(Serializable obj) throws LoadingException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
-
 
 }

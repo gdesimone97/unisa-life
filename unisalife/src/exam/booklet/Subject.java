@@ -5,6 +5,7 @@
  */
 package exam.booklet;
 
+import database.Storable;
 import java.io.Serializable;
 import java.util.Objects;
 import language.Information;
@@ -16,8 +17,7 @@ import saving.Saveable;
  *
  * @author liovi
  */
-
-public class Subject implements Information, Serializable, Saveable, Comparable {
+public class Subject implements Information, Serializable, Saveable, Comparable, Storable {
 
     private int score;
     private String subject;
@@ -31,9 +31,9 @@ public class Subject implements Information, Serializable, Saveable, Comparable 
         this.score = 0;
         this.available = true;
     }
-    
-    private Subject(){
-        
+
+    private Subject() {
+
     }
 
     /**
@@ -102,7 +102,6 @@ public class Subject implements Information, Serializable, Saveable, Comparable 
         return true;
     }
 
-    
     @Override
     public String getInfo() {
         return subject;
@@ -120,11 +119,13 @@ public class Subject implements Information, Serializable, Saveable, Comparable 
 
     @Override
     public int compareTo(Object o) {
-        if(o == null )
+        if (o == null) {
             return 1;
-        if(!(o instanceof Subject))
+        }
+        if (!(o instanceof Subject)) {
             return 1;
-        return this.subject.compareTo(((Subject)o).toString());
-        
+        }
+        return this.subject.compareTo(((Subject) o).toString());
+
     }
 }

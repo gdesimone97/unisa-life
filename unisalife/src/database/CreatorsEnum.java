@@ -16,22 +16,22 @@ package database;
 public enum CreatorsEnum {
     item("item"){
         @Override
-         public SaveableCreator getFactory(){
+         public StorableCreator getFactory(){
             return new ItemFactory();
         }
     },professor("professor"){
         @Override
-        public SaveableCreator getFactory(){
+        public StorableCreator getFactory(){
             return new ProfessorFactory();
         }
     }, subject("subject"){
         @Override
-        public SaveableCreator getFactory(){
+        public StorableCreator getFactory(){
             return new SubjectFactory();
         }
     }, quest("quest"){
         @Override
-        public SaveableCreator getFactory(){
+        public StorableCreator getFactory(){
             return new QuestFactory();
         }
     };
@@ -42,7 +42,7 @@ public enum CreatorsEnum {
         this.type = type;
     }
     
-    public abstract SaveableCreator getFactory();
+    public abstract StorableCreator getFactory();
     
     public String getType(){
         return this.type;

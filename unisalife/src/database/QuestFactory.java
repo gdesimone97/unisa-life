@@ -18,7 +18,7 @@ import quests.quest.QuestNotValidException;
  *
  * @author cmarino
  */
-public class QuestFactory extends SaveableCreator {
+public class QuestFactory extends StorableCreator {
 
     /**
      *
@@ -30,9 +30,9 @@ public class QuestFactory extends SaveableCreator {
      * @throws InvalidArgumentListException
      */
     @Override
-    public Saveable create(String s) throws InvalidArgumentListException {
+    public Storable create(String s) throws InvalidArgumentListException {
 
-        StringTokenizer st = new StringTokenizer(s, SaveableCreator.DELIMETER);
+        StringTokenizer st = new StringTokenizer(s, StorableCreator.DELIMETER);
 
         try {
 

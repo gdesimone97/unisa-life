@@ -6,7 +6,6 @@
 package database;
 
 import database.populator.exceptions.InvalidArgumentListException;
-import saving.Saveable;
 import exam.booklet.Subject;
 import java.util.NoSuchElementException;
 import java.util.StringTokenizer;
@@ -15,7 +14,7 @@ import java.util.StringTokenizer;
  *
  * @author cmarino
  */
-public class SubjectFactory extends SaveableCreator{
+public class SubjectFactory extends StorableCreator{
 
     /**
      * 
@@ -23,8 +22,8 @@ public class SubjectFactory extends SaveableCreator{
      * @throws InvalidArgumentListException 
      */
     @Override
-    public Saveable create(String s) throws InvalidArgumentListException {
-        StringTokenizer st = new StringTokenizer(s,SaveableCreator.DELIMETER);
+    public Storable create(String s) throws InvalidArgumentListException {
+        StringTokenizer st = new StringTokenizer(s,StorableCreator.DELIMETER);
         try{
         Subject sub = new Subject(st.nextToken());
         return sub;

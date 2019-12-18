@@ -6,7 +6,6 @@
 package database;
 
 import database.populator.exceptions.InvalidArgumentListException;
-import saving.Saveable;
 import game.GameObjects.Item;
 import game.GameObjects.Position;
 import java.util.NoSuchElementException;
@@ -16,7 +15,7 @@ import java.util.StringTokenizer;
  *
  * @author cmarino
  */
-public class ItemFactory extends SaveableCreator {
+public class ItemFactory extends StorableCreator {
 
     /**
      *
@@ -29,9 +28,9 @@ public class ItemFactory extends SaveableCreator {
      *
      */
     @Override
-    public Saveable create(String s) throws InvalidArgumentListException {
+    public Storable create(String s) throws InvalidArgumentListException {
 
-        StringTokenizer st = new StringTokenizer(s, SaveableCreator.DELIMETER);
+        StringTokenizer st = new StringTokenizer(s, StorableCreator.DELIMETER);
         try {
             Item i = new Item(new Position(Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken())), st.nextToken(), st.nextToken());
             return i;
