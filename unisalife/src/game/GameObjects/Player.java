@@ -24,6 +24,7 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import javax.imageio.ImageIO;
 import saving.Saveable;
@@ -34,7 +35,8 @@ import saving.exceptions.LoadingException;
  * @author simon
  */
 public class Player extends GameObject implements Tickable, Renderable, Saveable {
-    private static final int DELAY = 4; 
+
+    private static final int DELAY = 8;
     private int velX = 0;
     protected int velY = 0;
     protected Animation upWalk;
@@ -48,10 +50,9 @@ public class Player extends GameObject implements Tickable, Renderable, Saveable
     protected FaceState face;
     private static Player uniqueIstance = null;
     private boolean nextMove = true;
-    private boolean isMoving = false;
-    private int deltaX = 0;
-    private int deltaY = 0;
-    private int i = 0;
+
+    private int delta = 0;
+
 
     /*public Player(float x,float y,SubjectEnum i){
      super(x,y,i);
@@ -60,38 +61,20 @@ public class Player extends GameObject implements Tickable, Renderable, Saveable
         super(p);
         face = new DownFaceState(this);
         initialize(32, "Ciao");
-
-        /*try {
-         image = ImageIO.read(
-         getClass().getResourceAsStream("/Sprites/gatto.png")
-         );}
-         catch (Exception e) {
-         System.exit(1);
-         }
-         upWalk=u;
-         downWalk=d;
-         leftWalk=l;
-         rightWalk=r;
-         facingDownImage=Game.texturePlayer[0];
-         facingLeftImage=Game.texturePlayer[3];
-         facingRightImage=Game.texturePlayer[6];
-         facingUpImage=Game.texturePlayer[9];
-    
-         */
     }
 
     public FaceState getFace() {
         return face;
     }
 
-    private void changeFaceSet(BufferedImage down, BufferedImage left, BufferedImage right, BufferedImage up) {
+    private void changeFaceSet(BufferedImage up, BufferedImage left, BufferedImage down, BufferedImage right) {
         facingLeftImage = left;
         facingRightImage = right;
         facingUpImage = up;
         facingDownImage = down;
     }
 
-    private void changeAnimationSet(Animation down, Animation left, Animation right, Animation up) {
+    private void changeAnimationSet(Animation up, Animation left, Animation down, Animation right) {
         upWalk = up;
         downWalk = down;
         leftWalk = left;
@@ -100,36 +83,36 @@ public class Player extends GameObject implements Tickable, Renderable, Saveable
 
     /**
      * @param g
-     * @return
+     * @return da 0 a 8 up da 9 a 17 left da 18 a 26 down da 27 a 35 right
+     *
      *
      */
     private void initialize(int skin, String name) {
-        BufferedImage texturePlayer[] = new BufferedImage[12];
+        BufferedImage texturePlayer[][] = null;
+        int cols = 0;
         try {
             BufferedImage characterImage = ImageIO.read(
                     getClass().getResourceAsStream("/Sprites/sprite" + 32 + ".png")
             );
-            texturePlayer[0] = characterImage.getSubimage(32, 0, DIMENSIONSPRITE, DIMENSIONSPRITE);
-            texturePlayer[1] = characterImage.getSubimage(0, 0, DIMENSIONSPRITE, DIMENSIONSPRITE);
-            texturePlayer[2] = characterImage.getSubimage(64, 0, DIMENSIONSPRITE, DIMENSIONSPRITE);
-            texturePlayer[3] = characterImage.getSubimage(32, 32, DIMENSIONSPRITE, DIMENSIONSPRITE);
-            texturePlayer[4] = characterImage.getSubimage(0, 32, DIMENSIONSPRITE, DIMENSIONSPRITE);
-            texturePlayer[5] = characterImage.getSubimage(64, 32, DIMENSIONSPRITE, DIMENSIONSPRITE);
-            texturePlayer[6] = characterImage.getSubimage(32, 64, DIMENSIONSPRITE, DIMENSIONSPRITE);
-            texturePlayer[7] = characterImage.getSubimage(0, 64, DIMENSIONSPRITE, DIMENSIONSPRITE);
-            texturePlayer[8] = characterImage.getSubimage(64, 64, DIMENSIONSPRITE, DIMENSIONSPRITE);
-            texturePlayer[9] = characterImage.getSubimage(32, 96, DIMENSIONSPRITE, DIMENSIONSPRITE);
-            texturePlayer[10] = characterImage.getSubimage(0, 96, DIMENSIONSPRITE, DIMENSIONSPRITE);
-            texturePlayer[11] = characterImage.getSubimage(64, 96, DIMENSIONSPRITE, DIMENSIONSPRITE);
+            if (characterImage.getHeight() % DIMENSIONSPRITE != 0 || characterImage.getWidth() % 32 != 0) {
+                System.exit(5);
+            }
+            cols = characterImage.getWidth() / DIMENSIONSPRITE;
+            
+            texturePlayer = new BufferedImage[4][cols];
+            for (int i = 0; i < 4; i++) {
+                for (int j = 0; j < cols; j++) {
+                    texturePlayer[i][j] = characterImage.getSubimage(j * DIMENSIONSPRITE, i * DIMENSIONSPRITE, DIMENSIONSPRITE, DIMENSIONSPRITE);
+                }
+            }
         } catch (Exception e) {
             System.exit(4);
         }
-        changeFaceSet(texturePlayer[6], texturePlayer[3], texturePlayer[9], texturePlayer[0]);
-
-        changeAnimationSet(new Animation(ANIMATIONSPEED, texturePlayer[7], texturePlayer[8]),
-                new Animation(ANIMATIONSPEED, texturePlayer[4], texturePlayer[5]),
-                new Animation(ANIMATIONSPEED, texturePlayer[10], texturePlayer[11]),
-                new Animation(ANIMATIONSPEED, texturePlayer[1], texturePlayer[2]));
+        changeFaceSet(texturePlayer[0][0], texturePlayer[1][0], texturePlayer[2][0], texturePlayer[3][0]);
+        changeAnimationSet(new Animation(Arrays.copyOfRange(texturePlayer[0], 1, texturePlayer[0].length)),
+                new Animation(Arrays.copyOfRange(texturePlayer[1], 1, texturePlayer[0].length)),
+                new Animation(Arrays.copyOfRange(texturePlayer[2], 1, texturePlayer[0].length)),
+                new Animation(Arrays.copyOfRange(texturePlayer[3], 1, texturePlayer[0].length)));
     }
 
     public static Player getIstance() {
@@ -193,13 +176,12 @@ public class Player extends GameObject implements Tickable, Renderable, Saveable
 
     @Override
     public void tick(/*LinkedList<GameObject> objects*/) {
-        nextMove=true;
+        nextMove = true;
         int x = p.getX();
         int y = p.getY();
-        
-        if(y%32==0&&x%32==0)
-        {
-            
+
+        if (y % 32 == 0 && x % 32 == 0) {
+
             if (velX > 0) {
                 face = new RightFaceState(this);
             } else if (velX < 0) {
@@ -210,38 +192,37 @@ public class Player extends GameObject implements Tickable, Renderable, Saveable
                 face = new UpFaceState(this);
             }
             collisions(MapManager.getInstance().getMap().getObjectManager());
-                
-                if (velX!=0 && x + velX > 0 && x + velX < MapManager.getInstance().getMap().getWidthMap() - Game.DIMENSIONSPRITE && nextMove == true) {
-                                    
-                    deltaX = velX/DELAY;
-                    p.setX(x+deltaX);
-                
-            } 
-                else {
-                
-                    if (velY!=0 && y + velY > 0 && y + velY < MapManager.getInstance().getMap().getHeightMap() - Game.DIMENSIONSPRITE && nextMove == true) {
-                    
-                    deltaY = velY/DELAY;
-                    
-                    p.setY(y+deltaY);
+
+            if (velX != 0 && x + velX > 0 && x + velX < MapManager.getInstance().getMap().getWidthMap() - Game.DIMENSIONSPRITE && nextMove == true) {
+
+                delta = velX / DELAY;
+                p.setX(x + delta);
+
+            } else {
+
+                if (velY != 0 && y + velY > 0 && y + velY < MapManager.getInstance().getMap().getHeightMap() - Game.DIMENSIONSPRITE && nextMove == true) {
+
+                    delta = velY / DELAY;
+
+                    p.setY(y + delta);
                 }
             }
-        }else{
-            
-            if(x%32!=0)
-                p.setX(x+deltaX);
-            
-            if(y%32!=0)
-                p.setY(y+deltaY);
-            
+        } else {
+
+            if (x % 32 != 0) {
+                p.setX(x + delta);
+            }
+
+            if (y % 32 != 0) {
+                p.setY(y + delta);
+            }
+
         }
-            //collisions(game.getActualMap().getList());
-            downWalk.runAnimation();
-            leftWalk.runAnimation();
-            rightWalk.runAnimation();
-            upWalk.runAnimation();
-        
-        
+        //collisions(game.getActualMap().getList());
+        downWalk.runAnimation();
+        leftWalk.runAnimation();
+        rightWalk.runAnimation();
+        upWalk.runAnimation();
 
     }
 
@@ -256,17 +237,6 @@ public class Player extends GameObject implements Tickable, Renderable, Saveable
 
             if (g instanceof Teleport) {
                 Teleport t = (Teleport) g;
-                /*
-                 System.out.print("hello");
-                 System.out.print("tile"+t.tilePath);
-                 System.out.print(t.mapPath);
-                 Game.tileMap.loadTiles(t.tilePath);
-                 */
-                /* Game.getGame().updateActualMap(t.getMapDest());
-                 Game.getGame().setWidthMap(Game.getGame().getActualMap().getTileMap().getWidth());
-                 Game.getGame().setHeightMap(Game.getGame().getActualMap().getTileMap().getHeight());
-                 Game.getGame().setHandler(new Handler());
-                 */
                 p.setX(t.getDestination().getX());
                 p.setY(t.getDestination().getY());
             }
@@ -274,49 +244,7 @@ public class Player extends GameObject implements Tickable, Renderable, Saveable
             nextMove = false;
 
         }
-            //if (face.nextStep().intersects(g.getBounds())) {
-
-        /*
-         if (getBottomBounds().intersects(g.getBounds()))//&&g.getId()!=SubjectEnum.Teleport)
-         {
-                
-         y = g.getY() - height-1;
-         break;
-         }
-
-         if (getTopBounds().intersects(g.getBounds())) {//&&g.getId()!=SubjectEnum.Tel){
-                
-         y = g.getY() + g.height+1;
-         break;
-         }
-         if (getLeftBounds().intersects(g.getBounds())) {//&&g.getId()!=SubjectEnum.Block){
-         nextMove=false;
-         x = g.getX() + g.width +1;
-         break;
-         }
-         if (getRightBounds().intersects(g.getBounds())) {//&&g.getId()!=SubjectEnum.Block){
-         nextMove=false;
-         x = g.getX() - width - 1;
-         break;
-         }
-         */
     }
-
-    //dialog deve lavorare solo con oggetti interactable (item e persone per adesso)
-    /*public void dialog(ObjectManager o) {
-     GameObject g = o.get(face.nextStep());
-     if (g instanceof Interactable)
-     {
-                
-                
-     System.out.print("la velocita e:"+this.getVelX()+this.getVelY());
-               
-                
-     ((Interactable) g).interact();
-                
-                
-     }    
-     }*/
     /**
      *
      * @param g
