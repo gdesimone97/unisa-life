@@ -5,15 +5,13 @@
  */
 
 package exam.booklet;
-import exam.question.Materia;
 import java.io.Serializable;
-import java.util.EnumMap;
+import java.util.HashMap;
 import quests.QuestsManagerSingleton;
 import quests.mediator.*;
 import quests.quest.QuestsSingleton;
 import saving.Saveable;
 import saving.exceptions.LoadingException;
-
 /**
  * This class is used due to the necessity of have a booklet for our
  * character.
@@ -29,20 +27,17 @@ import saving.exceptions.LoadingException;
 public class BookletSingleton extends User implements Serializable,Saveable {
     
     private static BookletSingleton instance = null;
-    private EnumMap<Materia,Subject> booklet;
+    private HashMap<String,Subject> booklet;
     
     private BookletSingleton(){
         super();
         super.name = "booklet";
         super.mediator = QuestsManagerSingleton.getInstance();
         mediator.addUser(this);
-        
-        
-        this.booklet = new EnumMap(Materia.class);
-        for (Materia x : Materia.values()){
-            booklet.put(x, new Subject());
+
+        this.booklet = new HashMap<>();
         }
-    }
+    
 
     /**
      * This method allows to view the score of a exam given the subject
@@ -50,8 +45,8 @@ public class BookletSingleton extends User implements Serializable,Saveable {
      * @param subject
      * @return the score of the exam
      */
-    public int getScore(Materia subject) {
-        return booklet.get(subject).getScore();
+    public int getScore(Subject subject) {
+        return booklet.get(subject.getInfo()).getScore();
     }
     
     /**
@@ -61,8 +56,8 @@ public class BookletSingleton extends User implements Serializable,Saveable {
      * @param subject
      * @return boolean that indicates if the exam is passed or not
      */
-    public boolean getAvailablity(Materia subject){
-        return booklet.get(subject).isAvailable();
+    public boolean getAvailablity(Subject subject){
+        return booklet.get(subject.getInfo()).isAvailable();
     }
     
     /**
@@ -72,12 +67,11 @@ public class BookletSingleton extends User implements Serializable,Saveable {
      * @param subject indicates the subject of the exam
      * @param score indicate the score reached at the exam
      */
-    public void setScore(Materia subject, int score){
-        Subject newScore = booklet.get(subject);
-        newScore.setScore(score);
-        newScore.setAvailable(false);
-        booklet.replace(subject, newScore);
-        QuestsSingleton.getInstance().getQuest().get(subject).setDone(true);
+    public void setScore(Subject subject, int score){
+        subject.setScore(score);
+        subject.setAvailable(false);
+        
+        QuestsSingleton.getInstance().getQuest(subject.getInfo()).finish();
     }
     
     /**
@@ -110,8 +104,8 @@ public class BookletSingleton extends User implements Serializable,Saveable {
      * @param obj is a Serializable. Downcast is necessary before load the obj
      */
     @Override
-    public void load(Serializable obj) throws LoadingException {
-        this.booklet = (EnumMap<Materia,Subject>) obj;
+    public void load(Serializable obj) {
+        this.booklet = (HashMap<String,Subject>) obj;
     }
 
     /**

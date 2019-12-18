@@ -23,6 +23,10 @@ public class Professor extends Person implements Information {
         this.nome = nome;
         this.subject = subject;
     }
+	
+	private Professor(){
+        super();
+    }
 
     @Override
     public void interact() {

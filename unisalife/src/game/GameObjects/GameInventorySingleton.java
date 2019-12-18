@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 import quests.QuestsManagerSingleton;
 import quests.mediator.Message;
 import quests.mediator.User;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -96,7 +97,7 @@ public class GameInventorySingleton extends User implements Iterable<Item>, Save
         i.setTaken();
         Message msg = new Message(i.getID().toString() , true ); //prepare the message with the added object
         send(msg); //then sends it
-        int pos = Arrays.binarySearch( view.toArray(new Item[view.size()]), i, comp);
+        int pos = Collections.binarySearch(view, i, comp);
         //int pos = view.indexOf(i);
         view.add(-(pos+1), i);
         return pos;

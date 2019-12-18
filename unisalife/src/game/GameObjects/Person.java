@@ -19,16 +19,13 @@ import java.util.LinkedList;
 public abstract class Person extends GameObject implements Renderable, Interactable {
 
     protected BufferedImage facingDownImage;
-    
+
     public Person(Position p,String path) {
         super(p);
-        try {
-            facingDownImage = ImageIO.read(
-                    getClass().getResourceAsStream(path)
-            );
-        } catch (Exception e) {
-            System.exit(1);
-        }
+    }
+    
+    protected Person(){
+        super();
     }
 
     @Override

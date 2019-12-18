@@ -5,25 +5,26 @@
  */
 package game.GameObjects;
 
+import saving.Saveable;
 import game.Interfaces.Interactable;
 import game.Interfaces.Renderable;
 import interaction.ItemInteractionManager;
 import language.Information;
 import java.awt.Graphics;
-import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.time.LocalDateTime;
 import java.io.Serializable;
 import java.time.temporal.ChronoUnit;
 import java.util.Objects;
+import org.dizitart.no2.objects.Id;
 import quests.ItemDef;
 
 /**
  *
  * @author simon
  */
-public class Item extends GameObject implements Renderable, Interactable, Serializable, Comparable<Item>,Information {
-
+public class Item extends GameObject implements Renderable, Interactable, Serializable, Comparable<Item>, Information, Saveable {
+    @Id
     private final String info;
     private BufferedImage facingDownImage;
     private LocalDateTime taken;
@@ -31,15 +32,26 @@ public class Item extends GameObject implements Renderable, Interactable, Serial
 
     public Item(Position p,String path, String info,ItemDef id) {
         super(p);
+	}	
+		
+    public Item(){
+        super(1,1);
+        this.info = "info";
+    }
+    
+    public Item(float x, float y, String path, String info, int mts) {
+        super(x, y);
+        this.mapToSpawn = mts;
         this.info = info;
-        this.id = id;
-        try {
+        //this.id = id;
+        /*try {
             facingDownImage = ImageIO.read(
                     getClass().getResourceAsStream(path)
             );
         } catch (Exception e) {
             System.exit(1);
         }
+         */
     }
 
     @Override
@@ -97,8 +109,18 @@ public class Item extends GameObject implements Renderable, Interactable, Serial
         iim.execute(this);
     }
 
-    public ItemDef getID(){
+    public ItemDef getID() {
         return this.id;
+    }
+
+    @Override
+    public Serializable save() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void load(Serializable obj) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

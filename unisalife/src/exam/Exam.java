@@ -6,11 +6,9 @@
 package exam;
 import character.Status;
 import exam.booklet.BookletSingleton;
+import exam.booklet.Subject;
 import exam.question.*;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 import language.FileTextManager;
 import language.MessageInformation;
 import language.exceptions.FileTextManagerException;
@@ -27,7 +25,7 @@ import unisagui.*;
 public class Exam implements Runnable {
 
     private final Questions questions;
-    private final Materia subject;
+    private final Subject subject;
     private final int questionTime;
     private int score;
     private int coinReward;
@@ -45,8 +43,8 @@ public class Exam implements Runnable {
      * questions
      *
      */
-    public Exam(Materia materia) throws FileTextManagerException, TextFinderException {
-        this.subject = materia;
+    public Exam(Subject subject) throws FileTextManagerException, TextFinderException {
+        this.subject = subject;
         QuestionFactory questionsFetch = new StringsQuestionFactory(subject);
         this.score = 0;
         this.sum = 0;
