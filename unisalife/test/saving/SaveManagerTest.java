@@ -15,7 +15,7 @@ import saving.exceptions.LoadingException;
 
 /**
  *
- * @author desio
+ * @author Giuseppe De Simone
  */
 public class SaveManagerTest {
 
