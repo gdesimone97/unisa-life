@@ -82,6 +82,9 @@ public class Player extends GameObject implements Tickable, Renderable, Saveable
         BufferedImage texturePlayer[][] = null;
         nameOfPlayer = name;
         int cols = 0;
+        p.setX(initialPosition.getX());
+        p.setY(initialPosition.getY());
+        System.out.println("IN PLAYER INIT " + p + " " + initialPosition);
         try {
             BufferedImage characterImage = ImageIO.read(
                     getClass().getResourceAsStream("/Sprites/sprite" + skin + ".png")

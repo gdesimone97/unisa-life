@@ -10,6 +10,7 @@ import exam.booklet.BookletSingleton;
 import game.GameObjects.Camera;
 import game.GameObjects.GameInventorySingleton;
 import game.GameObjects.Player;
+import gameSystem.map.MapManager;
 import language.FileTextManager;
 import quests.QuestsManagerSingleton;
 import quests.quest.QuestsSingleton;
@@ -29,9 +30,7 @@ public class GameManager {
     private static GameManager instance;
     
     private GameStateManager gsm;
-//    private MapManager mm;
     private Player player;
-    private BookletSingleton booklet;
     private Camera camera;
     
     private GameManager() {
@@ -68,14 +67,15 @@ public class GameManager {
      * all the managers of it. It starts the game
      */
     public void initGame() {
+        System.out.println("INIT GAME");
         player = Player.getIstance();
         camera = new Camera(0, 0, player);
         
         gsm = GameStateManager.getInstance();
         gsm.setState(PlayState.getInstance());
-//        mm = MapManager.getInstance();
-        booklet = BookletSingleton.getInstance();
         
+        MapManager.getInstance();
+        BookletSingleton.getInstance();
         QuestsManagerSingleton.getInstance();
         QuestsSingleton.getInstance();
         BookletSingleton.getInstance();
@@ -96,6 +96,7 @@ public class GameManager {
      * creates and runs the Game thread
      */
     public void startGame(int skin, String Name) {
+        System.out.println("START GAME");
         //Status bars have to start only when the game starts
         StatusManager.getInstance();
         Player.getIstance().initialize(skin, Name);

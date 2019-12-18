@@ -2065,6 +2065,8 @@ public class GameFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_AudioButtonActionPerformed
 
     private void NewGameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewGameButtonActionPerformed
+        GameManager.getInstance().initGame();
+        
         SwingUtilities.invokeLater(() -> AvatarChooserDialog.setVisible(true));
         SwingUtilities.invokeLater(() -> MainMenuDialog.setVisible(false));
         SwingUtilities.invokeLater(() -> AvatarName.setText(EMPTY_TEXT));
