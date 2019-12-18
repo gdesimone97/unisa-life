@@ -33,7 +33,7 @@ import java.util.Random;
  * considering Player. If an objects is collected by the Player, it must be removed from the list.
  *
 */
-public class Map implements Serializable, Runnable {
+public class Map implements Runnable {
     private TileMap tMap;
     private ObjectManager mapObjects;
 
@@ -69,7 +69,7 @@ public class Map implements Serializable, Runnable {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        
+
         startGeneratingCoins();
     }
 
@@ -148,11 +148,11 @@ public class Map implements Serializable, Runnable {
             }
         }
     }
-    
+
     public void startGeneratingCoins() {
         new Thread(this).start();
     }
-    
+
     public void stopGeneratingCoins() {
         generateRandomCoins = false;
     }
@@ -165,7 +165,7 @@ public class Map implements Serializable, Runnable {
     public void run() {
         generateRandomCoins = true;
         Random rand = new Random();
-        
+
         while(generateRandomCoins) {
             try {
                 // sleep a certain period of time until next coin is spawned (could be random too)
@@ -176,25 +176,24 @@ public class Map implements Serializable, Runnable {
                 int cX;
                 int cY;
                 int cell = Game.DIMENSIONSPRITE;
-            
+
                 // compute a random distance from the player (between 1 and 7)
                 rX = rand.nextInt(Game.HEIGHTSCREEN/(2*cell)-2)+1;
                 rY = rand.nextInt(Game.WIDTHSCREEN/(2*cell)-2)+1;
-                
+
                 // compute the position in which coin has to spawn
                 cX = ((int)Player.getIstance().getX()/cell) * cell + (rand.nextBoolean() ? + rX * cell : - rX * cell);
                 cY = (int)Player.getIstance().getY()/cell * cell + (rand.nextBoolean() ? + rY * cell : - rY * cell);
-                
+
                 // add coin in the map (if it's already present a GameObject, exception is catched and compute restarts
                 Position p = new Position(cX, cY);
                 mapObjects.addObject(p.getScaledPosition(), new Coin(p, "/Sprites/coin.png", "moneta"));
-                
             } catch (InterruptedException ex) {
             } catch (Exception ex) {
             }
         }
     }
-    
-    
+
+
 
 }

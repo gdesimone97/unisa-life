@@ -5,19 +5,12 @@
  */
 package game.GameObjects;
 
-import saving.Saveable;
 import game.Interfaces.Interactable;
 import game.Interfaces.Renderable;
 import interaction.ItemInteractionManager;
 import language.Information;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-import java.io.Externalizable;
-import java.io.IOException;
-import java.io.ObjectInput;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutput;
-import java.io.ObjectOutputStream;
 import java.time.LocalDateTime;
 import java.io.Serializable;
 import java.time.temporal.ChronoUnit;
@@ -30,13 +23,12 @@ import quests.ItemDef;
  *
  * @author simon
  */
-public class Item extends GameObject implements Renderable, Interactable, Serializable, Comparable<Item>, Information, Externalizable {
+public class Item extends GameObject implements Renderable, Interactable, Serializable, Comparable<Item>, Information {
 
     @Id
     private String info;
     transient private BufferedImage facingDownImage;
     private LocalDateTime taken;
-
     public Item(Position p, String path, String info) {
         super(p);
         this.info = info;
@@ -108,20 +100,5 @@ public class Item extends GameObject implements Renderable, Interactable, Serial
 
     public String getID() {
         return this.info;
-    }
-
-    @Override
-    public void writeExternal(ObjectOutput out) throws IOException {
-        out.writeUTF(info);
-        out.writeObject(taken);
-        ImageIO.write(facingDownImage, "png", (ObjectOutputStream) out);
-    }
-
-    @Override
-    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
-        ObjectInputStream ins = (ObjectInputStream) in;
-        this.info = in.readUTF();
-        this.taken = (LocalDateTime) in.readObject();
-        this.facingDownImage = ImageIO.read(ins);
     }
 }

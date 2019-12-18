@@ -16,7 +16,7 @@ import saving.exceptions.LoadingException;
  *
  * @author liovi
  */
-public class MapManager implements Saveable {
+public class MapManager{
 
     private final int NUMBEROFMAPS = 2;
     private int actualMap;
@@ -53,15 +53,4 @@ public class MapManager implements Saveable {
     public void render(Graphics2D g) {
         this.maps[actualMap].render(g);
     }
-
-    @Override
-    public Serializable save() {
-        return maps;
-    }
-
-    @Override
-    public void load(Serializable obj) throws LoadingException {
-        this.maps = (Map[]) obj;
-    }
-
 }
