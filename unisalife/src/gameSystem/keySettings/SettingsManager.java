@@ -8,6 +8,9 @@ package gameSystem.keySettings;
 import java.awt.event.KeyEvent;
 
 /**
+ * This class declares the methods to set and get keyboard keys used to move the
+ * avatar and perform game's actions like to interact with game's objects or to
+ * enter in pause modality
  *
  * @author Giuseppe De Simone
  */
@@ -22,6 +25,10 @@ public class SettingsManager {
     private int pauseButton = KeyEvent.VK_P;
     private final int SaveButton = KeyEvent.VK_S;
 
+    /**
+     *
+     * @return an int containing the value of keyboard key pressed
+     */
     public int getSaveButton() {
         return SaveButton;
     }
@@ -29,54 +36,118 @@ public class SettingsManager {
     private SettingsManager() {
     }
 
+    /**
+     *
+     * @return the instance of this class
+     */
     public static SettingsManager getSettingsManager() {
         return instance;
     }
 
+    /**
+     *
+     * @return an int containing the value of keyboard key related to this
+     * commad
+     */
     public int getMoveUp() {
         return moveUp;
     }
 
+    /**
+     * set keyboard's key related to move up command
+     *
+     * @param moveUp
+     */
     public void setMoveUp(int moveUp) {
         this.moveUp = moveUp;
     }
 
+    /**
+     *
+     * @return an int containing the value of keyboard key related to this
+     * commad
+     */
     public int getMoveDown() {
         return moveDown;
     }
 
+    /**
+     * set keyboard's key related to move down command
+     *
+     * @param moveDown
+     */
     public void setMoveDown(int moveDown) {
         this.moveDown = moveDown;
     }
 
+    /**
+     *
+     * @return an int containing the value of keyboard key related to this
+     * commad
+     */
     public int getMoveLeft() {
         return moveLeft;
     }
 
+    /**
+     * set keyboard's key related to move left command
+     *
+     * @param moveLeft
+     */
     public void setMoveLeft(int moveLeft) {
         this.moveLeft = moveLeft;
     }
 
+    /**
+     *
+     * @return an int containing the value of keyboard key related to this
+     * commad
+     */
     public int getMoveRight() {
         return moveRight;
     }
 
+    /**
+     * set keyboard's key related to move right command
+     *
+     * @param moveRight
+     */
     public void setMoveRight(int moveRight) {
         this.moveRight = moveRight;
     }
 
+    /**
+     *
+     * @return an int containing the value of keyboard key related to this
+     * commad
+     */
     public int getInteractButton() {
         return interactButton;
     }
 
+    /**
+     * set keyboard's key related to interact command command
+     *
+     * @param interactButton
+     */
     public void setInteractButton(int interactButton) {
         this.interactButton = interactButton;
     }
 
+    /**
+     *
+     * @return an int containing the value of keyboard key related to this
+     * commad
+     */
     public int getPauseButton() {
         return pauseButton;
     }
 
+    /**
+     * set keyboard's key related to pause command command
+     *
+     * @param pauseButton
+     */
     public void setPauseButton(int pauseButton) {
         this.pauseButton = pauseButton;
     }

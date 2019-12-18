@@ -10,22 +10,35 @@ import gameSystem.PauseState;
 import gameSystem.PlayState;
 
 /**
+ * Class to handle move right key command
  *
  * @author Giuseppe De Simone
  */
-class MoveRightCommand extends KeyCommand implements MovingCommand{
+class MoveRightCommand extends KeyCommand implements MovingCommand {
 
+    /**
+     * {@inheritDoc}
+     *
+     */
     @Override
     public void visitPlayState(PlayState playState) {
         player.setVelX(speed);
         player.setVelY(0);
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     */
     @Override
     public void visitPauseState(PauseState pauseState) {
-        
+
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     */
     @Override
     public void visitiLoadingState(LoadingState loadState) {
 
