@@ -32,27 +32,15 @@ public class Item extends GameObject implements Renderable, Interactable, Serial
 
     public Item(Position p,String path, String info,ItemDef id) {
         super(p);
-	}	
+        this.id = id;
+        this.info = info;
+    }	
 		
     public Item(){
-        super(1,1);
+        super(new Position(1,1));
         this.info = "info";
     }
     
-    public Item(float x, float y, String path, String info, int mts) {
-        super(x, y);
-        this.mapToSpawn = mts;
-        this.info = info;
-        //this.id = id;
-        /*try {
-            facingDownImage = ImageIO.read(
-                    getClass().getResourceAsStream(path)
-            );
-        } catch (Exception e) {
-            System.exit(1);
-        }
-         */
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -60,7 +48,6 @@ public class Item extends GameObject implements Renderable, Interactable, Serial
             return false;
         }
         return this.id.equals(((Item) o).getID());
-
     }
 
     @Override
@@ -71,9 +58,6 @@ public class Item extends GameObject implements Renderable, Interactable, Serial
         return id.compareTo(o.getID());
     }
 
-    
-    
-    
     public void setTaken() {
         this.taken = LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS);
     }

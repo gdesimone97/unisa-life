@@ -4,20 +4,11 @@
  * and open the template in the editor.
  */
 package game.GameResources;
-import exam.question.Materia;
 import game.GameObjects.GameObject;
-import game.GameObjects.Item;
 import game.GameObjects.ObjectManager;
 import game.GameObjects.Position;
-import game.GameObjects.Professor;
 import game.Interfaces.Renderable;
-import gameSystem.map.Mappa;
 import java.awt.Graphics2D;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import quests.ItemDef;
 /**
  *
  * @author simon
@@ -32,44 +23,37 @@ import quests.ItemDef;
 public class Map {
     private TileMap tMap;
     private ObjectManager mapObjects;
-    //private ObjectManager mapObjects = new ObjectManager();
     
     
-    /**
-     * Constructor that initializes tMap with the passed TileMap t and
-     * the mapObject with an empty list.
-     * @param t TileMap
-     */     
-    public Map(){
-        mapObjects=new ObjectManager();
-        
-        tMap = new TileMap(32, 288, 288);
-        tMap.loadTiles("/Tilesets/PT.gif");
-        tMap.loadMap("/Maps/map9.map");
-        try {
-            Position p = new Position(640, 640);
-            mapObjects.addObject(p.getScaledPosition(), new Professor("Foggia", p, "/Sprites/foggia.png", Materia.matematica));
-            p = new Position(320, 160);
-            mapObjects.addObject(new Position(10,5), new Item(p, "/Sprites/note.png", ItemDef.appuntidimatematica1.toString(), ItemDef.appuntidimatematica1));
-            p = new Position(320, 64);
-            mapObjects.addObject(new Position(10,2), new Item(p, "/Sprites/note.png", ItemDef.appuntidimatematica2.toString(), ItemDef.appuntidimatematica2));
-            p = new Position(320, 320);
-            mapObjects.addObject(new Position(10,10), new Item(p, "/Sprites/calculator.png", ItemDef.calcolatrice.toString(), ItemDef.calcolatrice));
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-    }
-    
-    /**
+     /**
      * Constructor that initializes tMap with the passed TileMap t and
      * the mapObject with the passed LinkedList l.
      * @param t Tmap
      * @param hm HashMap of GameObject objects
-     */
-    public Map(TileMap t,ObjectManager o ){
-        tMap=t;
-        mapObjects=o;
+     */    
+    public Map(TileMap tMap, ObjectManager mapObjects){
+        mapObjects=new ObjectManager();
+        this.tMap = tMap;
+        this.mapObjects = mapObjects;
+        
+//        tMap = new TileMap(32, 288, 288);
+//        tMap.loadTiles("/Tilesets/PT.gif");
+//        tMap.loadMap("/Maps/map9.map");
+//        try {
+//            Position p = new Position(640, 640);
+//            mapObjects.addObject(p.getScaledPosition(), new Professor("Foggia", p, "/Sprites/foggia.png", Materia.matematica));
+//            p = new Position(320, 160);
+//            mapObjects.addObject(new Position(10,5), new Item(p, "/Sprites/note.png", ItemDef.appuntidimatematica1.toString(), ItemDef.appuntidimatematica1));
+//            p = new Position(320, 64);
+//            mapObjects.addObject(new Position(10,2), new Item(p, "/Sprites/note.png", ItemDef.appuntidimatematica2.toString(), ItemDef.appuntidimatematica2));
+//            p = new Position(320, 320);
+//            mapObjects.addObject(new Position(10,10), new Item(p, "/Sprites/calculator.png", ItemDef.calcolatrice.toString(), ItemDef.calcolatrice));
+//        } catch (Exception ex) {
+//            ex.printStackTrace();
+//        }
     }
+    
+    
     /**
      * Add a new GameObject object g to the list.
      * @param g GameObject
@@ -81,7 +65,6 @@ public class Map {
        catch(Exception e){
            System.exit(-1);
        }
-       
     }
     /**
      * Remove(if presents) the GameObject object g from the list.

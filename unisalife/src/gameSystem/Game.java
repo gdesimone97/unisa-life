@@ -5,18 +5,11 @@
  */
 package gameSystem;
 
-import exam.question.Materia;
-import game.GameObjects.Item;
-import game.GameObjects.Position;
-import game.GameObjects.Professor;
-import game.GameResources.Map;
-import game.GameResources.TileMap;
 import gameSystem.keySettings.HandlerInput;
 import java.awt.Canvas;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferStrategy;
-import quests.ItemDef;
 
 /**
  * This class is the main thread of the game, it calls render() and tick()
