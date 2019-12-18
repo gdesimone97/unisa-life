@@ -16,7 +16,7 @@ import quests.ItemDef;
 public class Distributor extends Item {
     
     public Distributor(Position p, String path, String info, ItemDef id) {
-        super(p, path, info, id);
+        super(p, path, info);
     }
     
     @Override

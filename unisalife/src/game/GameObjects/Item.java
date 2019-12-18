@@ -28,9 +28,8 @@ public class Item extends GameObject implements Renderable, Interactable, Serial
     private final String info;
     private BufferedImage facingDownImage;
     private LocalDateTime taken;
-    private ItemDef id;
 
-    public Item(Position p,String path, String info, ItemDef id) {
+    public Item(Position p,String path, String info) {
         super(p);
         this.info = info;
     }	
