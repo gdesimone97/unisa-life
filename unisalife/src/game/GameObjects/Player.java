@@ -8,20 +8,12 @@ package game.GameObjects;
 import game.GameResources.Animation;
 import gameSystem.Game;
 
-import gameSystem.PlayState;
 import game.Interfaces.Tickable;
-import game.Interfaces.Interactable;
 import game.Interfaces.Renderable;
-import static gameSystem.Game.ANIMATIONSPEED;
 import static gameSystem.Game.DIMENSIONSPRITE;
-import gameSystem.GameManager;
-import gameSystem.GameStateManager;
-import gameSystem.PauseState;
 import gameSystem.map.MapManager;
-import java.util.LinkedList;
 import java.awt.image.BufferedImage;
 import java.awt.Graphics;
-import java.awt.Rectangle;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -60,7 +52,7 @@ public class Player extends GameObject implements Tickable, Renderable, Saveable
     private Player(Position p) {
         super(p);
         face = new DownFaceState(this);
-        initialize(32, "Ciao");
+        initialize(3, "Ciao");
     }
 
     public FaceState getFace() {
@@ -92,13 +84,13 @@ public class Player extends GameObject implements Tickable, Renderable, Saveable
         int cols = 0;
         try {
             BufferedImage characterImage = ImageIO.read(
-                    getClass().getResourceAsStream("/Sprites/sprite" + 32 + ".png")
+                    getClass().getResourceAsStream("/Sprites/sprite" + skin + ".png")
             );
             if (characterImage.getHeight() % DIMENSIONSPRITE != 0 || characterImage.getWidth() % 32 != 0) {
                 System.exit(5);
             }
             cols = characterImage.getWidth() / DIMENSIONSPRITE;
-            
+
             texturePlayer = new BufferedImage[4][cols];
             for (int i = 0; i < 4; i++) {
                 for (int j = 0; j < cols; j++) {
@@ -181,7 +173,6 @@ public class Player extends GameObject implements Tickable, Renderable, Saveable
         int y = p.getY();
 
         if (y % 32 == 0 && x % 32 == 0) {
-
             if (velX > 0) {
                 face = new RightFaceState(this);
             } else if (velX < 0) {
@@ -192,31 +183,22 @@ public class Player extends GameObject implements Tickable, Renderable, Saveable
                 face = new UpFaceState(this);
             }
             collisions(MapManager.getInstance().getMap().getObjectManager());
-
             if (velX != 0 && x + velX > 0 && x + velX < MapManager.getInstance().getMap().getWidthMap() - Game.DIMENSIONSPRITE && nextMove == true) {
-
                 delta = velX / DELAY;
                 p.setX(x + delta);
-
             } else {
-
                 if (velY != 0 && y + velY > 0 && y + velY < MapManager.getInstance().getMap().getHeightMap() - Game.DIMENSIONSPRITE && nextMove == true) {
-
                     delta = velY / DELAY;
-
                     p.setY(y + delta);
                 }
             }
         } else {
-
             if (x % 32 != 0) {
                 p.setX(x + delta);
             }
-
             if (y % 32 != 0) {
                 p.setY(y + delta);
             }
-
         }
         //collisions(game.getActualMap().getList());
         downWalk.runAnimation();
@@ -245,6 +227,7 @@ public class Player extends GameObject implements Tickable, Renderable, Saveable
 
         }
     }
+
     /**
      *
      * @param g

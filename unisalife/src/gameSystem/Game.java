@@ -5,18 +5,12 @@
  */
 package gameSystem;
 
-import exam.question.Materia;
-import game.GameObjects.Item;
-import game.GameObjects.Position;
-import game.GameObjects.Professor;
-import game.GameResources.Map;
-import game.GameResources.TileMap;
+
 import gameSystem.keySettings.HandlerInput;
 import java.awt.Canvas;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferStrategy;
-import quests.ItemDef;
 
 /**
  * This class is the main thread of the game, it calls render() and tick()
@@ -27,14 +21,11 @@ import quests.ItemDef;
  */
 public class Game extends Canvas implements Runnable {
 
-    public static final int WIDTH = 128;
-    public static final int HEIGHT = 128;
-
     public static final int WIDTHSCREEN = 500,
             HEIGHTSCREEN = 500,
             HEIGHTSCREEN2 = HEIGHTSCREEN + 32,
             PLAYERSPEED = 32,
-            ANIMATIONSPEED = 4,
+            ANIMATIONSPEED = 1,
             AMOUNTOFTICKS = 24,
             DIMENSIONSPRITE = 32;
     public static int WIDTHMAP, HEIGHTMAP;
@@ -145,7 +136,7 @@ public class Game extends Canvas implements Runnable {
         g.dispose();
         bs.show();
     }
-
+    
     public void stopGame() {
         running = false;
     }

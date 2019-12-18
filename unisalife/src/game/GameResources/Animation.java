@@ -15,25 +15,23 @@ import java.awt.Graphics;
  */
 public class Animation {
     
-    private int frames;
+    private final int frames;
     private int index=0;
     private int count=0;
-    private BufferedImage[] images;
+    private final BufferedImage[] images;
     private BufferedImage currentImage;
     
     /**
      * Constructor takes a sequence of BufferedImage objects.
      *
-     * @param s
+     * 
      * @param args
      */
     public Animation(BufferedImage... args){
         
         images=new BufferedImage[args.length];
-        frames=args.length;
-        for(int i=0;i<frames;i++){
-            images[i]=args[i];
-        }
+        frames=args.length;        
+        System.arraycopy(args, 0, images, 0, frames);
     }
     
     /**
