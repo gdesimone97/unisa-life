@@ -5,6 +5,7 @@
  */
 package gameSystem.keySettings;
 
+import gameSystem.LoadingState;
 import gameSystem.PauseState;
 import gameSystem.PlayState;
 
@@ -23,6 +24,10 @@ public class DoNothingCommand extends KeyCommand {
     @Override
     public void visitPauseState(PauseState pauseState) {
 
+    }
+
+    @Override
+    public void visitiLoadingState(LoadingState loadState) {
     }
 
 }

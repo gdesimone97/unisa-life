@@ -5,6 +5,7 @@
  */
 package gameSystem.keySettings;
 
+import gameSystem.LoadingState;
 import gameSystem.PauseState;
 import gameSystem.PlayState;
 
@@ -26,6 +27,8 @@ class MoveUpCommand extends KeyCommand implements MovingCommand{
     public void visitPauseState(PauseState pauseState) {
     }
 
+    @Override
+    public void visitiLoadingState(LoadingState loadState) {
 
 
 }

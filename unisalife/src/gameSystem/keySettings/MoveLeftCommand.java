@@ -5,6 +5,7 @@
  */
 package gameSystem.keySettings;
 
+import gameSystem.LoadingState;
 import gameSystem.PauseState;
 import gameSystem.PlayState;
 
@@ -25,4 +26,8 @@ class MoveLeftCommand extends KeyCommand implements MovingCommand{
 
     }
 
+    @Override
+    public void visitiLoadingState(LoadingState loadState) {
+
+    }
 }

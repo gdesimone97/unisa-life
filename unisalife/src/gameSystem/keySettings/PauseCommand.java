@@ -6,6 +6,7 @@
 package gameSystem.keySettings;
 
 import gameSystem.GameStateManager;
+import gameSystem.LoadingState;
 import gameSystem.PauseState;
 import gameSystem.PlayState;
 
@@ -27,4 +28,8 @@ public class PauseCommand extends KeyCommand implements ActionCommand{
         stateManager.setState(PlayState.getInstance());
     }
 
+    @Override
+    public void visitiLoadingState(LoadingState loadState) {
+
+    }
 }

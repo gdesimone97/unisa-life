@@ -5,6 +5,7 @@
  */
 package gameSystem.keySettings;
 
+import gameSystem.LoadingState;
 import gameSystem.PauseState;
 import gameSystem.PlayState;
 import saving.SaveManager;
@@ -39,4 +40,8 @@ class SavingCommand extends KeyCommand implements ActionCommand {
         }
     }
 
+    @Override
+    public void visitiLoadingState(LoadingState loadState) {
+
+    }
 }

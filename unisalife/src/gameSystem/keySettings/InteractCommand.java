@@ -9,6 +9,7 @@ import game.GameObjects.GameObject;
 import game.GameObjects.Position;
 import game.Interfaces.Interactable;
 import gameSystem.GameStateManager;
+import gameSystem.LoadingState;
 import gameSystem.PauseState;
 import gameSystem.PlayState;
 import gameSystem.map.MapManager;
@@ -36,5 +37,9 @@ public class InteractCommand extends KeyCommand implements ActionCommand{
     public void visitPauseState(PauseState pauseState) {
     }
 
+    @Override
+    public void visitiLoadingState(LoadingState loadState) {
+
+    }
 
 }

@@ -24,4 +24,8 @@ class MoveDownCommand extends KeyCommand implements MovingCommand {
     public void visitPauseState(PauseState pauseState) {
     }
 
+    @Override
+    public void visitiLoadingState(LoadingState loadState) {
+
+    }
 }
