@@ -40,20 +40,18 @@ public class Player extends GameObject implements Tickable, Renderable, Saveable
     protected BufferedImage facingLeftImage;
     protected BufferedImage facingRightImage;
     protected BufferedImage facingUpImage;
-    protected FaceState face;
+    protected FaceState face = new DownFaceState(this);
     private static Player uniqueIstance = null;
     private boolean nextMove = true;
-
+    protected String nameOfPlayer=null;
     private int delta = 0;
-
+    private static final Position initialPosition  = new Position(32,32);
 
     /*public Player(float x,float y,SubjectEnum i){
      super(x,y,i);
      }*/
     private Player(Position p) {
         super(p);
-        face = new DownFaceState(this);
-        initialize(3, "Ciao");
     }
 
     public FaceState getFace() {
@@ -80,8 +78,9 @@ public class Player extends GameObject implements Tickable, Renderable, Saveable
      *
      *
      */
-    private void initialize(int skin, String name) {
+    public void initialize(int skin, String name) {
         BufferedImage texturePlayer[][] = null;
+        nameOfPlayer = name;
         int cols = 0;
         try {
             BufferedImage characterImage = ImageIO.read(
@@ -110,7 +109,7 @@ public class Player extends GameObject implements Tickable, Renderable, Saveable
 
     public static Player getIstance() {
         if (uniqueIstance == null) {
-            uniqueIstance = new Player(new Position(32, 32));
+            uniqueIstance = new Player(initialPosition);
         }
         return uniqueIstance;
     }
@@ -274,6 +273,7 @@ public class Player extends GameObject implements Tickable, Renderable, Saveable
         ArrayList<Serializable> list = new ArrayList<>();
         list.add(getX());
         list.add(getY());
+        list.add(getName());
         return list;
     }
 
@@ -282,6 +282,15 @@ public class Player extends GameObject implements Tickable, Renderable, Saveable
         List<Serializable> list = (List<Serializable>) obj;
         setX((int) list.get(0));
         setY((int) list.get(1));
+        setName((String) list.get(2));
     }
-
+    
+    public String getName(){
+        return nameOfPlayer;
+    }
+    
+    public void setName(String name){
+        this.nameOfPlayer=name;
+    }
+    
 }
