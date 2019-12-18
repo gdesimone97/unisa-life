@@ -32,7 +32,7 @@ import quests.ItemDef;
  */
 public class Item extends GameObject implements Renderable, Interactable, Serializable, Comparable<Item>, Information, Saveable {
     @Id
-    private final String info;
+    private String info;
     transient private BufferedImage facingDownImage;
     private LocalDateTime taken;
 
