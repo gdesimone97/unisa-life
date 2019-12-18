@@ -6,6 +6,7 @@
 package game.GameObjects;
 
 import game.GameResources.Animation;
+import game.Interfaces.Interactable;
 import gameSystem.Game;
 
 import game.Interfaces.Tickable;
@@ -213,18 +214,19 @@ public class Player extends GameObject implements Tickable, Renderable, Saveable
      * @param ObjectsManager
      */
     private void collisions(ObjectManager objMan) {
-        GameObject g = objMan.get(face.nextStep());
 
-        if (g != null) {
-
-            if (g instanceof Teleport) {
-                Teleport t = (Teleport) g;
-                p.setX(t.getDestination().getX());
-                p.setY(t.getDestination().getY());
+        GameObject g = objMan.get(getScaledPosition());
+        if (g != null && g instanceof Teleport) {
+            ((Interactable)g).interact();
+            setVelX(0);
+            setVelY(0);
+        } 
+        else 
+        {
+            g = objMan.get(face.nextStep());
+            if (g != null && !(g instanceof Teleport)) {
+                nextMove = false;
             }
-
-            nextMove = false;
-
         }
     }
 
