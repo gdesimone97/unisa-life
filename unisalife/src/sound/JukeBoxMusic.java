@@ -30,7 +30,8 @@ public class JukeBoxMusic implements JukeBox {
     private static int frame;
     private static boolean isActive;
     private final String pathFile = "./Resources/Music/Music.txt";
-    private float VOLUME=3;
+    private static JukeBoxMusic instance;
+    private float VOLUME=2;
 
     
 
@@ -44,10 +45,16 @@ public class JukeBoxMusic implements JukeBox {
         frame = 0;
         isActive = true;
     }
+    public static JukeBoxMusic getInstance(){
+        if( instance ==null){
+            instance = new JukeBoxMusic();
+        }
+        return instance;
+    }
     
     @Override
     public void play(String s) {
-        if(! isActive)
+        if(!isActive)
             return;
         Clip c = clips.get(s);
         FloatControl vol = (FloatControl) c.getControl(FloatControl.Type.MASTER_GAIN);
@@ -60,7 +67,7 @@ public class JukeBoxMusic implements JukeBox {
         }
         c.setFramePosition(frame);
         while (!c.isRunning()) {
-            c.start();
+            loop(s);
         }
     }
 
@@ -150,6 +157,7 @@ public class JukeBoxMusic implements JukeBox {
         c.setLoopPoints(frame, end);
         c.setFramePosition(frame);
         c.loop(Clip.LOOP_CONTINUOUSLY);
+        
     }
 
 

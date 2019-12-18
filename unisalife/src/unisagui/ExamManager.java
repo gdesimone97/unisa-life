@@ -9,6 +9,7 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
+import sound.JukeBoxMusic;
 import sound.JukeBoxSound;
 
 /**
@@ -53,6 +54,8 @@ import sound.JukeBoxSound;
      */
     protected void closeExamDialog() {
         SwingUtilities.invokeLater(() -> gameframe.ExamDialog.setVisible(false));
+        SwingUtilities.invokeLater(() -> JukeBoxMusic.getInstance().play("game_music"));
+        SwingUtilities.invokeLater(() -> JukeBoxMusic.getInstance().stop("exam"));
     }
 
     protected void setConfirm() {
@@ -199,6 +202,10 @@ import sound.JukeBoxSound;
      */
      protected void showExamDialog(String examName, String question, String answer1, String answer2, String answer3, String answer4, int time, ResultGui lock,int level) {
         this.level=level;
+        if (level ==1){
+            SwingUtilities.invokeLater(() -> JukeBoxMusic.getInstance().stop("game_music"));
+            SwingUtilities.invokeLater(() -> JukeBoxMusic.getInstance().play("exam"));
+        }
         if (level > 1) {
             timing.stop();
         }

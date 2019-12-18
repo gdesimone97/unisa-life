@@ -22,6 +22,7 @@ public class GameFrame extends javax.swing.JFrame {
     private static GameFrame instance;
     private final static String EMPTY_TEXT="";
     private static JukeBoxSound sound = JukeBoxSound.getInstance();
+    private static JukeBoxMusic music = JukeBoxMusic.getInstance();
 
 
     private GameFrame() {
@@ -2138,6 +2139,7 @@ public class GameFrame extends javax.swing.JFrame {
         SwingUtilities.invokeLater(() -> AvatarChooserDialog.setVisible(false));
         SwingUtilities.invokeLater(() -> this.setVisible(true));
         SwingUtilities.invokeLater(() -> this.setEnabled(true));
+        SwingUtilities.invokeLater(() -> music.play("game_music"));
 
     }//GEN-LAST:event_AvatarOkButtonActionPerformed
 
