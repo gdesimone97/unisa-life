@@ -14,7 +14,7 @@ import java.io.Serializable;
  *
  * @author simon
  */
-public abstract class GameObject implements Serializable, Storable {
+public abstract class GameObject implements Storable {
 
     protected int width = Game.DIMENSIONSPRITE;
     protected int height = Game.DIMENSIONSPRITE;

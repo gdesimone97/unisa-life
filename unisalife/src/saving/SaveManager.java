@@ -43,7 +43,6 @@ public class SaveManager {
 
     private SaveManager() { // da completare quando abbiamo tutte le classi da salvare
         saveableComponents.add(TextManagerAdapter.getTextManagerAdpter());
-        saveableComponents.add(MapManager.getInstance());
         saveableComponents.add(BookletSingleton.getInstance());
         saveableComponents.add(Player.getIstance());
         saveableComponents.add(GameInventorySingleton.getInstance());

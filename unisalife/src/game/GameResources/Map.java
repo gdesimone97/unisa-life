@@ -28,7 +28,7 @@ import java.io.Serializable;
  * considering Player. If an objects is collected by the Player, it must be removed from the list.
  *
 */
-public class Map implements Serializable{
+public class Map{
     private TileMap tMap;
     private ObjectManager mapObjects;
 
