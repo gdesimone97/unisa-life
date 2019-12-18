@@ -79,4 +79,8 @@
 <message>Do you want some snacks?</message>
 </MessageInformation>
 
+<MessageInformation info="NotEnoughMoney">
+<message>You don't have enough money to buy this!</message>
+</MessageInformation>
+
 </root>

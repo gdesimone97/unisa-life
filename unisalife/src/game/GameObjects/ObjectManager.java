@@ -16,9 +16,7 @@ public class ObjectManager extends HashMap<Position,GameObject> {
         return this.get(p);
     }
     
-    
-    
-    public GameObject removeObject(Position p)throws Exception{
+    public synchronized GameObject removeObject(Position p)throws Exception{
         if(this.containsKey(p))
             return this.remove(p);
         else
@@ -26,7 +24,7 @@ public class ObjectManager extends HashMap<Position,GameObject> {
      
     }
     
-    public void addObject(Position p, GameObject g) throws Exception {
+    public synchronized void addObject(Position p, GameObject g) throws Exception {
         if (this.containsKey(p)){
             throw new Exception();
         }

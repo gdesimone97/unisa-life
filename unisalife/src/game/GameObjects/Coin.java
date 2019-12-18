@@ -5,16 +5,24 @@
  */
 package game.GameObjects;
 
+import game.Interfaces.Interactable;
+import interaction.CoinInteractionManager;
+import interaction.InteractionManager;
+
 
 /**
  *
  * @author 1997g
  */
-public class Coin extends Item {
+public class Coin extends Item implements Interactable {
     
     public Coin(Position p, String path, String info) {
         super(p, path, info);
     }
     
-    
+    @Override
+    public void interact() {
+        InteractionManager im = new CoinInteractionManager();
+        im.execute(this);
+    }
 }
