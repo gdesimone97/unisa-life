@@ -5,27 +5,43 @@
  */
 package gameSystem.keySettings;
 
+import gameSystem.LoadingState;
 import gameSystem.PauseState;
 import gameSystem.PlayState;
 
 /**
+ * Class to handle move up key command
  *
  * @author Giuseppe De Simone
  */
-class MoveUpCommand extends KeyCommand implements MovingCommand{
+class MoveUpCommand extends KeyCommand implements MovingCommand {
 
+    /**
+     * {@inheritDoc}
+     *
+     */
     @Override
     public void visitPlayState(PlayState playState) {
-        
+
         player.setVelY(-speed);
         player.setVelX(0);
-        
+
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     */
     @Override
     public void visitPauseState(PauseState pauseState) {
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     */
+    @Override
+    public void visitiLoadingState(LoadingState loadState) {
 
-
+    }
 }

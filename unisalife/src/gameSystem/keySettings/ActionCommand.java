@@ -6,9 +6,10 @@
 package gameSystem.keySettings;
 
 /**
+ * This class declares that the sub-class command's type is an action
  *
  * @author Giuseppe De Simone
  */
 public interface ActionCommand {
-    
+
 }
