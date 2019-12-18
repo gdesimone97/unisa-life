@@ -6,6 +6,7 @@
 package interaction;
 
 import game.Interfaces.Interactable;
+import hud.change.CanteenHudBarChange;
 import language.FileTextManager;
 import language.Information;
 import language.MessageInformation;
@@ -25,15 +26,15 @@ public class CookInteractionManager implements InteractionManager {
 
         try {
             tm = FileTextManager.getFileTextManager();
-            MessageInformation ms = new MessageInformation("SleepResidences");
+            MessageInformation ms = new MessageInformation("EatCanteen");
             toShow = tm.getString(ms).get(0);
             
             // show pop up
             GuiManager.getInstance().showHint(toShow);
 
             // restore status bars
-//            BehaviouralStatus b = new SleepResidences();
-//            b.execute();
+            CanteenHudBarChange c = new CanteenHudBarChange();
+            c.execute();
             
         } catch (Exception ex) {
             // decide what to do when an error with string retriving occurs

@@ -45,7 +45,7 @@ public class Player extends GameObject implements Tickable, Renderable, Saveable
     private boolean nextMove = true;
     protected String nameOfPlayer=null;
     private int delta = 0;
-    private static final Position initialPosition  = new Position(32,32);
+    private static final Position initialPosition  = new Position(1024,2144);
 
     /*public Player(float x,float y,SubjectEnum i){
      super(x,y,i);
