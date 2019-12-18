@@ -8,50 +8,57 @@ package game.GameObjects;
 import gameSystem.Game;
 
 /**
- * Position represents a tuple of x and y coordinates used for 
- updating the position of the player in the map.
+ * Position represents a tuple of x and y coordinates used for updating the
+ * position of the player in the map.
+ *
  * @author simon
  */
-public class Position{
-    private int x=0;
-    private int y=0;
-    
+public class Position {
+
+    private int x = 0;
+    private int y = 0;
+
     /**
      *
      * @param x
      * @param y
      */
-    public Position(int x,int y){
-        this.x=x;
-        this.y=y;
+    public Position(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    private Position() {
+
     }
 
     /**
      *
      * @return
      */
-    public int getX(){
+    public int getX() {
         return x;
     }
-    
+
     /**
      *
      * @return
      */
-    public int getY(){
+    public int getY() {
         return y;
     }
-    
-    public void setX(int x){
-        this.x=x;
-    } 
-    
-    public void setY(int y){
-        this.y=y;
-    } 
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
     @Override
-    public String toString(){
-        return "x:"+x+" y:"+y;
+    public String toString() {
+        return "x:" + x + " y:" + y;
     }
 
     @Override
@@ -79,9 +86,9 @@ public class Position{
         }
         return true;
     }
-    
-    public Position getScaledPosition(){
-        return new Position(this.x/Game.DIMENSIONSPRITE,this.y/Game.DIMENSIONSPRITE);
+
+    public Position getScaledPosition() {
+        return new Position(this.x / Game.DIMENSIONSPRITE, this.y / Game.DIMENSIONSPRITE);
     }
-    
+
 }

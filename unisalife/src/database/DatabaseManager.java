@@ -97,10 +97,11 @@ public class DatabaseManager {
         if (returnMap.size() <= 0) {
             throw new ObjectNotFoundException();
         }
+        System.out.println(returnMap);
         return returnMap;
     }
-    
-    public Map[] getMaps(int level) throws ObjectNotFoundException{
+
+    public Map[] getMaps(int level) throws ObjectNotFoundException {
         HashMap<Position, GameObject> currentHashMap = this.getObjectsFromLevel(level);
         return null;
     }
@@ -123,6 +124,7 @@ public class DatabaseManager {
 
     /**
      * Method to get all the subject at once. Useful to populate the booklet.
+     *
      * @return a list of the subjects (instances)
      */
     public List<Subject> getSubjects() {
@@ -159,7 +161,6 @@ public class DatabaseManager {
         return this.load().size() >= 0;
     }
      */
-    
     /**
      * Method to close the database
      */
