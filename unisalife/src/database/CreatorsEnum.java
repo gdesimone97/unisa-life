@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package database.populator;
+package database;
 
 /**
  * This enumeration works as a map between the objects that need to be managed

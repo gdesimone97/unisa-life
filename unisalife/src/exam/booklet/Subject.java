@@ -8,6 +8,7 @@ package exam.booklet;
 import java.io.Serializable;
 import java.util.Objects;
 import language.Information;
+import org.dizitart.no2.objects.Id;
 import saving.Saveable;
 
 /**
@@ -17,9 +18,11 @@ import saving.Saveable;
  * @author liovi
  */
 
+
 public class Subject implements Information, Serializable, Saveable, Comparable {
 
     private int score;
+    @Id
     private String subject;
     private boolean available;
 

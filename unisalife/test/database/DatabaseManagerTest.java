@@ -5,7 +5,6 @@
  */
 package database;
 
-import database.populator.Populator;
 import database.populator.exceptions.InvalidGameDataFormatException;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -28,7 +27,7 @@ public class DatabaseManagerTest {
     @BeforeClass
     public static void setUpClass() throws FileNotSetException, IOException, FileNotFoundException, InvalidGameDataFormatException {
         DatabaseManager dmb = DatabaseManager.getDatabaseManager();
-        Populator p = new Populator("..//unisalife/src/database/populator/data.txt");
+        Populator p = new Populator("..//unisalife/src/database/data.txt");
         p.populate();
     }
 

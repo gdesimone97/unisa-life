@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package database.populator;
+package database;
 
 import database.DatabaseManager;
 import database.Database;
@@ -51,7 +51,7 @@ public class PopulatorTest {
         
         
             System.out.println("populate");
-            Populator p = new Populator("..//unisalife/src/database/populator/data.txt");
+            Populator p = new Populator("..//unisalife/src/database/data.txt");
             p.populate();
             Nitrite ndb = Database.getInstance().getNitriteDatabase();
             List<Class> classList = Arrays.asList(new Class[]{Subject.class, Quest.class, Professor.class, Item.class});

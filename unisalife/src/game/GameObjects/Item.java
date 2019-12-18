@@ -56,7 +56,7 @@ public class Item extends GameObject implements Renderable, Interactable, Serial
         if (o == null || !(o instanceof Item)) {
             return false;
         }
-        return this.id.equals(((Item) o).getID());
+        return this.info.equals(((Item) o).getInfo());
 
     }
 
@@ -65,7 +65,7 @@ public class Item extends GameObject implements Renderable, Interactable, Serial
         if (o == null) {
             return 1;
         }
-        return id.compareTo(o.getID());
+        return info.compareTo(o.getInfo());
     }
 
     public int getMapToSpawn() {
@@ -76,6 +76,7 @@ public class Item extends GameObject implements Renderable, Interactable, Serial
         this.taken = LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS);
     }
 
+    @Override
     public String getInfo() {
         return this.info;
     }
@@ -107,8 +108,8 @@ public class Item extends GameObject implements Renderable, Interactable, Serial
         iim.execute(this);
     }
 
-    public ItemDef getID() {
-        return this.id;
+    public String getID() {
+        return this.info;
     }
 
     @Override

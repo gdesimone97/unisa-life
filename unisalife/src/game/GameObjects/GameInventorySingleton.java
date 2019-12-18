@@ -14,7 +14,6 @@ import quests.mediator.User;
 import saving.Saveable;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -24,9 +23,9 @@ import quests.ItemDef;
  *
  * @author cmarino
  */
-public class GameInventorySingleton extends User implements Iterable<Item>, Saveable, Serializable{
+public class GameInventorySingleton extends User implements Iterable<Item>, Saveable{
     
-    private HashMap< ItemDef, Item > items;
+    private HashMap< String, Item > items;
     private ArrayList<Item> view;
     private Comparator<Item> comp;
     private static GameInventorySingleton instance = null;
@@ -96,7 +95,6 @@ public class GameInventorySingleton extends User implements Iterable<Item>, Save
         Message msg = new Message(i.getID().toString() , true ); //prepare the message with the added object
         send(msg); //then sends it
         int pos = Collections.binarySearch(view, i, comp);
-        //int pos = view.indexOf(i);
         view.add(-(pos+1), i);
         return pos;
         
@@ -181,7 +179,11 @@ public class GameInventorySingleton extends User implements Iterable<Item>, Save
      */
     @Override
     public void load(Serializable obj) {
-        this.items = (HashMap<ItemDef,Item>) obj;
+     
+        this.items = (HashMap<String,Item>) obj;
+        this.view = new ArrayList<Item>(this.items.values());
+        this.view.sort(this.comp);
+        
     }
 
     private static class TakenComparator implements Comparator<Item> {
