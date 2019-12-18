@@ -57,9 +57,8 @@ public class GameManager {
      * of loading the game as it was since the last save. It starts the game
      */
     public void loadGame() {
-        //SaveManager.load();
+        // call a loading method of all instances
         
-        //startGame();
     }
     
     /**
@@ -108,6 +107,8 @@ public class GameManager {
      * stops the game thread
      */
     public void stopGame() {
+        // call an autosave method
+        
         game.stopGame();
     }
 
@@ -119,8 +120,12 @@ public class GameManager {
         return camera;
     }
     
+    
+    /** 
+     * main method just calls a start method on the GuiManager
+     * @param args 
+     */
     public static void main(String[] args) {
-        // TODO code application logic here
         GuiManager.getInstance().startGame();
     }
     

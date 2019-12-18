@@ -50,7 +50,7 @@ public class StatusManager {
         GuiManager.getInstance().updateStressBar(newValue);
     }
 
-    public static synchronized void updateMoney(int increment) {
+    public synchronized void updateMoney(int increment) {
         int newValue = Status.getMoney() + increment;
         Status.setMoney(newValue);
         GuiManager.getInstance().updateMoney(newValue);

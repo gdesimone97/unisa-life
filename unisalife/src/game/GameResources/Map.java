@@ -5,21 +5,26 @@
  */
 package game.GameResources;
 import exam.booklet.Subject;
+import game.GameObjects.Coin;
 import game.GameObjects.Cook;
 import game.GameObjects.Distributor;
 import game.GameObjects.GameObject;
 import game.GameObjects.Guardian;
 import game.GameObjects.Item;
 import game.GameObjects.ObjectManager;
+import game.GameObjects.Player;
 import game.GameObjects.Position;
 import game.GameObjects.Professor;
 import game.GameObjects.Teleport;
 import game.Interfaces.Renderable;
+import gameSystem.Game;
 import java.awt.Graphics2D;
 import java.io.Serializable;
+import static java.lang.Thread.sleep;
+import java.util.Random;
 /**
  *
- * @author simon
+ * @author 1997g
  */
 
 
@@ -28,10 +33,11 @@ import java.io.Serializable;
  * considering Player. If an objects is collected by the Player, it must be removed from the list.
  *
 */
-public class Map{
+public class Map implements Runnable {
     private TileMap tMap;
     private ObjectManager mapObjects;
 
+    private boolean generateRandomCoins = false;
 
     /**
      * Constructor that initializes tMap with the passed TileMap t and
@@ -44,7 +50,7 @@ public class Map{
 
         tMap = new TileMap(3200, 3200, "/Tilesets/TilesetConSfondo.png", "/Maps/Mappa.map");
         try {
-            Position p = new Position(64, 64);
+            Position p = new Position(1248, 2144);
             mapObjects.addObject(p.getScaledPosition(), new Professor("Foggia", p, "/Sprites/foggia.png", new Subject("Matematica")));
             p = new Position(320, 160);
             mapObjects.addObject(new Position(10,5), new Item(p, "/Sprites/note.png", "appuntidimatematica1"));
@@ -56,13 +62,15 @@ public class Map{
             mapObjects.addObject(p.getScaledPosition(), new Teleport(p,0,new Position(0,0)));
             p = new Position(352,864);
             mapObjects.addObject(p.getScaledPosition(), new Distributor(p,"distributor"));
-            p = new Position(64,96);
-            mapObjects.addObject(p.getScaledPosition(), new Cook("Cuoco", p , "/Sprites/foggia.png"));
-            p = new Position(96,32);
-            mapObjects.addObject(p.getScaledPosition(), new Guardian("Guardiano",p,"/Sprites/foggia.png"));
+            p = new Position(1280,2144);
+            mapObjects.addObject(p.getScaledPosition(), new Cook("cuoco", p , "/Sprites/foggia.png"));
+            p = new Position(1312,2144);
+            mapObjects.addObject(p.getScaledPosition(), new Guardian("guardiano",p,"/Sprites/foggia.png"));
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+
+        startGeneratingCoins();
     }
 
     /**
@@ -75,22 +83,6 @@ public class Map{
         mapObjects=new ObjectManager();
         this.tMap = tMap;
         this.mapObjects = mapObjects;
-
-//        tMap = new TileMap(32, 288, 288);
-//        tMap.loadTiles("/Tilesets/PT.gif");
-//        tMap.loadMap("/Maps/map9.map");
-//        try {
-//            Position p = new Position(640, 640);
-//            mapObjects.addObject(p.getScaledPosition(), new Professor("Foggia", p, "/Sprites/foggia.png", Materia.matematica));
-//            p = new Position(320, 160);
-//            mapObjects.addObject(new Position(10,5), new Item(p, "/Sprites/note.png", ItemDef.appuntidimatematica1.toString(), ItemDef.appuntidimatematica1));
-//            p = new Position(320, 64);
-//            mapObjects.addObject(new Position(10,2), new Item(p, "/Sprites/note.png", ItemDef.appuntidimatematica2.toString(), ItemDef.appuntidimatematica2));
-//            p = new Position(320, 320);
-//            mapObjects.addObject(new Position(10,10), new Item(p, "/Sprites/calculator.png", ItemDef.calcolatrice.toString(), ItemDef.calcolatrice));
-//        } catch (Exception ex) {
-//            ex.printStackTrace();
-//        }
     }
 
 
@@ -156,5 +148,52 @@ public class Map{
             }
         }
     }
+
+    public void startGeneratingCoins() {
+        new Thread(this).start();
+    }
+
+    public void stopGeneratingCoins() {
+        generateRandomCoins = false;
+    }
+
+    /**
+     * this run method creates a permanent cycle that randomly adds Coins in the map,
+     * near the player
+     */
+    @Override
+    public void run() {
+        generateRandomCoins = true;
+        Random rand = new Random();
+
+        while(generateRandomCoins) {
+            try {
+                int rX = 0;
+                int rY = 0;
+                int cX;
+                int cY;
+                int cell = Game.DIMENSIONSPRITE;
+
+                // compute a random distance from the player (between 1 and 7)
+                rX = rand.nextInt(Game.HEIGHTSCREEN/(2*cell)-2)+1;
+                rY = rand.nextInt(Game.WIDTHSCREEN/(2*cell)-2)+1;
+
+                // compute the position in which coin has to spawn
+                cX = ((int)Player.getIstance().getX()/cell) * cell + (rand.nextBoolean() ? + rX * cell : - rX * cell);
+                cY = (int)Player.getIstance().getY()/cell * cell + (rand.nextBoolean() ? + rY * cell : - rY * cell);
+
+                // add coin in the map (if it's already present a GameObject, exception is catched and compute restarts
+                Position p = new Position(cX, cY);
+                mapObjects.addObject(p.getScaledPosition(), new Coin(p, "/Sprites/coin.png", "moneta"));
+
+                // sleep a certain period of time until next coin is spawned (could be random too)
+                sleep(15*1000);
+            } catch (InterruptedException ex) {
+            } catch (Exception ex) {
+            }
+        }
+    }
+
+
 
 }
