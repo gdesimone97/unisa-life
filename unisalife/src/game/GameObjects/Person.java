@@ -21,11 +21,11 @@ import javax.imageio.ImageIO;
  *
  * @author simon
  */
-public abstract class Person extends GameObject implements Renderable, Interactable {
+public abstract class Person extends GameObject implements Renderable, Interactable, Externalizable {
 
     transient protected BufferedImage facingDownImage;
 
-    public Person(Position p,String path) {
+    public Person(Position p, String path) {
         super(p);
         try {
             facingDownImage = ImageIO.read(
@@ -35,8 +35,8 @@ public abstract class Person extends GameObject implements Renderable, Interacta
             System.exit(1);
         }
     }
-    
-    protected Person(){
+
+    protected Person() {
         super();
     }
 
@@ -44,12 +44,13 @@ public abstract class Person extends GameObject implements Renderable, Interacta
     public void render(Graphics g) {
         g.drawImage(facingDownImage, p.getX(), p.getY(), width, height, null);
     }
+
     /*@Override
         public void tick(LinkedList<GameObject> l){
             
     }
      */
-    
+
     @Override
     public void writeExternal(ObjectOutput out) throws IOException {
         ImageIO.write(facingDownImage, "png", (ObjectOutputStream) out);

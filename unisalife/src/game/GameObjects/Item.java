@@ -30,7 +30,7 @@ import quests.ItemDef;
  *
  * @author simon
  */
-public class Item extends GameObject implements Renderable, Interactable, Serializable, Comparable<Item>, Information, Saveable {
+public class Item extends GameObject implements Renderable, Interactable, Serializable, Comparable<Item>, Information, Externalizable {
 
     @Id
     private String info;
