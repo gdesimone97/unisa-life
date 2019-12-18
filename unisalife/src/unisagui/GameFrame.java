@@ -473,7 +473,7 @@ public class GameFrame extends javax.swing.JFrame {
         });
 
         ExitButton.setBackground(new java.awt.Color(93, 150, 199));
-        ExitButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Sound/calculator24.png"))); // NOI18N
+        ExitButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/unisagui/resources/EXIT75.png"))); // NOI18N
         ExitButton.setBorder(null);
         ExitButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

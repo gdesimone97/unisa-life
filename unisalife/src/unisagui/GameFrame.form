@@ -588,7 +588,7 @@
                   <Color blue="c7" green="96" red="5d" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Sound/calculator24.png"/>
+                  <Image iconType="3" name="/unisagui/resources/EXIT75.png"/>
                 </Property>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="null"/>

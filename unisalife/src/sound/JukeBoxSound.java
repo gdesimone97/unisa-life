@@ -9,6 +9,9 @@ import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Scanner;
 import javax.sound.sampled.AudioFormat;
@@ -35,9 +38,10 @@ public class JukeBoxSound implements  JukeBox{
     private JukeBoxSound() {
         System.out.println("INSTANZIATO JUKEBOX");
         try {
-            this.readFile(pathFile);
+            readFile(this.pathFile);
         } catch (Exception ex) {
             System.out.println("Error loading file");
+            System.out.println(ex.getCause() +" "+ex.getMessage());
         }
             System.out.println("INSTANZIATO JUKEBOX");
         frame = 0;
@@ -83,10 +87,12 @@ public class JukeBoxSound implements  JukeBox{
         String value;
         boolean sound = true;
         
-        System.out.println("PROVA!");
-        InputStream in = getClass().getResourceAsStream(s);
-        Scanner sc = new Scanner(new BufferedReader(new FileReader(pathFile))).useDelimiter("\\s*\n\\s*");
-        System.out.println("PROVA!");
+        System.out.println("PROVA!!");
+       // URL resource = getClass().getClassLoader().getResource(pathFile);
+        //System.out.println(resource.getFile());
+        //Scanner sc = new Scanner(new BufferedReader(new FileReader(resource.getFile()))).useDelimiter("\\s*\n\\s*");
+        Scanner sc = new Scanner(new BufferedReader(new InputStreamReader(getClass().getResourceAsStream(pathFile))));
+        System.out.println("PROVA2!");
         
         try {
             
