@@ -12,6 +12,12 @@ import interaction.ItemInteractionManager;
 import language.Information;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
+import java.io.Externalizable;
+import java.io.IOException;
+import java.io.ObjectInput;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutput;
+import java.io.ObjectOutputStream;
 import java.time.LocalDateTime;
 import java.io.Serializable;
 import java.time.temporal.ChronoUnit;
@@ -105,13 +111,17 @@ public class Item extends GameObject implements Renderable, Interactable, Serial
     }
 
     @Override
-    public Serializable save() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void writeExternal(ObjectOutput out) throws IOException {
+        out.writeUTF(info);
+        out.writeObject(taken);
+        ImageIO.write(facingDownImage, "png", (ObjectOutputStream) out);
     }
 
     @Override
-    public void load(Serializable obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
+        ObjectInputStream ins = (ObjectInputStream) in;
+        this.info = in.readUTF();
+        this.taken = (LocalDateTime) in.readObject();
+        this.facingDownImage = ImageIO.read(ins);
     }
-
 }
