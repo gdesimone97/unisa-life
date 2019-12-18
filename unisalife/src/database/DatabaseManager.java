@@ -100,8 +100,9 @@ public class DatabaseManager {
         return returnMap;
     }
     
-    public Map[] getMaps(int level){
+    public Map[] getMaps(int level) throws ObjectNotFoundException{
         HashMap<Position, GameObject> currentHashMap = this.getObjectsFromLevel(level);
+        return null;
     }
 
     private Item findItem(String itemName) throws ObjectNotFoundException {
