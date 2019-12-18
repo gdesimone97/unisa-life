@@ -16,6 +16,8 @@ import static org.dizitart.no2.objects.filters.ObjectFilters.eq;
 import quests.quest.Quest;
 
 /**
+ * Manager class to handle database interction with the game. It allows to
+ * retrieve objects from the database.
  *
  * @author alfon
  */
@@ -30,6 +32,12 @@ public class DatabaseManager {
         this.db = Database.getInstance();
     }
 
+    /**
+     * Method to obtain the singleton instance of the manager
+     *
+     * @return the DatabaseManager instance
+     * @throws FileNotSetException
+     */
     public static synchronized DatabaseManager getDatabaseManager() throws FileNotSetException {
         if (DatabaseManager.instance == null) {
             DatabaseManager.instance = new DatabaseManager();
@@ -37,6 +45,23 @@ public class DatabaseManager {
         return DatabaseManager.instance;
     }
 
+    /**
+     * Method to return the database instance
+     *
+     * @return
+     */
+    public Database getDatabase() {
+        return this.db;
+    }
+
+    /**
+     * Method to get all the quests for a given level.
+     *
+     *
+     * @param level
+     * @return The list of quests (instances)
+     * @throws ObjectNotFoundException
+     */
     public List<Quest> getQuestsFromLevel(int level) throws ObjectNotFoundException {
 
         List<Quest> list = db.getNitriteDatabase().getRepository(Quest.class).find(eq("level", level)).toList();
@@ -47,10 +72,15 @@ public class DatabaseManager {
         return list;
     }
 
-    public Database getDatabase() {
-        return this.db;
-    }
-
+    /**
+     * Method to obtain all the objects for a particular level of the game. This
+     * includes items and professors. All the constant objects are added (like
+     * cook, vending machines ecc).
+     *
+     * @param level
+     * @return a list of those objects (instances)
+     * @throws ObjectNotFoundException
+     */
     public HashMap<Destination, GameObject> getObjectsFromLevel(int level) throws ObjectNotFoundException {
         HashMap<Destination, GameObject> returnMap = new HashMap<>();
         List<Quest> questList = this.getQuestsFromLevel(level);
@@ -85,6 +115,10 @@ public class DatabaseManager {
         return prof;
     }
 
+    /**
+     * Method to get all the subject at once. Useful to populate the booklet.
+     * @return a list of the subjects (instances)
+     */
     public List<Subject> getSubjects() {
         return db.getNitriteDatabase().getRepository(Subject.class).find().toList();
     }
@@ -119,10 +153,17 @@ public class DatabaseManager {
         return this.load().size() >= 0;
     }
      */
+    
+    /**
+     * Method to close the database
+     */
     public void close() {
         this.db.close();
     }
 
+    /**
+     * Method to clear the databse (it deletes it).
+     */
     public void clearDatabase() {
         this.db.clear();
     }

@@ -12,27 +12,46 @@ import org.dizitart.no2.Nitrite;
  *
  * @author alfon
  */
-public class Database {
+class Database {
 
     private static String path = null;
     private Nitrite db = null;
     private static Database instance;
 
-    public static String getPath() {
+    /**
+     * get the path where the database is actually saved
+     *
+     * @return
+     */
+    static String getPath() {
         return path;
     }
 
-    public static void setPath(String path) {
+    /**
+     * Set a path where the database has to be saved
+     *
+     * @param path
+     */
+    static void setPath(String path) {
         Database.path = path;
     }
 
+    /**
+     * Private constructor of the databse
+     */
     private Database() {
         if (this.db == null) {
             this.db = Nitrite.builder().compressed().filePath(Database.getPath()).openOrCreate("group08", "hntbae");
         }
     }
 
-    public static Database getInstance() throws FileNotSetException {
+    /**
+     * Returns the singleton instance of the database
+     *
+     * @return the instance
+     * @throws FileNotSetException
+     */
+    static Database getInstance() throws FileNotSetException {
         if (Database.getPath() == null) {
             throw new FileNotSetException();
         }
@@ -42,19 +61,30 @@ public class Database {
         return instance;
     }
 
-    public Nitrite getNitriteDatabase() {
+    /**
+     * Method to obtain the proper Nitrite database used.
+     *
+     * @return the instance of the Nitrite database
+     */
+    Nitrite getNitriteDatabase() {
         if (this.db.isClosed()) {
             this.db = this.db = Nitrite.builder().compressed().filePath(Database.getPath()).openOrCreate("group08", "hntbae");
         }
         return this.db;
     }
 
-    public void close() {
+    /**
+     * Method to close the databsase
+     */
+    void close() {
         this.db.commit();
         this.db.close();
     }
 
-    public void clear() {
+    /**
+     * Method to clear the database, deleting all the objects and all the files.
+     */
+    void clear() {
         for (String s : this.db.listRepositories()) {
             try {
                 this.db.getRepository(s, Class.forName(s)).drop();

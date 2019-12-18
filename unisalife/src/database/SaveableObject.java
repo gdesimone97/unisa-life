@@ -6,13 +6,15 @@
 package database;
 
 import java.io.Serializable;
+import saving.Saveable;
 
 /**
+ * Wrapper class to encapsulate a Saveable object.
  *
  * @author alfon
- * @param <T>
+ * @param <T> any objects that extends Saveable inferface
  */
-public class SaveableObject<T> implements Serializable {
+public class SaveableObject<T extends Saveable> implements Serializable {
 
     private T innerObj;
 
@@ -28,7 +30,7 @@ public class SaveableObject<T> implements Serializable {
         return innerObj;
     }
 
-    public String toString(){
+    public String toString() {
         return innerObj.getClass().getSimpleName();
     }
 }
