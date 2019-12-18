@@ -22,7 +22,7 @@ import saving.exceptions.LoadingException;
 @Indices({
     @Index(value = "subject.subject", type = IndexType.NonUnique)
 })
-public class Professor extends Person implements Information, Saveable {
+public class Professor extends Person implements Information {
 
     private Subject subject;
     private String nome;
@@ -51,15 +51,4 @@ public class Professor extends Person implements Information, Saveable {
     public String getInfo() {
         return this.nome;
     }
-
-    @Override
-    public Serializable save() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void load(Serializable obj) throws LoadingException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
 }
