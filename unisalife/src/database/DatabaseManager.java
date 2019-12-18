@@ -6,10 +6,11 @@
 package database;
 
 import exam.booklet.Subject;
-import game.GameObjects.Destination;
+import game.GameObjects.Position;
 import game.GameObjects.GameObject;
 import game.GameObjects.Item;
 import game.GameObjects.Professor;
+import game.GameResources.Map;
 import java.util.HashMap;
 import java.util.List;
 import static org.dizitart.no2.objects.filters.ObjectFilters.eq;
@@ -81,22 +82,26 @@ public class DatabaseManager {
      * @return a list of those objects (instances)
      * @throws ObjectNotFoundException
      */
-    public HashMap<Destination, GameObject> getObjectsFromLevel(int level) throws ObjectNotFoundException {
-        HashMap<Destination, GameObject> returnMap = new HashMap<>();
+    public HashMap<Position, GameObject> getObjectsFromLevel(int level) throws ObjectNotFoundException {
+        HashMap<Position, GameObject> returnMap = new HashMap<>();
         List<Quest> questList = this.getQuestsFromLevel(level);
         for (Quest q : questList) {
             Subject questSubject = q.getSubject();
             for (String itemName : q.getItemList()) {
                 Item i = this.findItem(itemName);
-                returnMap.put(new Destination(i.getX(), i.getY()), i);
+                returnMap.put(i.getScaledPosition(), i);
             }
             Professor p = this.findProfessor(questSubject);
-            returnMap.put(new Destination(p.getX(), p.getY()), p);
+            returnMap.put(p.getScaledPosition(), p);
         }
         if (returnMap.size() <= 0) {
             throw new ObjectNotFoundException();
         }
         return returnMap;
+    }
+    
+    public Map[] getMaps(int level){
+        HashMap<Position, GameObject> currentHashMap = this.getObjectsFromLevel(level);
     }
 
     private Item findItem(String itemName) throws ObjectNotFoundException {
