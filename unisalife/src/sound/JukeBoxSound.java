@@ -22,7 +22,7 @@ import javax.sound.sampled.UnsupportedAudioFileException;
  *
  * @author Davide e Virginia
  */
-public final class JukeBoxSound implements  JukeBox{
+public class JukeBoxSound implements  JukeBox{
     
     private static HashMap<String, Clip> clips = new HashMap<>();
     private static int frame;
@@ -37,7 +37,6 @@ public final class JukeBoxSound implements  JukeBox{
             readFile(this.pathFile);
         } catch (Exception ex) {
             ex.printStackTrace();
-            
         }
         frame = 0;
         isActive = true;
