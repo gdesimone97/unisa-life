@@ -95,10 +95,10 @@ public class GameManager {
     /**
      * creates and runs the Game thread
      */
-    public void startGame() {
+    public void startGame(int skin, String Name) {
         //Status bars have to start only when the game starts
         StatusManager.getInstance();
-        
+        Player.getIstance().initialize(skin, Name);
         Thread t = new Thread(game);
         t.start();
     }
@@ -106,7 +106,7 @@ public class GameManager {
     /**
      * stops the game thread
      */
-    private void stopGame() {
+    public void stopGame() {
         game.stopGame();
     }
 

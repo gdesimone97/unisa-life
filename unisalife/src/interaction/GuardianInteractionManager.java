@@ -6,6 +6,7 @@
 package interaction;
 
 import game.Interfaces.Interactable;
+import hud.change.DormitoryHudBarChange;
 import language.FileTextManager;
 import language.Information;
 import language.MessageInformation;
@@ -25,15 +26,15 @@ public class GuardianInteractionManager implements InteractionManager {
 
         try {
             tm = FileTextManager.getFileTextManager();
-            MessageInformation ms = new MessageInformation("EatCanteen");
+            MessageInformation ms = new MessageInformation("SleepResidences");
             toShow = tm.getString(ms).get(0);
 
             // show pop up
             GuiManager.getInstance().showHint(toShow);
 
             // restore status bars
-//            BehaviouralStatus b = new EatCantee();
-//            b.execute();
+            DormitoryHudBarChange d = new DormitoryHudBarChange();
+            d.execute();
         } catch (Exception ex) {
             // decide what to do when an error with string retriving occurs
         }

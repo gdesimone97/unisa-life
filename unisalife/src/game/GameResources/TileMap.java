@@ -11,6 +11,7 @@ package game.GameResources;
  *
  * @author simon
  */
+import gameSystem.Game;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
@@ -61,15 +62,18 @@ public class TileMap implements Serializable{
 	private int numColsToDraw;
 	
  
-    public TileMap(int tileSize,int w,int h) {
-		this.tileSize = tileSize;
+    public TileMap(int w,int h, String t, String m) {
+		this.tileSize = Game.DIMENSIONSPRITE;
 		numRowsToDraw = /*Game.WIDTHMAP / tileSize + 2;*/w; //31
 		numColsToDraw = /*Game.HEIGHTMAP / tileSize + 2;*/h;  //31
 		speed = 4;
+                
+                loadTiles(t);
+                loadMap(m);
 	}
 	
 
-    public void loadTiles(String s) {
+    private void loadTiles(String s) {
 		//System.out.print(s);
 		try {
         tileset = ImageIO.read(
@@ -106,7 +110,7 @@ public class TileMap implements Serializable{
 	}
 	
     
-    public void loadMap(String s) {
+    private void loadMap(String s) {
 		
 		try {
 			
