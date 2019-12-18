@@ -55,15 +55,15 @@ public class Map {
             mapObjects.addObject(new Position(10,10), new Item(p, "/Sprites/calculator.png","calcolatrice"));
             p = new Position(0,128);
             mapObjects.addObject(p.getScaledPosition(), new Teleport(p,0,new Position(0,0)));
-//            p = new Position(352,864);
-//            mapObjects.addObject(p.getScaledPosition(), new Distributor(p,"distributor"));
-//            p = new Position(64,96);
-//            mapObjects.addObject(p.getScaledPosition(), new Cook("Cuoco", p , "/Sprites/foggia.png"));
-//            p = new Position(96,32);
-//            mapObjects.addObject(p.getScaledPosition(), new Guardian("Guardiano",p,"/Sprites/foggia.png"));
+            p = new Position(352,864);
+            mapObjects.addObject(p.getScaledPosition(), new Distributor(p,"distributor"));
+            p = new Position(64,96);
+            mapObjects.addObject(p.getScaledPosition(), new Cook("Cuoco", p , "/Sprites/foggia.png"));
+            p = new Position(96,32);
+            mapObjects.addObject(p.getScaledPosition(), new Guardian("Guardiano",p,"/Sprites/foggia.png"));
         } catch (Exception ex) {
             ex.printStackTrace();
-        }*/
+        }
     }
 
     /**

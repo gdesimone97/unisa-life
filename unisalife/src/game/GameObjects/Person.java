@@ -9,6 +9,7 @@ import game.Interfaces.Interactable;
 import game.Interfaces.Renderable;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
+import javax.imageio.ImageIO;
 
 /**
  *
@@ -20,6 +21,13 @@ public abstract class Person extends GameObject implements Renderable, Interacta
 
     public Person(Position p,String path) {
         super(p);
+        try {
+            facingDownImage = ImageIO.read(
+                    getClass().getResourceAsStream(path)
+            );
+        } catch (Exception e) {
+            System.exit(1);
+        }
     }
     
     protected Person(){

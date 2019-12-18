@@ -16,6 +16,7 @@ import java.time.LocalDateTime;
 import java.io.Serializable;
 import java.time.temporal.ChronoUnit;
 import java.util.Objects;
+import javax.imageio.ImageIO;
 import org.dizitart.no2.objects.Id;
 import quests.ItemDef;
 
@@ -32,6 +33,13 @@ public class Item extends GameObject implements Renderable, Interactable, Serial
     public Item(Position p,String path, String info) {
         super(p);
         this.info = info;
+        try {
+            facingDownImage = ImageIO.read(
+                    getClass().getResourceAsStream(path)
+            );
+        } catch (Exception e) {
+            System.exit(1);
+        }
     }
 
     public Item(){
