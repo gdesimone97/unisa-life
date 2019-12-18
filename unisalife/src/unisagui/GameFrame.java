@@ -2068,6 +2068,10 @@ public class GameFrame extends javax.swing.JFrame {
         SwingUtilities.invokeLater(() -> AvatarChooserDialog.setVisible(true));
         SwingUtilities.invokeLater(() -> MainMenuDialog.setVisible(false));
         SwingUtilities.invokeLater(() -> AvatarName.setText(EMPTY_TEXT));
+        SwingUtilities.invokeLater(() -> AvatarOkButton.setEnabled(false));
+        name = "";
+        avatar = 0;
+        
     }//GEN-LAST:event_NewGameButtonActionPerformed
 
     private void SettingsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SettingsButtonActionPerformed
@@ -2083,6 +2087,7 @@ public class GameFrame extends javax.swing.JFrame {
         // QUI EVENTUALE CHIAMATA A FUNZIONE SE SIAMO IN GIOCO PER AVVISARE DI SALVARE ETC...
         SwingUtilities.invokeLater(() -> MainMenuDialog.setVisible(true));
         SwingUtilities.invokeLater(() -> SettingsDialog.setVisible(false));
+        SwingUtilities.invokeLater(() -> GameManager.getInstance().stopGame());
     }//GEN-LAST:event_ReturnToMainMenuButtonActionPerformed
 
     private void YesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_YesButtonActionPerformed
