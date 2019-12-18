@@ -7,6 +7,7 @@ package gameSystem.keySettings;
 
 import game.GameObjects.Player;
 import gameSystem.Game;
+import gameSystem.LoadingState;
 import gameSystem.PauseState;
 import gameSystem.PlayState;
 
@@ -22,5 +23,7 @@ public abstract class KeyCommand {
     public abstract void visitPlayState(PlayState playState);
 
     public abstract void visitPauseState(PauseState pauseState);
+    
+    public abstract void visitiLoadingState(LoadingState loadState);
 
 }
