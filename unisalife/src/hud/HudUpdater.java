@@ -29,10 +29,12 @@ public class HudUpdater implements Runnable {
             
             
             // Updating stress
-            if (energyValue <30 && hungerValue > 80) {
+            if (energyValue <30 && hungerValue > 70) {
                 StatusManager.getInstance().updateStress(1);
             }
-            
+            else {
+                StatusManager.getInstance().updateStress(-100);
+            }
             
             // Updating energy
             try {

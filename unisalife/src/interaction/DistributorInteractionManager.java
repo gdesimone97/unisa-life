@@ -6,6 +6,7 @@
 package interaction;
 
 import game.Interfaces.Interactable;
+import hud.change.VendingMachineHudBarChange;
 import language.FileTextManager;
 import language.MessageInformation;
 import unisagui.GuiManager;
@@ -28,14 +29,16 @@ public class DistributorInteractionManager implements InteractionManager {
             MessageInformation ms = new MessageInformation("DistributorRequest");
             toShow = tm.getString(ms).get(0);
             
-            // show pop up
-            RequestGui request = new RequestGui();
-            GuiManager.getInstance().showRequest(toShow, request);
-            if(request.getValue()) {
-                // restore status bars
-//              BehaviouralStatus b = new DistributorBehaviour();
-//              b.execute();
-            }
+            VendingMachineHudBarChange v = new VendingMachineHudBarChange();
+            v.execute();
+//            // show pop up
+//            RequestGui request = new RequestGui();
+//            GuiManager.getInstance().showRequest(toShow, request);
+//            if(request.getValue()) {
+//                // restore status bars
+////              BehaviouralStatus b = new DistributorBehaviour();
+////              b.execute();
+//            }
             
         } catch (Exception ex) {
             // decide what to do when an error with string retriving occurs
