@@ -5,7 +5,7 @@
  */
 package database.populator;
 
-
+import database.DatabaseManager;
 import database.Database;
 import database.FileNotSetException;
 import exam.booklet.Subject;
@@ -24,7 +24,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 import quests.quest.Quest;
-
+import org.junit.Before;
 /**
  *
  * @author cmarino
@@ -35,7 +35,14 @@ public class PopulatorTest {
     }
     
     
+    @Before
+    public void setupClass() throws Exception {
+        DatabaseManager.getDatabaseManager().getDatabase().clear();
+        DatabaseManager.getDatabaseManager().getDatabase().close();
+    }
 
+    
+    
     /**
      * Test of populate method, of class Populator.
      */
