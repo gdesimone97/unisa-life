@@ -20,6 +20,7 @@ public class SettingsManager {
     private int moveRight = KeyEvent.VK_D;
     private int interactButton = KeyEvent.VK_SPACE;
     private int pauseButton = KeyEvent.VK_P;
+    private final int SaveButton = KeyEvent.VK_S;
 
     private SettingsManager() {
     }
