@@ -4,7 +4,12 @@
  * and open the template in the editor.
  */
 package game.GameResources;
+import exam.booklet.Subject;
+import game.GameObjects.Cook;
+import game.GameObjects.Distributor;
 import game.GameObjects.GameObject;
+import game.GameObjects.Guardian;
+import game.GameObjects.Item;
 import game.GameObjects.ObjectManager;
 import game.GameObjects.Position;
 import game.GameObjects.Professor;
@@ -35,20 +40,26 @@ public class Map {
     public Map(){
         mapObjects=new ObjectManager();
 
-        tMap = new TileMap(32, 288, 288);
-        tMap.loadTiles("/Tilesets/PT.gif");
-        tMap.loadMap("/Maps/map9.map");
+        tMap = new TileMap(32, 3200, 3200);
+        tMap.loadTiles("/Tilesets/TilesetConSfondo.png");
+        tMap.loadMap("/Maps/Mappa.map");
         try {
-            Position p = new Position(640, 640);
-            mapObjects.addObject(p.getScaledPosition(), new Professor("Foggia", p, "/Sprites/foggia.png", Materia.matematica));
+            Position p = new Position(64, 64);
+            mapObjects.addObject(p.getScaledPosition(), new Professor("Foggia", p, "/Sprites/foggia.png", new Subject("Matematica")));
             p = new Position(320, 160);
-            mapObjects.addObject(new Position(10,5), new Item(p, "/Sprites/note.png", ItemDef.appuntidimatematica1.toString(), ItemDef.appuntidimatematica1));
+            mapObjects.addObject(new Position(10,5), new Item(p, "/Sprites/note.png", "appuntidimatematica1"));
             p = new Position(320, 64);
-            mapObjects.addObject(new Position(10,2), new Item(p, "/Sprites/note.png", ItemDef.appuntidimatematica2.toString(), ItemDef.appuntidimatematica2));
+            mapObjects.addObject(new Position(10,2), new Item(p, "/Sprites/note.png", "appuntidimatematica2"));
             p = new Position(320, 320);
-            mapObjects.addObject(new Position(10,10), new Item(p, "/Sprites/calculator.png", ItemDef.calcolatrice.toString(), ItemDef.calcolatrice));
+            mapObjects.addObject(new Position(10,10), new Item(p, "/Sprites/calculator.png","calcolatrice"));
             p = new Position(0,128);
             mapObjects.addObject(p.getScaledPosition(), new Teleport(p,0,new Position(0,0)));
+//            p = new Position(352,864);
+//            mapObjects.addObject(p.getScaledPosition(), new Distributor(p,"distributor"));
+//            p = new Position(64,96);
+//            mapObjects.addObject(p.getScaledPosition(), new Cook("Cuoco", p , "/Sprites/foggia.png"));
+//            p = new Position(96,32);
+//            mapObjects.addObject(p.getScaledPosition(), new Guardian("Guardiano",p,"/Sprites/foggia.png"));
         } catch (Exception ex) {
             ex.printStackTrace();
         }

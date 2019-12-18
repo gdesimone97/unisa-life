@@ -110,7 +110,7 @@ public class Player extends GameObject implements Tickable, Renderable, Saveable
 
     public static Player getIstance() {
         if (uniqueIstance == null) {
-            uniqueIstance = new Player(new Position(0, 0));
+            uniqueIstance = new Player(new Position(32, 32));
         }
         return uniqueIstance;
     }

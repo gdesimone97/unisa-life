@@ -32,6 +32,7 @@ public class MapManager {
     
     public MapManager() {
     //    this.maps = getMaps(QuestsSingleton.getInstance().getCurrentLevel());
+        maps[0] = new Map();
         
         actualMap = 0;
     }
