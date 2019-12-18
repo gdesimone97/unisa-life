@@ -7,6 +7,7 @@ package gameSystem.map;
 
 import game.GameResources.Map;
 import java.awt.Graphics2D;
+import quests.quest.QuestsSingleton;
 
 
 /**
@@ -30,9 +31,8 @@ public class MapManager {
     }
 
     public MapManager() {
-//        maps[0] = new Mappa("2TilesetMap");
-        maps[0] = new Map();
-//        maps[1] = new Mappa();
+        this.maps = getMaps(QuestsSingleton.getInstance().getCurrentLevel());
+        
         actualMap = 0;
     }
     
