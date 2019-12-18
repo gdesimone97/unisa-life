@@ -22,14 +22,14 @@ import quests.ItemDef;
  *
  * @author simon
  */
-public class Item extends GameObject implements Renderable, Interactable, Serializable, Comparable<Item>,Information {
+public class Item extends GameObject implements Renderable, Interactable, Comparable<Item>, Information {
 
     private final String info;
-    private BufferedImage facingDownImage;
+    transient private BufferedImage facingDownImage;
     private LocalDateTime taken;
     private ItemDef id;
 
-    public Item(Position p,String path, String info,ItemDef id) {
+    public Item(Position p, String path, String info, ItemDef id) {
         super(p);
         this.info = info;
         this.id = id;
@@ -59,9 +59,6 @@ public class Item extends GameObject implements Renderable, Interactable, Serial
         return id.compareTo(o.getID());
     }
 
-    
-    
-    
     public void setTaken() {
         this.taken = LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS);
     }
@@ -88,7 +85,7 @@ public class Item extends GameObject implements Renderable, Interactable, Serial
 
     @Override
     public void render(Graphics g) {
-        g.drawImage(facingDownImage, this.p.getX(),this.p.getY(), width, height, null);
+        g.drawImage(facingDownImage, this.p.getX(), this.p.getY(), width, height, null);
     }
 
     @Override
@@ -97,7 +94,7 @@ public class Item extends GameObject implements Renderable, Interactable, Serial
         iim.execute(this);
     }
 
-    public ItemDef getID(){
+    public ItemDef getID() {
         return this.id;
     }
 

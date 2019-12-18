@@ -25,7 +25,7 @@ import saving.exceptions.LoadingException;
  *
  * @author cmarino
  */
-public class GameInventorySingleton extends User implements Iterable<Item>, Saveable, Serializable{
+public class GameInventorySingleton extends User implements Iterable<Item>, Saveable{
     
     private HashMap< ItemDef, Item > items;
     private ArrayList<Item> view;
