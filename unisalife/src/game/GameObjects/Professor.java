@@ -5,7 +5,7 @@
  */
 package game.GameObjects;
 
-import exam.question.Materia;
+import exam.booklet.Subject;
 import interaction.*;
 import language.Information;
 
@@ -15,10 +15,10 @@ import language.Information;
  */
 public class Professor extends Person implements Information {
 
-    private Materia subject;
+    private Subject subject;
     private String nome;
 
-    public Professor(String nome, Position p, String path, Materia subject) {
+    public Professor(String nome, Position p, String path, Subject subject) {
         super(p,path);
         this.nome = nome;
         this.subject = subject;
@@ -34,7 +34,7 @@ public class Professor extends Person implements Information {
         profInteraction.execute(this);
     }
 
-    public Materia getSubject() {
+    public Subject getSubject() {
         return subject;
     }
 

@@ -6,12 +6,9 @@
 package interaction;
 
 import exam.Exam;
-import exam.question.Materia;
+import exam.booklet.Subject;
 import game.GameObjects.Professor;
-import gameSystem.GameState;
 import game.Interfaces.Interactable;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import language.FileTextManager;
 import language.MessageInformation;
 import language.exceptions.FileTextManagerException;
@@ -36,14 +33,14 @@ public class ProfessorInteractionManager implements InteractionManager {
 
         // 2. verifica idonietà e requisiti
         try {
-            if (QuestsSingleton.getInstance().getQuest().get(m).isDone()) {
+            if (QuestsSingleton.getInstance().getQuest(s.getInfo()).isDone()) {
                 GuiManager.getInstance().showDialog(FileTextManager.getFileTextManager().getString(new MessageInformation("ExamAlreadyDone")).get(0));
 
                 
             } else if (QuestsSingleton.getInstance().getQuest(s.getInfo()).isAvailable()) {
 
                 //3. Start the exam session
-                Thread esameThread = new Thread(new Exam(m));
+                Thread esameThread = new Thread(new Exam(s));
                 esameThread.start();
             } else {
                 if (QuestsSingleton.getInstance().getQuest(s.getInfo()).isDone()) {

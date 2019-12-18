@@ -6,7 +6,7 @@
 package database;
 
 import exam.booklet.Subject;
-import game.GameObjects.Destination;
+import game.GameObjects.Position;
 import game.GameObjects.GameObject;
 import game.GameObjects.Item;
 import game.GameObjects.Professor;
@@ -81,17 +81,17 @@ public class DatabaseManager {
      * @return a list of those objects (instances)
      * @throws ObjectNotFoundException
      */
-    public HashMap<Destination, GameObject> getObjectsFromLevel(int level) throws ObjectNotFoundException {
-        HashMap<Destination, GameObject> returnMap = new HashMap<>();
+    public HashMap<Position, GameObject> getObjectsFromLevel(int level) throws ObjectNotFoundException {
+        HashMap<Position, GameObject> returnMap = new HashMap<>();
         List<Quest> questList = this.getQuestsFromLevel(level);
         for (Quest q : questList) {
             Subject questSubject = q.getSubject();
             for (String itemName : q.getItemList()) {
                 Item i = this.findItem(itemName);
-                returnMap.put(new Destination(i.getX(), i.getY()), i);
+                returnMap.put(i.getTiledPosition(), i);
             }
             Professor p = this.findProfessor(questSubject);
-            returnMap.put(new Destination(p.getX(), p.getY()), p);
+            returnMap.put(p.getTiledPosition(), p);
         }
         if (returnMap.size() <= 0) {
             throw new ObjectNotFoundException();
