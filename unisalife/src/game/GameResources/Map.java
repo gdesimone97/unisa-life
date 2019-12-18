@@ -168,6 +168,9 @@ public class Map implements Serializable, Runnable {
         
         while(generateRandomCoins) {
             try {
+                // sleep a certain period of time until next coin is spawned (could be random too)
+                sleep(15*1000);
+                
                 int rX = 0;
                 int rY = 0;
                 int cX;
@@ -186,8 +189,6 @@ public class Map implements Serializable, Runnable {
                 Position p = new Position(cX, cY);
                 mapObjects.addObject(p.getScaledPosition(), new Coin(p, "/Sprites/coin.png", "moneta"));
                 
-                // sleep a certain period of time until next coin is spawned (could be random too)
-                sleep(15*1000);
             } catch (InterruptedException ex) {
             } catch (Exception ex) {
             }

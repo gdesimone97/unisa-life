@@ -85,7 +85,6 @@ public class Player extends GameObject implements Tickable, Renderable, Saveable
         int cols = 0;
         p.setX(initialX);
         p.setY(initialY);
-        System.out.println("IN PLAYER INIT " + p + " " + initialX + " " + initialY);
         try {
             BufferedImage characterImage = ImageIO.read(
                     getClass().getResourceAsStream("/Sprites/sprite" + skin + ".png")

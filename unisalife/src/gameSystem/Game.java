@@ -5,11 +5,16 @@
  */
 package gameSystem;
 
+import exam.booklet.BookletSingleton;
+import game.GameObjects.GameInventorySingleton;
 import gameSystem.keySettings.HandlerInput;
+import gameSystem.map.MapManager;
 import java.awt.Canvas;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferStrategy;
+import quests.QuestsManagerSingleton;
+import quests.quest.QuestsSingleton;
 
 /**
  * This class is the main thread of the game, it calls render() and tick()
@@ -92,25 +97,6 @@ public class Game extends Canvas implements Runnable {
             }
 
         }
-
-        /*while (running) {
-            long now = System.nanoTime();
-            delta += (now - lastTime) / ns;
-            lastTime = now;
-            while (delta >= 1) {
-                tick();
-                updates++;
-                delta--;
-            }
-            render();
-            frames++;
-            if (System.currentTimeMillis() - timer > 1000) {
-                timer += 1000;
-
-                frames = 0;
-                updates = 0;
-            }
-        }*/
     }
 
     private void init() {

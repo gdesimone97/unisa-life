@@ -11,98 +11,102 @@ import game.GameObjects.Camera;
 import game.GameObjects.GameInventorySingleton;
 import game.GameObjects.Player;
 import gameSystem.map.MapManager;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import language.FileTextManager;
 import quests.QuestsManagerSingleton;
 import quests.quest.QuestsSingleton;
 import unisagui.GuiManager;
 
 /**
- * This class contains: 
- * - the main() method, to start the Game;
- * - the initialization of all the managers of this game, like GameStateManager and MapManager;
- * - the camera and the player instance;
- * This class is the only one that manteins the Game reference and has the role of starting
- * the game thread
+ * This class contains: - the main() method, to start the Game; - the
+ * initialization of all the managers of this game, like GameStateManager and
+ * MapManager; - the camera and the player instance; This class is the only one
+ * that manteins the Game reference and has the role of starting the game thread
+ *
  * @author 1997g
  */
 public class GameManager {
+
     private Game game;
     private static GameManager instance;
-    
-    private GameStateManager gsm;
+
     private Player player;
     private Camera camera;
-    
+
     private GameManager() {
         game = new Game();
     }
-    
-    public static GameManager getInstance(){
+
+    public static GameManager getInstance() {
         if (instance == null) {
             instance = new GameManager();
         }
         return instance;
     }
-    
+
     /**
-     * 
+     *
      * @return the instance of the game
      */
     public Game getGame() {
         return game;
     }
-    
+
     /**
-     * this method should be used instead of initGame(), and has the functionality
-     * of loading the game as it was since the last save. It starts the game
+     * this method should be used instead of initGame(), and has the
+     * functionality of loading the game as it was since the last save. It
+     * starts the game
      */
     public void loadGame() {
         // call a loading method of all instances
-        
+
     }
-    
+
     /**
-     * this method have to be called the first time we want to initialize the game and
-     * all the managers of it. It starts the game
+     * this method have to be called the first time we want to initialize the
+     * game and all the managers of it. It starts the game
      */
     public void initGame() {
-        System.out.println("INIT GAME");
+
+        // just set Loading state
         player = Player.getIstance();
         camera = new Camera(0, 0, player);
-        
-        gsm = GameStateManager.getInstance();
-        gsm.setState(PlayState.getInstance());
-        
-        MapManager.getInstance();
-        BookletSingleton.getInstance();
-        QuestsManagerSingleton.getInstance();
-        QuestsSingleton.getInstance();
-        BookletSingleton.getInstance();
-        GameInventorySingleton.getInstance();
-        
-        try{
-        FileTextManager fileManager = FileTextManager.getFileTextManager();
-        fileManager.setLanguage("eng");
-        } catch (Exception ex){
-            ex.printStackTrace();
-        }
-        
-        // ecc...
-        
+
+        GameStateManager.getInstance().setState(LoadingState.getInstance());
     }
-    
+
     /**
      * creates and runs the Game thread
      */
     public void startGame(int skin, String Name) {
-        System.out.println("START GAME");
-        //Status bars have to start only when the game starts
-        StatusManager.getInstance();
-        Player.getIstance().initialize(skin, Name);
         Thread t = new Thread(game);
         t.start();
+
+        // init all managers
+        new Thread(() -> {
+            try {
+                Thread.sleep(100);
+                
+                StatusManager.getInstance();
+                Player.getIstance().initialize(skin, Name);
+                MapManager.getInstance();
+                BookletSingleton.getInstance();
+                QuestsManagerSingleton.getInstance();
+                QuestsSingleton.getInstance();
+                BookletSingleton.getInstance();
+                GameInventorySingleton.getInstance();
+                FileTextManager fileManager = FileTextManager.getFileTextManager();
+                fileManager.setLanguage("eng");
+
+                Thread.sleep(500);
+                
+                GameStateManager.getInstance().setState(PlayState.getInstance());
+            } catch (Exception ex) {
+            }
+        }).start();
     }
-    
+
     /**
      * stops the game thread
      */
