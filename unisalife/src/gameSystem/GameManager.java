@@ -106,7 +106,7 @@ public class GameManager {
     /**
      * stops the game thread
      */
-    private void stopGame() {
+    public void stopGame() {
         game.stopGame();
     }
 
