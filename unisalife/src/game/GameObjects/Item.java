@@ -30,9 +30,8 @@ public class Item extends GameObject implements Renderable, Interactable, Serial
     private LocalDateTime taken;
     private ItemDef id;
 
-    public Item(Position p,String path, String info,ItemDef id) {
+    public Item(Position p,String path, String info, ItemDef id) {
         super(p);
-        this.id = id;
         this.info = info;
     }	
 		
@@ -47,7 +46,7 @@ public class Item extends GameObject implements Renderable, Interactable, Serial
         if (o == null || !(o instanceof Item)) {
             return false;
         }
-        return this.id.equals(((Item) o).getID());
+        return this.info.equals(((Item) o).getInfo());
     }
 
     @Override
@@ -55,13 +54,14 @@ public class Item extends GameObject implements Renderable, Interactable, Serial
         if (o == null) {
             return 1;
         }
-        return id.compareTo(o.getID());
+        return info.compareTo(o.getInfo());
     }
 
     public void setTaken() {
         this.taken = LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS);
     }
 
+    @Override
     public String getInfo() {
         return this.info;
     }
@@ -73,7 +73,7 @@ public class Item extends GameObject implements Renderable, Interactable, Serial
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 31 * hash + Objects.hashCode(this.id);
+        hash = 31 * hash + Objects.hashCode(this.info);
         return hash;
     }
 
@@ -93,8 +93,8 @@ public class Item extends GameObject implements Renderable, Interactable, Serial
         iim.execute(this);
     }
 
-    public ItemDef getID() {
-        return this.id;
+    public String getID() {
+        return this.info;
     }
 
     @Override

@@ -8,6 +8,7 @@ package database;
 import database.populator.exceptions.InvalidArgumentListException;
 import saving.Saveable;
 import game.GameObjects.Item;
+import game.GameObjects.Position;
 import java.util.NoSuchElementException;
 import java.util.StringTokenizer;
 
@@ -32,7 +33,7 @@ public class ItemFactory extends SaveableCreator {
 
         StringTokenizer st = new StringTokenizer(s, SaveableCreator.DELIMETER);
         try {
-            Item i = new Item(Float.parseFloat(st.nextToken()), Float.parseFloat(st.nextToken()), st.nextToken(), st.nextToken(), Integer.parseInt(st.nextToken()));
+            Item i = new Item(new Position(Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken())), st.nextToken(), st.nextToken());
             return i;
 
         } catch (NoSuchElementException | NumberFormatException e) {
