@@ -29,9 +29,9 @@ public class MapManager {
         }
         return instance;
     }
-
+    
     public MapManager() {
-        this.maps = getMaps(QuestsSingleton.getInstance().getCurrentLevel());
+    //    this.maps = getMaps(QuestsSingleton.getInstance().getCurrentLevel());
         
         actualMap = 0;
     }
