@@ -37,7 +37,7 @@ public class Map {
 
         tMap = new TileMap(32, 288, 288);
         tMap.loadTiles("/Tilesets/PT.gif");
-        tMap.loadMap("/Maps/map9.map");
+        tMap.loadMap("/Maps/map9.map");/*
         try {
             Position p = new Position(640, 640);
             mapObjects.addObject(p.getScaledPosition(), new Professor("Foggia", p, "/Sprites/foggia.png", Materia.matematica));
@@ -51,7 +51,7 @@ public class Map {
             mapObjects.addObject(p.getScaledPosition(), new Teleport(p,0,new Position(0,0)));
         } catch (Exception ex) {
             ex.printStackTrace();
-        }
+        }*/
     }
 
     /**

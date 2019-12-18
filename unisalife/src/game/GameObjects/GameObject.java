@@ -5,8 +5,8 @@
  */
 package game.GameObjects;
 
+import database.Storable;
 import gameSystem.Game;
-import java.awt.Rectangle;
 import java.io.Serializable;
 
 /**
@@ -14,30 +14,30 @@ import java.io.Serializable;
  *
  * @author simon
  */
-public abstract class GameObject implements Serializable{
-
+public abstract class GameObject implements Serializable, Storable {
 
     protected int width = Game.DIMENSIONSPRITE;
     protected int height = Game.DIMENSIONSPRITE;
     protected Position p;
 
-    protected GameObject(){
-        
+    protected GameObject() {
+
     }
-    
+
     /**
      *
      * @param x
      * @param y
      */
     public GameObject(Position p) {
-        this.p=p;
+        this.p = p;
     }
-    
-    public Position getPosition(){
+
+    public Position getPosition() {
         return this.p;
-    } 
-    public Position getScaledPosition(){
+    }
+
+    public Position getScaledPosition() {
         return this.p.getScaledPosition();
     }
 
@@ -56,13 +56,10 @@ public abstract class GameObject implements Serializable{
      *
      * @return
      */
-
     /**
      *
      * @param x
      */
-
-
     /*public int getHeight(){
         return this.height;
     }
@@ -74,6 +71,4 @@ public abstract class GameObject implements Serializable{
      *
      * @return
      */
-    
-
 }

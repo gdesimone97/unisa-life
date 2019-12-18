@@ -5,9 +5,6 @@
  */
 package database;
 
-import database.Database;
-import database.DatabaseManager;
-import database.FileNotSetException;
 import database.populator.exceptions.InvalidGameDataFormatException;
 import saving.Saveable;
 import java.io.BufferedReader;
@@ -68,8 +65,8 @@ public class Populator {
             String type = tokens[0].toLowerCase();
             String arguments = tokens[1];
 
-            SaveableCreator s = CreatorsEnum.valueOf(type).getFactory();
-            Saveable sitem = s.create(arguments);
+            StorableCreator s = CreatorsEnum.valueOf(type).getFactory();
+            Storable sitem = s.create(arguments);
 
             System.out.println("Inserting object of type " + sitem.getClass() + " = " + sitem);
             ObjectRepository repo = db.getNitriteDatabase().getRepository(sitem.getClass());

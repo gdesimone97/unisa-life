@@ -5,7 +5,7 @@
  */
 package quests.quest;
 
-import saving.Saveable;
+import database.Storable;
 import exam.booklet.Subject;
 import java.io.Serializable;
 import java.util.HashMap;
@@ -17,6 +17,7 @@ import quests.mediator.Message;
 import quests.mediator.User;
 import org.dizitart.no2.objects.Index;
 import org.dizitart.no2.objects.Indices;
+import saving.Saveable;
 
 /**
  *
@@ -25,17 +26,17 @@ import org.dizitart.no2.objects.Indices;
 @Indices({
     @Index(value = "level", type = IndexType.NonUnique)
 })
-public class Quest extends User implements Serializable, Saveable {
+public class Quest extends User implements Serializable, Storable, Saveable {
 
     private int level;
     private HashMap<String, Boolean> items;
     private Subject subject;
     private boolean done;
 
-    private Quest(){
-    
+    private Quest() {
+
     }
-    
+
     public Quest(int level, Subject subject) throws QuestNotValidException {
         super();
         this.level = level;
@@ -109,11 +110,10 @@ public class Quest extends User implements Serializable, Saveable {
         return true;
     }
 
-    
-    public int getLeve(){
+    public int getLeve() {
         return this.level;
     }
-    
+
     public Subject getSubject() {
         return this.subject;
     }

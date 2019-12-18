@@ -17,7 +17,7 @@ import java.util.StringTokenizer;
  *
  * @author cmarino
  */
-public class ProfessorFactory extends SaveableCreator {
+public class ProfessorFactory extends StorableCreator {
 
     public ProfessorFactory() {
     }
@@ -32,9 +32,9 @@ public class ProfessorFactory extends SaveableCreator {
      * @throws InvalidArgumentListException
      */
     @Override
-    public Saveable create(String s) throws InvalidArgumentListException {
+    public Storable create(String s) throws InvalidArgumentListException {
         
-        StringTokenizer st = new StringTokenizer(s, SaveableCreator.DELIMETER);
+        StringTokenizer st = new StringTokenizer(s, StorableCreator.DELIMETER);
         
         try {
 

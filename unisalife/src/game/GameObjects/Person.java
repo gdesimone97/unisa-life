@@ -7,10 +7,8 @@ package game.GameObjects;
 
 import game.Interfaces.Interactable;
 import game.Interfaces.Renderable;
-import javax.imageio.ImageIO;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-import java.util.LinkedList;
 
 /**
  *
