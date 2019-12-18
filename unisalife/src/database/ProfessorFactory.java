@@ -8,6 +8,7 @@ package database;
 import database.populator.exceptions.InvalidArgumentListException;
 import saving.Saveable;
 import exam.booklet.Subject;
+import game.GameObjects.Position;
 import game.GameObjects.Professor;
 import java.util.NoSuchElementException;
 import java.util.StringTokenizer;
@@ -38,7 +39,7 @@ public class ProfessorFactory extends SaveableCreator {
         try {
 
             //Retrieve subject from the DB
-            Professor p = new Professor(st.nextToken(), Float.parseFloat(st.nextToken()), Float.parseFloat(st.nextToken()), st.nextToken(), new Subject(st.nextToken()));
+            Professor p = new Professor(st.nextToken(), new Position(Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken())), st.nextToken(), new Subject(st.nextToken()));
             return p;
 
         } catch (NoSuchElementException | NumberFormatException e) {
