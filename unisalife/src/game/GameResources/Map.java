@@ -41,9 +41,7 @@ public class Map {
         mapObjects=new ObjectManager();
 
 
-        tMap = new TileMap(32, 3200, 3200);
-        tMap.loadTiles("/Tilesets/TilesetConSfondo.png");
-        tMap.loadMap("/Maps/Mappa.map");
+        tMap = new TileMap(3200, 3200, "/Tilesets/TilesetConSfondo.png", "/Maps/Mappa.map");
         try {
             Position p = new Position(64, 64);
             mapObjects.addObject(p.getScaledPosition(), new Professor("Foggia", p, "/Sprites/foggia.png", new Subject("Matematica")));
