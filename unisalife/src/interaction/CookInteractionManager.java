@@ -44,7 +44,7 @@ public class CookInteractionManager implements InteractionManager {
                 RequestGui request = new RequestGui();
                 GuiManager.getInstance().showRequest(toShow, request);
                 if(request.getValue()) {
-//                     // restore status bars
+                     // restore status bars
                     JukeBoxSound.getInstance().play("canteen");
                     StatusManager.getInstance().updateMoney(-3);
                 }
