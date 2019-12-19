@@ -66,10 +66,6 @@
 <message>Sorry, couldn't obtain the questions...</message>
 </MessageInformation>
 
-<MessageInformation info="EatCanteen">
-<message>Enjoy your meal!</message>
-</MessageInformation>
-
 <MessageInformation info="SleepResidences">
 <message>After a stressful day like this, a good night's sleep is what you need. Good night!</message>
 </MessageInformation>
@@ -77,6 +73,14 @@
 
 <MessageInformation info="DistributorRequest">
 <message>Do you want some snacks?</message>
+</MessageInformation>
+
+<MessageInformation info="CanteenRequest">
+<message>Do you want to eat here?</message>
+</MessageInformation>
+
+<MessageInformation info="SeeYouAgainName">
+<message>Bye, it's always a pleasure to see you again, </message>
 </MessageInformation>
 
 <MessageInformation info="NotEnoughMoney">

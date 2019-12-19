@@ -6,11 +6,15 @@
 package gameSystem.map;
 
 import database.DatabaseManager;
+import database.FileNotSetException;
+import database.ObjectNotFoundException;
 import game.GameResources.Map;
 import game.Interfaces.Initializable;
 import java.awt.Graphics2D;
 import java.io.Serializable;
-import quests.quest.QuestsSingleton;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import quests.quest.Quests;
 import saving.Saveable;
 import saving.exceptions.LoadingException;
 
@@ -32,10 +36,12 @@ public class MapManager implements Initializable {
         return instance;
     }
 
-    public MapManager() {
-        //    this.maps = getMaps(QuestsSingleton.getInstance().getCurrentLevel());
+    private MapManager() {
+        // Soluzione momentanea, quando c'è il database, dovrà essere vuoto!
+        
+        //this.maps = getMaps(Quests.getInstance().getCurrentLevel());
+        maps = new Map[2];
         maps[0] = new Map();
-
         actualMap = 0;
     }
 
@@ -57,8 +63,14 @@ public class MapManager implements Initializable {
 
     @Override
     public void init() throws InitException {
-        maps = DatabaseManager.getDatabaseManager().getMaps();
-        actualMap = 0;
+        try {
+            maps = DatabaseManager.getDatabaseManager().getMaps();
+            actualMap = 0;
+        } catch (FileNotSetException ex) {
+            throw new InitException("File not specified in Database");
+        } catch (ObjectNotFoundException ex) {
+            throw new InitException("Objects not found in Database");
+        }
     }
     
     public void addDynamicObjects() {

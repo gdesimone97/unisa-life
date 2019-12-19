@@ -9,6 +9,7 @@ import character.StatusManager;
 import game.GameObjects.Item;
 import game.Interfaces.Interactable;
 import gameSystem.map.MapManager;
+import sound.JukeBoxSound;
 
 /**
  *
@@ -20,6 +21,8 @@ public class CoinInteractionManager implements InteractionManager {
     public void execute(Interactable obj) {
         // remove element from the the map
         MapManager.getInstance().getMap().removeObject(((Item)obj).getPosition().getScaledPosition());
+        
+        JukeBoxSound.getInstance().play("money");
         
         // add 1 coin in the status
         StatusManager.getInstance().updateMoney(1);

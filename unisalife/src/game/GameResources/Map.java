@@ -22,6 +22,7 @@ import java.awt.Graphics2D;
 import java.io.Serializable;
 import static java.lang.Thread.sleep;
 import java.util.Random;
+import java.util.concurrent.ConcurrentHashMap;
 /**
  *
  * @author 1997g
@@ -45,27 +46,30 @@ public class Map implements Runnable {
      * @param t TileMap
      */
     public Map(){
-        mapObjects=new ObjectManager();
-
-
         tMap = new TileMap(3200, 3200, "/Tilesets/TilesetConSfondo.png", "/Maps/Mappa.map");
         try {
+            ConcurrentHashMap<Position,GameObject> fixed = new ConcurrentHashMap<Position,GameObject>();
+            ConcurrentHashMap<Position,GameObject> dynamic = new ConcurrentHashMap<Position,GameObject>();
+            
             Position p = new Position(1248, 2144);
-            mapObjects.addObject(p.getScaledPosition(), new Professor("Foggia", p, "/Sprites/foggia.png", new Subject("Matematica")));
+            dynamic.put(p.getScaledPosition(), new Professor("Foggia", p, "/Sprites/foggiasprite.png", new Subject("Matematica")));
             p = new Position(320, 160);
-            mapObjects.addObject(new Position(10,5), new Item(p, "/Sprites/note.png", "appuntidimatematica1"));
+            dynamic.put(new Position(10,5), new Item(p, "/Sprites/note.png", "appuntidimatematica1"));
             p = new Position(320, 64);
-            mapObjects.addObject(new Position(10,2), new Item(p, "/Sprites/note.png", "appuntidimatematica2"));
+            dynamic.put(new Position(10,2), new Item(p, "/Sprites/note.png", "appuntidimatematica2"));
             p = new Position(320, 320);
-            mapObjects.addObject(new Position(10,10), new Item(p, "/Sprites/calculator.png","calcolatrice"));
+            dynamic.put(new Position(10,10), new Item(p, "/Sprites/calculator.png","calcolatrice"));
             p = new Position(0,128);
-            mapObjects.addObject(p.getScaledPosition(), new Teleport(p,0,new Position(0,0)));
+            dynamic.put(p.getScaledPosition(), new Teleport(p,0,new Position(0,0)));
             p = new Position(352,864);
-            mapObjects.addObject(p.getScaledPosition(), new Distributor(p,"distributor"));
+            dynamic.put(p.getScaledPosition(), new Distributor(p,"distributor"));
             p = new Position(1280,2144);
-            mapObjects.addObject(p.getScaledPosition(), new Cook("cuoco", p , "/Sprites/foggia.png"));
+            dynamic.put(p.getScaledPosition(), new Cook("cuoco", p , "/Sprites/signoramensasprite.png"));
             p = new Position(1312,2144);
-            mapObjects.addObject(p.getScaledPosition(), new Guardian("guardiano",p,"/Sprites/foggia.png"));
+            dynamic.put(p.getScaledPosition(), new Guardian("guardiano",p,"/Sprites/tiziomensasprite.png"));
+            
+            
+            mapObjects = new ObjectManager(fixed, dynamic);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -80,7 +84,6 @@ public class Map implements Runnable {
      * @param hm HashMap of GameObject objects
      */
     public Map(TileMap tMap, ObjectManager mapObjects){
-        mapObjects=new ObjectManager();
         this.tMap = tMap;
         this.mapObjects = mapObjects;
     }
@@ -142,7 +145,7 @@ public class Map implements Runnable {
 
     public void render(Graphics2D g) {
         tMap.render(g);
-        for(GameObject go : mapObjects.values()) {
+        for(GameObject go : mapObjects.getDynamic().values()) {
             if(go instanceof Renderable) {
                 ((Renderable) go).render(g);
             }

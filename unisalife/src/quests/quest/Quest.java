@@ -12,7 +12,7 @@ import java.util.HashMap;
 import java.util.Objects;
 import java.util.Set;
 import org.dizitart.no2.IndexType;
-import quests.QuestsManagerSingleton;
+import quests.QuestsManager;
 import quests.mediator.Message;
 import quests.mediator.User;
 import org.dizitart.no2.objects.Index;
@@ -26,7 +26,7 @@ import saving.Saveable;
 @Indices({
     @Index(value = "level", type = IndexType.NonUnique)
 })
-public class Quest extends User implements Serializable, Storable, Saveable {
+public class Quest extends User implements Serializable, Storable {
 
     private int level;
     private HashMap<String, Boolean> items;
@@ -41,7 +41,7 @@ public class Quest extends User implements Serializable, Storable, Saveable {
         super();
         this.level = level;
         super.name = subject.getInfo();
-        super.mediator = QuestsManagerSingleton.getInstance();
+        super.mediator = QuestsManager.getInstance();
         mediator.addUser(this);
 
         if (level < 0) {
@@ -134,15 +134,6 @@ public class Quest extends User implements Serializable, Storable, Saveable {
         setAvailability(mess.getId(), mess.getBool());
     }
 
-    @Override
-    public Serializable save() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void load(Serializable obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
     @Override
     public String getIndex() {

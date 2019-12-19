@@ -22,7 +22,7 @@ public class ObjectManager {
     
     public GameObject getObjectInNextPosition(Position p){
         GameObject g = fixed.get(p);
-        return ( g == null ? dynamic.get(g) : g);        
+        return ( g == null ? dynamic.get(p) : g);
     }
     
     public synchronized GameObject removeObject(Position p)throws Exception{
@@ -39,6 +39,14 @@ public class ObjectManager {
         }
         else
             dynamic.put(p, g);
+    }
+
+    public ConcurrentHashMap<Position, GameObject> getFixed() {
+        return fixed;
+    }
+
+    public ConcurrentHashMap<Position, GameObject> getDynamic() {
+        return dynamic;
     }
     
 }

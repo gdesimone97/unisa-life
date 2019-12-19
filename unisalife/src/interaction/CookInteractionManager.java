@@ -5,11 +5,15 @@
  */
 package interaction;
 
+import character.Status;
+import character.StatusManager;
+import game.GameObjects.Player;
 import game.Interfaces.Interactable;
 import hud.change.CanteenHudBarChange;
 import language.FileTextManager;
 import language.Information;
 import language.MessageInformation;
+import sound.JukeBoxSound;
 import unisagui.GuiManager;
 
 /**
@@ -26,16 +30,34 @@ public class CookInteractionManager implements InteractionManager {
 
         try {
             tm = FileTextManager.getFileTextManager();
-            MessageInformation ms = new MessageInformation("EatCanteen");
-            toShow = tm.getString(ms).get(0);
+            MessageInformation ms;
             
-            // show pop up
-            GuiManager.getInstance().showHint(toShow);
+            if(Status.getMoney()<3) {
+                ms = new MessageInformation("NotEnoughMoney");
+                toShow = tm.getString(ms).get(0);
+                GuiManager.getInstance().showHint(toShow);
+            } else {
+                // show request
+//                ms = new MessageInformation("CanteenRequest");
+//                toShow = tm.getString(ms).get(0);
+//                RequestGui request = new RequestGui();
+//                GuiManager.getInstance().showRequest(toShow, request);
+//                if(request.getValue()) {
+//                     // restore status bars
+                    JukeBoxSound.getInstance().play("canteen");
+                    StatusManager.getInstance().updateMoney(-3);
+//                }
 
-            // restore status bars
-            CanteenHudBarChange c = new CanteenHudBarChange();
-            c.execute();
-            
+                // show pop up
+                ms = new MessageInformation("SeeYouAgainName");
+                toShow = tm.getString(ms).get(0) + Player.getIstance().getName();
+                GuiManager.getInstance().showDialog(toShow);
+
+                // restore status bars
+                CanteenHudBarChange c = new CanteenHudBarChange();
+                c.execute();
+            }
+
         } catch (Exception ex) {
             // decide what to do when an error with string retriving occurs
         }

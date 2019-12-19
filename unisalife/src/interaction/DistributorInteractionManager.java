@@ -30,7 +30,6 @@ public class DistributorInteractionManager implements InteractionManager {
             tm = FileTextManager.getFileTextManager();
             MessageInformation ms;
             
-
             // check if you have money
             if(Status.getMoney()<1) {
                 ms = new MessageInformation("NotEnoughMoney");

@@ -7,16 +7,21 @@ package gameSystem;
 
 import character.StatusManager;
 import database.DatabaseManager;
-import exam.booklet.BookletSingleton;
+import exam.booklet.Booklet;
 import game.GameObjects.Camera;
-import game.GameObjects.GameInventorySingleton;
+import game.GameObjects.GameInventory;
 import game.GameObjects.Player;
+import game.Interfaces.Initializable.InitException;
 import gameSystem.map.MapManager;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import language.FileTextManager;
-import quests.QuestsManagerSingleton;
-import quests.quest.QuestsSingleton;
+import language.exceptions.LanguageSelectedNotAvailableException;
+import quests.QuestsManager;
+import quests.quest.Quests;
+import saving.SaveManager;
+import sound.JukeBoxMusic;
+import sound.JukeBoxSound;
 import unisagui.GuiManager;
 
 /**
@@ -61,7 +66,22 @@ public class GameManager {
      */
     public void loadGame() {
         // call a loading method of all instances
+        new Thread(() -> {
+            try {
+                Thread.sleep(100);
 
+                // just set Loading state
+                player = Player.getIstance();
+                camera = new Camera(0, 0, player);
+                GameStateManager.getInstance().init();
+                SaveManager.getSaveManager().load();
+
+                Thread.sleep(500);
+
+                GameStateManager.getInstance().setState(PlayState.getInstance());
+            } catch (Exception ex) {
+            }
+        }).start();
     }
 
     /**
@@ -84,25 +104,26 @@ public class GameManager {
         Thread t = new Thread(game);
         t.start();
 
-        // init all managers
+        // init all managers, at the end starts the playState
         new Thread(() -> {
             try {
-                Thread.sleep(100);
                 
-                StatusManager.getInstance().init();
                 Player.getIstance().initialize(skin, Name);
                 MapManager.getInstance();
-                BookletSingleton.getInstance();
-                QuestsManagerSingleton.getInstance();
-                QuestsSingleton.getInstance();
-                GameInventorySingleton.getInstance();
-                FileTextManager fileManager = FileTextManager.getFileTextManager();
-                DatabaseManager.getDatabaseManager();
+                Booklet.getInstance();
 
-                Thread.sleep(500);
+                QuestsManager.getInstance();
+                Quests.getInstance();
+                GameInventory.getInstance();
+                FileTextManager.getFileTextManager().init();
+                JukeBoxMusic.getInstance();
+                JukeBoxSound.getInstance();
+                
+                //This is the last to be started
+                StatusManager.getInstance().init();
                 
                 GameStateManager.getInstance().setState(PlayState.getInstance());
-            } catch (Exception ex) {
+            } catch (InitException ex) {
             }
         }).start();
     }
@@ -112,26 +133,25 @@ public class GameManager {
      */
     public void stopGame() {
         // call an autosave method
-        
+
         game.stopGame();
     }
 
     /**
-     * 
+     *
      * @return an instance of the camera present in the game
      */
     public Camera getCamera() {
         return camera;
     }
-    
-    
-    /** 
+
+    /**
      * main method just calls a start method on the GuiManager
-     * @param args 
+     *
+     * @param args
      */
     public static void main(String[] args) {
         GuiManager.getInstance().startGame();
     }
-    
-    
+
 }
