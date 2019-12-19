@@ -5,10 +5,11 @@
  */
 package game.GameObjects;
 
+import game.Interfaces.Initializable;
 import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
-import quests.QuestsManagerSingleton;
+import quests.QuestsManager;
 import quests.mediator.Message;
 import quests.mediator.User;
 
@@ -26,24 +27,16 @@ import saving.exceptions.LoadingException;
  *
  * @author cmarino
  */
-public class GameInventorySingleton extends User implements Iterable<Item>, Saveable{
+public class GameInventory extends User implements Iterable<Item>, Saveable, Initializable{
     
     private HashMap< String, Item > items;
     private ArrayList<Item> view;
     private Comparator<Item> comp;
-    private static GameInventorySingleton instance = null;
+    private static GameInventory instance = null;
 
-    private GameInventorySingleton(){
+    private GameInventory(){
         
-        super();
-        super.name = "inventory";
-        super.mediator = QuestsManagerSingleton.getInstance();
-        mediator.addUser(this);
-        
-        this.view = new ArrayList<>();
-        this.items = new HashMap<>();
-        this.comp = new TakenComparator();
-        
+        super();   
         
     }
     
@@ -51,11 +44,11 @@ public class GameInventorySingleton extends User implements Iterable<Item>, Save
      *
      * @return The instance of the singleton object 
      */
-    public static GameInventorySingleton getInstance(){
+    public static GameInventory getInstance(){
         if (instance == null)
-            synchronized (GameInventorySingleton.class){
+            synchronized (GameInventory.class){
                 if(instance == null)
-                    instance = new GameInventorySingleton();
+                    instance = new GameInventory();
             }
         return instance;
     }
@@ -184,6 +177,17 @@ public class GameInventorySingleton extends User implements Iterable<Item>, Save
     @Override
     public void load(Serializable obj)throws LoadingException {
         this.items = (HashMap<String,Item>) obj;
+    }
+
+    @Override
+    public void init() throws InitException {
+        super.name = "inventory";
+        super.mediator = QuestsManager.getInstance();
+        mediator.addUser(this);
+        
+        this.view = new ArrayList<>();
+        this.items = new HashMap<>();
+        this.comp = new TakenComparator();
     }
 
     private static class TakenComparator implements Comparator<Item> {

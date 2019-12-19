@@ -5,6 +5,7 @@
  */
 package quests.quest;
 
+import game.Interfaces.Initializable;
 import saving.Saveable;
 import java.io.Serializable;
 import java.util.HashMap;
@@ -16,23 +17,21 @@ import quests.mediator.User;
  *
  * @author liovi
  */
-public class QuestsSingleton extends User implements Saveable, Serializable {
+public class Quests extends User implements Saveable, Serializable, Initializable {
 
     private HashMap<String, Quest> quests;
-    private static QuestsSingleton instance = null;
+    private static Quests instance = null;
     private int currentLevel = 0;
 
-    private QuestsSingleton() {
+    private Quests() {
         super();
-        this.name = "QuestsSingleton";
-        this.quests = new HashMap<>();
     }
 
-    public static QuestsSingleton getInstance() {
+    public static Quests getInstance() {
         if (instance == null)
-            synchronized (QuestsSingleton.class) {
+            synchronized (Quests.class) {
             if (instance == null) {
-                instance = new QuestsSingleton();
+                instance = new Quests();
             }
         }
         return instance;
@@ -88,6 +87,12 @@ public class QuestsSingleton extends User implements Saveable, Serializable {
             // chiamata a livello superiore per informare che le quest correnti sono terminate
         }
 
+    }
+
+    @Override
+    public void init() {
+        this.name = "Quests";
+        this.quests = new HashMap<>();
     }
 
 }

@@ -9,7 +9,7 @@ import character.StatusManager;
 import database.DatabaseManager;
 import exam.booklet.Booklet;
 import game.GameObjects.Camera;
-import game.GameObjects.GameInventorySingleton;
+import game.GameObjects.GameInventory;
 import game.GameObjects.Player;
 import game.Interfaces.Initializable.InitException;
 import gameSystem.map.MapManager;
@@ -17,8 +17,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import language.FileTextManager;
 import language.exceptions.LanguageSelectedNotAvailableException;
-import quests.QuestsManagerSingleton;
-import quests.quest.QuestsSingleton;
+import quests.QuestsManager;
+import quests.quest.Quests;
 import saving.SaveManager;
 import unisagui.GuiManager;
 
@@ -111,9 +111,9 @@ public class GameManager {
                 Player.getIstance().initialize(skin, Name);
                 MapManager.getInstance();
                 Booklet.getInstance();
-                QuestsManagerSingleton.getInstance();
-                QuestsSingleton.getInstance();
-                GameInventorySingleton.getInstance();
+                QuestsManager.getInstance();
+                Quests.getInstance();
+                GameInventory.getInstance();
                 FileTextManager.getFileTextManager().setLanguage("eng");
 
                 Thread.sleep(500);

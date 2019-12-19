@@ -5,12 +5,13 @@
  */
 package quests;
 
+import game.Interfaces.Initializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import quests.mediator.*;
 import quests.quest.Quest;
-import quests.quest.QuestsSingleton;
+import quests.quest.Quests;
 
 /**
  * This class is used due to a necessity of manage the communication between the
@@ -18,28 +19,24 @@ import quests.quest.QuestsSingleton;
  *
  * @author liovi
  */
-public class QuestsManagerSingleton implements QuestMessages {
+public class QuestsManager implements QuestMessages, Initializable {
 
-    private static QuestsManagerSingleton instance = null;
+    private static QuestsManager instance = null;
     private List<User> users;
     private HashMap<String, String> item; // Item : Subject associative collection
 
-    private QuestsManagerSingleton() {
-
-        this.users = new ArrayList<>();
-        this.item = new HashMap<>();
-
+    private QuestsManager() {
     }
 
     /**
      *
-     * @return an instance of QuestsManagerSingleton
+     * @return an instance of QuestsManager
      */
-    public static QuestsManagerSingleton getInstance() {
+    public static QuestsManager getInstance() {
         if (instance == null)
-            synchronized (QuestsManagerSingleton.class) {
+            synchronized (QuestsManager.class) {
             if (instance == null) {
-                instance = new QuestsManagerSingleton();
+                instance = new QuestsManager();
             }
         }
         return instance;
@@ -49,18 +46,18 @@ public class QuestsManagerSingleton implements QuestMessages {
         // prima volta:
         /*
         list<quest>, list<item> = dbms.getQuestsFromLevel(0);
-        QuestsManagerSingleton.getInstance().loadNewItems(list);
+        QuestsManager.getInstance().loadNewItems(list);
          */
 
         // lista fornita dal game manager, che ha già effettuato l'accesso al database
         /*  {esempio di comportamento del game manager}
         ....-> dopo che è stata fatta la finish
         DatabaseManagaer dbms = new...
-        list<quest>, list<item> = dbms.getQuestsFromLevel(QuestsManagerSingleton.getInstance().getCurrentLevele());
-        QuestsManagerSingleton.getInstance().loadNewItems(list);
+        list<quest>, list<item> = dbms.getQuestsFromLevel(QuestsManager.getInstance().getCurrentLevel());
+        QuestsManager.getInstance().loadNewItems(list);
         ..ora metto nella mappa tutti gli oggetti presenti nella lista
          */
-        QuestsSingleton.getInstance().loadNewQuests(quests);
+        Quests.getInstance().loadNewQuests(quests);
         for (Quest q : quests) {
             String currentQuest = q.getSubject().toString();
             // prendere tutti gli elementi
@@ -80,7 +77,7 @@ public class QuestsManagerSingleton implements QuestMessages {
     @Override
     public void sendMessage(Message mess, User user) {
         String receiver = item.get(mess.getId());
-        Quest q = QuestsSingleton.getInstance().getQuest(receiver);
+        Quest q = Quests.getInstance().getQuest(receiver);
         q.receive(mess);
     }
 
@@ -92,6 +89,12 @@ public class QuestsManagerSingleton implements QuestMessages {
     @Override
     public void addUser(User user) {
         this.users.add(user);
+    }
+
+    @Override
+    public void init(){
+        this.users = new ArrayList<>();
+        this.item = new HashMap<>();
     }
 
 }

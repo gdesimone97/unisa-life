@@ -14,7 +14,7 @@ import java.awt.Graphics2D;
 import java.io.Serializable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import quests.quest.QuestsSingleton;
+import quests.quest.Quests;
 import saving.Saveable;
 import saving.exceptions.LoadingException;
 
@@ -39,7 +39,7 @@ public class MapManager implements Initializable {
     private MapManager() {
         // Soluzione momentanea, quando c'è il database, dovrà essere vuoto!
         
-        //this.maps = getMaps(QuestsSingleton.getInstance().getCurrentLevel());
+        //this.maps = getMaps(Quests.getInstance().getCurrentLevel());
         maps = new Map[2];
         maps[0] = new Map();
         actualMap = 0;

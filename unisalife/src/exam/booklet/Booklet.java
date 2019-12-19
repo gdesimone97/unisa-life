@@ -8,9 +8,9 @@ package exam.booklet;
 import game.Interfaces.Initializable;
 import java.io.Serializable;
 import java.util.HashMap;
-import quests.QuestsManagerSingleton;
+import quests.QuestsManager;
 import quests.mediator.*;
-import quests.quest.QuestsSingleton;
+import quests.quest.Quests;
 import saving.Saveable;
 /**
  * This class is used due to the necessity of have a booklet for our
@@ -66,7 +66,7 @@ public class Booklet extends User implements Serializable,Saveable,Initializable
         subject.setScore(score);
         subject.setAvailable(false);
         
-        QuestsSingleton.getInstance().getQuest(subject.getInfo()).finish();
+        Quests.getInstance().getQuest(subject.getInfo()).finish();
     }
     
     /**
@@ -123,7 +123,7 @@ public class Booklet extends User implements Serializable,Saveable,Initializable
     @Override
     public void init() {
         super.name = "booklet";
-        super.mediator = QuestsManagerSingleton.getInstance();
+        super.mediator = QuestsManager.getInstance();
         mediator.addUser(this);
 
         this.booklet = new HashMap<>();

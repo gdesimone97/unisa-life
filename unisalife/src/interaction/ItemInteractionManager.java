@@ -5,7 +5,7 @@
  */
 package interaction;
 
-import game.GameObjects.GameInventorySingleton;
+import game.GameObjects.GameInventory;
 import game.Interfaces.Interactable;
 import game.GameObjects.Item;
 import gameSystem.map.MapManager;
@@ -34,7 +34,7 @@ public class ItemInteractionManager implements InteractionManager {
             GuiManager.getInstance().showHint(toShow);
 
             // add element to the inventory
-            GameInventorySingleton.getInstance().addItem((Item) obj);
+            GameInventory.getInstance().addItem((Item) obj);
 
             // remove element from the the map
             MapManager.getInstance().getMap().removeObject(((Item)obj).getPosition().getScaledPosition());
