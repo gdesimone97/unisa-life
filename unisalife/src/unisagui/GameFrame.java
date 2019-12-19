@@ -1183,7 +1183,7 @@ public class GameFrame extends javax.swing.JFrame {
         LanguageComboBox.setBackground(new java.awt.Color(75, 125, 167));
         LanguageComboBox.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
         LanguageComboBox.setForeground(new java.awt.Color(255, 255, 255));
-        LanguageComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "English", " " }));
+        LanguageComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "English" }));
         LanguageComboBox.setMaximumSize(new java.awt.Dimension(200, 50));
         LanguageComboBox.setMinimumSize(new java.awt.Dimension(200, 50));
         LanguageComboBox.setPreferredSize(new java.awt.Dimension(200, 50));
@@ -1991,7 +1991,7 @@ public class GameFrame extends javax.swing.JFrame {
         RightBorderLayout.setHorizontalGroup(
             RightBorderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RightBorderLayout.createSequentialGroup()
-                .addGap(0, 25, Short.MAX_VALUE)
+                .addGap(0, 26, Short.MAX_VALUE)
                 .addComponent(GameCloseButton))
         );
         RightBorderLayout.setVerticalGroup(
