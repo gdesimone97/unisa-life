@@ -50,8 +50,14 @@ public class GameFrame extends javax.swing.JFrame {
         //SwingUtilities.invokeLater(() ->instance.setState(Frame.ICONIFIED));
         //SwingUtilities.invokeLater(() ->instance.setVisible(false));
         SwingUtilities.invokeLater(() ->instance.validate());
-
-
+        
+    }
+    
+    private void settingAvatarButton(){
+        SwingUtilities.invokeLater(() ->MaleWhiteButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/man75.png"))));
+        SwingUtilities.invokeLater(() ->FemaleWhiteButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/woman75.png"))));
+        SwingUtilities.invokeLater(() ->FemaleBlackButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/BLACKman75.png"))));
+        SwingUtilities.invokeLater(() ->MaleBlackButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/BLACKwoman75.png"))));
     }
 
     private void undecoratingDialogs(){
