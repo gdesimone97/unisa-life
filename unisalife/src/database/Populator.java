@@ -6,6 +6,8 @@
 package database;
 
 import database.populator.exceptions.InvalidGameDataFormatException;
+import game.GameObjects.Coin;
+import game.GameObjects.Item;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -66,8 +68,8 @@ public class Populator {
 
             StorableCreator s = CreatorsEnum.valueOf(type).getFactory();
             Storable sitem = s.create(arguments);
-
-            System.out.println("Inserting object of type " + sitem.getClass() + " = " + sitem);
+            Class c = type.equals("Coin") ? Item.class : sitem.getClass();
+            System.out.println("Inserting object of type " + c + " = " + sitem);
             ObjectRepository repo = db.getNitriteDatabase().getRepository(sitem.getClass());
             repo.insert(sitem);
 
