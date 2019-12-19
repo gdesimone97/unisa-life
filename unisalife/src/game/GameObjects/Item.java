@@ -101,4 +101,9 @@ public class Item extends GameObject implements Renderable, Interactable, Serial
     public String getID() {
         return this.info;
     }
+
+    @Override
+    public String getIndex() {
+        return this.info;
+    }
 }

@@ -28,5 +28,10 @@ public class Distributor extends GameObject implements Interactable {
         InteractionManager im = new DistributorInteractionManager();
         im.execute(this);
     }
+
+    @Override
+    public String getIndex() {
+        return this.info;
+    }
     
 }

@@ -79,4 +79,9 @@ public class Teleport extends GameObject implements Interactable{
         im.execute(this);
     }
 
+    @Override
+    public String getIndex() {
+        return "Teleport";
+    }
+
 }

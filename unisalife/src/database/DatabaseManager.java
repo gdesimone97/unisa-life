@@ -10,14 +10,18 @@ import game.GameObjects.Block;
 import game.GameObjects.Position;
 import game.GameObjects.GameObject;
 import game.GameObjects.Item;
+import game.GameObjects.ObjectManager;
 import game.GameObjects.Professor;
 import game.GameResources.Map;
 import game.GameResources.TileMap;
 import game.Interfaces.Initializable;
-import java.util.HashMap;
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
+import org.dizitart.no2.Document;
+import org.dizitart.no2.Index;
+import org.dizitart.no2.filters.Filters;
+import org.dizitart.no2.objects.ObjectRepository;
 import org.dizitart.no2.objects.filters.ObjectFilters;
 import static org.dizitart.no2.objects.filters.ObjectFilters.eq;
 import quests.quest.Quest;
@@ -28,8 +32,10 @@ import quests.quest.Quest;
  *
  * @author alfon
  */
-public class DatabaseManager implements Initializable{
+public class DatabaseManager implements Initializable {
 
+    private static final String FIXEDCOLLECTIONNAME = "FLINKS";
+    private static final String DYNCOLLECTIONNAME = "DLINKS";
     private static DatabaseManager instance = null;
     private Database db;
     private final String path = "..//db/game.db";
@@ -87,41 +93,73 @@ public class DatabaseManager implements Initializable{
      * @return a map of those objects (instances)
      * @throws ObjectNotFoundException
      */
-    public ConcurrentHashMap<Position, GameObject> getObjectsFromLevel(int level) throws ObjectNotFoundException {
-        ConcurrentHashMap<Position, GameObject> returnMap = new ConcurrentHashMap<>();
+    public ConcurrentHashMap<Position, GameObject>[] getObjectsFromLevel(int level) throws ObjectNotFoundException, ErrorWhileSavingException {
+        List<TileMap> res = this.getTileMaps();
+        int mapNum = res.size();
+        List<ConcurrentHashMap<Position, GameObject>> dynArrObj = new ArrayList<>();
+
         List<Quest> questList = this.getQuestsFromLevel(level);
+
         for (Quest q : questList) {
             Subject questSubject = q.getSubject();
             for (String itemName : q.getItemList()) {
                 Item i = this.findItem(itemName);
-                returnMap.put(i.getScaledPosition(), i);
+                int mapId = this.findMap(itemName);
+                dynArrObj.get(mapId).put(i.getScaledPosition(), i);
             }
             Professor p = this.findProfessor(questSubject);
-            returnMap.put(p.getScaledPosition(), p);
+            int mapId = this.findMap(questSubject.getInfo());
+            dynArrObj.get(mapId).put(p.getScaledPosition(), p);
         }
-        if (returnMap.size() <= 0) {
-            throw new ObjectNotFoundException();
+
+        /*
+        if ((dynArrObj.stream().filter((obj) -> obj.size() <= 0).count()) > 0) {
+            throw new ErrorWhileSavingException();
         }
-        System.out.println(returnMap);
-        return returnMap;
+        */
+        
+        return (ConcurrentHashMap<Position, GameObject>[]) dynArrObj.toArray();
     }
 
-    public Map[] getMaps() throws ObjectNotFoundException {
+    private int findMap(String id) {
+        return Integer.parseInt(db.getNitriteDatabase()
+                .getCollection(DatabaseManager.DYNCOLLECTIONNAME)
+                .find(eq("IDOBJ", id))
+                .firstOrDefault()
+                .get("IDMAP", String.class));
+    }
+
+    public Map[] getMaps() throws ObjectNotFoundException, ClassNotFoundException {
 
         List<TileMap> res = this.getTileMaps();
         int mapNum = res.size();
-        ConcurrentHashMap<Position, GameObject> fixed = new ConcurrentHashMap<>();
-        ConcurrentHashMap<Position, GameObject> dyn = new ConcurrentHashMap<>();
+        Map[] maps = new Map[mapNum];
 
-        /*
-        ogni map ha
-        TileMap - > ID,  int, string, string -> indice su ID
-        ObjectManager -> hashmap di gameobjects fissi (blocchi, distributori, cuoco, guardian)
-                      -> hashmap di gameobjects variabili (per livello) // questa viene popolata con il metodo getObjectsFromLevel
-        
-        database deve avere una repo di TileMap indicizzati sulla Position
-         */
-        return null;
+        for (TileMap tilemap : res) {
+            ConcurrentHashMap<Position, GameObject> fixed = new ConcurrentHashMap<>();
+            ConcurrentHashMap<Position, GameObject> dyn = new ConcurrentHashMap<>();
+
+            String id = String.valueOf(tilemap.getId());
+
+            // this is to get Fixed Objects but not blocks
+            org.dizitart.no2.Cursor c = db.getNitriteDatabase().getCollection(DatabaseManager.FIXEDCOLLECTIONNAME).find(Filters.eq("IDMAP", id));
+            for (Document d : c) {
+                String idobj = d.get("IDOBJ", String.class);
+                String classobj = d.get("CLASSOBJ", String.class);
+                ObjectRepository repo = db.getNitriteDatabase().getRepository(Class.forName(classobj));
+                Index i = (Index) repo.listIndices().toArray()[0];
+                GameObject o = (GameObject) repo.find(eq(i.getField(), idobj));
+                fixed.put(o.getScaledPosition(), o);
+            }
+
+            // this is to get the blocks
+            for (BlockWrapper bw : db.getNitriteDatabase().getRepository(BlockWrapper.class).find(eq("map", id)).toList()) {
+                Block b = bw.getBlock();
+                fixed.put(b.getScaledPosition(), b);
+            }
+            maps[tilemap.getId()] = new Map(tilemap, new ObjectManager(fixed, dyn));
+        }
+        return maps;
     }
 
     private List<TileMap> getTileMaps() {
@@ -200,6 +238,6 @@ public class DatabaseManager implements Initializable{
 
     @Override
     public void init() {
-        
+
     }
 }
