@@ -34,7 +34,6 @@ public class DistributorInteractionManager implements InteractionManager {
             if(Status.getMoney()<1) {
                 ms = new MessageInformation("NotEnoughMoney");
                 toShow = tm.getString(ms).get(0);
-                System.out.println("Ciaooo");
                 GuiManager.getInstance().showHint(toShow);
             }
             else {

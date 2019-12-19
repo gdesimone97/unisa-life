@@ -16,6 +16,7 @@ import gameSystem.map.MapManager;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import language.FileTextManager;
+import language.exceptions.LanguageSelectedNotAvailableException;
 import quests.QuestsManagerSingleton;
 import quests.quest.QuestsSingleton;
 import saving.SaveManager;
@@ -113,13 +114,14 @@ public class GameManager {
                 QuestsManagerSingleton.getInstance();
                 QuestsSingleton.getInstance();
                 GameInventorySingleton.getInstance();
-                FileTextManager fileManager = FileTextManager.getFileTextManager();
+                FileTextManager.getFileTextManager().setLanguage("eng");
 
                 Thread.sleep(500);
                 
                 GameStateManager.getInstance().setState(PlayState.getInstance());
             } catch (InitException ex) {
             } catch (InterruptedException ex) {
+            } catch (LanguageSelectedNotAvailableException ex) {
             }
         }).start();
     }
