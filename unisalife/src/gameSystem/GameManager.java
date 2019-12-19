@@ -20,6 +20,8 @@ import language.exceptions.LanguageSelectedNotAvailableException;
 import quests.QuestsManagerSingleton;
 import quests.quest.QuestsSingleton;
 import saving.SaveManager;
+import sound.JukeBoxMusic;
+import sound.JukeBoxSound;
 import unisagui.GuiManager;
 
 /**
@@ -107,7 +109,6 @@ public class GameManager {
             try {
                 Thread.sleep(100);
                 
-                StatusManager.getInstance().init();
                 Player.getIstance().initialize(skin, Name);
                 MapManager.getInstance();
                 Booklet.getInstance();
@@ -115,8 +116,11 @@ public class GameManager {
                 QuestsSingleton.getInstance();
                 GameInventorySingleton.getInstance();
                 FileTextManager.getFileTextManager().setLanguage("eng");
-
-                Thread.sleep(500);
+                JukeBoxMusic.getInstance();
+                JukeBoxSound.getInstance();
+                
+                //This is the last to be started
+                StatusManager.getInstance().init();
                 
                 GameStateManager.getInstance().setState(PlayState.getInstance());
             } catch (InitException ex) {
