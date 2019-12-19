@@ -40,7 +40,7 @@ public class GameStateManager implements Initializable {
     }
 
     @Override
-    public void init() {
+    public void init() throws InitException {
         gs = LoadingState.getInstance();
     }
 }

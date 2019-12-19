@@ -85,7 +85,7 @@ public class GameManager {
      * this method have to be called the first time we want to initialize the
      * game and all the managers of it. It starts the game
      */
-    public void initGame() {
+    public void initGame() throws InitException {
 
         // just set Loading state
         player = Player.getIstance();
