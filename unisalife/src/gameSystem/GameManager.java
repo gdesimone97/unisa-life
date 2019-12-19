@@ -89,7 +89,7 @@ public class GameManager {
             try {
                 Thread.sleep(100);
                 
-                StatusManager.getInstance();
+                StatusManager.getInstance().init();
                 Player.getIstance().initialize(skin, Name);
                 MapManager.getInstance();
                 BookletSingleton.getInstance();
@@ -97,7 +97,6 @@ public class GameManager {
                 QuestsSingleton.getInstance();
                 GameInventorySingleton.getInstance();
                 FileTextManager fileManager = FileTextManager.getFileTextManager();
-                fileManager.setLanguage("eng");
                 DatabaseManager.getDatabaseManager();
 
                 Thread.sleep(500);

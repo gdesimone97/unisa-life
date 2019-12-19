@@ -18,7 +18,7 @@ import saving.exceptions.LoadingException;
  *
  * @author liovi
  */
-public class MapManager implements Initializable{
+public class MapManager implements Initializable {
 
     private int actualMap;
 
@@ -56,8 +56,12 @@ public class MapManager implements Initializable{
     }
 
     @Override
-    public void init() {
+    public void init() throws InitException {
         maps = DatabaseManager.getDatabaseManager().getMaps();
         actualMap = 0;
+    }
+    
+    public void addDynamicObjects() {
+        
     }
 }

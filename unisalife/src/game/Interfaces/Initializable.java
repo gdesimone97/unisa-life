@@ -10,5 +10,19 @@ package game.Interfaces;
  * @author 1997g
  */
 public interface Initializable {
-    public void init();
+
+    public void init() throws InitException;
+
+    public class InitException extends Exception {
+        private String error;
+        
+        public InitException(String error) {
+            this.error = error;
+        }
+        
+        public String toString() {
+            return error;
+        }
+        
+    }
 }
