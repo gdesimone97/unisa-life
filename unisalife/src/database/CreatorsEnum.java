@@ -47,15 +47,20 @@ public enum CreatorsEnum {
         public StorableCreator getFactory() {
             return new GuardianFactory();
         }
-    }, distributor("distributor"){
+    }, distributor("distributor") {
         @Override
-        public StorableCreator getFactory(){
+        public StorableCreator getFactory() {
             return new DistributorFactory();
         }
-    }, block("block"){
+    }, block("block") {
         @Override
-        public StorableCreator getFactory(){
+        public StorableCreator getFactory() {
             return new BlockWrapperFactory();
+        }
+    }, tilemap("tilemap") {
+        @Override
+        public StorableCreator getFactory() {
+            return new TileMapFactory();
         }
     };
 
