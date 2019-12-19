@@ -12,6 +12,8 @@ import game.GameObjects.GameInventory;
 import game.GameObjects.Player;
 import game.Interfaces.Initializable.InitException;
 import gameSystem.map.MapManager;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import language.FileTextManager;
 import quests.QuestsManager;
@@ -85,13 +87,16 @@ public class GameManager {
      * this method have to be called the first time we want to initialize the
      * game and all the managers of it. It starts the game
      */
-    public void initGame() throws InitException {
+    public void initGame() {
 
         // just set Loading state
         player = Player.getIstance();
         camera = new Camera(0, 0, player);
 
-        GameStateManager.getInstance().init();
+        try {
+            GameStateManager.getInstance().init();
+        } catch (InitException ex) {
+        }
     }
 
     /**
