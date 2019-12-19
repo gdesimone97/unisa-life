@@ -52,7 +52,7 @@ public class Map implements Runnable {
             ConcurrentHashMap<Position,GameObject> dynamic = new ConcurrentHashMap<Position,GameObject>();
             
             Position p = new Position(1248, 2144);
-            dynamic.put(p.getScaledPosition(), new Professor("Foggia", p, "/Sprites/foggia.png", new Subject("Matematica")));
+            dynamic.put(p.getScaledPosition(), new Professor("Foggia", p, "/Sprites/foggiasprite.png", new Subject("Matematica")));
             p = new Position(320, 160);
             dynamic.put(new Position(10,5), new Item(p, "/Sprites/note.png", "appuntidimatematica1"));
             p = new Position(320, 64);
@@ -64,9 +64,9 @@ public class Map implements Runnable {
             p = new Position(352,864);
             dynamic.put(p.getScaledPosition(), new Distributor(p,"distributor"));
             p = new Position(1280,2144);
-            dynamic.put(p.getScaledPosition(), new Cook("cuoco", p , "/Sprites/foggia.png"));
+            dynamic.put(p.getScaledPosition(), new Cook("cuoco", p , "/Sprites/signoramensasprite.png"));
             p = new Position(1312,2144);
-            dynamic.put(p.getScaledPosition(), new Guardian("guardiano",p,"/Sprites/foggia.png"));
+            dynamic.put(p.getScaledPosition(), new Guardian("guardiano",p,"/Sprites/tiziomensasprite.png"));
             
             
             mapObjects = new ObjectManager(fixed, dynamic);

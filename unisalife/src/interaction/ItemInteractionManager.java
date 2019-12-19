@@ -10,6 +10,7 @@ import game.Interfaces.Interactable;
 import game.GameObjects.Item;
 import gameSystem.map.MapManager;
 import language.*;
+import sound.JukeBoxSound;
 import unisagui.GuiManager;
 
 /**
@@ -29,6 +30,8 @@ public class ItemInteractionManager implements InteractionManager {
             tm = FileTextManager.getFileTextManager();
             MessageInformation ms = new MessageInformation("ItemFound");
             toShow = tm.getString(ms).get(0) + " " + tm.getString((Information) obj).get(0);
+            
+            JukeBoxSound.getInstance().play("collect");
             
             // show pop up (should be shown until the user says so)
             GuiManager.getInstance().showHint(toShow);

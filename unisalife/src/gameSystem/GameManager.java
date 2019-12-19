@@ -104,10 +104,9 @@ public class GameManager {
         Thread t = new Thread(game);
         t.start();
 
-        // init all managers
+        // init all managers, at the end starts the playState
         new Thread(() -> {
             try {
-                Thread.sleep(100);
                 
                 Player.getIstance().initialize(skin, Name);
                 MapManager.getInstance();
@@ -124,7 +123,6 @@ public class GameManager {
                 
                 GameStateManager.getInstance().setState(PlayState.getInstance());
             } catch (InitException ex) {
-            } catch (InterruptedException ex) {
             }
         }).start();
     }
