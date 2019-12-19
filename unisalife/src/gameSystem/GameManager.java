@@ -114,9 +114,9 @@ public class GameManager {
                 MapManager.getInstance();
                 Booklet.getInstance();
 
-                QuestsManager.getInstance();
-                Quests.getInstance();
-                GameInventory.getInstance();
+                QuestsManager.getInstance().init();
+                Quests.getInstance().init();
+                GameInventory.getInstance().init();
                 FileTextManager.getFileTextManager().init();
                 JukeBoxMusic.getInstance();
                 JukeBoxSound.getInstance();

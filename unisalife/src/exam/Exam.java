@@ -171,6 +171,9 @@ public class Exam implements Runnable {
             } else {
                 correctness = question.isCorrect(answers.get(answer - 1));
                 verifyAnswer(correctness, questionTime - elapsed, question.getLevel());
+                // answer can affect Stress status
+                
+                
                 gui.isCorrect(correctness, nextQuestion);
                 nextQuestion.getValue();
             }
