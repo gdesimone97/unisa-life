@@ -30,11 +30,11 @@ public class DistributorInteractionManager implements InteractionManager {
             tm = FileTextManager.getFileTextManager();
             MessageInformation ms;
             
-
             // check if you have money
             if(Status.getMoney()<1) {
                 ms = new MessageInformation("NotEnoughMoney");
                 toShow = tm.getString(ms).get(0);
+                System.out.println("Ciaooo");
                 GuiManager.getInstance().showHint(toShow);
             }
             else {
@@ -52,6 +52,7 @@ public class DistributorInteractionManager implements InteractionManager {
             }
         } catch (Exception ex) {
             // decide what to do when an error with string retriving occurs
+            ex.printStackTrace();
         }
     }
     

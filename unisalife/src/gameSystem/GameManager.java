@@ -11,12 +11,14 @@ import exam.booklet.BookletSingleton;
 import game.GameObjects.Camera;
 import game.GameObjects.GameInventorySingleton;
 import game.GameObjects.Player;
+import game.Interfaces.Initializable.InitException;
 import gameSystem.map.MapManager;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import language.FileTextManager;
 import quests.QuestsManagerSingleton;
 import quests.quest.QuestsSingleton;
+import saving.SaveManager;
 import unisagui.GuiManager;
 
 /**
@@ -61,7 +63,22 @@ public class GameManager {
      */
     public void loadGame() {
         // call a loading method of all instances
+        new Thread(() -> {
+            try {
+                Thread.sleep(100);
+                
+                // just set Loading state
+                player = Player.getIstance();
+                camera = new Camera(0, 0, player);
+                GameStateManager.getInstance().init();
+                SaveManager.getSaveManager().load();
 
+                Thread.sleep(500);
+                
+                GameStateManager.getInstance().setState(PlayState.getInstance());
+            } catch (Exception ex) {
+            }
+        }).start();
     }
 
     /**
@@ -97,12 +114,12 @@ public class GameManager {
                 QuestsSingleton.getInstance();
                 GameInventorySingleton.getInstance();
                 FileTextManager fileManager = FileTextManager.getFileTextManager();
-                DatabaseManager.getDatabaseManager();
 
                 Thread.sleep(500);
                 
                 GameStateManager.getInstance().setState(PlayState.getInstance());
-            } catch (Exception ex) {
+            } catch (InitException ex) {
+            } catch (InterruptedException ex) {
             }
         }).start();
     }
