@@ -6,17 +6,14 @@
 package gameSystem;
 
 import character.StatusManager;
-import database.DatabaseManager;
 import exam.booklet.Booklet;
 import game.GameObjects.Camera;
 import game.GameObjects.GameInventory;
 import game.GameObjects.Player;
 import game.Interfaces.Initializable.InitException;
 import gameSystem.map.MapManager;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import language.FileTextManager;
-import language.exceptions.LanguageSelectedNotAvailableException;
 import quests.QuestsManager;
 import quests.quest.Quests;
 import saving.SaveManager;
@@ -124,6 +121,7 @@ public class GameManager {
                 
                 GameStateManager.getInstance().setState(PlayState.getInstance());
             } catch (InitException ex) {
+                JOptionPane.showMessageDialog(game, "System Error: " + ex.toString());
             }
         }).start();
     }
@@ -152,6 +150,10 @@ public class GameManager {
      */
     public static void main(String[] args) {
         GuiManager.getInstance().startGame();
+    }
+    
+    public boolean isRunning() {
+        return game.isRunning();
     }
 
 }

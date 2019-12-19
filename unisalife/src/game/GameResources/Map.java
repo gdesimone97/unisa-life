@@ -46,7 +46,7 @@ public class Map implements Runnable {
      * @param t TileMap
      */
     public Map(){
-        tMap = new TileMap(3200, 3200, "/Tilesets/TilesetConSfondo.png", "/Maps/Mappa.map");
+        tMap = new TileMap(0, 3200, 3200, "/Tilesets/TilesetConSfondo.png", "/Maps/Mappa.map");
         try {
             ConcurrentHashMap<Position,GameObject> fixed = new ConcurrentHashMap<Position,GameObject>();
             ConcurrentHashMap<Position,GameObject> dynamic = new ConcurrentHashMap<Position,GameObject>();

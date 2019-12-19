@@ -11,6 +11,7 @@ import game.Interfaces.Interactable;
 import hud.change.VendingMachineHudBarChange;
 import language.FileTextManager;
 import language.MessageInformation;
+import sound.JukeBoxSound;
 import unisagui.GuiManager;
 import unisagui.RequestGui;
 
@@ -32,9 +33,10 @@ public class DistributorInteractionManager implements InteractionManager {
             
             // check if you have money
             if(Status.getMoney()<1) {
-                ms = new MessageInformation("NotEnoughMoney");
+                ms = new MessageInformation("NotEnoughMoneyVendingMachine");
                 toShow = tm.getString(ms).get(0);
                 GuiManager.getInstance().showHint(toShow);
+                JukeBoxSound.getInstance().play("wrong");
             }
             else {
                 // show request

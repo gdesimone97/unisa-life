@@ -22,9 +22,8 @@ public class TeleportInteractionManager implements InteractionManager {
     @Override
     public void execute(Interactable obj) {
         Teleport t=(Teleport)obj;
-        System.out.println("sono arrivato");
-        GameStateManager.getInstance().setState(LoadingState.getInstance());
         try{
+            GameStateManager.getInstance().setState(LoadingState.getInstance());
             MapManager.getInstance().setMap(t.getMapDestination());
             Player.getIstance().setX(t.getPositionDestination().getX());
             Player.getIstance().setY(t.getPositionDestination().getY());

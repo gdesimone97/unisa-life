@@ -77,7 +77,7 @@ public class DatabaseManagerTest {
     @Test
     public void testGetObjectsFromLevel() throws Exception {
         System.out.println("getObjectsFromLevel");
-        int level = 1;
+        int level = 0;
         DatabaseManager instance = DatabaseManager.getDatabaseManager();
         int expResult = 9;
         int result = instance.getObjectsFromLevel(level).size();

@@ -5,11 +5,6 @@
  */
 package game.GameObjects;
 
-import game.Interfaces.Renderable;
-import java.awt.Color;
-import java.awt.Graphics;
-import java.util.LinkedList;
-
 /**
  * A block represent a point in the map that can't be passed from the player.
  *

@@ -25,6 +25,7 @@ import saving.exceptions.LoadingException;
 public class MapManager implements Initializable {
 
     private int actualMap;
+    private int mapNumber;
 
     private Map[] maps;
     public static MapManager instance;
@@ -39,10 +40,13 @@ public class MapManager implements Initializable {
     private MapManager() {
         // Soluzione momentanea, quando c'è il database, dovrà essere vuoto!
         
-        //this.maps = getMaps(Quests.getInstance().getCurrentLevel());
         maps = new Map[2];
         maps[0] = new Map();
         actualMap = 0;
+    }
+
+    public int getMapNumber() {
+        return mapNumber;
     }
 
     public int getActualMap() {
@@ -65,11 +69,14 @@ public class MapManager implements Initializable {
     public void init() throws InitException {
         try {
             maps = DatabaseManager.getDatabaseManager().getMaps();
+            mapNumber = maps.length;
             actualMap = 0;
         } catch (FileNotSetException ex) {
             throw new InitException("File not specified in Database");
         } catch (ObjectNotFoundException ex) {
             throw new InitException("Objects not found in Database");
+        } catch (ClassNotFoundException ex) {
+            throw new InitException("Class not found during Database query");
         }
     }
     

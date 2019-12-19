@@ -5,6 +5,7 @@
  */
 package game.GameObjects;
 
+import database.Storable;
 import game.Interfaces.Interactable;
 import interaction.DistributorInteractionManager;
 import interaction.InteractionManager;
@@ -13,7 +14,7 @@ import interaction.InteractionManager;
  *
  * @author 1997g
  */
-public class Distributor extends GameObject implements Interactable {
+public class Distributor extends GameObject implements Interactable, Storable {
     
     private final String info;
     

@@ -11,10 +11,10 @@ import game.GameObjects.Player;
 import game.Interfaces.Interactable;
 import hud.change.CanteenHudBarChange;
 import language.FileTextManager;
-import language.Information;
 import language.MessageInformation;
 import sound.JukeBoxSound;
 import unisagui.GuiManager;
+import unisagui.RequestGui;
 
 /**
  *
@@ -33,20 +33,21 @@ public class CookInteractionManager implements InteractionManager {
             MessageInformation ms;
             
             if(Status.getMoney()<3) {
-                ms = new MessageInformation("NotEnoughMoney");
+                ms = new MessageInformation("NotEnoughMoneyCanteen");
                 toShow = tm.getString(ms).get(0);
                 GuiManager.getInstance().showHint(toShow);
+                JukeBoxSound.getInstance().play("wrong");
             } else {
                 // show request
-//                ms = new MessageInformation("CanteenRequest");
-//                toShow = tm.getString(ms).get(0);
-//                RequestGui request = new RequestGui();
-//                GuiManager.getInstance().showRequest(toShow, request);
-//                if(request.getValue()) {
+                ms = new MessageInformation("CanteenRequest");
+                toShow = tm.getString(ms).get(0);
+                RequestGui request = new RequestGui();
+                GuiManager.getInstance().showRequest(toShow, request);
+                if(request.getValue()) {
 //                     // restore status bars
                     JukeBoxSound.getInstance().play("canteen");
                     StatusManager.getInstance().updateMoney(-3);
-//                }
+                }
 
                 // show pop up
                 ms = new MessageInformation("SeeYouAgainName");

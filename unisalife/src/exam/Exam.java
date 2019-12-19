@@ -17,6 +17,8 @@ import language.FileTextManager;
 import language.MessageInformation;
 import language.exceptions.FileTextManagerException;
 import language.exceptions.TextFinderException;
+import sound.JukeBoxMusic;
+import sound.JukeBoxSound;
 import unisagui.*;
 
 /**
@@ -166,13 +168,11 @@ public class Exam implements Runnable {
             //check answer
             if (answer == 0) {
                 verifyAnswer(false, elapsed, question.getLevel());
-//                System.out.println("Non hai risposto");
             } else {
                 correctness = question.isCorrect(answers.get(answer - 1));
                 verifyAnswer(correctness, questionTime - elapsed, question.getLevel());
                 gui.isCorrect(correctness, nextQuestion);
                 nextQuestion.getValue();
-//                System.out.println("Hai risposto: " + answers.get(answer - 1) + (correctness ? " CORRETTO!" : " SBAGLIATO!") + " \nTempo passato: " + elapsed);
             }
 
         }
@@ -184,14 +184,17 @@ public class Exam implements Runnable {
         try {
             if (voto >= 18 && voto <= 30) {
                 gui.showDialog(FileTextManager.getFileTextManager().getString(new MessageInformation("ScoreTaken")).get(0) + " " + voto);
-                Booklet.getInstance().setScore(subject, voto);
+                JukeBoxSound.getInstance().play("exam_passed");
+//                Booklet.getInstance().setScore(subject, voto);                
             }
             else if (voto == 31) {
                 gui.showDialog(FileTextManager.getFileTextManager().getString(new MessageInformation("Lode")).get(0));
-                Booklet.getInstance().setScore(subject, voto);
+                JukeBoxSound.getInstance().play("exam_passed");
+//                Booklet.getInstance().setScore(subject, voto);
             }
             else {
                 gui.showDialog(FileTextManager.getFileTextManager().getString(new MessageInformation("ExamFailed")).get(0));
+                JukeBoxSound.getInstance().play("exam_failed");
             }
         } catch (TextFinderException ex) {
             ex.printStackTrace();
