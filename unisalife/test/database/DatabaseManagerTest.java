@@ -6,6 +6,7 @@
 package database;
 
 import database.populator.exceptions.InvalidGameDataFormatException;
+import game.GameResources.Map;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import org.junit.After;
@@ -27,12 +28,15 @@ public class DatabaseManagerTest {
     @BeforeClass
     public static void setUpClass() throws FileNotSetException, IOException, FileNotFoundException, InvalidGameDataFormatException {
         DatabaseManager dmb = DatabaseManager.getDatabaseManager();
-        Populator p = new Populator("..//unisalife/src/database/data.txt");
+        Populator p = new Populator("..//unisalife/data.txt");
         p.populate();
     }
 
     @AfterClass
-    public static void tearDownClass() {
+    public static void tearDownClass() throws FileNotSetException {
+        DatabaseManager.getDatabaseManager().getDatabase().clear();
+        DatabaseManager.getDatabaseManager().close();
+
     }
 
     @Before
@@ -47,9 +51,7 @@ public class DatabaseManagerTest {
 
     }
 
-    /**
-     * Test of getDatabaseManager method, of class DatabaseManager.
-     */
+    /*
     @Test
     public void testGetDatabaseManager() throws Exception {
         System.out.println("getDatabaseManager");
@@ -58,9 +60,7 @@ public class DatabaseManagerTest {
         assertNotEquals(expResult, result);
     }
 
-    /**
-     * Test of getQuestsFromLevel method, of class DatabaseManager.
-     */
+
     @Test
     public void testGetQuestsFromLevel() throws Exception {
         System.out.println("getQuestsFromLevel");
@@ -71,9 +71,7 @@ public class DatabaseManagerTest {
         assertEquals(expResult, result);
     }
 
-    /**
-     * Test of getObjectsFromLevel method, of class DatabaseManager.
-     */
+
     @Test
     public void testGetObjectsFromLevel() throws Exception {
         System.out.println("getObjectsFromLevel");
@@ -84,9 +82,7 @@ public class DatabaseManagerTest {
         assertEquals(expResult, result);
     }
 
-    /**
-     * Test of getSubjects method, of class DatabaseManager.
-     */
+
     @Test
     public void testGetSubjects() throws FileNotSetException {
         System.out.println("getSubjects");
@@ -96,7 +92,7 @@ public class DatabaseManagerTest {
         assertEquals(expResult, result);
     }
     
-    /*
+
     @Test
     public void testSave() throws Exception {
         System.out.println("save");
@@ -137,6 +133,19 @@ public class DatabaseManagerTest {
         DatabaseManager instance = null;
         instance.close();
     }
-    */
+     */
+    @Test
+    public void testGetMaps() {
+        try {
+            System.out.println("getMaps");
+            DatabaseManager instance = DatabaseManager.getDatabaseManager();
+            int expRes = 1;
+            Map[] maps = instance.getMaps();
+            int res = maps.length;
+            assertEquals(expRes, res);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
 
 }

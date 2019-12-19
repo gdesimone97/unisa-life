@@ -28,6 +28,10 @@ class BlockWrapper implements Storable{
         this.map = map;
         this.block = block;
     }
+    
+    public BlockWrapper(){
+        
+    }
 
     public int getMap() {
         return map;

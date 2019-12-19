@@ -36,8 +36,8 @@ import quests.quest.Quest;
  */
 public class DatabaseManager implements Initializable {
 
-    private static final String FIXEDCOLLECTIONNAME = "FLINKS";
-    private static final String DYNCOLLECTIONNAME = "DLINKS";
+    protected static final String FIXEDCOLLECTIONNAME = "FLINKS";
+    protected static final String DYNCOLLECTIONNAME = "DLINKS";
     private static DatabaseManager instance = null;
     private Database db;
     private final String path = "..//db/game.db";
@@ -153,16 +153,17 @@ public class DatabaseManager implements Initializable {
             // this is to get Fixed Objects but not blocks
             org.dizitart.no2.Cursor c = db.getNitriteDatabase().getCollection(DatabaseManager.FIXEDCOLLECTIONNAME).find(Filters.eq("IDMAP", id));
             for (Document d : c) {
-                String idobj = d.get("IDOBJ", String.class);
-                String classobj = d.get("CLASSOBJ", String.class);
+                String idobj = (String) d.get("IDOBJ");
+                String classobj = (String) d.get("CLASSOBJ");
+                System.out.println(classobj + "\n" + Class.forName(classobj));
                 ObjectRepository repo = db.getNitriteDatabase().getRepository(Class.forName(classobj));
                 Index i = (Index) repo.listIndices().toArray()[0];
-                GameObject o = (GameObject) repo.find(eq(i.getField(), idobj));
+                GameObject o = (GameObject) repo.find(eq(i.getField(), idobj)).firstOrDefault();
                 fixed.put(o.getScaledPosition(), o);
             }
 
             // this is to get the blocks
-            for (BlockWrapper bw : db.getNitriteDatabase().getRepository(BlockWrapper.class).find(eq("map", id)).toList()) {
+            for (BlockWrapper bw : db.getNitriteDatabase().getRepository(BlockWrapper.class).find(eq("map", Integer.parseInt(id))).toList()) {
                 Block b = bw.getBlock();
                 fixed.put(b.getScaledPosition(), b);
             }
