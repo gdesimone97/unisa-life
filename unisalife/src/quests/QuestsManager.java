@@ -23,9 +23,11 @@ public class QuestsManager implements QuestMessages, Initializable {
 
     private static QuestsManager instance = null;
     private List<User> users;
-    private HashMap<String, String> item; // Item : Subject associative collection
+    // Item : Subject associative collection
+    private HashMap<String, String> item; 
 
     private QuestsManager() {
+
     }
 
     /**

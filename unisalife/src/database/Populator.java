@@ -13,6 +13,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import org.dizitart.no2.objects.ObjectRepository;
+import quests.QuestsManager;
 
 /**
  * This class is used to populate the internal database with game objects
@@ -51,7 +52,8 @@ public class Populator {
      * class.
      */
     public void populate() throws FileNotFoundException, IOException, InvalidGameDataFormatException, FileNotSetException {
-
+        
+        QuestsManager.getInstance().init();
         BufferedReader r = new BufferedReader(new FileReader(filepath));
         String line = r.readLine();
 
