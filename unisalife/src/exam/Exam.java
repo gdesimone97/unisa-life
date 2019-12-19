@@ -5,6 +5,7 @@
  */
 package exam;
 import character.Status;
+import character.StatusManager;
 import exam.booklet.Booklet;
 import exam.booklet.Subject;
 import exam.question.*;
@@ -56,7 +57,7 @@ public class Exam implements Runnable {
         this.sum = 0;
         this.count = 0;
         this.questionTime = 30;
-        this.coinReward = 100;
+        this.coinReward = 5;
         this.questions = questionsFetch.getQuestions();
         this.maxLevel = this.questions.getNumLevels();
         this.basicScore = 12 / (30 - (30 / (float) (this.maxLevel - 1)));
@@ -96,12 +97,10 @@ public class Exam implements Runnable {
         this.score = (int) this.sum / (lastLevelAnswered);
         
         if (this.score >= 18){
-            Status.setMoney((this.score - 18)*this.coinReward);
+            StatusManager.getInstance().updateMoney((this.score - 18) + this.coinReward);
             //can be used also this expression. In fact if the user
             //doesn't pass the exame, he/she loses an amount of money that depends
             //on which is slow him/her score.
-        }else{
-            Status.setMoney(-50);
         }
 
         return this.score;
