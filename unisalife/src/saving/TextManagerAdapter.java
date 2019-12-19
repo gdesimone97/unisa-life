@@ -5,15 +5,11 @@
  */
 package saving;
 
-import java.io.Serializable;
 import java.util.List;
 import java.util.Set;
 import language.Information;
 import language.TextManager;
-import language.exceptions.LanguageSelectedNotAvailableException;
 import language.exceptions.TextFinderException;
-import saving.Saveable;
-import saving.exceptions.LoadingException;
 
 /**
  *
@@ -41,6 +37,5 @@ class TextManagerAdapter extends TextManager {
     public List<String> getString(Information obj) throws TextFinderException {
         throw new UnsupportedOperationException("Not supported yet.");
     }
-
 
 }
