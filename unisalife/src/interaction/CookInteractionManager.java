@@ -35,7 +35,7 @@ public class CookInteractionManager implements InteractionManager {
             if(Status.getMoney()<3) {
                 ms = new MessageInformation("NotEnoughMoneyCanteen");
                 toShow = tm.getString(ms).get(0);
-                GuiManager.getInstance().showHint(toShow);
+                GuiManager.getInstance().showDialog(toShow);
                 JukeBoxSound.getInstance().play("wrong");
             } else {
                 // show request

@@ -2260,6 +2260,7 @@
     </Container>
     <Container class="javax.swing.JDialog" name="RequestDialog">
       <Properties>
+        <Property name="alwaysOnTop" type="boolean" value="true"/>
         <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[250, 175]"/>
         </Property>

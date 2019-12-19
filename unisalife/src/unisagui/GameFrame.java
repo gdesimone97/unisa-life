@@ -1264,6 +1264,7 @@ public class GameFrame extends javax.swing.JFrame {
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
 
+        RequestDialog.setAlwaysOnTop(true);
         RequestDialog.setMinimumSize(new java.awt.Dimension(250, 175));
         RequestDialog.setModalExclusionType(java.awt.Dialog.ModalExclusionType.APPLICATION_EXCLUDE);
         RequestDialog.setModalityType(java.awt.Dialog.ModalityType.APPLICATION_MODAL);
