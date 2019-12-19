@@ -6,13 +6,18 @@
 package database;
 
 import exam.booklet.Subject;
+import game.GameObjects.Block;
 import game.GameObjects.Position;
 import game.GameObjects.GameObject;
 import game.GameObjects.Item;
 import game.GameObjects.Professor;
 import game.GameResources.Map;
+import game.GameResources.TileMap;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
+import org.dizitart.no2.objects.filters.ObjectFilters;
 import static org.dizitart.no2.objects.filters.ObjectFilters.eq;
 import quests.quest.Quest;
 
@@ -101,8 +106,30 @@ public class DatabaseManager {
         return returnMap;
     }
 
-    public Map[] getMaps(int level) throws ObjectNotFoundException {
-        HashMap<Position, GameObject> currentHashMap = this.getObjectsFromLevel(level);
+    public Map[] getMaps() throws ObjectNotFoundException {
+
+        List<TileMap> res = this.getTileMaps();
+        int mapNum = res.size();
+        ConcurrentHashMap<Position, GameObject> fixed = new ConcurrentHashMap<>();
+        ConcurrentHashMap<Position, GameObject> dyn = new ConcurrentHashMap<>();
+
+        /*
+        ogni map ha
+        TileMap - > ID,  int, string, string -> indice su ID
+        ObjectManager -> hashmap di gameobjects fissi (blocchi, distributori, cuoco, guardian)
+                      -> hashmap di gameobjects variabili (per livello) // questa viene popolata con il metodo getObjectsFromLevel
+        
+        database deve avere una repo di TileMap indicizzati sulla Position
+         */
+        return null;
+    }
+
+    private List<TileMap> getTileMaps() {
+        List<TileMap> res = db.getNitriteDatabase().getRepository(TileMap.class).find(ObjectFilters.ALL).toList();
+        return res;
+    }
+
+    private List<Block> getBlocks() {
         return null;
     }
 
