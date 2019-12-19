@@ -40,9 +40,9 @@ public class MapManager implements Initializable {
     private MapManager() {
         // Soluzione momentanea, quando c'è il database, dovrà essere vuoto!
         
-//        maps = new Map[2];
-//        maps[0] = new Map();
-//        actualMap = 0;
+        maps = new Map[2];
+        maps[0] = new Map();
+        actualMap = 0;
     }
 
     public int getMapNumber() {

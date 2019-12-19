@@ -8,56 +8,72 @@ package database;
 /**
  * This enumeration works as a map between the objects that need to be managed
  * (load/save) by the internal database and the factory method to create them.
- * 
+ *
  * @author cmarino
  */
-
-
 public enum CreatorsEnum {
-    item("item"){
+    item("item") {
         @Override
-         public StorableCreator getFactory(){
+        public StorableCreator getFactory() {
             return new ItemFactory();
         }
-    },professor("professor"){
+    }, professor("professor") {
         @Override
-        public StorableCreator getFactory(){
+        public StorableCreator getFactory() {
             return new ProfessorFactory();
         }
-    },coin("coin"){
+    }, coin("coin") {
         @Override
-        public StorableCreator getFactory(){
+        public StorableCreator getFactory() {
             return new CoinFactory();
         }
-    }, subject("subject"){
+    }, subject("subject") {
         @Override
-        public StorableCreator getFactory(){
+        public StorableCreator getFactory() {
             return new SubjectFactory();
         }
-    }, quest("quest"){
+    }, quest("quest") {
         @Override
-        public StorableCreator getFactory(){
+        public StorableCreator getFactory() {
             return new QuestFactory();
         }
-    }, cook("cook"){
+    }, cook("cook") {
         @Override
-        public StorableCreator getFactory(){
+        public StorableCreator getFactory() {
             return new CookFactory();
         }
+    }, guardian("guardian") {
+        @Override
+        public StorableCreator getFactory() {
+            return new GuardianFactory();
+        }
+    }, distributor("distributor") {
+        @Override
+        public StorableCreator getFactory() {
+            return new DistributorFactory();
+        }
+    }, block("block") {
+        @Override
+        public StorableCreator getFactory() {
+            return new BlockWrapperFactory();
+        }
+    }, tilemap("tilemap") {
+        @Override
+        public StorableCreator getFactory() {
+            return new TileMapFactory();
+        }
     };
-    
+
     private final String type;
-    
-    CreatorsEnum( String type ){
+
+    CreatorsEnum(String type) {
         this.type = type;
     }
-    
+
     public abstract StorableCreator getFactory();
-    
-    public String getType(){
+
+    public String getType() {
         return this.type;
     }
-    
-    
-    
+
 }

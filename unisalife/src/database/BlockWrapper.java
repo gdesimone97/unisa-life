@@ -16,7 +16,7 @@ import org.dizitart.no2.objects.Indices;
  * @author christian
  */
 @Indices({
-    @Index(value = "map", type = IndexType.Unique)
+    @Index(value = "map", type = IndexType.NonUnique)
 })
 class BlockWrapper implements Storable{
     

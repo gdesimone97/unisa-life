@@ -11,9 +11,10 @@ import exam.booklet.Subject;
 import exam.question.*;
 import game.Interfaces.Initializable;
 import game.Interfaces.Initializable.InitException;
+import hud.change.CanteenHudBarChange;
+import hud.change.CorrectAnswerHudBarChange;
+import hud.change.WrongAnswerHudBarChange;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import language.FileTextManager;
 import language.MessageInformation;
 import language.exceptions.FileTextManagerException;
@@ -170,7 +171,17 @@ public class Exam implements Runnable {
             } else {
                 correctness = question.isCorrect(answers.get(answer - 1));
                 verifyAnswer(correctness, questionTime - elapsed, question.getLevel());
+                
                 // answer can affect Stress status
+                if(correctness) {
+                    CorrectAnswerHudBarChange c = new CorrectAnswerHudBarChange();
+                    c.execute();
+                }
+                else {
+                    WrongAnswerHudBarChange c = new WrongAnswerHudBarChange();
+                    c.execute();
+                }
+                
                 
                 
                 gui.isCorrect(correctness, nextQuestion);

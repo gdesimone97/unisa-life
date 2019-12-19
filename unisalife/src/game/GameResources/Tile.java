@@ -18,6 +18,7 @@ import java.io.ObjectInput;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import javax.imageio.ImageIO;
 import javax.imageio.stream.ImageInputStream;
 import javax.imageio.stream.ImageOutputStream;
@@ -26,9 +27,9 @@ import javax.imageio.stream.ImageOutputStream;
  *
  * @author simon
  */
-public class Tile implements Externalizable {
+public class Tile implements Serializable, Externalizable {
 
-    transient private BufferedImage image;
+    private BufferedImage image;
 
     /*private int type;
 	
