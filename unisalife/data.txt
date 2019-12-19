@@ -1,12 +1,12 @@
 subject %tolc
 tilemap %0%3200%3200%/Tilesets/TilesetConSfondo.png%/Maps/Mappa.map
 cook %cook%128%160%/Sprites/signoramensasprite.png %0%d
-guardian %guardian%160%122%/Sprites/tiziomensasprite.png %0%d
-coin %32%0%/Sprites/coin.png%coin %0%d
-item %64%0%/Sprites/calculator.png%calcolatrice %0%d
-item %96%0%/Sprites/note.png%appunti %0%d
+guardian %guardian%544%608%/Sprites/tiziomensasprite.png %0%d
+coin %1024%2208%/Sprites/coin.png%coin %0%d
+item %1280%1728%/Sprites/calculator.png%calcolatrice %0%d
+item %448%1024%/Sprites/note.png%appunti %0%d
 quest %0%tolc%calcolatrice%appunti%coin
-professor %Foggia%12%12%/Sprites/foggiasprite.png%tolc %0%d
+professor %Foggia%608%1152%/Sprites/foggiasprite.png%tolc %0%d
 distributor %896%864%vm1 %0%f
 distributor %928%864%vm2 %0%f
 distributor %960%864%vm3 %0%f

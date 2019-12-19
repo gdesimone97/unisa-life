@@ -25,8 +25,8 @@ class BlockWrapperFactory extends StorableCreator {
             
             StringTokenizer st = new StringTokenizer(s,StorableCreator.DELIMETER);
             BlockWrapper wp = new BlockWrapper( new Block( new Position( Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken()))), Integer.parseInt(st.nextToken()) );
-            System.out.println(wp.getBlock().getPosition());
-            System.out.println(wp.getIndex());
+            //System.out.println(wp.getBlock().getPosition());
+            //System.out.println(wp.getIndex());
             return wp;
             
             

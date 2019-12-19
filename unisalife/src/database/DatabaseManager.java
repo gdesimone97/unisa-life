@@ -20,8 +20,12 @@ import game.Interfaces.Initializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.dizitart.no2.Cursor;
 import org.dizitart.no2.Document;
 import org.dizitart.no2.Index;
+import org.dizitart.no2.NitriteCollection;
 import org.dizitart.no2.filters.Filters;
 import org.dizitart.no2.objects.ObjectRepository;
 import org.dizitart.no2.objects.filters.ObjectFilters;
@@ -131,11 +135,16 @@ public class DatabaseManager implements Initializable {
     }
 
     private int findMap(String id, String collection) {
-        return Integer.parseInt(db.getNitriteDatabase()
-                .getCollection(collection)
-                .find(eq("IDOBJ", id))
-                .firstOrDefault()
-                .get("IDMAP", String.class));
+
+        NitriteCollection coll = db.getNitriteDatabase().getCollection(collection);
+        Cursor find = null;
+        try {
+            find = coll.find(eq("IDOBJ", id));
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        return Integer.parseInt(find.firstOrDefault().get("IDMAP", String.class));
     }
 
     public Map[] getMaps() throws ObjectNotFoundException, ClassNotFoundException {
@@ -144,9 +153,15 @@ public class DatabaseManager implements Initializable {
         int mapNum = res.size();
         Map[] maps = new Map[mapNum];
 
+        ConcurrentHashMap<Position, GameObject>[] dynamics;
+        try {
+            dynamics = this.getObjectsFromLevel(0);
+        } catch (ErrorWhileSavingException ex) {
+            throw new ObjectNotFoundException();
+        }
+
         for (TileMap tilemap : res) {
             ConcurrentHashMap<Position, GameObject> fixed = new ConcurrentHashMap<>();
-            ConcurrentHashMap<Position, GameObject> dyn = new ConcurrentHashMap<>();
 
             String id = String.valueOf(tilemap.getId());
 
@@ -155,7 +170,6 @@ public class DatabaseManager implements Initializable {
             for (Document d : c) {
                 String idobj = (String) d.get("IDOBJ");
                 String classobj = (String) d.get("CLASSOBJ");
-                System.out.println(classobj + "\n" + Class.forName(classobj));
                 ObjectRepository repo = db.getNitriteDatabase().getRepository(Class.forName(classobj));
                 Index i = (Index) repo.listIndices().toArray()[0];
                 GameObject o = (GameObject) repo.find(eq(i.getField(), idobj)).firstOrDefault();
@@ -167,8 +181,11 @@ public class DatabaseManager implements Initializable {
                 Block b = bw.getBlock();
                 fixed.put(b.getScaledPosition(), b);
             }
-            maps[tilemap.getId()] = new Map(tilemap, new ObjectManager(fixed, dyn));
+            int index = tilemap.getId();
+            maps[index] = new Map(tilemap, new ObjectManager(fixed, dynamics[index]));
         }
+
+        // inserire anche gli oggetti dinamici del livello zero per testare
         return maps;
     }
 

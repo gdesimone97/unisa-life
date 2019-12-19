@@ -70,7 +70,12 @@ public class DatabaseManagerTest {
         DatabaseManager instance = DatabaseManager.getDatabaseManager();
         int expResult = 1;
         List<Quest> q = instance.getQuestsFromLevel(level);
-        System.out.println(q);
+        for(Quest quest: q){
+            System.out.println(quest.getIndex());
+            for(String s: quest.getItemList()){
+                System.out.println(s);
+            }
+        }
         int result = q.size();
         assertEquals(expResult, result);
     }
