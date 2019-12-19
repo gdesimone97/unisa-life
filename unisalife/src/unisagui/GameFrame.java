@@ -1,11 +1,10 @@
 package unisagui;
 
-import java.awt.Frame;
 import java.awt.event.KeyEvent;
 import javax.swing.SwingUtilities;
-import game.GameResources.*;
 import gameSystem.GameManager;
 import java.awt.Dialog;
+import saving.SaveManager;
 import sound.JukeBoxMusic;
 import sound.JukeBoxSound;
 
@@ -1832,6 +1831,11 @@ public class GameFrame extends javax.swing.JFrame {
         setUndecorated(true);
         setResizable(false);
         setSize(new java.awt.Dimension(600, 750));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
         addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 formKeyPressed(evt);
@@ -1991,7 +1995,7 @@ public class GameFrame extends javax.swing.JFrame {
         RightBorderLayout.setHorizontalGroup(
             RightBorderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RightBorderLayout.createSequentialGroup()
-                .addGap(0, 26, Short.MAX_VALUE)
+                .addGap(0, 25, Short.MAX_VALUE)
                 .addComponent(GameCloseButton))
         );
         RightBorderLayout.setVerticalGroup(
@@ -2103,6 +2107,20 @@ public class GameFrame extends javax.swing.JFrame {
     private void ResumeGameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ResumeGameButtonActionPerformed
         SwingUtilities.invokeLater(() -> sound.play("menu"));
         SwingUtilities.invokeLater(() -> music.play("game_music"));
+        SwingUtilities.invokeLater(() -> {
+            try {
+                synchronized(GameManager.getInstance()){
+                GameManager.getInstance().initGame();
+                GameManager.getInstance().startGame(1, "ciao");
+                GameManager.getInstance().wait();
+                SaveManager.getSaveManager().load();
+                SwingUtilities.invokeLater(() -> this.setVisible(true));
+                SwingUtilities.invokeLater(() -> this.setEnabled(true));
+                }
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        });
     }//GEN-LAST:event_ResumeGameButtonActionPerformed
 
     private void ReturnToMainMenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReturnToMainMenuButtonActionPerformed
@@ -2370,8 +2388,9 @@ public class GameFrame extends javax.swing.JFrame {
             MusicButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/MUSIC.png")));
             SwingUtilities.invokeLater(() -> music.setIsActive(true));
 
-            if(GameManager.getInstance().isRunning())
-            SwingUtilities.invokeLater(() -> music.play("game_music"));
+            if (GameManager.getInstance().isRunning()) {
+                SwingUtilities.invokeLater(() -> music.play("game_music"));
+            }
         }
     }//GEN-LAST:event_MusicButtonActionPerformed
 
@@ -2389,6 +2408,13 @@ public class GameFrame extends javax.swing.JFrame {
     private void CreditsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreditsButtonActionPerformed
         SwingUtilities.invokeLater(() -> sound.play("menu"));
     }//GEN-LAST:event_CreditsButtonActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        SaveManager save = SaveManager.getSaveManager();
+        if (save.isSaveSomething()) {
+            SwingUtilities.invokeLater(() -> ResumeGameButton.setEnabled(true));
+        }
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
