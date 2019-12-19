@@ -13,6 +13,7 @@ import game.GameObjects.Item;
 import game.GameObjects.Professor;
 import game.GameResources.Map;
 import game.GameResources.TileMap;
+import game.Interfaces.Initializable;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -27,7 +28,7 @@ import quests.quest.Quest;
  *
  * @author alfon
  */
-public class DatabaseManager {
+public class DatabaseManager implements Initializable{
 
     private static DatabaseManager instance = null;
     private Database db;
@@ -80,15 +81,14 @@ public class DatabaseManager {
 
     /**
      * Method to obtain all the objects for a particular level of the game. This
-     * includes items and professors. All the constant objects are added (like
-     * cook, vending machines ecc).
+     * includes items and professors.
      *
      * @param level
-     * @return a list of those objects (instances)
+     * @return a map of those objects (instances)
      * @throws ObjectNotFoundException
      */
-    public HashMap<Position, GameObject> getObjectsFromLevel(int level) throws ObjectNotFoundException {
-        HashMap<Position, GameObject> returnMap = new HashMap<>();
+    public ConcurrentHashMap<Position, GameObject> getObjectsFromLevel(int level) throws ObjectNotFoundException {
+        ConcurrentHashMap<Position, GameObject> returnMap = new ConcurrentHashMap<>();
         List<Quest> questList = this.getQuestsFromLevel(level);
         for (Quest q : questList) {
             Subject questSubject = q.getSubject();
@@ -127,10 +127,6 @@ public class DatabaseManager {
     private List<TileMap> getTileMaps() {
         List<TileMap> res = db.getNitriteDatabase().getRepository(TileMap.class).find(ObjectFilters.ALL).toList();
         return res;
-    }
-
-    private List<Block> getBlocks() {
-        return null;
     }
 
     private Item findItem(String itemName) throws ObjectNotFoundException {
@@ -200,5 +196,10 @@ public class DatabaseManager {
      */
     public void clearDatabase() {
         this.db.clear();
+    }
+
+    @Override
+    public void init() {
+        
     }
 }

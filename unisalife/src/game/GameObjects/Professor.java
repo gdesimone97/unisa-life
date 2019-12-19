@@ -17,7 +17,7 @@ import org.dizitart.no2.objects.Indices;
  * @author Giuseppe De Simone
  */
 @Indices({
-    @Index(value = "subject.subject", type = IndexType.NonUnique)
+    @Index(value = "subject.subject", type = IndexType.Unique)
 })
 public class Professor extends Person implements Information {
 

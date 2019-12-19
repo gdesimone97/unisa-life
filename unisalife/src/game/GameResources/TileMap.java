@@ -9,6 +9,7 @@ package game.GameResources;
  *
  * @author simon
  */
+import database.Storable;
 import gameSystem.Game;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
@@ -23,7 +24,7 @@ import org.dizitart.no2.objects.Id;
  *
  * @author simon
  */
-public class TileMap implements Serializable {
+public class TileMap implements Serializable, Storable {
 
     @Id
     private int mapid;

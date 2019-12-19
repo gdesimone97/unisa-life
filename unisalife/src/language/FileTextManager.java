@@ -5,6 +5,7 @@
  */
 package language;
 
+import game.Interfaces.Initializable.InitException;
 import language.exceptions.FileTextManagerException;
 import java.util.List;
 import java.util.Set;
@@ -32,7 +33,7 @@ public class FileTextManager extends TextManager {
         }
     }
 
-    private FileTextManager() throws FileLanguageManagerException, FileNotSetException, InvalidFileNameException, TextFinderException{
+    private FileTextManager() throws FileLanguageManagerException, FileNotSetException, InvalidFileNameException, TextFinderException {
         super();
         fileLanguageManager = FileLanguageManager.getLanguageManager();
         String currentLang = fileLanguageManager.getCurrentLanguage();
@@ -46,9 +47,9 @@ public class FileTextManager extends TextManager {
      * @return the FileTextManager
      * @throws FileTextManagerException
      */
-    public synchronized static FileTextManager getFileTextManager() throws FileTextManagerException {
+    public synchronized static FileTextManager getFileTextManager() throws InitException {
         if (instance == null) {
-            throw new FileTextManagerException();
+            throw new InitException("Text Manager not created");
         }
         return instance;
     }
