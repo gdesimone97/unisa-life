@@ -5,13 +5,13 @@
  */
 
 package exam.booklet;
+import game.Interfaces.Initializable;
 import java.io.Serializable;
 import java.util.HashMap;
 import quests.QuestsManagerSingleton;
 import quests.mediator.*;
 import quests.quest.QuestsSingleton;
 import saving.Saveable;
-import saving.exceptions.LoadingException;
 /**
  * This class is used due to the necessity of have a booklet for our
  * character.
@@ -24,18 +24,13 @@ import saving.exceptions.LoadingException;
  * @author liovi
  */
 
-public class BookletSingleton extends User implements Serializable,Saveable {
+public class Booklet extends User implements Serializable,Saveable,Initializable {
     
-    private static BookletSingleton instance = null;
+    private static Booklet instance = null;
     private HashMap<String,Subject> booklet;
     
-    private BookletSingleton(){
+    private Booklet(){
         super();
-        super.name = "booklet";
-        super.mediator = QuestsManagerSingleton.getInstance();
-        mediator.addUser(this);
-
-        this.booklet = new HashMap<>();
         }
     
 
@@ -75,17 +70,17 @@ public class BookletSingleton extends User implements Serializable,Saveable {
     }
     
     /**
-     * If an instance of the class BookletSingleton is not instanciated
+     * If an instance of the class Booklet is not instanciated
      * create a reference for it and returns it. At every request after
      * the first instantiation returns the same instance.
      * 
-     * @return instance of the class BookletSingleton
+     * @return instance of the class Booklet
      */
-    public static BookletSingleton getInstance(){
+    public static Booklet getInstance(){
         if (instance == null)
-            synchronized (BookletSingleton.class){
+            synchronized (Booklet.class){
                 if(instance == null)
-                    instance = new BookletSingleton();
+                    instance = new Booklet();
             }
         return instance;
     }
@@ -124,5 +119,14 @@ public class BookletSingleton extends User implements Serializable,Saveable {
      */
     @Override
     public void receive(Message mess) {}
+
+    @Override
+    public void init() {
+        super.name = "booklet";
+        super.mediator = QuestsManagerSingleton.getInstance();
+        mediator.addUser(this);
+
+        this.booklet = new HashMap<>();
+    }
     
 }

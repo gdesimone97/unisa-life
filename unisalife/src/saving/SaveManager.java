@@ -7,7 +7,7 @@ package saving;
 
 import character.StatusManager;
 import saving.exceptions.*;
-import exam.booklet.BookletSingleton;
+import exam.booklet.Booklet;
 import game.GameObjects.GameInventorySingleton;
 import game.GameObjects.Player;
 import java.io.File;
@@ -41,7 +41,7 @@ public class SaveManager {
 
     private SaveManager() { // da completare quando abbiamo tutte le classi da salvare
         saveableComponents.add(TextManagerAdapter.getTextManagerAdpter());
-        saveableComponents.add(BookletSingleton.getInstance());
+        saveableComponents.add(Booklet.getInstance());
         saveableComponents.add(Player.getIstance());
         saveableComponents.add(StatusManager.getInstance());
         saveableComponents.add(GameInventorySingleton.getInstance());

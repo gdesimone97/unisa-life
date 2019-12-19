@@ -9,7 +9,6 @@ import database.Storable;
 import java.io.Serializable;
 import java.util.Objects;
 import language.Information;
-import saving.Saveable;
 
 /**
  * This class is used to give a structure for storing a score of an exam and its
@@ -17,7 +16,7 @@ import saving.Saveable;
  *
  * @author liovi
  */
-public class Subject implements Information, Serializable, Saveable, Comparable, Storable {
+public class Subject implements Information, Serializable, Comparable, Storable {
 
     private int score;
     private String subject;
@@ -25,6 +24,7 @@ public class Subject implements Information, Serializable, Saveable, Comparable,
 
     /**
      * Constructor that instantiates the object and sets it as available
+     * @param subject 
      */
     public Subject(String subject) {
         this.subject = subject;
@@ -105,16 +105,6 @@ public class Subject implements Information, Serializable, Saveable, Comparable,
     @Override
     public String getInfo() {
         return subject;
-    }
-
-    @Override
-    public Serializable save() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void load(Serializable obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
