@@ -2100,6 +2100,7 @@ public class GameFrame extends javax.swing.JFrame {
 
     private void ResumeGameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ResumeGameButtonActionPerformed
         SwingUtilities.invokeLater(() -> sound.play("menu"));
+        SwingUtilities.invokeLater(() -> music.play("game_music"));
     }//GEN-LAST:event_ResumeGameButtonActionPerformed
 
     private void ReturnToMainMenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReturnToMainMenuButtonActionPerformed
@@ -2327,8 +2328,15 @@ public class GameFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_ConvDialogKeyReleased
 
     private void MusicButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MusicButtonActionPerformed
-        SwingUtilities.invokeLater(() -> JukeBoxSound.getInstance().play("menu"));
-        SwingUtilities.invokeLater(() -> JukeBoxMusic.setIsActive(!JukeBoxMusic.isActive()));
+        SwingUtilities.invokeLater(() -> sound.play("menu"));
+        if(JukeBoxMusic.isActive()){
+            SwingUtilities.invokeLater(() -> music.setIsActive(false));
+        }
+        else{
+            SwingUtilities.invokeLater(() -> music.setIsActive(true));
+            SwingUtilities.invokeLater(() -> music.play("game_music"));
+        }
+        
     }//GEN-LAST:event_MusicButtonActionPerformed
 
     private void MusicButtonStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_MusicButtonStateChanged
@@ -2336,7 +2344,7 @@ public class GameFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_MusicButtonStateChanged
 
     private void CreditsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreditsButtonActionPerformed
-        SwingUtilities.invokeLater(() -> JukeBoxSound.getInstance().play("menu"));
+        SwingUtilities.invokeLater(() -> sound.play("menu"));
     }//GEN-LAST:event_CreditsButtonActionPerformed
 
 

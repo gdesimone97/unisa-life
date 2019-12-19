@@ -50,12 +50,12 @@ import sound.JukeBoxSound;
     }
 
     /**
-     * This method close the ExamDialog
+     * This method close the ExamDialog and manage some audio settings
      */
     protected void closeExamDialog() {
         SwingUtilities.invokeLater(() -> gameframe.ExamDialog.setVisible(false));
-        SwingUtilities.invokeLater(() -> JukeBoxMusic.getInstance().play("game_music"));
         SwingUtilities.invokeLater(() -> JukeBoxMusic.getInstance().stop("exam"));
+        SwingUtilities.invokeLater(() -> JukeBoxMusic.getInstance().play("game_music"));
     }
 
     protected void setConfirm() {
@@ -198,11 +198,11 @@ import sound.JukeBoxSound;
      * put the right value of RESULT in the "setValue" method of ResultGui
      *
      * In this method all the methods useful for updating the interface relative
-     * to the exam are called
+     * to the exam are called and some audio settings are managed
      */
      protected void showExamDialog(String examName, String question, String answer1, String answer2, String answer3, String answer4, int time, ResultGui lock,int level) {
         this.level=level;
-        if (level ==1){
+        if (level ==1){ 
             SwingUtilities.invokeLater(() -> JukeBoxMusic.getInstance().stop("game_music"));
             SwingUtilities.invokeLater(() -> JukeBoxMusic.getInstance().play("exam"));
         }
