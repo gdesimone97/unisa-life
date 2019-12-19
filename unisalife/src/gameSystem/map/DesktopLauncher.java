@@ -14,6 +14,6 @@ public class DesktopLauncher {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 		config.width  = 500;
 		config.height = 500;
-		new LwjglApplication(new MappaMia("ModernTownMap.tmx"), config);
+		new LwjglApplication(new MappaMia("2TilesetMap.tmx"), config);
 	}
 }
