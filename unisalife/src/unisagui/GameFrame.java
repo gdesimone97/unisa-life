@@ -1130,7 +1130,7 @@ public class GameFrame extends javax.swing.JFrame {
         SettingsLayer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/SETTINGS AZZURRINO.png"))); // NOI18N
 
         SoundButton.setBackground(new java.awt.Color(93, 150, 199));
-        SoundButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/SOUND75.png"))); // NOI18N
+        SoundButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/SOUND.png"))); // NOI18N
         SoundButton.setToolTipText("");
         SoundButton.setBorder(null);
         SoundButton.addActionListener(new java.awt.event.ActionListener() {
@@ -1140,7 +1140,7 @@ public class GameFrame extends javax.swing.JFrame {
         });
 
         MusicButton.setBackground(new java.awt.Color(93, 150, 199));
-        MusicButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/MUSIC75.png"))); // NOI18N
+        MusicButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/MUSIC.png"))); // NOI18N
         MusicButton.setBorder(null);
         MusicButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2254,6 +2254,7 @@ public class GameFrame extends javax.swing.JFrame {
 
     private void SettingsButtonFrameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SettingsButtonFrameActionPerformed
         SwingUtilities.invokeLater(() -> SettingsDialog.setVisible(true));
+        
         //Chiamata a simone che mette il gioco in not game state
     }//GEN-LAST:event_SettingsButtonFrameActionPerformed
 
@@ -2350,20 +2351,25 @@ public class GameFrame extends javax.swing.JFrame {
     private void MusicButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MusicButtonActionPerformed
         SwingUtilities.invokeLater(() -> sound.play("menu"));
         if(JukeBoxMusic.isActive()){
+            MusicButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/NOMUSIC.png")));
             SwingUtilities.invokeLater(() -> music.setIsActive(false));
         }
         else{
+            MusicButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/MUSIC.png")));
             SwingUtilities.invokeLater(() -> music.setIsActive(true));
-            SwingUtilities.invokeLater(() -> music.play("game_music"));
+            //if(GameManager.getInstance().isRunning())
+                SwingUtilities.invokeLater(() -> music.play("game_music"));
         }
     }//GEN-LAST:event_MusicButtonActionPerformed
 
     private void SoundButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SoundButtonActionPerformed
         SwingUtilities.invokeLater(() -> sound.play("menu"));
         if(JukeBoxSound.isActive()){
-        SwingUtilities.invokeLater(() -> sound.setIsActive(false));
+            SoundButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/NOSOUND.png")));
+            SwingUtilities.invokeLater(() -> sound.setIsActive(false));
         }
         else{
+            SoundButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/SOUND.png")));
             SwingUtilities.invokeLater(() -> sound.setIsActive(true));
         }
     }//GEN-LAST:event_SoundButtonActionPerformed

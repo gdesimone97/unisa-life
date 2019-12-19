@@ -13,5 +13,7 @@ wrong
 book
 /Sound/Biblioteque.mp3
 open_door
-/Sound/open_door.mp3
+/Sound/Open_door.mp3
+exam_passed
+/Sound/Exam_passed.mp3
 
