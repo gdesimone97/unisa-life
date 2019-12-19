@@ -75,7 +75,7 @@ public abstract class FileTextFinder implements TextFinder {
      * @return an istance of the CacheFileTextFinder
      */
     public synchronized static FileTextFinder getFileTextFinder(String fileName) throws TextFinderException, FileNotSetException, InvalidFileNameException {
-        FileTextFinder.setFileName(fileName);
+        FileTextFinder.setFileName(fileName);      
         return CacheFileTextFinder.getCacheFileTextFinder();
     }
 

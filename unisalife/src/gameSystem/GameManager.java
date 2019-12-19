@@ -67,7 +67,7 @@ public class GameManager {
         new Thread(() -> {
             try {
                 Thread.sleep(100);
-                
+
                 // just set Loading state
                 player = Player.getIstance();
                 camera = new Camera(0, 0, player);
@@ -75,7 +75,7 @@ public class GameManager {
                 SaveManager.getSaveManager().load();
 
                 Thread.sleep(500);
-                
+
                 GameStateManager.getInstance().setState(PlayState.getInstance());
             } catch (Exception ex) {
             }
@@ -106,7 +106,7 @@ public class GameManager {
         new Thread(() -> {
             try {
                 Thread.sleep(100);
-                
+
                 StatusManager.getInstance().init();
                 Player.getIstance().initialize(skin, Name);
                 MapManager.getInstance();
@@ -114,14 +114,13 @@ public class GameManager {
                 QuestsManagerSingleton.getInstance();
                 QuestsSingleton.getInstance();
                 GameInventorySingleton.getInstance();
-                FileTextManager.getFileTextManager().setLanguage("eng");
+                FileTextManager.getFileTextManager().init();
 
                 Thread.sleep(500);
-                
+
                 GameStateManager.getInstance().setState(PlayState.getInstance());
             } catch (InitException ex) {
             } catch (InterruptedException ex) {
-            } catch (LanguageSelectedNotAvailableException ex) {
             }
         }).start();
     }
@@ -131,26 +130,25 @@ public class GameManager {
      */
     public void stopGame() {
         // call an autosave method
-        
+
         game.stopGame();
     }
 
     /**
-     * 
+     *
      * @return an instance of the camera present in the game
      */
     public Camera getCamera() {
         return camera;
     }
-    
-    
-    /** 
+
+    /**
      * main method just calls a start method on the GuiManager
-     * @param args 
+     *
+     * @param args
      */
     public static void main(String[] args) {
         GuiManager.getInstance().startGame();
     }
-    
-    
+
 }

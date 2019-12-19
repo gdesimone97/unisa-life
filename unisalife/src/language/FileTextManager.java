@@ -5,6 +5,7 @@
  */
 package language;
 
+import game.Interfaces.Initializable;
 import game.Interfaces.Initializable.InitException;
 import language.exceptions.FileTextManagerException;
 import java.util.List;
@@ -18,7 +19,7 @@ import language.exceptions.*;
  *
  * @author Giuseppe De Simone
  */
-public class FileTextManager extends TextManager {
+public class FileTextManager extends TextManager implements Initializable {
 
     private static FileTextManager instance;
     private FileLanguageManager fileLanguageManager;
@@ -97,6 +98,17 @@ public class FileTextManager extends TextManager {
     @Override
     public List<String> getString(Information obj) throws StringNotFoundException, TextFinderException {
         return fileTextFinder.getString(obj);
+    }
+
+    @Override
+    public void init() throws InitException {
+        if (getCurrentLanguage().equals("")) {
+            try {
+                setLanguage("eng");
+            } catch (LanguageSelectedNotAvailableException ex) {
+                throw new InitException("errore caricamento lingua");
+            }
+        }
     }
 
 }
