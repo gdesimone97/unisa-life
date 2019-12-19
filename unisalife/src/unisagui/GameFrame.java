@@ -1,4 +1,3 @@
-
 package unisagui;
 
 import java.awt.Frame;
@@ -19,14 +18,12 @@ public class GameFrame extends javax.swing.JFrame {
     /**
      * Creates new form GameFrame
      */
-
     private static GameFrame instance;
-    private final static String EMPTY_TEXT="";
+    private final static String EMPTY_TEXT = "";
     private String name = "";
     private int avatar = 0;
-       private static JukeBoxSound sound = JukeBoxSound.getInstance();
+    private static JukeBoxSound sound = JukeBoxSound.getInstance();
     private static JukeBoxMusic music = JukeBoxMusic.getInstance();
-
 
     private GameFrame() {
         initComponents();
@@ -34,33 +31,33 @@ public class GameFrame extends javax.swing.JFrame {
         settingLocations(this);
         initialSettings(this);
 
-
     }
 
-    public static synchronized GameFrame getInstance(){
-        if (instance == null)
+    public static synchronized GameFrame getInstance() {
+        if (instance == null) {
             instance = new GameFrame();
+        }
         return instance;
     }
 
-    private void initialSettings(GameFrame instance){
-        SwingUtilities.invokeLater(() ->instance.setVisible(true));
-        SwingUtilities.invokeLater(() ->MainMenuDialog.isAlwaysOnTop());
-        SwingUtilities.invokeLater(() ->MainMenuDialog.setVisible(true));
+    private void initialSettings(GameFrame instance) {
+        SwingUtilities.invokeLater(() -> instance.setVisible(true));
+        SwingUtilities.invokeLater(() -> MainMenuDialog.isAlwaysOnTop());
+        SwingUtilities.invokeLater(() -> MainMenuDialog.setVisible(true));
         //SwingUtilities.invokeLater(() ->instance.setState(Frame.ICONIFIED));
         //SwingUtilities.invokeLater(() ->instance.setVisible(false));
-        SwingUtilities.invokeLater(() ->instance.validate());
-        
-    }
-    
-    private void settingAvatarButton(){
-        SwingUtilities.invokeLater(() ->MaleWhiteButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/man75.png"))));
-        SwingUtilities.invokeLater(() ->FemaleWhiteButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/woman75.png"))));
-        SwingUtilities.invokeLater(() ->FemaleBlackButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/BLACKman75.png"))));
-        SwingUtilities.invokeLater(() ->MaleBlackButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/BLACKwoman75.png"))));
+        SwingUtilities.invokeLater(() -> instance.validate());
+
     }
 
-    private void undecoratingDialogs(){
+    private void settingAvatarButton() {
+        SwingUtilities.invokeLater(() -> MaleWhiteButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/man75.png"))));
+        SwingUtilities.invokeLater(() -> FemaleWhiteButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/woman75.png"))));
+        SwingUtilities.invokeLater(() -> FemaleBlackButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/BLACKman75.png"))));
+        SwingUtilities.invokeLater(() -> MaleBlackButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/BLACKwoman75.png"))));
+    }
+
+    private void undecoratingDialogs() {
         SwingUtilities.invokeLater(() -> MainMenuDialog.setUndecorated(true));
         SwingUtilities.invokeLater(() -> SettingsDialog.setUndecorated(true));
         SwingUtilities.invokeLater(() -> RequestDialog.setUndecorated(true));
@@ -76,19 +73,19 @@ public class GameFrame extends javax.swing.JFrame {
         SwingUtilities.invokeLater(() -> QuestDialog.setUndecorated(true));
     }
 
-    private void settingLocations(GameFrame instance){
-        SwingUtilities.invokeLater(() ->MainMenuDialog.setLocation(instance.getLocation()));
-        SwingUtilities.invokeLater(() ->SettingsDialog.setLocation(instance.getLocation()));
-        SwingUtilities.invokeLater(() ->RequestDialog.setLocation(instance.getLocation().x+105, instance.getLocation().y+250));
-        SwingUtilities.invokeLater(() ->ExamDialog.setLocation(instance.getLocation().x+50, instance.getLocation().y+75));
-        SwingUtilities.invokeLater(() ->AvatarChooserDialog.setLocation(instance.getLocation()));
-        SwingUtilities.invokeLater(() ->InventoryDialog.setLocation(instance.getLocation()));
-        SwingUtilities.invokeLater(() ->HintDialog.setLocation(instance.getLocation().x+200, instance.getLocation().y+275));
-        SwingUtilities.invokeLater(() ->ConvDialog.setLocation(instance.getLocation().x+75, instance.getLocation().y+450));
-        SwingUtilities.invokeLater(() ->QuestDialog.setLocation(instance.getLocation().x+90, instance.getLocation().y+125));
+    private void settingLocations(GameFrame instance) {
+        SwingUtilities.invokeLater(() -> MainMenuDialog.setLocation(instance.getLocation()));
+        SwingUtilities.invokeLater(() -> SettingsDialog.setLocation(instance.getLocation()));
+        SwingUtilities.invokeLater(() -> RequestDialog.setLocation(instance.getLocation().x + 105, instance.getLocation().y + 250));
+        SwingUtilities.invokeLater(() -> ExamDialog.setLocation(instance.getLocation().x + 50, instance.getLocation().y + 75));
+        SwingUtilities.invokeLater(() -> AvatarChooserDialog.setLocation(instance.getLocation()));
+        SwingUtilities.invokeLater(() -> InventoryDialog.setLocation(instance.getLocation()));
+        SwingUtilities.invokeLater(() -> HintDialog.setLocation(instance.getLocation().x + 200, instance.getLocation().y + 275));
+        SwingUtilities.invokeLater(() -> ConvDialog.setLocation(instance.getLocation().x + 75, instance.getLocation().y + 450));
+        SwingUtilities.invokeLater(() -> QuestDialog.setLocation(instance.getLocation().x + 90, instance.getLocation().y + 125));
     }
 
-    protected void settingLanguage(String s) throws Exception{
+    protected void settingLanguage(String s) throws Exception {
         //in cui verranno settati testi e cazzi e mazzi nella lingua scelta
     }
 
@@ -2077,7 +2074,7 @@ public class GameFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ConfirmAnswerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfirmAnswerActionPerformed
-         ExamManager.getInstance().setConfirm();
+        ExamManager.getInstance().setConfirm();
     }//GEN-LAST:event_ConfirmAnswerActionPerformed
 
     private void AudioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AudioButtonActionPerformed
@@ -2117,9 +2114,9 @@ public class GameFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_ReturnToMainMenuButtonActionPerformed
 
     private void YesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_YesButtonActionPerformed
-       SwingUtilities.invokeLater(() -> RequestManager.setRESULT(true));
-       SwingUtilities.invokeLater(() -> RequestDialog.setVisible(false));
-       SwingUtilities.invokeLater(() -> RequestDialog.setFocusable(false));
+        SwingUtilities.invokeLater(() -> RequestManager.setRESULT(true));
+        SwingUtilities.invokeLater(() -> RequestDialog.setVisible(false));
+        SwingUtilities.invokeLater(() -> RequestDialog.setFocusable(false));
     }//GEN-LAST:event_YesButtonActionPerformed
 
     private void AvatarNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AvatarNameActionPerformed
@@ -2127,11 +2124,12 @@ public class GameFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_AvatarNameActionPerformed
 
     private void FemaleWhiteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FemaleWhiteButtonActionPerformed
-        SwingUtilities.invokeLater(() ->FemaleWhiteButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/woman75pressed.png")))); 
+        SwingUtilities.invokeLater(() -> settingAvatarButton());
+        SwingUtilities.invokeLater(() -> FemaleWhiteButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/woman75pressed.png"))));
         SwingUtilities.invokeLater(() -> sound.play("menu"));
-         SwingUtilities.invokeLater(() ->StudentLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/woman75.png"))));
-         SwingUtilities.invokeLater(() ->AvatarOkButton.setEnabled(true));
-         SwingUtilities.invokeLater(() ->avatar=1);
+        SwingUtilities.invokeLater(() -> StudentLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/woman75.png"))));
+        SwingUtilities.invokeLater(() -> AvatarOkButton.setEnabled(true));
+        SwingUtilities.invokeLater(() -> avatar = 1);
     }//GEN-LAST:event_FemaleWhiteButtonActionPerformed
 
     private void ExitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitButtonActionPerformed
@@ -2148,14 +2146,14 @@ public class GameFrame extends javax.swing.JFrame {
 
     private void AvatarOkButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AvatarOkButtonActionPerformed
         name = AvatarName.getText();
-        if(!name.equals("")){
+        if (!name.equals("")) {
             SwingUtilities.invokeLater(() -> AvatarChooserDialog.setVisible(false));
             SwingUtilities.invokeLater(() -> this.setVisible(true));
             SwingUtilities.invokeLater(() -> this.setEnabled(true));
-            GameManager.getInstance().startGame(avatar,name);
+            GameManager.getInstance().startGame(avatar, name);
             SwingUtilities.invokeLater(() -> music.play("game_music"));
-        }
-        else return;
+        } else
+            return;
     }//GEN-LAST:event_AvatarOkButtonActionPerformed
 
     private void LanguageComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LanguageComboBoxActionPerformed
@@ -2163,7 +2161,7 @@ public class GameFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_LanguageComboBoxActionPerformed
 
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_ESCAPE){
+        if (evt.getKeyCode() == KeyEvent.VK_ESCAPE) {
             SwingUtilities.invokeLater(() -> SettingsDialog.setVisible(true));
         }
 
@@ -2171,10 +2169,10 @@ public class GameFrame extends javax.swing.JFrame {
 
     private void MainMenuDialogComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_MainMenuDialogComponentShown
 
-        if (MainMenuDialog.isVisible()){
-           //SwingUtilities.invokeLater(() ->this.validate());
-           //SwingUtilities.invokeLater(() -> this.invalidate());
-           SwingUtilities.invokeLater(() -> this.setVisible(false));
+        if (MainMenuDialog.isVisible()) {
+            //SwingUtilities.invokeLater(() ->this.validate());
+            //SwingUtilities.invokeLater(() -> this.invalidate());
+            SwingUtilities.invokeLater(() -> this.setVisible(false));
 
         }
     }//GEN-LAST:event_MainMenuDialogComponentShown
@@ -2182,7 +2180,6 @@ public class GameFrame extends javax.swing.JFrame {
     private void FirstAnswerMouseClicked(java.awt.event.MouseEvent evt) {
         ExamManager.getInstance().setRESULT(1);
         SwingUtilities.invokeLater(() -> ConfirmAnswer.setEnabled(true));
-
 
     }
 
@@ -2197,8 +2194,8 @@ public class GameFrame extends javax.swing.JFrame {
     }
 
     private void FourthAnswerMouseClicked(java.awt.event.MouseEvent evt) {
-      ExamManager.getInstance().setRESULT(4);
-      SwingUtilities.invokeLater(() -> ConfirmAnswer.setEnabled(true));
+        ExamManager.getInstance().setRESULT(4);
+        SwingUtilities.invokeLater(() -> ConfirmAnswer.setEnabled(true));
     }
 
     private void AvatarOkButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AvatarOkButtonMouseClicked
@@ -2215,11 +2212,11 @@ public class GameFrame extends javax.swing.JFrame {
             SwingUtilities.invokeLater(() -> ConversationTextArea.setText(EMPTY_TEXT));
             SwingUtilities.invokeLater(() -> ConvDialog.setFocusable(false));
         }
-        */
+         */
     }//GEN-LAST:event_ConvDialogKeyPressed
 
     private void HintDialogKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_HintDialogKeyTyped
-        if(evt.getKeyCode()==KeyEvent.VK_SPACE){
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
             SwingUtilities.invokeLater(() -> HintDialog.setVisible(false));
             SwingUtilities.invokeLater(() -> HintTextArea.setText(EMPTY_TEXT));
             SwingUtilities.invokeLater(() -> HintDialog.setFocusable(false));
@@ -2228,7 +2225,7 @@ public class GameFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_HintDialogKeyTyped
 
     private void ConvDialogKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ConvDialogKeyTyped
-        if(evt.getKeyCode()==KeyEvent.VK_SPACE){
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
             SwingUtilities.invokeLater(() -> ConvDialog.setVisible(false));
             SwingUtilities.invokeLater(() -> ConversationTextArea.setText(EMPTY_TEXT));
             SwingUtilities.invokeLater(() -> ConvDialog.setFocusable(false));
@@ -2243,7 +2240,7 @@ public class GameFrame extends javax.swing.JFrame {
             SwingUtilities.invokeLater(() -> HintDialog.setFocusable(false));
             //SwingUtilities.invokeLater(() -> this.setEnabled(true));
         }
-        */
+         */
     }//GEN-LAST:event_HintDialogKeyPressed
 
     private void NoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NoButtonActionPerformed
@@ -2253,15 +2250,15 @@ public class GameFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_NoButtonActionPerformed
 
     private void QuestListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_QuestListValueChanged
-        if(QuestList.getSelectedIndex()==0)
+        if (QuestList.getSelectedIndex() == 0)
             SwingUtilities.invokeLater(() -> QuestTextArea.setText("Collect your first dollar!\nKeep your eyes open,\nyou'll find others around\n the campus."));
-        else if(QuestList.getSelectedIndex()==1)
+        else if (QuestList.getSelectedIndex() == 1)
             SwingUtilities.invokeLater(() -> QuestTextArea.setText("Ouch! It's time to get\nAnalisi 1 Exam!\nGo find a calculator."));
     }//GEN-LAST:event_QuestListValueChanged
 
     private void SettingsButtonFrameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SettingsButtonFrameActionPerformed
         SwingUtilities.invokeLater(() -> SettingsDialog.setVisible(true));
-        
+
         //Chiamata a simone che mette il gioco in not game state
     }//GEN-LAST:event_SettingsButtonFrameActionPerformed
 
@@ -2281,28 +2278,31 @@ public class GameFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_QuestButtonFrameActionPerformed
 
     private void MaleWhiteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MaleWhiteButtonActionPerformed
-         SwingUtilities.invokeLater(() ->MaleWhiteButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/man75pressed.png"))));
-        SwingUtilities.invokeLater(() ->StudentLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/man75.png"))));
-         SwingUtilities.invokeLater(() -> sound.play("menu"));
-         SwingUtilities.invokeLater(() ->AvatarOkButton.setEnabled(true));
-         SwingUtilities.invokeLater(() ->avatar=0);
+        SwingUtilities.invokeLater(() -> settingAvatarButton());
+        SwingUtilities.invokeLater(() -> MaleWhiteButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/man75pressed.png"))));
+        SwingUtilities.invokeLater(() -> StudentLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/man75.png"))));
+        SwingUtilities.invokeLater(() -> sound.play("menu"));
+        SwingUtilities.invokeLater(() -> AvatarOkButton.setEnabled(true));
+        SwingUtilities.invokeLater(() -> avatar = 0);
 
     }//GEN-LAST:event_MaleWhiteButtonActionPerformed
 
     private void FemaleBlackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FemaleBlackButtonActionPerformed
-        SwingUtilities.invokeLater(() ->FemaleBlackButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/BLACKwoman75pressed.png"))));
-        SwingUtilities.invokeLater(() ->StudentLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/BLACKwoman75.png"))));
+        SwingUtilities.invokeLater(() -> settingAvatarButton());
+        SwingUtilities.invokeLater(() -> FemaleBlackButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/BLACKwoman75pressed.png"))));
+        SwingUtilities.invokeLater(() -> StudentLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/BLACKwoman75.png"))));
         SwingUtilities.invokeLater(() -> sound.play("menu"));
-         SwingUtilities.invokeLater(() ->AvatarOkButton.setEnabled(true));
-         SwingUtilities.invokeLater(() ->avatar=3);
+        SwingUtilities.invokeLater(() -> AvatarOkButton.setEnabled(true));
+        SwingUtilities.invokeLater(() -> avatar = 3);
     }//GEN-LAST:event_FemaleBlackButtonActionPerformed
 
     private void MaleBlackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MaleBlackButtonActionPerformed
-        SwingUtilities.invokeLater(() ->MaleBlackButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/BLACKman75pressed.png"))));
-        SwingUtilities.invokeLater(() ->StudentLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/BLACKman75.png"))));
+        SwingUtilities.invokeLater(() -> settingAvatarButton());
+        SwingUtilities.invokeLater(() -> MaleBlackButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/BLACKman75pressed.png"))));
+        SwingUtilities.invokeLater(() -> StudentLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/BLACKman75.png"))));
         SwingUtilities.invokeLater(() -> sound.play("menu"));
-        SwingUtilities.invokeLater(() ->AvatarOkButton.setEnabled(true));
-        SwingUtilities.invokeLater(() ->avatar=2);
+        SwingUtilities.invokeLater(() -> AvatarOkButton.setEnabled(true));
+        SwingUtilities.invokeLater(() -> avatar = 2);
 
     }//GEN-LAST:event_MaleBlackButtonActionPerformed
 
@@ -2340,7 +2340,7 @@ public class GameFrame extends javax.swing.JFrame {
 
     private void HintDialogKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_HintDialogKeyReleased
         // TODO add your handling code here:
-        if(evt.getKeyCode()==KeyEvent.VK_SPACE){
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
             SwingUtilities.invokeLater(() -> HintDialog.setVisible(false));
             SwingUtilities.invokeLater(() -> HintTextArea.setText(EMPTY_TEXT));
             SwingUtilities.invokeLater(() -> HintDialog.setFocusable(false));
@@ -2350,7 +2350,7 @@ public class GameFrame extends javax.swing.JFrame {
 
     private void ConvDialogKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ConvDialogKeyReleased
         // TODO add your handling code here:
-        if(evt.getKeyCode()==KeyEvent.VK_SPACE){
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
             SwingUtilities.invokeLater(() -> ConvDialog.setVisible(false));
             SwingUtilities.invokeLater(() -> ConversationTextArea.setText(EMPTY_TEXT));
             SwingUtilities.invokeLater(() -> ConvDialog.setFocusable(false));
@@ -2360,25 +2360,23 @@ public class GameFrame extends javax.swing.JFrame {
 
     private void MusicButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MusicButtonActionPerformed
         SwingUtilities.invokeLater(() -> sound.play("menu"));
-        if(JukeBoxMusic.isActive()){
+        if (JukeBoxMusic.isActive()) {
             MusicButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/NOMUSIC.png")));
             SwingUtilities.invokeLater(() -> music.setIsActive(false));
-        }
-        else{
+        } else {
             MusicButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/MUSIC.png")));
             SwingUtilities.invokeLater(() -> music.setIsActive(true));
             //if(GameManager.getInstance().isRunning())
-                SwingUtilities.invokeLater(() -> music.play("game_music"));
+            SwingUtilities.invokeLater(() -> music.play("game_music"));
         }
     }//GEN-LAST:event_MusicButtonActionPerformed
 
     private void SoundButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SoundButtonActionPerformed
         SwingUtilities.invokeLater(() -> sound.play("menu"));
-        if(JukeBoxSound.isActive()){
+        if (JukeBoxSound.isActive()) {
             SoundButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/NOSOUND.png")));
             SwingUtilities.invokeLater(() -> sound.setIsActive(false));
-        }
-        else{
+        } else {
             SoundButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/SOUND.png")));
             SwingUtilities.invokeLater(() -> sound.setIsActive(true));
         }
@@ -2388,8 +2386,7 @@ public class GameFrame extends javax.swing.JFrame {
         SwingUtilities.invokeLater(() -> sound.play("menu"));
     }//GEN-LAST:event_CreditsButtonActionPerformed
 
-
-        /**
+    /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
