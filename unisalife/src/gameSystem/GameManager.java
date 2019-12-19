@@ -12,6 +12,8 @@ import game.GameObjects.GameInventory;
 import game.GameObjects.Player;
 import game.Interfaces.Initializable.InitException;
 import gameSystem.map.MapManager;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import language.FileTextManager;
 import quests.QuestsManager;
@@ -91,7 +93,10 @@ public class GameManager {
         player = Player.getIstance();
         camera = new Camera(0, 0, player);
 
-        GameStateManager.getInstance().init();
+        try {
+            GameStateManager.getInstance().init();
+        } catch (InitException ex) {
+        }
     }
 
     /**
@@ -109,9 +114,9 @@ public class GameManager {
                 MapManager.getInstance();
                 Booklet.getInstance();
 
-                QuestsManager.getInstance();
-                Quests.getInstance();
-                GameInventory.getInstance();
+                QuestsManager.getInstance().init();
+                Quests.getInstance().init();
+                GameInventory.getInstance().init();
                 FileTextManager.getFileTextManager().init();
                 JukeBoxMusic.getInstance();
                 JukeBoxSound.getInstance();

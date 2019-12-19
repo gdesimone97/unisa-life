@@ -27,7 +27,7 @@ import org.dizitart.no2.objects.Id;
 public class TileMap implements Serializable, Storable {
 
     @Id
-    private final int id;
+    private int id;
 
     // position
     private int x;
@@ -52,7 +52,7 @@ public class TileMap implements Serializable, Storable {
     private int height;
 
     // tileset
-    transient private BufferedImage tileset;
+    private BufferedImage tileset;
     private int numTilesOriz;
     private int numTilesVert;
     private Tile[][] tiles;
@@ -63,6 +63,10 @@ public class TileMap implements Serializable, Storable {
     private int numRowsToDraw;
     private int numColsToDraw;
 
+    private TileMap(){
+        
+    }
+    
     public TileMap(int id, int w, int h, String t, String m) {
         this.tileSize = Game.DIMENSIONSPRITE;
         numRowsToDraw = /*Game.WIDTHMAP / tileSize + 2;*/ w; //31

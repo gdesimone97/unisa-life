@@ -33,7 +33,7 @@ public class HudUpdater implements Runnable {
                 StatusManager.getInstance().updateStress(1);
             }
             else {
-                StatusManager.getInstance().updateStress(-100);
+                StatusManager.getInstance().updateStress(-1);
             }
             
             // Updating energy

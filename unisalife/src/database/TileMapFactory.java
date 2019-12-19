@@ -20,9 +20,8 @@ class TileMapFactory extends StorableCreator {
     public Storable create(String s) {
         
         try{
-            
             StringTokenizer st = new StringTokenizer(s, StorableCreator.DELIMETER);
-            TileMap tm = new TileMap(Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken()), st.nextToken(), st.nextToken());
+            TileMapWrapper tm = new TileMapWrapper(Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken()), st.nextToken(), st.nextToken());
             return tm;
             
         }catch( NumberFormatException | NoSuchElementException e ){

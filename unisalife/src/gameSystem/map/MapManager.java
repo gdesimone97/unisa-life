@@ -80,7 +80,7 @@ public class MapManager implements Initializable {
         }
     }
     
-    public void addDynamicObjects() {
+    private void addDynamicObjects() {
         
     }
 }

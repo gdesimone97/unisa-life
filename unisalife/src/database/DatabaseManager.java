@@ -172,8 +172,12 @@ public class DatabaseManager implements Initializable {
     }
 
     private List<TileMap> getTileMaps() {
-        List<TileMap> res = db.getNitriteDatabase().getRepository(TileMap.class).find(ObjectFilters.ALL).toList();
-        return res;
+        List<TileMapWrapper> res = db.getNitriteDatabase().getRepository(TileMapWrapper.class).find(ObjectFilters.ALL).toList();
+        List<TileMap> returnList = new ArrayList<>();
+        for (TileMapWrapper t : res) {
+            returnList.add(t.buildTileMap());
+        }
+        return returnList;
     }
 
     private Item findItem(String itemName) throws ObjectNotFoundException {
