@@ -83,8 +83,12 @@
 <message>Bye, it's always a pleasure to see you again, </message>
 </MessageInformation>
 
-<MessageInformation info="NotEnoughMoney">
-<message>You don't have enough money to buy this!</message>
+<MessageInformation info="NotEnoughMoneyCanteen">
+<message>You don't have enough money to have a lunch here!</message>
+</MessageInformation>
+
+<MessageInformation info="NotEnoughMoneyVendingMachine">
+<message>You don't have enough money to buy a snack!</message>
 </MessageInformation>
 
 </root>
