@@ -6,10 +6,6 @@
 package character;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-import saving.Saveable;
-import saving.exceptions.LoadingException;
 
 /**
  * This class represents the state of the character in terms of sleep, hunger
@@ -17,7 +13,7 @@ import saving.exceptions.LoadingException;
  *
  * @author liovi
  */
-public class Status implements Serializable, Saveable {
+public class Status implements Serializable {
 
     private static int energyLevel = 100;
     private static int hungerLevel = 0;
@@ -105,32 +101,4 @@ public class Status implements Serializable, Saveable {
     public static void setMoney(int money) {
         Status.money = money;
     }
-
-    /**
-     *
-     * @return a Serializable useful to save the status of the character
-     */
-    @Override
-    public Serializable save() {
-        List<Integer> stat = new ArrayList<>();
-        stat.add(energyLevel);
-        stat.add(hungerLevel);
-        stat.add(stressLevel);
-        stat.add(money);
-        return (Serializable) stat;
-    }
-
-    /**
-     *
-     * @param obj is a Serializable. Downcast is necessary before load the obj
-     */
-    @Override
-    public void load(Serializable obj) throws LoadingException {
-        List<Integer> stat = (ArrayList<Integer>) obj;
-        energyLevel = stat.get(0);
-        hungerLevel = stat.get(1);
-        stressLevel = stat.get(2);
-        money = stat.get(3);
-    }
-
 }
