@@ -9,12 +9,14 @@ import database.populator.exceptions.InvalidGameDataFormatException;
 import game.GameResources.Map;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import quests.quest.Quest;
 
 /**
  *
@@ -60,18 +62,20 @@ public class DatabaseManagerTest {
         assertNotEquals(expResult, result);
     }
 
-
+    */
     @Test
     public void testGetQuestsFromLevel() throws Exception {
         System.out.println("getQuestsFromLevel");
-        int level = 1;
+        int level = 0;
         DatabaseManager instance = DatabaseManager.getDatabaseManager();
-        int expResult = 3;
-        int result = instance.getQuestsFromLevel(level).size();
+        int expResult = 1;
+        List<Quest> q = instance.getQuestsFromLevel(level);
+        System.out.println(q);
+        int result = q.size();
         assertEquals(expResult, result);
     }
 
-
+/*
     @Test
     public void testGetObjectsFromLevel() throws Exception {
         System.out.println("getObjectsFromLevel");
