@@ -8,7 +8,11 @@ package interaction;
 import exam.Exam;
 import exam.booklet.Subject;
 import game.GameObjects.Professor;
+import game.Interfaces.Initializable;
+import game.Interfaces.Initializable.InitException;
 import game.Interfaces.Interactable;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import language.FileTextManager;
 import language.MessageInformation;
 import language.exceptions.FileTextManagerException;
@@ -52,8 +56,8 @@ public class ProfessorInteractionManager implements InteractionManager {
                 }
             }
 
-        } catch (FileTextManagerException ex) {
         } catch (TextFinderException ex) {
+        } catch (InitException ex) {
         }
 
         // 4. modifica stato e ricompense

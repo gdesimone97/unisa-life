@@ -52,7 +52,6 @@ public class DistributorInteractionManager implements InteractionManager {
             }
         } catch (Exception ex) {
             // decide what to do when an error with string retriving occurs
-            ex.printStackTrace();
         }
     }
     

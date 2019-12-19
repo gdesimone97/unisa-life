@@ -6,6 +6,8 @@
 package exam.question;
 
 import exam.booklet.Subject;
+import game.Interfaces.Initializable;
+import game.Interfaces.Initializable.InitException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -29,7 +31,7 @@ public class StringsQuestionFactory extends QuestionFactory {
     * The constructor creates an instance of the object Questions and starts the parsing of the strings
     * @param materia is the subject in which we want questions
     */
-    public StringsQuestionFactory(Subject subject) throws FileTextManagerException, TextFinderException {
+    public StringsQuestionFactory(Subject subject) throws InitException, TextFinderException {
         super(subject);
         questions = new Questions();
         this.parseQuestions();
@@ -48,7 +50,7 @@ public class StringsQuestionFactory extends QuestionFactory {
     * It aims to take a list of strings passed by another class, and divide it in parts,
     * so that it can create an object Question, made of Answers also, and add to the object Questions
     */
-    private void parseQuestions() throws FileTextManagerException, TextFinderException {
+    private void parseQuestions() throws InitException, TextFinderException {
         List<String> strList = FileTextManager.getFileTextManager().getString(super.getSubject());
         Scanner sc;
         boolean count;

@@ -8,7 +8,11 @@ import character.Status;
 import exam.booklet.BookletSingleton;
 import exam.booklet.Subject;
 import exam.question.*;
+import game.Interfaces.Initializable;
+import game.Interfaces.Initializable.InitException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import language.FileTextManager;
 import language.MessageInformation;
 import language.exceptions.FileTextManagerException;
@@ -43,7 +47,7 @@ public class Exam implements Runnable {
      * questions
      *
      */
-    public Exam(Subject subject) throws FileTextManagerException, TextFinderException {
+    public Exam(Subject subject) throws TextFinderException, InitException {
         this.subject = subject;
         QuestionFactory questionsFetch = new StringsQuestionFactory(subject);
         this.score = 0;
@@ -138,7 +142,7 @@ public class Exam implements Runnable {
                 try {
                     gui.showRequest(FileTextManager.getFileTextManager().getString(new MessageInformation("LodeRequest")).get(0), praiseRequest);
                 } catch (TextFinderException ex) {
-                } catch (FileTextManagerException ex) {
+                } catch (InitException ex) {
                 }
                 answerRequest = praiseRequest.getValue();
 
@@ -191,7 +195,7 @@ public class Exam implements Runnable {
             }
         } catch (TextFinderException ex) {
             ex.printStackTrace();
-        } catch (FileTextManagerException ex) {
+        } catch (InitException ex) {
             ex.printStackTrace();
         }
              
