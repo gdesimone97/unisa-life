@@ -8,7 +8,7 @@ package saving;
 import character.StatusManager;
 import saving.exceptions.*;
 import exam.booklet.Booklet;
-import game.GameObjects.GameInventorySingleton;
+import game.GameObjects.GameInventory;
 import game.GameObjects.Player;
 import java.io.File;
 import java.io.FileInputStream;
@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import quests.quest.QuestsSingleton;
+import quests.quest.Quests;
 
 /**
  *
@@ -34,29 +34,59 @@ public class SaveManager {
     private List<Saveable> saveableComponents = new ArrayList<>();
     private Map<String, Serializable> savingItems = new HashMap<>();
     private final String PATH = "../save/save.game"; // path per la cartella di salvataggio
+    private final String PATH_LANG = "../save/conf.game";
 
     public synchronized static SaveManager getSaveManager() {
         return instance;
     }
 
     private SaveManager() { // da completare quando abbiamo tutte le classi da salvare
-        saveableComponents.add(TextManagerAdapter.getTextManagerAdpter());
         saveableComponents.add(Booklet.getInstance());
         saveableComponents.add(Player.getIstance());
         saveableComponents.add(StatusManager.getInstance());
-        saveableComponents.add(GameInventorySingleton.getInstance());
-        saveableComponents.add(QuestsSingleton.getInstance());
+        saveableComponents.add(GameInventory.getInstance());
+        saveableComponents.add(Quests.getInstance());
     }
 
     public boolean isSaveSomething() {
-        File f = new File(PATH);
+        return isSaveSomething(PATH);
+    }
+
+    private boolean isSaveSomething(String path) {
+        File f = new File(path);
         if (!f.exists()) {
             return false;
         }
         return true;
     }
 
+    public void saveLang() throws SavingException {
+        TextManagerAdapter textManager = TextManagerAdapter.getTextManagerAdpter();
+        try (FileOutputStream fileout = new FileOutputStream(new File(PATH_LANG));
+                ObjectOutputStream out = new ObjectOutputStream(fileout);) {
+            String lang = textManager.getCurrentLanguage();
+            out.writeUTF(lang);
+        } catch (IOException ex) {
+            throw new SavingException("Errore salvataggio lingua corrente");
+        }
+
+    }
+
+    public String loadLang() throws LoadingException {
+        if (!isSaveSomething(PATH_LANG)) {
+            return "";
+        }
+        try (FileInputStream filein = new FileInputStream(new File(PATH_LANG));
+                ObjectInputStream in = new ObjectInputStream(filein);) {
+            String readLang = in.readUTF();
+            return readLang;
+        } catch (IOException ex) {
+            throw new LoadingException("Errore caricamento lingua precedentemente salvata");
+        }
+    }
+
     public void save() throws SavingException {
+        saveLang();
         for (Saveable sav : saveableComponents) {
             Serializable itemToSave = sav.save();
             savingItems.put(sav.getClass().getName(), itemToSave);

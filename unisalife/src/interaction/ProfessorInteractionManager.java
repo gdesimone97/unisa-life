@@ -17,11 +17,12 @@ import language.FileTextManager;
 import language.MessageInformation;
 import language.exceptions.FileTextManagerException;
 import language.exceptions.TextFinderException;
-import quests.quest.QuestsSingleton;
+import quests.quest.Quests;
 import unisagui.GuiManager;
 
 /**
  * InteractionManager implemented for Professor's exam process
+ *
  * @author 1997g
  */
 public class ProfessorInteractionManager implements InteractionManager {
@@ -32,22 +33,22 @@ public class ProfessorInteractionManager implements InteractionManager {
     @Override
     public void execute(Interactable obj) {
         // 1. Find the subject of the exam
-        Professor p = (Professor)obj;
+        Professor p = (Professor) obj;
         Subject s = p.getSubject();
 
         // 2. verifica idonietà e requisiti
         try {
-            if (QuestsSingleton.getInstance().getQuest(s.getInfo()).isDone()) {
+            if (Quests.getInstance().getQuest(s.getInfo()).isDone()) {
                 GuiManager.getInstance().showDialog(FileTextManager.getFileTextManager().getString(new MessageInformation("ExamAlreadyDone")).get(0));
 
                 
-            } else if (QuestsSingleton.getInstance().getQuest(s.getInfo()).isAvailable()) {
+            } else if (Quests.getInstance().getQuest(s.getInfo()).isAvailable()) {
 
                 //3. Start the exam session
                 Thread esameThread = new Thread(new Exam(s));
                 esameThread.start();
             } else {
-                if (QuestsSingleton.getInstance().getQuest(s.getInfo()).isDone()) {
+                if (Quests.getInstance().getQuest(s.getInfo()).isDone()) {
                     GuiManager.getInstance().showDialog(FileTextManager.getFileTextManager().getString(new MessageInformation("ExamAlreadyDone")).get(0));
 
                 } else {

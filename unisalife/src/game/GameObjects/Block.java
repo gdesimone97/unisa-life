@@ -45,6 +45,11 @@ public class Block extends GameObject {
     }*/
     }
 
+    @Override
+    public String getIndex() {
+        return "Block";
+    }
+
     /**
      * method tick is void because a block
      *

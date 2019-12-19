@@ -295,5 +295,10 @@ public class Player extends GameObject implements Tickable, Renderable, Saveable
     public void setName(String name){
         this.nameOfPlayer=name;
     }
+
+    @Override
+    public String getIndex() {
+        return "Player";
+    }
     
 }

@@ -9,7 +9,7 @@ import character.StatusManager;
 import database.DatabaseManager;
 import exam.booklet.Booklet;
 import game.GameObjects.Camera;
-import game.GameObjects.GameInventorySingleton;
+import game.GameObjects.GameInventory;
 import game.GameObjects.Player;
 import game.Interfaces.Initializable.InitException;
 import gameSystem.map.MapManager;
@@ -17,9 +17,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import language.FileTextManager;
 import language.exceptions.LanguageSelectedNotAvailableException;
-import quests.QuestsManagerSingleton;
-import quests.quest.QuestsSingleton;
+import quests.QuestsManager;
+import quests.quest.Quests;
 import saving.SaveManager;
+import sound.JukeBoxMusic;
+import sound.JukeBoxSound;
 import unisagui.GuiManager;
 
 /**
@@ -102,25 +104,26 @@ public class GameManager {
         Thread t = new Thread(game);
         t.start();
 
-        // init all managers
+        // init all managers, at the end starts the playState
         new Thread(() -> {
             try {
-                Thread.sleep(100);
-
-                StatusManager.getInstance().init();
+                
                 Player.getIstance().initialize(skin, Name);
                 MapManager.getInstance();
                 Booklet.getInstance();
-                QuestsManagerSingleton.getInstance();
-                QuestsSingleton.getInstance();
-                GameInventorySingleton.getInstance();
+
+                QuestsManager.getInstance();
+                Quests.getInstance();
+                GameInventory.getInstance();
                 FileTextManager.getFileTextManager().init();
-
-                Thread.sleep(500);
-
+                JukeBoxMusic.getInstance();
+                JukeBoxSound.getInstance();
+                
+                //This is the last to be started
+                StatusManager.getInstance().init();
+                
                 GameStateManager.getInstance().setState(PlayState.getInstance());
             } catch (InitException ex) {
-            } catch (InterruptedException ex) {
             }
         }).start();
     }

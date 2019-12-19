@@ -5,7 +5,7 @@
  */
 package quests.mediator;
 
-import quests.QuestsManagerSingleton;
+import quests.QuestsManager;
 
 /**
  * Extend this class is useful for using the mechanis based on Mediator Pattern
@@ -18,7 +18,7 @@ public abstract class User {
     /**
      * Is an instance of the mediator
      */
-    protected transient QuestsManagerSingleton mediator;
+    protected transient QuestsManager mediator;
 
     /**
      * Is a string who represents the user

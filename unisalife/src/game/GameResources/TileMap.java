@@ -27,7 +27,7 @@ import org.dizitart.no2.objects.Id;
 public class TileMap implements Serializable, Storable {
 
     @Id
-    private int mapid;
+    private final int id;
 
     // position
     private int x;
@@ -63,14 +63,18 @@ public class TileMap implements Serializable, Storable {
     private int numRowsToDraw;
     private int numColsToDraw;
 
-    public TileMap(int w, int h, String t, String m) {
+    public TileMap(int id, int w, int h, String t, String m) {
         this.tileSize = Game.DIMENSIONSPRITE;
         numRowsToDraw = /*Game.WIDTHMAP / tileSize + 2;*/ w; //31
         numColsToDraw = /*Game.HEIGHTMAP / tileSize + 2;*/ h;  //31
         speed = 4;
-
+        this.id = id;
         loadTiles(t);
         loadMap(m);
+    }
+    
+    public int getId(){
+        return this.id;
     }
 
     private void loadTiles(String s) {
@@ -185,6 +189,11 @@ public class TileMap implements Serializable, Storable {
 
         }
 
+    }
+
+    @Override
+    public String getIndex() {
+        return String.valueOf(this.id);
     }
 
 }

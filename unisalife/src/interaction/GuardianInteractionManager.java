@@ -30,7 +30,7 @@ public class GuardianInteractionManager implements InteractionManager {
             toShow = tm.getString(ms).get(0);
 
             // show pop up
-            GuiManager.getInstance().showHint(toShow);
+            GuiManager.getInstance().showDialog(toShow);
 
             // restore status bars
             DormitoryHudBarChange d = new DormitoryHudBarChange();
