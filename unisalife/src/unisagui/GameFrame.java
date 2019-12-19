@@ -53,8 +53,8 @@ public class GameFrame extends javax.swing.JFrame {
     private void settingAvatarButton() {
         SwingUtilities.invokeLater(() -> MaleWhiteButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/man75.png"))));
         SwingUtilities.invokeLater(() -> FemaleWhiteButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/woman75.png"))));
-        SwingUtilities.invokeLater(() -> FemaleBlackButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/BLACKman75.png"))));
-        SwingUtilities.invokeLater(() -> MaleBlackButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/BLACKwoman75.png"))));
+        SwingUtilities.invokeLater(() -> FemaleBlackButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/BLACKwoman75.png"))));
+        SwingUtilities.invokeLater(() -> MaleBlackButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/BLACKman75.png"))));
     }
 
     private void undecoratingDialogs() {
@@ -2114,6 +2114,7 @@ public class GameFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_ReturnToMainMenuButtonActionPerformed
 
     private void YesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_YesButtonActionPerformed
+        SwingUtilities.invokeLater(() -> sound.play("yes"));
         SwingUtilities.invokeLater(() -> RequestManager.setRESULT(true));
         SwingUtilities.invokeLater(() -> RequestDialog.setVisible(false));
         SwingUtilities.invokeLater(() -> RequestDialog.setFocusable(false));
@@ -2244,6 +2245,7 @@ public class GameFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_HintDialogKeyPressed
 
     private void NoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NoButtonActionPerformed
+        SwingUtilities.invokeLater(() -> sound.play("no"));
         SwingUtilities.invokeLater(() -> RequestManager.setRESULT(false));
         SwingUtilities.invokeLater(() -> RequestDialog.setVisible(false));
         SwingUtilities.invokeLater(() -> RequestDialog.setFocusable(false));
@@ -2280,6 +2282,7 @@ public class GameFrame extends javax.swing.JFrame {
     private void MaleWhiteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MaleWhiteButtonActionPerformed
         SwingUtilities.invokeLater(() -> settingAvatarButton());
         SwingUtilities.invokeLater(() -> MaleWhiteButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/man75pressed.png"))));
+        System.out.println("Impostato nuovo colore button");
         SwingUtilities.invokeLater(() -> StudentLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/man75.png"))));
         SwingUtilities.invokeLater(() -> sound.play("menu"));
         SwingUtilities.invokeLater(() -> AvatarOkButton.setEnabled(true));
@@ -2369,6 +2372,7 @@ public class GameFrame extends javax.swing.JFrame {
 
             if(GameManager.getInstance().isRunning())
             SwingUtilities.invokeLater(() -> music.play("game_music"));
+        }
     }//GEN-LAST:event_MusicButtonActionPerformed
 
     private void SoundButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SoundButtonActionPerformed
