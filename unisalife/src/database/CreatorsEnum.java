@@ -24,6 +24,11 @@ public enum CreatorsEnum {
         public StorableCreator getFactory(){
             return new ProfessorFactory();
         }
+    },coin("coin"){
+        @Override
+        public StorableCreator getFactory(){
+            return new CoinFactory();
+        }
     }, subject("subject"){
         @Override
         public StorableCreator getFactory(){
@@ -33,6 +38,11 @@ public enum CreatorsEnum {
         @Override
         public StorableCreator getFactory(){
             return new QuestFactory();
+        }
+    }, cook("cook"){
+        @Override
+        public StorableCreator getFactory(){
+            return new CookFactory();
         }
     };
     
