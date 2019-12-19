@@ -2361,7 +2361,7 @@ public class GameFrame extends javax.swing.JFrame {
         else{
             MusicButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/MUSIC.png")));
             SwingUtilities.invokeLater(() -> music.setIsActive(true));
-            //if(GameManager.getInstance().isRunning())
+            if(GameManager.getInstance().isRunning())
                 SwingUtilities.invokeLater(() -> music.play("game_music"));
         }
     }//GEN-LAST:event_MusicButtonActionPerformed
