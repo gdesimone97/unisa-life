@@ -5,12 +5,11 @@
  */
 package saving;
 
+import character.Status;
 import saving.exceptions.*;
 import exam.booklet.BookletSingleton;
 import game.GameObjects.GameInventorySingleton;
 import game.GameObjects.Player;
-import gameSystem.GameManager;
-import gameSystem.map.MapManager;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -44,6 +43,7 @@ public class SaveManager {
     private SaveManager() { // da completare quando abbiamo tutte le classi da salvare
         saveableComponents.add(TextManagerAdapter.getTextManagerAdpter());
         saveableComponents.add(BookletSingleton.getInstance());
+        saveableComponents.add(new Status());
         saveableComponents.add(Player.getIstance());
         saveableComponents.add(GameInventorySingleton.getInstance());
         saveableComponents.add(QuestsSingleton.getInstance());

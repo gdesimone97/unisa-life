@@ -5,7 +5,6 @@
  */
 package character;
 
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -126,7 +125,7 @@ public class Status implements Serializable, Saveable {
      * @param obj is a Serializable. Downcast is necessary before load the obj
      */
     @Override
-    public void load(Serializable obj)throws LoadingException {
+    public void load(Serializable obj) throws LoadingException {
         List<Integer> stat = (ArrayList<Integer>) obj;
         energyLevel = stat.get(0);
         hungerLevel = stat.get(1);
