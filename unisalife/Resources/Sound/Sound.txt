@@ -18,5 +18,9 @@ exam_passed
 /Sound/Exam_passed.mp3
 exam_failed
 /Sound/Exam_failed.mp3
+yes
+/Sound/Yes.mp3
+
+
 
 
