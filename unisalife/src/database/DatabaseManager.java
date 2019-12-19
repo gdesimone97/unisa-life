@@ -7,8 +7,10 @@ package database;
 
 import exam.booklet.Subject;
 import game.GameObjects.Block;
+import game.GameObjects.Cook;
 import game.GameObjects.Position;
 import game.GameObjects.GameObject;
+import game.GameObjects.Guardian;
 import game.GameObjects.Item;
 import game.GameObjects.ObjectManager;
 import game.GameObjects.Professor;
@@ -104,26 +106,33 @@ public class DatabaseManager implements Initializable {
             Subject questSubject = q.getSubject();
             for (String itemName : q.getItemList()) {
                 Item i = this.findItem(itemName);
-                int mapId = this.findMap(itemName);
+                int mapId = this.findMap(itemName, DatabaseManager.DYNCOLLECTIONNAME);
                 dynArrObj.get(mapId).put(i.getScaledPosition(), i);
             }
             Professor p = this.findProfessor(questSubject);
-            int mapId = this.findMap(questSubject.getInfo());
+            int mapId = this.findMap(questSubject.getInfo(), DatabaseManager.DYNCOLLECTIONNAME);
             dynArrObj.get(mapId).put(p.getScaledPosition(), p);
         }
+
+        Cook cook = this.findCook();
+        int cookMapId = this.findMap(cook.getIndex(), DatabaseManager.FIXEDCOLLECTIONNAME);
+        dynArrObj.get(cookMapId).put(cook.getScaledPosition(), cook);
+
+        Guardian guardian = this.findGuardian();
+        int guardMapId = this.findMap(guardian.getIndex(), DatabaseManager.FIXEDCOLLECTIONNAME);
+        dynArrObj.get(guardMapId).put(guardian.getScaledPosition(), guardian);
 
         /*
         if ((dynArrObj.stream().filter((obj) -> obj.size() <= 0).count()) > 0) {
             throw new ErrorWhileSavingException();
         }
-        */
-        
+         */
         return (ConcurrentHashMap<Position, GameObject>[]) dynArrObj.toArray();
     }
 
-    private int findMap(String id) {
+    private int findMap(String id, String collection) {
         return Integer.parseInt(db.getNitriteDatabase()
-                .getCollection(DatabaseManager.DYNCOLLECTIONNAME)
+                .getCollection(collection)
                 .find(eq("IDOBJ", id))
                 .firstOrDefault()
                 .get("IDMAP", String.class));
@@ -181,6 +190,14 @@ public class DatabaseManager implements Initializable {
             throw new ObjectNotFoundException();
         }
         return prof;
+    }
+
+    private Cook findCook() {
+        return db.getNitriteDatabase().getRepository(Cook.class).find(ObjectFilters.ALL).firstOrDefault();
+    }
+
+    private Guardian findGuardian() {
+        return db.getNitriteDatabase().getRepository(Guardian.class).find(ObjectFilters.ALL).firstOrDefault();
     }
 
     /**
