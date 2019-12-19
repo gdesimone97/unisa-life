@@ -86,7 +86,6 @@ public class SaveManager {
     }
 
     public void save() throws SavingException {
-        saveLang();
         for (Saveable sav : saveableComponents) {
             Serializable itemToSave = sav.save();
             savingItems.put(sav.getClass().getName(), itemToSave);
