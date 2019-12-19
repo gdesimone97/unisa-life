@@ -118,4 +118,9 @@ public class Subject implements Information, Serializable, Comparable, Storable 
         return this.subject.compareTo(((Subject) o).toString());
 
     }
+
+    @Override
+    public String getIndex() {
+        return this.subject;
+    }
 }
