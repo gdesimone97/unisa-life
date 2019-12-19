@@ -61,6 +61,26 @@ public class StatusManager implements Saveable, Initializable {
         Status.setMoney(newValue);
         GuiManager.getInstance().updateMoney(newValue);
     }
+    
+    private synchronized void setEnergy(int newValue) {
+        Status.setEnergyLevel(newValue);
+        GuiManager.getInstance().updateEnergyBar(newValue);
+    }
+    
+    private synchronized void setHunger(int newValue) {
+        Status.setHungerLevel(newValue);
+        GuiManager.getInstance().updateHungerBar(newValue);
+    }
+    
+    private synchronized void setStress(int newValue) {
+        Status.setStressLevel(newValue);
+        GuiManager.getInstance().updateStressBar(newValue);
+    }
+    
+    private synchronized void setMoney(int newValue) {
+        Status.setMoney(newValue);
+        GuiManager.getInstance().updateMoney(newValue);
+    }
 
     /**
      *
@@ -87,17 +107,17 @@ public class StatusManager implements Saveable, Initializable {
         int hungerLevel = stat.get(1);
         int stressLevel = stat.get(2);
         int money = stat.get(3);
-        updateEnergy(energyLevel);
-        updateHunger(hungerLevel);
-        updateMoney(money);
-        updateStress(stressLevel);
+        setEnergy(energyLevel);
+        setHunger(hungerLevel);
+        setMoney(money);
+        setStress(stressLevel);
     }
     
     @Override
     public void init() {
-        updateEnergy(100);
-        updateHunger(0);
-        updateMoney(0);
-        updateStress(0);
+        setEnergy(100);
+        setHunger(0);
+        setMoney(0);
+        setStress(0);
     }
 }
