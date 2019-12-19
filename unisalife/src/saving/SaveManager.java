@@ -5,6 +5,7 @@
  */
 package saving;
 
+import character.Status;
 import saving.exceptions.*;
 import exam.booklet.BookletSingleton;
 import game.GameObjects.GameInventorySingleton;
@@ -45,6 +46,7 @@ public class SaveManager {
         saveableComponents.add(TextManagerAdapter.getTextManagerAdpter());
         saveableComponents.add(BookletSingleton.getInstance());
         saveableComponents.add(Player.getIstance());
+        saveableComponents.add(new Status());
         saveableComponents.add(GameInventorySingleton.getInstance());
         saveableComponents.add(QuestsSingleton.getInstance());
     }

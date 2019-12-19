@@ -5,13 +5,13 @@
  */
 package game.GameObjects;
 
-import java.util.HashMap;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  *
  * @author simon
  */
-public class ObjectManager extends HashMap<Position,GameObject> {
+public class ObjectManager extends ConcurrentHashMap<Position,GameObject> {
     public GameObject getObjectInNextPosition(Position p){
         return this.get(p);
     }
