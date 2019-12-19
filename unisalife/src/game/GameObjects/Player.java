@@ -40,20 +40,19 @@ public class Player extends GameObject implements Tickable, Renderable, Saveable
     protected BufferedImage facingLeftImage;
     protected BufferedImage facingRightImage;
     protected BufferedImage facingUpImage;
-    protected FaceState face;
+    protected FaceState face = new DownFaceState(this);
     private static Player uniqueIstance = null;
     private boolean nextMove = true;
-
+    protected String nameOfPlayer=null;
     private int delta = 0;
-
+    private static final int initialX = 1024; 
+    private static final int initialY = 2144;
 
     /*public Player(float x,float y,SubjectEnum i){
      super(x,y,i);
      }*/
     private Player(Position p) {
         super(p);
-        face = new DownFaceState(this);
-        initialize(3, "Ciao");
     }
 
     public FaceState getFace() {
@@ -80,9 +79,12 @@ public class Player extends GameObject implements Tickable, Renderable, Saveable
      *
      *
      */
-    private void initialize(int skin, String name) {
+    public void initialize(int skin, String name) {
         BufferedImage texturePlayer[][] = null;
+        nameOfPlayer = name;
         int cols = 0;
+        p.setX(initialX);
+        p.setY(initialY);
         try {
             BufferedImage characterImage = ImageIO.read(
                     getClass().getResourceAsStream("/Sprites/sprite" + skin + ".png")
@@ -110,7 +112,7 @@ public class Player extends GameObject implements Tickable, Renderable, Saveable
 
     public static Player getIstance() {
         if (uniqueIstance == null) {
-            uniqueIstance = new Player(new Position(0, 0));
+            uniqueIstance = new Player(new Position(initialX, initialY));
         }
         return uniqueIstance;
     }
@@ -215,7 +217,7 @@ public class Player extends GameObject implements Tickable, Renderable, Saveable
      */
     private void collisions(ObjectManager objMan) {
 
-        GameObject g = objMan.get(getScaledPosition());
+        GameObject g = objMan.getObjectInNextPosition(getScaledPosition());
         if (g != null && g instanceof Teleport) {
             ((Interactable)g).interact();
             setVelX(0);
@@ -223,7 +225,7 @@ public class Player extends GameObject implements Tickable, Renderable, Saveable
         } 
         else 
         {
-            g = objMan.get(face.nextStep());
+            g = objMan.getObjectInNextPosition(face.nextStep());
             if (g != null && !(g instanceof Teleport)) {
                 nextMove = false;
             }
@@ -274,6 +276,7 @@ public class Player extends GameObject implements Tickable, Renderable, Saveable
         ArrayList<Serializable> list = new ArrayList<>();
         list.add(getX());
         list.add(getY());
+        list.add(getName());
         return list;
     }
 
@@ -282,6 +285,15 @@ public class Player extends GameObject implements Tickable, Renderable, Saveable
         List<Serializable> list = (List<Serializable>) obj;
         setX((int) list.get(0));
         setY((int) list.get(1));
+        setName((String) list.get(2));
     }
-
+    
+    public String getName(){
+        return nameOfPlayer;
+    }
+    
+    public void setName(String name){
+        this.nameOfPlayer=name;
+    }
+    
 }

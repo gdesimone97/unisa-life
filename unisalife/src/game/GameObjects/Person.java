@@ -7,10 +7,9 @@ package game.GameObjects;
 
 import game.Interfaces.Interactable;
 import game.Interfaces.Renderable;
-import javax.imageio.ImageIO;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-import java.util.LinkedList;
+import javax.imageio.ImageIO;
 
 /**
  *
@@ -18,9 +17,9 @@ import java.util.LinkedList;
  */
 public abstract class Person extends GameObject implements Renderable, Interactable {
 
-    protected BufferedImage facingDownImage;
-    
-    public Person(Position p,String path) {
+    transient protected BufferedImage facingDownImage;
+
+    public Person(Position p, String path) {
         super(p);
         try {
             facingDownImage = ImageIO.read(
@@ -31,10 +30,15 @@ public abstract class Person extends GameObject implements Renderable, Interacta
         }
     }
 
+    protected Person() {
+        super();
+    }
+
     @Override
     public void render(Graphics g) {
         g.drawImage(facingDownImage, p.getX(), p.getY(), width, height, null);
     }
+
     /*@Override
         public void tick(LinkedList<GameObject> l){
             

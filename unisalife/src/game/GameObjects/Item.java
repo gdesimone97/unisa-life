@@ -10,29 +10,28 @@ import game.Interfaces.Renderable;
 import interaction.ItemInteractionManager;
 import language.Information;
 import java.awt.Graphics;
-import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.time.LocalDateTime;
 import java.io.Serializable;
 import java.time.temporal.ChronoUnit;
 import java.util.Objects;
+import javax.imageio.ImageIO;
+import org.dizitart.no2.objects.Id;
 import quests.ItemDef;
 
 /**
  *
  * @author simon
  */
-public class Item extends GameObject implements Renderable, Interactable, Comparable<Item>, Information {
+public class Item extends GameObject implements Renderable, Interactable, Serializable, Comparable<Item>, Information {
 
-    private final String info;
+    @Id
+    private String info;
     transient private BufferedImage facingDownImage;
     private LocalDateTime taken;
-    private ItemDef id;
-
-    public Item(Position p, String path, String info, ItemDef id) {
+    public Item(Position p, String path, String info) {
         super(p);
         this.info = info;
-        this.id = id;
         try {
             facingDownImage = ImageIO.read(
                     getClass().getResourceAsStream(path)
@@ -42,13 +41,17 @@ public class Item extends GameObject implements Renderable, Interactable, Compar
         }
     }
 
+    public Item() {
+        super(new Position(1, 1));
+        this.info = "info";
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == null || !(o instanceof Item)) {
             return false;
         }
-        return this.id.equals(((Item) o).getID());
-
+        return this.info.equals(((Item) o).getInfo());
     }
 
     @Override
@@ -56,13 +59,14 @@ public class Item extends GameObject implements Renderable, Interactable, Compar
         if (o == null) {
             return 1;
         }
-        return id.compareTo(o.getID());
+        return info.compareTo(o.getInfo());
     }
 
     public void setTaken() {
         this.taken = LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS);
     }
 
+    @Override
     public String getInfo() {
         return this.info;
     }
@@ -74,7 +78,7 @@ public class Item extends GameObject implements Renderable, Interactable, Compar
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 31 * hash + Objects.hashCode(this.id);
+        hash = 31 * hash + Objects.hashCode(this.info);
         return hash;
     }
 
@@ -94,8 +98,7 @@ public class Item extends GameObject implements Renderable, Interactable, Compar
         iim.execute(this);
     }
 
-    public ItemDef getID() {
-        return this.id;
+    public String getID() {
+        return this.info;
     }
-
 }

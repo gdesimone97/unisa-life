@@ -5,23 +5,33 @@
  */
 package game.GameObjects;
 
-import exam.question.Materia;
+import exam.booklet.Subject;
 import interaction.*;
+import java.io.Serializable;
 import language.Information;
-
+import org.dizitart.no2.IndexType;
+import org.dizitart.no2.objects.Index;
+import org.dizitart.no2.objects.Indices;
 /**
  *
  * @author Giuseppe De Simone
  */
+@Indices({
+    @Index(value = "subject.subject", type = IndexType.NonUnique)
+})
 public class Professor extends Person implements Information {
 
-    private Materia subject;
+    private Subject subject;
     private String nome;
 
-    public Professor(String nome, Position p, String path, Materia subject) {
-        super(p,path);
+    public Professor(String nome, Position p, String path, Subject subject) {
+        super(p, path);
         this.nome = nome;
         this.subject = subject;
+    }
+
+    private Professor() {
+        super();
     }
 
     @Override
@@ -30,7 +40,7 @@ public class Professor extends Person implements Information {
         profInteraction.execute(this);
     }
 
-    public Materia getSubject() {
+    public Subject getSubject() {
         return subject;
     }
 
@@ -38,7 +48,4 @@ public class Professor extends Person implements Information {
     public String getInfo() {
         return this.nome;
     }
-    
-
-
 }

@@ -5,6 +5,7 @@
  */
 package game.GameObjects;
 
+import game.Interfaces.Interactable;
 import interaction.DistributorInteractionManager;
 import interaction.InteractionManager;
 import quests.ItemDef;
@@ -13,10 +14,13 @@ import quests.ItemDef;
  *
  * @author 1997g
  */
-public class Distributor extends Item {
+public class Distributor extends GameObject implements Interactable {
     
-    public Distributor(Position p, String path, String info, ItemDef id) {
-        super(p, path, info, id);
+    private final String info;
+    
+    public Distributor(Position p,String info) {
+        super(p);
+        this.info=info;
     }
     
     @Override

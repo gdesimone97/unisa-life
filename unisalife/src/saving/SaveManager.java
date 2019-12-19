@@ -5,11 +5,11 @@
  */
 package saving;
 
+import character.StatusManager;
 import saving.exceptions.*;
 import exam.booklet.BookletSingleton;
 import game.GameObjects.GameInventorySingleton;
 import game.GameObjects.Player;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -43,13 +43,14 @@ public class SaveManager {
         saveableComponents.add(TextManagerAdapter.getTextManagerAdpter());
         saveableComponents.add(BookletSingleton.getInstance());
         saveableComponents.add(Player.getIstance());
+        saveableComponents.add(StatusManager.getInstance());
         saveableComponents.add(GameInventorySingleton.getInstance());
         saveableComponents.add(QuestsSingleton.getInstance());
     }
 
     public boolean isSaveSomething() {
         File f = new File(PATH);
-        if (!f.exists() || f.getTotalSpace() == 0) {
+        if (!f.exists()) {
             return false;
         }
         return true;
@@ -65,6 +66,7 @@ public class SaveManager {
             s.writeObject(savingItems);
 
         } catch (IOException ex) {
+            ex.printStackTrace();
             throw new SavingException();
         }
     }
@@ -79,6 +81,7 @@ public class SaveManager {
                 sav.load(item);
             }
         } catch (Exception ex) {
+            ex.printStackTrace();
             throw new LoadingException();
         }
     }

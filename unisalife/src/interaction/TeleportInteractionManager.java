@@ -33,7 +33,6 @@ public class TeleportInteractionManager implements InteractionManager {
                     Thread.sleep(2000);
                 } catch (InterruptedException ex) {
                 }
-                System.out.println("CAZZZOOOO");
                 GameStateManager.getInstance().setState(PlayState.getInstance());
             }).start();
 

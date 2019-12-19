@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 import quests.QuestsManagerSingleton;
 import quests.mediator.Message;
 import quests.mediator.User;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -27,7 +28,7 @@ import saving.exceptions.LoadingException;
  */
 public class GameInventorySingleton extends User implements Iterable<Item>, Saveable{
     
-    private HashMap< ItemDef, Item > items;
+    private HashMap< String, Item > items;
     private ArrayList<Item> view;
     private Comparator<Item> comp;
     private static GameInventorySingleton instance = null;
@@ -90,13 +91,13 @@ public class GameInventorySingleton extends User implements Iterable<Item>, Save
      */
     public int addItem(Item i) {
         
-        Item c = this.items.putIfAbsent(i.getID() , i);
+        Item c = this.items.putIfAbsent(i.getInfo() , i);
         if( c != null )
             throw new RuntimeException("The item you're trying to add is already in the inventory");
         i.setTaken();
-        Message msg = new Message(i.getID().toString() , true ); //prepare the message with the added object
+        Message msg = new Message(i.getInfo() , true ); //prepare the message with the added object
         send(msg); //then sends it
-        int pos = Arrays.binarySearch( view.toArray(new Item[view.size()]), i, comp);
+        int pos = Collections.binarySearch(view, i, comp);
         //int pos = view.indexOf(i);
         view.add(-(pos+1), i);
         return pos;
@@ -117,7 +118,7 @@ public class GameInventorySingleton extends User implements Iterable<Item>, Save
     
     public Item removeItem(Item i ){
 
-        Item r = items.remove(i.getID());
+        Item r = items.remove(i.getInfo());
         if( r == null )
             throw new RuntimeException("Item is not in the inventory, impossible to remove");
         return i;
@@ -182,7 +183,7 @@ public class GameInventorySingleton extends User implements Iterable<Item>, Save
      */
     @Override
     public void load(Serializable obj)throws LoadingException {
-        this.items = (HashMap<ItemDef,Item>) obj;
+        this.items = (HashMap<String,Item>) obj;
     }
 
     private static class TakenComparator implements Comparator<Item> {

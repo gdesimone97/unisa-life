@@ -14,6 +14,7 @@ import java.io.Serializable;
  *
  * @author simon
  */
+
 public class Position implements Serializable {
 
     private int x = 0;
@@ -27,6 +28,10 @@ public class Position implements Serializable {
     public Position(int x, int y) {
         this.x = x;
         this.y = y;
+    }
+
+    private Position() {
+
     }
 
     /**

@@ -5,58 +5,89 @@
  */
 package quests.quest;
 
-import exam.question.Materia;
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.EnumMap;
-import quests.ItemDef;
 import saving.Saveable;
-import saving.exceptions.LoadingException;
+import java.io.Serializable;
+import java.util.HashMap;
+import java.util.List;
+import quests.mediator.Message;
+import quests.mediator.User;
+
 /**
  *
  * @author liovi
  */
-public class QuestsSingleton  implements Saveable, Serializable{
+public class QuestsSingleton extends User implements Saveable, Serializable {
 
-    private EnumMap<Materia, Quest> quests;
+    private HashMap<String, Quest> quests;
     private static QuestsSingleton instance = null;
-    
-    private QuestsSingleton(){
-        this.quests = new EnumMap(Materia.class);
-        for (Materia x : Materia.values()){
-            this.quests.put(x, new Quest(x.toString()));
-        }
-        this.quests.get(Materia.matematica).setItemsExam(ItemDef.appuntidimatematica1.toString());
-        this.quests.get(Materia.matematica).setItemsExam(ItemDef.appuntidimatematica2.toString());
-        this.quests.get(Materia.matematica).setItemsExam(ItemDef.calcolatrice.toString());
+    private int currentLevel = 0;
+
+    private QuestsSingleton() {
+        super();
+        this.name = "QuestsSingleton";
+        this.quests = new HashMap<>();
     }
-    
-    public static QuestsSingleton getInstance(){
+
+    public static QuestsSingleton getInstance() {
         if (instance == null)
-            synchronized (QuestsSingleton.class){
-                if(instance == null)
-                    instance = new QuestsSingleton();
+            synchronized (QuestsSingleton.class) {
+            if (instance == null) {
+                instance = new QuestsSingleton();
             }
+        }
         return instance;
     }
 
-    public EnumMap<Materia, Quest> getQuest() {
-        return this.quests;
+    public Quest getQuest(String s) {
+        return this.quests.get(s);
     }
-    
+
+    public void putQuest(Quest q) {
+        this.quests.put(q.getSubject().getInfo(), q);
+    }
+
+    public int getCurrentLevel() {
+        return this.currentLevel;
+    }
+
     @Override
     public Serializable save() {
-        ArrayList<Serializable> list = new ArrayList<>();
-        list.add(quests);
-        return list;
+        return null;
     }
 
     @Override
-    public void load(Serializable obj) throws LoadingException {
-        ArrayList<Serializable> list = (ArrayList<Serializable>) obj;
-        this.quests = (EnumMap<Materia, Quest>) list.get(0);
+    public void load(Serializable obj) {
+
     }
 
-    
-    
+    @Override
+    public void send(Message mess) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void loadNewQuests(List<Quest> q) {
+
+        this.quests = new HashMap<>();
+        for (Quest quest : q) {
+            this.quests.put(quest.getSubject().toString(), quest);
+        }
+    }
+
+    @Override
+    public void receive(Message mess) {
+        //Messaggio = stringa +  bool -> se bool è true --> ho fatto quest'esame
+        String quest = mess.getId();
+        if (mess.getBool()) {
+
+            quests.remove(quest);
+
+        }
+
+        if (quests.isEmpty()) {
+            this.currentLevel++;
+            // chiamata a livello superiore per informare che le quest correnti sono terminate
+        }
+
+    }
+
 }

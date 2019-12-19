@@ -5,7 +5,6 @@
  */
 package gameSystem;
 
-
 import gameSystem.keySettings.HandlerInput;
 import java.awt.Canvas;
 import java.awt.Graphics;
@@ -48,7 +47,7 @@ public class Game extends Canvas implements Runnable {
     @Override
     public void run() {
         init();
-        //this.requestFocus();
+        this.requestFocus();
         long lastTime = System.nanoTime();
         double ns = 1000000000 / AMOUNTOFTICKS;
         double delta = 0;
@@ -62,7 +61,7 @@ public class Game extends Canvas implements Runnable {
 
         while (running) {
             start = System.nanoTime();
-            
+
             delta += (start - lastTime) / ns;
             lastTime = start;
             while (delta >= 1) {
@@ -74,7 +73,7 @@ public class Game extends Canvas implements Runnable {
             frames++;
             if (System.currentTimeMillis() - timer > 1000) {
                 timer += 1000;
-                
+
                 frames = 0;
                 updates = 0;
             }
@@ -93,25 +92,6 @@ public class Game extends Canvas implements Runnable {
             }
 
         }
-        
-        /*while (running) {
-            long now = System.nanoTime();
-            delta += (now - lastTime) / ns;
-            lastTime = now;
-            while (delta >= 1) {
-                tick();
-                updates++;
-                delta--;
-            }
-            render();
-            frames++;
-            if (System.currentTimeMillis() - timer > 1000) {
-                timer += 1000;
-                
-                frames = 0;
-                updates = 0;
-            }
-        }*/
     }
 
     private void init() {
@@ -136,7 +116,7 @@ public class Game extends Canvas implements Runnable {
         g.dispose();
         bs.show();
     }
-    
+
     public void stopGame() {
         running = false;
     }
