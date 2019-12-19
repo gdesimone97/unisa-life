@@ -5,6 +5,7 @@
  */
 package character;
 
+import game.Interfaces.Initializable;
 import hud.HudUpdater;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -18,43 +19,43 @@ import unisagui.GuiManager;
  *
  * @author mariodesio
  */
-public class StatusManager implements Saveable {
-
+public class StatusManager implements Saveable, Initializable {
+    
     private final GameFrame gameframe = GameFrame.getInstance();
     private HudUpdater updater;
     private static StatusManager instance;
-
+    
     private StatusManager() {
         this.updater = new HudUpdater();
         Thread up = new Thread(updater);
         up.start();
     }
-
+    
     public static StatusManager getInstance() {
         if (instance == null) {
             instance = new StatusManager();
         }
         return instance;
     }
-
+    
     public synchronized void updateEnergy(int increment) {
         int newValue = Status.getEnergyLevel() + increment;
         Status.setEnergyLevel(newValue);
         GuiManager.getInstance().updateEnergyBar(newValue);
     }
-
+    
     public synchronized void updateHunger(int increment) {
         int newValue = Status.getHungerLevel() + increment;
         Status.setHungerLevel(newValue);
         GuiManager.getInstance().updateHungerBar(newValue);
     }
-
+    
     public synchronized void updateStress(int increment) {
         int newValue = Status.getStressLevel() + increment;
         Status.setStressLevel(newValue);
         GuiManager.getInstance().updateStressBar(newValue);
     }
-
+    
     public synchronized void updateMoney(int increment) {
         int newValue = Status.getMoney() + increment;
         Status.setMoney(newValue);
@@ -90,5 +91,13 @@ public class StatusManager implements Saveable {
         updateHunger(hungerLevel);
         updateMoney(money);
         updateStress(stressLevel);
+    }
+    
+    @Override
+    public void init() {
+        updateEnergy(100);
+        updateHunger(0);
+        updateMoney(0);
+        updateStress(0);
     }
 }
