@@ -111,7 +111,7 @@ public class GameManager {
             try {
                 
                 Player.getIstance().initialize(skin, Name);
-                MapManager.getInstance();
+                MapManager.getInstance().init();
                 Booklet.getInstance();
 
                 QuestsManager.getInstance().init();
