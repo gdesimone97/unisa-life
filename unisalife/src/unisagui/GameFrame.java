@@ -2066,14 +2066,14 @@ public class GameFrame extends javax.swing.JFrame {
 
     private void NewGameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewGameButtonActionPerformed
         GameManager.getInstance().initGame();
-        
+
         SwingUtilities.invokeLater(() -> AvatarChooserDialog.setVisible(true));
         SwingUtilities.invokeLater(() -> MainMenuDialog.setVisible(false));
         SwingUtilities.invokeLater(() -> AvatarName.setText(EMPTY_TEXT));
         SwingUtilities.invokeLater(() -> AvatarOkButton.setEnabled(false));
         name = "";
         avatar = 0;
-        
+
     }//GEN-LAST:event_NewGameButtonActionPerformed
 
     private void SettingsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SettingsButtonActionPerformed
@@ -2248,10 +2248,10 @@ public class GameFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_QuestButtonFrameActionPerformed
 
     private void MaleWhiteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MaleWhiteButtonActionPerformed
-         SwingUtilities.invokeLater(() ->StudentLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/man75.png")))); 
+         SwingUtilities.invokeLater(() ->StudentLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/man75.png"))));
          SwingUtilities.invokeLater(() ->AvatarOkButton.setEnabled(true));
          SwingUtilities.invokeLater(() ->avatar=0);
-         
+
     }//GEN-LAST:event_MaleWhiteButtonActionPerformed
 
     private void FemaleBlackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FemaleBlackButtonActionPerformed
@@ -2264,7 +2264,7 @@ public class GameFrame extends javax.swing.JFrame {
         SwingUtilities.invokeLater(() ->StudentLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/BLACKman75.png"))));
         SwingUtilities.invokeLater(() ->AvatarOkButton.setEnabled(true));
         SwingUtilities.invokeLater(() ->avatar=2);
-        
+
     }//GEN-LAST:event_MaleBlackButtonActionPerformed
 
     private void ExitQuestDialogLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ExitQuestDialogLabelMouseClicked
@@ -2292,7 +2292,7 @@ public class GameFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_QuestDialogWindowLostFocus
 
     private void ExamDialogWindowDeactivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_ExamDialogWindowDeactivated
-        
+
     }//GEN-LAST:event_ExamDialogWindowDeactivated
 
     private void HintDialogWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_HintDialogWindowGainedFocus
@@ -2316,7 +2316,7 @@ public class GameFrame extends javax.swing.JFrame {
             SwingUtilities.invokeLater(() -> ConversationTextArea.setText(EMPTY_TEXT));
             SwingUtilities.invokeLater(() -> ConvDialog.setFocusable(false));
         }
-        
+
     }//GEN-LAST:event_ConvDialogKeyReleased
 
 
