@@ -120,4 +120,8 @@ public class Game extends Canvas implements Runnable {
     public void stopGame() {
         running = false;
     }
+    
+    public boolean isRunning() {
+        return running;
+    }
 }
