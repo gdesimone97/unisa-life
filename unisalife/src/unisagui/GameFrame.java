@@ -30,7 +30,7 @@ public class GameFrame extends javax.swing.JFrame {
         undecoratingDialogs();
         settingLocations(this);
         initialSettings(this);
-
+        //saveManager qui
     }
 
     public static synchronized GameFrame getInstance() {
