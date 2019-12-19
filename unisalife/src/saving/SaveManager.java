@@ -50,7 +50,7 @@ public class SaveManager {
 
     public boolean isSaveSomething() {
         File f = new File(PATH);
-        if (!f.exists() || f.getTotalSpace() == 0) {
+        if (!f.exists()) {
             return false;
         }
         return true;
