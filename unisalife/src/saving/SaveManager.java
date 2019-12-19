@@ -8,7 +8,7 @@ package saving;
 import character.StatusManager;
 import saving.exceptions.*;
 import exam.booklet.Booklet;
-import game.GameObjects.GameInventorySingleton;
+import game.GameObjects.GameInventory;
 import game.GameObjects.Player;
 import java.io.File;
 import java.io.FileInputStream;
@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import quests.quest.QuestsSingleton;
+import quests.quest.Quests;
 
 /**
  *
@@ -44,8 +44,8 @@ public class SaveManager {
         saveableComponents.add(Booklet.getInstance());
         saveableComponents.add(Player.getIstance());
         saveableComponents.add(StatusManager.getInstance());
-        saveableComponents.add(GameInventorySingleton.getInstance());
-        saveableComponents.add(QuestsSingleton.getInstance());
+        saveableComponents.add(GameInventory.getInstance());
+        saveableComponents.add(Quests.getInstance());
     }
 
     public boolean isSaveSomething() {

@@ -5,11 +5,12 @@
  */
 package interaction;
 
-import game.GameObjects.GameInventorySingleton;
+import game.GameObjects.GameInventory;
 import game.Interfaces.Interactable;
 import game.GameObjects.Item;
 import gameSystem.map.MapManager;
 import language.*;
+import sound.JukeBoxSound;
 import unisagui.GuiManager;
 
 /**
@@ -30,11 +31,13 @@ public class ItemInteractionManager implements InteractionManager {
             MessageInformation ms = new MessageInformation("ItemFound");
             toShow = tm.getString(ms).get(0) + " " + tm.getString((Information) obj).get(0);
             
+            JukeBoxSound.getInstance().play("collect");
+            
             // show pop up (should be shown until the user says so)
             GuiManager.getInstance().showHint(toShow);
 
             // add element to the inventory
-            GameInventorySingleton.getInstance().addItem((Item) obj);
+            GameInventory.getInstance().addItem((Item) obj);
 
             // remove element from the the map
             MapManager.getInstance().getMap().removeObject(((Item)obj).getPosition().getScaledPosition());
