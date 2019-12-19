@@ -1,4 +1,0 @@
-award
-/Sound/bgmusic.mp3
-finish
-/Sound/finish.mp3

@@ -1,6 +1,0 @@
-game_music
-/Music/background.mp3
-exam
-/Music/exam.mp3
-menu
-/Music/mainmenu.mp3

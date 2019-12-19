@@ -469,7 +469,7 @@ public class GameFrame extends javax.swing.JFrame {
         MainMenuLabel.setPreferredSize(new java.awt.Dimension(200, 75));
 
         SettingsButton.setBackground(new java.awt.Color(93, 150, 199));
-        SettingsButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/settingsICON75.png"))); // NOI18N
+        SettingsButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/settings75.png"))); // NOI18N
         SettingsButton.setBorder(null);
         SettingsButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1130,7 +1130,7 @@ public class GameFrame extends javax.swing.JFrame {
         SettingsLayer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/SETTINGS AZZURRINO.png"))); // NOI18N
 
         SoundButton.setBackground(new java.awt.Color(93, 150, 199));
-        SoundButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/SOUND75.png"))); // NOI18N
+        SoundButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/SOUND.png"))); // NOI18N
         SoundButton.setToolTipText("");
         SoundButton.setBorder(null);
         SoundButton.addActionListener(new java.awt.event.ActionListener() {
@@ -1140,7 +1140,7 @@ public class GameFrame extends javax.swing.JFrame {
         });
 
         MusicButton.setBackground(new java.awt.Color(93, 150, 199));
-        MusicButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/MUSIC75.png"))); // NOI18N
+        MusicButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/MUSIC.png"))); // NOI18N
         MusicButton.setBorder(null);
         MusicButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1898,7 +1898,7 @@ public class GameFrame extends javax.swing.JFrame {
         HungerProgressBar.setPreferredSize(new java.awt.Dimension(150, 25));
 
         SettingsButtonFrame.setBackground(new java.awt.Color(93, 150, 199));
-        SettingsButtonFrame.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/settingsICON25.png"))); // NOI18N
+        SettingsButtonFrame.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/settings25.png"))); // NOI18N
         SettingsButtonFrame.setBorder(null);
         SettingsButtonFrame.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1988,7 +1988,7 @@ public class GameFrame extends javax.swing.JFrame {
         RightBorderLayout.setHorizontalGroup(
             RightBorderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RightBorderLayout.createSequentialGroup()
-                .addGap(0, 26, Short.MAX_VALUE)
+                .addGap(0, 25, Short.MAX_VALUE)
                 .addComponent(GameCloseButton))
         );
         RightBorderLayout.setVerticalGroup(
@@ -2121,7 +2121,8 @@ public class GameFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_AvatarNameActionPerformed
 
     private void FemaleWhiteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FemaleWhiteButtonActionPerformed
-         SwingUtilities.invokeLater(() -> sound.play("menu"));
+        SwingUtilities.invokeLater(() ->FemaleWhiteButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/woman75pressed.png")))); 
+        SwingUtilities.invokeLater(() -> sound.play("menu"));
          SwingUtilities.invokeLater(() ->StudentLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/woman75.png"))));
          SwingUtilities.invokeLater(() ->AvatarOkButton.setEnabled(true));
          SwingUtilities.invokeLater(() ->avatar=1);
@@ -2254,6 +2255,7 @@ public class GameFrame extends javax.swing.JFrame {
 
     private void SettingsButtonFrameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SettingsButtonFrameActionPerformed
         SwingUtilities.invokeLater(() -> SettingsDialog.setVisible(true));
+        
         //Chiamata a simone che mette il gioco in not game state
     }//GEN-LAST:event_SettingsButtonFrameActionPerformed
 
@@ -2273,7 +2275,8 @@ public class GameFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_QuestButtonFrameActionPerformed
 
     private void MaleWhiteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MaleWhiteButtonActionPerformed
-         SwingUtilities.invokeLater(() ->StudentLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/man75.png"))));
+         SwingUtilities.invokeLater(() ->MaleWhiteButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/man75pressed.png"))));
+        SwingUtilities.invokeLater(() ->StudentLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/man75.png"))));
          SwingUtilities.invokeLater(() -> sound.play("menu"));
          SwingUtilities.invokeLater(() ->AvatarOkButton.setEnabled(true));
          SwingUtilities.invokeLater(() ->avatar=0);
@@ -2281,6 +2284,7 @@ public class GameFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_MaleWhiteButtonActionPerformed
 
     private void FemaleBlackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FemaleBlackButtonActionPerformed
+        SwingUtilities.invokeLater(() ->FemaleBlackButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/BLACKwoman75pressed.png"))));
         SwingUtilities.invokeLater(() ->StudentLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/BLACKwoman75.png"))));
         SwingUtilities.invokeLater(() -> sound.play("menu"));
          SwingUtilities.invokeLater(() ->AvatarOkButton.setEnabled(true));
@@ -2288,6 +2292,7 @@ public class GameFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_FemaleBlackButtonActionPerformed
 
     private void MaleBlackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MaleBlackButtonActionPerformed
+        SwingUtilities.invokeLater(() ->MaleBlackButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/BLACKman75pressed.png"))));
         SwingUtilities.invokeLater(() ->StudentLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/BLACKman75.png"))));
         SwingUtilities.invokeLater(() -> sound.play("menu"));
         SwingUtilities.invokeLater(() ->AvatarOkButton.setEnabled(true));
@@ -2350,20 +2355,25 @@ public class GameFrame extends javax.swing.JFrame {
     private void MusicButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MusicButtonActionPerformed
         SwingUtilities.invokeLater(() -> sound.play("menu"));
         if(JukeBoxMusic.isActive()){
+            MusicButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/NOMUSIC.png")));
             SwingUtilities.invokeLater(() -> music.setIsActive(false));
         }
         else{
+            MusicButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/MUSIC.png")));
             SwingUtilities.invokeLater(() -> music.setIsActive(true));
-            SwingUtilities.invokeLater(() -> music.play("game_music"));
+            //if(GameManager.getInstance().isRunning())
+                SwingUtilities.invokeLater(() -> music.play("game_music"));
         }
     }//GEN-LAST:event_MusicButtonActionPerformed
 
     private void SoundButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SoundButtonActionPerformed
         SwingUtilities.invokeLater(() -> sound.play("menu"));
         if(JukeBoxSound.isActive()){
-        SwingUtilities.invokeLater(() -> sound.setIsActive(false));
+            SoundButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/NOSOUND.png")));
+            SwingUtilities.invokeLater(() -> sound.setIsActive(false));
         }
         else{
+            SoundButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/SOUND.png")));
             SwingUtilities.invokeLater(() -> sound.setIsActive(true));
         }
     }//GEN-LAST:event_SoundButtonActionPerformed
