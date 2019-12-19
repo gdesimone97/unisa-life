@@ -5,7 +5,9 @@
  */
 package gameSystem.map;
 
+import database.DatabaseManager;
 import game.GameResources.Map;
+import game.Interfaces.Initializable;
 import java.awt.Graphics2D;
 import java.io.Serializable;
 import quests.quest.QuestsSingleton;
@@ -16,12 +18,11 @@ import saving.exceptions.LoadingException;
  *
  * @author liovi
  */
-public class MapManager{
+public class MapManager implements Initializable{
 
-    private final int NUMBEROFMAPS = 2;
     private int actualMap;
 
-    private Map[] maps = new Map[NUMBEROFMAPS];
+    private Map[] maps;
     public static MapManager instance;
 
     public static MapManager getInstance() {
@@ -52,5 +53,11 @@ public class MapManager{
 
     public void render(Graphics2D g) {
         this.maps[actualMap].render(g);
+    }
+
+    @Override
+    public void init() {
+        maps = DatabaseManager.getDatabaseManager().getMaps();
+        actualMap = 0;
     }
 }

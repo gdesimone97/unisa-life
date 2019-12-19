@@ -5,16 +5,11 @@
  */
 package gameSystem;
 
-import exam.booklet.BookletSingleton;
-import game.GameObjects.GameInventorySingleton;
 import gameSystem.keySettings.HandlerInput;
-import gameSystem.map.MapManager;
 import java.awt.Canvas;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferStrategy;
-import quests.QuestsManagerSingleton;
-import quests.quest.QuestsSingleton;
 
 /**
  * This class is the main thread of the game, it calls render() and tick()

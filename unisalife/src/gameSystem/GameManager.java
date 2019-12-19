@@ -6,6 +6,7 @@
 package gameSystem;
 
 import character.StatusManager;
+import database.DatabaseManager;
 import exam.booklet.BookletSingleton;
 import game.GameObjects.Camera;
 import game.GameObjects.GameInventorySingleton;
@@ -73,7 +74,7 @@ public class GameManager {
         player = Player.getIstance();
         camera = new Camera(0, 0, player);
 
-        GameStateManager.getInstance().setState(LoadingState.getInstance());
+        GameStateManager.getInstance().init();
     }
 
     /**
@@ -94,10 +95,10 @@ public class GameManager {
                 BookletSingleton.getInstance();
                 QuestsManagerSingleton.getInstance();
                 QuestsSingleton.getInstance();
-                BookletSingleton.getInstance();
                 GameInventorySingleton.getInstance();
                 FileTextManager fileManager = FileTextManager.getFileTextManager();
                 fileManager.setLanguage("eng");
+                DatabaseManager.getDatabaseManager();
 
                 Thread.sleep(500);
                 

@@ -5,13 +5,14 @@
  */
 package gameSystem;
 
+import game.Interfaces.Initializable;
 import java.awt.Graphics2D;
 
 /**
  *
  * @author 1997g
  */
-public class GameStateManager {
+public class GameStateManager implements Initializable {
     private GameState gs;
     private static GameStateManager instance;
     
@@ -36,5 +37,10 @@ public class GameStateManager {
     
     public void render(Graphics2D g) {
         gs.render(g);
+    }
+
+    @Override
+    public void init() {
+        gs = LoadingState.getInstance();
     }
 }

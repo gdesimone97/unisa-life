@@ -11,25 +11,34 @@ import java.util.concurrent.ConcurrentHashMap;
  *
  * @author simon
  */
-public class ObjectManager extends ConcurrentHashMap<Position,GameObject> {
+public class ObjectManager {
+    private ConcurrentHashMap<Position,GameObject> fixed;
+    private ConcurrentHashMap<Position,GameObject> dynamic;
+
+    public ObjectManager(ConcurrentHashMap<Position, GameObject> fixed, ConcurrentHashMap<Position, GameObject> dynamic) {
+        this.fixed = fixed;
+        this.dynamic = dynamic;
+    }
+    
     public GameObject getObjectInNextPosition(Position p){
-        return this.get(p);
+        GameObject g = fixed.get(p);
+        return ( g == null ? dynamic.get(g) : g);        
     }
     
     public synchronized GameObject removeObject(Position p)throws Exception{
-        if(this.containsKey(p))
-            return this.remove(p);
+        if(dynamic.containsKey(p))
+            return dynamic.remove(p);
         else
             throw new Exception();
      
     }
     
     public synchronized void addObject(Position p, GameObject g) throws Exception {
-        if (this.containsKey(p)){
+        if (dynamic.containsKey(p)){
             throw new Exception();
         }
         else
-            this.put(p, g);
+            dynamic.put(p, g);
     }
     
 }

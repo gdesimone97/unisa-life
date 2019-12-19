@@ -217,7 +217,7 @@ public class Player extends GameObject implements Tickable, Renderable, Saveable
      */
     private void collisions(ObjectManager objMan) {
 
-        GameObject g = objMan.get(getScaledPosition());
+        GameObject g = objMan.getObjectInNextPosition(getScaledPosition());
         if (g != null && g instanceof Teleport) {
             ((Interactable)g).interact();
             setVelX(0);
@@ -225,7 +225,7 @@ public class Player extends GameObject implements Tickable, Renderable, Saveable
         } 
         else 
         {
-            g = objMan.get(face.nextStep());
+            g = objMan.getObjectInNextPosition(face.nextStep());
             if (g != null && !(g instanceof Teleport)) {
                 nextMove = false;
             }
