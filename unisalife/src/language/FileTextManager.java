@@ -11,6 +11,8 @@ import language.exceptions.FileTextManagerException;
 import java.util.List;
 import java.util.Set;
 import language.exceptions.*;
+import saving.SaveManager;
+import saving.exceptions.LoadingException;
 
 /**
  * This class extends the abstract class TextManager and specialize his methods
@@ -102,13 +104,17 @@ public class FileTextManager extends TextManager implements Initializable {
 
     @Override
     public void init() throws InitException {
-        if (getCurrentLanguage().equals("")) {
-            try {
+        try {
+            String loadLang = SaveManager.getSaveManager().loadLang();
+            if (loadLang.equals("")) {
                 setLanguage("eng");
-            } catch (LanguageSelectedNotAvailableException ex) {
-                throw new InitException("errore caricamento lingua");
+            } else {
+                setLanguage(loadLang);
             }
+        } catch (LoadingException ex) {
+            throw new InitException("Errore caricamento lingua salvata");
+        } catch (LanguageSelectedNotAvailableException ex) {
+            throw new InitException("Lingua selezionata non disponibile");
         }
     }
-
 }

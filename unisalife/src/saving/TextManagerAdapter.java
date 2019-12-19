@@ -19,7 +19,7 @@ import saving.exceptions.LoadingException;
  *
  * @author Giuseppe De Simone
  */
-class TextManagerAdapter extends TextManager implements Saveable {
+class TextManagerAdapter extends TextManager {
 
     private static final TextManagerAdapter instance = new TextManagerAdapter();
 
@@ -42,26 +42,5 @@ class TextManagerAdapter extends TextManager implements Saveable {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Serializable save() {
-        String lang = getCurrentLanguage();
-        return lang;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void load(Serializable obj) throws LoadingException {
-        try {
-            String lang = (String) obj;
-            setLanguage(lang);
-        } catch (LanguageSelectedNotAvailableException ex) {
-            throw new LoadingException();
-        }
-    }
 
 }
