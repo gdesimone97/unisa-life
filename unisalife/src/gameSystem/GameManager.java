@@ -7,7 +7,7 @@ package gameSystem;
 
 import character.StatusManager;
 import database.DatabaseManager;
-import exam.booklet.BookletSingleton;
+import exam.booklet.Booklet;
 import game.GameObjects.Camera;
 import game.GameObjects.GameInventorySingleton;
 import game.GameObjects.Player;
@@ -110,7 +110,7 @@ public class GameManager {
                 StatusManager.getInstance().init();
                 Player.getIstance().initialize(skin, Name);
                 MapManager.getInstance();
-                BookletSingleton.getInstance();
+                Booklet.getInstance();
                 QuestsManagerSingleton.getInstance();
                 QuestsSingleton.getInstance();
                 GameInventorySingleton.getInstance();

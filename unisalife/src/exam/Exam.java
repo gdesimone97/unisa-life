@@ -5,7 +5,7 @@
  */
 package exam;
 import character.Status;
-import exam.booklet.BookletSingleton;
+import exam.booklet.Booklet;
 import exam.booklet.Subject;
 import exam.question.*;
 import game.Interfaces.Initializable;
@@ -184,11 +184,11 @@ public class Exam implements Runnable {
         try {
             if (voto >= 18 && voto <= 30) {
                 gui.showDialog(FileTextManager.getFileTextManager().getString(new MessageInformation("ScoreTaken")).get(0) + " " + voto);
-                BookletSingleton.getInstance().setScore(subject, voto);
+                Booklet.getInstance().setScore(subject, voto);
             }
             else if (voto == 31) {
                 gui.showDialog(FileTextManager.getFileTextManager().getString(new MessageInformation("Lode")).get(0));
-                BookletSingleton.getInstance().setScore(subject, voto);
+                Booklet.getInstance().setScore(subject, voto);
             }
             else {
                 gui.showDialog(FileTextManager.getFileTextManager().getString(new MessageInformation("ExamFailed")).get(0));
