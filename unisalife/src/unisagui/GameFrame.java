@@ -1487,6 +1487,7 @@ public class GameFrame extends javax.swing.JFrame {
         MaleBlackButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/BLACKman75.png"))); // NOI18N
         MaleBlackButton.setBorder(null);
         buttongroup.add(MaleBlackButton);
+        MaleBlackButton.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/BLACKman75pressed.png"))); // NOI18N
         MaleBlackButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MaleBlackButtonActionPerformed(evt);
