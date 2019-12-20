@@ -106,4 +106,14 @@
 <message>You don't have enough money to buy a snack!</message>
 </MessageInformation>
 
+<MessageInformation info="TolcPassedName">
+<message>Congrats, </message>
+<message>. You did it! Now you are a Computer Engineering student!</message>
+</MessageInformation>
+
+<MessageInformation info="TolcNotPassedName">
+<message>I'm sorry, </message>
+<message>. You should try again.</message>
+</MessageInformation>
+
 </root>
