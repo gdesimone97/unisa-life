@@ -109,8 +109,10 @@ public class DatabaseManager implements Initializable {
         List<TileMap> res = this.getTileMaps();
         int mapNum = res.size();
         List<ConcurrentHashMap<Position, GameObject>> dynArrObj = new ArrayList<>();
-        dynArrObj.add(new ConcurrentHashMap<>());
-        dynArrObj.add(new ConcurrentHashMap<>());
+
+        for (int index = 0; index < mapNum; index++) {
+            dynArrObj.add(new ConcurrentHashMap<>());
+        }
 
         List<Quest> questList = this.getQuestsFromLevel(level);
 
@@ -146,7 +148,7 @@ public class DatabaseManager implements Initializable {
             throw new ErrorWhileSavingException();
         }
          */
-        return DatabaseManager.newArray(dynArrObj.size(), dynArrObj.get(0), dynArrObj.get(1));
+        return DatabaseManager.newArray(dynArrObj.size(), dynArrObj.get(0));
     }
 
     /**
