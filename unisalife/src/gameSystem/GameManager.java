@@ -62,6 +62,13 @@ public class GameManager {
      * starts the game
      */
     public void loadGame() {
+        try {
+            GameStateManager.getInstance().init();
+            Thread t = new Thread(game);
+            t.start();
+        } catch (InitException ex) {
+        }
+        
         // call a loading method of all instances
         new Thread(() -> {
             try {
@@ -70,13 +77,15 @@ public class GameManager {
                 // just set Loading state
                 player = Player.getIstance();
                 camera = new Camera(0, 0, player);
+                MapManager.getInstance().init();
                 GameStateManager.getInstance().init();
                 SaveManager.getSaveManager().load();
-
                 Thread.sleep(500);
-
+                
                 GameStateManager.getInstance().setState(PlayState.getInstance());
             } catch (Exception ex) {
+                JOptionPane.showMessageDialog(game, "System Error: " + ex.toString());
+                System.exit(1);
             }
         }).start();
     }
@@ -94,7 +103,12 @@ public class GameManager {
         try {
             GameStateManager.getInstance().init();
         } catch (InitException ex) {
-        }
+            JOptionPane.showMessageDialog(game, "System Error: " + ex.toString());
+            System.exit(1);
+        } catch (Exception ex) {
+                JOptionPane.showMessageDialog(game, "Undefined Error. Contact support\n" + ex.toString());
+                System.exit(1);
+            }
     }
 
     /**
