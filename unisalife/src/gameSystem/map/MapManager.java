@@ -83,4 +83,12 @@ public class MapManager implements Initializable {
     private void addDynamicObjects() {
         
     }
+    
+    public void startGeneratingCoins() {
+        this.maps[actualMap].startGeneratingCoins();
+    }
+    
+    public void stopGeneratingCoins() {
+        this.maps[actualMap].stopGeneratingCoins();
+    }
 }

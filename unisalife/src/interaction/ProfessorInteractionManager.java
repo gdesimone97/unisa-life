@@ -10,10 +10,14 @@ import exam.booklet.Subject;
 import game.GameObjects.Professor;
 import game.Interfaces.Initializable.InitException;
 import game.Interfaces.Interactable;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import language.FileTextManager;
 import language.MessageInformation;
 import language.exceptions.TextFinderException;
 import quests.quest.Quests;
+import saving.SaveManager;
+import saving.exceptions.SavingException;
 import unisagui.GuiManager;
 
 /**
@@ -52,9 +56,12 @@ public class ProfessorInteractionManager implements InteractionManager {
 //
 //                }
 //            }
-
+            
+            // autosave
+            SaveManager.getSaveManager().save();
         } catch (TextFinderException ex) {
         } catch (InitException ex) {
+        } catch (SavingException ex) {
         }
 
         // 4. modifica stato e ricompense
