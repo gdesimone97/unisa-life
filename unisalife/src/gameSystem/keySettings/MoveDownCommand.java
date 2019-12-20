@@ -5,7 +5,10 @@
  */
 package gameSystem.keySettings;
 
+import gameSystem.keySettings.interfaces.MovingCommand;
+import gameSystem.keySettings.interfaces.KeyCommand;
 import gameSystem.LoadingState;
+import gameSystem.MapState;
 import gameSystem.PauseState;
 import gameSystem.PlayState;
 
@@ -41,5 +44,13 @@ class MoveDownCommand extends KeyCommand implements MovingCommand {
     @Override
     public void visitLoadingState(LoadingState loadState) {
 
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     */
+    @Override
+    public void visitMapState(MapState mapState) {
     }
 }

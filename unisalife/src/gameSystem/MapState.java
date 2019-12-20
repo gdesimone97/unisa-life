@@ -7,7 +7,7 @@ package gameSystem;
 
 import game.GameObjects.Player;
 import game.Interfaces.Initializable;
-import gameSystem.keySettings.KeyCommand;
+import gameSystem.keySettings.interfaces.KeyCommand;
 import gameSystem.map.MapManager;
 import java.awt.BasicStroke;
 import java.awt.Color;

@@ -5,7 +5,7 @@
  */
 package gameSystem;
 
-import gameSystem.keySettings.KeyCommand;
+import gameSystem.keySettings.interfaces.KeyCommand;
 import java.awt.Graphics2D;
 
 /**

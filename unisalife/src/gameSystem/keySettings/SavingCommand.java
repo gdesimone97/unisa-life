@@ -5,7 +5,10 @@
  */
 package gameSystem.keySettings;
 
+import gameSystem.keySettings.interfaces.ActionCommand;
+import gameSystem.keySettings.interfaces.KeyCommand;
 import gameSystem.LoadingState;
+import gameSystem.MapState;
 import gameSystem.PauseState;
 import gameSystem.PlayState;
 import saving.SaveManager;
@@ -56,5 +59,13 @@ class SavingCommand extends KeyCommand implements ActionCommand {
     @Override
     public void visitLoadingState(LoadingState loadState) {
 
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     */
+    @Override
+    public void visitMapState(MapState mapState) {
     }
 }

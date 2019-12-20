@@ -5,11 +5,14 @@
  */
 package gameSystem.keySettings;
 
+import gameSystem.keySettings.interfaces.ActionCommand;
+import gameSystem.keySettings.interfaces.KeyCommand;
 import game.GameObjects.GameObject;
 import game.GameObjects.Position;
 import game.Interfaces.Interactable;
 import gameSystem.GameStateManager;
 import gameSystem.LoadingState;
+import gameSystem.MapState;
 import gameSystem.PauseState;
 import gameSystem.PlayState;
 import gameSystem.map.MapManager;
@@ -55,4 +58,11 @@ public class InteractCommand extends KeyCommand implements ActionCommand {
 
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     */
+    @Override
+    public void visitMapState(MapState mapState) {
+    }
 }

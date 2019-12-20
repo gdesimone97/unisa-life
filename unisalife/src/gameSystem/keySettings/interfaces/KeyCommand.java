@@ -3,11 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package gameSystem.keySettings;
+package gameSystem.keySettings.interfaces;
 
 import game.GameObjects.Player;
 import gameSystem.Game;
 import gameSystem.LoadingState;
+import gameSystem.MapState;
 import gameSystem.PauseState;
 import gameSystem.PlayState;
 
@@ -43,4 +44,10 @@ public abstract class KeyCommand {
      */
     public abstract void visitLoadingState(LoadingState loadState);
 
+    /**
+     * Handle the keyboard commands when the player want to visualize the map
+     *
+     * @param mapState
+     */
+    public abstract void visitMapState(MapState mapState);
 }
