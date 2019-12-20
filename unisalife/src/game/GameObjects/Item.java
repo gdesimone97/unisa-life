@@ -17,7 +17,6 @@ import java.time.temporal.ChronoUnit;
 import java.util.Objects;
 import javax.imageio.ImageIO;
 import org.dizitart.no2.objects.Id;
-import quests.ItemDef;
 
 /**
  *

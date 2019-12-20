@@ -13,10 +13,7 @@ import game.GameObjects.Position;
 import game.GameResources.Map;
 import game.Interfaces.Initializable;
 import java.awt.Graphics2D;
-import java.util.Arrays;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -69,9 +66,9 @@ public class MapManager implements Initializable {
     public void init() throws InitException {
         try {
             maps = DatabaseManager.getDatabaseManager().getMaps();
-            addDynamicObjects();
             mapNumber = maps.length;
             actualMap = 0;
+            addDynamicObjects();
         } catch (FileNotSetException ex) {
             throw new InitException("File not specified in Database");
         } catch (ObjectNotFoundException ex) {
@@ -88,7 +85,7 @@ public class MapManager implements Initializable {
         try {
             ConcurrentHashMap<Position, GameObject>[] objectsFromLevel = DatabaseManager.getDatabaseManager().getObjectsFromLevel(0);
             for (int i = 0; i < objectsFromLevel.length; i++) {
-                maps[i++].addDynamicObjects(objectsFromLevel[i]);
+                maps[i].addDynamicObjects(objectsFromLevel[i]);
             }
 
         } catch (ObjectNotFoundException ex) {

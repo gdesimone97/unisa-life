@@ -128,8 +128,10 @@ public class GameManager {
                 }
             } catch (InitException ex) {
                 JOptionPane.showMessageDialog(game, "System Error: " + ex.toString());
+                System.exit(1);
             } catch (Exception ex) {
-                JOptionPane.showMessageDialog(game, "Undefined Error. Contact support");
+                JOptionPane.showMessageDialog(game, "Undefined Error. Contact support\n" + ex.toString());
+                System.exit(1);
             }
         }).start();
     }
