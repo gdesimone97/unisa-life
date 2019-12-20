@@ -40,7 +40,7 @@ class MoveLeftCommand extends KeyCommand implements MovingCommand {
      *
      */
     @Override
-    public void visitiLoadingState(LoadingState loadState) {
+    public void visitLoadingState(LoadingState loadState) {
 
     }
 }

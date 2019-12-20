@@ -40,7 +40,7 @@ public class DoNothingCommand extends KeyCommand {
      *
      */
     @Override
-    public void visitiLoadingState(LoadingState loadState) {
+    public void visitLoadingState(LoadingState loadState) {
     }
 
 }

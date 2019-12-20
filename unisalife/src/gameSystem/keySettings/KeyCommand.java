@@ -41,6 +41,6 @@ public abstract class KeyCommand {
      *
      * @param loadState
      */
-    public abstract void visitiLoadingState(LoadingState loadState);
+    public abstract void visitLoadingState(LoadingState loadState);
 
 }
