@@ -53,6 +53,7 @@ import javax.swing.SwingUtilities;
         rq = lock;
         SwingUtilities.invokeLater(() -> gameframe.RequestLabel.setText(s));
         SwingUtilities.invokeLater(() -> gameframe.RequestDialog.setVisible(true));
+        System.err.println("sono DENTRO REQUEST");
     }
 
 }

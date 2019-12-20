@@ -12,8 +12,6 @@ import game.GameObjects.GameInventory;
 import game.GameObjects.Player;
 import game.Interfaces.Initializable.InitException;
 import gameSystem.map.MapManager;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import language.FileTextManager;
 import quests.QuestsManager;
@@ -109,7 +107,7 @@ public class GameManager {
         // init all managers, at the end starts the playState
         new Thread(() -> {
             try {
-                
+
                 Player.getIstance().initialize(skin, Name);
                 MapManager.getInstance();
                 Booklet.getInstance();
@@ -120,11 +118,14 @@ public class GameManager {
                 FileTextManager.getFileTextManager().init();
                 JukeBoxMusic.getInstance();
                 JukeBoxSound.getInstance();
-                
+
                 //This is the last to be started
                 StatusManager.getInstance().init();
-                
+
                 GameStateManager.getInstance().setState(PlayState.getInstance());
+                synchronized (this) {
+                    notify();
+                }
             } catch (InitException ex) {
                 JOptionPane.showMessageDialog(game, "System Error: " + ex.toString());
             }
@@ -156,7 +157,7 @@ public class GameManager {
     public static void main(String[] args) {
         GuiManager.getInstance().startGame();
     }
-    
+
     public boolean isRunning() {
         return game.isRunning();
     }
