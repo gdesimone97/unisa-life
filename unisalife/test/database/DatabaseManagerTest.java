@@ -57,7 +57,7 @@ public class DatabaseManagerTest {
 
     }
 
-    /*
+    
     @Test
     public void testGetDatabaseManager() throws Exception {
         System.out.println("getDatabaseManager");
@@ -66,7 +66,7 @@ public class DatabaseManagerTest {
         assertNotEquals(expResult, result);
     }
 
-     */
+     
     //@Test
     public void testGetQuestsFromLevel() throws Exception {
         System.out.println("getQuestsFromLevel");

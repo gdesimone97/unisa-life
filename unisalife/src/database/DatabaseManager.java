@@ -149,6 +149,13 @@ public class DatabaseManager implements Initializable {
         return DatabaseManager.newArray(dynArrObj.size(), dynArrObj.get(0), dynArrObj.get(1));
     }
 
+    /**
+     * Private method aimed to find the map where an item is placed.
+     *
+     * @param id The value of the index of the item
+     * @param collection A specification (fixed or dynamic collection)
+     * @return
+     */
     private int findMap(String id, String collection) {
 
         NitriteCollection coll = db.getNitriteDatabase().getCollection(collection);
@@ -162,6 +169,13 @@ public class DatabaseManager implements Initializable {
         return Integer.parseInt(find.firstOrDefault().get("IDMAP", String.class));
     }
 
+    /**
+     * Method to obtain the maps populated with fixed objects.
+     *
+     * @return an array of Maps (intances)
+     * @throws ObjectNotFoundException
+     * @throws ClassNotFoundException
+     */
     public Map[] getMaps() throws ObjectNotFoundException, ClassNotFoundException {
 
         List<TileMap> res = this.getTileMaps();
@@ -197,6 +211,11 @@ public class DatabaseManager implements Initializable {
         return maps;
     }
 
+    /**
+     * Private method to obtain all the tilemaps in the database
+     *
+     * @return a list of tilemaps
+     */
     private List<TileMap> getTileMaps() {
         List<TileMapWrapper> res = db.getNitriteDatabase().getRepository(TileMapWrapper.class).find(ObjectFilters.ALL).toList();
         List<TileMap> returnList = new ArrayList<>();
@@ -206,14 +225,28 @@ public class DatabaseManager implements Initializable {
         return returnList;
     }
 
-    private Coin findCoin(String itemName) throws ObjectNotFoundException {
-        Coin c = db.getNitriteDatabase().getRepository(Coin.class).find(eq("info", itemName)).firstOrDefault();
+    /**
+     * Private method to search for a coin in the coin repo
+     *
+     * @param id coin id
+     * @return an instance of a coin
+     * @throws ObjectNotFoundException
+     */
+    private Coin findCoin(String id) throws ObjectNotFoundException {
+        Coin c = db.getNitriteDatabase().getRepository(Coin.class).find(eq("info", id)).firstOrDefault();
         if (c == null) {
             throw new ObjectNotFoundException();
         }
         return c;
     }
 
+    /**
+     * Private method to search for an item in the item repo
+     *
+     * @param itemName item id
+     * @return an instance of an item
+     * @throws ObjectNotFoundException
+     */
     private Item findItem(String itemName) throws ObjectNotFoundException {
         Item res = (Item) db.getNitriteDatabase().getRepository(Item.class).find(eq("info", itemName)).firstOrDefault();
         if (res == null) {
@@ -222,6 +255,13 @@ public class DatabaseManager implements Initializable {
         return res;
     }
 
+    /**
+     * Private method to search for a professor in the professor repo
+     *
+     * @param s is the subject linked to the professor
+     * @return an instance of a professor
+     * @throws ObjectNotFoundException
+     */
     private Professor findProfessor(Subject s) throws ObjectNotFoundException {
         Professor prof = db.getNitriteDatabase().getRepository(Professor.class).find(eq("subject.subject", s.getInfo())).firstOrDefault();
         if (prof == null) {
@@ -230,10 +270,20 @@ public class DatabaseManager implements Initializable {
         return prof;
     }
 
+    /**
+     * Private method to search for the cook
+     *
+     * @return an instance of the cook
+     */
     private Cook findCook() {
         return db.getNitriteDatabase().getRepository(Cook.class).find(ObjectFilters.ALL).firstOrDefault();
     }
 
+    /**
+     * Private method to search for the guardian
+     *
+     * @return an instance of the guardian
+     */
     private Guardian findGuardian() {
         return db.getNitriteDatabase().getRepository(Guardian.class).find(ObjectFilters.ALL).firstOrDefault();
     }
@@ -245,6 +295,25 @@ public class DatabaseManager implements Initializable {
      */
     public List<Subject> getSubjects() {
         return db.getNitriteDatabase().getRepository(Subject.class).find(ObjectFilters.ALL).toList();
+    }
+
+    /**
+     * Method to close the database
+     */
+    public void close() {
+        this.db.close();
+    }
+
+    /**
+     * Method to clear the databse (it deletes it).
+     */
+    public void clearDatabase() {
+        this.db.clear();
+    }
+
+    @Override
+    public void init() {
+
     }
 
     /*
@@ -276,25 +345,5 @@ public class DatabaseManager implements Initializable {
     public boolean isSaved() {
         return this.load().size() >= 0;
     }
-    
      */
-    /**
-     * Method to close the database
-     */
-    public void close() {
-        this.db.close();
-    }
-
-    /**
-     * Method to clear the databse (it deletes it).
-     */
-    public void clearDatabase() {
-        this.db.clear();
-    }
-
-    @Override
-    public void init() {
-
-    }
-
 }
