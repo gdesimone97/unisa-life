@@ -6,7 +6,7 @@
 package database;
 
 import database.populator.exceptions.InvalidArgumentListException;
-import game.GameResources.TileMap;
+import game.GameObjects.Position;
 import java.util.NoSuchElementException;
 import java.util.StringTokenizer;
 
@@ -18,19 +18,18 @@ class TileMapFactory extends StorableCreator {
 
     @Override
     public Storable create(String s) {
-        
-        try{
+
+        try {
             StringTokenizer st = new StringTokenizer(s, StorableCreator.DELIMETER);
-            TileMapWrapper tm = new TileMapWrapper(Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken()), st.nextToken(), st.nextToken());
+            TileMapWrapper tm = new TileMapWrapper(Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken()),
+                    Integer.parseInt(st.nextToken()), st.nextToken(), st.nextToken(),
+                    new Position(Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken())));
             return tm;
-            
-        }catch( NumberFormatException | NoSuchElementException e ){
+
+        } catch (NumberFormatException | NoSuchElementException e) {
             throw new InvalidArgumentListException();
         }
-        
-    }
-    
 
-    
-    
+    }
+
 }
