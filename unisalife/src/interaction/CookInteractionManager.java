@@ -12,6 +12,7 @@ import game.Interfaces.Interactable;
 import hud.change.CanteenHudBarChange;
 import language.FileTextManager;
 import language.MessageInformation;
+import saving.SaveManager;
 import sound.JukeBoxSound;
 import unisagui.GuiManager;
 import unisagui.RequestGui;
@@ -58,7 +59,9 @@ public class CookInteractionManager implements InteractionManager {
                 CanteenHudBarChange c = new CanteenHudBarChange();
                 c.execute();
             }
-
+            
+            // autosave
+            SaveManager.getSaveManager().save();
         } catch (Exception ex) {
             // decide what to do when an error with string retriving occurs
         }

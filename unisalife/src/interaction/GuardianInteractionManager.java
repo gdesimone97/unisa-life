@@ -10,6 +10,7 @@ import hud.change.DormitoryHudBarChange;
 import language.FileTextManager;
 import language.Information;
 import language.MessageInformation;
+import saving.SaveManager;
 import unisagui.GuiManager;
 
 /**
@@ -35,6 +36,9 @@ public class GuardianInteractionManager implements InteractionManager {
             // restore status bars
             DormitoryHudBarChange d = new DormitoryHudBarChange();
             d.execute();
+            
+            // autosave
+            SaveManager.getSaveManager().save();
         } catch (Exception ex) {
             // decide what to do when an error with string retriving occurs
         }

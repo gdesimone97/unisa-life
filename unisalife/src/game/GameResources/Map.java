@@ -74,7 +74,7 @@ public class Map implements Runnable {
             ex.printStackTrace();
         }
 
-        startGeneratingCoins();
+//        startGeneratingCoins();
     }
 
     /**
