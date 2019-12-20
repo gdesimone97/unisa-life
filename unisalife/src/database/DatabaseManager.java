@@ -133,7 +133,7 @@ public class DatabaseManager implements Initializable {
         }
 
         Cook cook = this.findCook();
-        System.out.println(cook.getIndex());
+        //System.out.println(cook.getIndex());
         int cookMapId = this.findMap(cook.getIndex(), DatabaseManager.DYNCOLLECTIONNAME);
         dynArrObj.get(cookMapId).put(cook.getScaledPosition(), cook);
 

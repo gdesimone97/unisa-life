@@ -13,6 +13,7 @@ import game.GameObjects.Position;
 import game.GameResources.Map;
 import game.Interfaces.Initializable;
 import java.awt.Graphics2D;
+import java.util.Arrays;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -38,7 +39,7 @@ public class MapManager implements Initializable {
 
     private MapManager() {
         // Soluzione momentanea, quando c'è il database, dovrà essere vuoto!
-        
+
 //        maps = new Map[2];
 //        maps[0] = new Map();
 //        actualMap = 0;
@@ -68,6 +69,7 @@ public class MapManager implements Initializable {
     public void init() throws InitException {
         try {
             maps = DatabaseManager.getDatabaseManager().getMaps();
+            addDynamicObjects();
             mapNumber = maps.length;
             actualMap = 0;
         } catch (FileNotSetException ex) {
@@ -76,27 +78,30 @@ public class MapManager implements Initializable {
             throw new InitException("Objects not found in Database");
         } catch (ClassNotFoundException ex) {
             throw new InitException("Class not found during Database query");
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            throw new InitException("Generic error");
         }
     }
-    
+
     private void addDynamicObjects() throws InitException {
         try {
-            int i = 0;
-            for (ConcurrentHashMap<Position,GameObject> d : DatabaseManager.getDatabaseManager().getObjectsFromLevel(0)) {
-                maps[i++].addDynamicObjects(d);
+            ConcurrentHashMap<Position, GameObject>[] objectsFromLevel = DatabaseManager.getDatabaseManager().getObjectsFromLevel(0);
+            for (int i = 0; i < objectsFromLevel.length; i++) {
+                maps[i++].addDynamicObjects(objectsFromLevel[i]);
             }
-            
+
         } catch (ObjectNotFoundException ex) {
             throw new InitException("Can't find all dynamic objects for the level.");
         } catch (FileNotSetException ex) {
             throw new InitException("Can't find the database file!");
         }
     }
-    
+
     public void startGeneratingCoins() {
         this.maps[actualMap].startGeneratingCoins();
     }
-    
+
     public void stopGeneratingCoins() {
         this.maps[actualMap].stopGeneratingCoins();
     }
