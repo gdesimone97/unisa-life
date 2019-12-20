@@ -9,20 +9,26 @@ import database.Storable;
 import game.Interfaces.Interactable;
 import interaction.DistributorInteractionManager;
 import interaction.InteractionManager;
+import org.dizitart.no2.objects.Id;
 
 /**
  *
  * @author 1997g
  */
 public class Distributor extends GameObject implements Interactable, Storable {
-    
-    private final String info;
-    
-    public Distributor(Position p,String info) {
-        super(p);
-        this.info=info;
+
+    @Id
+    private String info;
+
+    private Distributor() {
+        super();
     }
-    
+
+    public Distributor(Position p, String info) {
+        super(p);
+        this.info = info;
+    }
+
     @Override
     public void interact() {
         InteractionManager im = new DistributorInteractionManager();
@@ -33,5 +39,5 @@ public class Distributor extends GameObject implements Interactable, Storable {
     public String getIndex() {
         return this.info;
     }
-    
+
 }
