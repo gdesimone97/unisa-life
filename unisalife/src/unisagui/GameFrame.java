@@ -2126,18 +2126,9 @@ public class GameFrame extends javax.swing.JFrame {
         SwingUtilities.invokeLater(() -> sound.play("menu"));
         SwingUtilities.invokeLater(() -> music.play("game_music"));
         SwingUtilities.invokeLater(() -> {
-            try {
-                synchronized(GameManager.getInstance()){
                 GameManager.getInstance().initGame();
-                GameManager.getInstance().startGame(1, "ciao");
-                GameManager.getInstance().wait();
-                SaveManager.getSaveManager().load();
+                GameManager.getInstance().loadGame();
                 SwingUtilities.invokeLater(() -> this.setVisible(true));
-                SwingUtilities.invokeLater(() -> this.setEnabled(true));
-                }
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            }
         });
     }//GEN-LAST:event_ResumeGameButtonActionPerformed
 
