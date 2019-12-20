@@ -3,8 +3,16 @@ package unisagui;
 import java.awt.event.KeyEvent;
 import javax.swing.SwingUtilities;
 import gameSystem.GameManager;
+import java.awt.Component;
 import java.awt.Dialog;
 import javax.swing.ButtonGroup;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableColumn;
 import saving.SaveManager;
 import sound.JukeBoxMusic;
 import sound.JukeBoxSound;
@@ -25,12 +33,14 @@ public class GameFrame extends javax.swing.JFrame {
     private static JukeBoxSound sound = JukeBoxSound.getInstance();
     private static JukeBoxMusic music = JukeBoxMusic.getInstance();
     private static ButtonGroup buttongroup = new javax.swing.ButtonGroup();
+    private DefaultTableModel model;
 
     private GameFrame() {
         initComponents();
         undecoratingDialogs();
         settingLocations(this);
         initialSettings(this);
+        initializingTable();
         //saveManager qui
     }
 
@@ -39,6 +49,26 @@ public class GameFrame extends javax.swing.JFrame {
             instance = new GameFrame();
         }
         return instance;
+    }
+
+    private void initializingTable() {
+        model = (DefaultTableModel) InventoryTable.getModel();
+        //model.setColumnIdentifiers(new Object[]{"Name", "Quantity", "Icon"});
+        InventoryTable.getColumn("Icon").setCellRenderer(new CellRender());
+
+    }
+
+    class CellRender implements TableCellRenderer {
+
+        public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected,
+                boolean hasFocus, int row, int column) {
+            TableColumn tb = table.getColumn("Icon");
+            tb.setMaxWidth(32);
+            tb.setMinWidth(32);
+            table.setRowHeight(32);
+            return (Component) value;
+        }
+
     }
 
     private void initialSettings(GameFrame instance) {
@@ -52,14 +82,18 @@ public class GameFrame extends javax.swing.JFrame {
     }
 
     private void settingAvatarButton() {
-        if(MaleBlackButton.isSelected())
+        if (MaleBlackButton.isSelected()) {
             MaleBlackButton.setSelected(false);
-        if(FemaleBlackButton.isSelected())
+        }
+        if (FemaleBlackButton.isSelected()) {
             FemaleBlackButton.setSelected(false);
-        if(FemaleWhiteButton.isSelected())
+        }
+        if (FemaleWhiteButton.isSelected()) {
             FemaleWhiteButton.setSelected(false);
-        if(MaleWhiteButton.isSelected())
+        }
+        if (MaleWhiteButton.isSelected()) {
             MaleWhiteButton.setSelected(false);
+        }
     }
 
     private void undecoratingDialogs() {
@@ -230,6 +264,13 @@ public class GameFrame extends javax.swing.JFrame {
         QuestTextScrollPane = new javax.swing.JScrollPane();
         QuestTextArea = new javax.swing.JTextArea();
         ExitQuestDialogLabel = new javax.swing.JLabel();
+        InventoryDialog1 = new javax.swing.JDialog();
+        InventoryPanel1 = new javax.swing.JPanel();
+        InventoryLabel1 = new javax.swing.JLabel();
+        InventoryPageButton1 = new javax.swing.JLabel();
+        NextButton1 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        InventoryTable = new javax.swing.JTable();
         HudPanel = new javax.swing.JPanel();
         LevelLabel = new javax.swing.JLabel();
         MoneyIcon = new javax.swing.JLabel();
@@ -1839,6 +1880,104 @@ public class GameFrame extends javax.swing.JFrame {
             .addComponent(QuestPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
+        InventoryPanel1.setMaximumSize(new java.awt.Dimension(400, 450));
+        InventoryPanel1.setMinimumSize(new java.awt.Dimension(400, 450));
+
+        InventoryLabel1.setText("                          INVENTORY");
+        InventoryLabel1.setMaximumSize(new java.awt.Dimension(250, 25));
+        InventoryLabel1.setMinimumSize(new java.awt.Dimension(250, 25));
+        InventoryLabel1.setPreferredSize(new java.awt.Dimension(250, 25));
+
+        InventoryPageButton1.setText("PAGE");
+        InventoryPageButton1.setMaximumSize(new java.awt.Dimension(50, 25));
+        InventoryPageButton1.setMinimumSize(new java.awt.Dimension(50, 25));
+        InventoryPageButton1.setPreferredSize(new java.awt.Dimension(50, 25));
+
+        NextButton1.setText("NE");
+        NextButton1.setEnabled(false);
+        NextButton1.setMaximumSize(new java.awt.Dimension(50, 25));
+        NextButton1.setMinimumSize(new java.awt.Dimension(50, 25));
+        NextButton1.setPreferredSize(new java.awt.Dimension(50, 25));
+
+        InventoryTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Name", "Quantity", "Icon"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        InventoryTable.setColumnSelectionAllowed(true);
+        jScrollPane1.setViewportView(InventoryTable);
+        InventoryTable.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        if (InventoryTable.getColumnModel().getColumnCount() > 0) {
+            InventoryTable.getColumnModel().getColumn(0).setResizable(false);
+            InventoryTable.getColumnModel().getColumn(1).setResizable(false);
+            InventoryTable.getColumnModel().getColumn(2).setResizable(false);
+        }
+
+        javax.swing.GroupLayout InventoryPanel1Layout = new javax.swing.GroupLayout(InventoryPanel1);
+        InventoryPanel1.setLayout(InventoryPanel1Layout);
+        InventoryPanel1Layout.setHorizontalGroup(
+            InventoryPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(InventoryPanel1Layout.createSequentialGroup()
+                .addGroup(InventoryPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(InventoryPanel1Layout.createSequentialGroup()
+                        .addGap(75, 75, 75)
+                        .addComponent(InventoryLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(InventoryPanel1Layout.createSequentialGroup()
+                        .addGap(149, 149, 149)
+                        .addComponent(InventoryPageButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(NextButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(InventoryPanel1Layout.createSequentialGroup()
+                        .addGap(50, 50, 50)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(62, Short.MAX_VALUE))
+        );
+        InventoryPanel1Layout.setVerticalGroup(
+            InventoryPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(InventoryPanel1Layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(InventoryLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                .addGroup(InventoryPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(InventoryPageButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(NextButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(26, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout InventoryDialog1Layout = new javax.swing.GroupLayout(InventoryDialog1.getContentPane());
+        InventoryDialog1.getContentPane().setLayout(InventoryDialog1Layout);
+        InventoryDialog1Layout.setHorizontalGroup(
+            InventoryDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 486, Short.MAX_VALUE)
+            .addGroup(InventoryDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, InventoryDialog1Layout.createSequentialGroup()
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(InventoryPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+        );
+        InventoryDialog1Layout.setVerticalGroup(
+            InventoryDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 486, Short.MAX_VALUE)
+            .addGroup(InventoryDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, InventoryDialog1Layout.createSequentialGroup()
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(InventoryPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("HNTBAE\n"); // NOI18N
         setBackground(new java.awt.Color(93, 150, 199));
@@ -2013,7 +2152,7 @@ public class GameFrame extends javax.swing.JFrame {
         RightBorderLayout.setHorizontalGroup(
             RightBorderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RightBorderLayout.createSequentialGroup()
-                .addGap(0, 26, Short.MAX_VALUE)
+                .addGap(0, 25, Short.MAX_VALUE)
                 .addComponent(GameCloseButton))
         );
         RightBorderLayout.setVerticalGroup(
@@ -2149,7 +2288,7 @@ public class GameFrame extends javax.swing.JFrame {
 
     private void FemaleWhiteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FemaleWhiteButtonActionPerformed
         SwingUtilities.invokeLater(() -> settingAvatarButton());
-        SwingUtilities.invokeLater(() -> FemaleWhiteButton.setSelected(true));     
+        SwingUtilities.invokeLater(() -> FemaleWhiteButton.setSelected(true));
         SwingUtilities.invokeLater(() -> sound.play("menu"));
         SwingUtilities.invokeLater(() -> StudentLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/woman75.png"))));
         SwingUtilities.invokeLater(() -> AvatarOkButton.setEnabled(true));
@@ -2227,7 +2366,7 @@ public class GameFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_AvatarOkButtonMouseClicked
 
     private void ConvDialogKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ConvDialogKeyPressed
-       
+
     }//GEN-LAST:event_ConvDialogKeyPressed
 
     private void HintDialogKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_HintDialogKeyTyped
@@ -2249,7 +2388,7 @@ public class GameFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_ConvDialogKeyTyped
 
     private void HintDialogKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_HintDialogKeyPressed
-        
+
     }//GEN-LAST:event_HintDialogKeyPressed
 
     private void NoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NoButtonActionPerformed
@@ -2299,16 +2438,26 @@ public class GameFrame extends javax.swing.JFrame {
 
     private void FemaleBlackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FemaleBlackButtonActionPerformed
         SwingUtilities.invokeLater(() -> settingAvatarButton());
-        SwingUtilities.invokeLater(() -> FemaleBlackButton.setSelected(true));        
+        SwingUtilities.invokeLater(() -> FemaleBlackButton.setSelected(true));
         SwingUtilities.invokeLater(() -> StudentLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/BLACKwoman75.png"))));
         SwingUtilities.invokeLater(() -> sound.play("menu"));
         SwingUtilities.invokeLater(() -> AvatarOkButton.setEnabled(true));
         SwingUtilities.invokeLater(() -> avatar = 3);
+
+        JLabel label = new JLabel();
+        //ImageIcon aboutIcon = new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/BLACKwoman75.png")));
+        label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/BLACKwoman75.png")));
+        //Object[] obj = {"femmina", "nera", aboutIcon};
+        //SwingUtilities.invokeLater(() ->  InventoryTable.setValueAt(aboutIcon,3,2 ));
+        //Object[] rowData = {"nome","quantity",aboutIcon};
+        SwingUtilities.invokeLater(() -> model.addRow(new Object[]{"nome", "quantity",label}));
+        SwingUtilities.invokeLater(() -> InventoryDialog1.setVisible(true));
+
     }//GEN-LAST:event_FemaleBlackButtonActionPerformed
 
     private void MaleBlackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MaleBlackButtonActionPerformed
         SwingUtilities.invokeLater(() -> settingAvatarButton());
-        SwingUtilities.invokeLater(() -> MaleBlackButton.setSelected(true));           
+        SwingUtilities.invokeLater(() -> MaleBlackButton.setSelected(true));
         SwingUtilities.invokeLater(() -> StudentLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/BLACKman75.png"))));
         SwingUtilities.invokeLater(() -> sound.play("menu"));
         SwingUtilities.invokeLater(() -> AvatarOkButton.setEnabled(true));
@@ -2399,7 +2548,7 @@ public class GameFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_CreditsButtonActionPerformed
 
     private void RequestDialogWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_RequestDialogWindowGainedFocus
-       // SwingUtilities.invokeLater(() ->  RequestDialog.set
+        // SwingUtilities.invokeLater(() ->  RequestDialog.set
     }//GEN-LAST:event_RequestDialogWindowGainedFocus
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
@@ -2539,9 +2688,14 @@ public class GameFrame extends javax.swing.JFrame {
     protected javax.swing.JLabel IconLabel8;
     protected javax.swing.JLabel IconLabel9;
     protected javax.swing.JDialog InventoryDialog;
+    protected javax.swing.JDialog InventoryDialog1;
     protected javax.swing.JLabel InventoryLabel;
+    protected javax.swing.JLabel InventoryLabel1;
     protected javax.swing.JLabel InventoryPageButton;
+    protected javax.swing.JLabel InventoryPageButton1;
     protected javax.swing.JPanel InventoryPanel;
+    protected javax.swing.JPanel InventoryPanel1;
+    protected javax.swing.JTable InventoryTable;
     protected javax.swing.JButton KeyboardButton;
     protected javax.swing.JDialog KeyboardSettingsDialog;
     protected javax.swing.JComboBox<String> LanguageComboBox;
@@ -2559,6 +2713,7 @@ public class GameFrame extends javax.swing.JFrame {
     protected javax.swing.JLabel NameOfExamLabel;
     protected javax.swing.JButton NewGameButton;
     protected javax.swing.JButton NextButton;
+    protected javax.swing.JButton NextButton1;
     protected javax.swing.JButton NoButton;
     protected javax.swing.JLabel ProfLabel;
     protected javax.swing.JButton QuestButtonFrame;
@@ -2593,5 +2748,6 @@ public class GameFrame extends javax.swing.JFrame {
     protected javax.swing.JButton YesButton;
     protected javax.swing.JLabel jLabel1;
     protected javax.swing.JLabel jLabel2;
+    protected javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
