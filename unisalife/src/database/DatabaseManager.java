@@ -250,6 +250,11 @@ public class DatabaseManager implements Initializable {
      * @throws ObjectNotFoundException
      */
     private Item findItem(String itemName) throws ObjectNotFoundException {
+        /*
+        Document d = db.getNitriteDatabase().getRepository(Item.class).find(eq("info", itemName)).;
+        // %448%1024%/Sprites/note.png%appunti
+        Item res = new Item((Position) d.get("p"), (String) d.get("path"), (String) d.get("info"));
+         */
         Item res = (Item) db.getNitriteDatabase().getRepository(Item.class).find(eq("info", itemName)).firstOrDefault();
         if (res == null) {
             throw new ObjectNotFoundException();
