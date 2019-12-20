@@ -4,6 +4,7 @@ import java.awt.event.KeyEvent;
 import javax.swing.SwingUtilities;
 import gameSystem.GameManager;
 import java.awt.Dialog;
+import javax.swing.ButtonGroup;
 import saving.SaveManager;
 import sound.JukeBoxMusic;
 import sound.JukeBoxSound;
@@ -23,6 +24,7 @@ public class GameFrame extends javax.swing.JFrame {
     private int avatar = 0;
     private static JukeBoxSound sound = JukeBoxSound.getInstance();
     private static JukeBoxMusic music = JukeBoxMusic.getInstance();
+    private static ButtonGroup buttongroup = new javax.swing.ButtonGroup();
 
     private GameFrame() {
         initComponents();
@@ -50,10 +52,14 @@ public class GameFrame extends javax.swing.JFrame {
     }
 
     private void settingAvatarButton() {
-        SwingUtilities.invokeLater(() -> MaleWhiteButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/man75.png"))));
-        SwingUtilities.invokeLater(() -> FemaleWhiteButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/woman75.png"))));
-        SwingUtilities.invokeLater(() -> FemaleBlackButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/BLACKwoman75.png"))));
-        SwingUtilities.invokeLater(() -> MaleBlackButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/BLACKman75.png"))));
+        if(MaleBlackButton.isSelected())
+            MaleBlackButton.setSelected(false);
+        if(FemaleBlackButton.isSelected())
+            FemaleBlackButton.setSelected(false);
+        if(FemaleWhiteButton.isSelected())
+            FemaleWhiteButton.setSelected(false);
+        if(MaleWhiteButton.isSelected())
+            MaleWhiteButton.setSelected(false);
     }
 
     private void undecoratingDialogs() {
@@ -64,10 +70,8 @@ public class GameFrame extends javax.swing.JFrame {
         SwingUtilities.invokeLater(() -> AvatarChooserDialog.setUndecorated(true));
         SwingUtilities.invokeLater(() -> InventoryDialog.setUndecorated(true));
         SwingUtilities.invokeLater(() -> ConvDialog.setUndecorated(true));
-        //SwingUtilities.invokeLater(() -> ConvDialog.getRootPane().setOpaque(false));
         SwingUtilities.invokeLater(() -> ConvDialog.setAlwaysOnTop(true));
         SwingUtilities.invokeLater(() -> HintDialog.setUndecorated(true));
-        //SwingUtilities.invokeLater(() -> HintDialog.getRootPane().setOpaque(false));
         SwingUtilities.invokeLater(() -> HintDialog.setAlwaysOnTop(true));
         SwingUtilities.invokeLater(() -> QuestDialog.setUndecorated(true));
     }
@@ -75,12 +79,12 @@ public class GameFrame extends javax.swing.JFrame {
     private void settingLocations(GameFrame instance) {
         SwingUtilities.invokeLater(() -> MainMenuDialog.setLocation(instance.getLocation()));
         SwingUtilities.invokeLater(() -> SettingsDialog.setLocation(instance.getLocation()));
-        SwingUtilities.invokeLater(() -> RequestDialog.setLocation(instance.getLocation().x + 105, instance.getLocation().y + 250));
+        SwingUtilities.invokeLater(() -> RequestDialog.setLocation(instance.getLocation().x + 175, instance.getLocation().y + 200));
         SwingUtilities.invokeLater(() -> ExamDialog.setLocation(instance.getLocation().x + 50, instance.getLocation().y + 75));
         SwingUtilities.invokeLater(() -> AvatarChooserDialog.setLocation(instance.getLocation()));
         SwingUtilities.invokeLater(() -> InventoryDialog.setLocation(instance.getLocation()));
         SwingUtilities.invokeLater(() -> HintDialog.setLocation(instance.getLocation().x + 200, instance.getLocation().y + 275));
-        SwingUtilities.invokeLater(() -> ConvDialog.setLocation(instance.getLocation().x + 75, instance.getLocation().y + 450));
+        SwingUtilities.invokeLater(() -> ConvDialog.setLocation(instance.getLocation().x + 112, instance.getLocation().y + 450));
         SwingUtilities.invokeLater(() -> QuestDialog.setLocation(instance.getLocation().x + 90, instance.getLocation().y + 125));
     }
 
@@ -260,7 +264,7 @@ public class GameFrame extends javax.swing.JFrame {
         ExamPanel.setMinimumSize(new java.awt.Dimension(500, 500));
         ExamPanel.setPreferredSize(new java.awt.Dimension(500, 500));
 
-        ProfLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/professor75.png"))); // NOI18N
+        ProfLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/foggiaexam75ok.png"))); // NOI18N
         ProfLabel.setText("jLabel1");
         ProfLabel.setMaximumSize(new java.awt.Dimension(75, 75));
         ProfLabel.setMinimumSize(new java.awt.Dimension(75, 75));
@@ -1260,9 +1264,18 @@ public class GameFrame extends javax.swing.JFrame {
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
 
+        RequestDialog.setAlwaysOnTop(true);
         RequestDialog.setMinimumSize(new java.awt.Dimension(250, 175));
         RequestDialog.setModalExclusionType(java.awt.Dialog.ModalExclusionType.APPLICATION_EXCLUDE);
+        RequestDialog.setModalityType(java.awt.Dialog.ModalityType.APPLICATION_MODAL);
         RequestDialog.setType(java.awt.Window.Type.POPUP);
+        RequestDialog.addWindowFocusListener(new java.awt.event.WindowFocusListener() {
+            public void windowGainedFocus(java.awt.event.WindowEvent evt) {
+                RequestDialogWindowGainedFocus(evt);
+            }
+            public void windowLostFocus(java.awt.event.WindowEvent evt) {
+            }
+        });
 
         RequestPanel.setBackground(new java.awt.Color(93, 150, 199));
         RequestPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(254, 215, 102)));
@@ -1271,7 +1284,7 @@ public class GameFrame extends javax.swing.JFrame {
         RequestPanel.setPreferredSize(new java.awt.Dimension(250, 175));
 
         YesButton.setBackground(new java.awt.Color(93, 150, 199));
-        YesButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/YESBUTTON50.png"))); // NOI18N
+        YesButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/confirm50.png"))); // NOI18N
         YesButton.setBorder(null);
         YesButton.setPreferredSize(new java.awt.Dimension(75, 50));
         YesButton.addActionListener(new java.awt.event.ActionListener() {
@@ -1281,7 +1294,7 @@ public class GameFrame extends javax.swing.JFrame {
         });
 
         NoButton.setBackground(new java.awt.Color(93, 150, 199));
-        NoButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/NOBUTTON50.png"))); // NOI18N
+        NoButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/cancel50.png"))); // NOI18N
         NoButton.setBorder(null);
         NoButton.setPreferredSize(new java.awt.Dimension(75, 50));
         NoButton.addActionListener(new java.awt.event.ActionListener() {
@@ -1291,11 +1304,13 @@ public class GameFrame extends javax.swing.JFrame {
         });
 
         RequestLabel.setEditable(false);
-        RequestLabel.setBackground(new java.awt.Color(254, 215, 102));
+        RequestLabel.setBackground(new java.awt.Color(209, 250, 255));
         RequestLabel.setColumns(20);
-        RequestLabel.setFont(new java.awt.Font("Arial Black", 0, 11)); // NOI18N
+        RequestLabel.setFont(new java.awt.Font("Courier New", 0, 14)); // NOI18N
         RequestLabel.setLineWrap(true);
         RequestLabel.setRows(5);
+        RequestLabel.setToolTipText("");
+        RequestLabel.setWrapStyleWord(true);
         RequestLabel.setBorder(null);
         RequestScrollPane.setViewportView(RequestLabel);
 
@@ -1444,11 +1459,6 @@ public class GameFrame extends javax.swing.JFrame {
         AvatarName.setMaximumSize(new java.awt.Dimension(200, 50));
         AvatarName.setMinimumSize(new java.awt.Dimension(200, 50));
         AvatarName.setPreferredSize(new java.awt.Dimension(200, 50));
-        AvatarName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AvatarNameActionPerformed(evt);
-            }
-        });
 
         AvatarNameLabel.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
         AvatarNameLabel.setForeground(new java.awt.Color(255, 255, 255));
@@ -1460,6 +1470,8 @@ public class GameFrame extends javax.swing.JFrame {
         MaleWhiteButton.setBackground(new java.awt.Color(93, 150, 199));
         MaleWhiteButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/man75.png"))); // NOI18N
         MaleWhiteButton.setBorder(null);
+        buttongroup.add(MaleWhiteButton);
+        MaleWhiteButton.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/man75pressed.png"))); // NOI18N
         MaleWhiteButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MaleWhiteButtonActionPerformed(evt);
@@ -1474,6 +1486,8 @@ public class GameFrame extends javax.swing.JFrame {
         MaleBlackButton.setBackground(new java.awt.Color(93, 150, 199));
         MaleBlackButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/BLACKman75.png"))); // NOI18N
         MaleBlackButton.setBorder(null);
+        buttongroup.add(MaleBlackButton);
+        MaleBlackButton.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/BLACKman75pressed.png"))); // NOI18N
         MaleBlackButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MaleBlackButtonActionPerformed(evt);
@@ -1483,6 +1497,8 @@ public class GameFrame extends javax.swing.JFrame {
         FemaleBlackButton.setBackground(new java.awt.Color(93, 150, 199));
         FemaleBlackButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/BLACKwoman75.png"))); // NOI18N
         FemaleBlackButton.setBorder(null);
+        buttongroup.add(FemaleBlackButton);
+        FemaleBlackButton.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/BLACKwoman75pressed.png"))); // NOI18N
         FemaleBlackButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 FemaleBlackButtonActionPerformed(evt);
@@ -1492,11 +1508,8 @@ public class GameFrame extends javax.swing.JFrame {
         FemaleWhiteButton.setBackground(new java.awt.Color(93, 150, 199));
         FemaleWhiteButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/woman75.png"))); // NOI18N
         FemaleWhiteButton.setBorder(null);
-        FemaleWhiteButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                FemaleWhiteButtonMouseClicked(evt);
-            }
-        });
+        buttongroup.add(FemaleWhiteButton);
+        FemaleWhiteButton.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/woman75pressed.png"))); // NOI18N
         FemaleWhiteButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 FemaleWhiteButtonActionPerformed(evt);
@@ -1638,6 +1651,7 @@ public class GameFrame extends javax.swing.JFrame {
             }
         });
 
+        ConversationScrollPane.setBorder(null);
         ConversationScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         ConversationScrollPane.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
         ConversationScrollPane.setMaximumSize(new java.awt.Dimension(375, 100));
@@ -1646,13 +1660,15 @@ public class GameFrame extends javax.swing.JFrame {
         ConversationScrollPane.setPreferredSize(new java.awt.Dimension(375, 100));
 
         ConversationTextArea.setEditable(false);
+        ConversationTextArea.setBackground(new java.awt.Color(209, 250, 255));
         ConversationTextArea.setColumns(20);
+        ConversationTextArea.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         ConversationTextArea.setLineWrap(true);
         ConversationTextArea.setRows(5);
         ConversationTextArea.setWrapStyleWord(true);
+        ConversationTextArea.setBorder(null);
         ConversationTextArea.setMaximumSize(new java.awt.Dimension(375, 100));
         ConversationTextArea.setMinimumSize(new java.awt.Dimension(375, 100));
-        ConversationTextArea.setPreferredSize(new java.awt.Dimension(375, 100));
         ConversationScrollPane.setViewportView(ConversationTextArea);
 
         javax.swing.GroupLayout ConvDialogLayout = new javax.swing.GroupLayout(ConvDialog.getContentPane());
@@ -1687,6 +1703,7 @@ public class GameFrame extends javax.swing.JFrame {
             }
         });
 
+        HintScrollPane.setBorder(null);
         HintScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         HintScrollPane.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
         HintScrollPane.setMaximumSize(new java.awt.Dimension(200, 50));
@@ -1695,13 +1712,14 @@ public class GameFrame extends javax.swing.JFrame {
         HintScrollPane.setPreferredSize(new java.awt.Dimension(200, 50));
 
         HintTextArea.setEditable(false);
+        HintTextArea.setBackground(new java.awt.Color(209, 250, 255));
         HintTextArea.setColumns(20);
+        HintTextArea.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         HintTextArea.setLineWrap(true);
         HintTextArea.setRows(5);
         HintTextArea.setWrapStyleWord(true);
         HintTextArea.setMaximumSize(new java.awt.Dimension(200, 50));
         HintTextArea.setMinimumSize(new java.awt.Dimension(200, 50));
-        HintTextArea.setPreferredSize(new java.awt.Dimension(200, 50));
         HintTextArea.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 HintTextAreaMouseClicked(evt);
@@ -1995,7 +2013,7 @@ public class GameFrame extends javax.swing.JFrame {
         RightBorderLayout.setHorizontalGroup(
             RightBorderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RightBorderLayout.createSequentialGroup()
-                .addGap(0, 25, Short.MAX_VALUE)
+                .addGap(0, 26, Short.MAX_VALUE)
                 .addComponent(GameCloseButton))
         );
         RightBorderLayout.setVerticalGroup(
@@ -2138,13 +2156,9 @@ public class GameFrame extends javax.swing.JFrame {
         SwingUtilities.invokeLater(() -> RequestDialog.setFocusable(false));
     }//GEN-LAST:event_YesButtonActionPerformed
 
-    private void AvatarNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AvatarNameActionPerformed
-
-    }//GEN-LAST:event_AvatarNameActionPerformed
-
     private void FemaleWhiteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FemaleWhiteButtonActionPerformed
         SwingUtilities.invokeLater(() -> settingAvatarButton());
-        SwingUtilities.invokeLater(() -> FemaleWhiteButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/woman75pressed.png"))));
+        SwingUtilities.invokeLater(() -> FemaleWhiteButton.setSelected(true));     
         SwingUtilities.invokeLater(() -> sound.play("menu"));
         SwingUtilities.invokeLater(() -> StudentLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/woman75.png"))));
         SwingUtilities.invokeLater(() -> AvatarOkButton.setEnabled(true));
@@ -2221,17 +2235,8 @@ public class GameFrame extends javax.swing.JFrame {
 
     }//GEN-LAST:event_AvatarOkButtonMouseClicked
 
-    private void FemaleWhiteButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FemaleWhiteButtonMouseClicked
-        SwingUtilities.invokeLater(() -> sound.play("menu"));
-    }//GEN-LAST:event_FemaleWhiteButtonMouseClicked
-
     private void ConvDialogKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ConvDialogKeyPressed
-        /*if(evt.getKeyCode()==KeyEvent.VK_SPACE){
-            SwingUtilities.invokeLater(() -> ConvDialog.setVisible(false));
-            SwingUtilities.invokeLater(() -> ConversationTextArea.setText(EMPTY_TEXT));
-            SwingUtilities.invokeLater(() -> ConvDialog.setFocusable(false));
-        }
-         */
+       
     }//GEN-LAST:event_ConvDialogKeyPressed
 
     private void HintDialogKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_HintDialogKeyTyped
@@ -2253,13 +2258,7 @@ public class GameFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_ConvDialogKeyTyped
 
     private void HintDialogKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_HintDialogKeyPressed
-        /*if(evt.getKeyCode()==KeyEvent.VK_SPACE){
-            SwingUtilities.invokeLater(() -> HintDialog.setVisible(false));
-            SwingUtilities.invokeLater(() -> HintTextArea.setText(EMPTY_TEXT));
-            SwingUtilities.invokeLater(() -> HintDialog.setFocusable(false));
-            //SwingUtilities.invokeLater(() -> this.setEnabled(true));
-        }
-         */
+        
     }//GEN-LAST:event_HintDialogKeyPressed
 
     private void NoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NoButtonActionPerformed
@@ -2299,8 +2298,7 @@ public class GameFrame extends javax.swing.JFrame {
 
     private void MaleWhiteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MaleWhiteButtonActionPerformed
         SwingUtilities.invokeLater(() -> settingAvatarButton());
-        SwingUtilities.invokeLater(() -> MaleWhiteButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/man75pressed.png"))));
-        System.out.println("Impostato nuovo colore button");
+        SwingUtilities.invokeLater(() -> MaleWhiteButton.setSelected(true));
         SwingUtilities.invokeLater(() -> StudentLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/man75.png"))));
         SwingUtilities.invokeLater(() -> sound.play("menu"));
         SwingUtilities.invokeLater(() -> AvatarOkButton.setEnabled(true));
@@ -2310,7 +2308,7 @@ public class GameFrame extends javax.swing.JFrame {
 
     private void FemaleBlackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FemaleBlackButtonActionPerformed
         SwingUtilities.invokeLater(() -> settingAvatarButton());
-        SwingUtilities.invokeLater(() -> FemaleBlackButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/BLACKwoman75pressed.png"))));
+        SwingUtilities.invokeLater(() -> FemaleBlackButton.setSelected(true));        
         SwingUtilities.invokeLater(() -> StudentLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/BLACKwoman75.png"))));
         SwingUtilities.invokeLater(() -> sound.play("menu"));
         SwingUtilities.invokeLater(() -> AvatarOkButton.setEnabled(true));
@@ -2319,7 +2317,7 @@ public class GameFrame extends javax.swing.JFrame {
 
     private void MaleBlackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MaleBlackButtonActionPerformed
         SwingUtilities.invokeLater(() -> settingAvatarButton());
-        SwingUtilities.invokeLater(() -> MaleBlackButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/BLACKman75pressed.png"))));
+        SwingUtilities.invokeLater(() -> MaleBlackButton.setSelected(true));           
         SwingUtilities.invokeLater(() -> StudentLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/BLACKman75.png"))));
         SwingUtilities.invokeLater(() -> sound.play("menu"));
         SwingUtilities.invokeLater(() -> AvatarOkButton.setEnabled(true));
@@ -2408,6 +2406,10 @@ public class GameFrame extends javax.swing.JFrame {
     private void CreditsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreditsButtonActionPerformed
         SwingUtilities.invokeLater(() -> sound.play("menu"));
     }//GEN-LAST:event_CreditsButtonActionPerformed
+
+    private void RequestDialogWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_RequestDialogWindowGainedFocus
+       // SwingUtilities.invokeLater(() ->  RequestDialog.set
+    }//GEN-LAST:event_RequestDialogWindowGainedFocus
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         SaveManager save = SaveManager.getSaveManager();

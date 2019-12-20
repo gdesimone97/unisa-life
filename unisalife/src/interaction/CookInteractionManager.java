@@ -12,6 +12,7 @@ import game.Interfaces.Interactable;
 import hud.change.CanteenHudBarChange;
 import language.FileTextManager;
 import language.MessageInformation;
+import saving.SaveManager;
 import sound.JukeBoxSound;
 import unisagui.GuiManager;
 import unisagui.RequestGui;
@@ -35,7 +36,7 @@ public class CookInteractionManager implements InteractionManager {
             if(Status.getMoney()<3) {
                 ms = new MessageInformation("NotEnoughMoneyCanteen");
                 toShow = tm.getString(ms).get(0);
-                GuiManager.getInstance().showHint(toShow);
+                GuiManager.getInstance().showDialog(toShow);
                 JukeBoxSound.getInstance().play("wrong");
             } else {
                 // show request
@@ -58,7 +59,9 @@ public class CookInteractionManager implements InteractionManager {
                 CanteenHudBarChange c = new CanteenHudBarChange();
                 c.execute();
             }
-
+            
+            // autosave
+            SaveManager.getSaveManager().save();
         } catch (Exception ex) {
             // decide what to do when an error with string retriving occurs
         }

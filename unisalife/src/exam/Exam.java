@@ -11,6 +11,7 @@ import exam.booklet.Subject;
 import exam.question.*;
 import game.Interfaces.Initializable;
 import game.Interfaces.Initializable.InitException;
+import gameSystem.map.MapManager;
 import hud.change.CanteenHudBarChange;
 import hud.change.CorrectAnswerHudBarChange;
 import hud.change.WrongAnswerHudBarChange;
@@ -121,6 +122,7 @@ public class Exam implements Runnable {
 
     @Override
     public void run() {
+        MapManager.getInstance().stopGeneratingCoins();
         GuiManager gui = GuiManager.getInstance();
         ResultGui rg = new ResultGui(questionTime);
         RequestGui praiseRequest = new RequestGui();
@@ -215,6 +217,8 @@ public class Exam implements Runnable {
             ex.printStackTrace();
         }
              
+        MapManager.getInstance().stopGeneratingCoins();
+        
         //SEGNARE ESAME SUL LIBRETTO
     }
 

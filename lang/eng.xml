@@ -14,12 +14,27 @@
 <message>4#If f(z) is an holomorphic function defined in a simply connected space, its integral on a closed path is:#0#f(0)#Not enough information#+inf</message>
 </Subject>
 
+<Subject info="tolc">
+<message>1#A student has 2 hours to solve a exam problem. When 79% of the time is gone, how much time is left?#25 mins and 12 secs#25 mins and 24 secs#25 mins and 36 secs#25 mins and 48 secs</message>
+<message>2#Which number is between 2 and 3?#log5 30#log2 30#log3 30#log10 30#</message>
+<message>3#Two positive quantities a and b are linked by a relationship: so that if b halves then "a" quadruples. Only one of the following and the relationship between a and b. Which one?#a = 1/b^2#a = 4 rad(b)#a = 4/rad(2b)#a = 2/b</message>
+<message>4#Playing at Risk Giulio Cesare won more than his nephew Augustus, but not Napoleon. Alexander the Great won less than Charlemagne, but more than Napoleon. Who has won less?#Augustus#Napoleon#Charlemagne and Alexander the Great#Giulio Cesare</message>
+</Subject>
+
 <Professor info="Foggia">
 <message>Are you ready?</message>
 </Professor>
 
 <Item info="calcolatrice">
 <message>Calculator</message>
+</Item>
+
+<Item info="appunti">
+<message>Some Notes</message>
+</Item>
+
+<Item info="coin">
+<message>Money</message>
 </Item>
 
 <Item info="appuntidimatematica1">

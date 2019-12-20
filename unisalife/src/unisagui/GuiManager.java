@@ -28,7 +28,8 @@ public class GuiManager {
     private final QuestManager questmanager;
     private final GameFrame gameframe; //potrebbe essere evitato
     private static GuiManager instance;
-
+    
+    
     private GuiManager() {
 
         hudmanager = new HUDManager();
