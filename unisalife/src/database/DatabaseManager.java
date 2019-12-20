@@ -7,6 +7,7 @@ package database;
 
 import exam.booklet.Subject;
 import game.GameObjects.Block;
+import game.GameObjects.Coin;
 import game.GameObjects.Cook;
 import game.GameObjects.Position;
 import game.GameObjects.GameObject;
@@ -20,8 +21,11 @@ import game.Interfaces.Initializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.Arrays;
+import org.dizitart.no2.Cursor;
 import org.dizitart.no2.Document;
 import org.dizitart.no2.Index;
+import org.dizitart.no2.NitriteCollection;
 import org.dizitart.no2.filters.Filters;
 import org.dizitart.no2.objects.ObjectRepository;
 import org.dizitart.no2.objects.filters.ObjectFilters;
@@ -36,8 +40,13 @@ import quests.quest.Quest;
  */
 public class DatabaseManager implements Initializable {
 
-    private static final String FIXEDCOLLECTIONNAME = "FLINKS";
-    private static final String DYNCOLLECTIONNAME = "DLINKS";
+    @SafeVarargs
+    static private <E> E[] newArray(int length, E... array) {
+        return Arrays.copyOf(array, length);
+    }
+
+    protected static final String FIXEDCOLLECTIONNAME = "FLINKS";
+    protected static final String DYNCOLLECTIONNAME = "DLINKS";
     private static DatabaseManager instance = null;
     private Database db;
     private final String path = "..//db/game.db";
@@ -89,25 +98,36 @@ public class DatabaseManager implements Initializable {
 
     /**
      * Method to obtain all the objects for a particular level of the game. This
-     * includes items and professors.
+     * includes items and professors. Moreover, cook, coins and guardian are
+     * added.
      *
      * @param level
-     * @return a map of those objects (instances)
+     * @return a map of HashMaps (instances)
      * @throws ObjectNotFoundException
      */
-    public ConcurrentHashMap<Position, GameObject>[] getObjectsFromLevel(int level) throws ObjectNotFoundException, ErrorWhileSavingException {
+    public ConcurrentHashMap<Position, GameObject>[] getObjectsFromLevel(int level) throws ObjectNotFoundException {
         List<TileMap> res = this.getTileMaps();
         int mapNum = res.size();
         List<ConcurrentHashMap<Position, GameObject>> dynArrObj = new ArrayList<>();
+
+        for (int index = 0; index < mapNum; index++) {
+            dynArrObj.add(new ConcurrentHashMap<>());
+        }
 
         List<Quest> questList = this.getQuestsFromLevel(level);
 
         for (Quest q : questList) {
             Subject questSubject = q.getSubject();
             for (String itemName : q.getItemList()) {
-                Item i = this.findItem(itemName);
-                int mapId = this.findMap(itemName, DatabaseManager.DYNCOLLECTIONNAME);
-                dynArrObj.get(mapId).put(i.getScaledPosition(), i);
+                if (itemName.equals("coin")) {
+                    Coin c = this.findCoin(itemName);
+                    int mapId = this.findMap(itemName, DatabaseManager.DYNCOLLECTIONNAME);
+                    dynArrObj.get(mapId).put(c.getScaledPosition(), c);
+                } else {
+                    Item i = this.findItem(itemName);
+                    int mapId = this.findMap(itemName, DatabaseManager.DYNCOLLECTIONNAME);
+                    dynArrObj.get(mapId).put(i.getScaledPosition(), i);
+                }
             }
             Professor p = this.findProfessor(questSubject);
             int mapId = this.findMap(questSubject.getInfo(), DatabaseManager.DYNCOLLECTIONNAME);
@@ -115,11 +135,12 @@ public class DatabaseManager implements Initializable {
         }
 
         Cook cook = this.findCook();
-        int cookMapId = this.findMap(cook.getIndex(), DatabaseManager.FIXEDCOLLECTIONNAME);
+        //System.out.println(cook.getIndex());
+        int cookMapId = this.findMap(cook.getIndex(), DatabaseManager.DYNCOLLECTIONNAME);
         dynArrObj.get(cookMapId).put(cook.getScaledPosition(), cook);
 
         Guardian guardian = this.findGuardian();
-        int guardMapId = this.findMap(guardian.getIndex(), DatabaseManager.FIXEDCOLLECTIONNAME);
+        int guardMapId = this.findMap(guardian.getIndex(), DatabaseManager.DYNCOLLECTIONNAME);
         dynArrObj.get(guardMapId).put(guardian.getScaledPosition(), guardian);
 
         /*
@@ -127,17 +148,36 @@ public class DatabaseManager implements Initializable {
             throw new ErrorWhileSavingException();
         }
          */
-        return (ConcurrentHashMap<Position, GameObject>[]) dynArrObj.toArray();
+        return DatabaseManager.newArray(dynArrObj.size(), dynArrObj.get(0));
     }
 
+    /**
+     * Private method aimed to find the map where an item is placed.
+     *
+     * @param id The value of the index of the item
+     * @param collection A specification (fixed or dynamic collection)
+     * @return
+     */
     private int findMap(String id, String collection) {
-        return Integer.parseInt(db.getNitriteDatabase()
-                .getCollection(collection)
-                .find(eq("IDOBJ", id))
-                .firstOrDefault()
-                .get("IDMAP", String.class));
+
+        NitriteCollection coll = db.getNitriteDatabase().getCollection(collection);
+        Cursor find = null;
+        try {
+            find = coll.find(Filters.eq("IDOBJ", id));
+        } catch (Exception ex) {
+
+        }
+        String key = find.firstOrDefault().get("IDMAP", String.class);
+        return Integer.parseInt(find.firstOrDefault().get("IDMAP", String.class));
     }
 
+    /**
+     * Method to obtain the maps populated with fixed objects.
+     *
+     * @return an array of Maps (intances)
+     * @throws ObjectNotFoundException
+     * @throws ClassNotFoundException
+     */
     public Map[] getMaps() throws ObjectNotFoundException, ClassNotFoundException {
 
         List<TileMap> res = this.getTileMaps();
@@ -147,30 +187,37 @@ public class DatabaseManager implements Initializable {
         for (TileMap tilemap : res) {
             ConcurrentHashMap<Position, GameObject> fixed = new ConcurrentHashMap<>();
             ConcurrentHashMap<Position, GameObject> dyn = new ConcurrentHashMap<>();
-
             String id = String.valueOf(tilemap.getId());
 
             // this is to get Fixed Objects but not blocks
             org.dizitart.no2.Cursor c = db.getNitriteDatabase().getCollection(DatabaseManager.FIXEDCOLLECTIONNAME).find(Filters.eq("IDMAP", id));
             for (Document d : c) {
-                String idobj = d.get("IDOBJ", String.class);
-                String classobj = d.get("CLASSOBJ", String.class);
+                String idobj = (String) d.get("IDOBJ");
+                String classobj = (String) d.get("CLASSOBJ");
                 ObjectRepository repo = db.getNitriteDatabase().getRepository(Class.forName(classobj));
                 Index i = (Index) repo.listIndices().toArray()[0];
-                GameObject o = (GameObject) repo.find(eq(i.getField(), idobj));
+                GameObject o = (GameObject) repo.find(eq(i.getField(), idobj)).firstOrDefault();
                 fixed.put(o.getScaledPosition(), o);
             }
 
             // this is to get the blocks
-            for (BlockWrapper bw : db.getNitriteDatabase().getRepository(BlockWrapper.class).find(eq("map", id)).toList()) {
+            for (BlockWrapper bw : db.getNitriteDatabase().getRepository(BlockWrapper.class).find(eq("map", Integer.parseInt(id))).toList()) {
                 Block b = bw.getBlock();
                 fixed.put(b.getScaledPosition(), b);
             }
-            maps[tilemap.getId()] = new Map(tilemap, new ObjectManager(fixed, dyn));
+            int index = tilemap.getId();
+            maps[index] = new Map(tilemap, new ObjectManager(fixed, dyn));
         }
+
+        // inserire anche gli oggetti dinamici del livello zero per testare
         return maps;
     }
 
+    /**
+     * Private method to obtain all the tilemaps in the database
+     *
+     * @return a list of tilemaps
+     */
     private List<TileMap> getTileMaps() {
         List<TileMapWrapper> res = db.getNitriteDatabase().getRepository(TileMapWrapper.class).find(ObjectFilters.ALL).toList();
         List<TileMap> returnList = new ArrayList<>();
@@ -180,14 +227,48 @@ public class DatabaseManager implements Initializable {
         return returnList;
     }
 
+    /**
+     * Private method to search for a coin in the coin repo
+     *
+     * @param id coin id
+     * @return an instance of a coin
+     * @throws ObjectNotFoundException
+     */
+    private Coin findCoin(String id) throws ObjectNotFoundException {
+        Coin c = db.getNitriteDatabase().getRepository(Coin.class).find(eq("info", id)).firstOrDefault();
+        if (c == null) {
+            throw new ObjectNotFoundException();
+        }
+        return c;
+    }
+
+    /**
+     * Private method to search for an item in the item repo
+     *
+     * @param itemName item id
+     * @return an instance of an item
+     * @throws ObjectNotFoundException
+     */
     private Item findItem(String itemName) throws ObjectNotFoundException {
-        Item res = db.getNitriteDatabase().getRepository(Item.class).find(eq("info", itemName)).firstOrDefault();
+        /*
+        Document d = db.getNitriteDatabase().getRepository(Item.class).find(eq("info", itemName)).;
+        // %448%1024%/Sprites/note.png%appunti
+        Item res = new Item((Position) d.get("p"), (String) d.get("path"), (String) d.get("info"));
+         */
+        Item res = (Item) db.getNitriteDatabase().getRepository(Item.class).find(eq("info", itemName)).firstOrDefault();
         if (res == null) {
             throw new ObjectNotFoundException();
         }
         return res;
     }
 
+    /**
+     * Private method to search for a professor in the professor repo
+     *
+     * @param s is the subject linked to the professor
+     * @return an instance of a professor
+     * @throws ObjectNotFoundException
+     */
     private Professor findProfessor(Subject s) throws ObjectNotFoundException {
         Professor prof = db.getNitriteDatabase().getRepository(Professor.class).find(eq("subject.subject", s.getInfo())).firstOrDefault();
         if (prof == null) {
@@ -196,10 +277,20 @@ public class DatabaseManager implements Initializable {
         return prof;
     }
 
+    /**
+     * Private method to search for the cook
+     *
+     * @return an instance of the cook
+     */
     private Cook findCook() {
         return db.getNitriteDatabase().getRepository(Cook.class).find(ObjectFilters.ALL).firstOrDefault();
     }
 
+    /**
+     * Private method to search for the guardian
+     *
+     * @return an instance of the guardian
+     */
     private Guardian findGuardian() {
         return db.getNitriteDatabase().getRepository(Guardian.class).find(ObjectFilters.ALL).firstOrDefault();
     }
@@ -210,7 +301,26 @@ public class DatabaseManager implements Initializable {
      * @return a list of the subjects (instances)
      */
     public List<Subject> getSubjects() {
-        return db.getNitriteDatabase().getRepository(Subject.class).find().toList();
+        return db.getNitriteDatabase().getRepository(Subject.class).find(ObjectFilters.ALL).toList();
+    }
+
+    /**
+     * Method to close the database
+     */
+    public void close() {
+        this.db.close();
+    }
+
+    /**
+     * Method to clear the databse (it deletes it).
+     */
+    public void clearDatabase() {
+        this.db.clear();
+    }
+
+    @Override
+    public void init() {
+
     }
 
     /*
@@ -243,22 +353,4 @@ public class DatabaseManager implements Initializable {
         return this.load().size() >= 0;
     }
      */
-    /**
-     * Method to close the database
-     */
-    public void close() {
-        this.db.close();
-    }
-
-    /**
-     * Method to clear the databse (it deletes it).
-     */
-    public void clearDatabase() {
-        this.db.clear();
-    }
-
-    @Override
-    public void init() {
-
-    }
 }

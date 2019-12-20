@@ -5,6 +5,7 @@
  */
 package database;
 
+import game.GameObjects.Position;
 import game.GameResources.TileMap;
 import java.io.Serializable;
 import org.dizitart.no2.objects.Id;
@@ -13,25 +14,27 @@ import org.dizitart.no2.objects.Id;
  *
  * @author alfon
  */
-public class TileMapWrapper implements Storable, Serializable{
-    
+public class TileMapWrapper implements Storable, Serializable {
+
     @Id
     private int id;
     private String p;
     private String m;
     private int l;
     private int w;
+    private Position pos;
 
-    public TileMapWrapper(int id, int l, int w, String p, String m) {
+    public TileMapWrapper(int id, int l, int w, String p, String m, Position pos) {
         this.id = id;
         this.p = p;
         this.m = m;
         this.l = l;
         this.w = w;
+        this.pos = pos;
     }
-    
-    private TileMapWrapper(){
-        
+
+    private TileMapWrapper() {
+
     }
 
     public int getId() {
@@ -53,16 +56,14 @@ public class TileMapWrapper implements Storable, Serializable{
     public int getW() {
         return w;
     }
-    
-    public TileMap buildTileMap(){
-        return new TileMap(id, l, w, p, m);
+
+    public TileMap buildTileMap() {
+        return new TileMap(id, l, w, p, m, pos);
     }
-    
-    
-    
+
     @Override
     public String getIndex() {
         return Integer.toString(this.id);
     }
-    
+
 }

@@ -111,7 +111,7 @@
 <message>. You did it! Now you are a Computer Engineering student!</message>
 </MessageInformation>
 
-<MessageInformation info="TolcNotPassedName">
+<MessageInformation info="TolcFailedName">
 <message>I'm sorry, </message>
 <message>. You should try again.</message>
 </MessageInformation>

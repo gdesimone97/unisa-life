@@ -19,6 +19,10 @@ public class Guardian extends Person implements Information {
     public Guardian(String nome, Position p, String path) {
         super(p, path);
     }
+    
+    public Guardian(){
+        super();
+    }
 
     @Override
     public void interact() {
