@@ -6,19 +6,14 @@
 package interaction;
 
 import exam.Exam;
+import exam.Tolc;
 import exam.booklet.Subject;
 import game.GameObjects.Professor;
 import game.Interfaces.Initializable.InitException;
 import game.Interfaces.Interactable;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import language.FileTextManager;
-import language.MessageInformation;
 import language.exceptions.TextFinderException;
-import quests.quest.Quests;
 import saving.SaveManager;
 import saving.exceptions.SavingException;
-import unisagui.GuiManager;
 
 /**
  * InteractionManager implemented for Professor's exam process
@@ -41,12 +36,18 @@ public class ProfessorInteractionManager implements InteractionManager {
 //            if (Quests.getInstance().getQuest(s.getInfo()).isDone()) {
 //                GuiManager.getInstance().showDialog(FileTextManager.getFileTextManager().getString(new MessageInformation("ExamAlreadyDone")).get(0));
 //
-//                
 //            } else if (Quests.getInstance().getQuest(s.getInfo()).isAvailable()) {
 
                 //3. Start the exam session
-                Thread esameThread = new Thread(new Exam(s));
-                esameThread.start();
+                if(s.getInfo().compareTo("tolc") == 0) {
+                    Thread esameThread = new Thread(new Tolc());
+                    esameThread.start();
+                }
+                else {
+                    Thread esameThread = new Thread(new Exam(s));
+                    esameThread.start();
+                }
+                
 //            } else {
 //                if (Quests.getInstance().getQuest(s.getInfo()).isDone()) {
 //                    GuiManager.getInstance().showDialog(FileTextManager.getFileTextManager().getString(new MessageInformation("ExamAlreadyDone")).get(0));

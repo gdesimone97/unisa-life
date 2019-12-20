@@ -48,5 +48,8 @@ public class ObjectManager {
     public ConcurrentHashMap<Position, GameObject> getDynamic() {
         return dynamic;
     }
-    
+
+    public void setDynamic(ConcurrentHashMap<Position, GameObject> dynamic) {
+        this.dynamic = dynamic;
+    }
 }
