@@ -98,56 +98,12 @@ public class DatabaseManager implements Initializable {
 
     /**
      * Method to obtain all the objects for a particular level of the game. This
-     * includes items and professors.
+     * includes items and professors. Moreover, cook, coins and guardian are
+     * added.
      *
      * @param level
-     * @return a map of those objects (instances)
+     * @return a map of HashMaps (instances)
      * @throws ObjectNotFoundException
-     */
-    /*
-    public ConcurrentHashMap<Position, GameObject>[] getObjectsFromLevel(int level) throws ObjectNotFoundException, ErrorWhileSavingException {
-        List<TileMap> res = this.getTileMaps();
-        int mapNum = res.size();
-        List<ConcurrentHashMap<Position, GameObject>> dynArrObj = new ArrayList<>();
-        dynArrObj.add(new ConcurrentHashMap<>());
-        dynArrObj.add(new ConcurrentHashMap<>());
-
-        List<Quest> questList = this.getQuestsFromLevel(level);
-
-        for (Quest q : questList) {
-            Subject questSubject = q.getSubject();
-            for (String itemName : q.getItemList()) {
-                if(itemName.equals("coin")){
-                    Coin c = this.findCoin(itemName);
-                    int mapId = this.findMap(itemName, DatabaseManager.DYNCOLLECTIONNAME);
-                    dynArrObj.get(mapId).put(c.getScaledPosition(), c);
-                }else{
-                Item i = this.findItem(itemName);
-                int mapId = this.findMap(itemName, DatabaseManager.DYNCOLLECTIONNAME);
-                dynArrObj.get(mapId).put(i.getScaledPosition(), i);
-                }
-            }
-            Professor p = this.findProfessor(questSubject);
-            int mapId = this.findMap(questSubject.getInfo(), DatabaseManager.DYNCOLLECTIONNAME);
-            dynArrObj.get(mapId).put(p.getScaledPosition(), p);
-        }
-
-        Cook cook = this.findCook();
-        System.out.println(cook.getIndex());
-        int cookMapId = this.findMap(cook.getIndex(), DatabaseManager.DYNCOLLECTIONNAME);
-        dynArrObj.get(cookMapId).put(cook.getScaledPosition(), cook);
-
-        Guardian guardian = this.findGuardian();
-        int guardMapId = this.findMap(guardian.getIndex(), DatabaseManager.DYNCOLLECTIONNAME);
-        dynArrObj.get(guardMapId).put(guardian.getScaledPosition(), guardian);
-
-        /*
-        if ((dynArrObj.stream().filter((obj) -> obj.size() <= 0).count()) > 0) {
-            throw new ErrorWhileSavingException();
-        }
-         
-        return (ConcurrentHashMap<Position, GameObject>[])dynArrObj.toArray();
-    }
      */
     public ConcurrentHashMap<Position, GameObject>[] getObjectsFromLevel(int level) throws ObjectNotFoundException {
         List<TileMap> res = this.getTileMaps();
@@ -212,14 +168,6 @@ public class DatabaseManager implements Initializable {
         int mapNum = res.size();
         Map[] maps = new Map[mapNum];
 
-        /*
-        ConcurrentHashMap<Position, GameObject>[] dynamics;       
-        try {
-            dynamics = this.getObjectsFromLevel(0);
-        } catch (ErrorWhileSavingException ex) {
-            throw new ObjectNotFoundException();
-        }
-         */
         for (TileMap tilemap : res) {
             ConcurrentHashMap<Position, GameObject> fixed = new ConcurrentHashMap<>();
             ConcurrentHashMap<Position, GameObject> dyn = new ConcurrentHashMap<>();
@@ -296,7 +244,7 @@ public class DatabaseManager implements Initializable {
      * @return a list of the subjects (instances)
      */
     public List<Subject> getSubjects() {
-        return db.getNitriteDatabase().getRepository(Subject.class).find().toList();
+        return db.getNitriteDatabase().getRepository(Subject.class).find(ObjectFilters.ALL).toList();
     }
 
     /*

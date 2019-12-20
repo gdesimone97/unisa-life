@@ -6,10 +6,14 @@
 package database;
 
 import database.populator.exceptions.InvalidGameDataFormatException;
+import exam.booklet.Subject;
+import game.GameObjects.GameObject;
+import game.GameObjects.Position;
 import game.GameResources.Map;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -29,15 +33,15 @@ public class DatabaseManagerTest {
 
     @BeforeClass
     public static void setUpClass() throws FileNotSetException, IOException, FileNotFoundException, InvalidGameDataFormatException {
-        //DatabaseManager dmb = DatabaseManager.getDatabaseManager();
-        //Populator p = new Populator("..//unisalife/data.txt");
-        //p.populate();
+        DatabaseManager dmb = DatabaseManager.getDatabaseManager();
+        Populator p = new Populator("..//unisalife/data.txt");
+        p.populate();
     }
 
     @AfterClass
     public static void tearDownClass() throws FileNotSetException {
-        //DatabaseManager.getDatabaseManager().getDatabase().clear();
-        //DatabaseManager.getDatabaseManager().close();
+        DatabaseManager.getDatabaseManager().getDatabase().clear();
+        DatabaseManager.getDatabaseManager().close();
 
     }
 
@@ -48,8 +52,8 @@ public class DatabaseManagerTest {
 
     @After
     public void tearDown() throws FileNotSetException {
-        //DatabaseManager.getDatabaseManager().getDatabase().clear();
-        //DatabaseManager.getDatabaseManager().close();
+        DatabaseManager.getDatabaseManager().getDatabase().clear();
+        DatabaseManager.getDatabaseManager().close();
 
     }
 
@@ -62,7 +66,7 @@ public class DatabaseManagerTest {
         assertNotEquals(expResult, result);
     }
 
-    */
+     */
     //@Test
     public void testGetQuestsFromLevel() throws Exception {
         System.out.println("getQuestsFromLevel");
@@ -70,9 +74,9 @@ public class DatabaseManagerTest {
         DatabaseManager instance = DatabaseManager.getDatabaseManager();
         int expResult = 1;
         List<Quest> q = instance.getQuestsFromLevel(level);
-        for(Quest quest: q){
+        for (Quest quest : q) {
             System.out.println(quest.getIndex());
-            for(String s: quest.getItemList()){
+            for (String s : quest.getItemList()) {
                 System.out.println(s);
             }
         }
@@ -80,27 +84,26 @@ public class DatabaseManagerTest {
         assertEquals(expResult, result);
     }
 
-
     @Test
     public void testGetObjectsFromLevel() throws Exception {
         System.out.println("getObjectsFromLevel");
         int level = 0;
         DatabaseManager instance = DatabaseManager.getDatabaseManager();
         int expResult = 6;
-        int result = instance.getObjectsFromLevel(level)[0].size();
-        assertEquals(expResult, result);
+        ConcurrentHashMap<Position, GameObject> name = instance.getObjectsFromLevel(level)[0];
+        assertEquals(expResult, name.size());
     }
 
-    
     @Test
     public void testGetSubjects() throws FileNotSetException {
         System.out.println("getSubjects");
         DatabaseManager instance = DatabaseManager.getDatabaseManager();
         int expResult = 1;
-        int result = instance.getSubjects().size();
+        List<Subject> resultlist = instance.getSubjects();
+        int result = resultlist.size();
         assertEquals(expResult, result);
     }
-    
+
     /*
     @Test
     public void testSave() throws Exception {
@@ -143,7 +146,7 @@ public class DatabaseManagerTest {
         instance.close();
     }
      */
-    //@Test
+    @Test
     public void testGetMaps() {
         try {
             System.out.println("getMaps");
