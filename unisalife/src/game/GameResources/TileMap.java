@@ -203,4 +203,10 @@ public class TileMap implements Serializable, Storable {
         return String.valueOf(this.id);
     }
 
+    public Position getInitialPosition() {
+        return initialPosition;
+    }
+    
+    
+
 }

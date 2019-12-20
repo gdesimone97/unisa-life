@@ -108,8 +108,8 @@ public class GameManager {
         new Thread(() -> {
             try {
 
-                Player.getIstance().initialize(skin, Name);
                 MapManager.getInstance().init();
+                Player.getIstance().initialize(skin, Name, MapManager.getInstance().getMap().getInitialPosition());
                 Booklet.getInstance();
 
                 QuestsManager.getInstance().init();
@@ -128,6 +128,8 @@ public class GameManager {
                 }
             } catch (InitException ex) {
                 JOptionPane.showMessageDialog(game, "System Error: " + ex.toString());
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(game, "Undefined Error. Contact support");
             }
         }).start();
     }

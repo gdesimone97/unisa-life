@@ -4,22 +4,14 @@
  * and open the template in the editor.
  */
 package game.GameResources;
-import exam.booklet.Subject;
 import game.GameObjects.Coin;
-import game.GameObjects.Cook;
-import game.GameObjects.Distributor;
 import game.GameObjects.GameObject;
-import game.GameObjects.Guardian;
-import game.GameObjects.Item;
 import game.GameObjects.ObjectManager;
 import game.GameObjects.Player;
 import game.GameObjects.Position;
-import game.GameObjects.Professor;
-import game.GameObjects.Teleport;
 import game.Interfaces.Renderable;
 import gameSystem.Game;
 import java.awt.Graphics2D;
-import java.io.Serializable;
 import static java.lang.Thread.sleep;
 import java.util.Random;
 import java.util.concurrent.ConcurrentHashMap;
@@ -170,6 +162,10 @@ public class Map implements Runnable {
 
     public void addDynamicObjects(ConcurrentHashMap<Position,GameObject> dynamic) {
         mapObjects.setDynamic(dynamic);
+    }
+    
+    public Position getInitialPosition() {
+        return tMap.getInitialPosition();
     }
 
 
