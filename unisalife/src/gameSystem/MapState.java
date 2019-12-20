@@ -34,7 +34,7 @@ public class MapState extends GameState{
     
     private MapState() throws Initializable.InitException {
         try {
-            img = ImageIO.read(getClass().getResource("/Sprites/map.jpg"));
+            img = ImageIO.read(getClass().getResource("/Sprites/Map.jpg"));
         } catch (IOException ex) {
             throw new Initializable.InitException("Can't find Map image");
         }
@@ -54,25 +54,25 @@ public class MapState extends GameState{
 
     @Override
     public void render(Graphics2D g) {
-        AffineTransform at = new AffineTransform();
         g.setColor(Color.black);
         g.fillRect(0, 0, Game.WIDTHSCREEN, Game.HEIGHTSCREEN2);
-        g.drawImage(img, at, null);
+        g.drawImage(img, Game.WIDTHSCREEN/4, Game.HEIGHTSCREEN2/4, null);
         g.setColor(Color.red);
         int xPlayer = Player.getIstance().getPosition().getX();
         int yPlayer = Player.getIstance().getPosition().getY();
         int heightMap = MapManager.getInstance().getMap().getHeightMap();
         int widthMap = MapManager.getInstance().getMap().getWidthMap();
-        int xPlayerInMap = (int)Math.floor(xPlayer*img.getWidth()/widthMap);
-        int yPlayerInMap = (int)Math.floor(yPlayer*img.getHeight()/heightMap);
+        int xPlayerInMap = (int)Math.ceil(xPlayer*img.getWidth()/widthMap)+Game.WIDTHSCREEN/4;
+        int yPlayerInMap = (int)Math.ceil(yPlayer*img.getHeight()/heightMap)+Game.HEIGHTSCREEN2/4;
         g.setStroke(new BasicStroke(2));
-        g.drawLine(xPlayerInMap - 3, yPlayerInMap, xPlayerInMap + 3, yPlayerInMap);
-        g.drawLine(xPlayerInMap, yPlayerInMap-3, xPlayerInMap, yPlayerInMap+3);
+        g.drawLine(xPlayerInMap - 4 , yPlayerInMap, xPlayerInMap + 4, yPlayerInMap);
+        g.drawLine(xPlayerInMap, yPlayerInMap-4, xPlayerInMap , yPlayerInMap+4);
     }
 
     @Override
     public void handleInput(KeyCommand cmd) {
-        //se la vede peppe
+        
+        cmd.visitMapState(instance);
     }
     
 }

@@ -63,7 +63,7 @@ public class LoadingState extends GameState{
 
     @Override
     public void handleInput(KeyCommand cmd) {
-        //se la vede peppe
+        cmd.visitLoadingState(instance);
     }
     
 }
