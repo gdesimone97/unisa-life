@@ -1713,7 +1713,7 @@ public class GameFrame extends javax.swing.JFrame {
         HintTextArea.setEditable(false);
         HintTextArea.setBackground(new java.awt.Color(209, 250, 255));
         HintTextArea.setColumns(20);
-        HintTextArea.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        HintTextArea.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         HintTextArea.setLineWrap(true);
         HintTextArea.setRows(5);
         HintTextArea.setWrapStyleWord(true);
@@ -2012,7 +2012,7 @@ public class GameFrame extends javax.swing.JFrame {
         RightBorderLayout.setHorizontalGroup(
             RightBorderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RightBorderLayout.createSequentialGroup()
-                .addGap(0, 25, Short.MAX_VALUE)
+                .addGap(0, 26, Short.MAX_VALUE)
                 .addComponent(GameCloseButton))
         );
         RightBorderLayout.setVerticalGroup(
