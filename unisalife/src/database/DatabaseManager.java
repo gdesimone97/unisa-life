@@ -7,6 +7,7 @@ package database;
 
 import exam.booklet.Subject;
 import game.GameObjects.Block;
+import game.GameObjects.Coin;
 import game.GameObjects.Cook;
 import game.GameObjects.Position;
 import game.GameObjects.GameObject;
@@ -20,13 +21,14 @@ import game.Interfaces.Initializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.Arrays;
+
 import org.dizitart.no2.Cursor;
 import org.dizitart.no2.Document;
 import org.dizitart.no2.Index;
 import org.dizitart.no2.NitriteCollection;
 import org.dizitart.no2.filters.Filters;
+import org.dizitart.no2.meta.Attributes;
 import org.dizitart.no2.objects.ObjectRepository;
 import org.dizitart.no2.objects.filters.ObjectFilters;
 import static org.dizitart.no2.objects.filters.ObjectFilters.eq;
@@ -40,6 +42,12 @@ import quests.quest.Quest;
  */
 public class DatabaseManager implements Initializable {
 
+    @SafeVarargs
+    static private <E> E[] newArray(int length, E... array)
+    {
+    return Arrays.copyOf(array, length);
+    }
+    
     protected static final String FIXEDCOLLECTIONNAME = "FLINKS";
     protected static final String DYNCOLLECTIONNAME = "DLINKS";
     private static DatabaseManager instance = null;
@@ -99,19 +107,28 @@ public class DatabaseManager implements Initializable {
      * @return a map of those objects (instances)
      * @throws ObjectNotFoundException
      */
+    /*
     public ConcurrentHashMap<Position, GameObject>[] getObjectsFromLevel(int level) throws ObjectNotFoundException, ErrorWhileSavingException {
         List<TileMap> res = this.getTileMaps();
         int mapNum = res.size();
         List<ConcurrentHashMap<Position, GameObject>> dynArrObj = new ArrayList<>();
+        dynArrObj.add(new ConcurrentHashMap<>());
+        dynArrObj.add(new ConcurrentHashMap<>());
 
         List<Quest> questList = this.getQuestsFromLevel(level);
 
         for (Quest q : questList) {
             Subject questSubject = q.getSubject();
             for (String itemName : q.getItemList()) {
+                if(itemName.equals("coin")){
+                    Coin c = this.findCoin(itemName);
+                    int mapId = this.findMap(itemName, DatabaseManager.DYNCOLLECTIONNAME);
+                    dynArrObj.get(mapId).put(c.getScaledPosition(), c);
+                }else{
                 Item i = this.findItem(itemName);
                 int mapId = this.findMap(itemName, DatabaseManager.DYNCOLLECTIONNAME);
                 dynArrObj.get(mapId).put(i.getScaledPosition(), i);
+                }
             }
             Professor p = this.findProfessor(questSubject);
             int mapId = this.findMap(questSubject.getInfo(), DatabaseManager.DYNCOLLECTIONNAME);
@@ -119,11 +136,57 @@ public class DatabaseManager implements Initializable {
         }
 
         Cook cook = this.findCook();
-        int cookMapId = this.findMap(cook.getIndex(), DatabaseManager.FIXEDCOLLECTIONNAME);
+        System.out.println(cook.getIndex());
+        int cookMapId = this.findMap(cook.getIndex(), DatabaseManager.DYNCOLLECTIONNAME);
         dynArrObj.get(cookMapId).put(cook.getScaledPosition(), cook);
 
         Guardian guardian = this.findGuardian();
-        int guardMapId = this.findMap(guardian.getIndex(), DatabaseManager.FIXEDCOLLECTIONNAME);
+        int guardMapId = this.findMap(guardian.getIndex(), DatabaseManager.DYNCOLLECTIONNAME);
+        dynArrObj.get(guardMapId).put(guardian.getScaledPosition(), guardian);
+
+        /*
+        if ((dynArrObj.stream().filter((obj) -> obj.size() <= 0).count()) > 0) {
+            throw new ErrorWhileSavingException();
+        }
+         
+        return (ConcurrentHashMap<Position, GameObject>[])dynArrObj.toArray();
+    }
+    */
+    
+    public ConcurrentHashMap<Position, GameObject>[] getObjectsFromLevel(int level) throws ObjectNotFoundException, ErrorWhileSavingException {
+        List<TileMap> res = this.getTileMaps();
+        int mapNum = res.size();
+        List<ConcurrentHashMap<Position, GameObject>> dynArrObj = new ArrayList<>();
+        dynArrObj.add(new ConcurrentHashMap<>());
+        dynArrObj.add(new ConcurrentHashMap<>());
+
+        List<Quest> questList = this.getQuestsFromLevel(level);
+
+        for (Quest q : questList) {
+            Subject questSubject = q.getSubject();
+            for (String itemName : q.getItemList()) {
+                if(itemName.equals("coin")){
+                    Coin c = this.findCoin(itemName);
+                    int mapId = this.findMap(itemName, DatabaseManager.DYNCOLLECTIONNAME);
+                    dynArrObj.get(mapId).put(c.getScaledPosition(), c);
+                }else{
+                Item i = this.findItem(itemName);
+                int mapId = this.findMap(itemName, DatabaseManager.DYNCOLLECTIONNAME);
+                dynArrObj.get(mapId).put(i.getScaledPosition(), i);
+                }
+            }
+            Professor p = this.findProfessor(questSubject);
+            int mapId = this.findMap(questSubject.getInfo(), DatabaseManager.DYNCOLLECTIONNAME);
+            dynArrObj.get(mapId).put(p.getScaledPosition(), p);
+        }
+
+        Cook cook = this.findCook();
+        System.out.println(cook.getIndex());
+        int cookMapId = this.findMap(cook.getIndex(), DatabaseManager.DYNCOLLECTIONNAME);
+        dynArrObj.get(cookMapId).put(cook.getScaledPosition(), cook);
+
+        Guardian guardian = this.findGuardian();
+        int guardMapId = this.findMap(guardian.getIndex(), DatabaseManager.DYNCOLLECTIONNAME);
         dynArrObj.get(guardMapId).put(guardian.getScaledPosition(), guardian);
 
         /*
@@ -131,19 +194,24 @@ public class DatabaseManager implements Initializable {
             throw new ErrorWhileSavingException();
         }
          */
-        return (ConcurrentHashMap<Position, GameObject>[]) dynArrObj.toArray();
+        return DatabaseManager.newArray(dynArrObj.size(), dynArrObj.get(0), dynArrObj.get(1));    
     }
-
     private int findMap(String id, String collection) {
 
         NitriteCollection coll = db.getNitriteDatabase().getCollection(collection);
         Cursor find = null;
         try {
-            find = coll.find(eq("IDOBJ", id));
+            
+            find = coll.find(Filters.eq("IDOBJ", id));
+            
+            
         } catch (Exception ex) {
             ex.printStackTrace();
         }
 
+        
+        String key = find.firstOrDefault().get("IDMAP", String.class);
+        System.out.println("vado a convertire " + key);
         return Integer.parseInt(find.firstOrDefault().get("IDMAP", String.class));
     }
 
@@ -198,8 +266,16 @@ public class DatabaseManager implements Initializable {
         return returnList;
     }
 
+    
+    private Coin findCoin(String itemName) throws ObjectNotFoundException{
+        Coin c  = db.getNitriteDatabase().getRepository(Coin.class).find(eq("info",itemName)).firstOrDefault();
+        if(c==null)
+            throw new ObjectNotFoundException();
+        return c;
+    }
+    
     private Item findItem(String itemName) throws ObjectNotFoundException {
-        Item res = db.getNitriteDatabase().getRepository(Item.class).find(eq("info", itemName)).firstOrDefault();
+        Item res = (Item) db.getNitriteDatabase().getRepository(Item.class).find(eq("info", itemName)).firstOrDefault();
         if (res == null) {
             throw new ObjectNotFoundException();
         }
@@ -279,4 +355,6 @@ public class DatabaseManager implements Initializable {
     public void init() {
 
     }
+
+    
 }
