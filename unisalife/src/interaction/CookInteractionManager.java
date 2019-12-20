@@ -39,15 +39,15 @@ public class CookInteractionManager implements InteractionManager {
                 JukeBoxSound.getInstance().play("wrong");
             } else {
                 // show request
-                ms = new MessageInformation("CanteenRequest");
-                toShow = tm.getString(ms).get(0);
-                RequestGui request = new RequestGui();
-                GuiManager.getInstance().showRequest(toShow, request);
-                if(request.getValue()) {
+//                ms = new MessageInformation("CanteenRequest");
+//                toShow = tm.getString(ms).get(0);
+//                RequestGui request = new RequestGui();
+//                GuiManager.getInstance().showRequest(toShow, request);
+//                if(request.getValue()) {
                      // restore status bars
                     JukeBoxSound.getInstance().play("canteen");
                     StatusManager.getInstance().updateMoney(-3);
-                }
+//                }
 
                 // show pop up
                 ms = new MessageInformation("SeeYouAgainName");
