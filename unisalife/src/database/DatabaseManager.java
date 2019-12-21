@@ -168,7 +168,7 @@ public class DatabaseManager implements Initializable {
 
         }
         String key = find.firstOrDefault().get("IDMAP", String.class);
-        return Integer.parseInt(find.firstOrDefault().get("IDMAP", String.class));
+        return Integer.parseInt(key);
     }
 
     /**
@@ -235,7 +235,7 @@ public class DatabaseManager implements Initializable {
      * @throws ObjectNotFoundException
      */
     private Coin findCoin(String id) throws ObjectNotFoundException {
-        Coin c = db.getNitriteDatabase().getRepository(Coin.class).find(eq("info", id)).firstOrDefault();
+        Coin c = db.getNitriteDatabase().getRepository(CoinWrapper.class).find(eq("info", id)).firstOrDefault().buildCoin();
         if (c == null) {
             throw new ObjectNotFoundException();
         }
@@ -255,7 +255,7 @@ public class DatabaseManager implements Initializable {
         // %448%1024%/Sprites/note.png%appunti
         Item res = new Item((Position) d.get("p"), (String) d.get("path"), (String) d.get("info"));
          */
-        Item res = (Item) db.getNitriteDatabase().getRepository(Item.class).find(eq("info", itemName)).firstOrDefault();
+        Item res = db.getNitriteDatabase().getRepository(ItemWrapper.class).find(eq("info", itemName)).firstOrDefault().buildItem();
         if (res == null) {
             throw new ObjectNotFoundException();
         }
@@ -270,7 +270,7 @@ public class DatabaseManager implements Initializable {
      * @throws ObjectNotFoundException
      */
     private Professor findProfessor(Subject s) throws ObjectNotFoundException {
-        Professor prof = db.getNitriteDatabase().getRepository(Professor.class).find(eq("subject.subject", s.getInfo())).firstOrDefault();
+        Professor prof = db.getNitriteDatabase().getRepository(ProfessorWrapper.class).find(eq("subject.subject", s.getInfo())).firstOrDefault().buildProfessor();
         if (prof == null) {
             throw new ObjectNotFoundException();
         }
@@ -283,7 +283,7 @@ public class DatabaseManager implements Initializable {
      * @return an instance of the cook
      */
     private Cook findCook() {
-        return db.getNitriteDatabase().getRepository(Cook.class).find(ObjectFilters.ALL).firstOrDefault();
+        return db.getNitriteDatabase().getRepository(CookWrapper.class).find(ObjectFilters.ALL).firstOrDefault().buildCook();
     }
 
     /**
@@ -292,7 +292,7 @@ public class DatabaseManager implements Initializable {
      * @return an instance of the guardian
      */
     private Guardian findGuardian() {
-        return db.getNitriteDatabase().getRepository(Guardian.class).find(ObjectFilters.ALL).firstOrDefault();
+        return db.getNitriteDatabase().getRepository(GuardianWrapper.class).find(ObjectFilters.ALL).firstOrDefault().buildGuardian();
     }
 
     /**

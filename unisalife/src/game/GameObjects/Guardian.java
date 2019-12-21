@@ -14,13 +14,15 @@ import language.Information;
  * @author 1997g
  */
 public class Guardian extends Person implements Information {
+
     private String nome;
 
     public Guardian(String nome, Position p, String path) {
         super(p, path);
+        this.nome = nome;
     }
-    
-    public Guardian(){
+
+    public Guardian() {
         super();
     }
 
@@ -39,5 +41,5 @@ public class Guardian extends Person implements Information {
     public String getIndex() {
         return this.nome;
     }
-    
+
 }
