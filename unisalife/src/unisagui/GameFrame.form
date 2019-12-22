@@ -3068,7 +3068,7 @@
                 <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="MoveUpFieldKeyPressed"/>
               </Events>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="MoveUpField.setDocument(maxLength);&#xa;MoveUpField.setText(KeyEvent.getKeyText(SettingsManager.getSettingsManager().getMoveUp()));"/>
+                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="MoveUpField.setDocument(maxLength);&#xa;MoveUpField.setText(KeyEvent.getKeyText(settings.getMoveUp()));"/>
               </AuxValues>
             </Component>
             <Component class="javax.swing.JLabel" name="MoveDownLabel">
@@ -3101,8 +3101,11 @@
                   <Dimension value="[50, 50]"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="MoveDownFieldKeyPressed"/>
+              </Events>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="MoveDownField.setText(KeyEvent.getKeyText(SettingsManager.getSettingsManager().getMoveDown()));"/>
+                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="MoveDownField.setText(KeyEvent.getKeyText(settings.getMoveDown()));"/>
               </AuxValues>
             </Component>
             <Component class="javax.swing.JLabel" name="MoveLeftLabel">
@@ -3135,8 +3138,11 @@
                   <Dimension value="[50, 50]"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="MoveLeftFieldKeyPressed"/>
+              </Events>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="MoveLeftField.setText(KeyEvent.getKeyText(SettingsManager.getSettingsManager().getMoveLeft()));"/>
+                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="MoveLeftField.setText(KeyEvent.getKeyText(settings.getMoveLeft()));"/>
               </AuxValues>
             </Component>
             <Component class="javax.swing.JLabel" name="MoveRightLabel">
@@ -3169,8 +3175,11 @@
                   <Dimension value="[50, 50]"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="MoveRightFieldKeyPressed"/>
+              </Events>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="MoveRightField.setText(KeyEvent.getKeyText(SettingsManager.getSettingsManager().getMoveRight()));"/>
+                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="MoveRightField.setText(KeyEvent.getKeyText(settings.getMoveRight()));"/>
               </AuxValues>
             </Component>
             <Component class="javax.swing.JLabel" name="InteractLabel">
@@ -3203,8 +3212,11 @@
                   <Dimension value="[100, 50]"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="InteractFieldKeyPressed"/>
+              </Events>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="InteractField.setText(KeyEvent.getKeyText(SettingsManager.getSettingsManager().getInteractButton()));"/>
+                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="InteractField.setText(KeyEvent.getKeyText(settings.getInteractButton()));"/>
               </AuxValues>
             </Component>
             <Component class="javax.swing.JLabel" name="PauseLabel">
@@ -3237,8 +3249,11 @@
                   <Dimension value="[50, 50]"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="PauseFieldKeyPressed"/>
+              </Events>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="PauseField.setText(KeyEvent.getKeyText(SettingsManager.getSettingsManager().getPauseButton()));"/>
+                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="PauseField.setText(KeyEvent.getKeyText(settings.getPauseButton()));"/>
               </AuxValues>
             </Component>
             <Component class="javax.swing.JTextField" name="SaveField">
@@ -3257,8 +3272,11 @@
                   <Dimension value="[50, 50]"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="SaveFieldKeyPressed"/>
+              </Events>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="SaveField.setText(KeyEvent.getKeyText(SettingsManager.getSettingsManager().getSaveButton()));"/>
+                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="SaveField.setText(KeyEvent.getKeyText(settings.getSaveButton()));"/>
               </AuxValues>
             </Component>
             <Component class="javax.swing.JLabel" name="SaveLabel">

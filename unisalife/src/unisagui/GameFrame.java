@@ -28,6 +28,14 @@ public class GameFrame extends javax.swing.JFrame {
     private static JukeBoxMusic music = JukeBoxMusic.getInstance();
     private static ButtonGroup buttongroup = new javax.swing.ButtonGroup();
     private final MaxLengthTextDocument maxLength = new MaxLengthTextDocument();
+    private SettingsManager settings = SettingsManager.getSettingsManager();
+    private int moveUp;
+    private int moveDown;
+    private int moveLeft;
+    private int moveRight;
+    private int interact;
+    private int pause;
+    private int save;
     
     
 
@@ -36,6 +44,7 @@ public class GameFrame extends javax.swing.JFrame {
         undecoratingDialogs();
         settingLocations(this);
         initialSettings(this);
+        setKeyBoard();
         //saveManager qui
     }
 
@@ -45,7 +54,18 @@ public class GameFrame extends javax.swing.JFrame {
         }
         return instance;
     }
-
+    
+    private void setKeyBoard(){
+         moveUp=settings.getMoveUp();
+         moveDown=settings.getMoveDown();
+         moveLeft=settings.getMoveLeft();
+         moveRight=settings.getMoveRight();
+         interact= settings.getInteractButton();
+         pause= settings.getPauseButton();
+         save= settings.getSaveButton();
+        
+        
+    }
     private void initialSettings(GameFrame instance) {
         SwingUtilities.invokeLater(() -> instance.setVisible(true));
         SwingUtilities.invokeLater(() -> MainMenuDialog.isAlwaysOnTop());
@@ -1673,6 +1693,11 @@ public class GameFrame extends javax.swing.JFrame {
         MoveDownField.setMaximumSize(new java.awt.Dimension(50, 50));
         MoveDownField.setMinimumSize(new java.awt.Dimension(50, 50));
         MoveDownField.setPreferredSize(new java.awt.Dimension(50, 50));
+        MoveDownField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                MoveDownFieldKeyPressed(evt);
+            }
+        });
 
         MoveLeftLabel.setText("Move Left");
         MoveLeftLabel.setMaximumSize(new java.awt.Dimension(100, 50));
@@ -1684,6 +1709,11 @@ public class GameFrame extends javax.swing.JFrame {
         MoveLeftField.setMaximumSize(new java.awt.Dimension(50, 50));
         MoveLeftField.setMinimumSize(new java.awt.Dimension(50, 50));
         MoveLeftField.setPreferredSize(new java.awt.Dimension(50, 50));
+        MoveLeftField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                MoveLeftFieldKeyPressed(evt);
+            }
+        });
 
         MoveRightLabel.setText("Move Right");
         MoveRightLabel.setMaximumSize(new java.awt.Dimension(100, 50));
@@ -1695,6 +1725,11 @@ public class GameFrame extends javax.swing.JFrame {
         MoveRightField.setMaximumSize(new java.awt.Dimension(50, 50));
         MoveRightField.setMinimumSize(new java.awt.Dimension(50, 50));
         MoveRightField.setPreferredSize(new java.awt.Dimension(50, 50));
+        MoveRightField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                MoveRightFieldKeyPressed(evt);
+            }
+        });
 
         InteractLabel.setText("Interact");
         InteractLabel.setMaximumSize(new java.awt.Dimension(100, 50));
@@ -1706,6 +1741,11 @@ public class GameFrame extends javax.swing.JFrame {
         InteractField.setMaximumSize(new java.awt.Dimension(50, 100));
         InteractField.setMinimumSize(new java.awt.Dimension(50, 100));
         InteractField.setPreferredSize(new java.awt.Dimension(100, 50));
+        InteractField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                InteractFieldKeyPressed(evt);
+            }
+        });
 
         PauseLabel.setText("Pause");
         PauseLabel.setMaximumSize(new java.awt.Dimension(100, 50));
@@ -1717,12 +1757,22 @@ public class GameFrame extends javax.swing.JFrame {
         PauseField.setMaximumSize(new java.awt.Dimension(50, 50));
         PauseField.setMinimumSize(new java.awt.Dimension(50, 50));
         PauseField.setPreferredSize(new java.awt.Dimension(50, 50));
+        PauseField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                PauseFieldKeyPressed(evt);
+            }
+        });
 
         SaveField.setBackground(new java.awt.Color(0, 153, 204));
         SaveField.setAutoscrolls(false);
         SaveField.setMaximumSize(new java.awt.Dimension(50, 50));
         SaveField.setMinimumSize(new java.awt.Dimension(50, 50));
         SaveField.setPreferredSize(new java.awt.Dimension(50, 50));
+        SaveField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                SaveFieldKeyPressed(evt);
+            }
+        });
 
         SaveLabel.setText("Save");
         SaveLabel.setMaximumSize(new java.awt.Dimension(100, 50));
@@ -1848,13 +1898,13 @@ public class GameFrame extends javax.swing.JFrame {
         );
 
         MoveUpField.setDocument(maxLength);
-        MoveUpField.setText(KeyEvent.getKeyText(SettingsManager.getSettingsManager().getMoveUp()));
-        MoveDownField.setText(KeyEvent.getKeyText(SettingsManager.getSettingsManager().getMoveDown()));
-        MoveLeftField.setText(KeyEvent.getKeyText(SettingsManager.getSettingsManager().getMoveLeft()));
-        MoveRightField.setText(KeyEvent.getKeyText(SettingsManager.getSettingsManager().getMoveRight()));
-        InteractField.setText(KeyEvent.getKeyText(SettingsManager.getSettingsManager().getInteractButton()));
-        PauseField.setText(KeyEvent.getKeyText(SettingsManager.getSettingsManager().getPauseButton()));
-        SaveField.setText(KeyEvent.getKeyText(SettingsManager.getSettingsManager().getSaveButton()));
+        MoveUpField.setText(KeyEvent.getKeyText(settings.getMoveUp()));
+        MoveDownField.setText(KeyEvent.getKeyText(settings.getMoveDown()));
+        MoveLeftField.setText(KeyEvent.getKeyText(settings.getMoveLeft()));
+        MoveRightField.setText(KeyEvent.getKeyText(settings.getMoveRight()));
+        InteractField.setText(KeyEvent.getKeyText(settings.getInteractButton()));
+        PauseField.setText(KeyEvent.getKeyText(settings.getPauseButton()));
+        SaveField.setText(KeyEvent.getKeyText(settings.getSaveButton()));
 
         javax.swing.GroupLayout KeyboardSettingsDialogLayout = new javax.swing.GroupLayout(KeyboardSettingsDialog.getContentPane());
         KeyboardSettingsDialog.getContentPane().setLayout(KeyboardSettingsDialogLayout);
@@ -2482,7 +2532,7 @@ public class GameFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_ConvDialogKeyPressed
 
     private void HintDialogKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_HintDialogKeyTyped
-        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
+        if (evt.getKeyCode() == interact) {
             SwingUtilities.invokeLater(() -> HintDialog.setVisible(false));
             SwingUtilities.invokeLater(() -> HintTextArea.setText(EMPTY_TEXT));
             SwingUtilities.invokeLater(() -> HintDialog.setFocusable(false));
@@ -2491,7 +2541,7 @@ public class GameFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_HintDialogKeyTyped
 
     private void ConvDialogKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ConvDialogKeyTyped
-        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
+        if (evt.getKeyCode() == interact) {
             SwingUtilities.invokeLater(() -> ConvDialog.setVisible(false));
             SwingUtilities.invokeLater(() -> ConversationTextArea.setText(EMPTY_TEXT));
             SwingUtilities.invokeLater(() -> ConvDialog.setFocusable(false));
@@ -2670,8 +2720,55 @@ public class GameFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_KeyboardSettingsCloseButtonActionPerformed
 
     private void MoveUpFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_MoveUpFieldKeyPressed
-        SettingsManager.getSettingsManager().setMoveUp(evt.getKeyCode());
+       if(evt.getKeyCode() == KeyEvent.VK_ENTER)
+           SwingUtilities.invokeLater(() -> settings.setMoveUp(moveUp));
+       else
+           moveUp= evt.getKeyCode();          
+       
+                
     }//GEN-LAST:event_MoveUpFieldKeyPressed
+
+    private void MoveDownFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_MoveDownFieldKeyPressed
+       if(evt.getKeyCode() == KeyEvent.VK_ENTER)
+           SwingUtilities.invokeLater(() -> settings.setMoveDown(moveDown));
+       else
+           moveDown= evt.getKeyCode(); 
+    }//GEN-LAST:event_MoveDownFieldKeyPressed
+
+    private void MoveLeftFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_MoveLeftFieldKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER)
+           SwingUtilities.invokeLater(() -> settings.setMoveLeft(moveLeft));
+       else
+           moveLeft= evt.getKeyCode(); 
+    }//GEN-LAST:event_MoveLeftFieldKeyPressed
+
+    private void MoveRightFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_MoveRightFieldKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER)
+           SwingUtilities.invokeLater(() -> settings.setMoveRight(moveRight));
+       else
+           moveRight= evt.getKeyCode(); 
+    }//GEN-LAST:event_MoveRightFieldKeyPressed
+
+    private void InteractFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_InteractFieldKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER)
+           SwingUtilities.invokeLater(() -> settings.setInteractButton(interact));
+       else
+           interact= evt.getKeyCode(); 
+    }//GEN-LAST:event_InteractFieldKeyPressed
+
+    private void PauseFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_PauseFieldKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER)
+           SwingUtilities.invokeLater(() -> settings.setPauseButton(pause));
+       else
+           pause= evt.getKeyCode(); 
+    }//GEN-LAST:event_PauseFieldKeyPressed
+
+    private void SaveFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_SaveFieldKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER)
+           SwingUtilities.invokeLater(() -> settings.setMoveUp(save));
+       else
+           save= evt.getKeyCode(); 
+    }//GEN-LAST:event_SaveFieldKeyPressed
 
     /**
      * @param args the command line arguments
