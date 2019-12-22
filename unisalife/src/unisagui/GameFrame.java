@@ -45,7 +45,7 @@ public class GameFrame extends javax.swing.JFrame {
     private int moveRight;
     private int interact;
     private int pause;
-    private int save;
+    private int map;
     
     
     private DefaultTableModel model;
@@ -74,7 +74,7 @@ public class GameFrame extends javax.swing.JFrame {
          moveRight=settings.getMoveRight();
          interact= settings.getInteractButton();
          pause= settings.getPauseButton();
-         save= settings.getSaveButton();
+         map= settings.getMapButton();
         
         
     }
@@ -296,8 +296,8 @@ public class GameFrame extends javax.swing.JFrame {
         InteractField = new javax.swing.JTextField();
         PauseLabel = new javax.swing.JLabel();
         PauseField = new javax.swing.JTextField();
-        SaveField = new javax.swing.JTextField();
-        SaveLabel = new javax.swing.JLabel();
+        MapField = new javax.swing.JTextField();
+        MapLabel = new javax.swing.JLabel();
         OpenInventoryField = new javax.swing.JTextField();
         OpenInventoryLabel = new javax.swing.JLabel();
         KeyboardSettingsCloseButton = new javax.swing.JButton();
@@ -1808,21 +1808,21 @@ public class GameFrame extends javax.swing.JFrame {
             }
         });
 
-        SaveField.setBackground(new java.awt.Color(0, 153, 204));
-        SaveField.setAutoscrolls(false);
-        SaveField.setMaximumSize(new java.awt.Dimension(50, 50));
-        SaveField.setMinimumSize(new java.awt.Dimension(50, 50));
-        SaveField.setPreferredSize(new java.awt.Dimension(50, 50));
-        SaveField.addKeyListener(new java.awt.event.KeyAdapter() {
+        MapField.setBackground(new java.awt.Color(0, 153, 204));
+        MapField.setAutoscrolls(false);
+        MapField.setMaximumSize(new java.awt.Dimension(50, 50));
+        MapField.setMinimumSize(new java.awt.Dimension(50, 50));
+        MapField.setPreferredSize(new java.awt.Dimension(50, 50));
+        MapField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                SaveFieldKeyPressed(evt);
+                MapFieldKeyPressed(evt);
             }
         });
 
-        SaveLabel.setText("Save");
-        SaveLabel.setMaximumSize(new java.awt.Dimension(100, 50));
-        SaveLabel.setMinimumSize(new java.awt.Dimension(100, 50));
-        SaveLabel.setPreferredSize(new java.awt.Dimension(100, 50));
+        MapLabel.setText("Map");
+        MapLabel.setMaximumSize(new java.awt.Dimension(100, 50));
+        MapLabel.setMinimumSize(new java.awt.Dimension(100, 50));
+        MapLabel.setPreferredSize(new java.awt.Dimension(100, 50));
 
         OpenInventoryField.setEditable(false);
         OpenInventoryField.setBackground(new java.awt.Color(0, 153, 204));
@@ -1884,9 +1884,9 @@ public class GameFrame extends javax.swing.JFrame {
                                 .addGap(100, 100, 100)
                                 .addComponent(PauseField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(KeyBoardPanelLayout.createSequentialGroup()
-                                .addComponent(SaveLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(MapLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(100, 100, 100)
-                                .addComponent(SaveField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(MapField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(KeyBoardPanelLayout.createSequentialGroup()
                                 .addComponent(MoveUpLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(100, 100, 100)
@@ -1933,8 +1933,8 @@ public class GameFrame extends javax.swing.JFrame {
                     .addComponent(PauseLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(25, 25, 25)
                 .addGroup(KeyBoardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(SaveField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(SaveLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(MapField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(MapLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(25, 25, 25)
                 .addGroup(KeyBoardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(OpenInventoryField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1949,7 +1949,7 @@ public class GameFrame extends javax.swing.JFrame {
         MoveRightField.setText(KeyEvent.getKeyText(settings.getMoveRight()));
         InteractField.setText(KeyEvent.getKeyText(settings.getInteractButton()));
         PauseField.setText(KeyEvent.getKeyText(settings.getPauseButton()));
-        SaveField.setText(KeyEvent.getKeyText(settings.getSaveButton()));
+        MapField.setText(KeyEvent.getKeyText(settings.getMapButton()));
 
         javax.swing.GroupLayout KeyboardSettingsDialogLayout = new javax.swing.GroupLayout(KeyboardSettingsDialog.getContentPane());
         KeyboardSettingsDialog.getContentPane().setLayout(KeyboardSettingsDialogLayout);
@@ -2448,7 +2448,7 @@ public class GameFrame extends javax.swing.JFrame {
         RightBorderLayout.setHorizontalGroup(
             RightBorderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RightBorderLayout.createSequentialGroup()
-                .addGap(0, 25, Short.MAX_VALUE)
+                .addGap(0, 26, Short.MAX_VALUE)
                 .addComponent(GameCloseButton))
         );
         RightBorderLayout.setVerticalGroup(
@@ -2805,7 +2805,7 @@ public class GameFrame extends javax.swing.JFrame {
 
     private void ConvDialogKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ConvDialogKeyReleased
         // TODO add your handling code here:
-        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
+        if (evt.getKeyCode() == interact) {
             SwingUtilities.invokeLater(() -> ConvDialog.setVisible(false));
             SwingUtilities.invokeLater(() -> ConversationTextArea.setText(EMPTY_TEXT));
             SwingUtilities.invokeLater(() -> ConvDialog.setFocusable(false));
@@ -2907,12 +2907,12 @@ public class GameFrame extends javax.swing.JFrame {
            pause= evt.getKeyCode(); 
     }//GEN-LAST:event_PauseFieldKeyPressed
 
-    private void SaveFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_SaveFieldKeyPressed
+    private void MapFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_MapFieldKeyPressed
         if(evt.getKeyCode() == KeyEvent.VK_ENTER)
-           SwingUtilities.invokeLater(() -> settings.setMoveUp(save));
+           SwingUtilities.invokeLater(() -> settings.setMapButton(map));
        else
-           save= evt.getKeyCode(); 
-    }//GEN-LAST:event_SaveFieldKeyPressed
+           map= evt.getKeyCode(); 
+    }//GEN-LAST:event_MapFieldKeyPressed
 
     /**
      * @param args the command line arguments
@@ -3052,9 +3052,9 @@ public class GameFrame extends javax.swing.JFrame {
     protected javax.swing.JLabel InventoryPageButton;
     protected javax.swing.JLabel InventoryPageButton1;
     protected javax.swing.JPanel InventoryPanel;
-    protected javax.swing.JPanel KeyBoardPanel;
     protected javax.swing.JPanel InventoryPanel1;
     protected javax.swing.JTable InventoryTable;
+    protected javax.swing.JPanel KeyBoardPanel;
     protected javax.swing.JButton KeyboardButton;
     protected javax.swing.JButton KeyboardSettingsCloseButton;
     protected javax.swing.JDialog KeyboardSettingsDialog;
@@ -3068,6 +3068,8 @@ public class GameFrame extends javax.swing.JFrame {
     protected javax.swing.JPanel MainMenuPanel;
     protected javax.swing.JButton MaleBlackButton;
     protected javax.swing.JButton MaleWhiteButton;
+    protected javax.swing.JTextField MapField;
+    protected javax.swing.JLabel MapLabel;
     protected javax.swing.JLabel MoneyIcon;
     protected javax.swing.JLabel MoneyLabel;
     protected javax.swing.JTextField MoveDownField;
@@ -3103,8 +3105,6 @@ public class GameFrame extends javax.swing.JFrame {
     protected javax.swing.JButton ResumeGameButton;
     protected javax.swing.JButton ReturnToMainMenuButton;
     protected javax.swing.JPanel RightBorder;
-    protected javax.swing.JTextField SaveField;
-    protected javax.swing.JLabel SaveLabel;
     protected javax.swing.JButton SecondAnswer;
     protected javax.swing.JButton SettingsButton;
     protected javax.swing.JButton SettingsButtonFrame;

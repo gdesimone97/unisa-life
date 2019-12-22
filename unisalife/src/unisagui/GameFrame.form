@@ -2942,9 +2942,9 @@
                                       <Component id="PauseField" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="SaveLabel" min="-2" max="-2" attributes="0"/>
+                                      <Component id="MapLabel" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="100" max="-2" attributes="0"/>
-                                      <Component id="SaveField" min="-2" max="-2" attributes="0"/>
+                                      <Component id="MapField" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" attributes="0">
                                       <Component id="MoveUpLabel" min="-2" max="-2" attributes="0"/>
@@ -3006,8 +3006,8 @@
                       </Group>
                       <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="SaveField" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="SaveLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="MapField" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="MapLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -3256,7 +3256,7 @@
                 <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="PauseField.setText(KeyEvent.getKeyText(settings.getPauseButton()));"/>
               </AuxValues>
             </Component>
-            <Component class="javax.swing.JTextField" name="SaveField">
+            <Component class="javax.swing.JTextField" name="MapField">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="cc" green="99" red="0" type="rgb"/>
@@ -3273,15 +3273,15 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="SaveFieldKeyPressed"/>
+                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="MapFieldKeyPressed"/>
               </Events>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="SaveField.setText(KeyEvent.getKeyText(settings.getSaveButton()));"/>
+                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="MapField.setText(KeyEvent.getKeyText(settings.getMapButton()));"/>
               </AuxValues>
             </Component>
-            <Component class="javax.swing.JLabel" name="SaveLabel">
+            <Component class="javax.swing.JLabel" name="MapLabel">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Save"/>
+                <Property name="text" type="java.lang.String" value="Map"/>
                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[100, 50]"/>
                 </Property>
@@ -4304,7 +4304,7 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace min="0" pref="25" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="26" max="32767" attributes="0"/>
                   <Component id="GameCloseButton" min="-2" max="-2" attributes="0"/>
               </Group>
           </Group>
