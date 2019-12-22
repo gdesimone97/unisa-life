@@ -17,7 +17,6 @@ import java.time.temporal.ChronoUnit;
 import java.util.Objects;
 import javax.imageio.ImageIO;
 import org.dizitart.no2.objects.Id;
-import quests.ItemDef;
 
 /**
  *
@@ -29,8 +28,11 @@ public class Item extends GameObject implements Renderable, Interactable, Serial
     private String info;
     transient private BufferedImage facingDownImage;
     private LocalDateTime taken;
+    private String path;
+    
     public Item(Position p, String path, String info) {
         super(p);
+        this.path = path;
         this.info = info;
         try {
             facingDownImage = ImageIO.read(

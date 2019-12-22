@@ -9,7 +9,7 @@ import game.GameObjects.Camera;
 import game.GameObjects.GameObject;
 import game.GameObjects.Player;
 import game.Interfaces.Renderable;
-import gameSystem.keySettings.KeyCommand;
+import gameSystem.keySettings.interfaces.KeyCommand;
 import gameSystem.map.MapManager;
 import java.awt.Color;
 import java.awt.Graphics2D;

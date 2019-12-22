@@ -5,6 +5,8 @@
  */
 package gameSystem.keySettings;
 
+import gameSystem.keySettings.interfaces.MovingCommand;
+import gameSystem.keySettings.interfaces.KeyCommand;
 import gameSystem.GameState;
 import gameSystem.GameStateManager;
 import java.awt.event.KeyAdapter;
@@ -27,6 +29,7 @@ public class HandlerInput extends KeyAdapter {
     private final KeyCommand pauseCommand = new PauseCommand();
     private final KeyCommand doNothing = new DoNothingCommand();
     private final KeyCommand saveCommand = new SavingCommand();
+    private final KeyCommand mapCommand = new MapCommand();
     private final GameStateManager stateManager = GameStateManager.getInstance();
     private final SettingsManager settingsManager = SettingsManager.getSettingsManager();
     private boolean isPressed = false;
@@ -89,6 +92,8 @@ public class HandlerInput extends KeyAdapter {
             return interactCommand;
         } else if (keyCode == settingsManager.getPauseButton()) {
             return pauseCommand;
+        } else if (keyCode == settingsManager.getMapButton()) {
+            return mapCommand;
         } else {
             return null;
         }

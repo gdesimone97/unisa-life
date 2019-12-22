@@ -10,6 +10,7 @@ package game.GameResources;
  * @author simon
  */
 import database.Storable;
+import game.GameObjects.Position;
 import gameSystem.Game;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
@@ -36,6 +37,7 @@ public class TileMap implements Serializable, Storable {
     private int ydest;
     private int speed;
     private boolean moving;
+    private Position initialPosition;
 
     // bounds
     private int xmin;
@@ -67,12 +69,13 @@ public class TileMap implements Serializable, Storable {
         
     }
     
-    public TileMap(int id, int w, int h, String t, String m) {
+    public TileMap(int id, int w, int h, String t, String m, Position initialPosition) {
         this.tileSize = Game.DIMENSIONSPRITE;
         numRowsToDraw = /*Game.WIDTHMAP / tileSize + 2;*/ w; //31
         numColsToDraw = /*Game.HEIGHTMAP / tileSize + 2;*/ h;  //31
         speed = 4;
         this.id = id;
+        this.initialPosition = initialPosition;
         loadTiles(t);
         loadMap(m);
     }
@@ -199,5 +202,11 @@ public class TileMap implements Serializable, Storable {
     public String getIndex() {
         return String.valueOf(this.id);
     }
+
+    public Position getInitialPosition() {
+        return initialPosition;
+    }
+    
+    
 
 }

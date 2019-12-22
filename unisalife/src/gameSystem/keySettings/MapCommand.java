@@ -5,53 +5,42 @@
  */
 package gameSystem.keySettings;
 
-import gameSystem.keySettings.interfaces.MovingCommand;
-import gameSystem.keySettings.interfaces.KeyCommand;
+import gameSystem.GameStateManager;
 import gameSystem.LoadingState;
 import gameSystem.MapState;
 import gameSystem.PauseState;
 import gameSystem.PlayState;
+import gameSystem.keySettings.interfaces.ActionCommand;
+import gameSystem.keySettings.interfaces.KeyCommand;
 
 /**
- * Class to handle move left key command
  *
  * @author Giuseppe De Simone
  */
-class MoveLeftCommand extends KeyCommand implements MovingCommand {
+public class MapCommand extends KeyCommand implements ActionCommand {
 
-    /**
-     * {@inheritDoc}
-     *
-     */
+    private final GameStateManager stateManager = GameStateManager.getInstance();
+
     @Override
     public void visitPlayState(PlayState playState) {
-        player.setVelX(-speed);
-        player.setVelY(0);
+        try{
+        stateManager.setState(MapState.getInstance());
+        } catch (Exception ex){
+            ex.printStackTrace();
+        }
     }
 
-    /**
-     * {@inheritDoc}
-     *
-     */
     @Override
     public void visitPauseState(PauseState pauseState) {
-
     }
 
-    /**
-     * {@inheritDoc}
-     *
-     */
     @Override
     public void visitLoadingState(LoadingState loadState) {
-
     }
 
-    /**
-     * {@inheritDoc}
-     *
-     */
     @Override
     public void visitMapState(MapState mapState) {
+        stateManager.setState(PlayState.getInstance());
     }
+
 }

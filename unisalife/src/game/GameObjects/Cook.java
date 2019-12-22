@@ -16,8 +16,13 @@ import language.Information;
 public class Cook extends Person implements Information {
     private String nome;
 
+    private Cook(){
+        super();
+    }
+    
     public Cook(String nome, Position p, String path) {
         super(p, path);
+        this.nome = nome;
     }
 
     @Override

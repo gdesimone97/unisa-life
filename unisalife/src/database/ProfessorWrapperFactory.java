@@ -17,9 +17,9 @@ import java.util.StringTokenizer;
  *
  * @author cmarino
  */
-public class ProfessorFactory extends StorableCreator {
+public class ProfessorWrapperFactory extends StorableCreator {
 
-    public ProfessorFactory() {
+    public ProfessorWrapperFactory() {
     }
 
     /**
@@ -39,8 +39,8 @@ public class ProfessorFactory extends StorableCreator {
         try {
 
             //Retrieve subject from the DB
-            Professor p = new Professor(st.nextToken(), new Position(Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken())), st.nextToken(), new Subject(st.nextToken()));
-            return p;
+            ProfessorWrapper pw = new ProfessorWrapper(st.nextToken(), new Position(Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken())), st.nextToken(), new Subject(st.nextToken()));
+            return pw;
 
         } catch (NoSuchElementException | NumberFormatException e) {
             throw new InvalidArgumentListException();

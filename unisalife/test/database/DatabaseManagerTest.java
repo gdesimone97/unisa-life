@@ -6,14 +6,21 @@
 package database;
 
 import database.populator.exceptions.InvalidGameDataFormatException;
+import exam.booklet.Subject;
+import game.GameObjects.GameObject;
+import game.GameObjects.Position;
+import game.GameResources.Map;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import quests.quest.Quest;
 
 /**
  *
@@ -27,12 +34,15 @@ public class DatabaseManagerTest {
     @BeforeClass
     public static void setUpClass() throws FileNotSetException, IOException, FileNotFoundException, InvalidGameDataFormatException {
         DatabaseManager dmb = DatabaseManager.getDatabaseManager();
-        Populator p = new Populator("..//unisalife/src/database/data.txt");
+        Populator p = new Populator("..//unisalife/data.txt");
         p.populate();
     }
 
     @AfterClass
-    public static void tearDownClass() {
+    public static void tearDownClass() throws FileNotSetException {
+        DatabaseManager.getDatabaseManager().getDatabase().clear();
+        DatabaseManager.getDatabaseManager().close();
+
     }
 
     @Before
@@ -47,9 +57,7 @@ public class DatabaseManagerTest {
 
     }
 
-    /**
-     * Test of getDatabaseManager method, of class DatabaseManager.
-     */
+    
     @Test
     public void testGetDatabaseManager() throws Exception {
         System.out.println("getDatabaseManager");
@@ -58,44 +66,44 @@ public class DatabaseManagerTest {
         assertNotEquals(expResult, result);
     }
 
-    /**
-     * Test of getQuestsFromLevel method, of class DatabaseManager.
-     */
-    @Test
+     
+    //@Test
     public void testGetQuestsFromLevel() throws Exception {
         System.out.println("getQuestsFromLevel");
-        int level = 1;
+        int level = 0;
         DatabaseManager instance = DatabaseManager.getDatabaseManager();
-        int expResult = 3;
-        int result = instance.getQuestsFromLevel(level).size();
+        int expResult = 1;
+        List<Quest> q = instance.getQuestsFromLevel(level);
+        for (Quest quest : q) {
+            System.out.println(quest.getIndex());
+            for (String s : quest.getItemList()) {
+                System.out.println(s);
+            }
+        }
+        int result = q.size();
         assertEquals(expResult, result);
     }
 
-    /**
-     * Test of getObjectsFromLevel method, of class DatabaseManager.
-     */
     @Test
     public void testGetObjectsFromLevel() throws Exception {
         System.out.println("getObjectsFromLevel");
         int level = 0;
         DatabaseManager instance = DatabaseManager.getDatabaseManager();
-        int expResult = 9;
-        int result = instance.getObjectsFromLevel(level).size();
-        assertEquals(expResult, result);
+        int expResult = 6;
+        ConcurrentHashMap<Position, GameObject> name = instance.getObjectsFromLevel(level)[0];
+        assertEquals(expResult, name.size());
     }
 
-    /**
-     * Test of getSubjects method, of class DatabaseManager.
-     */
     @Test
     public void testGetSubjects() throws FileNotSetException {
         System.out.println("getSubjects");
         DatabaseManager instance = DatabaseManager.getDatabaseManager();
-        int expResult = 3;
-        int result = instance.getSubjects().size();
+        int expResult = 1;
+        List<Subject> resultlist = instance.getSubjects();
+        int result = resultlist.size();
         assertEquals(expResult, result);
     }
-    
+
     /*
     @Test
     public void testSave() throws Exception {
@@ -137,6 +145,19 @@ public class DatabaseManagerTest {
         DatabaseManager instance = null;
         instance.close();
     }
-    */
+     */
+    @Test
+    public void testGetMaps() {
+        try {
+            System.out.println("getMaps");
+            DatabaseManager instance = DatabaseManager.getDatabaseManager();
+            int expRes = 1;
+            Map[] maps = instance.getMaps();
+            int res = maps.length;
+            assertEquals(expRes, res);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
 
 }

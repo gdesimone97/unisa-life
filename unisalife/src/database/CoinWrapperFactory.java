@@ -15,17 +15,17 @@ import java.util.StringTokenizer;
  *
  * @author alfon
  */
-public class CoinFactory extends StorableCreator {
+public class CoinWrapperFactory extends StorableCreator {
 
-    public CoinFactory() {
+    public CoinWrapperFactory() {
     }
 
     @Override
     public Storable create(String s) {
         StringTokenizer st = new StringTokenizer(s, StorableCreator.DELIMETER);
         try {
-            Coin c = new Coin(new Position(Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken())), st.nextToken(), st.nextToken());
-            return c;
+            CoinWrapper cw = new CoinWrapper(new Position(Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken())), st.nextToken(), st.nextToken());
+            return cw;
 
         } catch (NoSuchElementException | NumberFormatException e) {
             throw new InvalidArgumentListException();

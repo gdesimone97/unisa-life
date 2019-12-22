@@ -45,14 +45,13 @@ public class Player extends GameObject implements Tickable, Renderable, Saveable
     private boolean nextMove = true;
     protected String nameOfPlayer=null;
     private int delta = 0;
-    private static final int initialX = 1024; 
-    private static final int initialY = 2144;
+    private int skin;
 
     /*public Player(float x,float y,SubjectEnum i){
      super(x,y,i);
      }*/
-    private Player(Position p) {
-        super(p);
+    private Player() {
+        super(new Position(0,0));
     }
 
     public FaceState getFace() {
@@ -79,12 +78,13 @@ public class Player extends GameObject implements Tickable, Renderable, Saveable
      *
      *
      */
-    public void initialize(int skin, String name) {
+    public void initialize(int skin, String name, Position initialPosition) {
         BufferedImage texturePlayer[][] = null;
         nameOfPlayer = name;
         int cols = 0;
-        p.setX(initialX);
-        p.setY(initialY);
+        this.skin = skin;
+        p.setX(initialPosition.getX());
+        p.setY(initialPosition.getY());
         try {
             BufferedImage characterImage = ImageIO.read(
                     getClass().getResourceAsStream("/Sprites/sprite" + skin + ".png")
@@ -112,7 +112,7 @@ public class Player extends GameObject implements Tickable, Renderable, Saveable
 
     public static Player getIstance() {
         if (uniqueIstance == null) {
-            uniqueIstance = new Player(new Position(initialX, initialY));
+            uniqueIstance = new Player();
         }
         return uniqueIstance;
     }
@@ -277,15 +277,17 @@ public class Player extends GameObject implements Tickable, Renderable, Saveable
         list.add(getX());
         list.add(getY());
         list.add(getName());
+        list.add(this.skin);
         return list;
     }
 
     @Override
     public void load(Serializable obj) throws LoadingException {
         List<Serializable> list = (List<Serializable>) obj;
-        setX((int) list.get(0));
-        setY((int) list.get(1));
-        setName((String) list.get(2));
+        int skin = (int) list.get(3);
+        Position p = new Position((int) list.get(0), (int) list.get(1));
+        String name = (String) list.get(2);
+        initialize(skin, name, p);
     }
     
     public String getName(){

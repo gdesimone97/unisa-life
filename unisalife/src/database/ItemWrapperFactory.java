@@ -15,7 +15,7 @@ import java.util.StringTokenizer;
  *
  * @author cmarino
  */
-public class ItemFactory extends StorableCreator {
+public class ItemWrapperFactory extends StorableCreator {
 
     /**
      *
@@ -32,8 +32,8 @@ public class ItemFactory extends StorableCreator {
 
         StringTokenizer st = new StringTokenizer(s, StorableCreator.DELIMETER);
         try {
-            Item i = new Item(new Position(Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken())), st.nextToken(), st.nextToken());
-            return i;
+            ItemWrapper iw = new ItemWrapper(new Position(Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken())), st.nextToken(), st.nextToken());
+            return iw;
 
         } catch (NoSuchElementException | NumberFormatException e) {
             throw new InvalidArgumentListException();

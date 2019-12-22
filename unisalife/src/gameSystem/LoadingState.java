@@ -6,7 +6,7 @@
 package gameSystem;
 
 import game.Interfaces.Initializable.InitException;
-import gameSystem.keySettings.KeyCommand;
+import gameSystem.keySettings.interfaces.KeyCommand;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
@@ -63,7 +63,7 @@ public class LoadingState extends GameState{
 
     @Override
     public void handleInput(KeyCommand cmd) {
-        //se la vede peppe
+        cmd.visitLoadingState(instance);
     }
     
 }

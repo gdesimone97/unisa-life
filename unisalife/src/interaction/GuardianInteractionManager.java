@@ -8,7 +8,6 @@ package interaction;
 import game.Interfaces.Interactable;
 import hud.change.DormitoryHudBarChange;
 import language.FileTextManager;
-import language.Information;
 import language.MessageInformation;
 import saving.SaveManager;
 import unisagui.GuiManager;

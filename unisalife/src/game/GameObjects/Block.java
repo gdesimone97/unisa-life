@@ -5,12 +5,14 @@
  */
 package game.GameObjects;
 
+import java.io.Serializable;
+
 /**
  * A block represent a point in the map that can't be passed from the player.
  *
  * @author simon
  */
-public class Block extends GameObject {
+public class Block extends GameObject implements Serializable {
 
     /**
      * constructor returns a new istance of block
@@ -27,6 +29,10 @@ public class Block extends GameObject {
         super(p);
         this.height=height;
         this.width=width;
+    }
+    
+    private Block(){
+        
     }
     
     public Block(Position p) {

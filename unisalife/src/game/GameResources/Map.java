@@ -4,22 +4,14 @@
  * and open the template in the editor.
  */
 package game.GameResources;
-import exam.booklet.Subject;
 import game.GameObjects.Coin;
-import game.GameObjects.Cook;
-import game.GameObjects.Distributor;
 import game.GameObjects.GameObject;
-import game.GameObjects.Guardian;
-import game.GameObjects.Item;
 import game.GameObjects.ObjectManager;
 import game.GameObjects.Player;
 import game.GameObjects.Position;
-import game.GameObjects.Professor;
-import game.GameObjects.Teleport;
 import game.Interfaces.Renderable;
 import gameSystem.Game;
 import java.awt.Graphics2D;
-import java.io.Serializable;
 import static java.lang.Thread.sleep;
 import java.util.Random;
 import java.util.concurrent.ConcurrentHashMap;
@@ -46,35 +38,6 @@ public class Map implements Runnable {
      * @param t TileMap
      */
     public Map(){
-        tMap = new TileMap(0, 3200, 3200, "/Tilesets/TilesetConSfondo.png", "/Maps/Mappa.map");
-        try {
-            ConcurrentHashMap<Position,GameObject> fixed = new ConcurrentHashMap<Position,GameObject>();
-            ConcurrentHashMap<Position,GameObject> dynamic = new ConcurrentHashMap<Position,GameObject>();
-            
-            Position p = new Position(1248, 2144);
-            dynamic.put(p.getScaledPosition(), new Professor("Foggia", p, "/Sprites/foggiasprite.png", new Subject("Matematica")));
-            p = new Position(320, 160);
-            dynamic.put(new Position(10,5), new Item(p, "/Sprites/note.png", "appuntidimatematica1"));
-            p = new Position(320, 64);
-            dynamic.put(new Position(10,2), new Item(p, "/Sprites/note.png", "appuntidimatematica2"));
-            p = new Position(320, 320);
-            dynamic.put(new Position(10,10), new Item(p, "/Sprites/calculator.png","calcolatrice"));
-            p = new Position(0,128);
-            dynamic.put(p.getScaledPosition(), new Teleport(p,0,new Position(0,0)));
-            p = new Position(352,864);
-            dynamic.put(p.getScaledPosition(), new Distributor(p,"distributor"));
-            p = new Position(1280,2144);
-            dynamic.put(p.getScaledPosition(), new Cook("cuoco", p , "/Sprites/signoramensasprite.png"));
-            p = new Position(1312,2144);
-            dynamic.put(p.getScaledPosition(), new Guardian("guardiano",p,"/Sprites/tiziomensasprite.png"));
-            
-            
-            mapObjects = new ObjectManager(fixed, dynamic);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-
-//        startGeneratingCoins();
     }
 
     /**
@@ -197,6 +160,13 @@ public class Map implements Runnable {
         }
     }
 
+    public void addDynamicObjects(ConcurrentHashMap<Position,GameObject> dynamic) {
+        mapObjects.setDynamic(dynamic);
+    }
+    
+    public Position getInitialPosition() {
+        return tMap.getInitialPosition();
+    }
 
 
 }

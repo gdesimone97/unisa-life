@@ -20,6 +20,10 @@ public class Coin extends Item implements Interactable {
         super(p, path, info);
     }
     
+    private Coin(){
+        super();
+    }
+    
     @Override
     public void interact() {
         InteractionManager im = new CoinInteractionManager();
