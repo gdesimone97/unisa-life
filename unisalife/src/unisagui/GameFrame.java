@@ -6,6 +6,7 @@ import gameSystem.GameManager;
 import gameSystem.keySettings.SettingsManager;
 import java.awt.Dialog;
 import javax.swing.ButtonGroup;
+import javax.swing.InputVerifier;
 import saving.SaveManager;
 import sound.JukeBoxMusic;
 import sound.JukeBoxSound;
@@ -26,6 +27,9 @@ public class GameFrame extends javax.swing.JFrame {
     private static JukeBoxSound sound = JukeBoxSound.getInstance();
     private static JukeBoxMusic music = JukeBoxMusic.getInstance();
     private static ButtonGroup buttongroup = new javax.swing.ButtonGroup();
+    private final MaxLengthTextDocument maxLength = new MaxLengthTextDocument();
+    
+    
 
     private GameFrame() {
         initComponents();
@@ -62,6 +66,7 @@ public class GameFrame extends javax.swing.JFrame {
         if(MaleWhiteButton.isSelected())
             MaleWhiteButton.setSelected(false);
     }
+    
 
     private void undecoratingDialogs() {
         SwingUtilities.invokeLater(() -> MainMenuDialog.setUndecorated(true));
@@ -75,11 +80,13 @@ public class GameFrame extends javax.swing.JFrame {
         SwingUtilities.invokeLater(() -> HintDialog.setUndecorated(true));
         SwingUtilities.invokeLater(() -> HintDialog.setAlwaysOnTop(true));
         SwingUtilities.invokeLater(() -> QuestDialog.setUndecorated(true));
+        SwingUtilities.invokeLater(() -> KeyboardSettingsDialog.setUndecorated(true));
     }
 
     private void settingLocations(GameFrame instance) {
         SwingUtilities.invokeLater(() -> MainMenuDialog.setLocation(instance.getLocation()));
         SwingUtilities.invokeLater(() -> SettingsDialog.setLocation(instance.getLocation()));
+        SwingUtilities.invokeLater(() -> KeyboardSettingsDialog.setLocation(instance.getLocation()));
         SwingUtilities.invokeLater(() -> RequestDialog.setLocation(instance.getLocation().x + 175, instance.getLocation().y + 200));
         SwingUtilities.invokeLater(() -> ExamDialog.setLocation(instance.getLocation().x + 50, instance.getLocation().y + 75));
         SwingUtilities.invokeLater(() -> AvatarChooserDialog.setLocation(instance.getLocation()));
@@ -217,7 +224,7 @@ public class GameFrame extends javax.swing.JFrame {
         AvatarIcon = new javax.swing.JLabel();
         AvatarOkButton = new javax.swing.JButton();
         KeyboardSettingsDialog = new javax.swing.JDialog();
-        jPanel1 = new javax.swing.JPanel();
+        KeyBoardPanel = new javax.swing.JPanel();
         KeyboardSettingsLabel = new javax.swing.JLabel();
         MoveUpLabel = new javax.swing.JLabel();
         MoveUpField = new javax.swing.JTextField();
@@ -233,6 +240,9 @@ public class GameFrame extends javax.swing.JFrame {
         PauseField = new javax.swing.JTextField();
         SaveField = new javax.swing.JTextField();
         SaveLabel = new javax.swing.JLabel();
+        OpenInventoryField = new javax.swing.JTextField();
+        OpenInventoryLabel = new javax.swing.JLabel();
+        KeyboardSettingsCloseButton = new javax.swing.JButton();
         ConvDialog = new javax.swing.JDialog();
         ConversationScrollPane = new javax.swing.JScrollPane();
         ConversationTextArea = new javax.swing.JTextArea();
@@ -1622,12 +1632,15 @@ public class GameFrame extends javax.swing.JFrame {
             .addComponent(AvatarChooserPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
+        KeyboardSettingsDialog.setMaximumSize(new java.awt.Dimension(600, 750));
         KeyboardSettingsDialog.setMinimumSize(new java.awt.Dimension(600, 750));
+        KeyboardSettingsDialog.setPreferredSize(new java.awt.Dimension(600, 750));
         KeyboardSettingsDialog.setResizable(false);
 
-        jPanel1.setMaximumSize(new java.awt.Dimension(600, 750));
-        jPanel1.setMinimumSize(new java.awt.Dimension(600, 750));
-        jPanel1.setPreferredSize(new java.awt.Dimension(600, 750));
+        KeyBoardPanel.setBackground(new java.awt.Color(93, 150, 199));
+        KeyBoardPanel.setMaximumSize(new java.awt.Dimension(600, 750));
+        KeyBoardPanel.setMinimumSize(new java.awt.Dimension(600, 750));
+        KeyBoardPanel.setPreferredSize(new java.awt.Dimension(600, 750));
 
         KeyboardSettingsLabel.setText("           KEYBOARD SETTINGS");
         KeyboardSettingsLabel.setMaximumSize(new java.awt.Dimension(200, 75));
@@ -1644,6 +1657,11 @@ public class GameFrame extends javax.swing.JFrame {
         MoveUpField.setMaximumSize(new java.awt.Dimension(50, 50));
         MoveUpField.setMinimumSize(new java.awt.Dimension(50, 50));
         MoveUpField.setPreferredSize(new java.awt.Dimension(50, 50));
+        MoveUpField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                MoveUpFieldKeyPressed(evt);
+            }
+        });
 
         MoveDownLabel.setText("Move Down");
         MoveDownLabel.setMaximumSize(new java.awt.Dimension(100, 50));
@@ -1685,9 +1703,9 @@ public class GameFrame extends javax.swing.JFrame {
 
         InteractField.setBackground(new java.awt.Color(0, 153, 204));
         InteractField.setAutoscrolls(false);
-        InteractField.setMaximumSize(new java.awt.Dimension(50, 50));
-        InteractField.setMinimumSize(new java.awt.Dimension(50, 50));
-        InteractField.setPreferredSize(new java.awt.Dimension(50, 50));
+        InteractField.setMaximumSize(new java.awt.Dimension(50, 100));
+        InteractField.setMinimumSize(new java.awt.Dimension(50, 100));
+        InteractField.setPreferredSize(new java.awt.Dimension(100, 50));
 
         PauseLabel.setText("Pause");
         PauseLabel.setMaximumSize(new java.awt.Dimension(100, 50));
@@ -1711,101 +1729,146 @@ public class GameFrame extends javax.swing.JFrame {
         SaveLabel.setMinimumSize(new java.awt.Dimension(100, 50));
         SaveLabel.setPreferredSize(new java.awt.Dimension(100, 50));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+        OpenInventoryField.setEditable(false);
+        OpenInventoryField.setBackground(new java.awt.Color(0, 153, 204));
+        OpenInventoryField.setText(" Tab");
+        OpenInventoryField.setAutoscrolls(false);
+        OpenInventoryField.setMaximumSize(new java.awt.Dimension(50, 50));
+        OpenInventoryField.setMinimumSize(new java.awt.Dimension(50, 50));
+        OpenInventoryField.setPreferredSize(new java.awt.Dimension(50, 50));
+        OpenInventoryField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                OpenInventoryFieldActionPerformed(evt);
+            }
+        });
+
+        OpenInventoryLabel.setText("Inventory");
+        OpenInventoryLabel.setMaximumSize(new java.awt.Dimension(100, 50));
+        OpenInventoryLabel.setMinimumSize(new java.awt.Dimension(100, 50));
+        OpenInventoryLabel.setPreferredSize(new java.awt.Dimension(100, 50));
+
+        KeyboardSettingsCloseButton.setBackground(new java.awt.Color(93, 150, 199));
+        KeyboardSettingsCloseButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/exitbutton24.png"))); // NOI18N
+        KeyboardSettingsCloseButton.setBorder(null);
+        KeyboardSettingsCloseButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                KeyboardSettingsCloseButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout KeyBoardPanelLayout = new javax.swing.GroupLayout(KeyBoardPanel);
+        KeyBoardPanel.setLayout(KeyBoardPanelLayout);
+        KeyBoardPanelLayout.setHorizontalGroup(
+            KeyBoardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(KeyBoardPanelLayout.createSequentialGroup()
+                .addGroup(KeyBoardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(KeyBoardPanelLayout.createSequentialGroup()
                         .addGap(200, 200, 200)
                         .addComponent(KeyboardSettingsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(KeyBoardPanelLayout.createSequentialGroup()
                         .addGap(175, 175, 175)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(KeyBoardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(KeyBoardPanelLayout.createSequentialGroup()
                                 .addComponent(MoveDownLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(100, 100, 100)
                                 .addComponent(MoveDownField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(KeyBoardPanelLayout.createSequentialGroup()
                                 .addComponent(MoveLeftLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(100, 100, 100)
                                 .addComponent(MoveLeftField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(KeyBoardPanelLayout.createSequentialGroup()
                                 .addComponent(MoveRightLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(100, 100, 100)
                                 .addComponent(MoveRightField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(KeyBoardPanelLayout.createSequentialGroup()
                                 .addComponent(InteractLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(100, 100, 100)
                                 .addComponent(InteractField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(KeyBoardPanelLayout.createSequentialGroup()
                                 .addComponent(PauseLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(100, 100, 100)
                                 .addComponent(PauseField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(KeyBoardPanelLayout.createSequentialGroup()
                                 .addComponent(SaveLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(100, 100, 100)
                                 .addComponent(SaveField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(KeyBoardPanelLayout.createSequentialGroup()
                                 .addComponent(MoveUpLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(100, 100, 100)
-                                .addComponent(MoveUpField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(175, 175, 175))
+                                .addComponent(MoveUpField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(KeyBoardPanelLayout.createSequentialGroup()
+                                .addComponent(OpenInventoryLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(100, 100, 100)
+                                .addComponent(OpenInventoryField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(125, 125, 125))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, KeyBoardPanelLayout.createSequentialGroup()
+                .addComponent(KeyboardSettingsCloseButton)
+                .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
+        KeyBoardPanelLayout.setVerticalGroup(
+            KeyBoardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(KeyBoardPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(KeyboardSettingsCloseButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(KeyboardSettingsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(25, 25, 25)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(KeyBoardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(MoveUpField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(MoveUpLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(25, 25, 25)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(KeyBoardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(MoveDownField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(MoveDownLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(25, 25, 25)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(KeyBoardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(MoveLeftField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(MoveLeftLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(25, 25, 25)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(KeyBoardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(MoveRightField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(MoveRightLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(25, 25, 25)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(KeyBoardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(InteractField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(InteractLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(25, 25, 25)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(KeyBoardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(PauseField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(PauseLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(25, 25, 25)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(KeyBoardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(SaveField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(SaveLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(25, 25, 25)
+                .addGroup(KeyBoardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(OpenInventoryField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(OpenInventoryLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
 
+        MoveUpField.setDocument(maxLength);
         MoveUpField.setText(KeyEvent.getKeyText(SettingsManager.getSettingsManager().getMoveUp()));
+        MoveDownField.setText(KeyEvent.getKeyText(SettingsManager.getSettingsManager().getMoveDown()));
+        MoveLeftField.setText(KeyEvent.getKeyText(SettingsManager.getSettingsManager().getMoveLeft()));
+        MoveRightField.setText(KeyEvent.getKeyText(SettingsManager.getSettingsManager().getMoveRight()));
+        InteractField.setText(KeyEvent.getKeyText(SettingsManager.getSettingsManager().getInteractButton()));
+        PauseField.setText(KeyEvent.getKeyText(SettingsManager.getSettingsManager().getPauseButton()));
+        SaveField.setText(KeyEvent.getKeyText(SettingsManager.getSettingsManager().getSaveButton()));
 
         javax.swing.GroupLayout KeyboardSettingsDialogLayout = new javax.swing.GroupLayout(KeyboardSettingsDialog.getContentPane());
         KeyboardSettingsDialog.getContentPane().setLayout(KeyboardSettingsDialogLayout);
         KeyboardSettingsDialogLayout.setHorizontalGroup(
             KeyboardSettingsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, KeyboardSettingsDialogLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addGroup(KeyboardSettingsDialogLayout.createSequentialGroup()
+                .addComponent(KeyBoardPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         KeyboardSettingsDialogLayout.setVerticalGroup(
             KeyboardSettingsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, KeyboardSettingsDialogLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(83, 83, 83))
+            .addGroup(KeyboardSettingsDialogLayout.createSequentialGroup()
+                .addComponent(KeyBoardPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         ConvDialog.setAlwaysOnTop(true);
@@ -2597,6 +2660,19 @@ public class GameFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_formWindowOpened
 
+    private void OpenInventoryFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OpenInventoryFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_OpenInventoryFieldActionPerformed
+
+    private void KeyboardSettingsCloseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_KeyboardSettingsCloseButtonActionPerformed
+        SwingUtilities.invokeLater(() -> sound.play("menu"));
+        SwingUtilities.invokeLater(() -> KeyboardSettingsDialog.setVisible(false));
+    }//GEN-LAST:event_KeyboardSettingsCloseButtonActionPerformed
+
+    private void MoveUpFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_MoveUpFieldKeyPressed
+        SettingsManager.getSettingsManager().setMoveUp(evt.getKeyCode());
+    }//GEN-LAST:event_MoveUpFieldKeyPressed
+
     /**
      * @param args the command line arguments
      */
@@ -2732,7 +2808,9 @@ public class GameFrame extends javax.swing.JFrame {
     protected javax.swing.JLabel InventoryLabel;
     protected javax.swing.JLabel InventoryPageButton;
     protected javax.swing.JPanel InventoryPanel;
+    protected javax.swing.JPanel KeyBoardPanel;
     protected javax.swing.JButton KeyboardButton;
+    protected javax.swing.JButton KeyboardSettingsCloseButton;
     protected javax.swing.JDialog KeyboardSettingsDialog;
     protected javax.swing.JLabel KeyboardSettingsLabel;
     protected javax.swing.JComboBox<String> LanguageComboBox;
@@ -2759,6 +2837,8 @@ public class GameFrame extends javax.swing.JFrame {
     protected javax.swing.JButton NewGameButton;
     protected javax.swing.JButton NextButton;
     protected javax.swing.JButton NoButton;
+    protected javax.swing.JTextField OpenInventoryField;
+    protected javax.swing.JLabel OpenInventoryLabel;
     protected javax.swing.JTextField PauseField;
     protected javax.swing.JLabel PauseLabel;
     protected javax.swing.JLabel ProfLabel;
@@ -2795,6 +2875,5 @@ public class GameFrame extends javax.swing.JFrame {
     protected javax.swing.JPanel UpperBorder;
     protected javax.swing.JButton YesButton;
     protected javax.swing.JLabel jLabel2;
-    protected javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
