@@ -15,10 +15,39 @@
 </Subject>
 
 <Subject info="tolc">
-<message>1#A student has 2 hours to solve a exam problem. When 79% of the time is gone, how much time is left?#25 mins and 12 secs#25 mins and 24 secs#25 mins and 36 secs#25 mins and 48 secs</message>
-<message>2#Which number is between 2 and 3?#log5 30#log2 30#log3 30#log10 30#</message>
-<message>3#Two positive quantities a and b are linked by a relationship: so that if b halves then "a" quadruples. Only one of the following and the relationship between a and b. Which one?#a = 1/b^2#a = 4 rad(b)#a = 4/rad(2b)#a = 2/b</message>
-<message>4#Playing at Risk Giulio Cesare won more than his nephew Augustus, but not Napoleon. Alexander the Great won less than Charlemagne, but more than Napoleon. Who has won less?#Augustus#Napoleon#Charlemagne and Alexander the Great#Giulio Cesare</message>
+<message>1#A student has 2 hours to solve a exam problem. When 75% of the time is gone, how much time is left?#30 mins#25 mins#25 mins and 45 secs#30 mins and 10 secs</message>
+<message>2#What is the next number in the following sequence: 4 16 5 25 6 36 7 49 8#64#9#16#0</message>
+<message>3#Al, Ron and Joe live in different houses. Each house is a different color. Al's house is not blue. Ron's house is not green. Jo's house is not yellow or blue. Which is correct?#Al's Yellow; Ron's Blue; Jo's Green#Al's Blue; Ron's White; Jo's Black#Al's Green; Ron's Blue; Jo's Yellow#Al's Green; Ron's Green; Jo's Red</message>
+<message>4#Which number is between 2 and 3?#log5 30#log2 30#log3 30#log10 30#</message>
+<message>5#Yoko read 4 books. Emily read 2 more than twice the number of books that Yoko read. Mia read 1 less than the number Yoko read. How many books did each person read?#Yoko 4; Emily 10; Mia 3#Yoko 5; Emily 10; Mia 7#Yoko 4; Emily 7; Mia 10#Yoko 12; Emily 10; Mia 1</message>
+<message>6#Two positive quantities a and b are linked by a relationship: so that if b halves, then "a" quadruples. Only one of the following and the relationship between a and b. Which one?#a = 1/b^2#a = 4 rad(b)#a = 4/rad(2b)#a = 2/b</message>
+<message>7#Playing at Risk, Virginia won more than his nephew Alfonso, but not Napoleon. Mario won less than Gennaro, but more than Napoleon. Who has won less?#Alfonso#Napoleon#Gennaro and Mario#Virginia</message>
+<message>8#The speed of a car is 80 km/h. Distance covered in 1h45m is:#140 km#200 m#125 km#130 km</message>
+<message>9#If Christian’s age is 27 years old in 2011. What was his age in 2003?#19 years#17 years#23 years#42 years</message>
+<message>10#Two numbers are in ratio 4 : 6. If the sum of the numbers is 200, find the numbers.#80 and 120#100 and 150#60 and 100#95 and 105</message>
+</Subject>
+
+<Subject info="Programming">
+<message>1#Which C function allows you to display an output message?#printf#scanf#fopen#fclose</message>
+<message>1#Which C function allows you to take an input value from user?#scanf#printf#fclose#fopen</message>
+<message>1#How many bits is an Int variable represented by?#16#8#24#32</message>
+<message>1#How many bits is a Char variable represented by?#8#16#32#24</message>
+<message>1#The expression !(A or B) is equivalent to#(!a and !b)#(a and !b)#(!a and b)#!(!a and !b)</message>
+<message>2#What the recursion technique consists of?#A function that makes a call to itself#A function that calls twice another function#A new programming language#None of the above</message>
+<message>2#What interface does Java Exception class implement?#Serializable#Throwable#Comparable#Runnable</message>
+<message>2#What an iterator is used for?#To access to elements of a data structure#To read values from text file#To write on a text file#To throw an Exception</message>
+<message>2#Which of these languages ??is not object oriented?#C#C++#Java#Phyton</message>
+<message>2#What ASCII is related to?#A character encoding standard#A C function#A data structure#A Java framework</message>
+<message>3#What is a Queue?#A data structure based on FIFO policy#A data structure based on FILO policy#a text file#A programming tecnique</message>
+<message>3#What C function allows you to create a new thread?#fork#pid#Thread.run#Thread.start</message>
+<message>3#Which of these is the slowest sorting algorithm in average-case?#Bubble sort#Quick sort#Merge sort#Heap sort</message>
+<message>3#What is an Hashtable?#A data structure based on an hash function#A data structure based on FIFO policy#A data structure based on FILO policy#A java framework</message>
+<message>3#What is the worst-case time complexity for an insertion in a Binary Tree?#n#Log(n)#nLog(n)#n^2</message>
+<message>4#What is an enum in C programming language?#A custom data type that consists of integral constants#A mathematic problem#A library#A sorting algorithm</message>
+<message>4#What is a deadlock?#A state in which each thread is waiting for another thread action#A new programming language#a new programming tecnique#A java framework</message>
+<message>4#Which is the best-case time complexity for Merge sort algorithm?#nLog(n)#Log(n)#n#n^2</message>
+<message>4#Which is the best-case time complexity for Quick sort algorithm?#nLog(n)#Log(n)#n#n^2</message>
+<message>4#What does parameter argv[0] represent in C main function when parameter argc is greater than 0?#The programm name#The path of .exe file in the File system#The path of libraries included in the programm#The path of NetBeans folder</message>
 </Subject>
 
 <Professor info="Foggia">

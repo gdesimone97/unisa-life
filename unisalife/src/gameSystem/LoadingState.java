@@ -7,14 +7,9 @@ package gameSystem;
 
 import game.Interfaces.Initializable.InitException;
 import gameSystem.keySettings.interfaces.KeyCommand;
-import java.awt.Color;
-import java.awt.Font;
 import java.awt.Graphics2D;
-import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 
 /**
@@ -52,8 +47,7 @@ public class LoadingState extends GameState{
 
     @Override
     public void render(Graphics2D g) {
-        AffineTransform at = new AffineTransform();
-        g.drawImage(img, at, null);
+        g.drawImage(img, 0, 0, null);
 //        g.setColor(Color.black);
 //        g.fillRect(0, 0, Game.WIDTHSCREEN, Game.HEIGHTSCREEN2);
 //        g.setColor(Color.white);

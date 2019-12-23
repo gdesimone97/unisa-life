@@ -36,11 +36,8 @@ public class ItemInteractionManager implements InteractionManager {
             // show pop up (should be shown until the user says so)
             GuiManager.getInstance().showHint(toShow);
 
-            // add element to the inventory
-            GameInventory.getInstance().addItem((Item) obj);
-
-            // remove element from the the map
-            MapManager.getInstance().getMap().removeObject(((Item)obj).getPosition().getScaledPosition());
+            // add element to the inventory and remove from the map
+            GameInventory.getInstance().addItem((Item) MapManager.getInstance().getMap().removeObject(((Item)obj).getPosition().getScaledPosition()));
         } catch (Exception ex) {
             // decide what to do when an error with string retriving occurs
         }
