@@ -123,13 +123,14 @@ public class GuiManager {
      * @param time the number of second that the user has to answer the question
      * @param lock is an instance of ResultGui that is used by ExamManager to
      * put the right value of RESULT in the "setValue" method of ResultGui
+     * @param level actual level of question
+     * @param numLevel max level of question for this exam
      *
      * This method requires  all the methods useful for updating the interface relative
      * to the exam
-     * @param level
      */
-     public void showExamDialog(String examName, String question, String answer1, String answer2, String answer3, String answer4, int time, ResultGui lock,int level) {
-        exammanager.showExamDialog(examName, question, answer1, answer2, answer3, answer4, time, lock,level);
+     public void showExamDialog(String examName, String question, String answer1, String answer2, String answer3, String answer4, int time, ResultGui lock,int level,int numLevel) {
+        exammanager.showExamDialog(examName, question, answer1, answer2, answer3, answer4, time, lock,level,numLevel);
     }
     /**
      * This method requires close the ExamDialog
