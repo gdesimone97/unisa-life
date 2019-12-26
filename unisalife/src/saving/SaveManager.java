@@ -97,7 +97,7 @@ public class SaveManager {
         
     }
     
-    protected String getLang() throws LoadingException {
+    protected String loadLang() throws LoadingException {
         if (!isSaveSomething(PATH_LANG)) {
             return "";
         }

@@ -18,8 +18,8 @@ public class SaveManagerAdapter extends SaveManager {
      * {@inheritDoc}
      */
     @Override
-    protected String getLang() throws LoadingException {
-        return super.getLang();
+    protected String loadLang() throws LoadingException {
+        return super.loadLang();
     }
 
 }
