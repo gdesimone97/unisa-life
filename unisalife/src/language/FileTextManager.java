@@ -104,8 +104,9 @@ public class FileTextManager extends TextManager implements Initializable {
 
     @Override
     public void init() throws InitException {
+        SaveManagerAdapter sv = new SaveManagerAdapter();
         try {
-            String loadLang = SaveManager.getSaveManager().loadLang();
+            String loadLang = sv.getLang();
             if (loadLang.equals("")) {
                 setLanguage("eng");
             } else {

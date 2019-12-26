@@ -30,7 +30,7 @@ import quests.quest.Quests;
  */
 public class SaveManager {
 
-    private static SaveManager instance = new SaveManager();
+    private static final SaveManager instance = new SaveManager();
     private List<Saveable> saveableComponents = new ArrayList<>();
     private Map<String, Serializable> savingItems = new HashMap<>();
     private final String PATH = "../save/save.game"; // path per la cartella di salvataggio
@@ -40,7 +40,7 @@ public class SaveManager {
         return instance;
     }
 
-    private SaveManager() { // da completare quando abbiamo tutte le classi da salvare
+    protected SaveManager() { // da completare quando abbiamo tutte le classi da salvare
         saveableComponents.add(Booklet.getInstance());
         saveableComponents.add(Player.getIstance());
         saveableComponents.add(StatusManager.getInstance());
@@ -59,7 +59,11 @@ public class SaveManager {
         }
         return true;
     }
-
+    
+    public void loadLang() throws LoadingException{
+        getLang();
+    }
+    
     public void saveLang() throws SavingException {
         TextManagerAdapter textManager = TextManagerAdapter.getTextManagerAdpter();
         try (FileOutputStream fileout = new FileOutputStream(new File(PATH_LANG));
@@ -72,7 +76,7 @@ public class SaveManager {
 
     }
 
-    public String loadLang() throws LoadingException {
+    protected String getLang() throws LoadingException {
         if (!isSaveSomething(PATH_LANG)) {
             return "";
         }

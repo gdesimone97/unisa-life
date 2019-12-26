@@ -129,7 +129,6 @@ public class GameManager {
                 QuestsManager.getInstance().init();
                 Quests.getInstance().init();
                 GameInventory.getInstance().init();
-                FileTextManager.getFileTextManager().init();
                 JukeBoxMusic.getInstance();
                 JukeBoxSound.getInstance();
 
@@ -173,6 +172,11 @@ public class GameManager {
      * @param args
      */
     public static void main(String[] args) {
+        try {
+            FileTextManager.getFileTextManager().init();
+        } catch (InitException ex) {
+            ex.printStackTrace();
+        }
         GuiManager.getInstance().startGame();
     }
 
