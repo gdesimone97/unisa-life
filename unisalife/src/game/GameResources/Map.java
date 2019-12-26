@@ -135,7 +135,7 @@ public class Map implements Runnable {
         while(generateRandomCoins) {
             try {
                 // sleep a certain period of time until next coin is spawned (could be random too)
-                sleep(15*1000);
+                sleep(20*1000);
                 
                 int rX = 0;
                 int rY = 0;
