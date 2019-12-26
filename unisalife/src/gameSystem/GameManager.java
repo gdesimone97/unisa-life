@@ -178,6 +178,7 @@ public class GameManager {
             FileTextManager.getFileTextManager().init();
             SaveManager.getSaveManager().loadKeys();
         } catch (InitException ex) {
+            System.out.println(ex.getMessage());
             ex.printStackTrace();
         } catch (LoadingException loadEx) {
             System.out.println(loadEx.getMessage());
