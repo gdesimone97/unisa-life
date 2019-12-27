@@ -263,6 +263,7 @@ public class GameFrame extends javax.swing.JFrame {
         HungerProgressBar = new javax.swing.JProgressBar();
         SettingsButtonFrame = new javax.swing.JButton();
         QuestButtonFrame = new javax.swing.JButton();
+        InventoryButtonFrame = new javax.swing.JButton();
         RightBorder = new javax.swing.JPanel();
         GameCloseButton = new javax.swing.JButton();
         LeftBorder = new javax.swing.JPanel();
@@ -1572,6 +1573,7 @@ public class GameFrame extends javax.swing.JFrame {
 
         InventoryDialog.setMinimumSize(new java.awt.Dimension(500, 500));
         InventoryDialog.setModalityType(java.awt.Dialog.ModalityType.APPLICATION_MODAL);
+        InventoryDialog.setResizable(false);
 
         InventoryPanel.setMaximumSize(new java.awt.Dimension(500, 500));
         InventoryPanel.setMinimumSize(new java.awt.Dimension(500, 500));
@@ -1732,6 +1734,16 @@ public class GameFrame extends javax.swing.JFrame {
             }
         });
 
+        InventoryButtonFrame.setBackground(new java.awt.Color(93, 150, 199));
+        InventoryButtonFrame.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/backpack.png"))); // NOI18N
+        InventoryButtonFrame.setToolTipText("inventory");
+        InventoryButtonFrame.setBorder(null);
+        InventoryButtonFrame.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                InventoryButtonFrameActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout HudPanelLayout = new javax.swing.GroupLayout(HudPanel);
         HudPanel.setLayout(HudPanelLayout);
         HudPanelLayout.setHorizontalGroup(
@@ -1750,6 +1762,8 @@ public class GameFrame extends javax.swing.JFrame {
                             .addComponent(SettingsButtonFrame)
                             .addGap(18, 18, 18)
                             .addComponent(QuestButtonFrame)
+                            .addGap(18, 18, 18)
+                            .addComponent(InventoryButtonFrame)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(HungerProgressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(26, 26, 26)
@@ -1784,8 +1798,9 @@ public class GameFrame extends javax.swing.JFrame {
                     .addComponent(HungerProgressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(HungerIcon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(SettingsButtonFrame)
-                    .addComponent(QuestButtonFrame))
-                .addGap(23, 23, 23))
+                    .addComponent(QuestButtonFrame)
+                    .addComponent(InventoryButtonFrame))
+                .addGap(32, 32, 32))
         );
 
         RightBorder.setBackground(new java.awt.Color(93, 150, 199));
@@ -2262,6 +2277,10 @@ public class GameFrame extends javax.swing.JFrame {
            map= evt.getKeyCode(); 
     }//GEN-LAST:event_MapFieldKeyPressed
 
+    private void InventoryButtonFrameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InventoryButtonFrameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_InventoryButtonFrameActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -2337,6 +2356,7 @@ public class GameFrame extends javax.swing.JFrame {
     protected javax.swing.JProgressBar HungerProgressBar;
     protected javax.swing.JTextField InteractField;
     protected javax.swing.JLabel InteractLabel;
+    protected javax.swing.JButton InventoryButtonFrame;
     protected javax.swing.JDialog InventoryDialog;
     protected javax.swing.JLabel InventoryLabel;
     protected javax.swing.JPanel InventoryPanel;

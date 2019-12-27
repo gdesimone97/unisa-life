@@ -43,10 +43,10 @@ public class InventoryManager {
     public void updateInventoryDialog(){
         
         gameframe.model = new DefaultTableModel();
-        gameframe.model.setColumnIdentifiers(new Object[]{"Name", "Quantity", "Icon"});
+        gameframe.model.setColumnIdentifiers(new Object[]{"Name","Icon"});
         for (Item item : GameInventory.getInstance()) {
             JLabel label = new JLabel();
-            label.setIcon(new javax.swing.ImageIcon(getClass().getResource(item.getImage()))); //getqualcosa che mi restituisca il path del'immagine
+            label.setIcon(new javax.swing.ImageIcon(getClass().getResource("nome"/*item.getImage()*/))); //getqualcosa che mi restituisca il path del'immagine
             String name;
             try {
                 name = FileTextManager.getFileTextManager().getString(item).get(0);

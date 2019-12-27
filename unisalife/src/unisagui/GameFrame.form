@@ -2423,6 +2423,7 @@
         <Property name="modalityType" type="java.awt.Dialog$ModalityType" editor="org.netbeans.modules.form.editors.EnumEditor">
           <Value id="APPLICATION_MODAL"/>
         </Property>
+        <Property name="resizable" type="boolean" value="false"/>
       </Properties>
 
       <Layout>
@@ -2669,6 +2670,8 @@
                               <Component id="SettingsButtonFrame" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="QuestButtonFrame" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="InventoryButtonFrame" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
                               <Component id="HungerProgressBar" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="26" pref="26" max="-2" attributes="0"/>
@@ -2713,8 +2716,9 @@
                       <Component id="HungerIcon" min="-2" max="-2" attributes="0"/>
                       <Component id="SettingsButtonFrame" min="-2" max="-2" attributes="0"/>
                       <Component id="QuestButtonFrame" min="-2" max="-2" attributes="0"/>
+                      <Component id="InventoryButtonFrame" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -2945,6 +2949,23 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="QuestButtonFrameActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="InventoryButtonFrame">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="c7" green="96" red="5d" type="rgb"/>
+            </Property>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/Icon/backpack.png"/>
+            </Property>
+            <Property name="toolTipText" type="java.lang.String" value="inventory"/>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="null"/>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="InventoryButtonFrameActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
