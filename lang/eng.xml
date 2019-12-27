@@ -21,7 +21,7 @@
 <message>4#Which number is between 2 and 3?#log5 30#log2 30#log3 30#log10 30#</message>
 <message>5#Yoko read 4 books. Emily read 2 more than twice the number of books that Yoko read. Mia read 1 less than the number Yoko read. How many books did each person read?#Yoko 4; Emily 10; Mia 3#Yoko 5; Emily 10; Mia 7#Yoko 4; Emily 7; Mia 10#Yoko 12; Emily 10; Mia 1</message>
 <message>6#Two positive quantities a and b are linked by a relationship: so that if b halves, then "a" quadruples. Only one of the following and the relationship between a and b. Which one?#a = 1/b^2#a = 4 rad(b)#a = 4/rad(2b)#a = 2/b</message>
-<message>7#Playing at Risk, Virginia won more than his nephew Alfonso, but not Napoleon. Mario won less than Gennaro, but more than Napoleon. Who has won less?#Alfonso#Napoleon#Gennaro and Mario#Virginia</message>
+<message>7#Playing at Risk, Virginia won more than his nephew Alfonso, but not Peppe. Mario won less than Gennaro, but more than Peppe. Who has won less?#Alfonso#Peppe#Gennaro and Mario#Virginia</message>
 <message>8#The speed of a car is 80 km/h. Distance covered in 1h45m is:#140 km#200 m#125 km#130 km</message>
 <message>9#If Christian’s age is 27 years old in 2011. What was his age in 2003?#19 years#17 years#23 years#42 years</message>
 <message>10#Two numbers are in ratio 4 : 6. If the sum of the numbers is 200, find the numbers.#80 and 120#100 and 150#60 and 100#95 and 105</message>
@@ -73,7 +73,9 @@
 <message>4#Which technique is used in DISTANCE VECTOR algorithms to solve (partially) the problem of addressing cycles?#Poisoned reverse#Indirect addressing#Hierarchical addressing#Addressing without classes</message>
 </Subject>
 
-<Subject info="Architecture of Calculators and Operating Systems">
+<Subject info="Architecture of computers and operating systems">
+<message>1#What does MAR stand for?#Memory Address Register#Minimale Age Readable#Massive Address Register#Main Address Register</message>
+<message>1#A CPU which is able to carry out a thousand milion instructions per seconds would have a clock speed of:#1GHz#10GHz#1000GHz#100MHz</message>
 <message>1#What does this instruction mean? lw $t, i($s)#$t = MEM [$s + i]:4#$t = MEM [$s + i]:2#$t = MEM [$s + i]:8#$t = MEM [$s + i]:16</message>
 <message>1#What does this instruction mean? sub $d, $s, $t#$d = $s - $t#$d = $s ^ $t#$d = $s + $t#$d = $s and $t</message>
 <message>1#What does this instruction mean? sb $t, i($s)#MEM [$s + i]:1 = LB ($t)#MEM [$s + i]:2 = LB ($t)#MEM [$s + i]:8 = LB ($t)#MEM [$s + i]:4 = LB ($t)</message>
