@@ -138,7 +138,7 @@ public class DatabaseManager implements Initializable {
         //System.out.println(cook.getIndex());
         int cookMapId = this.findMap(cook.getIndex(), DatabaseManager.DYNCOLLECTIONNAME);
         dynArrObj.get(cookMapId).put(cook.getScaledPosition(), cook);
-
+        
         Guardian guardian = this.findGuardian();
         int guardMapId = this.findMap(guardian.getIndex(), DatabaseManager.DYNCOLLECTIONNAME);
         dynArrObj.get(guardMapId).put(guardian.getScaledPosition(), guardian);
