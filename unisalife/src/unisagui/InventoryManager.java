@@ -44,6 +44,7 @@ public class InventoryManager {
         
         gameframe.model = new DefaultTableModel();
         gameframe.model.setColumnIdentifiers(new Object[]{"Name","Icon"});
+        System.out.println("unisagui.InventoryManager.updateInventoryDialog()");
         for (Item item : GameInventory.getInstance()) {
             JLabel label = new JLabel();
             label.setIcon(new javax.swing.ImageIcon(getClass().getResource("nome"/*item.getImage()*/))); //getqualcosa che mi restituisca il path del'immagine
@@ -52,6 +53,7 @@ public class InventoryManager {
                 name = FileTextManager.getFileTextManager().getString(item).get(0);
             } catch (Initializable.InitException | TextFinderException ex) {
                 name = item.getInfo();
+                System.err.println("errore");
             }
             gameframe.model.addRow(new Object[]{name ,label});
         }
