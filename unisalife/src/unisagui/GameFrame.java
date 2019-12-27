@@ -76,7 +76,7 @@ public class GameFrame extends javax.swing.JFrame {
 
 
     private void initializingTable() {
-        model = (DefaultTableModel) InventoryTable.getModel();
+        model.setColumnIdentifiers(new Object[]{"Name","Icon"});
         InventoryTable.getColumn("Icon").setCellRenderer(new CellRender());
 
     }
@@ -1584,22 +1584,7 @@ public class GameFrame extends javax.swing.JFrame {
 
         jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
-        InventoryTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Name", "Quantity", "Icon"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
+        InventoryTable.setModel(model);
         InventoryTable.setColumnSelectionAllowed(true);
         InventoryTable.setMaximumSize(new java.awt.Dimension(450, 450));
         InventoryTable.setMinimumSize(new java.awt.Dimension(450, 450));

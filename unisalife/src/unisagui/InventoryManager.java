@@ -9,6 +9,13 @@ import game.GameObjects.Item;
 import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
 import language.*;
+import game.GameObjects.GameInventory;
+import game.Interfaces.Initializable;
+import java.util.Iterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+import language.exceptions.TextFinderException;
 
 /**
  *
@@ -28,17 +35,26 @@ public class InventoryManager {
         return info;
     }
     
-    public void showInventoryDialog(boolean show){
-        SwingUtilities.invokeLater(() -> gameframe.InventoryDialog.setVisible(show));
+    public void showInventoryDialog(){
+        SwingUtilities.invokeLater(() -> gameframe.InventoryDialog.setVisible(true));
     }
     
     
     public void updateInventoryDialog(){
-        JLabel label = new JLabel();
-        label.setIcon(new javax.swing.ImageIcon(getClass().getResource(item.getImage()))); //getqualcosa che mi restituisca il path del'immagine
-        String name = FileTextManager.getFileTextManager().getString(item).get(0);
-        SwingUtilities.invokeLater(() -> gameframe.model.addRow(new Object[]{name, 1 ,label}));
-        SwingUtilities.invokeLater(() -> gameframe.InventoryDialog.setVisible(true));
+        
+        gameframe.model = new DefaultTableModel();
+        gameframe.model.setColumnIdentifiers(new Object[]{"Name", "Quantity", "Icon"});
+        for (Item item : GameInventory.getInstance()) {
+            JLabel label = new JLabel();
+            label.setIcon(new javax.swing.ImageIcon(getClass().getResource(item.getImage()))); //getqualcosa che mi restituisca il path del'immagine
+            String name;
+            try {
+                name = FileTextManager.getFileTextManager().getString(item).get(0);
+            } catch (Initializable.InitException | TextFinderException ex) {
+                name = item.getInfo();
+            }
+            gameframe.model.addRow(new Object[]{name, 1 ,label});
+        }
     }
     //se viene passata la posizione dell'elemento
     // public void updateInventoryDialog(Item item, int position, boolean presence)

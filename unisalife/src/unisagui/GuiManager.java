@@ -190,13 +190,10 @@ public class GuiManager {
     }
 
     /**
-     * When called a JDialog with the Inventory appears or disappears on the
-     * screen
-     *
-     * @param show if true the JDialog appears, if false disappears
+     * When called a JDialog with the Inventory appears on the screen
      */
-    public void showInventoryDialog(boolean show) {
-        inventorymanager.showInventoryDialog(show);
+    public void showInventoryDialog() {
+        inventorymanager.showInventoryDialog();
     }
     
 
