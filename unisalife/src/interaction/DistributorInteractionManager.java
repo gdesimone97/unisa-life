@@ -49,6 +49,7 @@ public class DistributorInteractionManager implements InteractionManager {
                     StatusManager.getInstance().updateMoney(-1);
                     VendingMachineHudBarChange v = new VendingMachineHudBarChange();
                     v.execute();
+                    JukeBoxSound.getInstance().play("canteen");
 //                }
             }
         } catch (Exception ex) {

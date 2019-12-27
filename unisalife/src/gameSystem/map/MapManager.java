@@ -13,19 +13,23 @@ import game.GameObjects.Position;
 import game.GameResources.Map;
 import game.Interfaces.Initializable;
 import java.awt.Graphics2D;
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.concurrent.ConcurrentHashMap;
+import saving.Saveable;
+import saving.exceptions.LoadingException;
 
 /**
  *
  * @author liovi
  */
-public class MapManager implements Initializable {
+public class MapManager implements Initializable, Saveable {
 
     private int actualMap;
     private int mapNumber;
 
     private Map[] maps;
-    public static MapManager instance;
+    private static MapManager instance;
 
     public static MapManager getInstance() {
         if (instance == null) {
@@ -75,23 +79,13 @@ public class MapManager implements Initializable {
             throw new InitException("Objects not found in Database");
         } catch (ClassNotFoundException ex) {
             throw new InitException("Class not found during Database query");
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            throw new InitException("Generic error");
         }
     }
 
-    private void addDynamicObjects() throws InitException {
-        try {
-            ConcurrentHashMap<Position, GameObject>[] objectsFromLevel = DatabaseManager.getDatabaseManager().getObjectsFromLevel(0);
-            for (int i = 0; i < objectsFromLevel.length; i++) {
-                maps[i].addDynamicObjects(objectsFromLevel[i]);
-            }
-
-        } catch (ObjectNotFoundException ex) {
-            throw new InitException("Can't find all dynamic objects for the level.");
-        } catch (FileNotSetException ex) {
-            throw new InitException("Can't find the database file!");
+    private void addDynamicObjects() throws FileNotSetException, ObjectNotFoundException {
+        ConcurrentHashMap<Position, GameObject>[] objectsFromLevel = DatabaseManager.getDatabaseManager().getObjectsFromLevel(0);
+        for (int i = 0; i < objectsFromLevel.length; i++) {
+            maps[i].addDynamicObjects(objectsFromLevel[i]);
         }
     }
 
@@ -102,4 +96,23 @@ public class MapManager implements Initializable {
     public void stopGeneratingCoins() {
         this.maps[actualMap].stopGeneratingCoins();
     }
+
+    @Override
+    public Serializable save() {
+        ArrayList<ConcurrentHashMap<Position, GameObject>> list = new ArrayList<>();
+        for (Map map : maps) {
+            ConcurrentHashMap<Position, GameObject> objects = map.getDynamicObjects();
+            list.add(objects);
+        }
+        return list;
+    }
+
+    @Override
+    public void load(Serializable obj) throws LoadingException {
+        ArrayList<ConcurrentHashMap<Position, GameObject>> list = (ArrayList<ConcurrentHashMap<Position, GameObject>>) obj;
+        for (int i = 0; i < list.size(); i++) {
+            maps[i].addDynamicObjects(list.get(i));
+        }
+    }
+
 }

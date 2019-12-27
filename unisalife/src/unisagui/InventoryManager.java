@@ -5,7 +5,17 @@
  */
 package unisagui;
 
+import game.GameObjects.Item;
+import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
+import language.*;
+import game.GameObjects.GameInventory;
+import game.Interfaces.Initializable;
+import java.util.Iterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+import language.exceptions.TextFinderException;
 
 /**
  *
@@ -25,18 +35,28 @@ public class InventoryManager {
         return info;
     }
     
-    public void showInventoryDialog(boolean show){
-        SwingUtilities.invokeLater(() -> gameframe.InventoryDialog.setVisible(show));
+    public void showInventoryDialog(){
+        SwingUtilities.invokeLater(() -> gameframe.InventoryDialog.setVisible(true));
     }
-    /**
-     * 
-     * @param item represents the item that has been collected or removed
-     * @param presence says if the item has been collected or removed
-     */
-    /*public void updateInventoryDialog(Item item, boolean presence){
+    
+    
+    public void updateInventoryDialog(){
         
+        gameframe.model = new DefaultTableModel();
+        gameframe.model.setColumnIdentifiers(new Object[]{"Name","Icon"});
+        for (Item item : GameInventory.getInstance()) {
+            JLabel label = new JLabel();
+            label.setIcon(new javax.swing.ImageIcon(getClass().getResource("nome"/*item.getImage()*/))); //getqualcosa che mi restituisca il path del'immagine
+            String name;
+            try {
+                name = FileTextManager.getFileTextManager().getString(item).get(0);
+            } catch (Initializable.InitException | TextFinderException ex) {
+                name = item.getInfo();
+            }
+            gameframe.model.addRow(new Object[]{name, 1 ,label});
+        }
     }
     //se viene passata la posizione dell'elemento
     // public void updateInventoryDialog(Item item, int position, boolean presence)
-    */
+    
 }

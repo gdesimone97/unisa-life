@@ -34,7 +34,7 @@ public class ObjectManager {
     }
     
     public synchronized void addObject(Position p, GameObject g) throws Exception {
-        if (dynamic.containsKey(p)){
+        if (fixed.containsKey(p) || dynamic.containsKey(p)){
             throw new Exception();
         }
         else

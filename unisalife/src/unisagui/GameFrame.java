@@ -4,14 +4,9 @@ import java.awt.event.KeyEvent;
 import javax.swing.SwingUtilities;
 import gameSystem.GameManager;
 import gameSystem.keySettings.SettingsManager;
-import java.awt.Dialog;
-import javax.swing.ButtonGroup;
-import javax.swing.InputVerifier;
 import java.awt.Component;
 import java.awt.Dialog;
 import javax.swing.ButtonGroup;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -46,9 +41,9 @@ public class GameFrame extends javax.swing.JFrame {
     private int interact;
     private int pause;
     private int map;
+    protected DefaultTableModel model;
     
     
-    private DefaultTableModel model;
     private GameFrame() {
         initComponents();
         undecoratingDialogs();
@@ -81,14 +76,14 @@ public class GameFrame extends javax.swing.JFrame {
 
 
     private void initializingTable() {
-        model = (DefaultTableModel) InventoryTable.getModel();
-        //model.setColumnIdentifiers(new Object[]{"Name", "Quantity", "Icon"});
+        model.setColumnIdentifiers(new Object[]{"Name","Icon"});
         InventoryTable.getColumn("Icon").setCellRenderer(new CellRender());
 
     }
 
     class CellRender implements TableCellRenderer {
 
+        @Override
         public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected,
                 boolean hasFocus, int row, int column) {
             TableColumn tb = table.getColumn("Icon");
@@ -104,8 +99,6 @@ public class GameFrame extends javax.swing.JFrame {
         SwingUtilities.invokeLater(() -> instance.setVisible(true));
         SwingUtilities.invokeLater(() -> MainMenuDialog.isAlwaysOnTop());
         SwingUtilities.invokeLater(() -> MainMenuDialog.setVisible(true));
-        //SwingUtilities.invokeLater(() ->instance.setState(Frame.ICONIFIED));
-        //SwingUtilities.invokeLater(() ->instance.setVisible(false));
         SwingUtilities.invokeLater(() -> instance.validate());
 
     }
@@ -189,67 +182,6 @@ public class GameFrame extends javax.swing.JFrame {
         NewGameButton = new javax.swing.JButton();
         ResumeGameButton = new javax.swing.JButton();
         CreditsButton = new javax.swing.JButton();
-        InventoryDialog = new javax.swing.JDialog();
-        InventoryPanel = new javax.swing.JPanel();
-        InventoryLabel = new javax.swing.JLabel();
-        IconLabel1 = new javax.swing.JLabel();
-        IDLabel1 = new javax.swing.JLabel();
-        IconLabel2 = new javax.swing.JLabel();
-        IDLabel2 = new javax.swing.JLabel();
-        IDLabel3 = new javax.swing.JLabel();
-        IconLabel3 = new javax.swing.JLabel();
-        IconLabel4 = new javax.swing.JLabel();
-        IDLabel4 = new javax.swing.JLabel();
-        IconLabel5 = new javax.swing.JLabel();
-        IDLabel5 = new javax.swing.JLabel();
-        IconLabel6 = new javax.swing.JLabel();
-        IDLabel6 = new javax.swing.JLabel();
-        IDLabel7 = new javax.swing.JLabel();
-        IconLabel7 = new javax.swing.JLabel();
-        IconLabel8 = new javax.swing.JLabel();
-        IDLabel8 = new javax.swing.JLabel();
-        IconLabel9 = new javax.swing.JLabel();
-        IDLabel9 = new javax.swing.JLabel();
-        IconLabel10 = new javax.swing.JLabel();
-        IconLabel11 = new javax.swing.JLabel();
-        IDLabel10 = new javax.swing.JLabel();
-        IDLabel11 = new javax.swing.JLabel();
-        IDLabel12 = new javax.swing.JLabel();
-        IconLabel12 = new javax.swing.JLabel();
-        IconLabel13 = new javax.swing.JLabel();
-        IDLabel13 = new javax.swing.JLabel();
-        IconLabel14 = new javax.swing.JLabel();
-        IDLabel14 = new javax.swing.JLabel();
-        IDLabel15 = new javax.swing.JLabel();
-        IconLabel15 = new javax.swing.JLabel();
-        IconLabel16 = new javax.swing.JLabel();
-        IDLabel16 = new javax.swing.JLabel();
-        IconLabel17 = new javax.swing.JLabel();
-        IDLabel17 = new javax.swing.JLabel();
-        IDLabel18 = new javax.swing.JLabel();
-        IDLabel19 = new javax.swing.JLabel();
-        IconLabel18 = new javax.swing.JLabel();
-        IconLabel19 = new javax.swing.JLabel();
-        IDLabel20 = new javax.swing.JLabel();
-        IconLabel20 = new javax.swing.JLabel();
-        IDLabel21 = new javax.swing.JLabel();
-        IDLabel22 = new javax.swing.JLabel();
-        IconLabel21 = new javax.swing.JLabel();
-        IconLabel22 = new javax.swing.JLabel();
-        IconLabel23 = new javax.swing.JLabel();
-        IDLabel23 = new javax.swing.JLabel();
-        IconLabel24 = new javax.swing.JLabel();
-        IDLabel24 = new javax.swing.JLabel();
-        IDLabel25 = new javax.swing.JLabel();
-        IDLabel26 = new javax.swing.JLabel();
-        IconLabel25 = new javax.swing.JLabel();
-        IconLabel26 = new javax.swing.JLabel();
-        IDLabel27 = new javax.swing.JLabel();
-        IconLabel27 = new javax.swing.JLabel();
-        IDLabel28 = new javax.swing.JLabel();
-        IconLabel28 = new javax.swing.JLabel();
-        InventoryPageButton = new javax.swing.JLabel();
-        NextButton = new javax.swing.JButton();
         SettingsDialog = new javax.swing.JDialog();
         SettingsPanel = new javax.swing.JPanel();
         SettingsLayer = new javax.swing.JLabel();
@@ -314,11 +246,9 @@ public class GameFrame extends javax.swing.JFrame {
         QuestTextScrollPane = new javax.swing.JScrollPane();
         QuestTextArea = new javax.swing.JTextArea();
         ExitQuestDialogLabel = new javax.swing.JLabel();
-        InventoryDialog1 = new javax.swing.JDialog();
-        InventoryPanel1 = new javax.swing.JPanel();
-        InventoryLabel1 = new javax.swing.JLabel();
-        InventoryPageButton1 = new javax.swing.JLabel();
-        NextButton1 = new javax.swing.JButton();
+        InventoryDialog = new javax.swing.JDialog();
+        InventoryPanel = new javax.swing.JPanel();
+        InventoryLabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         InventoryTable = new javax.swing.JTable();
         HudPanel = new javax.swing.JPanel();
@@ -333,6 +263,7 @@ public class GameFrame extends javax.swing.JFrame {
         HungerProgressBar = new javax.swing.JProgressBar();
         SettingsButtonFrame = new javax.swing.JButton();
         QuestButtonFrame = new javax.swing.JButton();
+        InventoryButtonFrame = new javax.swing.JButton();
         RightBorder = new javax.swing.JPanel();
         GameCloseButton = new javax.swing.JButton();
         LeftBorder = new javax.swing.JPanel();
@@ -680,540 +611,6 @@ public class GameFrame extends javax.swing.JFrame {
                 .addGroup(MainMenuDialogLayout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
                     .addComponent(MainMenuPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-
-        InventoryDialog.setMinimumSize(new java.awt.Dimension(400, 450));
-
-        InventoryPanel.setMaximumSize(new java.awt.Dimension(400, 450));
-        InventoryPanel.setMinimumSize(new java.awt.Dimension(400, 450));
-
-        InventoryLabel.setText("                          INVENTORY");
-        InventoryLabel.setMaximumSize(new java.awt.Dimension(250, 25));
-        InventoryLabel.setMinimumSize(new java.awt.Dimension(250, 25));
-        InventoryLabel.setPreferredSize(new java.awt.Dimension(250, 25));
-
-        IconLabel1.setText("jLabel2");
-        IconLabel1.setMaximumSize(new java.awt.Dimension(50, 50));
-        IconLabel1.setMinimumSize(new java.awt.Dimension(50, 50));
-        IconLabel1.setPreferredSize(new java.awt.Dimension(50, 50));
-
-        IDLabel1.setText("jLabel3");
-        IDLabel1.setMaximumSize(new java.awt.Dimension(50, 25));
-        IDLabel1.setMinimumSize(new java.awt.Dimension(50, 25));
-        IDLabel1.setPreferredSize(new java.awt.Dimension(50, 25));
-
-        IconLabel2.setText("jLabel2");
-        IconLabel2.setMaximumSize(new java.awt.Dimension(50, 50));
-        IconLabel2.setMinimumSize(new java.awt.Dimension(50, 50));
-        IconLabel2.setPreferredSize(new java.awt.Dimension(50, 50));
-
-        IDLabel2.setText("jLabel3");
-        IDLabel2.setMaximumSize(new java.awt.Dimension(50, 25));
-        IDLabel2.setMinimumSize(new java.awt.Dimension(50, 25));
-        IDLabel2.setPreferredSize(new java.awt.Dimension(50, 25));
-
-        IDLabel3.setText("jLabel3");
-        IDLabel3.setMaximumSize(new java.awt.Dimension(50, 25));
-        IDLabel3.setMinimumSize(new java.awt.Dimension(50, 25));
-        IDLabel3.setPreferredSize(new java.awt.Dimension(50, 25));
-
-        IconLabel3.setText("jLabel2");
-        IconLabel3.setMaximumSize(new java.awt.Dimension(50, 50));
-        IconLabel3.setMinimumSize(new java.awt.Dimension(50, 50));
-        IconLabel3.setPreferredSize(new java.awt.Dimension(50, 50));
-
-        IconLabel4.setText("jLabel2");
-        IconLabel4.setMaximumSize(new java.awt.Dimension(50, 50));
-        IconLabel4.setMinimumSize(new java.awt.Dimension(50, 50));
-        IconLabel4.setPreferredSize(new java.awt.Dimension(50, 50));
-
-        IDLabel4.setText("jLabel3");
-        IDLabel4.setMaximumSize(new java.awt.Dimension(50, 25));
-        IDLabel4.setMinimumSize(new java.awt.Dimension(50, 25));
-        IDLabel4.setPreferredSize(new java.awt.Dimension(50, 25));
-
-        IconLabel5.setText("jLabel2");
-        IconLabel5.setMaximumSize(new java.awt.Dimension(50, 50));
-        IconLabel5.setMinimumSize(new java.awt.Dimension(50, 50));
-        IconLabel5.setPreferredSize(new java.awt.Dimension(50, 50));
-
-        IDLabel5.setText("jLabel3");
-        IDLabel5.setMaximumSize(new java.awt.Dimension(50, 25));
-        IDLabel5.setMinimumSize(new java.awt.Dimension(50, 25));
-        IDLabel5.setPreferredSize(new java.awt.Dimension(50, 25));
-
-        IconLabel6.setText("jLabel2");
-        IconLabel6.setMaximumSize(new java.awt.Dimension(50, 50));
-        IconLabel6.setMinimumSize(new java.awt.Dimension(50, 50));
-        IconLabel6.setPreferredSize(new java.awt.Dimension(50, 50));
-
-        IDLabel6.setText("jLabel3");
-        IDLabel6.setMaximumSize(new java.awt.Dimension(50, 25));
-        IDLabel6.setMinimumSize(new java.awt.Dimension(50, 25));
-        IDLabel6.setPreferredSize(new java.awt.Dimension(50, 25));
-
-        IDLabel7.setText("jLabel3");
-        IDLabel7.setMaximumSize(new java.awt.Dimension(50, 25));
-        IDLabel7.setMinimumSize(new java.awt.Dimension(50, 25));
-        IDLabel7.setPreferredSize(new java.awt.Dimension(50, 25));
-
-        IconLabel7.setText("jLabel2");
-        IconLabel7.setMaximumSize(new java.awt.Dimension(50, 50));
-        IconLabel7.setMinimumSize(new java.awt.Dimension(50, 50));
-        IconLabel7.setPreferredSize(new java.awt.Dimension(50, 50));
-
-        IconLabel8.setText("jLabel2");
-        IconLabel8.setMaximumSize(new java.awt.Dimension(50, 50));
-        IconLabel8.setMinimumSize(new java.awt.Dimension(50, 50));
-        IconLabel8.setPreferredSize(new java.awt.Dimension(50, 50));
-
-        IDLabel8.setText("jLabel3");
-        IDLabel8.setMaximumSize(new java.awt.Dimension(50, 25));
-        IDLabel8.setMinimumSize(new java.awt.Dimension(50, 25));
-        IDLabel8.setPreferredSize(new java.awt.Dimension(50, 25));
-
-        IconLabel9.setText("jLabel2");
-        IconLabel9.setMaximumSize(new java.awt.Dimension(50, 50));
-        IconLabel9.setMinimumSize(new java.awt.Dimension(50, 50));
-        IconLabel9.setPreferredSize(new java.awt.Dimension(50, 50));
-
-        IDLabel9.setText("jLabel3");
-        IDLabel9.setMaximumSize(new java.awt.Dimension(50, 25));
-        IDLabel9.setMinimumSize(new java.awt.Dimension(50, 25));
-        IDLabel9.setPreferredSize(new java.awt.Dimension(50, 25));
-
-        IconLabel10.setText("jLabel2");
-        IconLabel10.setMaximumSize(new java.awt.Dimension(50, 50));
-        IconLabel10.setMinimumSize(new java.awt.Dimension(50, 50));
-        IconLabel10.setPreferredSize(new java.awt.Dimension(50, 50));
-
-        IconLabel11.setText("jLabel2");
-        IconLabel11.setMaximumSize(new java.awt.Dimension(50, 50));
-        IconLabel11.setMinimumSize(new java.awt.Dimension(50, 50));
-        IconLabel11.setPreferredSize(new java.awt.Dimension(50, 50));
-
-        IDLabel10.setText("jLabel3");
-        IDLabel10.setMaximumSize(new java.awt.Dimension(50, 25));
-        IDLabel10.setMinimumSize(new java.awt.Dimension(50, 25));
-        IDLabel10.setPreferredSize(new java.awt.Dimension(50, 25));
-
-        IDLabel11.setText("jLabel3");
-        IDLabel11.setMaximumSize(new java.awt.Dimension(50, 25));
-        IDLabel11.setMinimumSize(new java.awt.Dimension(50, 25));
-        IDLabel11.setPreferredSize(new java.awt.Dimension(50, 25));
-
-        IDLabel12.setText("jLabel3");
-        IDLabel12.setMaximumSize(new java.awt.Dimension(50, 25));
-        IDLabel12.setMinimumSize(new java.awt.Dimension(50, 25));
-        IDLabel12.setPreferredSize(new java.awt.Dimension(50, 25));
-
-        IconLabel12.setText("jLabel2");
-        IconLabel12.setMaximumSize(new java.awt.Dimension(50, 50));
-        IconLabel12.setMinimumSize(new java.awt.Dimension(50, 50));
-        IconLabel12.setPreferredSize(new java.awt.Dimension(50, 50));
-
-        IconLabel13.setText("jLabel2");
-        IconLabel13.setMaximumSize(new java.awt.Dimension(50, 50));
-        IconLabel13.setMinimumSize(new java.awt.Dimension(50, 50));
-        IconLabel13.setPreferredSize(new java.awt.Dimension(50, 50));
-
-        IDLabel13.setText("jLabel3");
-        IDLabel13.setMaximumSize(new java.awt.Dimension(50, 25));
-        IDLabel13.setMinimumSize(new java.awt.Dimension(50, 25));
-        IDLabel13.setPreferredSize(new java.awt.Dimension(50, 25));
-
-        IconLabel14.setText("jLabel2");
-        IconLabel14.setMaximumSize(new java.awt.Dimension(50, 50));
-        IconLabel14.setMinimumSize(new java.awt.Dimension(50, 50));
-        IconLabel14.setPreferredSize(new java.awt.Dimension(50, 50));
-
-        IDLabel14.setText("jLabel3");
-        IDLabel14.setMaximumSize(new java.awt.Dimension(50, 25));
-        IDLabel14.setMinimumSize(new java.awt.Dimension(50, 25));
-        IDLabel14.setPreferredSize(new java.awt.Dimension(50, 25));
-
-        IDLabel15.setText("jLabel3");
-        IDLabel15.setMaximumSize(new java.awt.Dimension(50, 25));
-        IDLabel15.setMinimumSize(new java.awt.Dimension(50, 25));
-        IDLabel15.setPreferredSize(new java.awt.Dimension(50, 25));
-
-        IconLabel15.setText("jLabel2");
-        IconLabel15.setMaximumSize(new java.awt.Dimension(50, 50));
-        IconLabel15.setMinimumSize(new java.awt.Dimension(50, 50));
-        IconLabel15.setPreferredSize(new java.awt.Dimension(50, 50));
-
-        IconLabel16.setText("jLabel2");
-        IconLabel16.setMaximumSize(new java.awt.Dimension(50, 50));
-        IconLabel16.setMinimumSize(new java.awt.Dimension(50, 50));
-        IconLabel16.setPreferredSize(new java.awt.Dimension(50, 50));
-
-        IDLabel16.setText("jLabel3");
-        IDLabel16.setMaximumSize(new java.awt.Dimension(50, 25));
-        IDLabel16.setMinimumSize(new java.awt.Dimension(50, 25));
-        IDLabel16.setPreferredSize(new java.awt.Dimension(50, 25));
-
-        IconLabel17.setText("jLabel2");
-        IconLabel17.setMaximumSize(new java.awt.Dimension(50, 50));
-        IconLabel17.setMinimumSize(new java.awt.Dimension(50, 50));
-        IconLabel17.setPreferredSize(new java.awt.Dimension(50, 50));
-
-        IDLabel17.setText("jLabel3");
-        IDLabel17.setMaximumSize(new java.awt.Dimension(50, 25));
-        IDLabel17.setMinimumSize(new java.awt.Dimension(50, 25));
-        IDLabel17.setPreferredSize(new java.awt.Dimension(50, 25));
-
-        IDLabel18.setText("jLabel3");
-        IDLabel18.setMaximumSize(new java.awt.Dimension(50, 25));
-        IDLabel18.setMinimumSize(new java.awt.Dimension(50, 25));
-        IDLabel18.setPreferredSize(new java.awt.Dimension(50, 25));
-
-        IDLabel19.setText("jLabel3");
-        IDLabel19.setMaximumSize(new java.awt.Dimension(50, 25));
-        IDLabel19.setMinimumSize(new java.awt.Dimension(50, 25));
-        IDLabel19.setPreferredSize(new java.awt.Dimension(50, 25));
-
-        IconLabel18.setText("jLabel2");
-        IconLabel18.setMaximumSize(new java.awt.Dimension(50, 50));
-        IconLabel18.setMinimumSize(new java.awt.Dimension(50, 50));
-        IconLabel18.setPreferredSize(new java.awt.Dimension(50, 50));
-
-        IconLabel19.setText("jLabel2");
-        IconLabel19.setMaximumSize(new java.awt.Dimension(50, 50));
-        IconLabel19.setMinimumSize(new java.awt.Dimension(50, 50));
-        IconLabel19.setPreferredSize(new java.awt.Dimension(50, 50));
-
-        IDLabel20.setText("jLabel3");
-        IDLabel20.setMaximumSize(new java.awt.Dimension(50, 25));
-        IDLabel20.setMinimumSize(new java.awt.Dimension(50, 25));
-        IDLabel20.setPreferredSize(new java.awt.Dimension(50, 25));
-
-        IconLabel20.setText("jLabel2");
-        IconLabel20.setMaximumSize(new java.awt.Dimension(50, 50));
-        IconLabel20.setMinimumSize(new java.awt.Dimension(50, 50));
-        IconLabel20.setPreferredSize(new java.awt.Dimension(50, 50));
-
-        IDLabel21.setText("jLabel3");
-        IDLabel21.setMaximumSize(new java.awt.Dimension(50, 25));
-        IDLabel21.setMinimumSize(new java.awt.Dimension(50, 25));
-        IDLabel21.setPreferredSize(new java.awt.Dimension(50, 25));
-
-        IDLabel22.setText("jLabel3");
-        IDLabel22.setMaximumSize(new java.awt.Dimension(50, 25));
-        IDLabel22.setMinimumSize(new java.awt.Dimension(50, 25));
-        IDLabel22.setPreferredSize(new java.awt.Dimension(50, 25));
-
-        IconLabel21.setText("jLabel2");
-        IconLabel21.setMaximumSize(new java.awt.Dimension(50, 50));
-        IconLabel21.setMinimumSize(new java.awt.Dimension(50, 50));
-        IconLabel21.setPreferredSize(new java.awt.Dimension(50, 50));
-
-        IconLabel22.setText("jLabel2");
-        IconLabel22.setMaximumSize(new java.awt.Dimension(50, 50));
-        IconLabel22.setMinimumSize(new java.awt.Dimension(50, 50));
-        IconLabel22.setPreferredSize(new java.awt.Dimension(50, 50));
-
-        IconLabel23.setText("jLabel2");
-        IconLabel23.setMaximumSize(new java.awt.Dimension(50, 50));
-        IconLabel23.setMinimumSize(new java.awt.Dimension(50, 50));
-        IconLabel23.setPreferredSize(new java.awt.Dimension(50, 50));
-
-        IDLabel23.setText("jLabel3");
-        IDLabel23.setMaximumSize(new java.awt.Dimension(50, 25));
-        IDLabel23.setMinimumSize(new java.awt.Dimension(50, 25));
-        IDLabel23.setPreferredSize(new java.awt.Dimension(50, 25));
-
-        IconLabel24.setText("jLabel2");
-        IconLabel24.setMaximumSize(new java.awt.Dimension(50, 50));
-        IconLabel24.setMinimumSize(new java.awt.Dimension(50, 50));
-        IconLabel24.setPreferredSize(new java.awt.Dimension(50, 50));
-
-        IDLabel24.setText("jLabel3");
-        IDLabel24.setMaximumSize(new java.awt.Dimension(50, 25));
-        IDLabel24.setMinimumSize(new java.awt.Dimension(50, 25));
-        IDLabel24.setPreferredSize(new java.awt.Dimension(50, 25));
-
-        IDLabel25.setText("jLabel3");
-        IDLabel25.setMaximumSize(new java.awt.Dimension(50, 25));
-        IDLabel25.setMinimumSize(new java.awt.Dimension(50, 25));
-        IDLabel25.setPreferredSize(new java.awt.Dimension(50, 25));
-
-        IDLabel26.setText("jLabel3");
-        IDLabel26.setMaximumSize(new java.awt.Dimension(50, 25));
-        IDLabel26.setMinimumSize(new java.awt.Dimension(50, 25));
-        IDLabel26.setPreferredSize(new java.awt.Dimension(50, 25));
-
-        IconLabel25.setText("jLabel2");
-        IconLabel25.setMaximumSize(new java.awt.Dimension(50, 50));
-        IconLabel25.setMinimumSize(new java.awt.Dimension(50, 50));
-        IconLabel25.setPreferredSize(new java.awt.Dimension(50, 50));
-
-        IconLabel26.setText("jLabel2");
-        IconLabel26.setMaximumSize(new java.awt.Dimension(50, 50));
-        IconLabel26.setMinimumSize(new java.awt.Dimension(50, 50));
-        IconLabel26.setPreferredSize(new java.awt.Dimension(50, 50));
-
-        IDLabel27.setText("jLabel3");
-        IDLabel27.setMaximumSize(new java.awt.Dimension(50, 25));
-        IDLabel27.setMinimumSize(new java.awt.Dimension(50, 25));
-        IDLabel27.setPreferredSize(new java.awt.Dimension(50, 25));
-
-        IconLabel27.setText("jLabel2");
-        IconLabel27.setMaximumSize(new java.awt.Dimension(50, 50));
-        IconLabel27.setMinimumSize(new java.awt.Dimension(50, 50));
-        IconLabel27.setPreferredSize(new java.awt.Dimension(50, 50));
-
-        IDLabel28.setText("jLabel3");
-        IDLabel28.setMaximumSize(new java.awt.Dimension(50, 25));
-        IDLabel28.setMinimumSize(new java.awt.Dimension(50, 25));
-        IDLabel28.setPreferredSize(new java.awt.Dimension(50, 25));
-
-        IconLabel28.setText("jLabel2");
-        IconLabel28.setMaximumSize(new java.awt.Dimension(50, 50));
-        IconLabel28.setMinimumSize(new java.awt.Dimension(50, 50));
-        IconLabel28.setPreferredSize(new java.awt.Dimension(50, 50));
-
-        InventoryPageButton.setText("PAGE");
-        InventoryPageButton.setMaximumSize(new java.awt.Dimension(50, 25));
-        InventoryPageButton.setMinimumSize(new java.awt.Dimension(50, 25));
-        InventoryPageButton.setPreferredSize(new java.awt.Dimension(50, 25));
-
-        NextButton.setText("NE");
-        NextButton.setEnabled(false);
-        NextButton.setMaximumSize(new java.awt.Dimension(50, 25));
-        NextButton.setMinimumSize(new java.awt.Dimension(50, 25));
-        NextButton.setPreferredSize(new java.awt.Dimension(50, 25));
-
-        javax.swing.GroupLayout InventoryPanelLayout = new javax.swing.GroupLayout(InventoryPanel);
-        InventoryPanel.setLayout(InventoryPanelLayout);
-        InventoryPanelLayout.setHorizontalGroup(
-            InventoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(InventoryPanelLayout.createSequentialGroup()
-                .addGroup(InventoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(InventoryPanelLayout.createSequentialGroup()
-                        .addGap(75, 75, 75)
-                        .addComponent(InventoryLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(InventoryPanelLayout.createSequentialGroup()
-                        .addGap(175, 175, 175)
-                        .addComponent(InventoryPageButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(100, 100, 100)
-                        .addComponent(NextButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(InventoryPanelLayout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addGroup(InventoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(IDLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(IconLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(IconLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(IDLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(IDLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(IconLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(IconLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(IDLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, 0)
-                        .addGroup(InventoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(IconLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(IDLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(IconLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(IDLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(IDLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(IconLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(IconLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(IDLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, 0)
-                        .addGroup(InventoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(IconLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(IDLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(IconLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(IDLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(IDLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(IconLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(IconLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(IDLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, 0)
-                        .addGroup(InventoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(IconLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(IDLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(IconLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(IDLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(IDLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(IconLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(IconLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(IDLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, 0)
-                        .addGroup(InventoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(IconLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(IDLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(IconLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(IDLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(IDLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(IconLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(IconLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(IDLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, 0)
-                        .addGroup(InventoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(IconLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(IDLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(IconLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(IDLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(IDLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(IconLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(IconLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(IDLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, 0)
-                        .addGroup(InventoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(IDLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(IDLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(IconLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(IconLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(IDLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(IconLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(IDLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(IconLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(25, 25, 25))
-        );
-        InventoryPanelLayout.setVerticalGroup(
-            InventoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(InventoryPanelLayout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(InventoryLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25)
-                .addGroup(InventoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(InventoryPanelLayout.createSequentialGroup()
-                        .addComponent(IconLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(IDLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(IconLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(IDLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(IconLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(IDLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(IconLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(IDLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(InventoryPanelLayout.createSequentialGroup()
-                        .addComponent(IconLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(IDLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(IconLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(IDLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(IconLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(IDLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(IconLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(IDLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(InventoryPanelLayout.createSequentialGroup()
-                        .addComponent(IconLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(IDLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(IconLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(IDLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(IconLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(IDLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(IconLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(IDLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(InventoryPanelLayout.createSequentialGroup()
-                        .addComponent(IconLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(IDLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(IconLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(IDLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(IconLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(IDLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(IconLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(IDLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(InventoryPanelLayout.createSequentialGroup()
-                        .addComponent(IconLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(IDLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(IconLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(IDLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(IconLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(IDLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(IconLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(IDLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(InventoryPanelLayout.createSequentialGroup()
-                        .addComponent(IconLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(IDLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(IconLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(IDLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(IconLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(IDLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(IconLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(IDLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(InventoryPanelLayout.createSequentialGroup()
-                        .addComponent(IconLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(IDLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(IconLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(IDLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(IconLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(IDLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(IconLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(IDLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(25, 25, 25)
-                .addGroup(InventoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(InventoryPageButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(NextButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-        );
-
-        javax.swing.GroupLayout InventoryDialogLayout = new javax.swing.GroupLayout(InventoryDialog.getContentPane());
-        InventoryDialog.getContentPane().setLayout(InventoryDialogLayout);
-        InventoryDialogLayout.setHorizontalGroup(
-            InventoryDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-            .addGroup(InventoryDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(InventoryDialogLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(InventoryPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-        InventoryDialogLayout.setVerticalGroup(
-            InventoryDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-            .addGroup(InventoryDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(InventoryDialogLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(InventoryPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
 
@@ -1697,9 +1094,7 @@ public class GameFrame extends javax.swing.JFrame {
             .addComponent(AvatarChooserPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        KeyboardSettingsDialog.setMaximumSize(new java.awt.Dimension(600, 750));
         KeyboardSettingsDialog.setMinimumSize(new java.awt.Dimension(600, 750));
-        KeyboardSettingsDialog.setPreferredSize(new java.awt.Dimension(600, 750));
         KeyboardSettingsDialog.setResizable(false);
 
         KeyBoardPanel.setBackground(new java.awt.Color(93, 150, 199));
@@ -1939,7 +1334,7 @@ public class GameFrame extends javax.swing.JFrame {
                 .addGroup(KeyBoardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(OpenInventoryField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(OpenInventoryLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         MoveUpField.setDocument(maxLength);
@@ -2176,42 +1571,26 @@ public class GameFrame extends javax.swing.JFrame {
             .addComponent(QuestPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        InventoryPanel1.setMaximumSize(new java.awt.Dimension(400, 450));
-        InventoryPanel1.setMinimumSize(new java.awt.Dimension(400, 450));
+        InventoryDialog.setMinimumSize(new java.awt.Dimension(500, 500));
+        InventoryDialog.setModalityType(java.awt.Dialog.ModalityType.APPLICATION_MODAL);
+        InventoryDialog.setResizable(false);
 
-        InventoryLabel1.setText("                          INVENTORY");
-        InventoryLabel1.setMaximumSize(new java.awt.Dimension(250, 25));
-        InventoryLabel1.setMinimumSize(new java.awt.Dimension(250, 25));
-        InventoryLabel1.setPreferredSize(new java.awt.Dimension(250, 25));
+        InventoryPanel.setMaximumSize(new java.awt.Dimension(500, 500));
+        InventoryPanel.setMinimumSize(new java.awt.Dimension(500, 500));
+        InventoryPanel.setPreferredSize(new java.awt.Dimension(500, 500));
 
-        InventoryPageButton1.setText("PAGE");
-        InventoryPageButton1.setMaximumSize(new java.awt.Dimension(50, 25));
-        InventoryPageButton1.setMinimumSize(new java.awt.Dimension(50, 25));
-        InventoryPageButton1.setPreferredSize(new java.awt.Dimension(50, 25));
+        InventoryLabel.setText("                          INVENTORY");
+        InventoryLabel.setMaximumSize(new java.awt.Dimension(250, 25));
+        InventoryLabel.setMinimumSize(new java.awt.Dimension(250, 25));
+        InventoryLabel.setPreferredSize(new java.awt.Dimension(250, 25));
 
-        NextButton1.setText("NE");
-        NextButton1.setEnabled(false);
-        NextButton1.setMaximumSize(new java.awt.Dimension(50, 25));
-        NextButton1.setMinimumSize(new java.awt.Dimension(50, 25));
-        NextButton1.setPreferredSize(new java.awt.Dimension(50, 25));
+        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
-        InventoryTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Name", "Quantity", "Icon"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
+        InventoryTable.setModel(model);
         InventoryTable.setColumnSelectionAllowed(true);
+        InventoryTable.setMaximumSize(new java.awt.Dimension(450, 450));
+        InventoryTable.setMinimumSize(new java.awt.Dimension(450, 450));
+        InventoryTable.setPreferredSize(new java.awt.Dimension(450, 450));
         jScrollPane1.setViewportView(InventoryTable);
         InventoryTable.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         if (InventoryTable.getColumnModel().getColumnCount() > 0) {
@@ -2220,58 +1599,38 @@ public class GameFrame extends javax.swing.JFrame {
             InventoryTable.getColumnModel().getColumn(2).setResizable(false);
         }
 
-        javax.swing.GroupLayout InventoryPanel1Layout = new javax.swing.GroupLayout(InventoryPanel1);
-        InventoryPanel1.setLayout(InventoryPanel1Layout);
-        InventoryPanel1Layout.setHorizontalGroup(
-            InventoryPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(InventoryPanel1Layout.createSequentialGroup()
-                .addGroup(InventoryPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(InventoryPanel1Layout.createSequentialGroup()
-                        .addGap(75, 75, 75)
-                        .addComponent(InventoryLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(InventoryPanel1Layout.createSequentialGroup()
-                        .addGap(149, 149, 149)
-                        .addComponent(InventoryPageButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(NextButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(InventoryPanel1Layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(62, Short.MAX_VALUE))
+        javax.swing.GroupLayout InventoryPanelLayout = new javax.swing.GroupLayout(InventoryPanel);
+        InventoryPanel.setLayout(InventoryPanelLayout);
+        InventoryPanelLayout.setHorizontalGroup(
+            InventoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(InventoryPanelLayout.createSequentialGroup()
+                .addGap(75, 75, 75)
+                .addComponent(InventoryLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, InventoryPanelLayout.createSequentialGroup()
+                .addContainerGap(41, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39))
         );
-        InventoryPanel1Layout.setVerticalGroup(
-            InventoryPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(InventoryPanel1Layout.createSequentialGroup()
+        InventoryPanelLayout.setVerticalGroup(
+            InventoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(InventoryPanelLayout.createSequentialGroup()
                 .addGap(25, 25, 25)
-                .addComponent(InventoryLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
-                .addGroup(InventoryPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(InventoryPageButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(NextButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addComponent(InventoryLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 412, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout InventoryDialog1Layout = new javax.swing.GroupLayout(InventoryDialog1.getContentPane());
-        InventoryDialog1.getContentPane().setLayout(InventoryDialog1Layout);
-        InventoryDialog1Layout.setHorizontalGroup(
-            InventoryDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 486, Short.MAX_VALUE)
-            .addGroup(InventoryDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, InventoryDialog1Layout.createSequentialGroup()
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(InventoryPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+        javax.swing.GroupLayout InventoryDialogLayout = new javax.swing.GroupLayout(InventoryDialog.getContentPane());
+        InventoryDialog.getContentPane().setLayout(InventoryDialogLayout);
+        InventoryDialogLayout.setHorizontalGroup(
+            InventoryDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(InventoryPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
-        InventoryDialog1Layout.setVerticalGroup(
-            InventoryDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 486, Short.MAX_VALUE)
-            .addGroup(InventoryDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, InventoryDialog1Layout.createSequentialGroup()
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(InventoryPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+        InventoryDialogLayout.setVerticalGroup(
+            InventoryDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(InventoryPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -2375,6 +1734,16 @@ public class GameFrame extends javax.swing.JFrame {
             }
         });
 
+        InventoryButtonFrame.setBackground(new java.awt.Color(93, 150, 199));
+        InventoryButtonFrame.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/backpack.png"))); // NOI18N
+        InventoryButtonFrame.setToolTipText("inventory");
+        InventoryButtonFrame.setBorder(null);
+        InventoryButtonFrame.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                InventoryButtonFrameActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout HudPanelLayout = new javax.swing.GroupLayout(HudPanel);
         HudPanel.setLayout(HudPanelLayout);
         HudPanelLayout.setHorizontalGroup(
@@ -2393,6 +1762,8 @@ public class GameFrame extends javax.swing.JFrame {
                             .addComponent(SettingsButtonFrame)
                             .addGap(18, 18, 18)
                             .addComponent(QuestButtonFrame)
+                            .addGap(18, 18, 18)
+                            .addComponent(InventoryButtonFrame)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(HungerProgressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(26, 26, 26)
@@ -2427,8 +1798,9 @@ public class GameFrame extends javax.swing.JFrame {
                     .addComponent(HungerProgressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(HungerIcon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(SettingsButtonFrame)
-                    .addComponent(QuestButtonFrame))
-                .addGap(23, 23, 23))
+                    .addComponent(QuestButtonFrame)
+                    .addComponent(InventoryButtonFrame))
+                .addGap(32, 32, 32))
         );
 
         RightBorder.setBackground(new java.awt.Color(93, 150, 199));
@@ -2448,7 +1820,7 @@ public class GameFrame extends javax.swing.JFrame {
         RightBorderLayout.setHorizontalGroup(
             RightBorderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RightBorderLayout.createSequentialGroup()
-                .addGap(0, 26, Short.MAX_VALUE)
+                .addGap(0, 25, Short.MAX_VALUE)
                 .addComponent(GameCloseButton))
         );
         RightBorderLayout.setVerticalGroup(
@@ -2740,15 +2112,6 @@ public class GameFrame extends javax.swing.JFrame {
         SwingUtilities.invokeLater(() -> AvatarOkButton.setEnabled(true));
         SwingUtilities.invokeLater(() -> avatar = 3);
 
-        JLabel label = new JLabel();
-        //ImageIcon aboutIcon = new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/BLACKwoman75.png")));
-        label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/BLACKwoman75.png")));
-        //Object[] obj = {"femmina", "nera", aboutIcon};
-        //SwingUtilities.invokeLater(() ->  InventoryTable.setValueAt(aboutIcon,3,2 ));
-        //Object[] rowData = {"nome","quantity",aboutIcon};
-        SwingUtilities.invokeLater(() -> model.addRow(new Object[]{"nome", "quantity",label}));
-        SwingUtilities.invokeLater(() -> InventoryDialog1.setVisible(true));
-
     }//GEN-LAST:event_FemaleBlackButtonActionPerformed
 
     private void MaleBlackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MaleBlackButtonActionPerformed
@@ -2914,6 +2277,10 @@ public class GameFrame extends javax.swing.JFrame {
            map= evt.getKeyCode(); 
     }//GEN-LAST:event_MapFieldKeyPressed
 
+    private void InventoryButtonFrameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InventoryButtonFrameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_InventoryButtonFrameActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -2987,72 +2354,12 @@ public class GameFrame extends javax.swing.JFrame {
     protected javax.swing.JPanel HudPanel;
     protected javax.swing.JLabel HungerIcon;
     protected javax.swing.JProgressBar HungerProgressBar;
-    protected javax.swing.JLabel IDLabel1;
-    protected javax.swing.JLabel IDLabel10;
-    protected javax.swing.JLabel IDLabel11;
-    protected javax.swing.JLabel IDLabel12;
-    protected javax.swing.JLabel IDLabel13;
-    protected javax.swing.JLabel IDLabel14;
-    protected javax.swing.JLabel IDLabel15;
-    protected javax.swing.JLabel IDLabel16;
-    protected javax.swing.JLabel IDLabel17;
-    protected javax.swing.JLabel IDLabel18;
-    protected javax.swing.JLabel IDLabel19;
-    protected javax.swing.JLabel IDLabel2;
-    protected javax.swing.JLabel IDLabel20;
-    protected javax.swing.JLabel IDLabel21;
-    protected javax.swing.JLabel IDLabel22;
-    protected javax.swing.JLabel IDLabel23;
-    protected javax.swing.JLabel IDLabel24;
-    protected javax.swing.JLabel IDLabel25;
-    protected javax.swing.JLabel IDLabel26;
-    protected javax.swing.JLabel IDLabel27;
-    protected javax.swing.JLabel IDLabel28;
-    protected javax.swing.JLabel IDLabel3;
-    protected javax.swing.JLabel IDLabel4;
-    protected javax.swing.JLabel IDLabel5;
-    protected javax.swing.JLabel IDLabel6;
-    protected javax.swing.JLabel IDLabel7;
-    protected javax.swing.JLabel IDLabel8;
-    protected javax.swing.JLabel IDLabel9;
-    protected javax.swing.JLabel IconLabel1;
-    protected javax.swing.JLabel IconLabel10;
-    protected javax.swing.JLabel IconLabel11;
-    protected javax.swing.JLabel IconLabel12;
-    protected javax.swing.JLabel IconLabel13;
-    protected javax.swing.JLabel IconLabel14;
-    protected javax.swing.JLabel IconLabel15;
-    protected javax.swing.JLabel IconLabel16;
-    protected javax.swing.JLabel IconLabel17;
-    protected javax.swing.JLabel IconLabel18;
-    protected javax.swing.JLabel IconLabel19;
-    protected javax.swing.JLabel IconLabel2;
-    protected javax.swing.JLabel IconLabel20;
-    protected javax.swing.JLabel IconLabel21;
-    protected javax.swing.JLabel IconLabel22;
-    protected javax.swing.JLabel IconLabel23;
-    protected javax.swing.JLabel IconLabel24;
-    protected javax.swing.JLabel IconLabel25;
-    protected javax.swing.JLabel IconLabel26;
-    protected javax.swing.JLabel IconLabel27;
-    protected javax.swing.JLabel IconLabel28;
-    protected javax.swing.JLabel IconLabel3;
-    protected javax.swing.JLabel IconLabel4;
-    protected javax.swing.JLabel IconLabel5;
-    protected javax.swing.JLabel IconLabel6;
-    protected javax.swing.JLabel IconLabel7;
-    protected javax.swing.JLabel IconLabel8;
-    protected javax.swing.JLabel IconLabel9;
     protected javax.swing.JTextField InteractField;
     protected javax.swing.JLabel InteractLabel;
+    protected javax.swing.JButton InventoryButtonFrame;
     protected javax.swing.JDialog InventoryDialog;
-    protected javax.swing.JDialog InventoryDialog1;
     protected javax.swing.JLabel InventoryLabel;
-    protected javax.swing.JLabel InventoryLabel1;
-    protected javax.swing.JLabel InventoryPageButton;
-    protected javax.swing.JLabel InventoryPageButton1;
     protected javax.swing.JPanel InventoryPanel;
-    protected javax.swing.JPanel InventoryPanel1;
     protected javax.swing.JTable InventoryTable;
     protected javax.swing.JPanel KeyBoardPanel;
     protected javax.swing.JButton KeyboardButton;
@@ -3083,8 +2390,6 @@ public class GameFrame extends javax.swing.JFrame {
     protected javax.swing.JButton MusicButton;
     protected javax.swing.JLabel NameOfExamLabel;
     protected javax.swing.JButton NewGameButton;
-    protected javax.swing.JButton NextButton;
-    protected javax.swing.JButton NextButton1;
     protected javax.swing.JButton NoButton;
     protected javax.swing.JTextField OpenInventoryField;
     protected javax.swing.JLabel OpenInventoryLabel;

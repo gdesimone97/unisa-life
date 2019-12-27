@@ -10,6 +10,8 @@ import saving.exceptions.*;
 import exam.booklet.Booklet;
 import game.GameObjects.GameInventory;
 import game.GameObjects.Player;
+import gameSystem.keySettings.SettingsManager;
+import gameSystem.map.MapManager;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -30,21 +32,23 @@ import quests.quest.Quests;
  */
 public class SaveManager {
 
-    private static SaveManager instance = new SaveManager();
+    private static final SaveManager instance = new SaveManager();
     private List<Saveable> saveableComponents = new ArrayList<>();
     private Map<String, Serializable> savingItems = new HashMap<>();
     private final String PATH = "../save/save.game"; // path per la cartella di salvataggio
     private final String PATH_LANG = "../save/conf.game";
+    private final String PATH_KEYS = "../save/keys.game";
 
     public synchronized static SaveManager getSaveManager() {
         return instance;
     }
 
-    private SaveManager() { // da completare quando abbiamo tutte le classi da salvare
+    protected SaveManager() { // da completare quando abbiamo tutte le classi da salvare
         saveableComponents.add(Booklet.getInstance());
         saveableComponents.add(Player.getIstance());
         saveableComponents.add(StatusManager.getInstance());
         saveableComponents.add(GameInventory.getInstance());
+        saveableComponents.add(MapManager.getInstance());
         saveableComponents.add(Quests.getInstance());
     }
 
@@ -60,6 +64,29 @@ public class SaveManager {
         return true;
     }
 
+    public void saveKeys() throws SavingException {
+        Saveable settings = SettingsManager.getSettingsManager();
+        try (FileOutputStream fileout = new FileOutputStream(new File(PATH_KEYS));
+                ObjectOutputStream out = new ObjectOutputStream(fileout)) {
+            out.writeObject(settings.save());
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+            throw new SavingException("Keyboard keys non salvate");
+        }
+    }
+
+    public void loadKeys() throws LoadingException {
+        Saveable settings = SettingsManager.getSettingsManager();
+        try (FileInputStream filein = new FileInputStream(new File(PATH_KEYS));
+                ObjectInputStream in = new ObjectInputStream(filein)) {
+            Serializable obj = (Serializable) in.readObject();
+            settings.load(obj);
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+            throw new LoadingException("Keyboard keys non caricate");
+        }
+    }
+
     public void saveLang() throws SavingException {
         TextManagerAdapter textManager = TextManagerAdapter.getTextManagerAdpter();
         try (FileOutputStream fileout = new FileOutputStream(new File(PATH_LANG));
@@ -72,7 +99,7 @@ public class SaveManager {
 
     }
 
-    public String loadLang() throws LoadingException {
+    protected String loadLang() throws LoadingException {
         if (!isSaveSomething(PATH_LANG)) {
             return "";
         }

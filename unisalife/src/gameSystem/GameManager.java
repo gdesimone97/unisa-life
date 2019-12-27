@@ -17,6 +17,8 @@ import language.FileTextManager;
 import quests.QuestsManager;
 import quests.quest.Quests;
 import saving.SaveManager;
+import saving.exceptions.LoadingException;
+import saving.exceptions.SavingException;
 import sound.JukeBoxMusic;
 import sound.JukeBoxSound;
 import unisagui.GuiManager;
@@ -68,20 +70,19 @@ public class GameManager {
             t.start();
         } catch (InitException ex) {
         }
-        
+
         // call a loading method of all instances
         new Thread(() -> {
             try {
                 Thread.sleep(100);
 
-                // just set Loading state
                 player = Player.getIstance();
                 camera = new Camera(0, 0, player);
                 MapManager.getInstance().init();
                 GameStateManager.getInstance().init();
                 SaveManager.getSaveManager().load();
                 Thread.sleep(500);
-                
+
                 GameStateManager.getInstance().setState(PlayState.getInstance());
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(game, "System Error: " + ex.toString());
@@ -106,9 +107,9 @@ public class GameManager {
             JOptionPane.showMessageDialog(game, "System Error: " + ex.toString());
             System.exit(1);
         } catch (Exception ex) {
-                JOptionPane.showMessageDialog(game, "Undefined Error. Contact support\n" + ex.toString());
-                System.exit(1);
-            }
+            JOptionPane.showMessageDialog(game, "Undefined Error. Contact support\n" + ex.toString());
+            System.exit(1);
+        }
     }
 
     /**
@@ -129,7 +130,6 @@ public class GameManager {
                 QuestsManager.getInstance().init();
                 Quests.getInstance().init();
                 GameInventory.getInstance().init();
-                FileTextManager.getFileTextManager().init();
                 JukeBoxMusic.getInstance();
                 JukeBoxSound.getInstance();
 
@@ -142,9 +142,11 @@ public class GameManager {
                 }
             } catch (InitException ex) {
                 JOptionPane.showMessageDialog(game, "System Error: " + ex.toString());
+                ex.printStackTrace();
                 System.exit(1);
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(game, "Undefined Error. Contact support\n" + ex.toString());
+                ex.printStackTrace();
                 System.exit(1);
             }
         }).start();
@@ -172,7 +174,17 @@ public class GameManager {
      *
      * @param args
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SavingException {
+        try {
+            FileTextManager.getFileTextManager().init();
+            SaveManager.getSaveManager().loadKeys();
+        } catch (InitException ex) {
+            System.out.println(ex.getMessage());
+            ex.printStackTrace();
+        } catch (LoadingException loadEx) {
+            System.out.println(loadEx.getMessage());
+            loadEx.printStackTrace();
+        }
         GuiManager.getInstance().startGame();
     }
 

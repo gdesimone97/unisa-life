@@ -190,14 +190,12 @@ public class GuiManager {
     }
 
     /**
-     * When called a JDialog with the Inventory appears or disappears on the
-     * screen
-     *
-     * @param show if true the JDialog appears, if false disappears
+     * When called a JDialog with the Inventory appears on the screen
      */
-    public void showInventoryDialog(boolean show) {
-        inventorymanager.showInventoryDialog(show);
+    public void showInventoryDialog() {
+        inventorymanager.showInventoryDialog();
     }
+    
 
     /**
      * When called a JDialog with the Career appears or disappears on the screen
@@ -238,16 +236,13 @@ public class GuiManager {
     /*public void updateQuestDialog(Quest quest, boolean presence){
         questmanager.updateQuestDialog(quest, presence);
     }*/
+    
     /**
-     * When called the JDialog with the inventory is updated with a new item or
-     * the item is deleted
-     *
-     * @param item is the item to insert or delete
-     * @param presence if true the item is added, if false is deleted
+     * When called the Inventory Diaog is updated
      */
-    /*public void updateInventoryDialog(Item item, boolean presence){
-        inventorymanager.updateInventoryDialog(item, presence);
-    }*/
+    public void updateInventoryDialog(){
+        inventorymanager.updateInventoryDialog();
+    }
  /*
     public void updateInventoryDialog(Item item, int position, boolean presence){
         inventorymanager.updateInventoryDialog(item, presence);
@@ -298,8 +293,4 @@ public class GuiManager {
         hudmanager.updateMoney(money);
     }
 
-    //potrebbe essere evitato
-    /*private void setGuiLanguage(){
-        gameframe.settingLanguage("");
-    }*/
 }
