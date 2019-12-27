@@ -53,7 +53,7 @@ public class InventoryManager {
             } catch (Initializable.InitException | TextFinderException ex) {
                 name = item.getInfo();
             }
-            gameframe.model.addRow(new Object[]{name, 1 ,label});
+            gameframe.model.addRow(new Object[]{name ,label});
         }
     }
     //se viene passata la posizione dell'elemento
