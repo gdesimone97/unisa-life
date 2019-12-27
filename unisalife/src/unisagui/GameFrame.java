@@ -317,8 +317,6 @@ public class GameFrame extends javax.swing.JFrame {
         InventoryDialog1 = new javax.swing.JDialog();
         InventoryPanel1 = new javax.swing.JPanel();
         InventoryLabel1 = new javax.swing.JLabel();
-        InventoryPageButton1 = new javax.swing.JLabel();
-        NextButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         InventoryTable = new javax.swing.JTable();
         HudPanel = new javax.swing.JPanel();
@@ -2176,24 +2174,20 @@ public class GameFrame extends javax.swing.JFrame {
             .addComponent(QuestPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        InventoryPanel1.setMaximumSize(new java.awt.Dimension(400, 450));
-        InventoryPanel1.setMinimumSize(new java.awt.Dimension(400, 450));
+        InventoryDialog1.setMaximumSize(new java.awt.Dimension(500, 500));
+        InventoryDialog1.setMinimumSize(new java.awt.Dimension(500, 500));
+        InventoryDialog1.setModalityType(java.awt.Dialog.ModalityType.APPLICATION_MODAL);
+
+        InventoryPanel1.setMaximumSize(new java.awt.Dimension(500, 500));
+        InventoryPanel1.setMinimumSize(new java.awt.Dimension(500, 500));
+        InventoryPanel1.setPreferredSize(new java.awt.Dimension(500, 500));
 
         InventoryLabel1.setText("                          INVENTORY");
         InventoryLabel1.setMaximumSize(new java.awt.Dimension(250, 25));
         InventoryLabel1.setMinimumSize(new java.awt.Dimension(250, 25));
         InventoryLabel1.setPreferredSize(new java.awt.Dimension(250, 25));
 
-        InventoryPageButton1.setText("PAGE");
-        InventoryPageButton1.setMaximumSize(new java.awt.Dimension(50, 25));
-        InventoryPageButton1.setMinimumSize(new java.awt.Dimension(50, 25));
-        InventoryPageButton1.setPreferredSize(new java.awt.Dimension(50, 25));
-
-        NextButton1.setText("NE");
-        NextButton1.setEnabled(false);
-        NextButton1.setMaximumSize(new java.awt.Dimension(50, 25));
-        NextButton1.setMinimumSize(new java.awt.Dimension(50, 25));
-        NextButton1.setPreferredSize(new java.awt.Dimension(50, 25));
+        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
         InventoryTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -2212,6 +2206,9 @@ public class GameFrame extends javax.swing.JFrame {
             }
         });
         InventoryTable.setColumnSelectionAllowed(true);
+        InventoryTable.setMaximumSize(new java.awt.Dimension(450, 450));
+        InventoryTable.setMinimumSize(new java.awt.Dimension(450, 450));
+        InventoryTable.setPreferredSize(new java.awt.Dimension(450, 450));
         jScrollPane1.setViewportView(InventoryTable);
         InventoryTable.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         if (InventoryTable.getColumnModel().getColumnCount() > 0) {
@@ -2225,32 +2222,22 @@ public class GameFrame extends javax.swing.JFrame {
         InventoryPanel1Layout.setHorizontalGroup(
             InventoryPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(InventoryPanel1Layout.createSequentialGroup()
-                .addGroup(InventoryPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(InventoryPanel1Layout.createSequentialGroup()
-                        .addGap(75, 75, 75)
-                        .addComponent(InventoryLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(InventoryPanel1Layout.createSequentialGroup()
-                        .addGap(149, 149, 149)
-                        .addComponent(InventoryPageButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(NextButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(InventoryPanel1Layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(62, Short.MAX_VALUE))
+                .addGap(75, 75, 75)
+                .addComponent(InventoryLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, InventoryPanel1Layout.createSequentialGroup()
+                .addContainerGap(41, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39))
         );
         InventoryPanel1Layout.setVerticalGroup(
             InventoryPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(InventoryPanel1Layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addComponent(InventoryLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
-                .addGroup(InventoryPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(InventoryPageButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(NextButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 412, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout InventoryDialog1Layout = new javax.swing.GroupLayout(InventoryDialog1.getContentPane());
@@ -3050,7 +3037,6 @@ public class GameFrame extends javax.swing.JFrame {
     protected javax.swing.JLabel InventoryLabel;
     protected javax.swing.JLabel InventoryLabel1;
     protected javax.swing.JLabel InventoryPageButton;
-    protected javax.swing.JLabel InventoryPageButton1;
     protected javax.swing.JPanel InventoryPanel;
     protected javax.swing.JPanel InventoryPanel1;
     protected javax.swing.JTable InventoryTable;
@@ -3084,7 +3070,6 @@ public class GameFrame extends javax.swing.JFrame {
     protected javax.swing.JLabel NameOfExamLabel;
     protected javax.swing.JButton NewGameButton;
     protected javax.swing.JButton NextButton;
-    protected javax.swing.JButton NextButton1;
     protected javax.swing.JButton NoButton;
     protected javax.swing.JTextField OpenInventoryField;
     protected javax.swing.JLabel OpenInventoryLabel;
