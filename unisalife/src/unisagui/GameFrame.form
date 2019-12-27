@@ -2441,6 +2441,9 @@
       <SubComponents>
         <Container class="javax.swing.JPanel" name="InventoryPanel">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="c7" green="96" red="5d" type="rgb"/>
+            </Property>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[500, 500]"/>
             </Property>

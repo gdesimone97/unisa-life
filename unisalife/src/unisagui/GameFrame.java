@@ -41,7 +41,7 @@ public class GameFrame extends javax.swing.JFrame {
     private int interact;
     private int pause;
     private int map;
-    protected DefaultTableModel model;
+    protected DefaultTableModel model = new DefaultTableModel();
     
     
     private GameFrame() {
@@ -1575,6 +1575,7 @@ public class GameFrame extends javax.swing.JFrame {
         InventoryDialog.setModalityType(java.awt.Dialog.ModalityType.APPLICATION_MODAL);
         InventoryDialog.setResizable(false);
 
+        InventoryPanel.setBackground(new java.awt.Color(93, 150, 199));
         InventoryPanel.setMaximumSize(new java.awt.Dimension(500, 500));
         InventoryPanel.setMinimumSize(new java.awt.Dimension(500, 500));
         InventoryPanel.setPreferredSize(new java.awt.Dimension(500, 500));
