@@ -1109,6 +1109,8 @@ public class GameFrame extends javax.swing.JFrame {
         MoveUpLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/MOVEUP.png"))); // NOI18N
 
         MoveUpField.setBackground(new java.awt.Color(0, 153, 204));
+        MoveUpField.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
+        MoveUpField.setForeground(new java.awt.Color(204, 255, 255));
         MoveUpField.setAutoscrolls(false);
         MoveUpField.setMaximumSize(new java.awt.Dimension(100, 50));
         MoveUpField.setMinimumSize(new java.awt.Dimension(100, 50));
@@ -1122,6 +1124,8 @@ public class GameFrame extends javax.swing.JFrame {
         MoveDownLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/MOVEDOWN.png"))); // NOI18N
 
         MoveDownField.setBackground(new java.awt.Color(0, 153, 204));
+        MoveDownField.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
+        MoveDownField.setForeground(new java.awt.Color(204, 255, 255));
         MoveDownField.setAutoscrolls(false);
         MoveDownField.setMaximumSize(new java.awt.Dimension(100, 50));
         MoveDownField.setMinimumSize(new java.awt.Dimension(100, 50));
@@ -1135,6 +1139,8 @@ public class GameFrame extends javax.swing.JFrame {
         MoveLeftLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/MOVELEFT.png"))); // NOI18N
 
         MoveLeftField.setBackground(new java.awt.Color(0, 153, 204));
+        MoveLeftField.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
+        MoveLeftField.setForeground(new java.awt.Color(204, 255, 255));
         MoveLeftField.setAutoscrolls(false);
         MoveLeftField.setMaximumSize(new java.awt.Dimension(100, 50));
         MoveLeftField.setMinimumSize(new java.awt.Dimension(100, 50));
@@ -1148,6 +1154,8 @@ public class GameFrame extends javax.swing.JFrame {
         MoveRightLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/MOVERIGHT.png"))); // NOI18N
 
         MoveRightField.setBackground(new java.awt.Color(0, 153, 204));
+        MoveRightField.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
+        MoveRightField.setForeground(new java.awt.Color(204, 255, 255));
         MoveRightField.setAutoscrolls(false);
         MoveRightField.setMaximumSize(new java.awt.Dimension(50, 50));
         MoveRightField.setMinimumSize(new java.awt.Dimension(50, 50));
@@ -1161,6 +1169,8 @@ public class GameFrame extends javax.swing.JFrame {
         InteractLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/INTERACT.png"))); // NOI18N
 
         InteractField.setBackground(new java.awt.Color(0, 153, 204));
+        InteractField.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
+        InteractField.setForeground(new java.awt.Color(204, 255, 255));
         InteractField.setToolTipText("");
         InteractField.setAutoscrolls(false);
         InteractField.setMaximumSize(new java.awt.Dimension(50, 100));
@@ -1180,6 +1190,8 @@ public class GameFrame extends javax.swing.JFrame {
         PauseLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/INVENTORY.png"))); // NOI18N
 
         PauseField.setBackground(new java.awt.Color(0, 153, 204));
+        PauseField.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
+        PauseField.setForeground(new java.awt.Color(204, 255, 255));
         PauseField.setAutoscrolls(false);
         PauseField.setMaximumSize(new java.awt.Dimension(100, 50));
         PauseField.setMinimumSize(new java.awt.Dimension(100, 50));
@@ -1191,6 +1203,8 @@ public class GameFrame extends javax.swing.JFrame {
         });
 
         MapField.setBackground(new java.awt.Color(0, 153, 204));
+        MapField.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
+        MapField.setForeground(new java.awt.Color(204, 255, 255));
         MapField.setAutoscrolls(false);
         MapField.setMaximumSize(new java.awt.Dimension(100, 50));
         MapField.setMinimumSize(new java.awt.Dimension(100, 50));
@@ -1205,6 +1219,8 @@ public class GameFrame extends javax.swing.JFrame {
 
         OpenInventoryField.setEditable(false);
         OpenInventoryField.setBackground(new java.awt.Color(0, 153, 204));
+        OpenInventoryField.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
+        OpenInventoryField.setForeground(new java.awt.Color(204, 255, 255));
         OpenInventoryField.setText(" Tab");
         OpenInventoryField.setAutoscrolls(false);
         OpenInventoryField.setMaximumSize(new java.awt.Dimension(100, 50));
