@@ -168,5 +168,8 @@ public class Map implements Runnable {
         return tMap.getInitialPosition();
     }
 
-
+    public ConcurrentHashMap<Position,GameObject> getDynamicObjects(){
+        return this.mapObjects.getDynamic();
+    }
+    
 }

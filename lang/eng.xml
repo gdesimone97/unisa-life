@@ -94,6 +94,28 @@
 <message>4#How many bits do I need to cache 32 bits? Suppose you have a 2 ^ 32 bit memory and a 2 ^ 12 bit cache.#32+21=53#32#32+20=52#32+44=76</message>
 </Subject>
 
+<Subject info="Telecomunicazioni">
+<message>1#A power signal has energy equals to:#infinity#0#1#a complex value</message>
+<message>1#A signal x(t) is said hermitian if:#x(t) = x*(-t)#x(t) = x(-t)#x(t) = -x*(-t)#A signal can't be hermitian</message>
+<message>1#Two events are said mutually exclusive are also indipendet.#False#True#Not enough information#None of the others</message>
+<message>1#Which part of a signal is affected by Double Side Band modulation?#frequency#angle#magnitude#Both frequency and angle</message>
+<message>1#In a simple AWGN channel, a received signal r(t) can be wirtten as:#s(t)+w(t)#s(t)#s(t)*w(t)#s(t)/w(t)</message>
+<message>2#Given a signal x(t) and its autocorrelation function r(t), r(0) is:#the energy/power of x(t)#the temporal mean of x(t)#x(0)#always 0</message>
+<message>2#An LTI system with h(.)= a*δ(.) is:#without memory#with memory#causal#BIBO-stable</message>
+<message>2#Given a random variable X, the expression E[X^2]-E[X]^2 is:#VAR(X)#alwasy 0#VAR(X^2)# VAR(X)^2</message>
+<message>2#In the Pulse Amplitude Modulation, each signal has:#same frequency, different amplitude#different frequency, same amplitude#same phase, different frequency#different phase, same frequency</message>
+<message>2#In the Pulse Position Modulation with M signlas, the dimensionality is:#M#1log(M)#2^M</message>
+<message>3#When sampling in time domain:#in frequency domanin periodic replication occurs#the signal is partitioned in fixed amplitude intervals#information is always lost#none of the others</message>
+<message>3#According to the Nyquist–Shannon sampling theorem, when the sampling frequency is lower than 2B:# aliasing can occur#it's still possible to perfectly reconstruct the signal#the theroem doesn't mention this case#all of the others</message>
+<message>3#The LED Life Expectancy is a typical example of:#exponential model#gaussian model#uniform model#Poisson model</message>
+<message>3#The Nyquist criteria to avoid ISI gives an upper bound to the rate R, which is 2*W#True#False#The rate is not limited#ISI is always avoided with Nyquist criteria</message>
+<message>3#If the variance of an unbiased estimator is equal to the inverse of Fisher's information, the estimator is said:#efficient#non-polarized#consistent#None of the others</message>
+<message>4#####</message>
+<message>4#####</message>
+<message>4#An ergodic, stationary process has:#temporal and theoretical mean are the same#at each time sample the density function changes#there's no way to get statistical property from time measurements#None of the above</message>
+<message>4#Channel State Information and Selection Combining are used to fix problems related to:#fading#extreme noise#extreme latency#All of the others</message>
+<message>4#The Doppler effect ####</message>
+</Subject>
 
 
 <Professor info="Foggia">
