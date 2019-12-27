@@ -160,7 +160,7 @@ public class Exam implements Runnable {
             question = iter.next();
             gui.setExamQuestion(question.getQuestion());
             ArrayList<Answer> answers = question.getAnswers();
-            gui.showExamDialog(this.subject.toString(), question.getQuestion(), answers.get(0).getAnswer(), answers.get(1).getAnswer(), answers.get(2).getAnswer(), answers.get(3).getAnswer(), questionTime, rg, question.getLevel(),3);
+            gui.showExamDialog(this.subject.toString(), question.getQuestion(), answers.get(0).getAnswer(), answers.get(1).getAnswer(), answers.get(2).getAnswer(), answers.get(3).getAnswer(), questionTime, rg, question.getLevel());
 
             //init timer
             start = System.nanoTime();
