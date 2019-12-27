@@ -77,7 +77,6 @@ public class GameFrame extends javax.swing.JFrame {
 
     private void initializingTable() {
         model = (DefaultTableModel) InventoryTable.getModel();
-        //model.setColumnIdentifiers(new Object[]{"Name", "Quantity", "Icon"});
         InventoryTable.getColumn("Icon").setCellRenderer(new CellRender());
 
     }

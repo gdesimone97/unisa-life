@@ -5,7 +5,6 @@
  */
 package unisagui;
 
-import game.GameObjects.Item;
 import gameSystem.Game;
 import gameSystem.GameManager;
 import javax.swing.SwingUtilities;
@@ -242,14 +241,10 @@ public class GuiManager {
     }*/
     
     /**
-     * When called the JDialog with the inventory is updated with a new item or
-     * the item is deleted
-     *
-     * @param item is the item to insert or delete
-     * @param quantity is how many items of certain type are added or deleted, if 0 the item is removed from the inventory.
+     * When called the Inventory Diaog is updated
      */
-    public void updateInventoryDialog(Item item, int quantity){
-        inventorymanager.updateInventoryDialog(item, quantity);
+    public void updateInventoryDialog(){
+        inventorymanager.updateInventoryDialog();
     }
  /*
     public void updateInventoryDialog(Item item, int position, boolean presence){
