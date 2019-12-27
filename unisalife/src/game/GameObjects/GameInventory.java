@@ -22,6 +22,7 @@ import java.util.HashMap;
 import quests.ItemDef;
 import saving.Saveable;
 import saving.exceptions.LoadingException;
+import unisagui.GuiManager;
 
 /**
  *
@@ -93,6 +94,7 @@ public class GameInventory extends User implements Iterable<Item>, Saveable, Ini
         int pos = Collections.binarySearch(view, i, comp);
         //int pos = view.indexOf(i);
         view.add(-(pos+1), i);
+        GuiManager.getInstance().updateInventoryDialog();
         return pos;
         
     }
@@ -105,6 +107,7 @@ public class GameInventory extends User implements Iterable<Item>, Saveable, Ini
     public Item removeItem(int pos){
      
         Item i = view.remove(pos);
+        GuiManager.getInstance().updateInventoryDialog();
         return removeItem(i);
         
     }
@@ -114,6 +117,7 @@ public class GameInventory extends User implements Iterable<Item>, Saveable, Ini
         Item r = items.remove(i.getInfo());
         if( r == null )
             throw new RuntimeException("Item is not in the inventory, impossible to remove");
+        GuiManager.getInstance().updateInventoryDialog();
         return i;
     }
     

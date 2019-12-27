@@ -6,7 +6,16 @@ coin %1024%2208%/Sprites/coin.png%coin %0%d
 item %1280%1728%/Sprites/calculator.png%calcolatrice %0%d
 item %448%1024%/Sprites/note.png%appunti %0%d
 quest %0%tolc%calcolatrice%appunti%coin
-professor %Foggia%608%1152%/Sprites/foggiasprite.png%tolc %0%d
+professor %Foggia%608%1152%/Sprites/spriteprogrammazione.png%tolc %0%d
+professor %Rhandi%640%1152%/Sprites/spritematematica.png%matematica %0%d
+professor %Guida%672%1152%/Sprites/spritefisica.png%fisica %0%d
+professor %Foggia%704%1152%/Sprites/spriteprogrammazione.png%programmazione %0%d
+professor %Della Cioppa%736%1152%/Sprites/spriteacso.png%acso %0%d
+professor %Riccio%768%1152%/Sprites/spriteantenne.png%antenne %0%d
+professor %Petrone%800%1152%/Sprites/spriteelettrotecnica.png%elettrotecnica %0%d
+professor %Auletta%832%1152%/Sprites/spritereti.png%reti %0%d
+professor %Marano%864%1152%/Sprites/spritetelecomunicazioni.png%telecomunicazioni %0%d
+professor %D'acierno%896%1152%/Sprites/spritebasi.png%basi %0%d
 distributor %896%864%vm1 %0%f
 distributor %928%864%vm2 %0%f
 distributor %960%864%vm3 %0%f

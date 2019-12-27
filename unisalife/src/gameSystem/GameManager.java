@@ -64,12 +64,8 @@ public class GameManager {
      * starts the game
      */
     public void loadGame() {
-        try {
-            GameStateManager.getInstance().init();
-            Thread t = new Thread(game);
-            t.start();
-        } catch (InitException ex) {
-        }
+        Thread t = new Thread(game);
+        t.start();
 
         // call a loading method of all instances
         new Thread(() -> {

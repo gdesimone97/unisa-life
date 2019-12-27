@@ -134,8 +134,9 @@ import sound.JukeBoxSound;
      * @param answer3 third answer
      * @param answer4 fourth answer This method sets all the text fields of the
      * Exam label
+     * @param numLevel max level of question for this exam
      */
-   private void fillExam(String examName, String question, String answer1, String answer2, String answer3, String answer4) {
+   private void fillExam(String examName, String question, String answer1, String answer2, String answer3, String answer4,int numLevel) {
         this.manageButtons(true);
         this.clearExam();
         SwingUtilities.invokeLater(() -> gameframe.ConfirmAnswer.setEnabled(false));
@@ -149,7 +150,7 @@ import sound.JukeBoxSound;
         if (level == 4) {
             SwingUtilities.invokeLater(() -> gameframe.LevelOfQuestionLabel.setText("Laud Question "));
         } else {
-            SwingUtilities.invokeLater(() -> gameframe.LevelOfQuestionLabel.setText("Question " + Integer.toString(level) + "/3"));
+            SwingUtilities.invokeLater(() -> gameframe.LevelOfQuestionLabel.setText("Question " + Integer.toString(level) + "/"+Integer.toString(numLevel)));
         }
 
     }
@@ -196,11 +197,13 @@ import sound.JukeBoxSound;
      * @param time the number of second that the user has to answer the question
      * @param lock is an instance of ResultGui that is used by ExamManager to
      * put the right value of RESULT in the "setValue" method of ResultGui
+     * @param level actual level of question
+     * @param numLevel max level of question for this exam
      *
      * In this method all the methods useful for updating the interface relative
      * to the exam are called and some audio settings are managed
      */
-     protected void showExamDialog(String examName, String question, String answer1, String answer2, String answer3, String answer4, int time, ResultGui lock,int level) {
+     protected void showExamDialog(String examName, String question, String answer1, String answer2, String answer3, String answer4, int time, ResultGui lock,int level,int numLevel) {
         this.level=level;
         if (level ==1){ 
             SwingUtilities.invokeLater(() -> JukeBoxMusic.getInstance().stop("game_music"));
@@ -211,7 +214,7 @@ import sound.JukeBoxSound;
         }
         this.time = time * 1000;
         this.showTimer();
-        this.fillExam(examName, question, answer1, answer2, answer3, answer4);
+        this.fillExam(examName, question, answer1, answer2, answer3, answer4,numLevel);
         rg = lock;
 
     }
