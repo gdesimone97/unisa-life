@@ -50,6 +50,74 @@
 <message>4#What does parameter argv[0] represent in C main function when parameter argc is greater than 0?#The programm name#The path of .exe file in the File system#The path of libraries included in the programm#The path of NetBeans folder</message>
 </Subject>
 
+<Subject info="Reti Di Calcolatori">
+<message>1#What is Internet?#A network of interconnected computers#The set of navigable websites#The signal that comes to the home router#A fishing net to catch all the people</message>
+<message>1#How many layers does the ISO/OSI model provide?#7#4#10#2</message>
+<message>1#What type of multiplexing is used for ADSL lines?#FDM with bands of different amplitude#FDM with bands of same amplitude#TDM#Statistical TDM</message>
+<message>1#What is an ISP?#A provider of Internet service#A multiplexing technique#A proxy server#An Internet Protocol</message>
+<message>1#What layers of network architecture are implemented within a switch??#Data link and physical layers#Network, data link and physical layers#All#No one of this</message>
+<message>2#Which of the following is FALSE about HTTP protocol?#means Hyper-Text Tensor Protocol#works as a request–response protocol in the client–server model#a session can be persistent or not#is a stateless protocol</message>
+<message>2#Which of the following is FALSE about SMTP protocol?#is a pull protocol#is used for electronic mail trasmission#is a purely ASCII text-based#uses standard port 25</message>
+<message>2#Which of the following is FALSE about DNS?#Means "Default Name System"#is a system used to assign names to nodes on the network#uses DNS Records to exchange information between servers#it is realized through a distributed database, made up of DNS servers</message>
+<message>2#The checksum of a TCP segment is calculated on:#Header and data#Only data#Only header#Header and pseudo-header</message>
+<message>2#What are the well-known ports?#0 to 1023 ports#0 to 65535 ports#1023 to 49151 ports#None of the above</message>
+<message>3#Consider an ARQ system that uses a GoBack-N with 4-bit sequence numbers protocol. What is the maximum size of the sender window?#3#Not relevant#1#3*2-1</message>
+<message>3#In TCP protocol, what's the name of the two flags used to start and stop a connection?#SYN and FIN#START and STOP#GO and END#SYN and ACK</message>
+<message>3#In an address 255.148.1.0/30, how many addresses are free to be assigned?#4#10#30#2^30</message>
+<message>3#Which of the following was a better techonology for the Ethernet Standard?#Switch-based star topology with fiber#Bus topology#Hub-based star topology#Switch-based star topology with twisted pair</message>
+<message>3#A MAC address has length:#equal to 6 bytes#variable#equal to 32 bits#equal to 2 words</message>
+<message>4#Which of the following IS NOT a difference between IPV4 and IPV6?#There is no longer a time or hop limit#Extended addressing#Optimized package header#fragmentation replaced by flow</message>
+<message>4#The advantage of Virtual-LAN is:#rewiring the doors of the switches via software#the network is faster#switches become more intelligent#switch become useless in a network</message>
+<message>4#What is the Multiple Access protocol used by IEEE 802.3 networks?#CSMA/CD#CSMA/CA#Slotted ALOHA#ALOHA</message>
+<message>4#Which algorithm do Ethernet standards use to detect transmission errors?#32 bit-based CRC#Multidimensional parity bit#16 bit-based CRC#Checksum</message>
+<message>4#Which technique is used in DISTANCE VECTOR algorithms to solve (partially) the problem of addressing cycles?#Poisoned reverse#Indirect addressing#Hierarchical addressing#Addressing without classes</message>
+</Subject>
+
+<Subject info="Architecture of Calculators and Operating Systems">
+<message>1#What does this instruction mean? lw $t, i($s)#$t = MEM [$s + i]:4#$t = MEM [$s + i]:2#$t = MEM [$s + i]:8#$t = MEM [$s + i]:16</message>
+<message>1#What does this instruction mean? sub $d, $s, $t#$d = $s - $t#$d = $s ^ $t#$d = $s + $t#$d = $s and $t</message>
+<message>1#What does this instruction mean? sb $t, i($s)#MEM [$s + i]:1 = LB ($t)#MEM [$s + i]:2 = LB ($t)#MEM [$s + i]:8 = LB ($t)#MEM [$s + i]:4 = LB ($t)</message>
+<message>2#What does it mean non-volatile memory?#Will retain the stored information even if it is not constantly supplied with electric power#they are memories that cannot fly#Requires constant power to maintain the stored information#Allows information to be overwritten at any time</message>
+<message>2#Sort these storage devices in increasing order:#hard disk /ssd /dram /sram#hard disk /ssd /sram /dram#-ssd /hard disk /dram /sram#dram /hard disk /ssd /sram</message>
+<message>2#What is held in cache?#commonly used instructions and data#instructions that have been processed#data that hasn't been used for a long time#all of the programming instructions</message>
+<message>2#What is a semaphore?#it is a counter to manage shared accesses#it is a substitute for a traffic assistant#it is a counter to manage the operating system#none of the others</message>
+<message>2#This would reduce the number of memory/processor transfers#cache#control unit#ram#rom</message>
+<message>3#Consider a logical address space of 32 pages of 1024 words each, mapped to one physical memory of 16 frames. How many bits does the logical address consist of?#15 bits#20 bits#10 bits#5 bits</message>
+<message>3#What is transferred down the data bus?#data and instructions#data only#addresses only#data, instructions and addresses</message>
+<message>3#What does not affect the performance of the computer?#none of the others#clock speed#cache size#number of cores</message>
+<message>3#What components holds the address of the next instruction?#memory address register#memory data register#program counter#accumulator</message>
+<message>3#This doesn't happen during the Fetch of the cycle:#address bus is used#program counter increments by one#main memory is addressed#arithmetic operations are performed</message>
+<message>4#Consider a system where logical addresses have a length of 32 bits and a page size of 4 KB. The system supports up to 512 MB of physical memory. How many entry are there in a single-level page table?#2^20 entry#2^15 entry#Not enough information#2^30 entry</message>
+<message>4#suppose we are in this situation:speaker@XPS-13-9360:~/esame$ ls -l fileoutput -r--r--r-- 1 speaker speaker 0 giu 4 10:13 fileoutput. What would the output of ls -l fileoutput be after running the following program launched by the speaker user?#-r--r--r-- 1 speaker speaker 0 giu 4 10:13 fileoutput#-r--r--r-- 0 speaker speaker 0 giu 4 10:13 fileoutput#Not enough information#-r--r--w-- 1 speaker speaker 0 giu 4 10:13 fileoutput</message>
+<message>4#What type of driver should you design to make the interrupt as useful as possible?#asynchronous driver#synchronous driver#enabling driver#interrupt-ready driver</message>
+<message>4#In the decode phase of the "fetch – decode – execute cycle" the encoded instruction present in the instruction register is interpreted by the decoder. What exactly happens if the instruction is direct?#nothing is done during this clock pulse#the operation is performed during the clock pulse#The result generated by the operation is stored in the memory#nothing</message>
+<message>4#How many bits do I need to cache 32 bits? Suppose you have a 2 ^ 32 bit memory and a 2 ^ 12 bit cache.#32+21=53#32#32+20=52#32+44=76</message>
+</Subject>
+
+<Subject info="Telecomunicazioni">
+<message>1#A power signal has energy equals to:#infinity#0#1#a complex value</message>
+<message>1#A signal x(t) is said hermitian if:#x(t) = x*(-t)#x(t) = x(-t)#x(t) = -x*(-t)#A signal can't be hermitian</message>
+<message>1#Two events are said mutually exclusive are also indipendet.#False#True#Not enough information#None of the others</message>
+<message>1#Which part of a signal is affected by Double Side Band modulation?#frequency#angle#magnitude#Both frequency and angle</message>
+<message>1#In a simple AWGN channel, a received signal r(t) can be wirtten as:#s(t)+w(t)#s(t)#s(t)*w(t)#s(t)/w(t)</message>
+<message>2#Given a signal x(t) and its autocorrelation function r(t), r(0) is:#the energy/power of x(t)#the temporal mean of x(t)#x(0)#always 0</message>
+<message>2#An LTI system with h(.)= a*δ(.) is:#without memory#with memory#causal#BIBO-stable</message>
+<message>2#Given a random variable X, the expression E[X^2]-E[X]^2 is:#VAR(X)#alwasy 0#VAR(X^2)# VAR(X)^2</message>
+<message>2#In the Pulse Amplitude Modulation, each signal has:#same frequency, different amplitude#different frequency, same amplitude#same phase, different frequency#different phase, same frequency</message>
+<message>2#In the Pulse Position Modulation with M signlas, the dimensionality is:#M#1log(M)#2^M</message>
+<message>3#When sampling in time domain:#in frequency domanin periodic replication occurs#the signal is partitioned in fixed amplitude intervals#information is always lost#none of the others</message>
+<message>3#According to the Nyquist–Shannon sampling theorem, when the sampling frequency is lower than 2B:# aliasing can occur#it's still possible to perfectly reconstruct the signal#the theroem doesn't mention this case#all of the others</message>
+<message>3#The LED Life Expectancy is a typical example of:#exponential model#gaussian model#uniform model#Poisson model</message>
+<message>3#The Nyquist criteria to avoid ISI gives an upper bound to the rate R, which is 2*W#True#False#The rate is not limited#ISI is always avoided with Nyquist criteria</message>
+<message>3#If the variance of an unbiased estimator is equal to the inverse of Fisher's information, the estimator is said:#efficient#non-polarized#consistent#None of the others</message>
+<message>4#####</message>
+<message>4#####</message>
+<message>4#An ergodic, stationary process has:#temporal and theoretical mean are the same#at each time sample the density function changes#there's no way to get statistical property from time measurements#None of the above</message>
+<message>4#Channel State Information and Selection Combining are used to fix problems related to:#fading#extreme noise#extreme latency#All of the others</message>
+<message>4#The Doppler effect ####</message>
+</Subject>
+
+
 <Professor info="Foggia">
 <message>Are you ready?</message>
 </Professor>

@@ -11,7 +11,6 @@ import language.exceptions.FileTextManagerException;
 import java.util.List;
 import java.util.Set;
 import language.exceptions.*;
-import saving.SaveManager;
 import saving.exceptions.LoadingException;
 
 /**
@@ -104,8 +103,9 @@ public class FileTextManager extends TextManager implements Initializable {
 
     @Override
     public void init() throws InitException {
+        SaveManagerAdapter sv = new SaveManagerAdapter();
         try {
-            String loadLang = SaveManager.getSaveManager().loadLang();
+            String loadLang = sv.loadLang();
             if (loadLang.equals("")) {
                 setLanguage("eng");
             } else {

@@ -6,6 +6,10 @@
 package gameSystem.keySettings;
 
 import java.awt.event.KeyEvent;
+import java.io.Serializable;
+import java.util.ArrayList;
+import saving.Saveable;
+import saving.exceptions.LoadingException;
 
 /**
  * This class declares the methods to set and get keyboard keys used to move the
@@ -14,7 +18,7 @@ import java.awt.event.KeyEvent;
  *
  * @author Giuseppe De Simone
  */
-public class SettingsManager {
+public class SettingsManager implements Saveable{
 
     private static final SettingsManager instance = new SettingsManager();
     private int moveUp = KeyEvent.VK_W;
@@ -179,4 +183,28 @@ public class SettingsManager {
         this.pauseButton = pauseButton;
     }
 
+    @Override
+    public Serializable save() {
+        ArrayList<Integer> list = new ArrayList<>();
+        list.add(moveUp);
+        list.add(moveDown);
+        list.add(moveRight);
+        list.add(moveLeft);
+        list.add(interactButton);
+        list.add(pauseButton);
+        list.add(mapButton);
+        return list;
+    }
+
+    @Override
+    public void load(Serializable obj) throws LoadingException {
+        ArrayList<Integer> list = (ArrayList<Integer>) obj;
+        moveUp = list.get(0);
+        moveDown = list.get(1);
+        moveRight = list.get(2);
+        moveLeft = list.get(3);
+        interactButton = list.get(4);
+        pauseButton = list.get(5);
+        mapButton = list.get(6);
+    }
 }
