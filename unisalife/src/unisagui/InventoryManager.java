@@ -5,6 +5,8 @@
  */
 package unisagui;
 
+import game.GameObjects.Item;
+import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
 
 /**
@@ -31,12 +33,15 @@ public class InventoryManager {
     /**
      * 
      * @param item represents the item that has been collected or removed
-     * @param presence says if the item has been collected or removed
+     * @param quantity is how many items of certain type are added or deleted, if 0 the item is removed from the inventory.
      */
-    /*public void updateInventoryDialog(Item item, boolean presence){
-        
+    public void updateInventoryDialog(Item item, int quantity){
+        JLabel label = new JLabel();
+        label.setIcon(new javax.swing.ImageIcon(getClass().getResource(item.getImage()))); //getqualcosa che mi restituisca il path del'immagine
+        SwingUtilities.invokeLater(() -> gameframe.model.addRow(new Object[]{"nome", "quantity",label}));
+        SwingUtilities.invokeLater(() -> gameframe.InventoryDialog.setVisible(true));
     }
     //se viene passata la posizione dell'elemento
     // public void updateInventoryDialog(Item item, int position, boolean presence)
-    */
+    
 }

@@ -5,6 +5,7 @@
  */
 package unisagui;
 
+import game.GameObjects.Item;
 import gameSystem.Game;
 import gameSystem.GameManager;
 import javax.swing.SwingUtilities;
@@ -198,6 +199,7 @@ public class GuiManager {
     public void showInventoryDialog(boolean show) {
         inventorymanager.showInventoryDialog(show);
     }
+    
 
     /**
      * When called a JDialog with the Career appears or disappears on the screen
@@ -238,16 +240,17 @@ public class GuiManager {
     /*public void updateQuestDialog(Quest quest, boolean presence){
         questmanager.updateQuestDialog(quest, presence);
     }*/
+    
     /**
      * When called the JDialog with the inventory is updated with a new item or
      * the item is deleted
      *
      * @param item is the item to insert or delete
-     * @param presence if true the item is added, if false is deleted
+     * @param quantity is how many items of certain type are added or deleted, if 0 the item is removed from the inventory.
      */
-    /*public void updateInventoryDialog(Item item, boolean presence){
-        inventorymanager.updateInventoryDialog(item, presence);
-    }*/
+    public void updateInventoryDialog(Item item, int quantity){
+        inventorymanager.updateInventoryDialog(item, quantity);
+    }
  /*
     public void updateInventoryDialog(Item item, int position, boolean presence){
         inventorymanager.updateInventoryDialog(item, presence);
@@ -298,8 +301,4 @@ public class GuiManager {
         hudmanager.updateMoney(money);
     }
 
-    //potrebbe essere evitato
-    /*private void setGuiLanguage(){
-        gameframe.settingLanguage("");
-    }*/
 }
