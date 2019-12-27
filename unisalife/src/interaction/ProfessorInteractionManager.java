@@ -40,8 +40,8 @@ public class ProfessorInteractionManager implements InteractionManager {
 
                 //3. Start the exam session
                 if(s.getInfo().compareTo("tolc") == 0) {
-                    Thread esameThread = new Thread(new Tolc());
-                    esameThread.start();
+                    Thread tolcThread = new Thread(new Tolc());
+                    tolcThread.start();
                 }
                 else {
                     Thread esameThread = new Thread(new Exam(s));

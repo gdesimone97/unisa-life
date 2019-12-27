@@ -74,7 +74,6 @@ public class GameManager {
             try {
                 Thread.sleep(100);
 
-                // just set Loading state
                 player = Player.getIstance();
                 camera = new Camera(0, 0, player);
                 MapManager.getInstance().init();
@@ -142,9 +141,11 @@ public class GameManager {
                 }
             } catch (InitException ex) {
                 JOptionPane.showMessageDialog(game, "System Error: " + ex.toString());
+                ex.printStackTrace();
                 System.exit(1);
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(game, "Undefined Error. Contact support\n" + ex.toString());
+                ex.printStackTrace();
                 System.exit(1);
             }
         }).start();

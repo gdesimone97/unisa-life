@@ -223,10 +223,12 @@ public class Player extends GameObject implements Tickable, Renderable, Saveable
             setVelX(0);
             setVelY(0);
         } 
-        else 
-        {
+        else {
             g = objMan.getObjectInNextPosition(face.nextStep());
-            if (g != null && !(g instanceof Teleport)) {
+            if (g != null && g instanceof Coin) {
+                ((Interactable) g).interact();
+            }
+            else if (g != null && !(g instanceof Teleport)) {
                 nextMove = false;
             }
         }

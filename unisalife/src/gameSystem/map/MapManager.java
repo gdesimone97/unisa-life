@@ -75,23 +75,13 @@ public class MapManager implements Initializable {
             throw new InitException("Objects not found in Database");
         } catch (ClassNotFoundException ex) {
             throw new InitException("Class not found during Database query");
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            throw new InitException("Generic error");
         }
     }
 
-    private void addDynamicObjects() throws InitException {
-        try {
-            ConcurrentHashMap<Position, GameObject>[] objectsFromLevel = DatabaseManager.getDatabaseManager().getObjectsFromLevel(0);
-            for (int i = 0; i < objectsFromLevel.length; i++) {
-                maps[i].addDynamicObjects(objectsFromLevel[i]);
-            }
-
-        } catch (ObjectNotFoundException ex) {
-            throw new InitException("Can't find all dynamic objects for the level.");
-        } catch (FileNotSetException ex) {
-            throw new InitException("Can't find the database file!");
+    private void addDynamicObjects() throws FileNotSetException, ObjectNotFoundException {
+        ConcurrentHashMap<Position, GameObject>[] objectsFromLevel = DatabaseManager.getDatabaseManager().getObjectsFromLevel(0);
+        for (int i = 0; i < objectsFromLevel.length; i++) {
+            maps[i].addDynamicObjects(objectsFromLevel[i]);
         }
     }
 
