@@ -1915,7 +1915,6 @@ public class GameFrame extends javax.swing.JFrame {
         SwingUtilities.invokeLater(() -> AvatarOkButton.setEnabled(false));
         name = "";
         avatar = 0;
-        GuiManager.getInstance().updateInventoryDialog();
     }//GEN-LAST:event_NewGameButtonActionPerformed
 
     private void SettingsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SettingsButtonActionPerformed
