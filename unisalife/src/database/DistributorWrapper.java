@@ -18,20 +18,19 @@ import saving.exceptions.LoadingException;
  *
  * @author christian
  */
-class DistributorWrapper implements Saveable, Storable{
-    
+class DistributorWrapper implements Saveable, Storable {
+
     @Id
     private String info;
     private Position position;
 
-    private DistributorWrapper() {}
+    private DistributorWrapper() {
+    }
 
     public DistributorWrapper(Position p, String info) {
         this.position = p;
         this.info = info;
     }
-
-    
 
     @Override
     public String getIndex() {
@@ -47,8 +46,8 @@ class DistributorWrapper implements Saveable, Storable{
     public void load(Serializable obj) throws LoadingException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
-    public Distributor buildDistributor(){
+
+    public Distributor buildDistributor() {
         return new Distributor(position, info);
     }
 }

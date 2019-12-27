@@ -18,19 +18,18 @@ import org.dizitart.no2.objects.Indices;
 @Indices({
     @Index(value = "map", type = IndexType.NonUnique)
 })
-class BlockWrapper implements Storable{
-    
+class BlockWrapper implements Storable {
 
     private int map;
     private Block block;
-    
-    public BlockWrapper( Block block, int map ){
+
+    public BlockWrapper(Block block, int map) {
         this.map = map;
         this.block = block;
     }
-    
-    public BlockWrapper(){
-        
+
+    public BlockWrapper() {
+
     }
 
     public int getMap() {
@@ -45,7 +44,5 @@ class BlockWrapper implements Storable{
     public String getIndex() {
         return Integer.toString(this.map);
     }
-    
-    
-    
+
 }

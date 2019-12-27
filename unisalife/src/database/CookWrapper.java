@@ -15,17 +15,25 @@ import saving.exceptions.LoadingException;
  *
  * @author christian
  */
-public class CookWrapper implements Saveable, Storable{
-    
+public class CookWrapper implements Saveable, Storable {
+
     private String nome, path;
     private Position p;
-    
-    public CookWrapper( String nome, Position p, String path){
+
+    public CookWrapper(String nome, Position p, String path) {
         this.nome = nome;
         this.p = p;
         this.path = path;
     }
-    private CookWrapper(){}
+
+    private CookWrapper() {
+    }
+
+    public CookWrapper(Cook c) {
+        this.nome = c.getInfo();
+        this.p = c.getPosition();
+        this.path = c.getPath();
+    }
 
     @Override
     public Serializable save() {
@@ -41,9 +49,9 @@ public class CookWrapper implements Saveable, Storable{
     public String getIndex() {
         return this.nome;
     }
-    
-    public Cook buildCook(){
+
+    public Cook buildCook() {
         return new Cook(nome, p, path);
     }
-    
+
 }

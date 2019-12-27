@@ -15,18 +15,26 @@ import saving.exceptions.LoadingException;
  *
  * @author christian
  */
-public class CoinWrapper implements Saveable, Storable{
+public class CoinWrapper implements Saveable, Storable {
 
-    private String path,info;
+    private String path, info;
     private Position p;
-    
-    private CoinWrapper(){}
-    public CoinWrapper(Position p, String path, String info){
+
+    private CoinWrapper() {
+    }
+
+    public CoinWrapper(Position p, String path, String info) {
         this.p = p;
         this.path = path;
         this.info = info;
     }
-    
+
+    public CoinWrapper(Coin c) {
+        this.p = c.getPosition();
+        this.info = c.getInfo();
+        this.path = c.getPath();
+    }
+
     @Override
     public Serializable save() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -41,12 +49,9 @@ public class CoinWrapper implements Saveable, Storable{
     public String getIndex() {
         return this.info;
     }
-    
-    
-    public Coin buildCoin(){
+
+    public Coin buildCoin() {
         return new Coin(p, path, info);
     }
-    
-    
-    
+
 }

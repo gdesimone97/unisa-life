@@ -18,12 +18,12 @@ import java.util.StringTokenizer;
 public class CookWrapperFactory extends StorableCreator {
 
     public CookWrapperFactory() {
-        
+
     }
 
     @Override
     public Storable create(String s) {
-        
+
         StringTokenizer st = new StringTokenizer(s, StorableCreator.DELIMETER);
         try {
             CookWrapper cw = new CookWrapper(st.nextToken(), new Position(Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken())), st.nextToken());
@@ -32,9 +32,7 @@ public class CookWrapperFactory extends StorableCreator {
         } catch (NoSuchElementException | NumberFormatException e) {
             throw new InvalidArgumentListException();
         }
-        
+
     }
-    
-    
-    
+
 }

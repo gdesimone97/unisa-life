@@ -18,9 +18,11 @@ import javax.imageio.ImageIO;
 public abstract class Person extends GameObject implements Renderable, Interactable {
 
     transient protected BufferedImage facingDownImage;
+    private String path;
 
     public Person(Position p, String path) {
         super(p);
+        this.path = path;
         try {
             facingDownImage = ImageIO.read(
                     getClass().getResourceAsStream(path)
@@ -32,6 +34,10 @@ public abstract class Person extends GameObject implements Renderable, Interacta
 
     protected Person() {
         super();
+    }
+    
+    public String getPath(){
+        return this.path;
     }
 
     @Override

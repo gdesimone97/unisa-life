@@ -15,20 +15,18 @@ import java.util.StringTokenizer;
  *
  * @author christian
  */
-public class DistributorWrapperFactory extends StorableCreator{
+public class DistributorWrapperFactory extends StorableCreator {
 
     @Override
     public Storable create(String s) {
-        try{
-            StringTokenizer st = new StringTokenizer(s,StorableCreator.DELIMETER);
-            Distributor d = new Distributor(new Position(Integer.parseInt((st.nextToken())),Integer.parseInt(st.nextToken())),st.nextToken());
+        try {
+            StringTokenizer st = new StringTokenizer(s, StorableCreator.DELIMETER);
+            Distributor d = new Distributor(new Position(Integer.parseInt((st.nextToken())), Integer.parseInt(st.nextToken())), st.nextToken());
             return d;
-            
+
         } catch (NoSuchElementException | NumberFormatException e) {
             throw new InvalidArgumentListException();
         }
     }
-    
-    
-    
+
 }

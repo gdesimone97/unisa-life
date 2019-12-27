@@ -15,23 +15,29 @@ import saving.exceptions.LoadingException;
  *
  * @author christian
  */
-public class ItemWrapper implements Storable, Saveable{
- 
+public class ItemWrapper implements Storable, Saveable {
+
     private String info, p;
     private Position pos;
-    
-    
-    private ItemWrapper(){}
-    
-    public ItemWrapper(Position pos, String p, String info){
+
+    private ItemWrapper() {
+    }
+
+    public ItemWrapper(Position pos, String p, String info) {
         this.pos = pos;
         this.p = p;
         this.info = info;
     }
 
+    public ItemWrapper(Item i) {
+        this.info = i.getInfo();
+        this.pos = i.getPosition();
+        this.p = i.getPath();
+    }
+
     @Override
-    public String getIndex(  ) {
-       
+    public String getIndex() {
+
         return this.info;
     }
 
@@ -44,9 +50,9 @@ public class ItemWrapper implements Storable, Saveable{
     public void load(Serializable obj) throws LoadingException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
-    public Item buildItem(){
+
+    public Item buildItem() {
         return new Item(pos, p, info);
     }
-    
+
 }

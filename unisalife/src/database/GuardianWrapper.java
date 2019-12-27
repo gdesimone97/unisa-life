@@ -16,20 +16,28 @@ import saving.exceptions.LoadingException;
  *
  * @author christian
  */
-public class GuardianWrapper implements Saveable, Storable{
+public class GuardianWrapper implements Saveable, Storable {
+
     @Id
     private String nome;
     private String path;
     private Position position;
-    
-    private GuardianWrapper(){}
-    
-    public GuardianWrapper(String nome, Position position, String path ){
+
+    private GuardianWrapper() {
+    }
+
+    public GuardianWrapper(String nome, Position position, String path) {
         this.nome = nome;
         this.position = position;
         this.path = path;
     }
-    
+
+    public GuardianWrapper(Guardian g) {
+        this.nome = g.getInfo();
+        this.path = g.getPath();
+        this.position = g.getPosition();
+    }
+
     @Override
     public Serializable save() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -44,9 +52,9 @@ public class GuardianWrapper implements Saveable, Storable{
     public String getIndex() {
         return this.nome;
     }
-    
-    public Guardian buildGuardian(){
+
+    public Guardian buildGuardian() {
         return new Guardian(nome, position, path);
     }
-    
+
 }

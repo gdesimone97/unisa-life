@@ -13,5 +13,5 @@ public class ErrorWhileSavingException extends Exception {
 
     public ErrorWhileSavingException() {
     }
-    
+
 }

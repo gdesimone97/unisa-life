@@ -33,9 +33,9 @@ public class ProfessorWrapperFactory extends StorableCreator {
      */
     @Override
     public Storable create(String s) throws InvalidArgumentListException {
-        
+
         StringTokenizer st = new StringTokenizer(s, StorableCreator.DELIMETER);
-        
+
         try {
 
             //Retrieve subject from the DB

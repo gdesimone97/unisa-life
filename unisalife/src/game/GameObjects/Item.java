@@ -72,6 +72,10 @@ public class Item extends GameObject implements Renderable, Interactable, Serial
     public String getInfo() {
         return this.info;
     }
+    
+    public String getPath(){
+        return this.path;
+    }
 
     public LocalDateTime getTaken() {
         return taken;

@@ -13,5 +13,5 @@ package database;
 public interface Storable {
 
     public String getIndex();
-    
+
 }

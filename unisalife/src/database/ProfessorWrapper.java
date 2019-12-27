@@ -22,8 +22,8 @@ import saving.exceptions.LoadingException;
 @Indices({
     @Index(value = "subject.subject", type = IndexType.Unique)
 })
-public class ProfessorWrapper implements Saveable, Storable{
-    
+public class ProfessorWrapper implements Saveable, Storable {
+
     private Position p;
     private String path;
     private Subject subject;
@@ -36,7 +36,15 @@ public class ProfessorWrapper implements Saveable, Storable{
         this.subject = subject;
     }
 
-    private ProfessorWrapper() {}
+    public ProfessorWrapper(Professor p) {
+        this.p = p.getPosition();
+        this.path = p.getPath();
+        this.subject = p.getSubject();
+        this.nome = p.getInfo();
+    }
+
+    private ProfessorWrapper() {
+    }
 
     @Override
     public Serializable save() {
@@ -52,8 +60,8 @@ public class ProfessorWrapper implements Saveable, Storable{
     public String getIndex() {
         return this.subject.toString();
     }
-    
-    public Professor buildProfessor(){
+
+    public Professor buildProfessor() {
         return new Professor(nome, p, path, subject);
     }
 }

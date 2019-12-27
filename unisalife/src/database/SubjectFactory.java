@@ -14,22 +14,23 @@ import java.util.StringTokenizer;
  *
  * @author cmarino
  */
-public class SubjectFactory extends StorableCreator{
+public class SubjectFactory extends StorableCreator {
 
     /**
-     * 
-     * @param s Consist in a string that should follow the pattern %subject that specifies the name of the subject
-     * @throws InvalidArgumentListException 
+     *
+     * @param s Consist in a string that should follow the pattern %subject that
+     * specifies the name of the subject
+     * @throws InvalidArgumentListException
      */
     @Override
     public Storable create(String s) throws InvalidArgumentListException {
-        StringTokenizer st = new StringTokenizer(s,StorableCreator.DELIMETER);
-        try{
-        Subject sub = new Subject(st.nextToken());
-        return sub;
-        }catch( NoSuchElementException e ){
+        StringTokenizer st = new StringTokenizer(s, StorableCreator.DELIMETER);
+        try {
+            Subject sub = new Subject(st.nextToken());
+            return sub;
+        } catch (NoSuchElementException e) {
             throw new InvalidArgumentListException();
         }
     }
-    
+
 }
