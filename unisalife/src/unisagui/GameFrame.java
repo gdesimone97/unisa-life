@@ -1105,20 +1105,14 @@ public class GameFrame extends javax.swing.JFrame {
         KeyBoardPanel.setPreferredSize(new java.awt.Dimension(600, 750));
 
         KeyboardSettingsLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/KEYBOARDSETTINGS.png"))); // NOI18N
-        KeyboardSettingsLabel.setMaximumSize(new java.awt.Dimension(332, 75));
-        KeyboardSettingsLabel.setMinimumSize(new java.awt.Dimension(332, 75));
-        KeyboardSettingsLabel.setPreferredSize(new java.awt.Dimension(332, 75));
 
         MoveUpLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/MOVEUP.png"))); // NOI18N
-        MoveUpLabel.setMaximumSize(new java.awt.Dimension(100, 50));
-        MoveUpLabel.setMinimumSize(new java.awt.Dimension(100, 50));
-        MoveUpLabel.setPreferredSize(new java.awt.Dimension(100, 50));
 
         MoveUpField.setBackground(new java.awt.Color(0, 153, 204));
         MoveUpField.setAutoscrolls(false);
-        MoveUpField.setMaximumSize(new java.awt.Dimension(50, 50));
-        MoveUpField.setMinimumSize(new java.awt.Dimension(50, 50));
-        MoveUpField.setPreferredSize(new java.awt.Dimension(50, 50));
+        MoveUpField.setMaximumSize(new java.awt.Dimension(100, 50));
+        MoveUpField.setMinimumSize(new java.awt.Dimension(100, 50));
+        MoveUpField.setPreferredSize(new java.awt.Dimension(100, 50));
         MoveUpField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 MoveUpFieldKeyPressed(evt);
@@ -1126,15 +1120,12 @@ public class GameFrame extends javax.swing.JFrame {
         });
 
         MoveDownLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/MOVEDOWN.png"))); // NOI18N
-        MoveDownLabel.setMaximumSize(new java.awt.Dimension(100, 50));
-        MoveDownLabel.setMinimumSize(new java.awt.Dimension(100, 50));
-        MoveDownLabel.setPreferredSize(new java.awt.Dimension(100, 50));
 
         MoveDownField.setBackground(new java.awt.Color(0, 153, 204));
         MoveDownField.setAutoscrolls(false);
-        MoveDownField.setMaximumSize(new java.awt.Dimension(50, 50));
-        MoveDownField.setMinimumSize(new java.awt.Dimension(50, 50));
-        MoveDownField.setPreferredSize(new java.awt.Dimension(50, 50));
+        MoveDownField.setMaximumSize(new java.awt.Dimension(100, 50));
+        MoveDownField.setMinimumSize(new java.awt.Dimension(100, 50));
+        MoveDownField.setPreferredSize(new java.awt.Dimension(100, 50));
         MoveDownField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 MoveDownFieldKeyPressed(evt);
@@ -1142,15 +1133,12 @@ public class GameFrame extends javax.swing.JFrame {
         });
 
         MoveLeftLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/MOVELEFT.png"))); // NOI18N
-        MoveLeftLabel.setMaximumSize(new java.awt.Dimension(100, 50));
-        MoveLeftLabel.setMinimumSize(new java.awt.Dimension(100, 50));
-        MoveLeftLabel.setPreferredSize(new java.awt.Dimension(100, 50));
 
         MoveLeftField.setBackground(new java.awt.Color(0, 153, 204));
         MoveLeftField.setAutoscrolls(false);
-        MoveLeftField.setMaximumSize(new java.awt.Dimension(50, 50));
-        MoveLeftField.setMinimumSize(new java.awt.Dimension(50, 50));
-        MoveLeftField.setPreferredSize(new java.awt.Dimension(50, 50));
+        MoveLeftField.setMaximumSize(new java.awt.Dimension(100, 50));
+        MoveLeftField.setMinimumSize(new java.awt.Dimension(100, 50));
+        MoveLeftField.setPreferredSize(new java.awt.Dimension(100, 50));
         MoveLeftField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 MoveLeftFieldKeyPressed(evt);
@@ -1158,15 +1146,12 @@ public class GameFrame extends javax.swing.JFrame {
         });
 
         MoveRightLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/MOVERIGHT.png"))); // NOI18N
-        MoveRightLabel.setMaximumSize(new java.awt.Dimension(100, 50));
-        MoveRightLabel.setMinimumSize(new java.awt.Dimension(100, 50));
-        MoveRightLabel.setPreferredSize(new java.awt.Dimension(100, 50));
 
         MoveRightField.setBackground(new java.awt.Color(0, 153, 204));
         MoveRightField.setAutoscrolls(false);
         MoveRightField.setMaximumSize(new java.awt.Dimension(50, 50));
         MoveRightField.setMinimumSize(new java.awt.Dimension(50, 50));
-        MoveRightField.setPreferredSize(new java.awt.Dimension(50, 50));
+        MoveRightField.setPreferredSize(new java.awt.Dimension(100, 50));
         MoveRightField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 MoveRightFieldKeyPressed(evt);
@@ -1174,9 +1159,6 @@ public class GameFrame extends javax.swing.JFrame {
         });
 
         InteractLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/INTERACT.png"))); // NOI18N
-        InteractLabel.setMaximumSize(new java.awt.Dimension(100, 50));
-        InteractLabel.setMinimumSize(new java.awt.Dimension(100, 50));
-        InteractLabel.setPreferredSize(new java.awt.Dimension(100, 50));
 
         InteractField.setBackground(new java.awt.Color(0, 153, 204));
         InteractField.setToolTipText("");
@@ -1196,15 +1178,12 @@ public class GameFrame extends javax.swing.JFrame {
         });
 
         PauseLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/INVENTORY.png"))); // NOI18N
-        PauseLabel.setMaximumSize(new java.awt.Dimension(100, 50));
-        PauseLabel.setMinimumSize(new java.awt.Dimension(100, 50));
-        PauseLabel.setPreferredSize(new java.awt.Dimension(100, 50));
 
         PauseField.setBackground(new java.awt.Color(0, 153, 204));
         PauseField.setAutoscrolls(false);
-        PauseField.setMaximumSize(new java.awt.Dimension(50, 50));
-        PauseField.setMinimumSize(new java.awt.Dimension(50, 50));
-        PauseField.setPreferredSize(new java.awt.Dimension(50, 50));
+        PauseField.setMaximumSize(new java.awt.Dimension(100, 50));
+        PauseField.setMinimumSize(new java.awt.Dimension(100, 50));
+        PauseField.setPreferredSize(new java.awt.Dimension(100, 50));
         PauseField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 PauseFieldKeyPressed(evt);
@@ -1213,9 +1192,9 @@ public class GameFrame extends javax.swing.JFrame {
 
         MapField.setBackground(new java.awt.Color(0, 153, 204));
         MapField.setAutoscrolls(false);
-        MapField.setMaximumSize(new java.awt.Dimension(50, 50));
-        MapField.setMinimumSize(new java.awt.Dimension(50, 50));
-        MapField.setPreferredSize(new java.awt.Dimension(50, 50));
+        MapField.setMaximumSize(new java.awt.Dimension(100, 50));
+        MapField.setMinimumSize(new java.awt.Dimension(100, 50));
+        MapField.setPreferredSize(new java.awt.Dimension(100, 50));
         MapField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 MapFieldKeyPressed(evt);
@@ -1223,17 +1202,14 @@ public class GameFrame extends javax.swing.JFrame {
         });
 
         MapLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/MAP.png"))); // NOI18N
-        MapLabel.setMaximumSize(new java.awt.Dimension(100, 50));
-        MapLabel.setMinimumSize(new java.awt.Dimension(100, 50));
-        MapLabel.setPreferredSize(new java.awt.Dimension(100, 50));
 
         OpenInventoryField.setEditable(false);
         OpenInventoryField.setBackground(new java.awt.Color(0, 153, 204));
         OpenInventoryField.setText(" Tab");
         OpenInventoryField.setAutoscrolls(false);
-        OpenInventoryField.setMaximumSize(new java.awt.Dimension(50, 50));
-        OpenInventoryField.setMinimumSize(new java.awt.Dimension(50, 50));
-        OpenInventoryField.setPreferredSize(new java.awt.Dimension(50, 50));
+        OpenInventoryField.setMaximumSize(new java.awt.Dimension(100, 50));
+        OpenInventoryField.setMinimumSize(new java.awt.Dimension(100, 50));
+        OpenInventoryField.setPreferredSize(new java.awt.Dimension(100, 50));
         OpenInventoryField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 OpenInventoryFieldActionPerformed(evt);
@@ -1241,9 +1217,6 @@ public class GameFrame extends javax.swing.JFrame {
         });
 
         OpenInventoryLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/PAUSE.png"))); // NOI18N
-        OpenInventoryLabel.setMaximumSize(new java.awt.Dimension(100, 50));
-        OpenInventoryLabel.setMinimumSize(new java.awt.Dimension(100, 50));
-        OpenInventoryLabel.setPreferredSize(new java.awt.Dimension(100, 50));
 
         KeyboardSettingsCloseButton.setBackground(new java.awt.Color(93, 150, 199));
         KeyboardSettingsCloseButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/exitbutton24.png"))); // NOI18N
@@ -1261,43 +1234,43 @@ public class GameFrame extends javax.swing.JFrame {
             .addGroup(KeyBoardPanelLayout.createSequentialGroup()
                 .addGroup(KeyBoardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(KeyBoardPanelLayout.createSequentialGroup()
-                        .addGap(172, 172, 172)
+                        .addGap(153, 153, 153)
                         .addGroup(KeyBoardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(KeyBoardPanelLayout.createSequentialGroup()
-                                .addComponent(MoveDownLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(MoveDownLabel)
                                 .addGap(100, 100, 100)
                                 .addComponent(MoveDownField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(KeyBoardPanelLayout.createSequentialGroup()
-                                .addComponent(MoveLeftLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(MoveLeftLabel)
                                 .addGap(100, 100, 100)
                                 .addComponent(MoveLeftField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(KeyBoardPanelLayout.createSequentialGroup()
-                                .addComponent(MoveRightLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(MoveRightLabel)
                                 .addGap(100, 100, 100)
                                 .addComponent(MoveRightField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(KeyBoardPanelLayout.createSequentialGroup()
-                                .addComponent(InteractLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(InteractLabel)
                                 .addGap(100, 100, 100)
                                 .addComponent(InteractField, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))
                             .addGroup(KeyBoardPanelLayout.createSequentialGroup()
-                                .addComponent(PauseLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(PauseLabel)
                                 .addGap(100, 100, 100)
                                 .addComponent(PauseField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(KeyBoardPanelLayout.createSequentialGroup()
-                                .addComponent(MapLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(MapLabel)
                                 .addGap(100, 100, 100)
                                 .addComponent(MapField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(KeyBoardPanelLayout.createSequentialGroup()
-                                .addComponent(MoveUpLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(MoveUpLabel)
                                 .addGap(100, 100, 100)
                                 .addComponent(MoveUpField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(KeyBoardPanelLayout.createSequentialGroup()
-                                .addComponent(OpenInventoryLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(OpenInventoryLabel)
                                 .addGap(100, 100, 100)
                                 .addComponent(OpenInventoryField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(KeyBoardPanelLayout.createSequentialGroup()
                         .addGap(134, 134, 134)
-                        .addComponent(KeyboardSettingsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(KeyboardSettingsLabel)))
                 .addGap(134, 134, 134))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, KeyBoardPanelLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -1308,39 +1281,39 @@ public class GameFrame extends javax.swing.JFrame {
             .addGroup(KeyBoardPanelLayout.createSequentialGroup()
                 .addComponent(KeyboardSettingsCloseButton)
                 .addGap(18, 18, 18)
-                .addComponent(KeyboardSettingsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(KeyboardSettingsLabel)
                 .addGap(18, 18, 18)
                 .addGroup(KeyBoardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(MoveUpField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(MoveUpLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(MoveUpLabel))
                 .addGap(25, 25, 25)
                 .addGroup(KeyBoardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(MoveDownField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(MoveDownLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(MoveDownLabel))
                 .addGap(25, 25, 25)
                 .addGroup(KeyBoardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(MoveLeftField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(MoveLeftLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(MoveLeftLabel))
                 .addGap(25, 25, 25)
                 .addGroup(KeyBoardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(MoveRightField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(MoveRightLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(MoveRightLabel))
                 .addGap(25, 25, 25)
                 .addGroup(KeyBoardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(InteractField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(InteractLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(InteractLabel))
                 .addGap(25, 25, 25)
                 .addGroup(KeyBoardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(PauseField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(PauseLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(PauseLabel))
                 .addGap(25, 25, 25)
                 .addGroup(KeyBoardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(MapField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(MapLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(MapLabel))
                 .addGap(25, 25, 25)
                 .addGroup(KeyBoardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(OpenInventoryField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(OpenInventoryLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(OpenInventoryLabel))
                 .addContainerGap(39, Short.MAX_VALUE))
         );
 
@@ -1588,9 +1561,6 @@ public class GameFrame extends javax.swing.JFrame {
         InventoryPanel.setPreferredSize(new java.awt.Dimension(500, 500));
 
         InventoryLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/INVENTORYDIALOG.png"))); // NOI18N
-        InventoryLabel.setMaximumSize(new java.awt.Dimension(100, 25));
-        InventoryLabel.setMinimumSize(new java.awt.Dimension(100, 25));
-        InventoryLabel.setPreferredSize(new java.awt.Dimension(100, 25));
 
         jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
@@ -1618,14 +1588,14 @@ public class GameFrame extends javax.swing.JFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(40, 40, 40))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, InventoryPanelLayout.createSequentialGroup()
-                        .addComponent(InventoryLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(InventoryLabel)
                         .addGap(197, 197, 197))))
         );
         InventoryPanelLayout.setVerticalGroup(
             InventoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(InventoryPanelLayout.createSequentialGroup()
                 .addGap(25, 25, 25)
-                .addComponent(InventoryLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(InventoryLabel)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 412, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(20, Short.MAX_VALUE))
