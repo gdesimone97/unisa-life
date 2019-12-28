@@ -6,7 +6,6 @@
 package database;
 
 import database.populator.exceptions.InvalidArgumentListException;
-import saving.Saveable;
 import exam.booklet.Subject;
 import java.util.NoSuchElementException;
 import java.util.StringTokenizer;

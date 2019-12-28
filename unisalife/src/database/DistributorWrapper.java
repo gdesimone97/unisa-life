@@ -7,8 +7,6 @@ package database;
 
 import game.GameObjects.Distributor;
 import game.GameObjects.Position;
-import interaction.DistributorInteractionManager;
-import interaction.InteractionManager;
 import java.io.Serializable;
 import org.dizitart.no2.objects.Id;
 import saving.Saveable;

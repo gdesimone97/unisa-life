@@ -8,7 +8,6 @@ package database;
 import game.GameObjects.Cook;
 import game.GameObjects.Position;
 import java.io.Serializable;
-import saving.exceptions.LoadingException;
 
 /**
  *

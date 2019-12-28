@@ -6,7 +6,6 @@
 package database;
 
 import database.populator.exceptions.InvalidArgumentListException;
-import game.GameObjects.Guardian;
 import game.GameObjects.Position;
 import java.util.NoSuchElementException;
 import java.util.StringTokenizer;

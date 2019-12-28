@@ -12,8 +12,6 @@ import java.io.Serializable;
 import org.dizitart.no2.IndexType;
 import org.dizitart.no2.objects.Index;
 import org.dizitart.no2.objects.Indices;
-import saving.Saveable;
-import saving.exceptions.LoadingException;
 
 /**
  *
