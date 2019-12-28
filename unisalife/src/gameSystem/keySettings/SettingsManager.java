@@ -7,11 +7,11 @@ package gameSystem.keySettings;
 
 import java.awt.event.KeyEvent;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
+import saving.SaveManager;
 import saving.Saveable;
 import saving.exceptions.LoadingException;
+import saving.exceptions.SavingException;
 
 /**
  * This class declares the methods to set and get keyboard keys used to move the
@@ -30,19 +30,12 @@ public class SettingsManager implements Saveable {
         INTERACT,
         PAUSE,
         MAP,
-        INVENTORY
+        INVENTORY,
+        SAVE
     }
+
+    private HashMap<Commands, Integer> register = new HashMap<>(9);
     private static final SettingsManager instance = new SettingsManager();
-    private int moveUp = KeyEvent.VK_W;
-    private int moveDown = KeyEvent.VK_S;
-    private int moveLeft = KeyEvent.VK_A;
-    private int moveRight = KeyEvent.VK_D;
-    private int interactButton = KeyEvent.VK_SPACE;
-    private int pauseButton = KeyEvent.VK_P;
-    private int mapButton = KeyEvent.VK_M;
-    private final int saveButton = KeyEvent.VK_S;
-    private final int inventoryButton = KeyEvent.VK_TAB;
-    Map<Commands, Integer> register = new HashMap<>(8);
 
     private boolean checkInput(int code) {
         final int A = KeyEvent.VK_A;
@@ -52,14 +45,11 @@ public class SettingsManager implements Saveable {
         final int NINE = KeyEvent.VK_9;
         final int DOWN = KeyEvent.VK_DOWN;
         final int LEFT = KeyEvent.VK_LEFT;
+
         if (code >= A && code <= Z || code >= ZERO && code <= NINE || code == SPACE || code >= LEFT || code <= DOWN) {
             return true;
         }
         return false;
-    }
-
-    private void setKey(Commands c, int key) {
-        register.put(c, key);
     }
 
     private boolean isRegistered(int key) {
@@ -69,15 +59,31 @@ public class SettingsManager implements Saveable {
         return false;
     }
 
+    private boolean setKey(Commands cmd, int button) {
+        if (!checkInput(button) || isRegistered(button)) {
+            return false;
+        }
+        register.put(cmd, button);
+        try {
+            SaveManager.getSaveManager().saveKeys();
+        } catch (SavingException ex) {
+            System.out.println(ex.getMessage());
+            ex.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
     private SettingsManager() {
-        register.put(Commands.MOVE_UP, moveUp);
-        register.put(Commands.MOVE_DOWN, moveDown);
-        register.put(Commands.MOVE_LEFT, moveLeft);
-        register.put(Commands.MOVE_RIGHT, moveRight);
-        register.put(Commands.PAUSE, pauseButton);
-        register.put(Commands.INTERACT, interactButton);
-        register.put(Commands.MAP, mapButton);
-        register.put(Commands.INVENTORY, inventoryButton);
+        register.put(Commands.MOVE_UP, KeyEvent.VK_W);
+        register.put(Commands.MOVE_DOWN, KeyEvent.VK_S);
+        register.put(Commands.MOVE_LEFT, KeyEvent.VK_A);
+        register.put(Commands.MOVE_RIGHT, KeyEvent.VK_D);
+        register.put(Commands.PAUSE, KeyEvent.VK_P);
+        register.put(Commands.INTERACT, KeyEvent.VK_SPACE);
+        register.put(Commands.MAP, KeyEvent.VK_M);
+        register.put(Commands.INVENTORY, KeyEvent.VK_I);
+        register.put(Commands.SAVE, KeyEvent.VK_S);
     }
 
     /**
@@ -85,7 +91,7 @@ public class SettingsManager implements Saveable {
      * @return an int containing the value of keyboard key pressed
      */
     public int getInventoryButton() {
-        return inventoryButton;
+        return register.get(Commands.INVENTORY);
     }
 
     /**
@@ -93,7 +99,7 @@ public class SettingsManager implements Saveable {
      * @return an int containing the value of keyboard key pressed
      */
     public int getMapButton() {
-        return mapButton;
+        return register.get(Commands.MAP);
     }
 
     /**
@@ -104,12 +110,7 @@ public class SettingsManager implements Saveable {
      * otherwise true
      */
     public boolean setMapButton(int mapButton) {
-        if (!checkInput(mapButton) || isRegistered(mapButton)) {
-            return false;
-        }
-        setKey(Commands.MAP, mapButton);
-        this.mapButton = mapButton;
-        return true;
+        return setKey(Commands.MAP, mapButton);
     }
 
     /**
@@ -117,7 +118,7 @@ public class SettingsManager implements Saveable {
      * @return an int containing the value of keyboard key pressed
      */
     public int getSaveButton() {
-        return saveButton;
+        return register.get(Commands.SAVE);
     }
 
     /**
@@ -134,7 +135,7 @@ public class SettingsManager implements Saveable {
      * commad
      */
     public int getMoveUp() {
-        return moveUp;
+        return register.get(Commands.MOVE_UP);
     }
 
     /**
@@ -145,12 +146,7 @@ public class SettingsManager implements Saveable {
      * otherwise true
      */
     public boolean setMoveUp(int moveUp) {
-        if (!checkInput(moveUp) || isRegistered(moveUp)) {
-            return false;
-        }
-        setKey(Commands.MOVE_UP, moveUp);
-        this.moveUp = moveUp;
-        return true;
+        return setKey(Commands.MOVE_UP, moveUp);
     }
 
     /**
@@ -159,7 +155,7 @@ public class SettingsManager implements Saveable {
      * commad
      */
     public int getMoveDown() {
-        return moveDown;
+        return register.get(Commands.MOVE_DOWN);
     }
 
     /**
@@ -170,12 +166,7 @@ public class SettingsManager implements Saveable {
      * otherwise true
      */
     public boolean setMoveDown(int moveDown) {
-        if (!checkInput(moveDown) || isRegistered(moveDown)) {
-            return false;
-        }
-        setKey(Commands.MOVE_DOWN, moveDown);
-        this.moveDown = moveDown;
-        return true;
+        return setKey(Commands.MOVE_DOWN, moveDown);
     }
 
     /**
@@ -184,7 +175,7 @@ public class SettingsManager implements Saveable {
      * commad
      */
     public int getMoveLeft() {
-        return moveLeft;
+        return register.get(Commands.MOVE_LEFT);
     }
 
     /**
@@ -195,12 +186,7 @@ public class SettingsManager implements Saveable {
      * otherwise true
      */
     public boolean setMoveLeft(int moveLeft) {
-        if (!checkInput(moveLeft) || isRegistered(moveLeft)) {
-            return false;
-        }
-        setKey(Commands.MOVE_LEFT, moveLeft);
-        this.moveLeft = moveLeft;
-        return true;
+        return setKey(Commands.MOVE_LEFT, moveLeft);
     }
 
     /**
@@ -209,7 +195,7 @@ public class SettingsManager implements Saveable {
      * commad
      */
     public int getMoveRight() {
-        return moveRight;
+        return register.get(Commands.MOVE_RIGHT);
     }
 
     /**
@@ -220,12 +206,7 @@ public class SettingsManager implements Saveable {
      * otherwise true
      */
     public boolean setMoveRight(int moveRight) {
-        if (!checkInput(moveRight) || isRegistered(moveRight)) {
-            return false;
-        }
-        setKey(Commands.MOVE_RIGHT, moveRight);
-        this.moveRight = moveRight;
-        return true;
+        return setKey(Commands.MOVE_RIGHT, moveRight);
     }
 
     /**
@@ -234,7 +215,7 @@ public class SettingsManager implements Saveable {
      * commad
      */
     public int getInteractButton() {
-        return interactButton;
+        return register.get(Commands.INTERACT);
     }
 
     /**
@@ -245,12 +226,7 @@ public class SettingsManager implements Saveable {
      * otherwise true
      */
     public boolean setInteractButton(int interactButton) {
-        if (!checkInput(interactButton) || isRegistered(interactButton)) {
-            return false;
-        }
-        setKey(Commands.INTERACT, interactButton);
-        this.interactButton = interactButton;
-        return true;
+        return setKey(Commands.INTERACT, interactButton);
     }
 
     /**
@@ -259,7 +235,7 @@ public class SettingsManager implements Saveable {
      * commad
      */
     public int getPauseButton() {
-        return pauseButton;
+        return register.get(Commands.PAUSE);
     }
 
     /**
@@ -270,38 +246,16 @@ public class SettingsManager implements Saveable {
      * otherwise true
      */
     public boolean setPauseButton(int pauseButton) {
-        if (!checkInput(pauseButton) || isRegistered(pauseButton)) {
-            return false;
-        }
-        setKey(Commands.PAUSE, pauseButton);
-        this.pauseButton = pauseButton;
-        return true;
+        return setKey(Commands.PAUSE, pauseButton);
     }
 
     @Override
     public Serializable save() {
-        ArrayList<Object> list = new ArrayList<>();
-        list.add(moveUp);
-        list.add(moveDown);
-        list.add(moveRight);
-        list.add(moveLeft);
-        list.add(interactButton);
-        list.add(pauseButton);
-        list.add(mapButton);
-        list.add(this.register);
-        return list;
+        return this.register;
     }
 
     @Override
     public void load(Serializable obj) throws LoadingException {
-        ArrayList<Object> list = (ArrayList<Object>) obj;
-        moveUp = (int) list.get(0);
-        moveDown = (int) list.get(1);
-        moveRight = (int) list.get(2);
-        moveLeft = (int) list.get(3);
-        interactButton = (int) list.get(4);
-        pauseButton = (int) list.get(5);
-        mapButton = (int) list.get(6);
-        this.register = (Map<Commands, Integer>) list.get(7);
+        this.register = (HashMap<Commands, Integer>) obj;
     }
 }
