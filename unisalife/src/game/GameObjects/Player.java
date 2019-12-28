@@ -10,7 +10,6 @@ import game.Interfaces.Interactable;
 import gameSystem.Game;
 
 import game.Interfaces.Tickable;
-import game.Interfaces.Renderable;
 import static gameSystem.Game.DIMENSIONSPRITE;
 import gameSystem.map.MapManager;
 import java.awt.image.BufferedImage;
@@ -27,7 +26,7 @@ import saving.exceptions.LoadingException;
  *
  * @author simon
  */
-public class Player extends GameObject implements Tickable, Renderable, Saveable {
+public class Player extends GameObject implements Tickable, Saveable {
 
     private static final int DELAY = 8;
     private int velX = 0;
@@ -43,7 +42,7 @@ public class Player extends GameObject implements Tickable, Renderable, Saveable
     protected FaceState face = new DownFaceState(this);
     private static Player uniqueIstance = null;
     private boolean nextMove = true;
-    protected String nameOfPlayer=null;
+    protected String nameOfPlayer = null;
     private int delta = 0;
     private int skin;
 
@@ -51,7 +50,7 @@ public class Player extends GameObject implements Tickable, Renderable, Saveable
      super(x,y,i);
      }*/
     private Player() {
-        super(new Position(0,0));
+        super(new Position(0, 0));
     }
 
     public FaceState getFace() {
@@ -219,16 +218,14 @@ public class Player extends GameObject implements Tickable, Renderable, Saveable
 
         GameObject g = objMan.getObjectInNextPosition(getScaledPosition());
         if (g != null && g instanceof Teleport) {
-            ((Interactable)g).interact();
+            ((Interactable) g).interact();
             setVelX(0);
             setVelY(0);
-        } 
-        else {
+        } else {
             g = objMan.getObjectInNextPosition(face.nextStep());
             if (g != null && g instanceof Coin) {
                 ((Interactable) g).interact();
-            }
-            else if (g != null && !(g instanceof Teleport)) {
+            } else if (g != null && !(g instanceof Teleport)) {
                 nextMove = false;
             }
         }
@@ -238,7 +235,6 @@ public class Player extends GameObject implements Tickable, Renderable, Saveable
      *
      * @param g
      */
-    @Override
     public void render(Graphics g) {
         if (velX > 0) {
             rightWalk.drawAnimation(g, p.getX(), p.getY(), width, height);
@@ -291,18 +287,18 @@ public class Player extends GameObject implements Tickable, Renderable, Saveable
         String name = (String) list.get(2);
         initialize(skin, name, p);
     }
-    
-    public String getName(){
+
+    public String getName() {
         return nameOfPlayer;
     }
-    
-    public void setName(String name){
-        this.nameOfPlayer=name;
+
+    public void setName(String name) {
+        this.nameOfPlayer = name;
     }
 
     @Override
     public String getIndex() {
         return "Player";
     }
-    
+
 }

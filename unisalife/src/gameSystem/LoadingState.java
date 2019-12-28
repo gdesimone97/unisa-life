@@ -16,18 +16,18 @@ import javax.imageio.ImageIO;
  *
  * @author simon
  */
-public class LoadingState extends GameState{
-    
+public class LoadingState extends GameState {
+
     private static LoadingState instance;
     private BufferedImage img;
-    
+
     public static LoadingState getInstance() throws InitException {
         if (instance == null) {
             instance = new LoadingState();
         }
         return instance;
     }
-    
+
     private LoadingState() throws InitException {
         try {
             img = ImageIO.read(getClass().getResource("/Sprites/loadingwindow.png"));
@@ -35,14 +35,14 @@ public class LoadingState extends GameState{
             throw new InitException("Can't find Loading image");
         }
     }
-    
+
     @Override
     public void init() {
     }
 
     @Override
     public void tick() {
-        
+
     }
 
     @Override
@@ -59,5 +59,5 @@ public class LoadingState extends GameState{
     public void handleInput(KeyCommand cmd) {
         cmd.visitLoadingState(instance);
     }
-    
+
 }

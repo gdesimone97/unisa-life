@@ -8,7 +8,6 @@ package gameSystem;
 import game.GameObjects.Camera;
 import game.GameObjects.GameObject;
 import game.GameObjects.Player;
-import game.Interfaces.Renderable;
 import gameSystem.keySettings.interfaces.KeyCommand;
 import gameSystem.map.MapManager;
 import java.awt.Color;
@@ -21,12 +20,12 @@ import java.awt.Graphics2D;
 public class PlayState extends GameState {
 
     private static PlayState instance;
-    
+
 //    private MapManager mapManager;
     private Player player;
     private GameManager gameManager;
     private Camera camera;
-    private Color color = new Color(170,226,103);
+    private Color color = new Color(170, 226, 103);
     private int height;
     private int width;
 
@@ -36,7 +35,7 @@ public class PlayState extends GameState {
         }
         return instance;
     }
-    
+
     private PlayState() {
         init();
     }
@@ -66,11 +65,11 @@ public class PlayState extends GameState {
         g.setColor(color);
         g.fillRect(0, 0, width, height);
         g.translate(camera.getX(), camera.getY());
-        
+
         //render the player and the map
-        MapManager.getInstance().render(g); 
+        MapManager.getInstance().render(g);
         player.render(g);
-        
+
         g.translate(-camera.getX(), -camera.getY());
     }
 

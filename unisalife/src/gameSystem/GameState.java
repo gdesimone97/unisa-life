@@ -13,7 +13,7 @@ import java.awt.Graphics2D;
  * @author 1997g
  */
 public abstract class GameState {
-   
+
     public GameState() {
     }
 
