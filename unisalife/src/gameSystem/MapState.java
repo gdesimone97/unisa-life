@@ -25,6 +25,13 @@ public class MapState extends GameState{
     private static MapState instance;
     private BufferedImage img;
     
+    private int xPlayer;
+    private int yPlayer;
+    private int heightMap;
+    private int widthMap;
+    private int xPlayerInMap;
+    private int yPlayerInMap;
+    
     public static MapState getInstance() throws Initializable.InitException {
         if (instance == null) {
             instance = new MapState();
@@ -32,19 +39,18 @@ public class MapState extends GameState{
         return instance;
     }
     
-    private MapState() throws Initializable.InitException {
-        try {
-            img = ImageIO.read(getClass().getResource("/Sprites/Map.jpg"));
-        } catch (IOException ex) {
-            throw new Initializable.InitException("Can't find Map image");
-        }
+    private MapState() {
     }
     
     
     
     @Override
-    public void init() {
-        
+    public void init() throws Initializable.InitException {
+        try {
+            img = ImageIO.read(getClass().getResource("/Sprites/Map.jpg"));
+        } catch (IOException ex) {
+            throw new Initializable.InitException("Can't find Map image");
+        }
     }
 
     @Override
@@ -58,12 +64,12 @@ public class MapState extends GameState{
         g.fillRect(0, 0, Game.WIDTHSCREEN, Game.HEIGHTSCREEN2);
         g.drawImage(img, Game.WIDTHSCREEN/4, Game.HEIGHTSCREEN2/4, null);
         g.setColor(Color.red);
-        int xPlayer = Player.getIstance().getPosition().getX();
-        int yPlayer = Player.getIstance().getPosition().getY();
-        int heightMap = MapManager.getInstance().getMap().getHeightMap();
-        int widthMap = MapManager.getInstance().getMap().getWidthMap();
-        int xPlayerInMap = (int)Math.ceil(xPlayer*img.getWidth()/widthMap)+Game.WIDTHSCREEN/4;
-        int yPlayerInMap = (int)Math.ceil(yPlayer*img.getHeight()/heightMap)+Game.HEIGHTSCREEN2/4;
+        xPlayer = Player.getIstance().getPosition().getX();
+        yPlayer = Player.getIstance().getPosition().getY();
+        heightMap = MapManager.getInstance().getMap().getHeightMap();
+        widthMap = MapManager.getInstance().getMap().getWidthMap();
+        xPlayerInMap = (int)Math.ceil(xPlayer*img.getWidth()/widthMap)+Game.WIDTHSCREEN/4;
+        yPlayerInMap = (int)Math.ceil(yPlayer*img.getHeight()/heightMap)+Game.HEIGHTSCREEN2/4;
         g.setStroke(new BasicStroke(2));
         g.drawLine(xPlayerInMap - 4 , yPlayerInMap, xPlayerInMap + 4, yPlayerInMap);
         g.drawLine(xPlayerInMap, yPlayerInMap-4, xPlayerInMap , yPlayerInMap+4);

@@ -28,16 +28,16 @@ public class LoadingState extends GameState{
         return instance;
     }
     
-    private LoadingState() throws InitException {
+    private LoadingState() {
+    }
+    
+    @Override
+    public void init() throws InitException {
         try {
             img = ImageIO.read(getClass().getResource("/Sprites/loadingwindow.png"));
         } catch (IOException ex) {
             throw new InitException("Can't find Loading image");
         }
-    }
-    
-    @Override
-    public void init() {
     }
 
     @Override
