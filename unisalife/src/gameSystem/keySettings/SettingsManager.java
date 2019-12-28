@@ -45,12 +45,14 @@ public class SettingsManager implements Saveable {
     Map<Commands, Integer> register = new HashMap<>(8);
 
     private boolean checkInput(int code) {
-        final int A = 65;
-        final int Z = 90;
-        final int SPACE = 32;
-        final int ZERO = 48;
-        final int NINE = 57;
-        if (code >= A && code <= Z || code >= ZERO && code <= NINE || code == SPACE) {
+        final int A = KeyEvent.VK_A;
+        final int Z = KeyEvent.VK_Z;
+        final int SPACE = KeyEvent.VK_SPACE;
+        final int ZERO = KeyEvent.VK_0;
+        final int NINE = KeyEvent.VK_9;
+        final int DOWN = KeyEvent.VK_DOWN;
+        final int LEFT = KeyEvent.VK_LEFT;
+        if (code >= A && code <= Z || code >= ZERO && code <= NINE || code == SPACE || code >= LEFT || code <= DOWN) {
             return true;
         }
         return false;
