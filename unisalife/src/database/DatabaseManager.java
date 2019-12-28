@@ -15,6 +15,7 @@ import game.GameObjects.Guardian;
 import game.GameObjects.Item;
 import game.GameObjects.ObjectManager;
 import game.GameObjects.Professor;
+import game.GameObjects.Renderable;
 import game.GameResources.Map;
 import game.GameResources.TileMap;
 import game.Interfaces.Initializable;
@@ -188,7 +189,7 @@ public class DatabaseManager implements Initializable {
 
         for (TileMap tilemap : res) {
             ConcurrentHashMap<Position, GameObject> fixed = new ConcurrentHashMap<>();
-            ConcurrentHashMap<Position, GameObject> dyn = new ConcurrentHashMap<>();
+            ConcurrentHashMap<Position, Renderable> dyn = new ConcurrentHashMap<>();
             String id = String.valueOf(tilemap.getId());
 
             // this is to get Fixed Objects but not blocks

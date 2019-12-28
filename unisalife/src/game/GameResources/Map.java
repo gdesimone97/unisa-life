@@ -7,6 +7,7 @@ package game.GameResources;
 
 import game.GameObjects.Coin;
 import game.GameObjects.GameObject;
+import game.GameObjects.ImageNotLoadedException;
 import game.GameObjects.ObjectManager;
 import game.GameObjects.Player;
 import game.GameObjects.Position;
@@ -62,7 +63,7 @@ public class Map implements Runnable {
      *
      * @param g GameObject
      */
-    public void addObject(Position p, GameObject g) {
+    public void addObject(Position p, Renderable g) {
         try {
             mapObjects.addObject(p, g);
         } catch (Exception e) {
@@ -169,7 +170,7 @@ public class Map implements Runnable {
         }
     }
 
-    public void addDynamicObjects(ConcurrentHashMap<Position, GameObject> dynamic) {
+    public void addDynamicObjects(ConcurrentHashMap<Position, Renderable> dynamic) {
         mapObjects.setDynamic(dynamic);
     }
 
@@ -177,8 +178,12 @@ public class Map implements Runnable {
         return tMap.getInitialPosition();
     }
 
-    public ConcurrentHashMap<Position, GameObject> getDynamicObjects() {
+    public ConcurrentHashMap<Position, Renderable> getDynamicObjects() {
         return this.mapObjects.getDynamic();
+    }
+    
+    public void loadImages() throws ImageNotLoadedException {
+        mapObjects.loadImages();
     }
 
 }

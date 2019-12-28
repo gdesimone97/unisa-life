@@ -1,12 +1,29 @@
 subject %tolc
+subject %maths
+subject %physics
+subject %progamming
+subject %acso
+subject %antennas
+subject %electrotechnics
+subject %computernetwork
+subject %telecomunications
+subject %database
 tilemap %0%3200%3200%/Tilesets/TilesetConSfondo.png%/Maps/Mappa.map%1024%2144
 cook %cook%128%160%/Sprites/spritesignoramensa.png %0%d
 guardian %guardian%544%608%/Sprites/spritedormitorio.png %0%d
 coin %1024%2208%/Sprites/coin.png%coin %0%d
 item %1280%1728%/Sprites/calculator.png%calcolatrice %0%d
 item %448%1024%/Sprites/note.png%appunti %0%d
-quest %0%tolc%calcolatrice%appunti%coin
-professor %Foggia%608%1152%/Sprites/spriteprogrammazione.png%tolc %0%d
+quest %0%maths%calcolatrice%appunti%coin
+professor %Rhandi%640%1152%/Sprites/spritematematica.png%maths %0%d
+professor %Guida%672%1152%/Sprites/spritefisica.png%physics %0%d
+professor %Foggia%704%1152%/Sprites/spriteprogrammazione.png%programming %0%d
+professor %DellaCioppa%736%1152%/Sprites/spriteacso.png%acso %0%d
+professor %Riccio%768%1152%/Sprites/spriteantenne.png%antennas %0%d
+professor %Petrone%800%1152%/Sprites/spriteelettrotecnica.png%electrotechnics %0%d
+professor %Auletta%832%1152%/Sprites/spritereti.png%computernetwork %0%d
+professor %Marano%864%1152%/Sprites/spritetelecomunicazioni.png%telecomunications %0%d
+professor %D'acierno%896%1152%/Sprites/spritebasi.png%database %0%d
 distributor %896%864%vm1 %0%f
 distributor %928%864%vm2 %0%f
 distributor %960%864%vm3 %0%f

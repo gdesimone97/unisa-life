@@ -13,9 +13,9 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class ObjectManager {
     private ConcurrentHashMap<Position,GameObject> fixed;
-    private ConcurrentHashMap<Position,GameObject> dynamic;
+    private ConcurrentHashMap<Position,Renderable> dynamic;
 
-    public ObjectManager(ConcurrentHashMap<Position, GameObject> fixed, ConcurrentHashMap<Position, GameObject> dynamic) {
+    public ObjectManager(ConcurrentHashMap<Position, GameObject> fixed, ConcurrentHashMap<Position, Renderable> dynamic) {
         this.fixed = fixed;
         this.dynamic = dynamic;
     }
@@ -33,7 +33,7 @@ public class ObjectManager {
      
     }
     
-    public synchronized void addObject(Position p, GameObject g) throws Exception {
+    public synchronized void addObject(Position p, Renderable g) throws Exception {
         if (fixed.containsKey(p) || dynamic.containsKey(p)){
             throw new Exception();
         }
@@ -45,11 +45,17 @@ public class ObjectManager {
         return fixed;
     }
 
-    public ConcurrentHashMap<Position, GameObject> getDynamic() {
+    public ConcurrentHashMap<Position, Renderable> getDynamic() {
         return dynamic;
     }
 
-    public void setDynamic(ConcurrentHashMap<Position, GameObject> dynamic) {
+    public void setDynamic(ConcurrentHashMap<Position, Renderable> dynamic) {
         this.dynamic = dynamic;
+    }
+    
+    public void loadImages() throws ImageNotLoadedException {
+        for(Renderable r : dynamic.values()) {
+            r.loadImage();
+        }
     }
 }
