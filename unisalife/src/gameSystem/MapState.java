@@ -21,7 +21,8 @@ import javax.imageio.ImageIO;
  *
  * @author simon
  */
-public class MapState extends GameState{
+public class MapState extends GameState {
+
     private static MapState instance;
     private BufferedImage img;
     
@@ -41,9 +42,7 @@ public class MapState extends GameState{
     
     private MapState() {
     }
-    
-    
-    
+
     @Override
     public void init() throws Initializable.InitException {
         try {
@@ -55,14 +54,14 @@ public class MapState extends GameState{
 
     @Override
     public void tick() {
-        
+
     }
 
     @Override
     public void render(Graphics2D g) {
         g.setColor(Color.black);
         g.fillRect(0, 0, Game.WIDTHSCREEN, Game.HEIGHTSCREEN2);
-        g.drawImage(img, Game.WIDTHSCREEN/4, Game.HEIGHTSCREEN2/4, null);
+        g.drawImage(img, Game.WIDTHSCREEN / 4, Game.HEIGHTSCREEN2 / 4, null);
         g.setColor(Color.red);
         xPlayer = Player.getIstance().getPosition().getX();
         yPlayer = Player.getIstance().getPosition().getY();
@@ -71,14 +70,14 @@ public class MapState extends GameState{
         xPlayerInMap = (int)Math.ceil(xPlayer*img.getWidth()/widthMap)+Game.WIDTHSCREEN/4;
         yPlayerInMap = (int)Math.ceil(yPlayer*img.getHeight()/heightMap)+Game.HEIGHTSCREEN2/4;
         g.setStroke(new BasicStroke(2));
-        g.drawLine(xPlayerInMap - 4 , yPlayerInMap, xPlayerInMap + 4, yPlayerInMap);
-        g.drawLine(xPlayerInMap, yPlayerInMap-4, xPlayerInMap , yPlayerInMap+4);
+        g.drawLine(xPlayerInMap - 4, yPlayerInMap, xPlayerInMap + 4, yPlayerInMap);
+        g.drawLine(xPlayerInMap, yPlayerInMap - 4, xPlayerInMap, yPlayerInMap + 4);
     }
 
     @Override
     public void handleInput(KeyCommand cmd) {
-        
+
         cmd.visitMapState(instance);
     }
-    
+
 }

@@ -13,28 +13,29 @@ import java.awt.Graphics2D;
  * @author 1997g
  */
 public class GameStateManager implements Initializable {
+
     private GameState gs;
     private static GameStateManager instance;
-    
-    public static GameStateManager getInstance(){
+
+    public static GameStateManager getInstance() {
         if (instance == null) {
             instance = new GameStateManager();
         }
         return instance;
     }
-    
+
     public void setState(GameState state) {
         gs = state;
     }
-    
+
     public GameState getState() {
         return gs;
     }
-    
+
     public void tick() {
         gs.tick();
     }
-    
+
     public void render(Graphics2D g) {
         gs.render(g);
     }

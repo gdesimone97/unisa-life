@@ -14,12 +14,13 @@ import language.Information;
  * @author 1997g
  */
 public class Cook extends Person implements Information {
+
     private String nome;
 
-    private Cook(){
+    private Cook() {
         super();
     }
-    
+
     public Cook(String nome, Position p, String path) {
         super(p, path);
         this.nome = nome;
@@ -40,5 +41,4 @@ public class Cook extends Person implements Information {
     public String getIndex() {
         return this.nome;
     }
-    
 }

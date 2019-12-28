@@ -6,7 +6,6 @@
 package game.GameObjects;
 
 import game.Interfaces.Interactable;
-import game.Interfaces.Renderable;
 import interaction.ItemInteractionManager;
 import language.Information;
 import java.awt.Graphics;
@@ -15,37 +14,25 @@ import java.time.LocalDateTime;
 import java.io.Serializable;
 import java.time.temporal.ChronoUnit;
 import java.util.Objects;
-import javax.imageio.ImageIO;
 import org.dizitart.no2.objects.Id;
 
 /**
  *
  * @author simon
  */
-public class Item extends GameObject implements Renderable, Interactable, Serializable, Comparable<Item>, Information {
+public class Item extends Renderable implements Interactable, Serializable, Comparable<Item>, Information {
 
     @Id
     private String info;
-    transient private BufferedImage facingDownImage;
     private LocalDateTime taken;
-    private String path;
-    
+
     public Item(Position p, String path, String info) {
-        super(p);
-        this.path = path;
+        super(p, path);
         this.info = info;
-        try {
-            facingDownImage = ImageIO.read(
-                    getClass().getResourceAsStream(path)
-            );
-        } catch (Exception e) {
-            System.exit(1);
-        }
     }
 
     public Item() {
-        super(new Position(1, 1));
-        this.info = "info";
+        super();
     }
 
     @Override
@@ -72,10 +59,6 @@ public class Item extends GameObject implements Renderable, Interactable, Serial
     public String getInfo() {
         return this.info;
     }
-    
-    public String getPath(){
-        return this.path;
-    }
 
     public LocalDateTime getTaken() {
         return taken;
@@ -92,11 +75,7 @@ public class Item extends GameObject implements Renderable, Interactable, Serial
     public String toString() {
         return "Object : " + this.info + " ( taken in " + this.taken + " )";
     }
-
-    @Override
-    public void render(Graphics g) {
-        g.drawImage(facingDownImage, this.p.getX(), this.p.getY(), width, height, null);
-    }
+    
 
     @Override
     public void interact() {
@@ -111,5 +90,10 @@ public class Item extends GameObject implements Renderable, Interactable, Serial
     @Override
     public String getIndex() {
         return this.info;
+    }
+
+    @Override
+    public void render(Graphics g) {
+        g.drawImage(this.getImage(), this.p.getX(), this.p.getY(), width, height, null);
     }
 }

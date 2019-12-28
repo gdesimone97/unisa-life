@@ -16,8 +16,8 @@ import javax.imageio.ImageIO;
  *
  * @author simon
  */
-public class LoadingState extends GameState{
-    
+public class LoadingState extends GameState {
+
     private static LoadingState instance;
     private BufferedImage img;
     
@@ -42,7 +42,7 @@ public class LoadingState extends GameState{
 
     @Override
     public void tick() {
-        
+
     }
 
     @Override
@@ -59,5 +59,5 @@ public class LoadingState extends GameState{
     public void handleInput(KeyCommand cmd) {
         cmd.visitLoadingState(instance);
     }
-    
+
 }
