@@ -146,6 +146,7 @@ public class GameFrame extends javax.swing.JFrame {
         SwingUtilities.invokeLater(() -> HintDialog.setLocation(instance.getLocation().x + 200, instance.getLocation().y + 275));
         SwingUtilities.invokeLater(() -> ConvDialog.setLocation(instance.getLocation().x + 112, instance.getLocation().y + 450));
         SwingUtilities.invokeLater(() -> QuestDialog.setLocation(instance.getLocation().x + 90, instance.getLocation().y + 125));
+        SwingUtilities.invokeLater(() -> InventoryDialog.setLocation(instance.getLocation().x + 50, instance.getLocation().y + 75));
     }
 
     protected void settingLanguage(String s) throws Exception {
@@ -2271,7 +2272,7 @@ public class GameFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_MapFieldKeyPressed
 
     private void InventoryButtonFrameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InventoryButtonFrameActionPerformed
-        // TODO add your handling code here:
+        SwingUtilities.invokeLater(() -> InventoryDialog.setVisible(true));
     }//GEN-LAST:event_InventoryButtonFrameActionPerformed
 
     private void InteractFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InteractFieldActionPerformed

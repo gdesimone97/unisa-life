@@ -118,7 +118,6 @@ public class GameManager {
         // init all managers, at the end starts the playState
         new Thread(() -> {
             try {
-
                 MapManager.getInstance().init();
                 Player.getIstance().initialize(skin, Name, MapManager.getInstance().getMap().getInitialPosition());
                 Booklet.getInstance();
