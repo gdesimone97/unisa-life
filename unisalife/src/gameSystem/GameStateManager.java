@@ -42,6 +42,10 @@ public class GameStateManager implements Initializable {
 
     @Override
     public void init() throws InitException {
+        LoadingState.getInstance().init();
+        MapState.getInstance().init();
+        PlayState.getInstance().init();
+        PauseState.getInstance().init();
         gs = LoadingState.getInstance();
     }
 }

@@ -5,6 +5,7 @@
  */
 package gameSystem;
 
+import game.Interfaces.Initializable;
 import gameSystem.keySettings.interfaces.KeyCommand;
 import java.awt.Graphics2D;
 
@@ -13,11 +14,11 @@ import java.awt.Graphics2D;
  * @author 1997g
  */
 public abstract class GameState {
-
+    
     public GameState() {
     }
 
-    public abstract void init();
+    public abstract void init() throws Initializable.InitException;
 
     public abstract void tick();
 

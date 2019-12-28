@@ -101,9 +101,11 @@ public class GameManager {
             GameStateManager.getInstance().init();
         } catch (InitException ex) {
             JOptionPane.showMessageDialog(game, "System Error: " + ex.toString());
+            ex.printStackTrace();
             System.exit(1);
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(game, "Undefined Error. Contact support\n" + ex.toString());
+            ex.printStackTrace();
             System.exit(1);
         }
     }
@@ -132,9 +134,6 @@ public class GameManager {
                 StatusManager.getInstance().init();
 
                 GameStateManager.getInstance().setState(PlayState.getInstance());
-                synchronized (this) {
-                    notify();
-                }
             } catch (InitException ex) {
                 JOptionPane.showMessageDialog(game, "System Error: " + ex.toString());
                 ex.printStackTrace();

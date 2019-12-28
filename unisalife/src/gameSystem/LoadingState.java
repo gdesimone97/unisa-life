@@ -20,24 +20,24 @@ public class LoadingState extends GameState {
 
     private static LoadingState instance;
     private BufferedImage img;
-
-    public static LoadingState getInstance() throws InitException {
+    
+    public static LoadingState getInstance() {
         if (instance == null) {
             instance = new LoadingState();
         }
         return instance;
     }
-
-    private LoadingState() throws InitException {
+    
+    private LoadingState() {
+    }
+    
+    @Override
+    public void init() throws InitException {
         try {
             img = ImageIO.read(getClass().getResource("/Sprites/loadingwindow.png"));
         } catch (IOException ex) {
             throw new InitException("Can't find Loading image");
         }
-    }
-
-    @Override
-    public void init() {
     }
 
     @Override
