@@ -16,7 +16,7 @@ import saving.exceptions.LoadingException;
  *
  * @author christian
  */
-public class GuardianWrapper implements Saveable, Storable {
+public class GuardianWrapper implements Serializable, Storable {
 
     @Id
     private String nome;
@@ -36,16 +36,6 @@ public class GuardianWrapper implements Saveable, Storable {
         this.nome = g.getInfo();
         this.path = g.getPath();
         this.position = g.getPosition();
-    }
-
-    @Override
-    public Serializable save() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void load(Serializable obj) throws LoadingException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override

@@ -15,7 +15,7 @@ import saving.exceptions.LoadingException;
  *
  * @author christian
  */
-public class ItemWrapper implements Storable, Saveable {
+public class ItemWrapper implements Storable, Serializable {
 
     private String info, p;
     private Position pos;
@@ -39,16 +39,6 @@ public class ItemWrapper implements Storable, Saveable {
     public String getIndex() {
 
         return this.info;
-    }
-
-    @Override
-    public Serializable save() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void load(Serializable obj) throws LoadingException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public Item buildItem() {

@@ -22,7 +22,7 @@ import saving.exceptions.LoadingException;
 @Indices({
     @Index(value = "subject.subject", type = IndexType.Unique)
 })
-public class ProfessorWrapper implements Saveable, Storable {
+public class ProfessorWrapper implements Serializable, Storable {
 
     private Position p;
     private String path;
@@ -44,16 +44,6 @@ public class ProfessorWrapper implements Saveable, Storable {
     }
 
     private ProfessorWrapper() {
-    }
-
-    @Override
-    public Serializable save() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void load(Serializable obj) throws LoadingException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override

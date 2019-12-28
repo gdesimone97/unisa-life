@@ -8,14 +8,13 @@ package database;
 import game.GameObjects.Coin;
 import game.GameObjects.Position;
 import java.io.Serializable;
-import saving.Saveable;
 import saving.exceptions.LoadingException;
 
 /**
  *
  * @author christian
  */
-public class CoinWrapper implements Saveable, Storable {
+public class CoinWrapper implements Serializable, Storable {
 
     private String path, info;
     private Position p;
@@ -35,15 +34,6 @@ public class CoinWrapper implements Saveable, Storable {
         this.path = c.getPath();
     }
 
-    @Override
-    public Serializable save() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void load(Serializable obj) throws LoadingException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
     @Override
     public String getIndex() {

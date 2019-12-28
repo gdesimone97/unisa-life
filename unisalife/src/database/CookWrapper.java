@@ -8,14 +8,13 @@ package database;
 import game.GameObjects.Cook;
 import game.GameObjects.Position;
 import java.io.Serializable;
-import saving.Saveable;
 import saving.exceptions.LoadingException;
 
 /**
  *
  * @author christian
  */
-public class CookWrapper implements Saveable, Storable {
+public class CookWrapper implements Serializable, Storable {
 
     private String nome, path;
     private Position p;
@@ -33,16 +32,6 @@ public class CookWrapper implements Saveable, Storable {
         this.nome = c.getInfo();
         this.p = c.getPosition();
         this.path = c.getPath();
-    }
-
-    @Override
-    public Serializable save() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void load(Serializable obj) throws LoadingException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
