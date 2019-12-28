@@ -65,7 +65,6 @@ public class GuiManager {
      * This function sets the dimension, position of a Game object, then add it
      * to a JFrame
      *
-     * @param game
      */
     public void startGame() {
         GameManager gm = GameManager.getInstance();
@@ -86,11 +85,12 @@ public class GuiManager {
 
     /**
      * When called the Conversation Area appears  on the screen
+     * @param name is the name of the person who is talking
      * @param s is the text in the text area
      * 
      */
-    public void showDialog(String s) {
-        dialogmanager.showDialog(s);
+    public void showDialog(String name,String s) {
+        dialogmanager.showDialog(name,s);
     }
     /**
      * When called the Conversation Area disappears

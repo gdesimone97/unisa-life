@@ -40,10 +40,12 @@ public class DialogManager {
     }
     /**
      * show a little conversation 
+     *  @param name is the name of the person who is talking
      * @param conversation
-     * s
+     
      */
-    public void showDialog(String conversation){
+    public void showDialog(String name, String conversation){
+        SwingUtilities.invokeLater(() -> gameframe.ConvDialog.setTitle(name));
         SwingUtilities.invokeLater(() -> gameframe.ConvDialog.setAlwaysOnTop(true));
         SwingUtilities.invokeLater(() -> gameframe.ConversationTextArea.setText(conversation));
         SwingUtilities.invokeLater(() -> gameframe.ConversationScrollPane.setVisible(true));

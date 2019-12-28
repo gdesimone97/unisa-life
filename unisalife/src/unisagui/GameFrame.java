@@ -856,7 +856,6 @@ public class GameFrame extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        CareerDialog.setMaximumSize(new java.awt.Dimension(500, 500));
         CareerDialog.setMinimumSize(new java.awt.Dimension(500, 500));
 
         CareerPanel.setMaximumSize(new java.awt.Dimension(500, 500));
@@ -1406,7 +1405,7 @@ public class GameFrame extends javax.swing.JFrame {
         ConversationTextArea.setLineWrap(true);
         ConversationTextArea.setRows(5);
         ConversationTextArea.setWrapStyleWord(true);
-        ConversationTextArea.setBorder(null);
+        ConversationTextArea.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 13))); // NOI18N
         ConversationTextArea.setMaximumSize(new java.awt.Dimension(375, 100));
         ConversationTextArea.setMinimumSize(new java.awt.Dimension(375, 100));
         ConversationScrollPane.setViewportView(ConversationTextArea);
@@ -1822,7 +1821,7 @@ public class GameFrame extends javax.swing.JFrame {
         RightBorderLayout.setHorizontalGroup(
             RightBorderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RightBorderLayout.createSequentialGroup()
-                .addGap(0, 26, Short.MAX_VALUE)
+                .addGap(0, 25, Short.MAX_VALUE)
                 .addComponent(GameCloseButton))
         );
         RightBorderLayout.setVerticalGroup(
