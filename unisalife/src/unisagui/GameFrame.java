@@ -45,7 +45,7 @@ public class GameFrame extends javax.swing.JFrame {
     private int pause;
     private int map;
     protected DefaultTableModel model = new DefaultTableModel();
-    private Booklet booklet;
+    private Booklet booklet=Booklet.getInstance();
     private HashSet<Subject> career;
     protected DefaultTableModel careerModel;
     
@@ -88,7 +88,7 @@ public class GameFrame extends javax.swing.JFrame {
         int row=0;
         int column=0;
         careerModel= (DefaultTableModel) ExamTable.getModel();
-        career= booklet.getInstance().iteratorBooklet();
+        career= booklet.iteratorBooklet();
         for( Subject sub: career){
             column=0;
             careerModel.setValueAt(sub.getInfo(), row, column);
@@ -165,6 +165,7 @@ public class GameFrame extends javax.swing.JFrame {
         SwingUtilities.invokeLater(() -> HintDialog.setAlwaysOnTop(true));
         SwingUtilities.invokeLater(() -> QuestDialog.setUndecorated(true));
         SwingUtilities.invokeLater(() -> KeyboardSettingsDialog.setUndecorated(true));
+        SwingUtilities.invokeLater(() -> CareerDialog.setUndecorated(true));
     }
 
     private void settingLocations(GameFrame instance) {
@@ -236,6 +237,7 @@ public class GameFrame extends javax.swing.JFrame {
         CareerScrollPane = new javax.swing.JScrollPane();
         ExamTable = new javax.swing.JTable();
         CareerLabel = new javax.swing.JLabel();
+        CareerCloseButton = new javax.swing.JButton();
         AvatarChooserDialog = new javax.swing.JDialog((Dialog)null);
         AvatarChooserPanel = new javax.swing.JPanel();
         AvatarName = new javax.swing.JTextField();
@@ -298,6 +300,7 @@ public class GameFrame extends javax.swing.JFrame {
         SettingsButtonFrame = new javax.swing.JButton();
         QuestButtonFrame = new javax.swing.JButton();
         InventoryButtonFrame = new javax.swing.JButton();
+        CareerButtonFrame1 = new javax.swing.JButton();
         RightBorder = new javax.swing.JPanel();
         GameCloseButton = new javax.swing.JButton();
         LeftBorder = new javax.swing.JPanel();
@@ -880,6 +883,7 @@ public class GameFrame extends javax.swing.JFrame {
 
         CareerDialog.setMinimumSize(new java.awt.Dimension(500, 500));
 
+        CareerPanel.setBackground(new java.awt.Color(93, 150, 199));
         CareerPanel.setMaximumSize(new java.awt.Dimension(500, 500));
         CareerPanel.setMinimumSize(new java.awt.Dimension(500, 500));
         CareerPanel.setPreferredSize(new java.awt.Dimension(500, 500));
@@ -933,6 +937,15 @@ public class GameFrame extends javax.swing.JFrame {
 
         CareerLabel.setText("CAREER");
 
+        CareerCloseButton.setBackground(new java.awt.Color(93, 150, 199));
+        CareerCloseButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/exitbutton24.png"))); // NOI18N
+        CareerCloseButton.setBorder(null);
+        CareerCloseButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CareerCloseButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout CareerPanelLayout = new javax.swing.GroupLayout(CareerPanel);
         CareerPanel.setLayout(CareerPanelLayout);
         CareerPanelLayout.setHorizontalGroup(
@@ -944,13 +957,17 @@ public class GameFrame extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CareerPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(CareerLabel)
-                .addGap(226, 226, 226))
+                .addGap(190, 190, 190)
+                .addComponent(CareerCloseButton)
+                .addContainerGap())
         );
         CareerPanelLayout.setVerticalGroup(
             CareerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CareerPanelLayout.createSequentialGroup()
-                .addContainerGap(12, Short.MAX_VALUE)
-                .addComponent(CareerLabel)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(CareerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(CareerLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(CareerCloseButton, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(18, 18, 18)
                 .addComponent(CareerScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26))
@@ -1767,6 +1784,15 @@ public class GameFrame extends javax.swing.JFrame {
             }
         });
 
+        CareerButtonFrame1.setBackground(new java.awt.Color(93, 150, 199));
+        CareerButtonFrame1.setToolTipText("inventory");
+        CareerButtonFrame1.setBorder(null);
+        CareerButtonFrame1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CareerButtonFrame1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout HudPanelLayout = new javax.swing.GroupLayout(HudPanel);
         HudPanel.setLayout(HudPanelLayout);
         HudPanelLayout.setHorizontalGroup(
@@ -1787,6 +1813,8 @@ public class GameFrame extends javax.swing.JFrame {
                             .addComponent(QuestButtonFrame)
                             .addGap(18, 18, 18)
                             .addComponent(InventoryButtonFrame)
+                            .addGap(18, 18, 18)
+                            .addComponent(CareerButtonFrame1)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(HungerProgressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(26, 26, 26)
@@ -1822,8 +1850,9 @@ public class GameFrame extends javax.swing.JFrame {
                     .addComponent(HungerIcon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(SettingsButtonFrame)
                     .addComponent(QuestButtonFrame)
-                    .addComponent(InventoryButtonFrame))
-                .addGap(32, 32, 32))
+                    .addComponent(InventoryButtonFrame)
+                    .addComponent(CareerButtonFrame1))
+                .addGap(29, 29, 29))
         );
 
         RightBorder.setBackground(new java.awt.Color(93, 150, 199));
@@ -1843,7 +1872,7 @@ public class GameFrame extends javax.swing.JFrame {
         RightBorderLayout.setHorizontalGroup(
             RightBorderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RightBorderLayout.createSequentialGroup()
-                .addGap(0, 25, Short.MAX_VALUE)
+                .addGap(0, 26, Short.MAX_VALUE)
                 .addComponent(GameCloseButton))
         );
         RightBorderLayout.setVerticalGroup(
@@ -2306,6 +2335,14 @@ public class GameFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_InteractFieldActionPerformed
 
+    private void CareerCloseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CareerCloseButtonActionPerformed
+        SwingUtilities.invokeLater(() -> CareerDialog.setVisible(false));
+    }//GEN-LAST:event_CareerCloseButtonActionPerformed
+
+    private void CareerButtonFrame1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CareerButtonFrame1ActionPerformed
+        SwingUtilities.invokeLater(() -> CareerDialog.setVisible(true));
+    }//GEN-LAST:event_CareerButtonFrame1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -2350,6 +2387,8 @@ public class GameFrame extends javax.swing.JFrame {
     protected javax.swing.JTextField AvatarName;
     protected javax.swing.JLabel AvatarNameLabel;
     protected javax.swing.JButton AvatarOkButton;
+    protected javax.swing.JButton CareerButtonFrame1;
+    protected javax.swing.JButton CareerCloseButton;
     protected javax.swing.JDialog CareerDialog;
     protected javax.swing.JLabel CareerLabel;
     protected javax.swing.JPanel CareerPanel;
