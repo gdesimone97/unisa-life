@@ -18,6 +18,8 @@ import java.awt.Graphics2D;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import saving.Saveable;
 import saving.exceptions.LoadingException;
 
@@ -81,13 +83,19 @@ public class MapManager implements Initializable, Saveable {
             throw new InitException("Objects not found in Database");
         } catch (ClassNotFoundException ex) {
             throw new InitException("Class not found during Database query");
+        } catch (ImageNotLoadedException ex) {
+            throw new InitException("Image not loaded for one dynamic object");
         }
     }
 
-    private void addDynamicObjects() throws FileNotSetException, ObjectNotFoundException {
-        ConcurrentHashMap<Position, GameObject>[] objectsFromLevel = DatabaseManager.getDatabaseManager().getObjectsFromLevel(0);
+    private void addDynamicObjects() throws FileNotSetException, ObjectNotFoundException, ImageNotLoadedException {
+        ConcurrentHashMap<Position, Renderable>[] objectsFromLevel = DatabaseManager.getDatabaseManager().getObjectsFromLevel(0);
         for (int i = 0; i < objectsFromLevel.length; i++) {
             maps[i].addDynamicObjects(objectsFromLevel[i]);
+        }
+        
+        for (int i = 0; i < maps.length; i++) {
+            maps[i].loadImages();
         }
     }
 
@@ -101,9 +109,9 @@ public class MapManager implements Initializable, Saveable {
 
     @Override
     public Serializable save() {
-        ArrayList<ConcurrentHashMap<Position, GameObject>> list = new ArrayList<>();
+        ArrayList<ConcurrentHashMap<Position, Renderable>> list = new ArrayList<>();
         for (Map map : maps) {
-            ConcurrentHashMap<Position, GameObject> objects = map.getDynamicObjects();
+            ConcurrentHashMap<Position, Renderable> objects = map.getDynamicObjects();
             list.add(objects);
         }
         return list;
@@ -111,7 +119,7 @@ public class MapManager implements Initializable, Saveable {
 
     @Override
     public void load(Serializable obj) throws LoadingException {
-        ArrayList<ConcurrentHashMap<Position, GameObject>> list = (ArrayList<ConcurrentHashMap<Position, GameObject>>) obj;
+        ArrayList<ConcurrentHashMap<Position, Renderable>> list = (ArrayList<ConcurrentHashMap<Position, Renderable>>) obj;
         for (int i = 0; i < list.size(); i++) {
             ConcurrentHashMap<Position,GameObject> mapObject = list.get(i);
             mapObject.forEachValue(5, value ->{

@@ -19,7 +19,7 @@ import javax.imageio.ImageIO;
 public abstract class Renderable extends GameObject {
 
     private String path;
-    private BufferedImage image;
+    private transient BufferedImage image;
 
     public Renderable(Position p, String path) {
         super(p);
