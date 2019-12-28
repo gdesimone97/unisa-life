@@ -1399,7 +1399,7 @@ public class GameFrame extends javax.swing.JFrame {
         ConversationScrollPane.setPreferredSize(new java.awt.Dimension(375, 100));
 
         ConversationTextArea.setEditable(false);
-        ConversationTextArea.setBackground(new java.awt.Color(209, 250, 255));
+        ConversationTextArea.setBackground(new java.awt.Color(255, 255, 204));
         ConversationTextArea.setColumns(20);
         ConversationTextArea.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         ConversationTextArea.setLineWrap(true);
@@ -1451,7 +1451,7 @@ public class GameFrame extends javax.swing.JFrame {
         HintScrollPane.setPreferredSize(new java.awt.Dimension(200, 50));
 
         HintTextArea.setEditable(false);
-        HintTextArea.setBackground(new java.awt.Color(209, 250, 255));
+        HintTextArea.setBackground(new java.awt.Color(255, 255, 204));
         HintTextArea.setColumns(20);
         HintTextArea.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         HintTextArea.setLineWrap(true);
