@@ -180,6 +180,7 @@ public class GameFrame extends javax.swing.JFrame {
         SwingUtilities.invokeLater(() -> ConvDialog.setLocation(instance.getLocation().x + 112, instance.getLocation().y + 450));
         SwingUtilities.invokeLater(() -> QuestDialog.setLocation(instance.getLocation().x + 90, instance.getLocation().y + 125));
         SwingUtilities.invokeLater(() -> InventoryDialog.setLocation(instance.getLocation().x + 50, instance.getLocation().y + 75));
+        SwingUtilities.invokeLater(() -> CareerDialog.setLocation(instance.getLocation().x + 50, instance.getLocation().y + 75));
     }
 
     protected void settingLanguage(String s) throws Exception {
