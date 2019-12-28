@@ -45,7 +45,7 @@ public class GameFrame extends javax.swing.JFrame {
     private int pause;
     private int map;
     protected DefaultTableModel model = new DefaultTableModel();
-    private Booklet booklet=Booklet.getInstance();
+    private Booklet booklet = Booklet.getInstance();
     private HashSet<Subject> career;
     protected DefaultTableModel careerModel;
     
@@ -237,7 +237,7 @@ public class GameFrame extends javax.swing.JFrame {
         CareerScrollPane = new javax.swing.JScrollPane();
         ExamTable = new javax.swing.JTable();
         CareerLabel = new javax.swing.JLabel();
-        CareerCloseButton = new javax.swing.JButton();
+        ExitCareerDialog = new javax.swing.JLabel();
         AvatarChooserDialog = new javax.swing.JDialog((Dialog)null);
         AvatarChooserPanel = new javax.swing.JPanel();
         AvatarName = new javax.swing.JTextField();
@@ -287,6 +287,7 @@ public class GameFrame extends javax.swing.JFrame {
         InventoryLabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         InventoryTable = new javax.swing.JTable();
+        ExitInventoryDialog = new javax.swing.JLabel();
         HudPanel = new javax.swing.JPanel();
         LevelLabel = new javax.swing.JLabel();
         MoneyIcon = new javax.swing.JLabel();
@@ -882,13 +883,20 @@ public class GameFrame extends javax.swing.JFrame {
         );
 
         CareerDialog.setMinimumSize(new java.awt.Dimension(500, 500));
+        CareerDialog.addWindowFocusListener(new java.awt.event.WindowFocusListener() {
+            public void windowGainedFocus(java.awt.event.WindowEvent evt) {
+            }
+            public void windowLostFocus(java.awt.event.WindowEvent evt) {
+                CareerDialogWindowLostFocus(evt);
+            }
+        });
 
         CareerPanel.setBackground(new java.awt.Color(93, 150, 199));
         CareerPanel.setMaximumSize(new java.awt.Dimension(500, 500));
         CareerPanel.setMinimumSize(new java.awt.Dimension(500, 500));
         CareerPanel.setPreferredSize(new java.awt.Dimension(500, 500));
 
-        ExamTable.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        ExamTable.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         ExamTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
@@ -935,14 +943,18 @@ public class GameFrame extends javax.swing.JFrame {
             ExamTable.getColumnModel().getColumn(2).setPreferredWidth(100);
         }
 
-        CareerLabel.setText("CAREER");
+        CareerLabel.setForeground(new java.awt.Color(204, 255, 255));
+        CareerLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/BOOKLET.png"))); // NOI18N
+        CareerLabel.setText("X");
+        CareerLabel.setMaximumSize(new java.awt.Dimension(100, 50));
+        CareerLabel.setMinimumSize(new java.awt.Dimension(100, 50));
+        CareerLabel.setPreferredSize(new java.awt.Dimension(100, 50));
 
-        CareerCloseButton.setBackground(new java.awt.Color(93, 150, 199));
-        CareerCloseButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/exitbutton24.png"))); // NOI18N
-        CareerCloseButton.setBorder(null);
-        CareerCloseButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CareerCloseButtonActionPerformed(evt);
+        ExitCareerDialog.setForeground(new java.awt.Color(204, 255, 255));
+        ExitCareerDialog.setText("X");
+        ExitCareerDialog.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ExitCareerDialogMouseClicked(evt);
             }
         });
 
@@ -956,19 +968,17 @@ public class GameFrame extends javax.swing.JFrame {
                 .addGap(25, 25, 25))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CareerPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(CareerLabel)
-                .addGap(190, 190, 190)
-                .addComponent(CareerCloseButton)
-                .addContainerGap())
+                .addComponent(CareerLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(182, 182, 182)
+                .addComponent(ExitCareerDialog, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         CareerPanelLayout.setVerticalGroup(
             CareerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CareerPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(0, 0, 0)
                 .addGroup(CareerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(CareerLabel, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(CareerCloseButton, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(18, 18, 18)
+                    .addComponent(CareerLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ExitCareerDialog))
                 .addComponent(CareerScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26))
         );
@@ -1409,7 +1419,9 @@ public class GameFrame extends javax.swing.JFrame {
 
         ConvDialog.setAlwaysOnTop(true);
         ConvDialog.setBackground(new java.awt.Color(0, 0, 0));
+        ConvDialog.setMaximumSize(new java.awt.Dimension(375, 100));
         ConvDialog.setMinimumSize(new java.awt.Dimension(375, 100));
+        ConvDialog.setPreferredSize(new java.awt.Dimension(375, 100));
         ConvDialog.addWindowFocusListener(new java.awt.event.WindowFocusListener() {
             public void windowGainedFocus(java.awt.event.WindowEvent evt) {
             }
@@ -1440,7 +1452,7 @@ public class GameFrame extends javax.swing.JFrame {
         ConversationTextArea.setEditable(false);
         ConversationTextArea.setBackground(new java.awt.Color(255, 255, 204));
         ConversationTextArea.setColumns(20);
-        ConversationTextArea.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        ConversationTextArea.setFont(new java.awt.Font("Arial", 0, 17)); // NOI18N
         ConversationTextArea.setLineWrap(true);
         ConversationTextArea.setRows(5);
         ConversationTextArea.setWrapStyleWord(true);
@@ -1521,7 +1533,7 @@ public class GameFrame extends javax.swing.JFrame {
         );
 
         QuestDialog.setMinimumSize(new java.awt.Dimension(420, 400));
-        QuestDialog.setModal(true);
+        QuestDialog.setModalityType(java.awt.Dialog.ModalityType.MODELESS);
         QuestDialog.setResizable(false);
         QuestDialog.addWindowFocusListener(new java.awt.event.WindowFocusListener() {
             public void windowGainedFocus(java.awt.event.WindowEvent evt) {
@@ -1617,9 +1629,16 @@ public class GameFrame extends javax.swing.JFrame {
             .addComponent(QuestPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
+        InventoryDialog.setMaximumSize(new java.awt.Dimension(500, 500));
         InventoryDialog.setMinimumSize(new java.awt.Dimension(500, 500));
-        InventoryDialog.setModalityType(java.awt.Dialog.ModalityType.APPLICATION_MODAL);
         InventoryDialog.setResizable(false);
+        InventoryDialog.addWindowFocusListener(new java.awt.event.WindowFocusListener() {
+            public void windowGainedFocus(java.awt.event.WindowEvent evt) {
+            }
+            public void windowLostFocus(java.awt.event.WindowEvent evt) {
+                InventoryDialogWindowLostFocus(evt);
+            }
+        });
 
         InventoryPanel.setBackground(new java.awt.Color(93, 150, 199));
         InventoryPanel.setMaximumSize(new java.awt.Dimension(500, 500));
@@ -1628,8 +1647,11 @@ public class GameFrame extends javax.swing.JFrame {
 
         InventoryLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/INVENTORYDIALOG.png"))); // NOI18N
 
+        jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
+        jScrollPane1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
+        InventoryTable.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         InventoryTable.setModel(model);
         InventoryTable.setColumnSelectionAllowed(true);
         InventoryTable.setMaximumSize(new java.awt.Dimension(450, 450));
@@ -1638,28 +1660,40 @@ public class GameFrame extends javax.swing.JFrame {
         jScrollPane1.setViewportView(InventoryTable);
         InventoryTable.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
+        ExitInventoryDialog.setForeground(new java.awt.Color(204, 255, 255));
+        ExitInventoryDialog.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        ExitInventoryDialog.setText("X");
+        ExitInventoryDialog.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ExitInventoryDialogMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout InventoryPanelLayout = new javax.swing.GroupLayout(InventoryPanel);
         InventoryPanel.setLayout(InventoryPanelLayout);
         InventoryPanelLayout.setHorizontalGroup(
             InventoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(InventoryPanelLayout.createSequentialGroup()
-                .addGap(40, 40, 40)
                 .addGroup(InventoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, InventoryPanelLayout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(40, 40, 40))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, InventoryPanelLayout.createSequentialGroup()
-                        .addComponent(InventoryLabel)
-                        .addGap(197, 197, 197))))
+                    .addGroup(InventoryPanelLayout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(InventoryPanelLayout.createSequentialGroup()
+                        .addGap(193, 193, 193)
+                        .addComponent(InventoryLabel)))
+                .addGap(40, 40, 40))
+            .addComponent(ExitInventoryDialog, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         InventoryPanelLayout.setVerticalGroup(
             InventoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(InventoryPanelLayout.createSequentialGroup()
-                .addGap(25, 25, 25)
+                .addGap(0, 0, 0)
+                .addComponent(ExitInventoryDialog)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(InventoryLabel)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 412, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout InventoryDialogLayout = new javax.swing.GroupLayout(InventoryDialog.getContentPane());
@@ -1785,8 +1819,12 @@ public class GameFrame extends javax.swing.JFrame {
         });
 
         CareerButtonFrame1.setBackground(new java.awt.Color(93, 150, 199));
+        CareerButtonFrame1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/libretto.png"))); // NOI18N
         CareerButtonFrame1.setToolTipText("inventory");
         CareerButtonFrame1.setBorder(null);
+        CareerButtonFrame1.setMaximumSize(new java.awt.Dimension(25, 25));
+        CareerButtonFrame1.setMinimumSize(new java.awt.Dimension(25, 25));
+        CareerButtonFrame1.setPreferredSize(new java.awt.Dimension(25, 25));
         CareerButtonFrame1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CareerButtonFrame1ActionPerformed(evt);
@@ -1814,7 +1852,7 @@ public class GameFrame extends javax.swing.JFrame {
                             .addGap(18, 18, 18)
                             .addComponent(InventoryButtonFrame)
                             .addGap(18, 18, 18)
-                            .addComponent(CareerButtonFrame1)
+                            .addComponent(CareerButtonFrame1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(HungerProgressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(26, 26, 26)
@@ -1851,7 +1889,7 @@ public class GameFrame extends javax.swing.JFrame {
                     .addComponent(SettingsButtonFrame)
                     .addComponent(QuestButtonFrame)
                     .addComponent(InventoryButtonFrame)
-                    .addComponent(CareerButtonFrame1))
+                    .addComponent(CareerButtonFrame1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29))
         );
 
@@ -1872,7 +1910,7 @@ public class GameFrame extends javax.swing.JFrame {
         RightBorderLayout.setHorizontalGroup(
             RightBorderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RightBorderLayout.createSequentialGroup()
-                .addGap(0, 26, Short.MAX_VALUE)
+                .addGap(0, 25, Short.MAX_VALUE)
                 .addComponent(GameCloseButton))
         );
         RightBorderLayout.setVerticalGroup(
@@ -2335,13 +2373,25 @@ public class GameFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_InteractFieldActionPerformed
 
-    private void CareerCloseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CareerCloseButtonActionPerformed
-        SwingUtilities.invokeLater(() -> CareerDialog.setVisible(false));
-    }//GEN-LAST:event_CareerCloseButtonActionPerformed
-
     private void CareerButtonFrame1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CareerButtonFrame1ActionPerformed
         SwingUtilities.invokeLater(() -> CareerDialog.setVisible(true));
     }//GEN-LAST:event_CareerButtonFrame1ActionPerformed
+
+    private void ExitCareerDialogMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ExitCareerDialogMouseClicked
+        SwingUtilities.invokeLater(() -> CareerDialog.setVisible(false));
+    }//GEN-LAST:event_ExitCareerDialogMouseClicked
+
+    private void ExitInventoryDialogMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ExitInventoryDialogMouseClicked
+        SwingUtilities.invokeLater(() -> InventoryDialog.setVisible(false));
+    }//GEN-LAST:event_ExitInventoryDialogMouseClicked
+
+    private void InventoryDialogWindowLostFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_InventoryDialogWindowLostFocus
+        SwingUtilities.invokeLater(() -> InventoryDialog.setVisible(false));
+    }//GEN-LAST:event_InventoryDialogWindowLostFocus
+
+    private void CareerDialogWindowLostFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_CareerDialogWindowLostFocus
+        SwingUtilities.invokeLater(() -> CareerDialog.setVisible(false));
+    }//GEN-LAST:event_CareerDialogWindowLostFocus
 
     /**
      * @param args the command line arguments
@@ -2388,7 +2438,6 @@ public class GameFrame extends javax.swing.JFrame {
     protected javax.swing.JLabel AvatarNameLabel;
     protected javax.swing.JButton AvatarOkButton;
     protected javax.swing.JButton CareerButtonFrame1;
-    protected javax.swing.JButton CareerCloseButton;
     protected javax.swing.JDialog CareerDialog;
     protected javax.swing.JLabel CareerLabel;
     protected javax.swing.JPanel CareerPanel;
@@ -2406,6 +2455,8 @@ public class GameFrame extends javax.swing.JFrame {
     protected javax.swing.JTable ExamTable;
     protected javax.swing.JTextArea ExamTextArea;
     protected javax.swing.JButton ExitButton;
+    protected javax.swing.JLabel ExitCareerDialog;
+    protected javax.swing.JLabel ExitInventoryDialog;
     protected javax.swing.JLabel ExitQuestDialogLabel;
     protected javax.swing.JButton FemaleBlackButton;
     protected javax.swing.JButton FemaleWhiteButton;

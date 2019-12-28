@@ -5,7 +5,9 @@
  */
 package unisagui;
 
+import javax.swing.BorderFactory;
 import javax.swing.SwingUtilities;
+import javax.swing.border.TitledBorder;
 
 /**
  *
@@ -15,6 +17,7 @@ import javax.swing.SwingUtilities;
 public class DialogManager {
     
     private final GameFrame gameframe;
+    private TitledBorder title;
     
     protected DialogManager(){
         gameframe = GameFrame.getInstance();
@@ -45,8 +48,9 @@ public class DialogManager {
      
      */
     public void showDialog(String name, String conversation){
-        SwingUtilities.invokeLater(() -> gameframe.ConvDialog.setTitle(name));
+        title = BorderFactory.createTitledBorder(name);
         SwingUtilities.invokeLater(() -> gameframe.ConvDialog.setAlwaysOnTop(true));
+        SwingUtilities.invokeLater(() -> gameframe.ConversationTextArea.setBorder(title));
         SwingUtilities.invokeLater(() -> gameframe.ConversationTextArea.setText(conversation));
         SwingUtilities.invokeLater(() -> gameframe.ConversationScrollPane.setVisible(true));
         SwingUtilities.invokeLater(() -> gameframe.ConvDialog.setVisible(true));
@@ -54,7 +58,8 @@ public class DialogManager {
     }
     
     public void hideDialog(){
-        SwingUtilities.invokeLater(() -> gameframe.ConvDialog.setTitle(""));
+        title = BorderFactory.createTitledBorder("");
+        SwingUtilities.invokeLater(() -> gameframe.ConversationTextArea.setBorder(title));
         SwingUtilities.invokeLater(() -> gameframe.ConversationTextArea.setText(""));
         SwingUtilities.invokeLater(() -> gameframe.ConversationScrollPane.setVisible(false));
         SwingUtilities.invokeLater(() -> gameframe.ConvDialog.setVisible(false));
