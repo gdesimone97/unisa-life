@@ -27,7 +27,7 @@
 <message>10#Two numbers are in ratio 4 : 6. If the sum of the numbers is 200, find the numbers.#80 and 120#100 and 150#60 and 100#95 and 105</message>
 </Subject>
 
-<Subject info="Programming">
+<Subject info="programming">
 <message>1#Which C function allows you to display an output message?#printf#scanf#fopen#fclose</message>
 <message>1#Which C function allows you to take an input value from user?#scanf#printf#fclose#fopen</message>
 <message>1#How many bits is an Int variable represented by?#16#8#24#32</message>
@@ -50,7 +50,7 @@
 <message>4#What does parameter argv[0] represent in C main function when parameter argc is greater than 0?#The programm name#The path of .exe file in the File system#The path of libraries included in the programm#The path of NetBeans folder</message>
 </Subject>
 
-<Subject info="Reti Di Calcolatori">
+<Subject info="computernetwork">
 <message>1#What is Internet?#A network of interconnected computers#The set of navigable websites#The signal that comes to the home router#A fishing net to catch all the people</message>
 <message>1#How many layers does the ISO/OSI model provide?#7#4#10#2</message>
 <message>1#What type of multiplexing is used for ADSL lines?#FDM with bands of different amplitude#FDM with bands of same amplitude#TDM#Statistical TDM</message>
@@ -73,7 +73,7 @@
 <message>4#Which technique is used in DISTANCE VECTOR algorithms to solve (partially) the problem of addressing cycles?#Poisoned reverse#Indirect addressing#Hierarchical addressing#Addressing without classes</message>
 </Subject>
 
-<Subject info="Architecture of computers and operating systems">
+<Subject info="acso">
 <message>1#What does MAR stand for?#Memory Address Register#Minimale Age Readable#Massive Address Register#Main Address Register</message>
 <message>1#A CPU which is able to carry out a thousand milion instructions per seconds would have a clock speed of:#1GHz#10GHz#1000GHz#100MHz</message>
 <message>1#What does this instruction mean? lw $t, i($s)#$t = MEM [$s + i]:4#$t = MEM [$s + i]:2#$t = MEM [$s + i]:8#$t = MEM [$s + i]:16</message>
@@ -96,7 +96,7 @@
 <message>4#How many bits do I need to cache 32 bits? Suppose you have a 2 ^ 32 bit memory and a 2 ^ 12 bit cache.#32+21=53#32#32+20=52#32+44=76</message>
 </Subject>
 
-<Subject info="Telecomunicazioni">
+<Subject info="telecomunications">
 <message>1#A power signal has energy equals to:#infinity#0#1#a complex value</message>
 <message>1#A signal x(t) is said hermitian if:#x(t) = x*(-t)#x(t) = x(-t)#x(t) = -x*(-t)#A signal can't be hermitian</message>
 <message>1#Two events are said mutually exclusive are also indipendet.#False#True#Not enough information#None of the others</message>
@@ -117,6 +117,29 @@
 <message>4#An ergodic, stationary process has:#temporal and theoretical mean are the same#at each time sample the density function changes#there's no way to get statistical property from time measurements#None of the above</message>
 <message>4#Channel State Information and Selection Combining are used to fix problems related to:#fading#extreme noise#extreme latency#All of the others</message>
 <message>4#The LED Life Expectancy is a typical example of:#exponential model#gaussian model#uniform model#Poisson model</message>
+</Subject>
+
+<Subject info="english">
+<message>1#Fill the gap : I have always …………… play games well.#been able to#able#could#can</message>
+<message>1#Fill the gap : He has always …………… to do what he wanted.#been allowed#could#be able#granted</message>
+<message>1#Fill the gap : One cannot help but …………….. his courage.#admire#to admire#show#to show</message>
+<message>1#Fill the gap : …………… do you want a holiday?#How much#How many#How far#How</message>
+<message>1#Fill the gap :  I will have tea …………… coffee.#instead of#instead#indeeed#without</message>
+<message>2#A synonim of "speed" is :#slowness#fast#velocity#</message>
+<message>2#A synonim of "able" is :#skilled#useless#approximative#unable</message>
+<message>2#A synonim of "risk" is :#danger#saefty#safe#wisdom</message>
+<message>2#A synonim of "fire" is :#flames#waterfall#smoke#fall</message>
+<message>2#A synonim of "accuracy" is :#precision#rightful#usefulness#uncertainity</message>
+<message>3#The past tense of the verb "to play" is : #playied#played#playd#gamed</message>
+<message>3#The past tense of the verb "to eat" is : #ate#eated#eat'd#ated</message>
+<message>3#The past tense of the verb "to drink" is : #drank#drinked#drink'd#dranked</message>
+<message>3#The past tense of the verb "to study" is : #studied#studiyed#studed#studyied</message>
+<message>3#The past tense of the verb "to sing" is : #sang#singed#sung#sunged</message>
+<message>4#What's the meaning of "blow up something" ?#Make something explode#Set something to fire#To blow air into something#To mess up someting</message>
+<message>4#What's the meaning of "set something up" ?#To arrange/organize something#To install a malicious software#To caught an unfortunate event#To understand something fast</message>
+<message>4#What's the meaning of "break out" ?#To escape#To run through an obstacle#To jump over a cliff#To catch someone cheating</message>
+<message>4#What's the meaning of "count on something/someone" ?#0#f(0)#Not enough information#+inf</message>
+<message>4#What's the meaning of "fall down" ?#To fall to the ground#To climb a ladder#To overcome an obstacle#To jump over an obstacle</message>
 </Subject>
 
 
