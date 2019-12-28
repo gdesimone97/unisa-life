@@ -7,6 +7,7 @@ package interaction;
 
 import character.Status;
 import character.StatusManager;
+import game.GameObjects.Cook;
 import game.GameObjects.Player;
 import game.Interfaces.Interactable;
 import hud.change.CanteenHudBarChange;
@@ -28,6 +29,7 @@ public class CookInteractionManager implements InteractionManager {
         // get text to show
         FileTextManager tm;
         String toShow = null;
+        String nome = ((Cook) obj).getNome();
 
         try {
             tm = FileTextManager.getFileTextManager();
@@ -36,7 +38,7 @@ public class CookInteractionManager implements InteractionManager {
             if(Status.getMoney()<3) {
                 ms = new MessageInformation("NotEnoughMoneyCanteen");
                 toShow = tm.getString(ms).get(0);
-                GuiManager.getInstance().showDialog(toShow);
+                GuiManager.getInstance().showDialog(nome, toShow);
                 JukeBoxSound.getInstance().play("wrong");
             } else {
                 // show request
@@ -53,7 +55,7 @@ public class CookInteractionManager implements InteractionManager {
                 // show pop up
                 ms = new MessageInformation("SeeYouAgainName");
                 toShow = tm.getString(ms).get(0) + Player.getIstance().getName();
-                GuiManager.getInstance().showDialog(toShow);
+                GuiManager.getInstance().showDialog(nome, toShow);
 
                 // restore status bars
                 CanteenHudBarChange c = new CanteenHudBarChange();
