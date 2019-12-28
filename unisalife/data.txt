@@ -1,11 +1,9 @@
 subject %tolc
-tilemap %0%3200%3200%/Tilesets/TilesetConSfondo.png%/Maps/Mappa.map%1024%2144
+tilemap %0%3200%640%/Tilesets/TilesetConSfondo.png%/Maps/Mappa.map%32%320
 cook %cook%128%160%/Sprites/spritesignoramensa.png %0%d
 guardian %guardian%544%608%/Sprites/spritedormitorio.png %0%d
 coin %1024%2208%/Sprites/coin.png%coin %0%d
 item %1280%1728%/Sprites/calculator.png%calcolatrice %0%d
 item %448%1024%/Sprites/note.png%appunti %0%d
 quest %0%tolc%calcolatrice%appunti%coin
-professor %Foggia%640%1152%/Sprites/spriteprogrammazione.png%maths %0%d
-distributor %896%864%vm1 %0%f
-block %1760%256%0
+professor %Foggia%96%320%/Sprites/spriteprogrammazione.png%tolc %0%d
