@@ -15,17 +15,17 @@ public enum CreatorsEnum {
     item("item") {
         @Override
         public StorableCreator getFactory() {
-            return new ItemWrapperFactory();
+            return new ItemFactory();
         }
     }, professor("professor") {
         @Override
         public StorableCreator getFactory() {
-            return new ProfessorWrapperFactory();
+            return new ProfessorFactory();
         }
     }, coin("coin") {
         @Override
         public StorableCreator getFactory() {
-            return new CoinWrapperFactory();
+            return new CoinFactory();
         }
     }, subject("subject") {
         @Override
@@ -40,12 +40,12 @@ public enum CreatorsEnum {
     }, cook("cook") {
         @Override
         public StorableCreator getFactory() {
-            return new CookWrapperFactory();
+            return new CookFactory();
         }
     }, guardian("guardian") {
         @Override
         public StorableCreator getFactory() {
-            return new GuardianWrapperFactory();
+            return new GuardianFactory();
         }
     }, distributor("distributor") {
         @Override

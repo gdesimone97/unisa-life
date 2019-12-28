@@ -6,6 +6,7 @@
 package database;
 
 import database.populator.exceptions.InvalidArgumentListException;
+import game.GameObjects.Cook;
 import game.GameObjects.Position;
 import java.util.NoSuchElementException;
 import java.util.StringTokenizer;
@@ -14,9 +15,9 @@ import java.util.StringTokenizer;
  *
  * @author alfon
  */
-public class CookWrapperFactory extends StorableCreator {
+public class CookFactory extends StorableCreator {
 
-    public CookWrapperFactory() {
+    public CookFactory() {
 
     }
 
@@ -25,7 +26,7 @@ public class CookWrapperFactory extends StorableCreator {
 
         StringTokenizer st = new StringTokenizer(s, StorableCreator.DELIMETER);
         try {
-            CookWrapper cw = new CookWrapper(st.nextToken(), new Position(Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken())), st.nextToken());
+            Cook cw = new Cook(st.nextToken(), new Position(Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken())), st.nextToken());
             return cw;
 
         } catch (NoSuchElementException | NumberFormatException e) {

@@ -12,9 +12,11 @@ import game.GameObjects.Cook;
 import game.GameObjects.Position;
 import game.GameObjects.GameObject;
 import game.GameObjects.Guardian;
+import game.GameObjects.ImageNotLoadedException;
 import game.GameObjects.Item;
 import game.GameObjects.ObjectManager;
 import game.GameObjects.Professor;
+import game.GameObjects.Renderable;
 import game.GameResources.Map;
 import game.GameResources.TileMap;
 import game.Interfaces.Initializable;
@@ -97,18 +99,19 @@ public class DatabaseManager implements Initializable {
     }
 
     /**
-     * Method to obtain all the objects for a particular level of the game. This
+     * Method to obtain all the objects for a particular level of the game.This
      * includes items and professors. Moreover, cook, coins and guardian are
      * added.
      *
      * @param level
      * @return a map of HashMaps (instances)
      * @throws ObjectNotFoundException
+     * @throws game.GameObjects.ImageNotLoadedException
      */
-    public ConcurrentHashMap<Position, GameObject>[] getObjectsFromLevel(int level) throws ObjectNotFoundException {
+    public ConcurrentHashMap<Position, Renderable>[] getObjectsFromLevel(int level) throws ObjectNotFoundException, ImageNotLoadedException {
         List<TileMap> res = this.getTileMaps();
         int mapNum = res.size();
-        List<ConcurrentHashMap<Position, GameObject>> dynArrObj = new ArrayList<>();
+        List<ConcurrentHashMap<Position, Renderable>> dynArrObj = new ArrayList<>();
 
         for (int index = 0; index < mapNum; index++) {
             dynArrObj.add(new ConcurrentHashMap<>());
@@ -129,12 +132,9 @@ public class DatabaseManager implements Initializable {
                     dynArrObj.get(mapId).put(i.getScaledPosition(), i);
                 }
             }
-            try {
-                Professor p = this.findProfessor(questSubject);
-                int mapId = this.findMap(questSubject.getInfo(), DatabaseManager.DYNCOLLECTIONNAME);
-                dynArrObj.get(mapId).put(p.getScaledPosition(), p);
-            } catch (ObjectNotFoundException ex) {
-            }
+            Professor p = this.findProfessor(questSubject);
+            int mapId = this.findMap(questSubject.getInfo(), DatabaseManager.DYNCOLLECTIONNAME);
+            dynArrObj.get(mapId).put(p.getScaledPosition(), p);
         }
 
         Cook cook = this.findCook();
@@ -236,11 +236,12 @@ public class DatabaseManager implements Initializable {
      * @return an instance of a coin
      * @throws ObjectNotFoundException
      */
-    private Coin findCoin(String id) throws ObjectNotFoundException {
-        Coin c = db.getNitriteDatabase().getRepository(CoinWrapper.class).find(eq("info", id)).firstOrDefault().buildCoin();
+    private Coin findCoin(String id) throws ObjectNotFoundException, ImageNotLoadedException {
+        Coin c = db.getNitriteDatabase().getRepository(Coin.class).find(eq("info", id)).firstOrDefault();
         if (c == null) {
             throw new ObjectNotFoundException();
         }
+        c.loadImage();
         return c;
     }
 
@@ -251,17 +252,18 @@ public class DatabaseManager implements Initializable {
      * @return an instance of an item
      * @throws ObjectNotFoundException
      */
-    private Item findItem(String itemName) throws ObjectNotFoundException {
+    private Item findItem(String itemName) throws ObjectNotFoundException, ImageNotLoadedException {
         /*
         Document d = db.getNitriteDatabase().getRepository(Item.class).find(eq("info", itemName)).;
         // %448%1024%/Sprites/note.png%appunti
         Item res = new Item((Position) d.get("p"), (String) d.get("path"), (String) d.get("info"));
          */
-        Item res = db.getNitriteDatabase().getRepository(ItemWrapper.class).find(eq("info", itemName)).firstOrDefault().buildItem();
-        if (res == null) {
+        Item i = db.getNitriteDatabase().getRepository(Item.class).find(eq("info", itemName)).firstOrDefault();
+        if (i == null) {
             throw new ObjectNotFoundException();
         }
-        return res;
+        i.loadImage();
+        return i;
     }
 
     /**
@@ -271,11 +273,12 @@ public class DatabaseManager implements Initializable {
      * @return an instance of a professor
      * @throws ObjectNotFoundException
      */
-    private Professor findProfessor(Subject s) throws ObjectNotFoundException {
-        Professor prof = db.getNitriteDatabase().getRepository(ProfessorWrapper.class).find(eq("subject.subject", s.getInfo())).firstOrDefault().buildProfessor();
+    private Professor findProfessor(Subject s) throws ObjectNotFoundException, ImageNotLoadedException {
+        Professor prof = db.getNitriteDatabase().getRepository(Professor.class).find(eq("subject.subject", s.getInfo())).firstOrDefault();
         if (prof == null) {
             throw new ObjectNotFoundException();
         }
+        prof.loadImage();
         return prof;
     }
 
@@ -284,8 +287,13 @@ public class DatabaseManager implements Initializable {
      *
      * @return an instance of the cook
      */
-    private Cook findCook() {
-        return db.getNitriteDatabase().getRepository(CookWrapper.class).find(ObjectFilters.ALL).firstOrDefault().buildCook();
+    private Cook findCook() throws ObjectNotFoundException, ImageNotLoadedException {
+        Cook c = db.getNitriteDatabase().getRepository(Cook.class).find(ObjectFilters.ALL).firstOrDefault();
+        if (c == null) {
+            throw new ObjectNotFoundException();
+        }
+        c.loadImage();
+        return c;
     }
 
     /**
@@ -293,8 +301,13 @@ public class DatabaseManager implements Initializable {
      *
      * @return an instance of the guardian
      */
-    private Guardian findGuardian() {
-        return db.getNitriteDatabase().getRepository(GuardianWrapper.class).find(ObjectFilters.ALL).firstOrDefault().buildGuardian();
+    private Guardian findGuardian() throws ObjectNotFoundException, ImageNotLoadedException {
+        Guardian g = db.getNitriteDatabase().getRepository(Guardian.class).find(ObjectFilters.ALL).firstOrDefault();
+        if (g == null) {
+            throw new ObjectNotFoundException();
+        }
+        g.loadImage();
+        return g;
     }
 
     /**
