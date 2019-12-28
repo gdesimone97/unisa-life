@@ -1,11 +1,13 @@
 package unisagui;
 
+import exam.booklet.Booklet;
 import java.awt.event.KeyEvent;
 import javax.swing.SwingUtilities;
 import gameSystem.GameManager;
 import gameSystem.keySettings.SettingsManager;
 import java.awt.Component;
 import java.awt.Dialog;
+import java.util.HashSet;
 import javax.swing.ButtonGroup;
 import javax.swing.JLabel;
 import javax.swing.JTable;
@@ -42,6 +44,8 @@ public class GameFrame extends javax.swing.JFrame {
     private int pause;
     private int map;
     protected DefaultTableModel model = new DefaultTableModel();
+    private HashSet career=Booklet.getInstance().iteratorBooklet();
+    protected DefaultTableModel careerModel;
     
     
     private GameFrame() {
@@ -62,16 +66,22 @@ public class GameFrame extends javax.swing.JFrame {
     }
 
     
-    private void setKeyBoard(){
-         moveUp=settings.getMoveUp();
-         moveDown=settings.getMoveDown();
-         moveLeft=settings.getMoveLeft();
-         moveRight=settings.getMoveRight();
-         interact= settings.getInteractButton();
-         pause= settings.getPauseButton();
-         map= settings.getMapButton();
-        
-        
+    private void setKeyBoard() {
+        moveUp = settings.getMoveUp();
+        moveDown = settings.getMoveDown();
+        moveLeft = settings.getMoveLeft();
+        moveRight = settings.getMoveRight();
+        interact = settings.getInteractButton();
+        pause = settings.getPauseButton();
+        map = settings.getMapButton();
+
+    }
+    private void setCareen(){
+        careerModel= (DefaultTableModel) ExamTable.getModel();
+        for(int x=1; x<career.size();x++){
+            
+           
+        }
     }
 
 
@@ -846,6 +856,7 @@ public class GameFrame extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
+        CareerDialog.setMaximumSize(new java.awt.Dimension(500, 500));
         CareerDialog.setMinimumSize(new java.awt.Dimension(500, 500));
 
         CareerPanel.setMaximumSize(new java.awt.Dimension(500, 500));
@@ -870,7 +881,7 @@ public class GameFrame extends javax.swing.JFrame {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Integer.class, java.lang.Object.class
+                java.lang.String.class, java.lang.Integer.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false
@@ -888,17 +899,18 @@ public class GameFrame extends javax.swing.JFrame {
         ExamTable.setMinimumSize(new java.awt.Dimension(450, 400));
         ExamTable.setPreferredSize(new java.awt.Dimension(450, 400));
         ExamTable.setRequestFocusEnabled(false);
+        ExamTable.getTableHeader().setReorderingAllowed(false);
         CareerScrollPane.setViewportView(ExamTable);
         if (ExamTable.getColumnModel().getColumnCount() > 0) {
             ExamTable.getColumnModel().getColumn(0).setResizable(false);
-            ExamTable.getColumnModel().getColumn(0).setPreferredWidth(350);
+            ExamTable.getColumnModel().getColumn(0).setPreferredWidth(300);
             ExamTable.getColumnModel().getColumn(1).setResizable(false);
             ExamTable.getColumnModel().getColumn(1).setPreferredWidth(50);
             ExamTable.getColumnModel().getColumn(2).setResizable(false);
-            ExamTable.getColumnModel().getColumn(2).setPreferredWidth(50);
+            ExamTable.getColumnModel().getColumn(2).setPreferredWidth(100);
         }
 
-        CareerLabel.setText("jLabel3");
+        CareerLabel.setText("CAREER");
 
         javax.swing.GroupLayout CareerPanelLayout = new javax.swing.GroupLayout(CareerPanel);
         CareerPanel.setLayout(CareerPanelLayout);
@@ -916,7 +928,7 @@ public class GameFrame extends javax.swing.JFrame {
         CareerPanelLayout.setVerticalGroup(
             CareerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CareerPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(12, Short.MAX_VALUE)
                 .addComponent(CareerLabel)
                 .addGap(18, 18, 18)
                 .addComponent(CareerScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1330,7 +1342,7 @@ public class GameFrame extends javax.swing.JFrame {
                 .addGroup(KeyBoardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(OpenInventoryField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(OpenInventoryLabel))
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
         MoveUpField.setDocument(maxLength);
@@ -1587,11 +1599,6 @@ public class GameFrame extends javax.swing.JFrame {
         InventoryTable.setPreferredSize(new java.awt.Dimension(450, 450));
         jScrollPane1.setViewportView(InventoryTable);
         InventoryTable.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        if (InventoryTable.getColumnModel().getColumnCount() > 0) {
-            InventoryTable.getColumnModel().getColumn(0).setResizable(false);
-            InventoryTable.getColumnModel().getColumn(1).setResizable(false);
-            InventoryTable.getColumnModel().getColumn(2).setResizable(false);
-        }
 
         javax.swing.GroupLayout InventoryPanelLayout = new javax.swing.GroupLayout(InventoryPanel);
         InventoryPanel.setLayout(InventoryPanelLayout);
@@ -1815,7 +1822,7 @@ public class GameFrame extends javax.swing.JFrame {
         RightBorderLayout.setHorizontalGroup(
             RightBorderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RightBorderLayout.createSequentialGroup()
-                .addGap(0, 25, Short.MAX_VALUE)
+                .addGap(0, 26, Short.MAX_VALUE)
                 .addComponent(GameCloseButton))
         );
         RightBorderLayout.setVerticalGroup(

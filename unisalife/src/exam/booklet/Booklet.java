@@ -8,6 +8,7 @@ package exam.booklet;
 import game.Interfaces.Initializable;
 import java.io.Serializable;
 import java.util.HashMap;
+import java.util.HashSet;
 import quests.QuestsManager;
 import quests.mediator.*;
 import quests.quest.Quests;
@@ -42,6 +43,11 @@ public class Booklet extends User implements Serializable,Saveable,Initializable
      */
     public int getScore(Subject subject) {
         return booklet.get(subject.getInfo()).getScore();
+    }
+    
+    public HashSet iteratorBooklet(){
+        return (HashSet) booklet.values();
+        
     }
     
     /**
