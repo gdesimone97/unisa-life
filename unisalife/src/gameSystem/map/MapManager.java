@@ -9,7 +9,9 @@ import database.DatabaseManager;
 import database.FileNotSetException;
 import database.ObjectNotFoundException;
 import game.GameObjects.GameObject;
+import game.GameObjects.ImageNotLoadedException;
 import game.GameObjects.Position;
+import game.GameObjects.Renderable;
 import game.GameResources.Map;
 import game.Interfaces.Initializable;
 import java.awt.Graphics2D;
@@ -24,7 +26,7 @@ import saving.exceptions.LoadingException;
  * @author liovi
  */
 public class MapManager implements Initializable, Saveable {
-
+    
     private int actualMap;
     private int mapNumber;
 
@@ -111,7 +113,18 @@ public class MapManager implements Initializable, Saveable {
     public void load(Serializable obj) throws LoadingException {
         ArrayList<ConcurrentHashMap<Position, GameObject>> list = (ArrayList<ConcurrentHashMap<Position, GameObject>>) obj;
         for (int i = 0; i < list.size(); i++) {
-            maps[i].addDynamicObjects(list.get(i));
+            ConcurrentHashMap<Position,GameObject> mapObject = list.get(i);
+            mapObject.forEachValue(5, value ->{
+                if(value instanceof Renderable){
+                    Renderable object = (Renderable) value;
+                    try{
+                        object.loadImage();
+                    }catch(ImageNotLoadedException ex){
+                        System.out.println(ex.getMessage());
+                        throw new RuntimeException(ex);
+                    }
+                }
+            });
         }
     }
 
