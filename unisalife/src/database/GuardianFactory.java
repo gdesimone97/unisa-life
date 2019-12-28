@@ -6,6 +6,7 @@
 package database;
 
 import database.populator.exceptions.InvalidArgumentListException;
+import game.GameObjects.Guardian;
 import game.GameObjects.Position;
 import java.util.NoSuchElementException;
 import java.util.StringTokenizer;
@@ -14,14 +15,14 @@ import java.util.StringTokenizer;
  *
  * @author christian
  */
-public class GuardianWrapperFactory extends StorableCreator {
+public class GuardianFactory extends StorableCreator {
 
     @Override
     public Storable create(String s) {
         StringTokenizer st = new StringTokenizer(s, StorableCreator.DELIMETER);
         try {
 
-            GuardianWrapper g = new GuardianWrapper(st.nextToken(), new Position(Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken())), st.nextToken());
+            Guardian g = new Guardian(st.nextToken(), new Position(Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken())), st.nextToken());
             return g;
 
         } catch (NoSuchElementException | NumberFormatException e) {

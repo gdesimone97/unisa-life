@@ -6,6 +6,7 @@
 package database;
 
 import database.populator.exceptions.InvalidArgumentListException;
+import game.GameObjects.Coin;
 import game.GameObjects.Position;
 import java.util.NoSuchElementException;
 import java.util.StringTokenizer;
@@ -14,16 +15,16 @@ import java.util.StringTokenizer;
  *
  * @author alfon
  */
-public class CoinWrapperFactory extends StorableCreator {
+public class CoinFactory extends StorableCreator {
 
-    public CoinWrapperFactory() {
+    public CoinFactory() {
     }
 
     @Override
     public Storable create(String s) {
         StringTokenizer st = new StringTokenizer(s, StorableCreator.DELIMETER);
         try {
-            CoinWrapper cw = new CoinWrapper(new Position(Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken())), st.nextToken(), st.nextToken());
+            Coin cw = new Coin(new Position(Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken())), st.nextToken(), st.nextToken());
             return cw;
 
         } catch (NoSuchElementException | NumberFormatException e) {

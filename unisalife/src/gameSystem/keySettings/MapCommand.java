@@ -23,11 +23,7 @@ public class MapCommand extends KeyCommand implements ActionCommand {
 
     @Override
     public void visitPlayState(PlayState playState) {
-        try{
         stateManager.setState(MapState.getInstance());
-        } catch (Exception ex){
-            ex.printStackTrace();
-        }
     }
 
     @Override
