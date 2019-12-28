@@ -1096,7 +1096,6 @@ public class GameFrame extends javax.swing.JFrame {
             .addComponent(AvatarChooserPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        KeyboardSettingsDialog.setMaximumSize(new java.awt.Dimension(600, 750));
         KeyboardSettingsDialog.setMinimumSize(new java.awt.Dimension(600, 750));
         KeyboardSettingsDialog.setResizable(false);
 
@@ -1921,7 +1920,7 @@ public class GameFrame extends javax.swing.JFrame {
     private void SettingsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SettingsButtonActionPerformed
         SwingUtilities.invokeLater(() -> sound.play("menu"));
         SwingUtilities.invokeLater(() -> SettingsDialog.setVisible(true));
-        SwingUtilities.invokeLater(() -> MainMenuDialog.setVisible(false));
+        //SwingUtilities.invokeLater(() -> MainMenuDialog.setVisible(false));
     }//GEN-LAST:event_SettingsButtonActionPerformed
 
     private void ResumeGameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ResumeGameButtonActionPerformed
