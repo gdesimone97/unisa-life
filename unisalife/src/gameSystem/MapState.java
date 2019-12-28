@@ -32,7 +32,7 @@ public class MapState extends GameState{
     private int xPlayerInMap;
     private int yPlayerInMap;
     
-    public static MapState getInstance() throws Initializable.InitException {
+    public static MapState getInstance() {
         if (instance == null) {
             instance = new MapState();
         }

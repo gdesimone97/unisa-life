@@ -38,7 +38,6 @@ public class PlayState extends GameState {
     }
     
     private PlayState() {
-        init();
     }
 
     @Override

@@ -21,7 +21,7 @@ public class LoadingState extends GameState{
     private static LoadingState instance;
     private BufferedImage img;
     
-    public static LoadingState getInstance() throws InitException {
+    public static LoadingState getInstance() {
         if (instance == null) {
             instance = new LoadingState();
         }
