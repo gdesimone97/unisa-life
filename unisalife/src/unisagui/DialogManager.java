@@ -54,6 +54,7 @@ public class DialogManager {
     }
     
     public void hideDialog(){
+        SwingUtilities.invokeLater(() -> gameframe.ConvDialog.setTitle(""));
         SwingUtilities.invokeLater(() -> gameframe.ConversationTextArea.setText(""));
         SwingUtilities.invokeLater(() -> gameframe.ConversationScrollPane.setVisible(false));
         SwingUtilities.invokeLater(() -> gameframe.ConvDialog.setVisible(false));
