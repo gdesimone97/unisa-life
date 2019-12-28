@@ -1,6 +1,7 @@
 package unisagui;
 
 import exam.booklet.Booklet;
+import exam.booklet.Subject;
 import java.awt.event.KeyEvent;
 import javax.swing.SwingUtilities;
 import gameSystem.GameManager;
@@ -44,7 +45,8 @@ public class GameFrame extends javax.swing.JFrame {
     private int pause;
     private int map;
     protected DefaultTableModel model = new DefaultTableModel();
-    private HashSet career=Booklet.getInstance().iteratorBooklet();
+    private Booklet booklet;
+    private HashSet<Subject> career;
     protected DefaultTableModel careerModel;
     
     
@@ -55,6 +57,7 @@ public class GameFrame extends javax.swing.JFrame {
         initialSettings(this);
         setKeyBoard();
         initializingTable();
+        SwingUtilities.invokeLater(() -> setCareer());
         //saveManager qui
     }
 
@@ -65,7 +68,9 @@ public class GameFrame extends javax.swing.JFrame {
         return instance;
     }
 
-    
+    /**
+     * this method set all the key settings at the start of the game
+     */
     private void setKeyBoard() {
         moveUp = settings.getMoveUp();
         moveDown = settings.getMoveDown();
@@ -76,12 +81,29 @@ public class GameFrame extends javax.swing.JFrame {
         map = settings.getMapButton();
 
     }
-    private void setCareen(){
+    /**
+     * this method sets the Booklet of the gui 
+     */
+    private void setCareer(){
+        int row=0;
+        int column=0;
         careerModel= (DefaultTableModel) ExamTable.getModel();
-        for(int x=1; x<career.size();x++){
-            
-           
+        career= booklet.getInstance().iteratorBooklet();
+        for( Subject sub: career){
+            column=0;
+            careerModel.setValueAt(sub.getInfo(), row, column);
+            careerModel.setValueAt(booklet.getScore(sub), row, ++column);
+            careerModel.setValueAt(booklet.getAvailablity(sub), row, ++column);
+            row+=1;
         }
+        
+    }
+    /**
+     * this method update the Booklet of the gui
+     */
+    public void updateCareer(){
+        SwingUtilities.invokeLater(() -> setCareer());
+        
     }
 
 
