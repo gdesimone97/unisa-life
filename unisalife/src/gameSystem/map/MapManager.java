@@ -28,7 +28,7 @@ import saving.exceptions.LoadingException;
  * @author liovi
  */
 public class MapManager implements Initializable, Saveable {
-    
+
     private int actualMap;
     private int mapNumber;
 
@@ -93,7 +93,7 @@ public class MapManager implements Initializable, Saveable {
         for (int i = 0; i < objectsFromLevel.length; i++) {
             maps[i].addDynamicObjects(objectsFromLevel[i]);
         }
-        
+
         for (int i = 0; i < maps.length; i++) {
             maps[i].loadImages();
         }
@@ -121,18 +121,17 @@ public class MapManager implements Initializable, Saveable {
     public void load(Serializable obj) throws LoadingException {
         ArrayList<ConcurrentHashMap<Position, Renderable>> list = (ArrayList<ConcurrentHashMap<Position, Renderable>>) obj;
         for (int i = 0; i < list.size(); i++) {
-            ConcurrentHashMap<Position,GameObject> mapObject = list.get(i);
-            mapObject.forEachValue(5, value ->{
-                if(value instanceof Renderable){
-                    Renderable object = (Renderable) value;
-                    try{
-                        object.loadImage();
-                    }catch(ImageNotLoadedException ex){
-                        System.out.println(ex.getMessage());
-                        throw new RuntimeException(ex);
-                    }
+            ConcurrentHashMap<Position, Renderable> mapObject = list.get(i);
+            mapObject.forEachValue(5, value -> {
+                Renderable object = (Renderable) value;
+                try {
+                    object.loadImage();
+                } catch (ImageNotLoadedException ex) {
+                    System.out.println(ex.getMessage());
+                    throw new RuntimeException(new LoadingException("Impossibile caricare immaggini dopo la fase di load"));
                 }
             });
+            maps[i].addDynamicObjects(mapObject);
         }
     }
 
