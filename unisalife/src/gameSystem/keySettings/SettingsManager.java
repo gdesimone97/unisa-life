@@ -8,6 +8,8 @@ package gameSystem.keySettings;
 import java.awt.event.KeyEvent;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import saving.Saveable;
 import saving.exceptions.LoadingException;
 
@@ -18,8 +20,18 @@ import saving.exceptions.LoadingException;
  *
  * @author Giuseppe De Simone
  */
-public class SettingsManager implements Saveable{
+public class SettingsManager implements Saveable {
 
+    private enum Commands {
+        MOVE_UP,
+        MOVE_DOWN,
+        MOVE_LEFT,
+        MOVE_RIGHT,
+        INTERACT,
+        PAUSE,
+        MAP,
+        INVENTORY
+    }
     private static final SettingsManager instance = new SettingsManager();
     private int moveUp = KeyEvent.VK_W;
     private int moveDown = KeyEvent.VK_S;
@@ -30,6 +42,41 @@ public class SettingsManager implements Saveable{
     private int mapButton = KeyEvent.VK_M;
     private final int saveButton = KeyEvent.VK_S;
     private final int inventoryButton = KeyEvent.VK_TAB;
+    Map<Commands, Integer> register = new HashMap<>(8);
+
+    private boolean checkInput(int code) {
+        final int A = 65;
+        final int Z = 90;
+        final int SPACE = 32;
+        final int ZERO = 48;
+        final int NINE = 57;
+        if (code >= A && code <= Z || code >= ZERO && code <= NINE || code == SPACE) {
+            return true;
+        }
+        return false;
+    }
+
+    private void setKey(Commands c, int key) {
+        register.put(c, key);
+    }
+
+    private boolean isRegistered(int key) {
+        if (register.containsValue(key)) {
+            return true;
+        }
+        return false;
+    }
+
+    private SettingsManager() {
+        register.put(Commands.MOVE_UP, moveUp);
+        register.put(Commands.MOVE_DOWN, moveDown);
+        register.put(Commands.MOVE_LEFT, moveLeft);
+        register.put(Commands.MOVE_RIGHT, moveRight);
+        register.put(Commands.PAUSE, pauseButton);
+        register.put(Commands.INTERACT, interactButton);
+        register.put(Commands.MAP, mapButton);
+        register.put(Commands.INVENTORY, inventoryButton);
+    }
 
     /**
      *
@@ -51,9 +98,16 @@ public class SettingsManager implements Saveable{
      * set keyboard's key when the player want to visualize the map
      *
      * @param mapButton
+     * @return false if key is already setted or it is a no valid value
+     * otherwise true
      */
-    public void setMapButton(int mapButton) {
+    public boolean setMapButton(int mapButton) {
+        if (!checkInput(mapButton) || isRegistered(mapButton)) {
+            return false;
+        }
+        setKey(Commands.MAP, mapButton);
         this.mapButton = mapButton;
+        return true;
     }
 
     /**
@@ -62,9 +116,6 @@ public class SettingsManager implements Saveable{
      */
     public int getSaveButton() {
         return saveButton;
-    }
-
-    private SettingsManager() {
     }
 
     /**
@@ -88,9 +139,16 @@ public class SettingsManager implements Saveable{
      * set keyboard's key related to move up command
      *
      * @param moveUp
+     * @return false if key is already setted or it is a no valid value
+     * otherwise true
      */
-    public void setMoveUp(int moveUp) {
+    public boolean setMoveUp(int moveUp) {
+        if (!checkInput(moveUp) || isRegistered(moveUp)) {
+            return false;
+        }
+        setKey(Commands.MOVE_UP, moveUp);
         this.moveUp = moveUp;
+        return true;
     }
 
     /**
@@ -106,9 +164,16 @@ public class SettingsManager implements Saveable{
      * set keyboard's key related to move down command
      *
      * @param moveDown
+     * @return false if key is already setted or it is a no valid value
+     * otherwise true
      */
-    public void setMoveDown(int moveDown) {
+    public boolean setMoveDown(int moveDown) {
+        if (!checkInput(moveDown) || isRegistered(moveDown)) {
+            return false;
+        }
+        setKey(Commands.MOVE_DOWN, moveDown);
         this.moveDown = moveDown;
+        return true;
     }
 
     /**
@@ -124,9 +189,16 @@ public class SettingsManager implements Saveable{
      * set keyboard's key related to move left command
      *
      * @param moveLeft
+     * @return false if key is already setted or it is a no valid value
+     * otherwise true
      */
-    public void setMoveLeft(int moveLeft) {
+    public boolean setMoveLeft(int moveLeft) {
+        if (!checkInput(moveLeft) || isRegistered(moveLeft)) {
+            return false;
+        }
+        setKey(Commands.MOVE_LEFT, moveLeft);
         this.moveLeft = moveLeft;
+        return true;
     }
 
     /**
@@ -142,9 +214,16 @@ public class SettingsManager implements Saveable{
      * set keyboard's key related to move right command
      *
      * @param moveRight
+     * @return false if key is already setted or it is a no valid value
+     * otherwise true
      */
-    public void setMoveRight(int moveRight) {
+    public boolean setMoveRight(int moveRight) {
+        if (!checkInput(moveRight) || isRegistered(moveRight)) {
+            return false;
+        }
+        setKey(Commands.MOVE_RIGHT, moveRight);
         this.moveRight = moveRight;
+        return true;
     }
 
     /**
@@ -160,9 +239,16 @@ public class SettingsManager implements Saveable{
      * set keyboard's key related to interact command command
      *
      * @param interactButton
+     * @return false if key is already setted or it is a no valid value
+     * otherwise true
      */
-    public void setInteractButton(int interactButton) {
+    public boolean setInteractButton(int interactButton) {
+        if (!checkInput(interactButton) || isRegistered(interactButton)) {
+            return false;
+        }
+        setKey(Commands.INTERACT, interactButton);
         this.interactButton = interactButton;
+        return true;
     }
 
     /**
@@ -178,14 +264,21 @@ public class SettingsManager implements Saveable{
      * set keyboard's key related to pause command command
      *
      * @param pauseButton
+     * @return false if key is already setted or it is a no valid value
+     * otherwise true
      */
-    public void setPauseButton(int pauseButton) {
+    public boolean setPauseButton(int pauseButton) {
+        if (!checkInput(pauseButton) || isRegistered(pauseButton)) {
+            return false;
+        }
+        setKey(Commands.PAUSE, pauseButton);
         this.pauseButton = pauseButton;
+        return true;
     }
 
     @Override
     public Serializable save() {
-        ArrayList<Integer> list = new ArrayList<>();
+        ArrayList<Object> list = new ArrayList<>();
         list.add(moveUp);
         list.add(moveDown);
         list.add(moveRight);
@@ -193,18 +286,20 @@ public class SettingsManager implements Saveable{
         list.add(interactButton);
         list.add(pauseButton);
         list.add(mapButton);
+        list.add(this.register);
         return list;
     }
 
     @Override
     public void load(Serializable obj) throws LoadingException {
-        ArrayList<Integer> list = (ArrayList<Integer>) obj;
-        moveUp = list.get(0);
-        moveDown = list.get(1);
-        moveRight = list.get(2);
-        moveLeft = list.get(3);
-        interactButton = list.get(4);
-        pauseButton = list.get(5);
-        mapButton = list.get(6);
+        ArrayList<Object> list = (ArrayList<Object>) obj;
+        moveUp = (int) list.get(0);
+        moveDown = (int) list.get(1);
+        moveRight = (int) list.get(2);
+        moveLeft = (int) list.get(3);
+        interactButton = (int) list.get(4);
+        pauseButton = (int) list.get(5);
+        mapButton = (int) list.get(6);
+        this.register = (Map<Commands, Integer>) list.get(7);
     }
 }
