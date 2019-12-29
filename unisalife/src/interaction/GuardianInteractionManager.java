@@ -5,6 +5,7 @@
  */
 package interaction;
 
+import game.GameObjects.Guardian;
 import game.Interfaces.Interactable;
 import hud.change.DormitoryHudBarChange;
 import language.FileTextManager;
@@ -23,6 +24,7 @@ public class GuardianInteractionManager implements InteractionManager {
         // get text to show
         FileTextManager tm;
         String toShow = null;
+        String nome = ((Guardian) obj).getNome();
 
         try {
             tm = FileTextManager.getFileTextManager();
@@ -30,7 +32,7 @@ public class GuardianInteractionManager implements InteractionManager {
             toShow = tm.getString(ms).get(0);
 
             // show pop up
-            GuiManager.getInstance().showDialog(toShow);
+            GuiManager.getInstance().showDialog(nome, toShow);
 
             // restore status bars
             DormitoryHudBarChange d = new DormitoryHudBarChange();

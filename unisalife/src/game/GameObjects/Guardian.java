@@ -42,4 +42,8 @@ public class Guardian extends Person implements Information {
         return this.nome;
     }
 
+    public String getNome() {
+        return nome;
+    }
+
 }

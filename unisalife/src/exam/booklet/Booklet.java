@@ -7,7 +7,9 @@
 package exam.booklet;
 import game.Interfaces.Initializable;
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import quests.QuestsManager;
 import quests.mediator.*;
 import quests.quest.Quests;
@@ -44,6 +46,13 @@ public class Booklet extends User implements Serializable,Saveable,Initializable
         return booklet.get(subject.getInfo()).getScore();
     }
     
+    public HashSet iteratorBooklet() {
+        HashSet<Subject> temp = new HashSet<>(booklet.values());
+
+        return (HashSet) temp;
+
+    }
+
     /**
      * True means not already passed
      * False means already passed

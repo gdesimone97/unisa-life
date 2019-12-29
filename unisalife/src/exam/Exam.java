@@ -35,6 +35,7 @@ public class Exam implements Runnable {
 
     private final Questions questions;
     private final Subject subject;
+    private final String professorName;
     private final int questionTime;
     private int score;
     private int coinReward;
@@ -64,6 +65,7 @@ public class Exam implements Runnable {
         this.maxLevel = this.questions.getNumLevels();
         this.basicScore = 12 / (30 - (30 / (float) (this.maxLevel - 1)));
         this.iter = questions.iterator();
+        this.professorName = "EMPTY NAME";
     }
 
     /**
@@ -198,17 +200,17 @@ public class Exam implements Runnable {
         
         try {
             if (voto >= 18 && voto <= 30) {
-                gui.showDialog(FileTextManager.getFileTextManager().getString(new MessageInformation("ScoreTaken")).get(0) + " " + voto);
+                gui.showDialog(professorName, FileTextManager.getFileTextManager().getString(new MessageInformation("ScoreTaken")).get(0) + " " + voto);
                 JukeBoxSound.getInstance().play("exam_passed");
 //                Booklet.getInstance().setScore(subject, voto);                
             }
             else if (voto == 31) {
-                gui.showDialog(FileTextManager.getFileTextManager().getString(new MessageInformation("Lode")).get(0));
+                gui.showDialog(professorName, FileTextManager.getFileTextManager().getString(new MessageInformation("Lode")).get(0));
                 JukeBoxSound.getInstance().play("exam_passed");
 //                Booklet.getInstance().setScore(subject, voto);
             }
             else {
-                gui.showDialog(FileTextManager.getFileTextManager().getString(new MessageInformation("ExamFailed")).get(0));
+                gui.showDialog(professorName, FileTextManager.getFileTextManager().getString(new MessageInformation("ExamFailed")).get(0));
                 JukeBoxSound.getInstance().play("exam_failed");
             }
         } catch (TextFinderException ex) {

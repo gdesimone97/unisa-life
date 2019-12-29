@@ -29,6 +29,7 @@ public class Tolc implements Runnable {
     private final int questionTime;
     private int coinReward = 100;
     private Subject subject;
+    private String professorName;
     private int count;
     private final int maxLevel;
     QuestionsIterator iter;
@@ -49,6 +50,7 @@ public class Tolc implements Runnable {
         this.questions = questionsFetch.getQuestions();
         this.maxLevel = this.questions.getNumLevels();
         this.iter = questions.iterator();
+        this.professorName = "EMPTY NAME";
     }
 
     /**
@@ -104,12 +106,12 @@ public class Tolc implements Runnable {
         try {
             FileTextManager f = FileTextManager.getFileTextManager();
             if (passed) {
-                gui.showDialog(f.getString(new MessageInformation("TolcPassedName")).get(0) + Player.getIstance().getName() + f.getString(new MessageInformation("TolcPassedName")).get(1));
+                gui.showDialog(professorName, f.getString(new MessageInformation("TolcPassedName")).get(0) + Player.getIstance().getName() + f.getString(new MessageInformation("TolcPassedName")).get(1));
                 JukeBoxSound.getInstance().play("exam_passed");
 //                Booklet.getInstance().setScore(subject, voto);
             }
             else {
-                gui.showDialog(f.getString(new MessageInformation("TolcFailedName")).get(0) + Player.getIstance().getName() + f.getString(new MessageInformation("TolcFailedName")).get(1));
+                gui.showDialog(professorName, f.getString(new MessageInformation("TolcFailedName")).get(0) + Player.getIstance().getName() + f.getString(new MessageInformation("TolcFailedName")).get(1));
                 JukeBoxSound.getInstance().play("exam_failed");
             }
         } catch (TextFinderException ex) {

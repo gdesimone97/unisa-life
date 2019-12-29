@@ -41,4 +41,8 @@ public class Cook extends Person implements Information {
     public String getIndex() {
         return this.nome;
     }
+
+    public String getNome() {
+        return nome;
+    }
 }
