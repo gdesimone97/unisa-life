@@ -8,6 +8,7 @@ import gameSystem.GameManager;
 import gameSystem.keySettings.SettingsManager;
 import java.awt.Component;
 import java.awt.Dialog;
+import java.text.ParseException;
 import java.util.HashSet;
 import javax.swing.ButtonGroup;
 import javax.swing.JLabel;
@@ -18,6 +19,8 @@ import javax.swing.table.TableColumn;
 import saving.SaveManager;
 import sound.JukeBoxMusic;
 import sound.JukeBoxSound;
+import javax.swing.JFormattedTextField;
+import javax.swing.text.MaskFormatter;
 
 /**
  * @author Virginia Cavallaro
@@ -259,22 +262,22 @@ public class GameFrame extends javax.swing.JFrame {
         KeyBoardPanel = new javax.swing.JPanel();
         KeyboardSettingsLabel = new javax.swing.JLabel();
         MoveUpLabel = new javax.swing.JLabel();
-        MoveUpField = new javax.swing.JTextField();
         MoveDownLabel = new javax.swing.JLabel();
-        MoveDownField = new javax.swing.JTextField();
         MoveLeftLabel = new javax.swing.JLabel();
-        MoveLeftField = new javax.swing.JTextField();
         MoveRightLabel = new javax.swing.JLabel();
-        MoveRightField = new javax.swing.JTextField();
         InteractLabel = new javax.swing.JLabel();
-        InteractField = new javax.swing.JTextField();
         PauseLabel = new javax.swing.JLabel();
-        PauseField = new javax.swing.JTextField();
-        MapField = new javax.swing.JTextField();
         MapLabel = new javax.swing.JLabel();
-        OpenInventoryField = new javax.swing.JTextField();
+        OpenInventoryField = new javax.swing.JFormattedTextField();
         OpenInventoryLabel = new javax.swing.JLabel();
         KeyboardSettingsCloseButton = new javax.swing.JButton();
+        MoveUpField = new javax.swing.JFormattedTextField();
+        MoveDownField = new javax.swing.JFormattedTextField();
+        MoveLeftField = new javax.swing.JFormattedTextField();
+        MoveRightField = new javax.swing.JFormattedTextField();
+        InteractField = new javax.swing.JFormattedTextField();
+        PauseField = new javax.swing.JFormattedTextField();
+        MapField = new javax.swing.JFormattedTextField();
         ConvDialog = new javax.swing.JDialog();
         ConversationScrollPane = new javax.swing.JScrollPane();
         ConversationTextArea = new javax.swing.JTextArea();
@@ -1184,112 +1187,15 @@ public class GameFrame extends javax.swing.JFrame {
 
         MoveUpLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/MOVEUP.png"))); // NOI18N
 
-        MoveUpField.setBackground(new java.awt.Color(0, 153, 204));
-        MoveUpField.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
-        MoveUpField.setForeground(new java.awt.Color(204, 255, 255));
-        MoveUpField.setAutoscrolls(false);
-        MoveUpField.setMaximumSize(new java.awt.Dimension(100, 50));
-        MoveUpField.setMinimumSize(new java.awt.Dimension(100, 50));
-        MoveUpField.setPreferredSize(new java.awt.Dimension(100, 50));
-        MoveUpField.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                MoveUpFieldKeyPressed(evt);
-            }
-        });
-
         MoveDownLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/MOVEDOWN.png"))); // NOI18N
-
-        MoveDownField.setBackground(new java.awt.Color(0, 153, 204));
-        MoveDownField.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
-        MoveDownField.setForeground(new java.awt.Color(204, 255, 255));
-        MoveDownField.setAutoscrolls(false);
-        MoveDownField.setMaximumSize(new java.awt.Dimension(100, 50));
-        MoveDownField.setMinimumSize(new java.awt.Dimension(100, 50));
-        MoveDownField.setPreferredSize(new java.awt.Dimension(100, 50));
-        MoveDownField.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                MoveDownFieldKeyPressed(evt);
-            }
-        });
 
         MoveLeftLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/MOVELEFT.png"))); // NOI18N
 
-        MoveLeftField.setBackground(new java.awt.Color(0, 153, 204));
-        MoveLeftField.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
-        MoveLeftField.setForeground(new java.awt.Color(204, 255, 255));
-        MoveLeftField.setAutoscrolls(false);
-        MoveLeftField.setMaximumSize(new java.awt.Dimension(100, 50));
-        MoveLeftField.setMinimumSize(new java.awt.Dimension(100, 50));
-        MoveLeftField.setPreferredSize(new java.awt.Dimension(100, 50));
-        MoveLeftField.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                MoveLeftFieldKeyPressed(evt);
-            }
-        });
-
         MoveRightLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/MOVERIGHT.png"))); // NOI18N
-
-        MoveRightField.setBackground(new java.awt.Color(0, 153, 204));
-        MoveRightField.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
-        MoveRightField.setForeground(new java.awt.Color(204, 255, 255));
-        MoveRightField.setAutoscrolls(false);
-        MoveRightField.setMaximumSize(new java.awt.Dimension(50, 50));
-        MoveRightField.setMinimumSize(new java.awt.Dimension(50, 50));
-        MoveRightField.setPreferredSize(new java.awt.Dimension(100, 50));
-        MoveRightField.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                MoveRightFieldKeyPressed(evt);
-            }
-        });
 
         InteractLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/INTERACT.png"))); // NOI18N
 
-        InteractField.setBackground(new java.awt.Color(0, 153, 204));
-        InteractField.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
-        InteractField.setForeground(new java.awt.Color(204, 255, 255));
-        InteractField.setToolTipText("");
-        InteractField.setAutoscrolls(false);
-        InteractField.setMaximumSize(new java.awt.Dimension(50, 100));
-        InteractField.setMinimumSize(new java.awt.Dimension(50, 100));
-        InteractField.setPreferredSize(new java.awt.Dimension(100, 50));
-        InteractField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                InteractFieldActionPerformed(evt);
-            }
-        });
-        InteractField.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                InteractFieldKeyPressed(evt);
-            }
-        });
-
         PauseLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/PAUSE.png"))); // NOI18N
-
-        PauseField.setBackground(new java.awt.Color(0, 153, 204));
-        PauseField.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
-        PauseField.setForeground(new java.awt.Color(204, 255, 255));
-        PauseField.setAutoscrolls(false);
-        PauseField.setMaximumSize(new java.awt.Dimension(100, 50));
-        PauseField.setMinimumSize(new java.awt.Dimension(100, 50));
-        PauseField.setPreferredSize(new java.awt.Dimension(100, 50));
-        PauseField.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                PauseFieldKeyPressed(evt);
-            }
-        });
-
-        MapField.setBackground(new java.awt.Color(0, 153, 204));
-        MapField.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
-        MapField.setForeground(new java.awt.Color(204, 255, 255));
-        MapField.setAutoscrolls(false);
-        MapField.setMaximumSize(new java.awt.Dimension(100, 50));
-        MapField.setMinimumSize(new java.awt.Dimension(100, 50));
-        MapField.setPreferredSize(new java.awt.Dimension(100, 50));
-        MapField.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                MapFieldKeyPressed(evt);
-            }
-        });
 
         MapLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/MAP.png"))); // NOI18N
 
@@ -1319,89 +1225,205 @@ public class GameFrame extends javax.swing.JFrame {
             }
         });
 
+        MoveUpField.setBackground(new java.awt.Color(0, 153, 204));
+        MoveUpField.setForeground(new java.awt.Color(204, 255, 255));
+        MoveUpField.setMaximumSize(new java.awt.Dimension(100, 50));
+        MoveUpField.setMinimumSize(new java.awt.Dimension(100, 50));
+        MoveUpField.setPreferredSize(new java.awt.Dimension(100, 50));
+        MoveUpField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                MoveUpFieldMouseClicked(evt);
+            }
+        });
+        MoveUpField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                MoveUpFieldKeyPressed(evt);
+            }
+        });
+
+        MoveDownField.setBackground(new java.awt.Color(0, 153, 204));
+        MoveDownField.setForeground(new java.awt.Color(204, 255, 255));
+        MoveDownField.setMaximumSize(new java.awt.Dimension(100, 50));
+        MoveDownField.setMinimumSize(new java.awt.Dimension(100, 50));
+        MoveDownField.setPreferredSize(new java.awt.Dimension(100, 50));
+        MoveDownField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                MoveDownFieldMouseClicked(evt);
+            }
+        });
+        MoveDownField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                MoveDownFieldKeyPressed(evt);
+            }
+        });
+
+        MoveLeftField.setBackground(new java.awt.Color(0, 153, 204));
+        MoveLeftField.setForeground(new java.awt.Color(204, 255, 255));
+        MoveLeftField.setMaximumSize(new java.awt.Dimension(100, 50));
+        MoveLeftField.setMinimumSize(new java.awt.Dimension(100, 50));
+        MoveLeftField.setPreferredSize(new java.awt.Dimension(100, 50));
+        MoveLeftField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                MoveLeftFieldMouseClicked(evt);
+            }
+        });
+        MoveLeftField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                MoveLeftFieldKeyPressed(evt);
+            }
+        });
+
+        MoveRightField.setBackground(new java.awt.Color(0, 153, 204));
+        MoveRightField.setForeground(new java.awt.Color(204, 255, 255));
+        MoveRightField.setMaximumSize(new java.awt.Dimension(100, 50));
+        MoveRightField.setMinimumSize(new java.awt.Dimension(100, 50));
+        MoveRightField.setPreferredSize(new java.awt.Dimension(100, 50));
+        MoveRightField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                MoveRightFieldMouseClicked(evt);
+            }
+        });
+        MoveRightField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                MoveRightFieldKeyPressed(evt);
+            }
+        });
+
+        InteractField.setBackground(new java.awt.Color(0, 153, 204));
+        InteractField.setForeground(new java.awt.Color(204, 255, 255));
+        InteractField.setMaximumSize(new java.awt.Dimension(100, 50));
+        InteractField.setMinimumSize(new java.awt.Dimension(100, 50));
+        InteractField.setPreferredSize(new java.awt.Dimension(100, 50));
+        InteractField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                InteractFieldMouseClicked(evt);
+            }
+        });
+        InteractField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                InteractFieldKeyPressed(evt);
+            }
+        });
+
+        PauseField.setBackground(new java.awt.Color(0, 153, 204));
+        PauseField.setForeground(new java.awt.Color(204, 255, 255));
+        PauseField.setMaximumSize(new java.awt.Dimension(100, 50));
+        PauseField.setMinimumSize(new java.awt.Dimension(100, 50));
+        PauseField.setPreferredSize(new java.awt.Dimension(100, 50));
+        PauseField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                PauseFieldMouseClicked(evt);
+            }
+        });
+        PauseField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                PauseFieldKeyPressed(evt);
+            }
+        });
+
+        MapField.setBackground(new java.awt.Color(0, 153, 204));
+        MapField.setForeground(new java.awt.Color(204, 255, 255));
+        MapField.setMaximumSize(new java.awt.Dimension(100, 50));
+        MapField.setMinimumSize(new java.awt.Dimension(100, 50));
+        MapField.setPreferredSize(new java.awt.Dimension(100, 50));
+        MapField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                MapFieldMouseClicked(evt);
+            }
+        });
+        MapField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                MapFieldKeyPressed(evt);
+            }
+        });
+
         javax.swing.GroupLayout KeyBoardPanelLayout = new javax.swing.GroupLayout(KeyBoardPanel);
         KeyBoardPanel.setLayout(KeyBoardPanelLayout);
         KeyBoardPanelLayout.setHorizontalGroup(
             KeyBoardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, KeyBoardPanelLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(KeyboardSettingsCloseButton))
             .addGroup(KeyBoardPanelLayout.createSequentialGroup()
                 .addGroup(KeyBoardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(KeyBoardPanelLayout.createSequentialGroup()
+                        .addGap(134, 134, 134)
+                        .addComponent(KeyboardSettingsLabel))
                     .addGroup(KeyBoardPanelLayout.createSequentialGroup()
                         .addGap(153, 153, 153)
                         .addGroup(KeyBoardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(KeyBoardPanelLayout.createSequentialGroup()
                                 .addComponent(MoveDownLabel)
-                                .addGap(100, 100, 100)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(MoveDownField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(KeyBoardPanelLayout.createSequentialGroup()
                                 .addComponent(MoveLeftLabel)
-                                .addGap(100, 100, 100)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(MoveLeftField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(KeyBoardPanelLayout.createSequentialGroup()
                                 .addComponent(MoveRightLabel)
-                                .addGap(100, 100, 100)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(MoveRightField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(KeyBoardPanelLayout.createSequentialGroup()
-                                .addComponent(InteractLabel)
-                                .addGap(100, 100, 100)
-                                .addComponent(InteractField, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))
-                            .addGroup(KeyBoardPanelLayout.createSequentialGroup()
-                                .addComponent(PauseLabel)
-                                .addGap(100, 100, 100)
-                                .addComponent(PauseField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(KeyBoardPanelLayout.createSequentialGroup()
-                                .addComponent(MapLabel)
-                                .addGap(100, 100, 100)
-                                .addComponent(MapField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(KeyBoardPanelLayout.createSequentialGroup()
-                                .addComponent(MoveUpLabel)
-                                .addGap(100, 100, 100)
-                                .addComponent(MoveUpField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(KeyBoardPanelLayout.createSequentialGroup()
                                 .addComponent(OpenInventoryLabel)
                                 .addGap(100, 100, 100)
-                                .addComponent(OpenInventoryField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(KeyBoardPanelLayout.createSequentialGroup()
-                        .addGap(134, 134, 134)
-                        .addComponent(KeyboardSettingsLabel)))
-                .addGap(134, 134, 134))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, KeyBoardPanelLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(KeyboardSettingsCloseButton))
+                                .addComponent(OpenInventoryField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(KeyBoardPanelLayout.createSequentialGroup()
+                                .addComponent(MoveUpLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(MoveUpField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(KeyBoardPanelLayout.createSequentialGroup()
+                                .addGroup(KeyBoardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(PauseLabel)
+                                    .addComponent(InteractLabel)
+                                    .addComponent(MapLabel))
+                                .addGap(100, 100, 100)
+                                .addGroup(KeyBoardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(MapField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(InteractField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(PauseField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addContainerGap(134, Short.MAX_VALUE))
         );
         KeyBoardPanelLayout.setVerticalGroup(
             KeyBoardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(KeyBoardPanelLayout.createSequentialGroup()
                 .addComponent(KeyboardSettingsCloseButton)
                 .addGap(18, 18, 18)
-                .addComponent(KeyboardSettingsLabel)
-                .addGap(18, 18, 18)
-                .addGroup(KeyBoardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(MoveUpField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(MoveUpLabel))
-                .addGap(25, 25, 25)
-                .addGroup(KeyBoardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(MoveDownField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(MoveDownLabel))
-                .addGap(25, 25, 25)
-                .addGroup(KeyBoardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(MoveLeftField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(MoveLeftLabel))
-                .addGap(25, 25, 25)
-                .addGroup(KeyBoardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(MoveRightField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(MoveRightLabel))
-                .addGap(25, 25, 25)
-                .addGroup(KeyBoardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(InteractField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(InteractLabel))
-                .addGap(25, 25, 25)
-                .addGroup(KeyBoardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(PauseField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(PauseLabel))
-                .addGap(25, 25, 25)
-                .addGroup(KeyBoardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(MapField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(MapLabel))
+                .addGroup(KeyBoardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(KeyBoardPanelLayout.createSequentialGroup()
+                        .addGroup(KeyBoardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(KeyBoardPanelLayout.createSequentialGroup()
+                                .addGroup(KeyBoardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(KeyBoardPanelLayout.createSequentialGroup()
+                                        .addGroup(KeyBoardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addGroup(KeyBoardPanelLayout.createSequentialGroup()
+                                                .addGroup(KeyBoardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                    .addGroup(KeyBoardPanelLayout.createSequentialGroup()
+                                                        .addGroup(KeyBoardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                            .addGroup(KeyBoardPanelLayout.createSequentialGroup()
+                                                                .addComponent(KeyboardSettingsLabel)
+                                                                .addGap(18, 18, 18)
+                                                                .addGroup(KeyBoardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                                    .addComponent(MoveUpField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                    .addComponent(MoveUpLabel))
+                                                                .addGap(25, 25, 25)
+                                                                .addComponent(MoveDownLabel))
+                                                            .addComponent(MoveDownField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                        .addGap(25, 25, 25)
+                                                        .addComponent(MoveLeftLabel))
+                                                    .addComponent(MoveLeftField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addGap(25, 25, 25)
+                                                .addComponent(MoveRightLabel))
+                                            .addComponent(MoveRightField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(25, 25, 25)
+                                        .addComponent(InteractLabel))
+                                    .addComponent(InteractField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(25, 25, 25)
+                                .addComponent(PauseLabel))
+                            .addComponent(PauseField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(25, 25, 25)
+                        .addComponent(MapLabel))
+                    .addComponent(MapField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(25, 25, 25)
                 .addGroup(KeyBoardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(OpenInventoryField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1409,7 +1431,48 @@ public class GameFrame extends javax.swing.JFrame {
                 .addContainerGap(40, Short.MAX_VALUE))
         );
 
-        MoveUpField.setDocument(maxLength);
+        try{
+            MaskFormatter mask= new MaskFormatter("*");
+            mask.install(MoveUpField);
+        } catch(ParseException e){
+            e.printStackTrace();
+        }
+        try{
+            MaskFormatter mask= new MaskFormatter("*");
+            mask.install(MoveUpField);
+        } catch(ParseException e){
+            e.printStackTrace();
+        }
+        try{
+            MaskFormatter mask= new MaskFormatter("*");
+            mask.install(MoveUpField);
+        } catch(ParseException e){
+            e.printStackTrace();
+        }
+        try{
+            MaskFormatter mask= new MaskFormatter("*");
+            mask.install(MoveUpField);
+        } catch(ParseException e){
+            e.printStackTrace();
+        }
+        try{
+            MaskFormatter mask= new MaskFormatter("*");
+            mask.install(MoveUpField);
+        } catch(ParseException e){
+            e.printStackTrace();
+        }
+        try{
+            MaskFormatter mask= new MaskFormatter("*");
+            mask.install(MoveUpField);
+        } catch(ParseException e){
+            e.printStackTrace();
+        }
+        try{
+            MaskFormatter mask= new MaskFormatter("*");
+            mask.install(MoveUpField);
+        } catch(ParseException e){
+            e.printStackTrace();
+        }
 
         javax.swing.GroupLayout KeyboardSettingsDialogLayout = new javax.swing.GroupLayout(KeyboardSettingsDialog.getContentPane());
         KeyboardSettingsDialog.getContentPane().setLayout(KeyboardSettingsDialogLayout);
@@ -2319,6 +2382,39 @@ public class GameFrame extends javax.swing.JFrame {
         SwingUtilities.invokeLater(() -> KeyboardSettingsDialog.setVisible(false));
     }//GEN-LAST:event_KeyboardSettingsCloseButtonActionPerformed
 
+    private void InventoryButtonFrameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InventoryButtonFrameActionPerformed
+        SwingUtilities.invokeLater(() -> InventoryDialog.setVisible(true));
+    }//GEN-LAST:event_InventoryButtonFrameActionPerformed
+
+    private void CareerButtonFrame1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CareerButtonFrame1ActionPerformed
+        SwingUtilities.invokeLater(() -> CareerDialog.setVisible(true));
+    }//GEN-LAST:event_CareerButtonFrame1ActionPerformed
+
+    private void ExitCareerDialogMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ExitCareerDialogMouseClicked
+        SwingUtilities.invokeLater(() -> CareerDialog.setVisible(false));
+    }//GEN-LAST:event_ExitCareerDialogMouseClicked
+
+    private void ExitInventoryDialogMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ExitInventoryDialogMouseClicked
+        SwingUtilities.invokeLater(() -> InventoryDialog.setVisible(false));
+    }//GEN-LAST:event_ExitInventoryDialogMouseClicked
+
+    private void InventoryDialogWindowLostFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_InventoryDialogWindowLostFocus
+        SwingUtilities.invokeLater(() -> InventoryDialog.setVisible(false));
+    }//GEN-LAST:event_InventoryDialogWindowLostFocus
+
+    private void CareerDialogWindowLostFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_CareerDialogWindowLostFocus
+        SwingUtilities.invokeLater(() -> CareerDialog.setVisible(false));
+    }//GEN-LAST:event_CareerDialogWindowLostFocus
+
+    private void CareerDialogWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_CareerDialogWindowOpened
+        SwingUtilities.invokeLater(() -> setCareer());
+    }//GEN-LAST:event_CareerDialogWindowOpened
+
+    private void KeyboardSettingsDialogWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_KeyboardSettingsDialogWindowOpened
+        settings = SettingsManager.getSettingsManager();
+        SwingUtilities.invokeLater(() -> setKeyBoard());
+    }//GEN-LAST:event_KeyboardSettingsDialogWindowOpened
+
     private void MoveUpFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_MoveUpFieldKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             SwingUtilities.invokeLater(() -> {
@@ -2330,7 +2426,6 @@ public class GameFrame extends javax.swing.JFrame {
         } else {
             moveUp = evt.getKeyCode();
         }
-
     }//GEN-LAST:event_MoveUpFieldKeyPressed
 
     private void MoveDownFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_MoveDownFieldKeyPressed
@@ -2340,8 +2435,10 @@ public class GameFrame extends javax.swing.JFrame {
             });
             SwingUtilities.invokeLater(() -> setKeyBoard());
             MoveDownField.setText(KeyEvent.getKeyText(moveDown));
-        } else
+        } else {
             moveDown = evt.getKeyCode();
+        }
+
     }//GEN-LAST:event_MoveDownFieldKeyPressed
 
     private void MoveLeftFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_MoveLeftFieldKeyPressed
@@ -2399,42 +2496,33 @@ public class GameFrame extends javax.swing.JFrame {
             map = evt.getKeyCode();
     }//GEN-LAST:event_MapFieldKeyPressed
 
-    private void InventoryButtonFrameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InventoryButtonFrameActionPerformed
-        SwingUtilities.invokeLater(() -> InventoryDialog.setVisible(true));
-    }//GEN-LAST:event_InventoryButtonFrameActionPerformed
+    private void MoveUpFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MoveUpFieldMouseClicked
+        SwingUtilities.invokeLater(() -> MoveUpField.setText(""));
+    }//GEN-LAST:event_MoveUpFieldMouseClicked
 
-    private void InteractFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InteractFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_InteractFieldActionPerformed
+    private void MoveDownFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MoveDownFieldMouseClicked
+        SwingUtilities.invokeLater(() -> MoveDownField.setText(""));
+    }//GEN-LAST:event_MoveDownFieldMouseClicked
 
-    private void CareerButtonFrame1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CareerButtonFrame1ActionPerformed
-        SwingUtilities.invokeLater(() -> CareerDialog.setVisible(true));
-    }//GEN-LAST:event_CareerButtonFrame1ActionPerformed
+    private void MoveLeftFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MoveLeftFieldMouseClicked
+        SwingUtilities.invokeLater(() -> MoveLeftField.setText(""));
+    }//GEN-LAST:event_MoveLeftFieldMouseClicked
 
-    private void ExitCareerDialogMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ExitCareerDialogMouseClicked
-        SwingUtilities.invokeLater(() -> CareerDialog.setVisible(false));
-    }//GEN-LAST:event_ExitCareerDialogMouseClicked
+    private void MoveRightFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MoveRightFieldMouseClicked
+        SwingUtilities.invokeLater(() -> MoveRightField.setText(""));
+    }//GEN-LAST:event_MoveRightFieldMouseClicked
 
-    private void ExitInventoryDialogMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ExitInventoryDialogMouseClicked
-        SwingUtilities.invokeLater(() -> InventoryDialog.setVisible(false));
-    }//GEN-LAST:event_ExitInventoryDialogMouseClicked
+    private void InteractFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_InteractFieldMouseClicked
+        SwingUtilities.invokeLater(() -> InteractField.setText(""));
+    }//GEN-LAST:event_InteractFieldMouseClicked
 
-    private void InventoryDialogWindowLostFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_InventoryDialogWindowLostFocus
-        SwingUtilities.invokeLater(() -> InventoryDialog.setVisible(false));
-    }//GEN-LAST:event_InventoryDialogWindowLostFocus
+    private void PauseFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PauseFieldMouseClicked
+       SwingUtilities.invokeLater(() -> PauseField.setText(""));
+    }//GEN-LAST:event_PauseFieldMouseClicked
 
-    private void CareerDialogWindowLostFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_CareerDialogWindowLostFocus
-        SwingUtilities.invokeLater(() -> CareerDialog.setVisible(false));
-    }//GEN-LAST:event_CareerDialogWindowLostFocus
-
-    private void CareerDialogWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_CareerDialogWindowOpened
-        SwingUtilities.invokeLater(() -> setCareer());
-    }//GEN-LAST:event_CareerDialogWindowOpened
-
-    private void KeyboardSettingsDialogWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_KeyboardSettingsDialogWindowOpened
-        settings = SettingsManager.getSettingsManager();
-        SwingUtilities.invokeLater(() -> setKeyBoard());
-    }//GEN-LAST:event_KeyboardSettingsDialogWindowOpened
+    private void MapFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MapFieldMouseClicked
+        SwingUtilities.invokeLater(() -> MapField.setText(""));
+    }//GEN-LAST:event_MapFieldMouseClicked
 
     /**
      * @param args the command line arguments
@@ -2512,7 +2600,7 @@ public class GameFrame extends javax.swing.JFrame {
     protected javax.swing.JPanel HudPanel;
     protected javax.swing.JLabel HungerIcon;
     protected javax.swing.JProgressBar HungerProgressBar;
-    protected javax.swing.JTextField InteractField;
+    protected javax.swing.JFormattedTextField InteractField;
     protected javax.swing.JLabel InteractLabel;
     protected javax.swing.JButton InventoryButtonFrame;
     protected javax.swing.JDialog InventoryDialog;
@@ -2533,17 +2621,17 @@ public class GameFrame extends javax.swing.JFrame {
     protected javax.swing.JPanel MainMenuPanel;
     protected javax.swing.JButton MaleBlackButton;
     protected javax.swing.JButton MaleWhiteButton;
-    protected javax.swing.JTextField MapField;
+    protected javax.swing.JFormattedTextField MapField;
     protected javax.swing.JLabel MapLabel;
     protected javax.swing.JLabel MoneyIcon;
     protected javax.swing.JLabel MoneyLabel;
-    protected javax.swing.JTextField MoveDownField;
+    protected javax.swing.JFormattedTextField MoveDownField;
     protected javax.swing.JLabel MoveDownLabel;
-    protected javax.swing.JTextField MoveLeftField;
+    protected javax.swing.JFormattedTextField MoveLeftField;
     protected javax.swing.JLabel MoveLeftLabel;
-    protected javax.swing.JTextField MoveRightField;
+    protected javax.swing.JFormattedTextField MoveRightField;
     protected javax.swing.JLabel MoveRightLabel;
-    protected javax.swing.JTextField MoveUpField;
+    protected javax.swing.JFormattedTextField MoveUpField;
     protected javax.swing.JLabel MoveUpLabel;
     protected javax.swing.JButton MusicButton;
     protected javax.swing.JLabel NameOfExamLabel;
@@ -2551,7 +2639,7 @@ public class GameFrame extends javax.swing.JFrame {
     protected javax.swing.JButton NoButton;
     protected javax.swing.JTextField OpenInventoryField;
     protected javax.swing.JLabel OpenInventoryLabel;
-    protected javax.swing.JTextField PauseField;
+    protected javax.swing.JFormattedTextField PauseField;
     protected javax.swing.JLabel PauseLabel;
     protected javax.swing.JLabel ProfLabel;
     protected javax.swing.JButton QuestButtonFrame;
