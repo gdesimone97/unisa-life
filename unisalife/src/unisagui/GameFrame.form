@@ -1607,6 +1607,9 @@
         </Property>
         <Property name="resizable" type="boolean" value="false"/>
       </Properties>
+      <Events>
+        <EventHandler event="windowOpened" listener="java.awt.event.WindowListener" parameters="java.awt.event.WindowEvent" handler="KeyboardSettingsDialogWindowOpened"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">

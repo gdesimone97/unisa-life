@@ -55,7 +55,6 @@ public class GameFrame extends javax.swing.JFrame {
         undecoratingDialogs();
         settingLocations(this);
         initialSettings(this);
-        setKeyBoard();
         initializingTable();
         //saveManager qui
     }
@@ -179,6 +178,7 @@ public class GameFrame extends javax.swing.JFrame {
         SwingUtilities.invokeLater(() -> ConvDialog.setLocation(instance.getLocation().x + 112, instance.getLocation().y + 450));
         SwingUtilities.invokeLater(() -> QuestDialog.setLocation(instance.getLocation().x + 90, instance.getLocation().y + 125));
         SwingUtilities.invokeLater(() -> InventoryDialog.setLocation(instance.getLocation().x + 50, instance.getLocation().y + 75));
+        SwingUtilities.invokeLater(() -> CareerDialog.setLocation(instance.getLocation().x + 50, instance.getLocation().y + 75));
     }
 
     protected void settingLanguage(String s) throws Exception {
@@ -1162,6 +1162,11 @@ public class GameFrame extends javax.swing.JFrame {
 
         KeyboardSettingsDialog.setMinimumSize(new java.awt.Dimension(600, 750));
         KeyboardSettingsDialog.setResizable(false);
+        KeyboardSettingsDialog.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                KeyboardSettingsDialogWindowOpened(evt);
+            }
+        });
 
         KeyBoardPanel.setBackground(new java.awt.Color(93, 150, 199));
         KeyBoardPanel.setMaximumSize(new java.awt.Dimension(600, 750));
@@ -2396,6 +2401,10 @@ public class GameFrame extends javax.swing.JFrame {
     private void CareerDialogWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_CareerDialogWindowOpened
         SwingUtilities.invokeLater(() -> setCareer());
     }//GEN-LAST:event_CareerDialogWindowOpened
+
+    private void KeyboardSettingsDialogWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_KeyboardSettingsDialogWindowOpened
+       SwingUtilities.invokeLater(() -> setKeyBoard());
+    }//GEN-LAST:event_KeyboardSettingsDialogWindowOpened
 
     /**
      * @param args the command line arguments
