@@ -73,8 +73,6 @@ public class Tolc implements Runnable {
         RequestGui nextQuestion = new RequestGui();
         Question question;
         int answer;
-        long start;
-        int elapsed;
         boolean correctness;
 
         while (iter.hasNext()) {
@@ -96,7 +94,7 @@ public class Tolc implements Runnable {
                 gui.isCorrect(correctness, nextQuestion);
                 nextQuestion.getValue();
             }
-
+            
         }
         
         gui.closeExamDialog();
@@ -119,12 +117,12 @@ public class Tolc implements Runnable {
         } catch (InitException ex) {
             ex.printStackTrace();
         }
-        MapManager.getInstance().startGeneratingCoins();
         
+        //Far comparire i due teleport
     }
 
     private boolean isPassed() {
-        return count == maxLevel/2 + 1;
+        return count >= maxLevel/2 + 1;
     }
 
 }
