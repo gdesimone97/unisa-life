@@ -62,6 +62,11 @@ public enum CreatorsEnum {
         public StorableCreator getFactory() {
             return new TileMapFactory();
         }
+    }, teleport("teleport"){
+        @Override
+        public StorableCreator getFactory() {
+            return new TeleportWrapperFactory();
+        }
     };
 
     private final String type;
