@@ -122,10 +122,10 @@ public class GameManager {
             try {
                 MapManager.getInstance().init();
                 Player.getIstance().initialize(skin, Name, MapManager.getInstance().getMap().getInitialPosition());
-                Booklet.getInstance();
-
+                
                 QuestsManager.getInstance().init();
                 Quests.getInstance().init();
+                Booklet.getInstance().init();
                 GameInventory.getInstance().init();
                 JukeBoxMusic.getInstance();
                 JukeBoxSound.getInstance();

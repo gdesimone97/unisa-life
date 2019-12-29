@@ -86,10 +86,7 @@ public class Tolc implements Runnable {
             ArrayList<Answer> answers = question.getAnswers();
             gui.showExamDialog(this.subject.toString(), question.getQuestion(), answers.get(0).getAnswer(), answers.get(1).getAnswer(), answers.get(2).getAnswer(), answers.get(3).getAnswer(), questionTime, rg, question.getLevel(), maxLevel);
 
-            //init timer
-            start = System.nanoTime();
             answer = rg.getValue();
-            elapsed = (int) ((System.nanoTime() - start) / 1000000000);
 
             //check answer
             if (answer == 0) {
