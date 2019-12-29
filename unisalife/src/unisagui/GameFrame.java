@@ -1426,11 +1426,9 @@ public class GameFrame extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        ConvDialog.setAlwaysOnTop(true);
         ConvDialog.setBackground(new java.awt.Color(0, 0, 0));
         ConvDialog.setMaximumSize(new java.awt.Dimension(375, 100));
         ConvDialog.setMinimumSize(new java.awt.Dimension(375, 100));
-        ConvDialog.setModalityType(java.awt.Dialog.ModalityType.APPLICATION_MODAL);
         ConvDialog.setPreferredSize(new java.awt.Dimension(375, 100));
         ConvDialog.addWindowFocusListener(new java.awt.event.WindowFocusListener() {
             public void windowGainedFocus(java.awt.event.WindowEvent evt) {
@@ -1440,6 +1438,9 @@ public class GameFrame extends javax.swing.JFrame {
             }
         });
         ConvDialog.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                ConvDialogKeyReleased(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 ConvDialogKeyTyped(evt);
             }
@@ -1463,13 +1464,18 @@ public class GameFrame extends javax.swing.JFrame {
         ConversationTextArea.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 13))); // NOI18N
         ConversationTextArea.setMaximumSize(new java.awt.Dimension(375, 100));
         ConversationTextArea.setMinimumSize(new java.awt.Dimension(375, 100));
+        ConversationTextArea.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                ConversationTextAreaKeyTyped(evt);
+            }
+        });
         ConversationScrollPane.setViewportView(ConversationTextArea);
 
         javax.swing.GroupLayout ConvDialogLayout = new javax.swing.GroupLayout(ConvDialog.getContentPane());
         ConvDialog.getContentPane().setLayout(ConvDialogLayout);
         ConvDialogLayout.setHorizontalGroup(
             ConvDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(ConversationScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 399, Short.MAX_VALUE)
+            .addComponent(ConversationScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         ConvDialogLayout.setVerticalGroup(
             ConvDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1477,7 +1483,6 @@ public class GameFrame extends javax.swing.JFrame {
         );
 
         HintDialog.setMinimumSize(new java.awt.Dimension(200, 50));
-        HintDialog.setModalityType(java.awt.Dialog.ModalityType.APPLICATION_MODAL);
         HintDialog.addWindowFocusListener(new java.awt.event.WindowFocusListener() {
             public void windowGainedFocus(java.awt.event.WindowEvent evt) {
                 HintDialogWindowGainedFocus(evt);
@@ -2416,6 +2421,18 @@ public class GameFrame extends javax.swing.JFrame {
         settings = SettingsManager.getSettingsManager();
         SwingUtilities.invokeLater(() -> setKeyBoard());
     }//GEN-LAST:event_KeyboardSettingsDialogWindowOpened
+
+    private void ConversationTextAreaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ConversationTextAreaKeyTyped
+        GuiManager.getInstance().hideDialog();
+    }//GEN-LAST:event_ConversationTextAreaKeyTyped
+
+    private void ConvDialogKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ConvDialogKeyReleased
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            SwingUtilities.invokeLater(() -> ConvDialog.setVisible(false));
+            SwingUtilities.invokeLater(() -> ConversationTextArea.setText(EMPTY_TEXT));
+            SwingUtilities.invokeLater(() -> ConvDialog.setFocusable(false));
+        }
+    }//GEN-LAST:event_ConvDialogKeyReleased
 
     /**
      * @param args the command line arguments
