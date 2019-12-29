@@ -8,6 +8,8 @@ package gameSystem.keySettings;
 import java.awt.event.KeyEvent;
 import java.io.Serializable;
 import java.util.HashMap;
+import java.util.Objects;
+import java.util.function.BiConsumer;
 import saving.SaveManager;
 import saving.Saveable;
 import saving.exceptions.LoadingException;
@@ -52,15 +54,22 @@ public class SettingsManager implements Saveable {
         return false;
     }
 
-    private boolean isRegistered(int key) {
-        if (register.containsValue(key)) {
-            return true;
-        }
-        return false;
+    private boolean isRegistered(Commands cmd, int key) {
+        Integer oldKey = register.get(cmd);
+            if (oldKey.equals(key)) {
+                return true;
+            }
+            register.put(cmd, null);
+            register.forEach((k, v) -> {
+                if (v!=null && v.equals(key)) {
+                    register.replace(k, oldKey);
+                }
+            });
+            return false;
     }
 
     private boolean setKey(Commands cmd, int button) {
-        if (!checkInput(button) || isRegistered(button)) {
+        if (!checkInput(button) || isRegistered(cmd, button)) {
             return false;
         }
         register.put(cmd, button);
@@ -73,8 +82,8 @@ public class SettingsManager implements Saveable {
         }
         return true;
     }
-    
-    private void defaultInit(){
+
+    private void defaultInit() {
         register.put(Commands.MOVE_UP, KeyEvent.VK_W);
         register.put(Commands.MOVE_DOWN, KeyEvent.VK_S);
         register.put(Commands.MOVE_LEFT, KeyEvent.VK_A);
@@ -85,11 +94,11 @@ public class SettingsManager implements Saveable {
         register.put(Commands.INVENTORY, KeyEvent.VK_I);
         register.put(Commands.SAVE, KeyEvent.VK_S);
     }
-    
+
     private SettingsManager() {
-        try{
+        try {
             SaveManager.getSaveManager().loadKeys();
-        }catch(LoadingException ex){
+        } catch (LoadingException ex) {
             defaultInit();
         }
     }
