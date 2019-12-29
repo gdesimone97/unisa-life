@@ -7,6 +7,8 @@ package exam;
 import exam.booklet.Subject;
 import exam.question.*;
 import game.GameObjects.Player;
+import game.GameObjects.Position;
+import game.GameObjects.Teleport;
 import game.Interfaces.Initializable.InitException;
 import gameSystem.map.MapManager;
 import java.util.ArrayList;
@@ -75,8 +77,6 @@ public class Tolc implements Runnable {
         RequestGui nextQuestion = new RequestGui();
         Question question;
         int answer;
-        long start;
-        int elapsed;
         boolean correctness;
 
         while (iter.hasNext()) {
@@ -98,7 +98,7 @@ public class Tolc implements Runnable {
                 gui.isCorrect(correctness, nextQuestion);
                 nextQuestion.getValue();
             }
-
+            
         }
         
         gui.closeExamDialog();
@@ -109,6 +109,7 @@ public class Tolc implements Runnable {
             FileTextManager f = FileTextManager.getFileTextManager();
             if (passed) {
                 gui.showDialog(professorName, f.getString(new MessageInformation("TolcPassedName")).get(0) + Player.getIstance().getName() + f.getString(new MessageInformation("TolcPassedName")).get(1));
+                gui.showDialog(professorName, f.getString(new MessageInformation("TolcPassedName")).get(2));
                 JukeBoxSound.getInstance().play("exam_passed");
 //                Booklet.getInstance().setScore(subject, voto);
             }
@@ -121,12 +122,12 @@ public class Tolc implements Runnable {
         } catch (InitException ex) {
             ex.printStackTrace();
         }
-        MapManager.getInstance().startGeneratingCoins();
         
+        //Far comparire i due teleport o rimuovere i due oggetti davanti al teleport        
     }
 
     private boolean isPassed() {
-        return count == maxLevel/2 + 1;
+        return count >= maxLevel/2 + 1;
     }
 
 }

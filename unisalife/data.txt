@@ -3,6 +3,12 @@ tilemap %0%3200%1664%/Tilesets/TilesetConSfondo.png%/Maps/Tutorial.map%1120%832
 cook %cook%128%320%/Sprites/spritesignoramensa.png %0%d
 guardian %guardian%160%320%/Sprites/spritedormitorio.png %0%d
 coin %224%320%/Sprites/coin.png%coin %0%d
+coin %1376%832%/Sprites/coin.png%coin %0%d
+coin %1472%832%/Sprites/coin.png%coin %0%d
+coin %1536%736%/Sprites/coin.png%coin %0%d
+coin %1632%736%/Sprites/coin.png%coin %0%d
+coin %1952%832%/Sprites/coin.png%coin %0%d
+coin %2112%832%/Sprites/coin.png%coin %0%d
 item %256%320%/Sprites/calculator.png%calcolatrice %0%d
 item %288%320%/Sprites/note.png%appunti %0%d
 quest %0%tolc%calcolatrice%appunti%coin
@@ -11,12 +17,6 @@ distributor %1760%608%vm1 %0%f
 distributor %1792%608%vm2 %0%f
 distributor %1824%608%vm3 %0%f
 distributor %1856%608%vm4 %0%f
-coin %1376%832%0%d
-coin %1472%832%0%d
-coin %1536%736%0%d
-coin %1632%736%0%d
-coin %1952%832%0%d
-coin %2112%832%0%d
 block %1056%1056%0%f
 block %1056%1024%0%f
 block %1056%992%0%f

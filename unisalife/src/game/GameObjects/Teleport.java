@@ -20,8 +20,8 @@ import java.util.LinkedList;
  */
 public class Teleport extends GameObject implements Interactable{
 
-    private final int mapDest;
-    private final Position d;
+    private int mapDest;
+    private Position d;
 
     /**
      **Class Teleport represents a point in the map that allows the player to
@@ -39,7 +39,7 @@ public class Teleport extends GameObject implements Interactable{
         mapDest = map;
         this.d = d;
     }
-
+    
     //render is void because a Teleport is invisible.
     /**
      *

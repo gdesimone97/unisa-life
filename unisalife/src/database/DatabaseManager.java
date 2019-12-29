@@ -17,6 +17,7 @@ import game.GameObjects.Item;
 import game.GameObjects.ObjectManager;
 import game.GameObjects.Professor;
 import game.GameObjects.Renderable;
+import game.GameObjects.Teleport;
 import game.GameResources.Map;
 import game.GameResources.TileMap;
 import game.Interfaces.Initializable;
@@ -136,14 +137,18 @@ public class DatabaseManager implements Initializable {
             int mapId = this.findMap(questSubject.getInfo(), DatabaseManager.DYNCOLLECTIONNAME);
             dynArrObj.get(mapId).put(p.getScaledPosition(), p);
         }
+        try {
 
-        Cook cook = this.findCook();
-        int cookMapId = this.findMap(cook.getIndex(), DatabaseManager.DYNCOLLECTIONNAME);
-        dynArrObj.get(cookMapId).put(cook.getScaledPosition(), cook);
+            Cook cook = this.findCook();
+            int cookMapId = this.findMap(cook.getIndex(), DatabaseManager.DYNCOLLECTIONNAME);
+            dynArrObj.get(cookMapId).put(cook.getScaledPosition(), cook);
 
-        Guardian guardian = this.findGuardian();
-        int guardMapId = this.findMap(guardian.getIndex(), DatabaseManager.DYNCOLLECTIONNAME);
-        dynArrObj.get(guardMapId).put(guardian.getScaledPosition(), guardian);
+            Guardian guardian = this.findGuardian();
+            int guardMapId = this.findMap(guardian.getIndex(), DatabaseManager.DYNCOLLECTIONNAME);
+            dynArrObj.get(guardMapId).put(guardian.getScaledPosition(), guardian);
+        } catch (ObjectNotFoundException ex) {
+
+        }
 
         /*
         if ((dynArrObj.stream().filter((obj) -> obj.size() <= 0).count()) > 0) {
@@ -206,6 +211,11 @@ public class DatabaseManager implements Initializable {
             for (BlockWrapper bw : db.getNitriteDatabase().getRepository(BlockWrapper.class).find(eq("map", Integer.parseInt(id))).toList()) {
                 Block b = bw.getBlock();
                 fixed.put(b.getScaledPosition(), b);
+            }
+            // this is to get the teleports
+            for (TeleportWrapper tw : db.getNitriteDatabase().getRepository(TeleportWrapper.class).find(eq("map", Integer.parseInt(id))).toList()) {
+                Teleport t = tw.getTeleport();
+                fixed.put(t.getScaledPosition(), t);
             }
             int index = tilemap.getId();
             maps[index] = new Map(tilemap, new ObjectManager(fixed, dyn));
