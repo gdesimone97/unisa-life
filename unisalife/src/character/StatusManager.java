@@ -26,9 +26,6 @@ public class StatusManager implements Saveable, Initializable {
     private static StatusManager instance;
     
     private StatusManager() {
-        this.updater = new HudUpdater();
-        Thread up = new Thread(updater);
-        up.start();
     }
     
     public static StatusManager getInstance() {
@@ -115,6 +112,9 @@ public class StatusManager implements Saveable, Initializable {
     
     @Override
     public void init() {
+        this.updater = new HudUpdater();
+        Thread up = new Thread(updater);
+        up.start();
         setEnergy(100);
         setHunger(0);
         setMoney(0);

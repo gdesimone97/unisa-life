@@ -7,6 +7,8 @@ package exam;
 import exam.booklet.Subject;
 import exam.question.*;
 import game.GameObjects.Player;
+import game.GameObjects.Position;
+import game.GameObjects.Teleport;
 import game.Interfaces.Initializable.InitException;
 import gameSystem.map.MapManager;
 import java.util.ArrayList;
@@ -107,6 +109,7 @@ public class Tolc implements Runnable {
             FileTextManager f = FileTextManager.getFileTextManager();
             if (passed) {
                 gui.showDialog(professorName, f.getString(new MessageInformation("TolcPassedName")).get(0) + Player.getIstance().getName() + f.getString(new MessageInformation("TolcPassedName")).get(1));
+                gui.showDialog(professorName, f.getString(new MessageInformation("TolcPassedName")).get(2));
                 JukeBoxSound.getInstance().play("exam_passed");
 //                Booklet.getInstance().setScore(subject, voto);
             }
@@ -121,6 +124,8 @@ public class Tolc implements Runnable {
         }
         
         //Far comparire i due teleport
+        MapManager.getInstance().getMap().addObject((new Position(1952, 352)).getScaledPosition(), new Teleport(new Position(1952, 352), 1, new Position(1, 1)));
+        
     }
 
     private boolean isPassed() {
