@@ -12,11 +12,15 @@ import game.GameObjects.ObjectManager;
 import game.GameObjects.Player;
 import game.GameObjects.Position;
 import game.GameObjects.Renderable;
+import game.Interfaces.Initializable;
 import gameSystem.Game;
 import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 import static java.lang.Thread.sleep;
 import java.util.Random;
 import java.util.concurrent.ConcurrentHashMap;
+import javax.imageio.ImageIO;
 
 /**
  *
@@ -34,7 +38,7 @@ public class Map implements Runnable {
 
     private TileMap tMap;
     private ObjectManager mapObjects;
-
+    private String pathMiniMap;
     private boolean generateRandomCoins = false;
 
     /**
@@ -53,9 +57,19 @@ public class Map implements Runnable {
      * @param t Tmap
      * @param hm HashMap of GameObject objects
      */
-    public Map(TileMap tMap, ObjectManager mapObjects) {
+    public Map(TileMap tMap, ObjectManager mapObjects, String pathMiniMap) {
         this.tMap = tMap;
         this.mapObjects = mapObjects;
+        this.pathMiniMap=pathMiniMap;
+    }
+    
+    public BufferedImage getMiniMap() throws Initializable.InitException{
+        
+        try {
+            return ImageIO.read(getClass().getResource(pathMiniMap));
+        } catch (IOException ex) {
+            throw new Initializable.InitException("Can't find Map image");
+        }
     }
 
     /**

@@ -24,7 +24,7 @@ import javax.imageio.ImageIO;
 public class MapState extends GameState {
 
     private static MapState instance;
-    private BufferedImage img;
+    private static BufferedImage img;
     
     private int xPlayer;
     private int yPlayer;
@@ -33,17 +33,21 @@ public class MapState extends GameState {
     private int xPlayerInMap;
     private int yPlayerInMap;
     
-    public static MapState getInstance() {
+    public static MapState getInstance() throws Initializable.InitException{
         if (instance == null) {
             instance = new MapState();
         }
+        img = MapManager.getInstance().getMap().getMiniMap();
         return instance;
     }
     
     private MapState() {
     }
-
+    
     @Override
+    public void init(){}
+    
+    /*@Override
     public void init() throws Initializable.InitException {
         try {
             img = ImageIO.read(getClass().getResource("/Sprites/Map.jpg"));
@@ -51,6 +55,7 @@ public class MapState extends GameState {
             throw new Initializable.InitException("Can't find Map image");
         }
     }
+    */
 
     @Override
     public void tick() {
