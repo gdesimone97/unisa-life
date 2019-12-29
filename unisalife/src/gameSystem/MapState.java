@@ -50,7 +50,7 @@ public class MapState extends GameState {
     /*@Override
     public void init() throws Initializable.InitException {
         try {
-            img = ImageIO.read(getClass().getResource("/Sprites/Map.jpg"));
+            img = ImageIO.read(getClass().getResource("/Sprites/Tutorial.png"));
         } catch (IOException ex) {
             throw new Initializable.InitException("Can't find Map image");
         }
