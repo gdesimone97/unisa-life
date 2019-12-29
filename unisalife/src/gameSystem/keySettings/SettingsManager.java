@@ -7,9 +7,11 @@ package gameSystem.keySettings;
 
 import java.awt.event.KeyEvent;
 import java.io.Serializable;
-import java.util.ArrayList;
+import java.util.HashMap;
+import saving.SaveManager;
 import saving.Saveable;
 import saving.exceptions.LoadingException;
+import saving.exceptions.SavingException;
 
 /**
  * This class declares the methods to set and get keyboard keys used to move the
@@ -18,25 +20,78 @@ import saving.exceptions.LoadingException;
  *
  * @author Giuseppe De Simone
  */
-public class SettingsManager implements Saveable{
+public class SettingsManager implements Saveable {
 
+    private enum Commands {
+        MOVE_UP,
+        MOVE_DOWN,
+        MOVE_LEFT,
+        MOVE_RIGHT,
+        INTERACT,
+        PAUSE,
+        MAP,
+        INVENTORY,
+        SAVE
+    }
+
+    private HashMap<Commands, Integer> register = new HashMap<>(9);
     private static final SettingsManager instance = new SettingsManager();
-    private int moveUp = KeyEvent.VK_W;
-    private int moveDown = KeyEvent.VK_S;
-    private int moveLeft = KeyEvent.VK_A;
-    private int moveRight = KeyEvent.VK_D;
-    private int interactButton = KeyEvent.VK_SPACE;
-    private int pauseButton = KeyEvent.VK_P;
-    private int mapButton = KeyEvent.VK_M;
-    private final int saveButton = KeyEvent.VK_S;
-    private final int inventoryButton = KeyEvent.VK_TAB;
+
+    private boolean checkInput(int code) {
+        final int A = KeyEvent.VK_A;
+        final int Z = KeyEvent.VK_Z;
+        final int SPACE = KeyEvent.VK_SPACE;
+        final int ZERO = KeyEvent.VK_0;
+        final int NINE = KeyEvent.VK_9;
+        final int DOWN = KeyEvent.VK_DOWN;
+        final int LEFT = KeyEvent.VK_LEFT;
+
+        if (code >= A && code <= Z || code >= ZERO && code <= NINE || code == SPACE || code >= LEFT || code <= DOWN) {
+            return true;
+        }
+        return false;
+    }
+
+    private boolean isRegistered(int key) {
+        if (register.containsValue(key)) {
+            return true;
+        }
+        return false;
+    }
+
+    private boolean setKey(Commands cmd, int button) {
+        if (!checkInput(button) || isRegistered(button)) {
+            return false;
+        }
+        register.put(cmd, button);
+        try {
+            SaveManager.getSaveManager().saveKeys();
+        } catch (SavingException ex) {
+            System.out.println(ex.getMessage());
+            ex.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
+    private SettingsManager() {
+        register.put(Commands.MOVE_UP, KeyEvent.VK_W);
+        register.put(Commands.MOVE_DOWN, KeyEvent.VK_S);
+        register.put(Commands.MOVE_LEFT, KeyEvent.VK_A);
+        register.put(Commands.MOVE_RIGHT, KeyEvent.VK_D);
+        register.put(Commands.PAUSE, KeyEvent.VK_P);
+        register.put(Commands.INTERACT, KeyEvent.VK_SPACE);
+        register.put(Commands.MAP, KeyEvent.VK_M);
+        register.put(Commands.INVENTORY, KeyEvent.VK_I);
+        register.put(Commands.SAVE, KeyEvent.VK_S);
+    }
 
     /**
      *
      * @return an int containing the value of keyboard key pressed
      */
     public int getInventoryButton() {
-        return inventoryButton;
+        return register.get(Commands.INVENTORY);
     }
 
     /**
@@ -44,16 +99,18 @@ public class SettingsManager implements Saveable{
      * @return an int containing the value of keyboard key pressed
      */
     public int getMapButton() {
-        return mapButton;
+        return register.get(Commands.MAP);
     }
 
     /**
      * set keyboard's key when the player want to visualize the map
      *
      * @param mapButton
+     * @return false if key is already setted or it is a no valid value
+     * otherwise true
      */
-    public void setMapButton(int mapButton) {
-        this.mapButton = mapButton;
+    public boolean setMapButton(int mapButton) {
+        return setKey(Commands.MAP, mapButton);
     }
 
     /**
@@ -61,10 +118,7 @@ public class SettingsManager implements Saveable{
      * @return an int containing the value of keyboard key pressed
      */
     public int getSaveButton() {
-        return saveButton;
-    }
-
-    private SettingsManager() {
+        return register.get(Commands.SAVE);
     }
 
     /**
@@ -81,16 +135,18 @@ public class SettingsManager implements Saveable{
      * commad
      */
     public int getMoveUp() {
-        return moveUp;
+        return register.get(Commands.MOVE_UP);
     }
 
     /**
      * set keyboard's key related to move up command
      *
      * @param moveUp
+     * @return false if key is already setted or it is a no valid value
+     * otherwise true
      */
-    public void setMoveUp(int moveUp) {
-        this.moveUp = moveUp;
+    public boolean setMoveUp(int moveUp) {
+        return setKey(Commands.MOVE_UP, moveUp);
     }
 
     /**
@@ -99,16 +155,18 @@ public class SettingsManager implements Saveable{
      * commad
      */
     public int getMoveDown() {
-        return moveDown;
+        return register.get(Commands.MOVE_DOWN);
     }
 
     /**
      * set keyboard's key related to move down command
      *
      * @param moveDown
+     * @return false if key is already setted or it is a no valid value
+     * otherwise true
      */
-    public void setMoveDown(int moveDown) {
-        this.moveDown = moveDown;
+    public boolean setMoveDown(int moveDown) {
+        return setKey(Commands.MOVE_DOWN, moveDown);
     }
 
     /**
@@ -117,16 +175,18 @@ public class SettingsManager implements Saveable{
      * commad
      */
     public int getMoveLeft() {
-        return moveLeft;
+        return register.get(Commands.MOVE_LEFT);
     }
 
     /**
      * set keyboard's key related to move left command
      *
      * @param moveLeft
+     * @return false if key is already setted or it is a no valid value
+     * otherwise true
      */
-    public void setMoveLeft(int moveLeft) {
-        this.moveLeft = moveLeft;
+    public boolean setMoveLeft(int moveLeft) {
+        return setKey(Commands.MOVE_LEFT, moveLeft);
     }
 
     /**
@@ -135,16 +195,18 @@ public class SettingsManager implements Saveable{
      * commad
      */
     public int getMoveRight() {
-        return moveRight;
+        return register.get(Commands.MOVE_RIGHT);
     }
 
     /**
      * set keyboard's key related to move right command
      *
      * @param moveRight
+     * @return false if key is already setted or it is a no valid value
+     * otherwise true
      */
-    public void setMoveRight(int moveRight) {
-        this.moveRight = moveRight;
+    public boolean setMoveRight(int moveRight) {
+        return setKey(Commands.MOVE_RIGHT, moveRight);
     }
 
     /**
@@ -153,16 +215,18 @@ public class SettingsManager implements Saveable{
      * commad
      */
     public int getInteractButton() {
-        return interactButton;
+        return register.get(Commands.INTERACT);
     }
 
     /**
      * set keyboard's key related to interact command command
      *
      * @param interactButton
+     * @return false if key is already setted or it is a no valid value
+     * otherwise true
      */
-    public void setInteractButton(int interactButton) {
-        this.interactButton = interactButton;
+    public boolean setInteractButton(int interactButton) {
+        return setKey(Commands.INTERACT, interactButton);
     }
 
     /**
@@ -171,40 +235,27 @@ public class SettingsManager implements Saveable{
      * commad
      */
     public int getPauseButton() {
-        return pauseButton;
+        return register.get(Commands.PAUSE);
     }
 
     /**
      * set keyboard's key related to pause command command
      *
      * @param pauseButton
+     * @return false if key is already setted or it is a no valid value
+     * otherwise true
      */
-    public void setPauseButton(int pauseButton) {
-        this.pauseButton = pauseButton;
+    public boolean setPauseButton(int pauseButton) {
+        return setKey(Commands.PAUSE, pauseButton);
     }
 
     @Override
     public Serializable save() {
-        ArrayList<Integer> list = new ArrayList<>();
-        list.add(moveUp);
-        list.add(moveDown);
-        list.add(moveRight);
-        list.add(moveLeft);
-        list.add(interactButton);
-        list.add(pauseButton);
-        list.add(mapButton);
-        return list;
+        return this.register;
     }
 
     @Override
     public void load(Serializable obj) throws LoadingException {
-        ArrayList<Integer> list = (ArrayList<Integer>) obj;
-        moveUp = list.get(0);
-        moveDown = list.get(1);
-        moveRight = list.get(2);
-        moveLeft = list.get(3);
-        interactButton = list.get(4);
-        pauseButton = list.get(5);
-        mapButton = list.get(6);
+        this.register = (HashMap<Commands, Integer>) obj;
     }
 }

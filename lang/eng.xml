@@ -27,7 +27,7 @@
 <message>10#Two numbers are in ratio 4 : 6. If the sum of the numbers is 200, find the numbers.#80 and 120#100 and 150#60 and 100#95 and 105</message>
 </Subject>
 
-<Subject info="Programming">
+<Subject info="programming">
 <message>1#Which C function allows you to display an output message?#printf#scanf#fopen#fclose</message>
 <message>1#Which C function allows you to take an input value from user?#scanf#printf#fclose#fopen</message>
 <message>1#How many bits is an Int variable represented by?#16#8#24#32</message>
@@ -50,7 +50,7 @@
 <message>4#What does parameter argv[0] represent in C main function when parameter argc is greater than 0?#The programm name#The path of .exe file in the File system#The path of libraries included in the programm#The path of NetBeans folder</message>
 </Subject>
 
-<Subject info="Reti Di Calcolatori">
+<Subject info="computernetwork">
 <message>1#What is Internet?#A network of interconnected computers#The set of navigable websites#The signal that comes to the home router#A fishing net to catch all the people</message>
 <message>1#How many layers does the ISO/OSI model provide?#7#4#10#2</message>
 <message>1#What type of multiplexing is used for ADSL lines?#FDM with bands of different amplitude#FDM with bands of same amplitude#TDM#Statistical TDM</message>
@@ -73,7 +73,7 @@
 <message>4#Which technique is used in DISTANCE VECTOR algorithms to solve (partially) the problem of addressing cycles?#Poisoned reverse#Indirect addressing#Hierarchical addressing#Addressing without classes</message>
 </Subject>
 
-<Subject info="Architecture of computers and operating systems">
+<Subject info="acso">
 <message>1#What does MAR stand for?#Memory Address Register#Minimale Age Readable#Massive Address Register#Main Address Register</message>
 <message>1#A CPU which is able to carry out a thousand milion instructions per seconds would have a clock speed of:#1GHz#10GHz#1000GHz#100MHz</message>
 <message>1#What does this instruction mean? lw $t, i($s)#$t = MEM [$s + i]:4#$t = MEM [$s + i]:2#$t = MEM [$s + i]:8#$t = MEM [$s + i]:16</message>
@@ -96,7 +96,7 @@
 <message>4#How many bits do I need to cache 32 bits? Suppose you have a 2 ^ 32 bit memory and a 2 ^ 12 bit cache.#32+21=53#32#32+20=52#32+44=76</message>
 </Subject>
 
-<Subject info="Telecomunicazioni">
+<Subject info="telecomunications">
 <message>1#A power signal has energy equals to:#infinity#0#1#a complex value</message>
 <message>1#A signal x(t) is said hermitian if:#x(t) = x*(-t)#x(t) = x(-t)#x(t) = -x*(-t)#A signal can't be hermitian</message>
 <message>1#Two events are said mutually exclusive are also indipendet.#False#True#Not enough information#None of the others</message>
@@ -117,6 +117,75 @@
 <message>4#An ergodic, stationary process has:#temporal and theoretical mean are the same#at each time sample the density function changes#there's no way to get statistical property from time measurements#None of the above</message>
 <message>4#Channel State Information and Selection Combining are used to fix problems related to:#fading#extreme noise#extreme latency#All of the others</message>
 <message>4#The LED Life Expectancy is a typical example of:#exponential model#gaussian model#uniform model#Poisson model</message>
+</Subject>
+
+<Subject info="tisc">
+<message>1#The lowest level of CIM is:#The workshop level#Control level#Company management level#Cell supervision level </message>
+<message>1#A Plc has:#An real-time multi-tasking operating system#No operating system#No multi-tasking operating system#No I/O ports,read I/O signals by network</message>
+<message>1#The control device operating system doesn't have to:#Be No Pre-emptive#Have a mechanisms to avoid deadlock situations#Perform synchronization and comunication among tasks#Have a malfunction management system</message>
+<message>1#Control device based on personal computer are useful because:#The device has already a series of functionalities#You can extend its functionalities through modules#Good for hostile environment#You can use it without an operating system</message>
+<message>1#Which of these is a special module for PLC:#Co-Processor#Processor#I/O#Power supply module</message>
+<message>2#A control device want:#Fast access to memory#Only one CPU#No hardware redundancy#Perform tasks in arbitrary time</message>
+<message>2#Which is the core of Scada:#Process database#Driver#Alarm management#Expert system</message>
+<message>2#The plc architecture is:#Bus#Token bus#Monolitic#Based on Personal Computer</message>
+<message>2#Which system is used for manage the production activity:#Mes#Scada#Bus#Plc </message>
+<message>2#The statistical process control is a module of:#Scada#Mes#Dcs#Plc></message>
+<message>3#The remote I/O module is used when:#There are a lot of I/O signals#Plc can't read I/O signals beacuse its ports are broken#Plc can read I/O signals only by network#You need to convert analogic signals into digital signals</message>
+<message>3#Which is the access method for camp networks:#Token#CSMA/CD#CSMA/BA#Master-slave</message>
+<message>3#The transmission frequency of a network for information is:#Low and the messagge can be received in an arbitrary time#Low and the message have to be received in short time#High and the messagge can be received in an arbitrary time#High and the message have to be received in short time</message>
+<message>3#How the response time is calculated? (Ts is the scanning time and Tr is the network time):#2Ts+Ti/o+Tr#Ts+Ti/o+Tr#2Ts+2Ti/o+2Tr#2Ts+Ti/o+2Tr</message>
+<message>3#A monolitic control device doesn't have:#A massive memory#A clock#A volatile memory#A non-volatile memory</message>
+<message>4#Which levels of ISO/OSI the networks for automation implement?#1,2,7#1,2,3#1,4,7#1,2,6</message>
+<message>4#The maximum transfer rate of PCI bus is:#132 MB/s#170 MB/s#1 MB/s#232 MB/s</message>
+<message>4#How many devices an Inter-bus can handle up to:#256#300#128#64</message>
+<message>4#Which levels of ISO/OSI implements a sensor bus?#1,2#1,2,7#6,7#1,5,7</message>
+<message>4#How many I/O points can handle a micro-Plc?#64#128#256#32</message>
+</Subject>
+
+<Subject info="english">
+<message>1#Fill the gap : I have always …………… play games well.#been able to#able#could#can</message>
+<message>1#Fill the gap : He has always …………… to do what he wanted.#been allowed#could#be able#granted</message>
+<message>1#Fill the gap : One cannot help but …………….. his courage.#admire#to admire#show#to show</message>
+<message>1#Fill the gap : …………… do you want a holiday?#How much#How many#How far#How</message>
+<message>1#Fill the gap :  I will have tea …………… coffee.#instead of#instead#indeeed#without</message>
+<message>2#A synonim of "speed" is :#slowness#fast#velocity#</message>
+<message>2#A synonim of "able" is :#skilled#useless#approximative#unable</message>
+<message>2#A synonim of "risk" is :#danger#saefty#safe#wisdom</message>
+<message>2#A synonim of "fire" is :#flames#waterfall#smoke#fall</message>
+<message>2#A synonim of "accuracy" is :#precision#rightful#usefulness#uncertainity</message>
+<message>3#The past tense of the verb "to play" is : #playied#played#playd#gamed</message>
+<message>3#The past tense of the verb "to eat" is : #ate#eated#eat'd#ated</message>
+<message>3#The past tense of the verb "to drink" is : #drank#drinked#drink'd#dranked</message>
+<message>3#The past tense of the verb "to study" is : #studied#studiyed#studed#studyied</message>
+<message>3#The past tense of the verb "to sing" is : #sang#singed#sung#sunged</message>
+<message>4#What's the meaning of "blow up something" ?#Make something explode#Set something to fire#To blow air into something#To mess up someting</message>
+<message>4#What's the meaning of "set something up" ?#To arrange/organize something#To install a malicious software#To caught an unfortunate event#To understand something fast</message>
+<message>4#What's the meaning of "break out" ?#To escape#To run through an obstacle#To jump over a cliff#To catch someone cheating</message>
+<message>4#What's the meaning of "count on something/someone" ?#0#f(0)#Not enough information#+inf</message>
+<message>4#What's the meaning of "fall down" ?#To fall to the ground#To climb a ladder#To overcome an obstacle#To jump over an obstacle</message>
+</Subject>
+
+<Subject info="electrotechnics">
+<message>1#What is the unit of measurement for electric current?#Ampere#Volt#Hertz#Ohm</message>
+<message>1#What is the unit of measurement for electric resistance?#Ohm#Ampere#Volt#Coulomb</message>
+<message>1#What is the unit of measurement for electric charge?#Coulomb#Ohm#Ampere#Volt</message>
+<message>1#What is the unit of measurement for electric voltage?#Volt#Coulomb#Ohm#Hertz</message>
+<message>1#What is the unit of measurement for the electrical capacity of a capacitor?#Farad#Coulomb#Ohm#Hertz</message>
+<message>2#In a parallel circuit..#The voltage is the same for all elements#The current is the same for all of the elements#The voltage is the sum of the voltage of the individual components#None of the above</message>
+<message>2#In a parallel circuit..#The total capacitance is equal to the sum of the individual capacitances#The current is the same for all of the elements#The voltage is the sum of the voltage of the individual components#None of the above</message>
+<message>2#In a parallel circuit..#The total inductance is equal to the reciprocal of the sum of the reciprocals of individual inductances#The current is the same for all of the elements#The voltage is the sum of the voltage of the individual components#None of the above</message>
+<message>2#In a parallel circuit..#The total resistance is equal to the reciprocal of the sum of the reciprocals of individual resistances#The current is the same for all of the elements#The voltage is the sum of the voltage of the individual components#None of the above</message>
+<message>2#In a parallel circuit..#The total current is equal to the sum of the individual currents#The current is the same for all of the elements#The voltage is the sum of the voltage of the individual components#None of the above</message>
+<message>3#In a series circuit..#The current is the same for all of the elements#The voltage is the same for all elements#The total resistance is equal to the reciprocal of the sum of the reciprocals of individual resistances#None of the above</message>
+<message>3#In a series circuit..#The voltage is the sum of the voltage of the individual components#The voltage is the same for all elements#The total resistance is equal to the reciprocal of the sum of the reciprocals of individual resistances#None of the above</message>
+<message>3#In a series circuit..#The total resistance is equal to the sum of individual resistances#The voltage is the same for all elements#The total resistance is equal to the reciprocal of the sum of the reciprocals of individual resistances#None of the above</message>
+<message>3#In a series circuit..#The total inductance is equal to the sum of individual inductances#The voltage is the same for all elements#The total resistance is equal to the reciprocal of the sum of the reciprocals of individual resistances#None of the above</message>
+<message>3#In a series circuit..#The total capacitance is equal to the reciprocal of the sum of the reciprocals of individual capacitances#The voltage is the same for all elements#The total resistance is equal to the reciprocal of the sum of the reciprocals of individual resistances#None of the above</message>
+<message>4#In steady state, how much is the electric voltage in an inductor?#0#V=IR#V=I/R#+Inf</message>
+<message>4#In steady state, how much is the electric current in a capacitor?#0#I=V/R#+Inf#-Inf</message>
+<message>4#What does Kirchhoff's current law say?#The algebraic sum of currents in a network of conductors meeting at a point is 0#V=IR#P=VI#C=Q/dV</message>
+<message>4#What does Kirchhoff's voltage law say#The sum of the potential differences around any closed loop is 0#V=IR#P=VI#C=Q/dV</message>
+<message>4#What is the nodal analysis of an electrical circuit?#A method of determining the voltage between nodes#A method of determining the current in a node#A mathematical transform#None of the above</message>
 </Subject>
 
 
