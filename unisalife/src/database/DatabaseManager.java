@@ -218,7 +218,7 @@ public class DatabaseManager implements Initializable {
                 fixed.put(t.getScaledPosition(), t);
             }
             int index = tilemap.getId();
-            maps[index] = new Map(tilemap, new ObjectManager(fixed, dyn));
+            maps[index] = new Map(tilemap, new ObjectManager(fixed, dyn),tilemap.getMiniMapPath());
         }
 
         // inserire anche gli oggetti dinamici del livello zero per testare

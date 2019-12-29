@@ -23,14 +23,16 @@ public class TileMapWrapper implements Storable, Serializable {
     private int l;
     private int w;
     private Position pos;
+    private String minimapPath;
 
-    public TileMapWrapper(int id, int l, int w, String p, String m, Position pos) {
+    public TileMapWrapper(int id, int l, int w, String p, String m, Position pos, String minimapPath) {
         this.id = id;
         this.p = p;
         this.m = m;
         this.l = l;
         this.w = w;
         this.pos = pos;
+        this.minimapPath = minimapPath;
     }
 
     private TileMapWrapper() {
@@ -58,7 +60,11 @@ public class TileMapWrapper implements Storable, Serializable {
     }
 
     public TileMap buildTileMap() {
-        return new TileMap(id, l, w, p, m, pos);
+        return new TileMap(id, l, w, p, m, pos, minimapPath);
+    }
+
+    public String getMiniMapPath(){
+        return this.minimapPath;
     }
 
     @Override

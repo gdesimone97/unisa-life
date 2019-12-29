@@ -52,6 +52,7 @@ public class TileMap implements Serializable, Storable {
     private int numCols;
     private int width;
     private int height;
+    private String miniMapPath;
 
     // tileset
     private BufferedImage tileset;
@@ -69,7 +70,7 @@ public class TileMap implements Serializable, Storable {
         
     }
     
-    public TileMap(int id, int w, int h, String t, String m, Position initialPosition) {
+    public TileMap(int id, int w, int h, String t, String m, Position initialPosition, String miniMapPath) {
         this.tileSize = Game.DIMENSIONSPRITE;
         numRowsToDraw = /*Game.WIDTHMAP / tileSize + 2;*/ w; //31
         numColsToDraw = /*Game.HEIGHTMAP / tileSize + 2;*/ h;  //31
@@ -78,8 +79,13 @@ public class TileMap implements Serializable, Storable {
         this.initialPosition = initialPosition;
         loadTiles(t);
         loadMap(m);
+        this.miniMapPath = miniMapPath;
     }
     
+    public String getMiniMapPath(){
+        return this.miniMapPath;
+    }
+
     public int getId(){
         return this.id;
     }
