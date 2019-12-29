@@ -136,14 +136,18 @@ public class DatabaseManager implements Initializable {
             int mapId = this.findMap(questSubject.getInfo(), DatabaseManager.DYNCOLLECTIONNAME);
             dynArrObj.get(mapId).put(p.getScaledPosition(), p);
         }
+        try {
 
-        Cook cook = this.findCook();
-        int cookMapId = this.findMap(cook.getIndex(), DatabaseManager.DYNCOLLECTIONNAME);
-        dynArrObj.get(cookMapId).put(cook.getScaledPosition(), cook);
+            Cook cook = this.findCook();
+            int cookMapId = this.findMap(cook.getIndex(), DatabaseManager.DYNCOLLECTIONNAME);
+            dynArrObj.get(cookMapId).put(cook.getScaledPosition(), cook);
 
-        Guardian guardian = this.findGuardian();
-        int guardMapId = this.findMap(guardian.getIndex(), DatabaseManager.DYNCOLLECTIONNAME);
-        dynArrObj.get(guardMapId).put(guardian.getScaledPosition(), guardian);
+            Guardian guardian = this.findGuardian();
+            int guardMapId = this.findMap(guardian.getIndex(), DatabaseManager.DYNCOLLECTIONNAME);
+            dynArrObj.get(guardMapId).put(guardian.getScaledPosition(), guardian);
+        } catch (ObjectNotFoundException ex) {
+
+        }
 
         /*
         if ((dynArrObj.stream().filter((obj) -> obj.size() <= 0).count()) > 0) {
