@@ -1430,6 +1430,7 @@ public class GameFrame extends javax.swing.JFrame {
         ConvDialog.setMaximumSize(new java.awt.Dimension(375, 100));
         ConvDialog.setMinimumSize(new java.awt.Dimension(375, 100));
         ConvDialog.setPreferredSize(new java.awt.Dimension(375, 100));
+        ConvDialog.setResizable(false);
         ConvDialog.addWindowFocusListener(new java.awt.event.WindowFocusListener() {
             public void windowGainedFocus(java.awt.event.WindowEvent evt) {
             }
