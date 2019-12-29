@@ -1801,7 +1801,7 @@
                 <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="MoveUpFieldKeyPressed"/>
               </Events>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="MoveUpField.setDocument(maxLength);&#xa;MoveUpField.setText(KeyEvent.getKeyText(settings.getMoveUp()));"/>
+                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="MoveUpField.setDocument(maxLength);"/>
               </AuxValues>
             </Component>
             <Component class="javax.swing.JLabel" name="MoveDownLabel">
@@ -1836,9 +1836,6 @@
               <Events>
                 <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="MoveDownFieldKeyPressed"/>
               </Events>
-              <AuxValues>
-                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="MoveDownField.setText(KeyEvent.getKeyText(settings.getMoveDown()));"/>
-              </AuxValues>
             </Component>
             <Component class="javax.swing.JLabel" name="MoveLeftLabel">
               <Properties>
@@ -1872,9 +1869,6 @@
               <Events>
                 <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="MoveLeftFieldKeyPressed"/>
               </Events>
-              <AuxValues>
-                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="MoveLeftField.setText(KeyEvent.getKeyText(settings.getMoveLeft()));"/>
-              </AuxValues>
             </Component>
             <Component class="javax.swing.JLabel" name="MoveRightLabel">
               <Properties>
@@ -1908,9 +1902,6 @@
               <Events>
                 <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="MoveRightFieldKeyPressed"/>
               </Events>
-              <AuxValues>
-                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="MoveRightField.setText(KeyEvent.getKeyText(settings.getMoveRight()));"/>
-              </AuxValues>
             </Component>
             <Component class="javax.swing.JLabel" name="InteractLabel">
               <Properties>
@@ -1946,14 +1937,11 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="InteractFieldActionPerformed"/>
                 <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="InteractFieldKeyPressed"/>
               </Events>
-              <AuxValues>
-                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="InteractField.setText(KeyEvent.getKeyText(settings.getInteractButton()));"/>
-              </AuxValues>
             </Component>
             <Component class="javax.swing.JLabel" name="PauseLabel">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Icon/INVENTORY.png"/>
+                  <Image iconType="3" name="/Icon/PAUSE.png"/>
                 </Property>
               </Properties>
             </Component>
@@ -1982,9 +1970,6 @@
               <Events>
                 <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="PauseFieldKeyPressed"/>
               </Events>
-              <AuxValues>
-                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="PauseField.setText(KeyEvent.getKeyText(settings.getPauseButton()));"/>
-              </AuxValues>
             </Component>
             <Component class="javax.swing.JTextField" name="MapField">
               <Properties>
@@ -2011,9 +1996,6 @@
               <Events>
                 <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="MapFieldKeyPressed"/>
               </Events>
-              <AuxValues>
-                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="MapField.setText(KeyEvent.getKeyText(settings.getMapButton()));"/>
-              </AuxValues>
             </Component>
             <Component class="javax.swing.JLabel" name="MapLabel">
               <Properties>
@@ -2053,7 +2035,7 @@
             <Component class="javax.swing.JLabel" name="OpenInventoryLabel">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Icon/PAUSE.png"/>
+                  <Image iconType="3" name="/Icon/INVENTORY.png"/>
                 </Property>
               </Properties>
             </Component>

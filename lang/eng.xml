@@ -299,6 +299,7 @@
 <MessageInformation info="TolcPassedName">
 <message>Congrats, </message>
 <message>. You did it! Now you are a Computer Engineering student!</message>
+<message>Now enter in the building and .. GOOD LUCK</message>
 </MessageInformation>
 
 <MessageInformation info="TolcFailedName">
