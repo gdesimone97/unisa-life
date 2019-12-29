@@ -1,5 +1,5 @@
 subject %tolc
-tilemap %0%3200%1664%/Tilesets/TilesetConSfondo.png%/Maps/Tutorial.map%1120%832
+tilemap %0%3200%1664%/Tilesets/TilesetConSfondo.png%/Maps/Tutorial.map%1120%832%/Sprites/Tutorial.png
 cook %cook%128%320%/Sprites/spritesignoramensa.png %0%d
 guardian %guardian%160%320%/Sprites/spritedormitorio.png %0%d
 coin %224%320%/Sprites/coin.png%coin %0%d
