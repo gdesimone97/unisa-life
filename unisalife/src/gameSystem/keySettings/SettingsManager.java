@@ -46,7 +46,7 @@ public class SettingsManager implements Saveable {
         final int DOWN = KeyEvent.VK_DOWN;
         final int LEFT = KeyEvent.VK_LEFT;
 
-        if (code >= A && code <= Z || code >= ZERO && code <= NINE || code == SPACE || code >= LEFT || code <= DOWN) {
+        if ((code >= A && code <= Z) || (code >= ZERO && code <= NINE) || (code == SPACE) || (code >= LEFT && code <= DOWN)) {
             return true;
         }
         return false;
