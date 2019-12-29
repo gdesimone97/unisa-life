@@ -1428,7 +1428,10 @@ public class GameFrame extends javax.swing.JFrame {
 
         ConvDialog.setAlwaysOnTop(true);
         ConvDialog.setBackground(new java.awt.Color(0, 0, 0));
+        ConvDialog.setMaximumSize(new java.awt.Dimension(375, 100));
         ConvDialog.setMinimumSize(new java.awt.Dimension(375, 100));
+        ConvDialog.setModalityType(java.awt.Dialog.ModalityType.APPLICATION_MODAL);
+        ConvDialog.setPreferredSize(new java.awt.Dimension(375, 100));
         ConvDialog.addWindowFocusListener(new java.awt.event.WindowFocusListener() {
             public void windowGainedFocus(java.awt.event.WindowEvent evt) {
             }
@@ -1437,12 +1440,6 @@ public class GameFrame extends javax.swing.JFrame {
             }
         });
         ConvDialog.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                ConvDialogKeyPressed(evt);
-            }
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                ConvDialogKeyReleased(evt);
-            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 ConvDialogKeyTyped(evt);
             }
@@ -1480,6 +1477,7 @@ public class GameFrame extends javax.swing.JFrame {
         );
 
         HintDialog.setMinimumSize(new java.awt.Dimension(200, 50));
+        HintDialog.setModalityType(java.awt.Dialog.ModalityType.APPLICATION_MODAL);
         HintDialog.addWindowFocusListener(new java.awt.event.WindowFocusListener() {
             public void windowGainedFocus(java.awt.event.WindowEvent evt) {
                 HintDialogWindowGainedFocus(evt);
@@ -1827,9 +1825,6 @@ public class GameFrame extends javax.swing.JFrame {
         CareerButtonFrame1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/libretto.png"))); // NOI18N
         CareerButtonFrame1.setToolTipText("inventory");
         CareerButtonFrame1.setBorder(null);
-        CareerButtonFrame1.setMaximumSize(new java.awt.Dimension(25, 25));
-        CareerButtonFrame1.setMinimumSize(new java.awt.Dimension(25, 25));
-        CareerButtonFrame1.setPreferredSize(new java.awt.Dimension(25, 25));
         CareerButtonFrame1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CareerButtonFrame1ActionPerformed(evt);
@@ -1857,7 +1852,7 @@ public class GameFrame extends javax.swing.JFrame {
                             .addGap(18, 18, 18)
                             .addComponent(InventoryButtonFrame)
                             .addGap(18, 18, 18)
-                            .addComponent(CareerButtonFrame1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(CareerButtonFrame1)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(HungerProgressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(26, 26, 26)
@@ -1894,7 +1889,7 @@ public class GameFrame extends javax.swing.JFrame {
                     .addComponent(SettingsButtonFrame)
                     .addComponent(QuestButtonFrame)
                     .addComponent(InventoryButtonFrame)
-                    .addComponent(CareerButtonFrame1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(CareerButtonFrame1))
                 .addGap(29, 29, 29))
         );
 
@@ -1915,7 +1910,7 @@ public class GameFrame extends javax.swing.JFrame {
         RightBorderLayout.setHorizontalGroup(
             RightBorderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RightBorderLayout.createSequentialGroup()
-                .addGap(0, 26, Short.MAX_VALUE)
+                .addGap(0, 25, Short.MAX_VALUE)
                 .addComponent(GameCloseButton))
         );
         RightBorderLayout.setVerticalGroup(
@@ -2127,12 +2122,8 @@ public class GameFrame extends javax.swing.JFrame {
 
     }//GEN-LAST:event_AvatarOkButtonMouseClicked
 
-    private void ConvDialogKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ConvDialogKeyPressed
-
-    }//GEN-LAST:event_ConvDialogKeyPressed
-
     private void HintDialogKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_HintDialogKeyTyped
-        if (evt.getKeyCode() == interact) {
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
             SwingUtilities.invokeLater(() -> HintDialog.setVisible(false));
             SwingUtilities.invokeLater(() -> HintTextArea.setText(EMPTY_TEXT));
             SwingUtilities.invokeLater(() -> HintDialog.setFocusable(false));
@@ -2141,7 +2132,7 @@ public class GameFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_HintDialogKeyTyped
 
     private void ConvDialogKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ConvDialogKeyTyped
-        if (evt.getKeyCode() == interact) {
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
             SwingUtilities.invokeLater(() -> ConvDialog.setVisible(false));
             SwingUtilities.invokeLater(() -> ConversationTextArea.setText(EMPTY_TEXT));
             SwingUtilities.invokeLater(() -> ConvDialog.setFocusable(false));
@@ -2258,16 +2249,6 @@ public class GameFrame extends javax.swing.JFrame {
             //SwingUtilities.invokeLater(() -> this.setEnabled(true));
         }
     }//GEN-LAST:event_HintDialogKeyReleased
-
-    private void ConvDialogKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ConvDialogKeyReleased
-        // TODO add your handling code here:
-        if (evt.getKeyCode() == interact) {
-            SwingUtilities.invokeLater(() -> ConvDialog.setVisible(false));
-            SwingUtilities.invokeLater(() -> ConversationTextArea.setText(EMPTY_TEXT));
-            SwingUtilities.invokeLater(() -> ConvDialog.setFocusable(false));
-        }
-
-    }//GEN-LAST:event_ConvDialogKeyReleased
 
     private void MusicButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MusicButtonActionPerformed
         SwingUtilities.invokeLater(() -> sound.play("menu"));
