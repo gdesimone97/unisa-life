@@ -36,7 +36,7 @@ public class GameFrame extends javax.swing.JFrame {
     private static JukeBoxMusic music = JukeBoxMusic.getInstance();
     private static ButtonGroup buttongroup = new javax.swing.ButtonGroup();
     private final MaxLengthTextDocument maxLength = new MaxLengthTextDocument();
-    private SettingsManager settings = SettingsManager.getSettingsManager();
+    private SettingsManager settings;
     private int moveUp;
     private int moveDown;
     private int moveLeft;
@@ -77,6 +77,13 @@ public class GameFrame extends javax.swing.JFrame {
         interact = settings.getInteractButton();
         pause = settings.getPauseButton();
         map = settings.getMapButton();
+        MoveUpField.setText(KeyEvent.getKeyText(moveUp));
+        MoveDownField.setText(KeyEvent.getKeyText(moveDown));
+        MoveLeftField.setText(KeyEvent.getKeyText(moveLeft));
+        MoveRightField.setText(KeyEvent.getKeyText(moveRight));
+        InteractField.setText(KeyEvent.getKeyText(interact));
+        PauseField.setText(KeyEvent.getKeyText(pause));
+        MapField.setText(KeyEvent.getKeyText(map));
 
     }
     /**
@@ -1256,7 +1263,7 @@ public class GameFrame extends javax.swing.JFrame {
             }
         });
 
-        PauseLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/INVENTORY.png"))); // NOI18N
+        PauseLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/PAUSE.png"))); // NOI18N
 
         PauseField.setBackground(new java.awt.Color(0, 153, 204));
         PauseField.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
@@ -1301,7 +1308,7 @@ public class GameFrame extends javax.swing.JFrame {
             }
         });
 
-        OpenInventoryLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/PAUSE.png"))); // NOI18N
+        OpenInventoryLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/INVENTORY.png"))); // NOI18N
 
         KeyboardSettingsCloseButton.setBackground(new java.awt.Color(93, 150, 199));
         KeyboardSettingsCloseButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/exitbutton24.png"))); // NOI18N
@@ -1403,13 +1410,6 @@ public class GameFrame extends javax.swing.JFrame {
         );
 
         MoveUpField.setDocument(maxLength);
-        MoveUpField.setText(KeyEvent.getKeyText(settings.getMoveUp()));
-        MoveDownField.setText(KeyEvent.getKeyText(settings.getMoveDown()));
-        MoveLeftField.setText(KeyEvent.getKeyText(settings.getMoveLeft()));
-        MoveRightField.setText(KeyEvent.getKeyText(settings.getMoveRight()));
-        InteractField.setText(KeyEvent.getKeyText(settings.getInteractButton()));
-        PauseField.setText(KeyEvent.getKeyText(settings.getPauseButton()));
-        MapField.setText(KeyEvent.getKeyText(settings.getMapButton()));
 
         javax.swing.GroupLayout KeyboardSettingsDialogLayout = new javax.swing.GroupLayout(KeyboardSettingsDialog.getContentPane());
         KeyboardSettingsDialog.getContentPane().setLayout(KeyboardSettingsDialogLayout);
@@ -2320,54 +2320,83 @@ public class GameFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_KeyboardSettingsCloseButtonActionPerformed
 
     private void MoveUpFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_MoveUpFieldKeyPressed
-       if(evt.getKeyCode() == KeyEvent.VK_ENTER)
-           SwingUtilities.invokeLater(() -> settings.setMoveUp(moveUp));
-       else
-           moveUp= evt.getKeyCode();          
-       
-                
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            SwingUtilities.invokeLater(() -> {
+                boolean b = settings.setMoveUp(moveUp);
+            });
+            SwingUtilities.invokeLater(() -> setKeyBoard());
+            MoveUpField.setText(KeyEvent.getKeyText(moveUp));
+
+        } else {
+            moveUp = evt.getKeyCode();
+        }
+
     }//GEN-LAST:event_MoveUpFieldKeyPressed
 
     private void MoveDownFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_MoveDownFieldKeyPressed
-       if(evt.getKeyCode() == KeyEvent.VK_ENTER)
-           SwingUtilities.invokeLater(() -> settings.setMoveDown(moveDown));
-       else
-           moveDown= evt.getKeyCode(); 
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            SwingUtilities.invokeLater(() -> {
+                boolean b = settings.setMoveDown(moveDown);
+            });
+            SwingUtilities.invokeLater(() -> setKeyBoard());
+            MoveDownField.setText(KeyEvent.getKeyText(moveDown));
+        } else
+            moveDown = evt.getKeyCode();
     }//GEN-LAST:event_MoveDownFieldKeyPressed
 
     private void MoveLeftFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_MoveLeftFieldKeyPressed
-        if(evt.getKeyCode() == KeyEvent.VK_ENTER)
-           SwingUtilities.invokeLater(() -> settings.setMoveLeft(moveLeft));
-       else
-           moveLeft= evt.getKeyCode(); 
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            SwingUtilities.invokeLater(() -> {
+                boolean b = settings.setMoveLeft(moveLeft);
+            });
+            SwingUtilities.invokeLater(() -> setKeyBoard());
+            MoveLeftField.setText(KeyEvent.getKeyText(moveLeft));
+        } else
+            moveLeft = evt.getKeyCode();
     }//GEN-LAST:event_MoveLeftFieldKeyPressed
 
     private void MoveRightFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_MoveRightFieldKeyPressed
-        if(evt.getKeyCode() == KeyEvent.VK_ENTER)
-           SwingUtilities.invokeLater(() -> settings.setMoveRight(moveRight));
-       else
-           moveRight= evt.getKeyCode(); 
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            SwingUtilities.invokeLater(() -> {
+                boolean b = settings.setMoveRight(moveRight);
+            });
+            SwingUtilities.invokeLater(() -> setKeyBoard());
+            MoveRightField.setText(KeyEvent.getKeyText(moveRight));
+        } else
+            moveRight = evt.getKeyCode();
     }//GEN-LAST:event_MoveRightFieldKeyPressed
 
     private void InteractFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_InteractFieldKeyPressed
-        if(evt.getKeyCode() == KeyEvent.VK_ENTER)
-           SwingUtilities.invokeLater(() -> settings.setInteractButton(interact));
-       else
-           interact= evt.getKeyCode(); 
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            SwingUtilities.invokeLater(() -> {
+                boolean b = settings.setInteractButton(interact);
+            });
+            SwingUtilities.invokeLater(() -> setKeyBoard());
+            InteractField.setText(KeyEvent.getKeyText(interact));
+        } else
+            interact = evt.getKeyCode();
     }//GEN-LAST:event_InteractFieldKeyPressed
 
     private void PauseFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_PauseFieldKeyPressed
-        if(evt.getKeyCode() == KeyEvent.VK_ENTER)
-           SwingUtilities.invokeLater(() -> settings.setPauseButton(pause));
-       else
-           pause= evt.getKeyCode(); 
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            SwingUtilities.invokeLater(() -> {
+                boolean b = settings.setPauseButton(pause);
+            });
+            SwingUtilities.invokeLater(() -> setKeyBoard());
+            PauseField.setText(KeyEvent.getKeyText(pause));
+        } else
+            pause = evt.getKeyCode();
     }//GEN-LAST:event_PauseFieldKeyPressed
 
     private void MapFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_MapFieldKeyPressed
-        if(evt.getKeyCode() == KeyEvent.VK_ENTER)
-           SwingUtilities.invokeLater(() -> settings.setMapButton(map));
-       else
-           map= evt.getKeyCode(); 
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            SwingUtilities.invokeLater(() -> {
+                boolean b = settings.setMapButton(map);
+            });
+            SwingUtilities.invokeLater(() -> setKeyBoard());
+            MapField.setText(KeyEvent.getKeyText(map));
+        } else
+            map = evt.getKeyCode();
     }//GEN-LAST:event_MapFieldKeyPressed
 
     private void InventoryButtonFrameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InventoryButtonFrameActionPerformed
@@ -2403,7 +2432,8 @@ public class GameFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_CareerDialogWindowOpened
 
     private void KeyboardSettingsDialogWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_KeyboardSettingsDialogWindowOpened
-       SwingUtilities.invokeLater(() -> setKeyBoard());
+        settings = SettingsManager.getSettingsManager();
+        SwingUtilities.invokeLater(() -> setKeyBoard());
     }//GEN-LAST:event_KeyboardSettingsDialogWindowOpened
 
     /**

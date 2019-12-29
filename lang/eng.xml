@@ -188,6 +188,28 @@
 <message>4#What is the nodal analysis of an electrical circuit?#A method of determining the voltage between nodes#A method of determining the current in a node#A mathematical transform#None of the above</message>
 </Subject>
 
+<Subject info="database">
+<message>1#DBMS stands for#Data Base Management System#Data Base Memory Storage#Document Base Memory System#Data Base Manipulation System</message>
+<message>1#A database can be defined as a:#data collection managed by a DBMS#file collection manages by a DBMS#data collection stored in some files#simple file collection</message>
+<message>1#Which database part is invariant?#schemas#instances#records#attributes</message>
+<message>1DDL is:#Data Definition Language#Database Definition Language#Data Description Language#Databse Description Language#</message>
+<message>1#DCL is:#Data Control Language#Database Control Language#Data Check Language#Database Construction Language</message>
+<message>2#In the relational model:#a relation is also a table#a table is also a relation#tables do not belong to the relational model#relations and tables are equivalent</message>
+<message>2#In the relational model, a superkey is also a key:#True#False#It depends on the relation#Superkeys do not belong to the relational model</message>
+<message>2#If an attribute is pointed as a primary key...#NULL is not allowed for that attribute#The attribute is used to compress the record#NULL is not allowed, but duplicates are#None of the others</message>
+<message>2#Referential integrity constraint among relations is based on:#same value on some attributes#same reference on some attributes#an attribute is used as a pointers to another record#an attribute is used as a key for another relation</message>
+<message>2#An attribute selected as foreign key, with respect to the external relation...#it has to be, at least, unique#it must be primary key#it can be anything#it must point to the primary key of the internal relation</message>
+<message>3#####</message>
+<message>3#####</message>
+<message>3#####</message>
+<message>3#####</message>
+<message>3#####</message>
+<message>4#####</message>
+<message>4#####</message>
+<message>4#####</message>
+<message>4#####</message>
+<message>4#####</message>
+</Subject> 
 
 <Professor info="Foggia">
 <message>Are you ready?</message>
