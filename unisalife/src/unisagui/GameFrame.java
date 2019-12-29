@@ -55,9 +55,7 @@ public class GameFrame extends javax.swing.JFrame {
         undecoratingDialogs();
         settingLocations(this);
         initialSettings(this);
-        setKeyBoard();
         initializingTable();
-        SwingUtilities.invokeLater(() -> setCareer());
         //saveManager qui
     }
 
@@ -891,6 +889,11 @@ public class GameFrame extends javax.swing.JFrame {
                 CareerDialogWindowLostFocus(evt);
             }
         });
+        CareerDialog.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                CareerDialogWindowOpened(evt);
+            }
+        });
 
         CareerPanel.setBackground(new java.awt.Color(93, 150, 199));
         CareerPanel.setMaximumSize(new java.awt.Dimension(500, 500));
@@ -1159,6 +1162,11 @@ public class GameFrame extends javax.swing.JFrame {
 
         KeyboardSettingsDialog.setMinimumSize(new java.awt.Dimension(600, 750));
         KeyboardSettingsDialog.setResizable(false);
+        KeyboardSettingsDialog.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                KeyboardSettingsDialogWindowOpened(evt);
+            }
+        });
 
         KeyBoardPanel.setBackground(new java.awt.Color(93, 150, 199));
         KeyBoardPanel.setMaximumSize(new java.awt.Dimension(600, 750));
@@ -1420,9 +1428,7 @@ public class GameFrame extends javax.swing.JFrame {
 
         ConvDialog.setAlwaysOnTop(true);
         ConvDialog.setBackground(new java.awt.Color(0, 0, 0));
-        ConvDialog.setMaximumSize(new java.awt.Dimension(375, 100));
         ConvDialog.setMinimumSize(new java.awt.Dimension(375, 100));
-        ConvDialog.setPreferredSize(new java.awt.Dimension(375, 100));
         ConvDialog.addWindowFocusListener(new java.awt.event.WindowFocusListener() {
             public void windowGainedFocus(java.awt.event.WindowEvent evt) {
             }
@@ -1534,7 +1540,6 @@ public class GameFrame extends javax.swing.JFrame {
         );
 
         QuestDialog.setMinimumSize(new java.awt.Dimension(420, 400));
-        QuestDialog.setModalityType(java.awt.Dialog.ModalityType.MODELESS);
         QuestDialog.setResizable(false);
         QuestDialog.addWindowFocusListener(new java.awt.event.WindowFocusListener() {
             public void windowGainedFocus(java.awt.event.WindowEvent evt) {
@@ -1630,7 +1635,6 @@ public class GameFrame extends javax.swing.JFrame {
             .addComponent(QuestPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        InventoryDialog.setMaximumSize(new java.awt.Dimension(500, 500));
         InventoryDialog.setMinimumSize(new java.awt.Dimension(500, 500));
         InventoryDialog.setResizable(false);
         InventoryDialog.addWindowFocusListener(new java.awt.event.WindowFocusListener() {
@@ -1911,7 +1915,7 @@ public class GameFrame extends javax.swing.JFrame {
         RightBorderLayout.setHorizontalGroup(
             RightBorderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RightBorderLayout.createSequentialGroup()
-                .addGap(0, 25, Short.MAX_VALUE)
+                .addGap(0, 26, Short.MAX_VALUE)
                 .addComponent(GameCloseButton))
         );
         RightBorderLayout.setVerticalGroup(
@@ -2393,6 +2397,14 @@ public class GameFrame extends javax.swing.JFrame {
     private void CareerDialogWindowLostFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_CareerDialogWindowLostFocus
         SwingUtilities.invokeLater(() -> CareerDialog.setVisible(false));
     }//GEN-LAST:event_CareerDialogWindowLostFocus
+
+    private void CareerDialogWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_CareerDialogWindowOpened
+        SwingUtilities.invokeLater(() -> setCareer());
+    }//GEN-LAST:event_CareerDialogWindowOpened
+
+    private void KeyboardSettingsDialogWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_KeyboardSettingsDialogWindowOpened
+       SwingUtilities.invokeLater(() -> setKeyBoard());
+    }//GEN-LAST:event_KeyboardSettingsDialogWindowOpened
 
     /**
      * @param args the command line arguments
