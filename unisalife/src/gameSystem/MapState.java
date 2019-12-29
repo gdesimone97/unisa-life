@@ -15,6 +15,8 @@ import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 
 /**
@@ -37,7 +39,6 @@ public class MapState extends GameState {
         if (instance == null) {
             instance = new MapState();
         }
-        img = MapManager.getInstance().getMap().getMiniMap();
         return instance;
     }
     
@@ -45,7 +46,8 @@ public class MapState extends GameState {
     }
     
     @Override
-    public void init(){}
+    public void init() throws Initializable.InitException {
+    }
     
     /*@Override
     public void init() throws Initializable.InitException {
@@ -83,6 +85,14 @@ public class MapState extends GameState {
     public void handleInput(KeyCommand cmd) {
 
         cmd.visitMapState(instance);
+    }
+    
+    public void setMinimap(String path) throws Initializable.InitException {
+        try {
+            img = ImageIO.read(getClass().getResource(path));
+        } catch (IOException ex) {
+            throw new Initializable.InitException("Can't find Map image");
+        }
     }
 
 }

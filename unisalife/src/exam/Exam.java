@@ -53,7 +53,7 @@ public class Exam implements Runnable {
      * questions
      *
      */
-    public Exam(Subject subject) throws TextFinderException, InitException {
+    public Exam(Subject subject, String profName) throws TextFinderException, InitException {
         this.subject = subject;
         QuestionFactory questionsFetch = new StringsQuestionFactory(subject);
         this.score = 0;
@@ -65,7 +65,7 @@ public class Exam implements Runnable {
         this.maxLevel = this.questions.getNumLevels();
         this.basicScore = 12 / (30 - (30 / (float) (this.maxLevel - 1)));
         this.iter = questions.iterator();
-        this.professorName = "EMPTY NAME";
+        this.professorName = profName;
     }
 
     /**
@@ -202,12 +202,12 @@ public class Exam implements Runnable {
             if (voto >= 18 && voto <= 30) {
                 gui.showDialog(professorName, FileTextManager.getFileTextManager().getString(new MessageInformation("ScoreTaken")).get(0) + " " + voto);
                 JukeBoxSound.getInstance().play("exam_passed");
-//                Booklet.getInstance().setScore(subject, voto);                
+                Booklet.getInstance().setScore(subject, voto);                
             }
             else if (voto == 31) {
                 gui.showDialog(professorName, FileTextManager.getFileTextManager().getString(new MessageInformation("Lode")).get(0));
                 JukeBoxSound.getInstance().play("exam_passed");
-//                Booklet.getInstance().setScore(subject, voto);
+                Booklet.getInstance().setScore(subject, voto);
             }
             else {
                 gui.showDialog(professorName, FileTextManager.getFileTextManager().getString(new MessageInformation("ExamFailed")).get(0));

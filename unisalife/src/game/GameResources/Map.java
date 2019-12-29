@@ -63,13 +63,8 @@ public class Map implements Runnable {
         this.pathMiniMap=pathMiniMap;
     }
     
-    public BufferedImage getMiniMap() throws Initializable.InitException{
-        
-        try {
-            return ImageIO.read(getClass().getResource(pathMiniMap));
-        } catch (IOException ex) {
-            throw new Initializable.InitException("Can't find Map image");
-        }
+    public String getPathMiniMap() {
+        return pathMiniMap;
     }
 
     /**

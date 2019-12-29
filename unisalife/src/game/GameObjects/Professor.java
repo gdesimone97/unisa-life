@@ -53,4 +53,8 @@ public class Professor extends Person implements Information {
     public String getIndex() {
         return this.subject.getInfo();
     }
+    
+    public String getNome() {
+        return nome;
+    }
 }
