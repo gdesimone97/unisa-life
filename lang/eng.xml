@@ -142,6 +142,29 @@
 <message>4#What's the meaning of "fall down" ?#To fall to the ground#To climb a ladder#To overcome an obstacle#To jump over an obstacle</message>
 </Subject>
 
+<Subject info="electrotechnics">
+<message>1#What is the unit of measurement for electric current?#Ampere#Volt#Hertz#Ohm</message>
+<message>1#What is the unit of measurement for electric resistance?#Ohm#Ampere#Volt#Coulomb</message>
+<message>1#What is the unit of measurement for electric charge?#Coulomb#Ohm#Ampere#Volt</message>
+<message>1#What is the unit of measurement for electric voltage?#Volt#Coulomb#Ohm#Hertz</message>
+<message>1#What is the unit of measurement for the electrical capacity of a capacitor?#Farad#Coulomb#Ohm#Hertz</message>
+<message>2#In a parallel circuit..#The voltage is the same for all elements#The current is the same for all of the elements#The voltage is the sum of the voltage of the individual components#None of the above</message>
+<message>2#In a parallel circuit..#The total capacitance is equal to the sum of the individual capacitances#The current is the same for all of the elements#The voltage is the sum of the voltage of the individual components#None of the above</message>
+<message>2#In a parallel circuit..#The total inductance is equal to the reciprocal of the sum of the reciprocals of individual inductances#The current is the same for all of the elements#The voltage is the sum of the voltage of the individual components#None of the above</message>
+<message>2#In a parallel circuit..#The total resistance is equal to the reciprocal of the sum of the reciprocals of individual resistances#The current is the same for all of the elements#The voltage is the sum of the voltage of the individual components#None of the above</message>
+<message>2#In a parallel circuit..#The total current is equal to the sum of the individual currents#The current is the same for all of the elements#The voltage is the sum of the voltage of the individual components#None of the above</message>
+<message>3#In a series circuit..#The current is the same for all of the elements#The voltage is the same for all elements#The total resistance is equal to the reciprocal of the sum of the reciprocals of individual resistances#None of the above</message>
+<message>3#In a series circuit..#The voltage is the sum of the voltage of the individual components#The voltage is the same for all elements#The total resistance is equal to the reciprocal of the sum of the reciprocals of individual resistances#None of the above</message>
+<message>3#In a series circuit..#The total resistance is equal to the sum of individual resistances#The voltage is the same for all elements#The total resistance is equal to the reciprocal of the sum of the reciprocals of individual resistances#None of the above</message>
+<message>3#In a series circuit..#The total inductance is equal to the sum of individual inductances#The voltage is the same for all elements#The total resistance is equal to the reciprocal of the sum of the reciprocals of individual resistances#None of the above</message>
+<message>3#In a series circuit..#The total capacitance is equal to the reciprocal of the sum of the reciprocals of individual capacitances#The voltage is the same for all elements#The total resistance is equal to the reciprocal of the sum of the reciprocals of individual resistances#None of the above</message>
+<message>4#In steady state, how much is the electric voltage in an inductor?#0#V=IR#V=I/R#+Inf</message>
+<message>4#In steady state, how much is the electric current in a capacitor?#0#I=V/R#+Inf#-Inf</message>
+<message>4#What does Kirchhoff's current law say?#The algebraic sum of currents in a network of conductors meeting at a point is 0#V=IR#P=VI#C=Q/dV</message>
+<message>4#What does Kirchhoff's voltage law say#The sum of the potential differences around any closed loop is 0#V=IR#P=VI#C=Q/dV</message>
+<message>4#What is the nodal analysis of an electrical circuit?#A method of determining the voltage between nodes#A method of determining the current in a node#A mathematical transform#None of the above</message>
+</Subject>
+
 
 <Professor info="Foggia">
 <message>Are you ready?</message>
