@@ -123,9 +123,7 @@ public class Tolc implements Runnable {
             ex.printStackTrace();
         }
         
-        //Far comparire i due teleport
-        MapManager.getInstance().getMap().addObject((new Position(1952, 352)).getScaledPosition(), new Teleport(new Position(1952, 352), 1, new Position(1, 1)));
-        
+        //Far comparire i due teleport o rimuovere i due oggetti davanti al teleport        
     }
 
     private boolean isPassed() {
