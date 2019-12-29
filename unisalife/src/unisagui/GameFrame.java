@@ -38,7 +38,6 @@ public class GameFrame extends javax.swing.JFrame {
     private static JukeBoxSound sound = JukeBoxSound.getInstance();
     private static JukeBoxMusic music = JukeBoxMusic.getInstance();
     private static ButtonGroup buttongroup = new javax.swing.ButtonGroup();
-    private final MaxLengthTextDocument maxLength = new MaxLengthTextDocument();
     private SettingsManager settings;
     private int moveUp;
     private int moveDown;
