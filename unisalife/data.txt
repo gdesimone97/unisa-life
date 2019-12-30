@@ -3,7 +3,7 @@ tilemap %0%2368%928%/Tilesets/TilesetConSfondo.png%/Maps/Tutorial.map%352%448%/S
 cook %cook%128%320%/Sprites/spritesignoramensa.png %0%d
 guardian %guardian%160%320%/Sprites/spritedormitorio.png %0%d
 coin %224%320%/Sprites/coin.png%coin1 %0%d
-coin  %544%448%/Sprites/coin.png%coin2 %0%d
+coin %544%448%/Sprites/coin.png%coin2 %0%d
 coin %800%352%/Sprites/coin.png%coin3 %0%d
 coin %640%448%/Sprites/coin.png%coin4 %0%d
 coin %1120%448%/Sprites/coin.png%coin5 %0%d
