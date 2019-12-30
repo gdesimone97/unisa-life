@@ -3,4 +3,4 @@
 *.class
 unisalife/build/built-jar.properties
 unisalife/build/
-save/save.game
+*.game
