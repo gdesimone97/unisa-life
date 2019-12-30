@@ -10,6 +10,7 @@ import saving.Saveable;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
+import quests.QuestsManager;
 import quests.mediator.Message;
 import quests.mediator.User;
 
@@ -21,7 +22,6 @@ public class Quests extends User implements Saveable, Serializable, Initializabl
 
     private HashMap<String, Quest> quests;
     private static Quests instance = null;
-    private int currentLevel = 0;
 
     private Quests() {
         super();
@@ -43,10 +43,6 @@ public class Quests extends User implements Saveable, Serializable, Initializabl
 
     public void putQuest(Quest q) {
         this.quests.put(q.getSubject().getInfo(), q);
-    }
-
-    public int getCurrentLevel() {
-        return this.currentLevel;
     }
 
     @Override
@@ -83,7 +79,7 @@ public class Quests extends User implements Saveable, Serializable, Initializabl
         }
 
         if (quests.isEmpty()) {
-            this.currentLevel++;
+            QuestsManager.getInstance().levelEnded();
             // chiamata a livello superiore per informare che le quest correnti sono terminate
         }
 
