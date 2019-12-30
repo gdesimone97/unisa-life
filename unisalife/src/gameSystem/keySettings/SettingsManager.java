@@ -8,8 +8,6 @@ package gameSystem.keySettings;
 import java.awt.event.KeyEvent;
 import java.io.Serializable;
 import java.util.HashMap;
-import java.util.Objects;
-import java.util.function.BiConsumer;
 import saving.SaveManager;
 import saving.Saveable;
 import saving.exceptions.LoadingException;
@@ -92,13 +90,15 @@ public class SettingsManager implements Saveable {
         register.put(Commands.INTERACT, KeyEvent.VK_SPACE);
         register.put(Commands.MAP, KeyEvent.VK_M);
         register.put(Commands.INVENTORY, KeyEvent.VK_I);
-        register.put(Commands.SAVE, KeyEvent.VK_S);
+        register.put(Commands.SAVE, KeyEvent.VK_L);
     }
 
     private SettingsManager() {
         try {
             SaveManager.getSaveManager().loadKeys();
         } catch (LoadingException ex) {
+            System.out.println(ex.getMessage());
+            ex.printStackTrace();
             defaultInit();
         }
     }
