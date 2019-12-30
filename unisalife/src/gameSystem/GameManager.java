@@ -11,6 +11,7 @@ import game.GameObjects.Camera;
 import game.GameObjects.GameInventory;
 import game.GameObjects.Player;
 import game.Interfaces.Initializable.InitException;
+import gameSystem.keySettings.SettingsManager;
 import gameSystem.map.MapManager;
 import javax.swing.JOptionPane;
 import language.FileTextManager;
@@ -171,13 +172,10 @@ public class GameManager {
     public static void main(String[] args) throws SavingException {
         try {
             FileTextManager.getFileTextManager().init();
-            SaveManager.getSaveManager().loadKeys();
+            SettingsManager.getSettingsManager().init();
         } catch (InitException ex) {
             System.out.println(ex.getMessage());
             ex.printStackTrace();
-        } catch (LoadingException loadEx) {
-            System.out.println(loadEx.getMessage());
-            loadEx.printStackTrace();
         }
         GuiManager.getInstance().startGame();
     }

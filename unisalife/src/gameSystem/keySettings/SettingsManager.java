@@ -5,6 +5,7 @@
  */
 package gameSystem.keySettings;
 
+import game.Interfaces.Initializable;
 import java.awt.event.KeyEvent;
 import java.io.Serializable;
 import java.util.HashMap;
@@ -20,7 +21,7 @@ import saving.exceptions.SavingException;
  *
  * @author Giuseppe De Simone
  */
-public class SettingsManager implements Saveable {
+public class SettingsManager implements Saveable, Initializable {
 
     private enum Commands {
         MOVE_UP,
@@ -54,16 +55,16 @@ public class SettingsManager implements Saveable {
 
     private boolean isRegistered(Commands cmd, int key) {
         Integer oldKey = register.get(cmd);
-            if (oldKey.equals(key)) {
-                return true;
+        if (oldKey.equals(key)) {
+            return true;
+        }
+        register.put(cmd, null);
+        register.forEach((k, v) -> {
+            if (v != null && v.equals(key)) {
+                register.replace(k, oldKey);
             }
-            register.put(cmd, null);
-            register.forEach((k, v) -> {
-                if (v!=null && v.equals(key)) {
-                    register.replace(k, oldKey);
-                }
-            });
-            return false;
+        });
+        return false;
     }
 
     private boolean setKey(Commands cmd, int button) {
@@ -94,13 +95,6 @@ public class SettingsManager implements Saveable {
     }
 
     private SettingsManager() {
-        try {
-            SaveManager.getSaveManager().loadKeys();
-        } catch (LoadingException ex) {
-            System.out.println(ex.getMessage());
-            ex.printStackTrace();
-            defaultInit();
-        }
     }
 
     /**
@@ -275,4 +269,16 @@ public class SettingsManager implements Saveable {
     public void load(Serializable obj) throws LoadingException {
         this.register = (HashMap<Commands, Integer>) obj;
     }
+
+    @Override
+    public void init() throws InitException {
+        try {
+            SaveManager.getSaveManager().loadKeys();
+        } catch (LoadingException ex) {
+            System.out.println(ex.getMessage());
+            ex.printStackTrace();
+            defaultInit();
+        }
+    }
+
 }
