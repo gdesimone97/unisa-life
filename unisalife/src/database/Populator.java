@@ -72,8 +72,6 @@ public class Populator {
             StorableCreator s = CreatorsEnum.valueOf(type).getFactory();
             Storable sitem = s.create(arguments);
 
-            Class c = type.equals("coin") ? Item.class : sitem.getClass();
-            //System.out.println("Inserting object of type " + c + " = " + sitem);
             ObjectRepository repo = db.getNitriteDatabase().getRepository(sitem.getClass());
             repo.insert(sitem);
 

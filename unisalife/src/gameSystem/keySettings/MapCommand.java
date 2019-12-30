@@ -5,6 +5,7 @@
  */
 package gameSystem.keySettings;
 
+import game.Interfaces.Initializable;
 import gameSystem.GameStateManager;
 import gameSystem.LoadingState;
 import gameSystem.MapState;
@@ -12,6 +13,8 @@ import gameSystem.PauseState;
 import gameSystem.PlayState;
 import gameSystem.keySettings.interfaces.ActionCommand;
 import gameSystem.keySettings.interfaces.KeyCommand;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -23,7 +26,11 @@ public class MapCommand extends KeyCommand implements ActionCommand {
 
     @Override
     public void visitPlayState(PlayState playState) {
-        stateManager.setState(MapState.getInstance());
+        try {
+            stateManager.setState(MapState.getInstance());
+        } catch (Initializable.InitException ex) {
+            Logger.getLogger(MapCommand.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
