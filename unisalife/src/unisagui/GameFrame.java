@@ -46,7 +46,7 @@ public class GameFrame extends javax.swing.JFrame {
     private int interact;
     private int pause;
     private int map;
-    protected DefaultTableModel model = new DefaultTableModel();
+    protected DefaultTableModel model;
     private Booklet booklet = Booklet.getInstance();
     private HashSet<Subject> career;
     protected DefaultTableModel careerModel;
@@ -119,16 +119,31 @@ public class GameFrame extends javax.swing.JFrame {
     }
 
 
-    private void initializingTable() {
-        model.setColumnIdentifiers(new Object[]{"Name","Icon"});
+    protected void initializingTable() {
+        model = new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Name", "Icon"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        };
+        InventoryTable.setModel(model);
         InventoryTable.getColumn("Icon").setCellRenderer(new CellRender());
         
 
     }
-
+    
     class CellRender implements TableCellRenderer {
 
-        @Override
         public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected,
                 boolean hasFocus, int row, int column) {
             TableColumn tb = table.getColumn("Icon");
@@ -1726,7 +1741,22 @@ public class GameFrame extends javax.swing.JFrame {
         jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
         InventoryTable.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        InventoryTable.setModel(model);
+        InventoryTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Item", "Icon"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         InventoryTable.setColumnSelectionAllowed(true);
         InventoryTable.setMaximumSize(new java.awt.Dimension(450, 450));
         InventoryTable.setMinimumSize(new java.awt.Dimension(450, 450));
@@ -1981,7 +2011,7 @@ public class GameFrame extends javax.swing.JFrame {
         RightBorderLayout.setHorizontalGroup(
             RightBorderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RightBorderLayout.createSequentialGroup()
-                .addGap(0, 26, Short.MAX_VALUE)
+                .addGap(0, 25, Short.MAX_VALUE)
                 .addComponent(GameCloseButton))
         );
         RightBorderLayout.setVerticalGroup(
