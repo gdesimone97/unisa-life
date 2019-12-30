@@ -12,8 +12,8 @@ coin %704%352%/Sprites/coin.png%coin7 %0%d
 coin %1248%448%/Sprites/coin.png%coin8 %0%d
 coin %1376%448%/Sprites/coin.png%coin9 %0%d
 coin %1504%448%/Sprites/coin.png%coin10 %0%d
-# item %256%320%/Sprites/calculator.png%calcolatrice %0%d
-# item %288%320%/Sprites/note.png%appunti %0%d
+item %256%320%/Sprites/calculator.png%calcolatrice %0%d
+item %288%320%/Sprites/note.png%appunti %0%d
 quest %0%tolc%calcolatrice%appunti%coin1%coin2%coin3
 professor %Ritrovato%224%416%/Sprites/spritetolc.png%tolc %0%d
 distributor %928%224%vm1 %0%f
