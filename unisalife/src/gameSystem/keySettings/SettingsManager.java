@@ -5,6 +5,7 @@
  */
 package gameSystem.keySettings;
 
+import game.Interfaces.Initializable;
 import java.awt.event.KeyEvent;
 import java.io.Serializable;
 import java.util.HashMap;
@@ -20,7 +21,7 @@ import saving.exceptions.SavingException;
  *
  * @author Giuseppe De Simone
  */
-public class SettingsManager implements Saveable {
+public class SettingsManager implements Saveable, Initializable {
 
     private enum Commands {
         MOVE_UP,
@@ -52,15 +53,22 @@ public class SettingsManager implements Saveable {
         return false;
     }
 
-    private boolean isRegistered(int key) {
-        if (register.containsValue(key)) {
+    private boolean isRegistered(Commands cmd, int key) {
+        Integer oldKey = register.get(cmd);
+        if (oldKey.equals(key)) {
             return true;
         }
+        register.put(cmd, null);
+        register.forEach((k, v) -> {
+            if (v != null && v.equals(key)) {
+                register.replace(k, oldKey);
+            }
+        });
         return false;
     }
 
     private boolean setKey(Commands cmd, int button) {
-        if (!checkInput(button) || isRegistered(button)) {
+        if (!checkInput(button) || isRegistered(cmd, button)) {
             return false;
         }
         register.put(cmd, button);
@@ -73,8 +81,8 @@ public class SettingsManager implements Saveable {
         }
         return true;
     }
-    
-    private void defaultInit(){
+
+    private void defaultInit() {
         register.put(Commands.MOVE_UP, KeyEvent.VK_W);
         register.put(Commands.MOVE_DOWN, KeyEvent.VK_S);
         register.put(Commands.MOVE_LEFT, KeyEvent.VK_A);
@@ -83,15 +91,10 @@ public class SettingsManager implements Saveable {
         register.put(Commands.INTERACT, KeyEvent.VK_SPACE);
         register.put(Commands.MAP, KeyEvent.VK_M);
         register.put(Commands.INVENTORY, KeyEvent.VK_I);
-        register.put(Commands.SAVE, KeyEvent.VK_S);
+        register.put(Commands.SAVE, KeyEvent.VK_L);
     }
-    
+
     private SettingsManager() {
-        try{
-            SaveManager.getSaveManager().loadKeys();
-        }catch(LoadingException ex){
-            defaultInit();
-        }
     }
 
     /**
@@ -266,4 +269,16 @@ public class SettingsManager implements Saveable {
     public void load(Serializable obj) throws LoadingException {
         this.register = (HashMap<Commands, Integer>) obj;
     }
+
+    @Override
+    public void init() throws InitException {
+        try {
+            SaveManager.getSaveManager().loadKeys();
+        } catch (LoadingException ex) {
+            System.out.println(ex.getMessage());
+            ex.printStackTrace();
+            defaultInit();
+        }
+    }
+
 }

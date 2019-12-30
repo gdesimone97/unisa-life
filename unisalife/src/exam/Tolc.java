@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package exam;
+import exam.booklet.Booklet;
 import exam.booklet.Subject;
 import exam.question.*;
 import game.GameObjects.Player;
@@ -12,6 +13,8 @@ import game.GameObjects.Teleport;
 import game.Interfaces.Initializable.InitException;
 import gameSystem.map.MapManager;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import language.FileTextManager;
 import language.MessageInformation;
 import language.exceptions.TextFinderException;
@@ -43,7 +46,7 @@ public class Tolc implements Runnable {
      * questions
      *
      */
-    public Tolc() throws TextFinderException, InitException {
+    public Tolc(String profName) throws TextFinderException, InitException {
         this.subject = new Subject("tolc");
         QuestionFactory questionsFetch = new StringsQuestionFactory(subject);
         this.count = 0;
@@ -52,7 +55,7 @@ public class Tolc implements Runnable {
         this.questions = questionsFetch.getQuestions();
         this.maxLevel = this.questions.getNumLevels();
         this.iter = questions.iterator();
-        this.professorName = "EMPTY NAME";
+        this.professorName = profName;
     }
 
     /**
@@ -78,6 +81,11 @@ public class Tolc implements Runnable {
         Question question;
         int answer;
         boolean correctness;
+        
+        try {
+            gui.showDialog(professorName, FileTextManager.getFileTextManager().getString(new MessageInformation("TolcPassedName")).get(2));
+        } catch (Exception ex) {
+        }
 
         while (iter.hasNext()) {
             //print question
@@ -109,9 +117,8 @@ public class Tolc implements Runnable {
             FileTextManager f = FileTextManager.getFileTextManager();
             if (passed) {
                 gui.showDialog(professorName, f.getString(new MessageInformation("TolcPassedName")).get(0) + Player.getIstance().getName() + f.getString(new MessageInformation("TolcPassedName")).get(1));
-                gui.showDialog(professorName, f.getString(new MessageInformation("TolcPassedName")).get(2));
                 JukeBoxSound.getInstance().play("exam_passed");
-//                Booklet.getInstance().setScore(subject, voto);
+                gui.showDialog(professorName, f.getString(new MessageInformation("TolcPassedName")).get(2));
             }
             else {
                 gui.showDialog(professorName, f.getString(new MessageInformation("TolcFailedName")).get(0) + Player.getIstance().getName() + f.getString(new MessageInformation("TolcFailedName")).get(1));

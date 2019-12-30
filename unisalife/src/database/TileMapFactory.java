@@ -23,7 +23,7 @@ class TileMapFactory extends StorableCreator {
             StringTokenizer st = new StringTokenizer(s, StorableCreator.DELIMETER);
             TileMapWrapper tm = new TileMapWrapper(Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken()),
                     Integer.parseInt(st.nextToken()), st.nextToken(), st.nextToken(),
-                    new Position(Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken())));
+                    new Position(Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken())),st.nextToken());
             return tm;
 
         } catch (NumberFormatException | NoSuchElementException e) {

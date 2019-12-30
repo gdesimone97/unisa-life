@@ -15,6 +15,8 @@ import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 
 /**
@@ -24,7 +26,7 @@ import javax.imageio.ImageIO;
 public class MapState extends GameState {
 
     private static MapState instance;
-    private BufferedImage img;
+    private static BufferedImage img;
     
     private int xPlayer;
     private int yPlayer;
@@ -33,7 +35,7 @@ public class MapState extends GameState {
     private int xPlayerInMap;
     private int yPlayerInMap;
     
-    public static MapState getInstance() {
+    public static MapState getInstance() throws Initializable.InitException{
         if (instance == null) {
             instance = new MapState();
         }
@@ -42,15 +44,20 @@ public class MapState extends GameState {
     
     private MapState() {
     }
-
+    
     @Override
     public void init() throws Initializable.InitException {
+    }
+    
+    /*@Override
+    public void init() throws Initializable.InitException {
         try {
-            img = ImageIO.read(getClass().getResource("/Sprites/Map.jpg"));
+            img = ImageIO.read(getClass().getResource("/Sprites/Tutorial.png"));
         } catch (IOException ex) {
             throw new Initializable.InitException("Can't find Map image");
         }
     }
+    */
 
     @Override
     public void tick() {
@@ -78,6 +85,14 @@ public class MapState extends GameState {
     public void handleInput(KeyCommand cmd) {
 
         cmd.visitMapState(instance);
+    }
+    
+    public void setMinimap(String path) throws Initializable.InitException {
+        try {
+            img = ImageIO.read(getClass().getResource(path));
+        } catch (IOException ex) {
+            throw new Initializable.InitException("Can't find Map image");
+        }
     }
 
 }

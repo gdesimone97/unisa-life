@@ -13,6 +13,7 @@ import game.GameObjects.Position;
 import game.GameObjects.Renderable;
 import game.GameResources.Map;
 import game.Interfaces.Initializable;
+import gameSystem.MapState;
 import java.awt.Graphics2D;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -40,11 +41,6 @@ public class MapManager implements Initializable, Saveable {
     }
 
     private MapManager() {
-        // Soluzione momentanea, quando c'è il database, dovrà essere vuoto!
-
-//        maps = new Map[2];
-//        maps[0] = new Map();
-//        actualMap = 0;
     }
 
     public int getMapNumber() {
@@ -59,8 +55,9 @@ public class MapManager implements Initializable, Saveable {
         return maps[actualMap];
     }
 
-    public void setMap(int n) {
+    public void setMap(int n) throws InitException {
         this.actualMap = n;
+        MapState.getInstance().setMinimap(maps[actualMap].getPathMiniMap());
     }
 
     public void render(Graphics2D g) {
@@ -72,7 +69,7 @@ public class MapManager implements Initializable, Saveable {
         try {
             maps = DatabaseManager.getDatabaseManager().getMaps();
             mapNumber = maps.length;
-            actualMap = 0;
+            setMap(0);
             addDynamicObjects();
         } catch (FileNotSetException ex) {
             throw new InitException("File not specified in Database");
@@ -125,7 +122,7 @@ public class MapManager implements Initializable, Saveable {
                     object.loadImage();
                 } catch (ImageNotLoadedException ex) {
                     System.out.println(ex.getMessage());
-                    throw new RuntimeException(new LoadingException("Impossibile caricare immaggini dopo la fase di load"));
+                    throw new RuntimeException(new LoadingException("Impossibile caricare immagini dopo la fase di load"));
                 }
             });
             maps[i].addDynamicObjects(mapObject);
