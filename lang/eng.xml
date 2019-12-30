@@ -324,4 +324,9 @@
 <message>... well, good luck for your brilliant career!</message>
 </MessageInformation>
 
+<MessageInformation info="TutorialFrasi">
+<message>Hello, </message>
+<message>. It's a plesaure to meet you!</message>
+</MessageInformation>
+
 </root>
