@@ -1,7 +1,7 @@
 subject %tolc
 tilemap %0%2368%928%/Tilesets/TilesetConSfondo.png%/Maps/Tutorial.map%352%448%/Sprites/Tutorial.png
-cook %cook%128%320%/Sprites/spritesignoramensa.png %0%d
-guardian %guardian%160%320%/Sprites/spritedormitorio.png %0%d
+# cook %cook%128%320%/Sprites/spritesignoramensa.png %0%d
+# guardian %guardian%160%320%/Sprites/spritedormitorio.png %0%d
 coin %224%320%/Sprites/coin.png%coin1 %0%d
 coin %544%448%/Sprites/coin.png%coin2 %0%d
 coin %800%352%/Sprites/coin.png%coin3 %0%d
@@ -12,8 +12,8 @@ coin %704%352%/Sprites/coin.png%coin7 %0%d
 coin %1248%448%/Sprites/coin.png%coin8 %0%d
 coin %1376%448%/Sprites/coin.png%coin9 %0%d
 coin %1504%448%/Sprites/coin.png%coin10 %0%d
-item %256%320%/Sprites/calculator.png%calcolatrice %0%d
-item %288%320%/Sprites/note.png%appunti %0%d
+# item %256%320%/Sprites/calculator.png%calcolatrice %0%d
+# item %288%320%/Sprites/note.png%appunti %0%d
 quest %0%tolc%calcolatrice%appunti%coin1%coin2%coin3
 professor %Ritrovato%224%416%/Sprites/spritetolc.png%tolc %0%d
 distributor %928%224%vm1 %0%f
