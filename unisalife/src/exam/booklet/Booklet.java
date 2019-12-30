@@ -14,6 +14,7 @@ import quests.QuestsManager;
 import quests.mediator.*;
 import quests.quest.Quests;
 import saving.Saveable;
+import unisagui.GameFrame;
 /**
  * This class is used due to the necessity of have a booklet for our
  * character.
@@ -48,9 +49,7 @@ public class Booklet extends User implements Serializable,Saveable,Initializable
     
     public HashSet iteratorBooklet() {
         HashSet<Subject> temp = new HashSet<>(booklet.values());
-
         return (HashSet) temp;
-
     }
 
     /**
@@ -74,8 +73,8 @@ public class Booklet extends User implements Serializable,Saveable,Initializable
     public void setScore(Subject subject, int score){
         subject.setScore(score);
         subject.setAvailable(false);
-        
         Quests.getInstance().getQuest(subject.getInfo()).finish();
+        GameFrame.getInstance().updateCareer();
     }
     
     /**
@@ -136,6 +135,8 @@ public class Booklet extends User implements Serializable,Saveable,Initializable
         mediator.addUser(this);
 
         this.booklet = new HashMap<>();
+        
+        this.booklet.put("Matematica", new Subject("Matematica"));
     }
     
 }
