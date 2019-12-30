@@ -68,17 +68,17 @@ public class MapState extends GameState {
     public void render(Graphics2D g) {
         g.setColor(Color.black);
         g.fillRect(0, 0, Game.WIDTHSCREEN, Game.HEIGHTSCREEN2);
-        g.drawImage(img, Game.WIDTHSCREEN / 4, Game.HEIGHTSCREEN2 / 4, null);
+        g.drawImage(img, 0, 0,Game.WIDTHSCREEN,Game.HEIGHTSCREEN2, null);
         g.setColor(Color.red);
         xPlayer = Player.getIstance().getPosition().getX();
         yPlayer = Player.getIstance().getPosition().getY();
         heightMap = MapManager.getInstance().getMap().getHeightMap();
         widthMap = MapManager.getInstance().getMap().getWidthMap();
-        xPlayerInMap = (int)Math.ceil(xPlayer*img.getWidth()/widthMap)+Game.WIDTHSCREEN/4;
-        yPlayerInMap = (int)Math.ceil(yPlayer*img.getHeight()/heightMap)+Game.HEIGHTSCREEN2/4;
+        xPlayerInMap = (int)Math.ceil(xPlayer*Game.WIDTHSCREEN/widthMap);
+        yPlayerInMap = (int)Math.ceil(yPlayer*Game.HEIGHTSCREEN2/heightMap);
         g.setStroke(new BasicStroke(2));
-        g.drawLine(xPlayerInMap - 4, yPlayerInMap, xPlayerInMap + 4, yPlayerInMap);
-        g.drawLine(xPlayerInMap, yPlayerInMap - 4, xPlayerInMap, yPlayerInMap + 4);
+        g.drawLine(xPlayerInMap - 10, yPlayerInMap, xPlayerInMap + 10, yPlayerInMap);
+        g.drawLine(xPlayerInMap, yPlayerInMap - 10, xPlayerInMap, yPlayerInMap + 10);
     }
 
     @Override

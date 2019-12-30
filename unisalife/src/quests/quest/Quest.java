@@ -110,7 +110,7 @@ public class Quest extends User implements Serializable, Storable {
         return true;
     }
 
-    public int getLeve() {
+    public int getLevel() {
         return this.level;
     }
 

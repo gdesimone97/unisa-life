@@ -2,6 +2,7 @@
 <root>
 
 <Subject info="maths">
+<message>Calculus</message>
 <message>1#The area of a triangle is:#(b*h)/2#b+h#b*h+2#b/2+h/2</message>
 <message>1#Euler's number is equal to#2.7#2.8#3.14#9.81</message>
 <message>1#What is the value of the ratio between the biggest 4-digit natural number and the smallest natural number?#9999#infinito#0,9999#1</message>
@@ -15,6 +16,7 @@
 </Subject>
 
 <Subject info="tolc">
+<message>Tolc</message>
 <message>1#A student has 2 hours to solve a exam problem. When 75% of the time is gone, how much time is left?#30 mins#25 mins#25 mins and 45 secs#30 mins and 10 secs</message>
 <message>2#What is the next number in the following sequence: 4 16 5 25 6 36 7 49 8#64#9#16#0</message>
 <message>3#Al, Ron and Joe live in different houses. Each house is a different color. Al's house is not blue. Ron's house is not green. Jo's house is not yellow or blue. Which is correct?#Al's Yellow; Ron's Blue; Jo's Green#Al's Blue; Ron's White; Jo's Black#Al's Green; Ron's Blue; Jo's Yellow#Al's Green; Ron's Green; Jo's Red</message>
@@ -28,6 +30,7 @@
 </Subject>
 
 <Subject info="programming">
+<message>Programming</message>
 <message>1#Which C function allows you to display an output message?#printf#scanf#fopen#fclose</message>
 <message>1#Which C function allows you to take an input value from user?#scanf#printf#fclose#fopen</message>
 <message>1#How many bits is an Int variable represented by?#16#8#24#32</message>
@@ -51,6 +54,7 @@
 </Subject>
 
 <Subject info="computernetwork">
+<message>Computer Networks</message>
 <message>1#What is Internet?#A network of interconnected computers#The set of navigable websites#The signal that comes to the home router#A fishing net to catch all the people</message>
 <message>1#How many layers does the ISO/OSI model provide?#7#4#10#2</message>
 <message>1#What type of multiplexing is used for ADSL lines?#FDM with bands of different amplitude#FDM with bands of same amplitude#TDM#Statistical TDM</message>
@@ -74,6 +78,7 @@
 </Subject>
 
 <Subject info="acso">
+<message>Calculator Architectures and Operating Systems</message>
 <message>1#What does MAR stand for?#Memory Address Register#Minimale Age Readable#Massive Address Register#Main Address Register</message>
 <message>1#A CPU which is able to carry out a thousand milion instructions per seconds would have a clock speed of:#1GHz#10GHz#1000GHz#100MHz</message>
 <message>1#What does this instruction mean? lw $t, i($s)#$t = MEM [$s + i]:4#$t = MEM [$s + i]:2#$t = MEM [$s + i]:8#$t = MEM [$s + i]:16</message>
@@ -97,6 +102,7 @@
 </Subject>
 
 <Subject info="telecomunications">
+<message>Telecomunications</message>
 <message>1#A power signal has energy equals to:#infinity#0#1#a complex value</message>
 <message>1#A signal x(t) is said hermitian if:#x(t) = x*(-t)#x(t) = x(-t)#x(t) = -x*(-t)#A signal can't be hermitian</message>
 <message>1#Two events are said mutually exclusive are also indipendet.#False#True#Not enough information#None of the others</message>
@@ -120,6 +126,7 @@
 </Subject>
 
 <Subject info="tisc">
+<message>TISC</message>
 <message>1#The lowest level of CIM is:#The workshop level#Control level#Company management level#Cell supervision level </message>
 <message>1#A Plc has:#An real-time multi-tasking operating system#No operating system#No multi-tasking operating system#No I/O ports,read I/O signals by network</message>
 <message>1#The control device operating system doesn't have to:#Be No Pre-emptive#Have a mechanisms to avoid deadlock situations#Perform synchronization and comunication among tasks#Have a malfunction management system</message>
@@ -143,6 +150,7 @@
 </Subject>
 
 <Subject info="english">
+<message>English</message>
 <message>1#Fill the gap : I have always …………… play games well.#been able to#able#could#can</message>
 <message>1#Fill the gap : He has always …………… to do what he wanted.#been allowed#could#be able#granted</message>
 <message>1#Fill the gap : One cannot help but …………….. his courage.#admire#to admire#show#to show</message>
@@ -166,6 +174,7 @@
 </Subject>
 
 <Subject info="electrotechnics">
+<message>Electronitechincs</message>
 <message>1#What is the unit of measurement for electric current?#Ampere#Volt#Hertz#Ohm</message>
 <message>1#What is the unit of measurement for electric resistance?#Ohm#Ampere#Volt#Coulomb</message>
 <message>1#What is the unit of measurement for electric charge?#Coulomb#Ohm#Ampere#Volt</message>
@@ -189,6 +198,7 @@
 </Subject>
 
 <Subject info="database">
+<message>Database</message>
 <message>1#DBMS stands for#Data Base Management System#Data Base Memory Storage#Document Base Memory System#Data Base Manipulation System</message>
 <message>1#A database can be defined as a:#data collection managed by a DBMS#file collection manages by a DBMS#data collection stored in some files#simple file collection</message>
 <message>1#Which database part is invariant?#schemas#instances#records#attributes</message>
