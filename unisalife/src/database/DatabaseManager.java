@@ -123,7 +123,7 @@ public class DatabaseManager implements Initializable {
         for (Quest q : questList) {
             Subject questSubject = q.getSubject();
             for (String itemName : q.getItemList()) {
-                if (itemName.equals("coin")) {
+                if (itemName.startsWith("coin")) {
                     Coin c = this.findCoin(itemName);
                     int mapId = this.findMap(itemName, DatabaseManager.DYNCOLLECTIONNAME);
                     dynArrObj.get(mapId).put(c.getScaledPosition(), c);
@@ -138,7 +138,6 @@ public class DatabaseManager implements Initializable {
             dynArrObj.get(mapId).put(p.getScaledPosition(), p);
         }
         try {
-
             Cook cook = this.findCook();
             int cookMapId = this.findMap(cook.getIndex(), DatabaseManager.DYNCOLLECTIONNAME);
             dynArrObj.get(cookMapId).put(cook.getScaledPosition(), cook);
@@ -218,7 +217,7 @@ public class DatabaseManager implements Initializable {
                 fixed.put(t.getScaledPosition(), t);
             }
             int index = tilemap.getId();
-            maps[index] = new Map(tilemap, new ObjectManager(fixed, dyn),tilemap.getMiniMapPath());
+            maps[index] = new Map(tilemap, new ObjectManager(fixed, dyn), tilemap.getMiniMapPath());
         }
 
         // inserire anche gli oggetti dinamici del livello zero per testare
