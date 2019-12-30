@@ -29,7 +29,7 @@ public class MapManager implements Initializable, Saveable {
 
     private int actualMap;
     private int mapNumber;
-
+    private final int MAX_PARALLEL = 5;
     private Map[] maps;
     private static MapManager instance;
 
@@ -116,7 +116,7 @@ public class MapManager implements Initializable, Saveable {
         ArrayList<ConcurrentHashMap<Position, Renderable>> list = (ArrayList<ConcurrentHashMap<Position, Renderable>>) obj;
         for (int i = 0; i < list.size(); i++) {
             ConcurrentHashMap<Position, Renderable> mapObject = list.get(i);
-            mapObject.forEachValue(5, value -> {
+            mapObject.forEachValue(this.MAX_PARALLEL, value -> {
                 Renderable object = (Renderable) value;
                 try {
                     object.loadImage();
