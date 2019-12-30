@@ -2125,6 +2125,7 @@ public class GameFrame extends javax.swing.JFrame {
 
     private void ExitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitButtonActionPerformed
         SwingUtilities.invokeLater(() -> sound.play("menu"));
+        SwingUtilities.invokeLater(() -> SaveManager.getSaveManager().save());
         SwingUtilities.invokeLater(() -> System.exit(0));
     }//GEN-LAST:event_ExitButtonActionPerformed
 
@@ -2237,6 +2238,7 @@ public class GameFrame extends javax.swing.JFrame {
 
     private void GameCloseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GameCloseButtonActionPerformed
         SwingUtilities.invokeLater(() -> sound.play("menu"));
+        SwingUtilities.invokeLater(() -> SaveManager.getSaveManager().save());
         SwingUtilities.invokeLater(() -> System.exit(0));
     }//GEN-LAST:event_GameCloseButtonActionPerformed
 
