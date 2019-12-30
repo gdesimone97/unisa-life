@@ -89,19 +89,24 @@ public class GameFrame extends javax.swing.JFrame {
 
     }
     /**
-     * this method sets the Booklet of the gui 
+     * this method sets the Booklet of the gui, booklet works with inverse  oolean logic. 
      */
-    private void setCareer(){
-        int row=0;
-        int column=0;
-        careerModel= (DefaultTableModel) ExamTable.getModel();
-        career= booklet.iteratorBooklet();
-        for( Subject sub: career){
-            column=0;
+    private void setCareer() {
+        int row = 0;
+        int column = 0;
+        careerModel = (DefaultTableModel) ExamTable.getModel();
+        career = booklet.iteratorBooklet();
+        for (Subject sub : career) {
+            column = 0;
             careerModel.setValueAt(sub.getInfo(), row, column);
-            careerModel.setValueAt(booklet.getScore(sub), row, ++column);
-            careerModel.setValueAt(booklet.getAvailablity(sub), row, ++column);
-            row+=1;
+            if (booklet.getAvailablity(sub)) {
+                careerModel.setValueAt("", row, ++column);
+                careerModel.setValueAt("Not passed", row, ++column);
+            } else {
+                careerModel.setValueAt(booklet.getScore(sub), row, ++column);
+                careerModel.setValueAt("Passed", row, ++column);
+                row += 1;
+            }
         }
         
     }
@@ -909,7 +914,7 @@ public class GameFrame extends javax.swing.JFrame {
         CareerPanel.setMinimumSize(new java.awt.Dimension(500, 500));
         CareerPanel.setPreferredSize(new java.awt.Dimension(500, 500));
 
-        ExamTable.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        ExamTable.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         ExamTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
@@ -1489,9 +1494,7 @@ public class GameFrame extends javax.swing.JFrame {
         );
 
         ConvDialog.setBackground(new java.awt.Color(0, 0, 0));
-        ConvDialog.setMaximumSize(new java.awt.Dimension(375, 100));
         ConvDialog.setMinimumSize(new java.awt.Dimension(375, 100));
-        ConvDialog.setPreferredSize(new java.awt.Dimension(375, 100));
         ConvDialog.setResizable(false);
         ConvDialog.addWindowFocusListener(new java.awt.event.WindowFocusListener() {
             public void windowGainedFocus(java.awt.event.WindowEvent evt) {
@@ -1978,7 +1981,7 @@ public class GameFrame extends javax.swing.JFrame {
         RightBorderLayout.setHorizontalGroup(
             RightBorderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RightBorderLayout.createSequentialGroup()
-                .addGap(0, 25, Short.MAX_VALUE)
+                .addGap(0, 26, Short.MAX_VALUE)
                 .addComponent(GameCloseButton))
         );
         RightBorderLayout.setVerticalGroup(
