@@ -1573,9 +1573,6 @@ public class GameFrame extends javax.swing.JFrame {
             }
         });
         HintDialog.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                HintDialogKeyPressed(evt);
-            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 HintDialogKeyReleased(evt);
             }
@@ -2242,10 +2239,6 @@ public class GameFrame extends javax.swing.JFrame {
 
     }//GEN-LAST:event_ConvDialogKeyTyped
 
-    private void HintDialogKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_HintDialogKeyPressed
-
-    }//GEN-LAST:event_HintDialogKeyPressed
-
     private void NoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NoButtonActionPerformed
         SwingUtilities.invokeLater(() -> sound.play("no"));
         SwingUtilities.invokeLater(() -> RequestManager.setRESULT(false));
@@ -2550,7 +2543,7 @@ public class GameFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_ConversationTextAreaKeyTyped
 
     private void ConvDialogKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ConvDialogKeyReleased
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
             SwingUtilities.invokeLater(() -> ConvDialog.setVisible(false));
             SwingUtilities.invokeLater(() -> ConversationTextArea.setText(EMPTY_TEXT));
             SwingUtilities.invokeLater(() -> ConvDialog.setFocusable(false));
