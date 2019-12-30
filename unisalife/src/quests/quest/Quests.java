@@ -91,4 +91,11 @@ public class Quests extends User implements Saveable, Serializable, Initializabl
         this.quests = new HashMap<>();
     }
 
+    public HashMap<String, Quest> getQuests() {
+        return quests;
+    }
+
+    
+    
+
 }

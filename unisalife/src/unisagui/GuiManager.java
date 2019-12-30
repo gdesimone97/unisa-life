@@ -209,11 +209,19 @@ public class GuiManager {
     /**
      * When called a JDialog with the Career appears or disappears on the screen
      *
-     * @param show if true the JDialog appears, if false disappears
      */
-    public void showQuestDialog(boolean show) {
-        questmanager.showQuestDialog(show);
+    public void showQuestDialog() {
+        questmanager.showQuestDialog();
     }
+    
+    public void showDescription(int x){
+        questmanager.showDescription(x);
+    }
+    
+     public void hideDescription(){
+        questmanager.hideDescription();
+    }
+    
 
     /**
      * When called a JDialog with the Request appears or disappears on the
@@ -233,9 +241,9 @@ public class GuiManager {
      * @param quest is the quest to isert or delete
      * @param presence if true the quest is added, if false is deleted
      */
-    /*public void updateQuestDialog(Quest quest, boolean presence){
-        questmanager.updateQuestDialog(quest, presence);
-    }*/
+    public void updateQuestDialog(){
+        questmanager.updateQuestDialog();
+    }
     
     /**
      * When called the Inventory Diaog is updated

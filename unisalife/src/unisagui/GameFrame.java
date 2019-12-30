@@ -11,6 +11,7 @@ import java.awt.Dialog;
 import java.text.ParseException;
 import java.util.HashSet;
 import javax.swing.ButtonGroup;
+import javax.swing.DefaultListModel;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -20,6 +21,7 @@ import saving.SaveManager;
 import sound.JukeBoxMusic;
 import sound.JukeBoxSound;
 import javax.swing.JFormattedTextField;
+import javax.swing.ListModel;
 import javax.swing.text.MaskFormatter;
 
 /**
@@ -47,6 +49,7 @@ public class GameFrame extends javax.swing.JFrame {
     private int pause;
     private int map;
     protected DefaultTableModel model;
+    protected DefaultListModel<String> listModel = new DefaultListModel();
     private Booklet booklet = Booklet.getInstance();
     private HashSet<Subject> career;
     protected DefaultTableModel careerModel;
@@ -1641,12 +1644,9 @@ public class GameFrame extends javax.swing.JFrame {
         QuestListScrollPane.setMinimumSize(new java.awt.Dimension(190, 350));
         QuestListScrollPane.setPreferredSize(new java.awt.Dimension(190, 350));
 
+        QuestList.setBackground(new java.awt.Color(255, 255, 204));
         QuestList.setBorder(javax.swing.BorderFactory.createTitledBorder("Quest"));
-        QuestList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Collect your first dollar!", "It's time to get Math Exam!" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
+        QuestList.setModel(listModel);
         QuestList.setMaximumSize(new java.awt.Dimension(190, 350));
         QuestList.setMinimumSize(new java.awt.Dimension(190, 350));
         QuestList.setPreferredSize(new java.awt.Dimension(190, 350));
@@ -1662,9 +1662,11 @@ public class GameFrame extends javax.swing.JFrame {
         QuestTextScrollPane.setPreferredSize(new java.awt.Dimension(190, 350));
 
         QuestTextArea.setEditable(false);
+        QuestTextArea.setBackground(new java.awt.Color(255, 255, 204));
         QuestTextArea.setColumns(20);
         QuestTextArea.setLineWrap(true);
         QuestTextArea.setRows(5);
+        QuestTextArea.setWrapStyleWord(true);
         QuestTextArea.setBorder(javax.swing.BorderFactory.createTitledBorder("Description"));
         QuestTextArea.setMaximumSize(new java.awt.Dimension(190, 350));
         QuestTextArea.setMinimumSize(new java.awt.Dimension(190, 350));
@@ -1737,6 +1739,7 @@ public class GameFrame extends javax.swing.JFrame {
         jScrollPane1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
+        InventoryTable.setBackground(new java.awt.Color(255, 255, 204));
         InventoryTable.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         InventoryTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -1893,6 +1896,7 @@ public class GameFrame extends javax.swing.JFrame {
 
         SettingsButtonFrame.setBackground(new java.awt.Color(93, 150, 199));
         SettingsButtonFrame.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/settings25.png"))); // NOI18N
+        SettingsButtonFrame.setToolTipText("settings");
         SettingsButtonFrame.setBorder(null);
         SettingsButtonFrame.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1902,6 +1906,7 @@ public class GameFrame extends javax.swing.JFrame {
 
         QuestButtonFrame.setBackground(new java.awt.Color(93, 150, 199));
         QuestButtonFrame.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/questbutton24.png"))); // NOI18N
+        QuestButtonFrame.setToolTipText("quest");
         QuestButtonFrame.setBorder(null);
         QuestButtonFrame.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1921,7 +1926,7 @@ public class GameFrame extends javax.swing.JFrame {
 
         CareerButtonFrame1.setBackground(new java.awt.Color(93, 150, 199));
         CareerButtonFrame1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/libretto.png"))); // NOI18N
-        CareerButtonFrame1.setToolTipText("inventory");
+        CareerButtonFrame1.setToolTipText("booklet");
         CareerButtonFrame1.setBorder(null);
         CareerButtonFrame1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2247,10 +2252,7 @@ public class GameFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_NoButtonActionPerformed
 
     private void QuestListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_QuestListValueChanged
-        if (QuestList.getSelectedIndex() == 0)
-            SwingUtilities.invokeLater(() -> QuestTextArea.setText("Collect your first dollar!\nKeep your eyes open,\nyou'll find others around\n the campus."));
-        else if (QuestList.getSelectedIndex() == 1)
-            SwingUtilities.invokeLater(() -> QuestTextArea.setText("Ouch! It's time to get\nAnalisi 1 Exam!\nGo find a calculator."));
+        GuiManager.getInstance().showDescription(QuestList.getSelectedIndex());
     }//GEN-LAST:event_QuestListValueChanged
 
     private void SettingsButtonFrameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SettingsButtonFrameActionPerformed
@@ -2272,7 +2274,7 @@ public class GameFrame extends javax.swing.JFrame {
 
     private void QuestButtonFrameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_QuestButtonFrameActionPerformed
         SwingUtilities.invokeLater(() -> sound.play("menu"));
-        SwingUtilities.invokeLater(() -> QuestDialog.setVisible(true));
+        GuiManager.getInstance().showQuestDialog();
     }//GEN-LAST:event_QuestButtonFrameActionPerformed
 
     private void MaleWhiteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MaleWhiteButtonActionPerformed
@@ -2306,6 +2308,7 @@ public class GameFrame extends javax.swing.JFrame {
 
     private void ExitQuestDialogLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ExitQuestDialogLabelMouseClicked
         SwingUtilities.invokeLater(() -> QuestDialog.setVisible(false));
+        GuiManager.getInstance().hideDescription();
     }//GEN-LAST:event_ExitQuestDialogLabelMouseClicked
 
     private void HintTextAreaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HintTextAreaMouseClicked
