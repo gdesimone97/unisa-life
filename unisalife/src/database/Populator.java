@@ -61,34 +61,34 @@ public class Populator {
         while (line != null) {
 
             String[] tokens = line.split(" ", 3);
+            if(tokens[0].compareTo("#")!=0){
+                if (!line.matches("^(?!\\s*$).+[' ']{1}[%]{1}.*")) {
+                    throw new InvalidGameDataFormatException();
+                }
 
-            if (!line.matches("^(?!\\s*$).+[' ']{1}[%]{1}.*")) {
-                throw new InvalidGameDataFormatException();
+                String type = tokens[0].toLowerCase();
+                String arguments = tokens[1];
+
+                StorableCreator s = CreatorsEnum.valueOf(type).getFactory();
+                Storable sitem = s.create(arguments);
+
+                ObjectRepository repo = db.getNitriteDatabase().getRepository(sitem.getClass());
+                repo.insert(sitem);
+
+                if (tokens.length == 3) {
+                    //System.out.println("Ci sono 3 token");
+                    StringTokenizer subst = new StringTokenizer(tokens[2], StorableCreator.DELIMETER);
+                    String mapTok = subst.nextToken();
+                    String repoTok = subst.nextToken();
+                    //System.out.println(" REPO -> " + repoTok + " MAPPA -> " + mapTok);
+                    db.getNitriteDatabase().getCollection(repoTok.equals("d") ? DatabaseManager.DYNCOLLECTIONNAME : DatabaseManager.FIXEDCOLLECTIONNAME).insert(
+                            Document.createDocument("IDMAP", mapTok).put("IDOBJ", sitem.getIndex()).put("CLASSOBJ", sitem.getClass().getName())
+                    );
+
+                }
             }
-
-            String type = tokens[0].toLowerCase();
-            String arguments = tokens[1];
-
-            StorableCreator s = CreatorsEnum.valueOf(type).getFactory();
-            Storable sitem = s.create(arguments);
-
-            ObjectRepository repo = db.getNitriteDatabase().getRepository(sitem.getClass());
-            repo.insert(sitem);
-
-            if (tokens.length == 3) {
-                //System.out.println("Ci sono 3 token");
-                StringTokenizer subst = new StringTokenizer(tokens[2], StorableCreator.DELIMETER);
-                String mapTok = subst.nextToken();
-                String repoTok = subst.nextToken();
-                //System.out.println(" REPO -> " + repoTok + " MAPPA -> " + mapTok);
-                db.getNitriteDatabase().getCollection(repoTok.equals("d") ? DatabaseManager.DYNCOLLECTIONNAME : DatabaseManager.FIXEDCOLLECTIONNAME).insert(
-                        Document.createDocument("IDMAP", mapTok).put("IDOBJ", sitem.getIndex()).put("CLASSOBJ", sitem.getClass().getName())
-                );
-
-            }
-
             line = r.readLine();
-
+            
         }
 
         db.close();

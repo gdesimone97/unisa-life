@@ -135,8 +135,6 @@ public class Booklet extends User implements Serializable,Saveable,Initializable
         mediator.addUser(this);
 
         this.booklet = new HashMap<>();
-        
-        this.booklet.put("Matematica", new Subject("Matematica"));
     }
     
 }
