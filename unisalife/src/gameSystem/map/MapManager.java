@@ -7,6 +7,7 @@ package gameSystem.map;
 
 import database.DatabaseManager;
 import database.FileNotSetException;
+import database.NoQuestsException;
 import database.ObjectNotFoundException;
 import game.GameObjects.ImageNotLoadedException;
 import game.GameObjects.Position;
@@ -18,6 +19,8 @@ import java.awt.Graphics2D;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import saving.Saveable;
 import saving.exceptions.LoadingException;
 
@@ -29,7 +32,7 @@ public class MapManager implements Initializable, Saveable {
 
     private int actualMap;
     private int mapNumber;
-
+    private final int MAX_PARALLEL = 5;
     private Map[] maps;
     private static MapManager instance;
 
@@ -70,26 +73,26 @@ public class MapManager implements Initializable, Saveable {
             maps = DatabaseManager.getDatabaseManager().getMaps();
             mapNumber = maps.length;
             setMap(0);
-            addDynamicObjects();
         } catch (FileNotSetException ex) {
             throw new InitException("File not specified in Database");
         } catch (ObjectNotFoundException ex) {
             throw new InitException("Objects not found in Database");
         } catch (ClassNotFoundException ex) {
             throw new InitException("Class not found during Database query");
-        } catch (ImageNotLoadedException ex) {
-            throw new InitException("Image not loaded for one dynamic object");
         }
     }
 
-    private void addDynamicObjects() throws FileNotSetException, ObjectNotFoundException, ImageNotLoadedException {
-        ConcurrentHashMap<Position, Renderable>[] objectsFromLevel = DatabaseManager.getDatabaseManager().getObjectsFromLevel(0);
-        for (int i = 0; i < objectsFromLevel.length; i++) {
-            maps[i].addDynamicObjects(objectsFromLevel[i]);
-        }
-
-        for (int i = 0; i < maps.length; i++) {
-            maps[i].loadImages();
+    private void addDynamicObjects(int level) throws FileNotSetException, ObjectNotFoundException, ImageNotLoadedException {
+        try {
+            ConcurrentHashMap<Position, Renderable>[] objectsFromLevel = DatabaseManager.getDatabaseManager().getObjectsFromLevel(level);
+            for (int i = 0; i < objectsFromLevel.length; i++) {
+                maps[i].addDynamicObjects(objectsFromLevel[i]);
+            }
+            
+            for (int i = 0; i < maps.length; i++) {
+                maps[i].loadImages();
+            }
+        } catch (NoQuestsException ex) {
         }
     }
 
@@ -116,7 +119,7 @@ public class MapManager implements Initializable, Saveable {
         ArrayList<ConcurrentHashMap<Position, Renderable>> list = (ArrayList<ConcurrentHashMap<Position, Renderable>>) obj;
         for (int i = 0; i < list.size(); i++) {
             ConcurrentHashMap<Position, Renderable> mapObject = list.get(i);
-            mapObject.forEachValue(5, value -> {
+            mapObject.forEachValue(this.MAX_PARALLEL, value -> {
                 Renderable object = (Renderable) value;
                 try {
                     object.loadImage();
@@ -126,6 +129,18 @@ public class MapManager implements Initializable, Saveable {
                 }
             });
             maps[i].addDynamicObjects(mapObject);
+        }
+    }
+    
+    public void setLevel(int newLevel) {
+        try {
+            addDynamicObjects(newLevel);
+        } catch (ImageNotLoadedException ex) {
+            throw new InitException("Image not loaded for one dynamic object");
+        } catch (FileNotSetException ex) {
+            throw new InitException("File not specified in Database");
+        } catch (ObjectNotFoundException ex) {
+            throw new InitException("Objects not found in Database");
         }
     }
 

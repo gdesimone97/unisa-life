@@ -5,7 +5,14 @@
  */
 package quests;
 
+import database.DatabaseManager;
+import database.FileNotSetException;
+import database.NoQuestsException;
+import database.ObjectNotFoundException;
 import game.Interfaces.Initializable;
+import gameSystem.GameStateManager;
+import gameSystem.LoadingState;
+import gameSystem.map.MapManager;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -24,7 +31,8 @@ public class QuestsManager implements QuestMessages, Initializable {
     private static QuestsManager instance = null;
     private List<User> users;
     // Item : Subject associative collection
-    private HashMap<String, String> item; 
+    private HashMap<String, String> item;
+    private int currentLevel;
 
     private QuestsManager() {
 
@@ -44,6 +52,23 @@ public class QuestsManager implements QuestMessages, Initializable {
         return instance;
     }
 
+    
+    public void levelEnded(){
+        this.currentLevel++;
+        this.loadLevel();                
+    }
+    
+    private void loadLevel() throws InitException{
+        try {
+            this.loadNewItems(DatabaseManager.getDatabaseManager().getQuestsFromLevel(currentLevel));
+            MapManager.getInstance().setLevel(currentLevel);
+        } catch (FileNotSetException ex) {
+            throw new InitException("Error loading quests");
+        } catch(NoQuestsException ex){
+            GameStateManager.getInstance().setState(LoadingState.getInstance());
+        }
+    }
+    
     public void loadNewItems(List<Quest> quests) {
         // prima volta:
         /*
@@ -93,10 +118,16 @@ public class QuestsManager implements QuestMessages, Initializable {
         this.users.add(user);
     }
 
+    public int getCurrentLevel() {
+        return this.currentLevel;
+    }
+
     @Override
-    public void init(){
+    public void init() throws InitException {
         this.users = new ArrayList<>();
         this.item = new HashMap<>();
+        this.currentLevel = 0;
+        this.loadLevel();        
     }
 
 }

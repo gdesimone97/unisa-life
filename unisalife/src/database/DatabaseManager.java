@@ -89,12 +89,12 @@ public class DatabaseManager implements Initializable {
      * @return The list of quests (instances)
      * @throws ObjectNotFoundException
      */
-    public List<Quest> getQuestsFromLevel(int level) throws ObjectNotFoundException {
+    public List<Quest> getQuestsFromLevel(int level) throws NoQuestsException {
 
         List<Quest> list = db.getNitriteDatabase().getRepository(Quest.class).find(eq("level", level)).toList();
 
         if (list.size() <= 0) {
-            throw new ObjectNotFoundException();
+            throw new NoQuestsException();
         }
         return list;
     }
@@ -109,7 +109,7 @@ public class DatabaseManager implements Initializable {
      * @throws ObjectNotFoundException
      * @throws game.GameObjects.ImageNotLoadedException
      */
-    public ConcurrentHashMap<Position, Renderable>[] getObjectsFromLevel(int level) throws ObjectNotFoundException, ImageNotLoadedException {
+    public ConcurrentHashMap<Position, Renderable>[] getObjectsFromLevel(int level) throws ObjectNotFoundException, ImageNotLoadedException, NoQuestsException {
         List<TileMap> res = this.getTileMaps();
         int mapNum = res.size();
         List<ConcurrentHashMap<Position, Renderable>> dynArrObj = new ArrayList<>();
