@@ -37,10 +37,10 @@ public class ProfessorInteractionManager implements InteractionManager {
 
         // 2. verifica idonietà e requisiti
         try {
-//            if (Quests.getInstance().getQuest(s.getInfo()).isDone()) {
-//                GuiManager.getInstance().showDialog(p.getNome(), FileTextManager.getFileTextManager().getString(new MessageInformation("ExamAlreadyDone")).get(0));
-//
-//            } else if (Quests.getInstance().getQuest(s.getInfo()).isAvailable()) {
+            if (Quests.getInstance().getQuest(s.getInfo()).isDone()) {
+                GuiManager.getInstance().showDialog(p.getNome(), FileTextManager.getFileTextManager().getString(new MessageInformation("ExamAlreadyDone")).get(0));
+
+            } else if (Quests.getInstance().getQuest(s.getInfo()).isAvailable()) {
 
                 //3. Start the exam session
                 if(s.getInfo().compareTo("tolc") == 0) {
@@ -52,14 +52,14 @@ public class ProfessorInteractionManager implements InteractionManager {
                     esameThread.start();
                 }
                 
-//            } else {
-//                if (Quests.getInstance().getQuest(s.getInfo()).isDone()) {
-//                    GuiManager.getInstance().showDialog(p.getNome(), FileTextManager.getFileTextManager().getString(new MessageInformation("ExamAlreadyDone")).get(0));
-//
-//                } else {
-//                    GuiManager.getInstance().showDialog(p.getNome(), FileTextManager.getFileTextManager().getString(new MessageInformation("NotAllowed")).get(0));
-//                }
-//            }
+            } else {
+                if (Quests.getInstance().getQuest(s.getInfo()).isDone()) {
+                    GuiManager.getInstance().showDialog(p.getNome(), FileTextManager.getFileTextManager().getString(new MessageInformation("ExamAlreadyDone")).get(0));
+
+                } else {
+                    GuiManager.getInstance().showDialog(p.getNome(), FileTextManager.getFileTextManager().getString(new MessageInformation("NotAllowed")).get(0));
+                }
+            }
             
             // autosave
             SaveManager.getSaveManager().save();
