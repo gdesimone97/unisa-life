@@ -92,6 +92,7 @@ public class SettingsManager implements Saveable, Initializable {
         register.put(Commands.MAP, KeyEvent.VK_M);
         register.put(Commands.INVENTORY, KeyEvent.VK_I);
         register.put(Commands.SAVE, KeyEvent.VK_S);
+        SaveManager.getSaveManager().saveKeys();
     }
     
     private SettingsManager() {
@@ -276,7 +277,6 @@ public class SettingsManager implements Saveable, Initializable {
             SaveManager.getSaveManager().loadKeys();
         } catch (LoadingException ex) {
             System.out.println(ex.getMessage());
-            ex.printStackTrace();
             defaultInit();
         }
     }
