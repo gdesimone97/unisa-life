@@ -242,7 +242,6 @@ public class GuiManager {
      */
     public void updateInventoryDialog(){
         inventorymanager.updateInventoryDialog();
-        System.out.println("unisagui.GuiManager.updateInventoryDialog()");
     }
  /*
     public void updateInventoryDialog(Item item, int position, boolean presence){

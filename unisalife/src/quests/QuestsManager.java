@@ -127,6 +127,7 @@ public class QuestsManager implements QuestMessages, Initializable {
         this.users = new ArrayList<>();
         this.item = new HashMap<>();
         this.currentLevel = 0;
+        Quests.getInstance().init();
         this.loadLevel();        
     }
 

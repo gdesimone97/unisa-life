@@ -89,10 +89,8 @@ public class GameInventory extends User implements Iterable<Item>, Saveable, Ini
         if( c != null )
             throw new RuntimeException("The item you're trying to add is already in the inventory");
         i.setTaken();
-        System.out.println("CI sto");
         Message msg = new Message(i.getInfo() , true ); //prepare the message with the added object
         send(msg); //then sends it
-        System.out.println("CI sto di nuovo");
         int pos = Collections.binarySearch(view, i, comp);
         //int pos = view.indexOf(i);
         view.add(-(pos+1), i);
