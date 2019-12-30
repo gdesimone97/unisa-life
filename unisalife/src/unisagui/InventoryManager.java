@@ -47,7 +47,7 @@ public class InventoryManager {
         System.out.println("unisagui.InventoryManager.updateInventoryDialog()");
         for (Item item : GameInventory.getInstance()) {
             JLabel label = new JLabel();
-            label.setIcon(new javax.swing.ImageIcon(getClass().getResource("nome"/*item.getImage()*/))); //getqualcosa che mi restituisca il path del'immagine
+            label.setIcon(new javax.swing.ImageIcon(getClass().getResource(item.getPath()))); //getqualcosa che mi restituisca il path del'immagine
             String name;
             try {
                 name = FileTextManager.getFileTextManager().getString(item).get(0);
