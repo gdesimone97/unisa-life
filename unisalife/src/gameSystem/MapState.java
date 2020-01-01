@@ -12,11 +12,8 @@ import gameSystem.map.MapManager;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
-import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 
 /**
@@ -48,16 +45,6 @@ public class MapState extends GameState {
     @Override
     public void init() throws Initializable.InitException {
     }
-    
-    /*@Override
-    public void init() throws Initializable.InitException {
-        try {
-            img = ImageIO.read(getClass().getResource("/Sprites/Tutorial.png"));
-        } catch (IOException ex) {
-            throw new Initializable.InitException("Can't find Map image");
-        }
-    }
-    */
 
     @Override
     public void tick() {
