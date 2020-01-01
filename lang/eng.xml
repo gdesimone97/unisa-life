@@ -209,16 +209,16 @@
 <message>2#If an attribute is pointed as a primary key...#NULL is not allowed for that attribute#The attribute is used to compress the record#NULL is not allowed, but duplicates are#None of the others</message>
 <message>2#Referential integrity constraint among relations is based on:#same value on some attributes#same reference on some attributes#an attribute is used as a pointers to another record#an attribute is used as a key for another relation</message>
 <message>2#An attribute selected as foreign key, with respect to the external relation...#it has to be, at least, unique#it must be primary key#it can be anything#it must point to the primary key of the internal relation</message>
-<message>3#####</message>
-<message>3#####</message>
-<message>3#####</message>
-<message>3#####</message>
+<message>3#The join operation among A and B tables, which shows all the rows from table A but only those from B that satisfy the join condition is called#left outer join#right outer join#full outer join#inner join</message>
+<message>3#In an updatable view, the "check" keyword is used to:#ensure that any update doesn't make rows leaving the view#control if the constraints of the table are all true#block operations that would delete rows of the table#block operation that would add rows to the table</message>
+<message>3#A good restructuring on a ER model, guarantees..#1NF of the relational model#2NF of the relational model#nothing, it's not related to the relational model#absence of functional dependencies</message>
+<message>3#Which granularity of a trigger makes it activate for a single SQL instruction?#statement#row#after#before</message>
 <message>3#Which one ofthe following statements about normal forms is false?#Loss less, dependency – preserving decomposition into BCNF is always possible#BCNF is stricter than 3 NF#Any relation with two attributes is BCNF#None Of the others</message>
-<message>4#####</message>
-<message>4#####</message>
-<message>4#####</message>
-<message>4#####</message>
-<message>4#####</message>
+<message>4#To prevent SQL Injection, _____  are used in JDBC.#PreparedStatement#Statement#Forward Only ResultSet#Scrollable Result Set</message>
+<message>4#The D in ACID for transaction means:#The effect of a committed transaction are never lost#A transaction works independently from the other#The database is left in a consistent way by a transaction#It's not possible to see intermediate results of a transaction</message>
+<message>4#Which of these structures is slower when looking for a row (search by primary key)?#entry-sequenced#ordered structure#hash#b-tree</message>
+<message>4#The merge-scan join requires:#equi-join, ordered tables on the given attributes#equi-join, tables stored via an hash function on the given attributes#any kind of join, but only on the ordered sequence structure#outer-join, tables ordered on the given attributes</message>
+<message>4#In the falling phase of 2 Phase Locking:#all the locks are released#all the lock are acquired#all write locks are demoted to read locks#all the read locks are promoted to write locks</message>
 </Subject> 
 
 <Professor info="Foggia">
