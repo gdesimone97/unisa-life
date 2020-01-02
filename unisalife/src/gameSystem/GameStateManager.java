@@ -24,6 +24,9 @@ public class GameStateManager implements Initializable {
         return instance;
     }
 
+    private GameStateManager() {
+    }    
+
     public void setState(GameState state) {
         gs = state;
     }

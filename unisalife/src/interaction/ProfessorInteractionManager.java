@@ -8,9 +8,11 @@ package interaction;
 import exam.Exam;
 import exam.Tolc;
 import exam.booklet.Subject;
+import game.GameObjects.Player;
 import game.GameObjects.Professor;
 import game.Interfaces.Initializable.InitException;
 import game.Interfaces.Interactable;
+import java.util.List;
 import language.FileTextManager;
 import language.MessageInformation;
 import language.exceptions.TextFinderException;
@@ -41,6 +43,9 @@ public class ProfessorInteractionManager implements InteractionManager {
                 GuiManager.getInstance().showDialog(p.getNome(), FileTextManager.getFileTextManager().getString(new MessageInformation("ExamAlreadyDone")).get(0));
 
             } else if (Quests.getInstance().getQuest(s.getInfo()).isAvailable()) {
+                
+                List<String> str = FileTextManager.getFileTextManager().getString(new MessageInformation("BeforeTolcDialogName"));
+                GuiManager.getInstance().showDialog(p.getNome(), str.get(0) + Player.getIstance().getName() + str.get(1) + "\n" + str.get(2));
 
                 //3. Start the exam session
                 if(s.getInfo().compareTo("tolc") == 0) {
@@ -53,12 +58,7 @@ public class ProfessorInteractionManager implements InteractionManager {
                 }
                 
             } else {
-                if (Quests.getInstance().getQuest(s.getInfo()).isDone()) {
-                    GuiManager.getInstance().showDialog(p.getNome(), FileTextManager.getFileTextManager().getString(new MessageInformation("ExamAlreadyDone")).get(0));
-
-                } else {
-                    GuiManager.getInstance().showDialog(p.getNome(), FileTextManager.getFileTextManager().getString(new MessageInformation("NotAllowed")).get(0));
-                }
+                GuiManager.getInstance().showDialog(p.getNome(), FileTextManager.getFileTextManager().getString(new MessageInformation("NotAllowed")).get(0));
             }
             
             // autosave

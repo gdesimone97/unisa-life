@@ -269,8 +269,14 @@
 <message>Sorry, you should study a little more...</message>
 </MessageInformation>
 
+<MessageInformation info="BeforeTolcDialogName">
+<message>Well done, </message>
+<message>. Now you're going to make your first test of this long travel! Ahahah.</message>
+<message>Press SpaceBar as soon as you are ready and... STAY FOCUSED!</message>
+</MessageInformation>
+
 <MessageInformation info="NotAllowed">
-<message>You don't have all the requirements to do this</message>
+<message>You don't have all the requirements to do this. Check the QUESTS panel!</message>
 </MessageInformation>
 
 <MessageInformation info="ExamAlreadyDone">
