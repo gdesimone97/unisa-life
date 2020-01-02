@@ -87,9 +87,10 @@ public class GuiManager {
      * When called the Conversation Area appears  on the screen
      * @param name is the name of the person who is talking
      * @param s is the text in the text area
+     * @throws unisagui.DialogManager.DialogAlreadyOpenedException if Dialog is already shown 
      * 
      */
-    public void showDialog(String name,String s) {
+    public void showDialog(String name,String s) throws DialogManager.DialogAlreadyOpenedException {
         dialogmanager.showDialog(name,s);
     }
     /**
@@ -101,8 +102,9 @@ public class GuiManager {
     /**
      * When called the Hint Area appears on the screen
      * @param s is the text of the hint
+     * @throws unisagui.DialogManager.HintAlreadyOpenedException if Hint is already shown
      */
-    public void showHint(String s){
+    public void showHint(String s) throws DialogManager.HintAlreadyOpenedException{
         dialogmanager.showHint(s);
     }
     /**
@@ -110,6 +112,14 @@ public class GuiManager {
      */
     public void hideHint(){
         dialogmanager.hideHint();
+    }
+    
+    public boolean isHintAvailable(){
+        return dialogmanager.isHintAvailable();
+    }
+
+    public boolean isDialogAvailable() {
+        return dialogmanager.isDialogAvailable();
     }
     
     /**
@@ -238,8 +248,6 @@ public class GuiManager {
      * When called the JDialog with the quests is update with the new quest or
      * the quest is deleted.
      *
-     * @param quest is the quest to isert or delete
-     * @param presence if true the quest is added, if false is deleted
      */
     public void updateQuestDialog(){
         questmanager.updateQuestDialog();
