@@ -2124,6 +2124,7 @@ public class GameFrame extends javax.swing.JFrame {
     private void ResumeGameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ResumeGameButtonActionPerformed
         SwingUtilities.invokeLater(() -> sound.play("menu"));
         SwingUtilities.invokeLater(() -> music.play("game_music"));
+        SwingUtilities.invokeLater(() -> MainMenuDialog.setVisible(false));
         SwingUtilities.invokeLater(() -> {
                 GameManager.getInstance().initGame();
                 GameManager.getInstance().loadGame();
