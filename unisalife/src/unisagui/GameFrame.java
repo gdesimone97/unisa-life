@@ -92,7 +92,7 @@ public class GameFrame extends javax.swing.JFrame {
 
     }
     /**
-     * this method sets the Booklet of the gui, booklet works with inverse  boolean logic. 
+     * this method sets the Booklet of the gui, booklet works with inverse  oolean logic. 
      */
     private void setCareer() {
         int row = 0;
@@ -2514,31 +2514,31 @@ public class GameFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_MapFieldKeyPressed
 
     private void MoveUpFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MoveUpFieldMouseClicked
-        SwingUtilities.invokeLater(() -> MoveUpField.setText(EMPTY_TEXT));
+        SwingUtilities.invokeLater(() -> MoveUpField.setText(""));
     }//GEN-LAST:event_MoveUpFieldMouseClicked
 
     private void MoveDownFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MoveDownFieldMouseClicked
-        SwingUtilities.invokeLater(() -> MoveDownField.setText(EMPTY_TEXT));
+        SwingUtilities.invokeLater(() -> MoveDownField.setText(""));
     }//GEN-LAST:event_MoveDownFieldMouseClicked
 
     private void MoveLeftFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MoveLeftFieldMouseClicked
-        SwingUtilities.invokeLater(() -> MoveLeftField.setText(EMPTY_TEXT));
+        SwingUtilities.invokeLater(() -> MoveLeftField.setText(""));
     }//GEN-LAST:event_MoveLeftFieldMouseClicked
 
     private void MoveRightFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MoveRightFieldMouseClicked
-        SwingUtilities.invokeLater(() -> MoveRightField.setText(EMPTY_TEXT));
+        SwingUtilities.invokeLater(() -> MoveRightField.setText(""));
     }//GEN-LAST:event_MoveRightFieldMouseClicked
 
     private void InteractFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_InteractFieldMouseClicked
-        SwingUtilities.invokeLater(() -> InteractField.setText(EMPTY_TEXT));
+        SwingUtilities.invokeLater(() -> InteractField.setText(""));
     }//GEN-LAST:event_InteractFieldMouseClicked
 
     private void PauseFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PauseFieldMouseClicked
-       SwingUtilities.invokeLater(() -> PauseField.setText(EMPTY_TEXT));
+       SwingUtilities.invokeLater(() -> PauseField.setText(""));
     }//GEN-LAST:event_PauseFieldMouseClicked
 
     private void MapFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MapFieldMouseClicked
-        SwingUtilities.invokeLater(() -> MapField.setText(EMPTY_TEXT));
+        SwingUtilities.invokeLater(() -> MapField.setText(""));
     }//GEN-LAST:event_MapFieldMouseClicked
 
     private void ConversationTextAreaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ConversationTextAreaKeyTyped
