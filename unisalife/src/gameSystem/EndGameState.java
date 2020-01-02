@@ -51,7 +51,7 @@ public class EndGameState extends GameState {
 
     @Override
     public void handleInput(KeyCommand cmd) {
-        
+        cmd.visitEndGameState(this);
     }
     
 }
