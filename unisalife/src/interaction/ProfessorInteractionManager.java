@@ -44,11 +44,11 @@ public class ProfessorInteractionManager implements InteractionManager {
 
             } else if (Quests.getInstance().getQuest(s.getInfo()).isAvailable()) {
                 
-                List<String> str = FileTextManager.getFileTextManager().getString(new MessageInformation("BeforeTolcDialogName"));
-                GuiManager.getInstance().showDialog(p.getNome(), str.get(0) + Player.getIstance().getName() + str.get(1) + "\n" + str.get(2));
-
                 //3. Start the exam session
                 if(s.getInfo().compareTo("tolc") == 0) {
+                    List<String> str = FileTextManager.getFileTextManager().getString(new MessageInformation("BeforeTolcDialogName"));
+                    GuiManager.getInstance().showDialog(p.getNome(), str.get(0) + Player.getIstance().getName() + str.get(1) + "\n" + str.get(2));
+
                     Thread tolcThread = new Thread(new Tolc(p.getNome()));
                     tolcThread.start();
                 }
