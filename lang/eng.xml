@@ -327,16 +327,17 @@
 <message>The map can be very big and you can easely loose yourself, press M to show the map in order to orientate.</message>
 <message>The objects you see on the map are items, pick one of them pressing SPACEBAR...</message>
 <message>... you can always check the items you picked up by pressing TAB and opening the inventory.</message>
-<message>Pressing SPACEBAR you can also interact with the characters you can find on the map, doing so with professors will start an exam is possible.</message>
-<message>To track down your progress and know the exams to take click on the quest panel.</message>
+<message>Pressing SPACEBAR you can also interact with the characters you can find on the map, doing so with professors will start an exam if it's possible.</message>
+<message>To track down your progress and know the exams to take click on the QUEST panel.</message>
 <message>As in the real life, taking exams could be really stressing, feel free to take a break! Press P to pause the game.</message>
 <message>It seems you're ready to start your adventure...</message>
 <message>... well, good luck for your brilliant career!</message>
 </MessageInformation>
 
-<MessageInformation info="TutorialFrasi">
-<message>Hello, </message>
-<message>. It's a plesaure to meet you!</message>
+<MessageInformation info="QuestDescription">
+<message>It's time to get a new Exam: </message>
+<message>For this exam you need: </message>
+<message>Go find them!</message>
 </MessageInformation>
 
 </root>
