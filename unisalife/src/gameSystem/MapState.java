@@ -9,7 +9,6 @@ import game.GameObjects.Player;
 import game.Interfaces.Initializable;
 import gameSystem.keySettings.interfaces.KeyCommand;
 import gameSystem.map.MapManager;
-import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
@@ -24,6 +23,7 @@ public class MapState extends GameState {
 
     private static MapState instance;
     private static BufferedImage img;
+    private static BufferedImage here;
     
     private int xPlayer;
     private int yPlayer;
@@ -44,6 +44,11 @@ public class MapState extends GameState {
     
     @Override
     public void init() throws Initializable.InitException {
+        try {
+            here = ImageIO.read(getClass().getResource("/Sprites/here.png"));
+        } catch (IOException ex) {
+            throw new Initializable.InitException("Can't find Map image");
+        }
     }
 
     @Override
@@ -56,16 +61,13 @@ public class MapState extends GameState {
         g.setColor(Color.black);
         g.fillRect(0, 0, Game.WIDTHSCREEN, Game.HEIGHTSCREEN2);
         g.drawImage(img, 0, 0,Game.WIDTHSCREEN,Game.HEIGHTSCREEN2, null);
-        g.setColor(Color.red);
         xPlayer = Player.getIstance().getPosition().getX();
         yPlayer = Player.getIstance().getPosition().getY();
         heightMap = MapManager.getInstance().getMap().getHeightMap();
         widthMap = MapManager.getInstance().getMap().getWidthMap();
-        xPlayerInMap = (int)Math.ceil(xPlayer*Game.WIDTHSCREEN/widthMap);
-        yPlayerInMap = (int)Math.ceil(yPlayer*Game.HEIGHTSCREEN2/heightMap);
-        g.setStroke(new BasicStroke(2));
-        g.drawLine(xPlayerInMap - 10, yPlayerInMap, xPlayerInMap + 10, yPlayerInMap);
-        g.drawLine(xPlayerInMap, yPlayerInMap - 10, xPlayerInMap, yPlayerInMap + 10);
+        xPlayerInMap = (int)(xPlayer*Game.WIDTHSCREEN/widthMap);
+        yPlayerInMap = (int)(yPlayer*Game.HEIGHTSCREEN2/heightMap);
+        g.drawImage(here, xPlayerInMap, yPlayerInMap,25,25,null);
     }
 
     @Override
