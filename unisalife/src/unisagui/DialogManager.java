@@ -43,7 +43,7 @@ public class DialogManager {
     }
     /**
      * show a little conversation 
-     *  @param name is the name of the person who is talking
+     * @param name is the name of the person who is talking
      * @param conversation
      
      */

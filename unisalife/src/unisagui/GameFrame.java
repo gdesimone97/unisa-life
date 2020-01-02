@@ -5,6 +5,9 @@ import exam.booklet.Subject;
 import java.awt.event.KeyEvent;
 import javax.swing.SwingUtilities;
 import gameSystem.GameManager;
+import gameSystem.GameStateManager;
+import gameSystem.PauseState;
+import gameSystem.PlayState;
 import gameSystem.keySettings.SettingsManager;
 import java.awt.Component;
 import java.awt.Dialog;
@@ -2342,10 +2345,12 @@ public class GameFrame extends javax.swing.JFrame {
     private void HintDialogKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_HintDialogKeyReleased
         // TODO add your handling code here:
         if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
-            SwingUtilities.invokeLater(() -> HintDialog.setVisible(false));
+            GuiManager.getInstance().hideHint();
+            /*SwingUtilities.invokeLater(() -> HintDialog.setVisible(false));
             SwingUtilities.invokeLater(() -> HintTextArea.setText(EMPTY_TEXT));
             SwingUtilities.invokeLater(() -> HintDialog.setFocusable(false));
-            //SwingUtilities.invokeLater(() -> this.setEnabled(true));
+            //SwingUtilities.invokeLater(() -> this.setEnabled(true));*/
+            ;
         }
     }//GEN-LAST:event_HintDialogKeyReleased
 
@@ -2401,26 +2406,32 @@ public class GameFrame extends javax.swing.JFrame {
 
     private void InventoryButtonFrameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InventoryButtonFrameActionPerformed
         SwingUtilities.invokeLater(() -> InventoryDialog.setVisible(true));
+        GameStateManager.getInstance().setState(PauseState.getInstance());
     }//GEN-LAST:event_InventoryButtonFrameActionPerformed
 
     private void CareerButtonFrame1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CareerButtonFrame1ActionPerformed
         SwingUtilities.invokeLater(() -> CareerDialog.setVisible(true));
+        GameStateManager.getInstance().setState(PauseState.getInstance());
     }//GEN-LAST:event_CareerButtonFrame1ActionPerformed
 
     private void ExitCareerDialogMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ExitCareerDialogMouseClicked
         SwingUtilities.invokeLater(() -> CareerDialog.setVisible(false));
+        GameStateManager.getInstance().setState(PlayState.getInstance());
     }//GEN-LAST:event_ExitCareerDialogMouseClicked
 
     private void ExitInventoryDialogMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ExitInventoryDialogMouseClicked
         SwingUtilities.invokeLater(() -> InventoryDialog.setVisible(false));
+        GameStateManager.getInstance().setState(PlayState.getInstance());
     }//GEN-LAST:event_ExitInventoryDialogMouseClicked
 
     private void InventoryDialogWindowLostFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_InventoryDialogWindowLostFocus
         SwingUtilities.invokeLater(() -> InventoryDialog.setVisible(false));
+        GameStateManager.getInstance().setState(PlayState.getInstance());
     }//GEN-LAST:event_InventoryDialogWindowLostFocus
 
     private void CareerDialogWindowLostFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_CareerDialogWindowLostFocus
         SwingUtilities.invokeLater(() -> CareerDialog.setVisible(false));
+        GameStateManager.getInstance().setState(PlayState.getInstance());
     }//GEN-LAST:event_CareerDialogWindowLostFocus
 
     private void CareerDialogWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_CareerDialogWindowOpened
@@ -2547,9 +2558,7 @@ public class GameFrame extends javax.swing.JFrame {
 
     private void ConvDialogKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ConvDialogKeyReleased
         if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
-            SwingUtilities.invokeLater(() -> ConvDialog.setVisible(false));
-            SwingUtilities.invokeLater(() -> ConversationTextArea.setText(EMPTY_TEXT));
-            SwingUtilities.invokeLater(() -> ConvDialog.setFocusable(false));
+            GuiManager.getInstance().hideDialog();
         }
     }//GEN-LAST:event_ConvDialogKeyReleased
 
