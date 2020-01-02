@@ -30,25 +30,25 @@ public class EndGameState extends GameState {
     
     private EndGameState() {
     }
-
+    
     @Override
     public void init() throws Initializable.InitException {
-         try {
-              img = ImageIO.read(getClass().getResource("/Sprites/endgame.png"));
-           } catch (IOException ex) {
-              throw new Initializable.InitException("Can't find EndGame image");
-         }
+        try {
+            img = ImageIO.read(getClass().getResource("/Sprites/endgame.png"));
+        } catch (IOException ex) {
+            throw new Initializable.InitException("Can't find EndGame image");
+        }
     }
-
+    
     @Override
     public void tick() {
     }
-
+    
     @Override
     public void render(Graphics2D g) {
         g.drawImage(img, 0, 0, Game.WIDTHSCREEN, Game.HEIGHTSCREEN2, null);
     }
-
+    
     @Override
     public void handleInput(KeyCommand cmd) {
         cmd.visitEndGameState(this);

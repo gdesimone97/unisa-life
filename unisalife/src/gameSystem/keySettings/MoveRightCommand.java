@@ -5,6 +5,7 @@
  */
 package gameSystem.keySettings;
 
+import gameSystem.EndGameState;
 import gameSystem.keySettings.interfaces.MovingCommand;
 import gameSystem.keySettings.interfaces.KeyCommand;
 import gameSystem.LoadingState;
@@ -54,4 +55,13 @@ class MoveRightCommand extends KeyCommand implements MovingCommand {
     @Override
     public void visitMapState(MapState mapState) {
     }
+
+    /**
+     * {@inheritDoc}
+     *
+     */
+    @Override
+    public void visitEndGameState(EndGameState endGamestate) {
+    }
+
 }
