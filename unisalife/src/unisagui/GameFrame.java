@@ -342,6 +342,7 @@ public class GameFrame extends javax.swing.JFrame {
         UpperBorder = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
 
+        ExamDialog.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         ExamDialog.setMinimumSize(new java.awt.Dimension(500, 500));
         ExamDialog.setModalityType(java.awt.Dialog.ModalityType.APPLICATION_MODAL);
         ExamDialog.addWindowListener(new java.awt.event.WindowAdapter() {
@@ -2231,18 +2232,14 @@ public class GameFrame extends javax.swing.JFrame {
 
     private void HintDialogKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_HintDialogKeyTyped
         if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
-            SwingUtilities.invokeLater(() -> HintDialog.setVisible(false));
-            SwingUtilities.invokeLater(() -> HintTextArea.setText(EMPTY_TEXT));
-            SwingUtilities.invokeLater(() -> HintDialog.setFocusable(false));
+            GuiManager.getInstance().hideHint();
         }
 
     }//GEN-LAST:event_HintDialogKeyTyped
 
     private void ConvDialogKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ConvDialogKeyTyped
         if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
-            SwingUtilities.invokeLater(() -> ConvDialog.setVisible(false));
-            SwingUtilities.invokeLater(() -> ConversationTextArea.setText(EMPTY_TEXT));
-            SwingUtilities.invokeLater(() -> ConvDialog.setFocusable(false));
+            GuiManager.getInstance().hideDialog();
         }
 
     }//GEN-LAST:event_ConvDialogKeyTyped
@@ -2319,11 +2316,11 @@ public class GameFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_HintTextAreaMouseClicked
 
     private void HintDialogWindowLostFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_HintDialogWindowLostFocus
-        SwingUtilities.invokeLater(() -> HintDialog.setVisible(false));
+        GuiManager.getInstance().hideHint();
     }//GEN-LAST:event_HintDialogWindowLostFocus
 
     private void ConvDialogWindowLostFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_ConvDialogWindowLostFocus
-        SwingUtilities.invokeLater(() -> ConvDialog.setVisible(false));
+        GuiManager.getInstance().hideDialog();
     }//GEN-LAST:event_ConvDialogWindowLostFocus
 
     private void ExamDialogWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_ExamDialogWindowOpened
@@ -2345,12 +2342,7 @@ public class GameFrame extends javax.swing.JFrame {
     private void HintDialogKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_HintDialogKeyReleased
         // TODO add your handling code here:
         if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
-            GuiManager.getInstance().hideHint();
-            /*SwingUtilities.invokeLater(() -> HintDialog.setVisible(false));
-            SwingUtilities.invokeLater(() -> HintTextArea.setText(EMPTY_TEXT));
-            SwingUtilities.invokeLater(() -> HintDialog.setFocusable(false));
-            //SwingUtilities.invokeLater(() -> this.setEnabled(true));*/
-            ;
+            GuiManager.getInstance().hideHint();            
         }
     }//GEN-LAST:event_HintDialogKeyReleased
 
