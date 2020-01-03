@@ -97,7 +97,7 @@ public class GameFrame extends javax.swing.JFrame {
     /**
      * this method sets the Booklet of the gui, booklet works with inverse  boolean logic. 
      */
-    private void setCareer() {
+    protected void setCareer() {
         int row = 0;
         int column = 0;
         careerModel = (DefaultTableModel) ExamTable.getModel();
@@ -116,13 +116,7 @@ public class GameFrame extends javax.swing.JFrame {
         }
         
     }
-    /**
-     * this method update the Booklet of the gui
-     */
-    public void updateCareer(){
-        SwingUtilities.invokeLater(() -> setCareer());
-        
-    }
+    
 
 
     protected void initializingTable() {

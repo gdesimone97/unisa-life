@@ -139,7 +139,8 @@ public class GuiManager {
      * This method requires  all the methods useful for updating the interface relative
      * to the exam
      */
-     public void showExamDialog(String examName, String question, String answer1, String answer2, String answer3, String answer4, int time, ResultGui lock,int level,int numLevel) {
+     public void showExamDialog(String examName, String question, String answer1, String answer2, String answer3,
+                                String answer4, int time, ResultGui lock,int level,int numLevel) {
         exammanager.showExamDialog(examName, question, answer1, answer2, answer3, answer4, time, lock,level,numLevel);
     }
     /**
@@ -214,6 +215,14 @@ public class GuiManager {
      */
     public void showCareerDialog(boolean show) {
         careermanager.showCareerDialog(show);
+    }
+    
+    /**
+     * this method update the Booklet of the gui
+     */
+    public void updateCareer(){
+         gameframe.setCareer();
+        
     }
 
     /**

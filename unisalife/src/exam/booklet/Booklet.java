@@ -15,6 +15,7 @@ import quests.mediator.*;
 import quests.quest.Quests;
 import saving.Saveable;
 import unisagui.GameFrame;
+import unisagui.GuiManager;
 /**
  * This class is used due to the necessity of have a booklet for our
  * character.
@@ -74,7 +75,7 @@ public class Booklet extends User implements Serializable,Saveable,Initializable
         subject.setScore(score);
         subject.setAvailable(false);
         Quests.getInstance().getQuest(subject.getInfo()).finish();
-        GameFrame.getInstance().updateCareer();
+        GuiManager.getInstance().updateCareer();
     }
     
     /**
