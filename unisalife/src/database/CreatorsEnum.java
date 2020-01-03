@@ -67,6 +67,11 @@ public enum CreatorsEnum {
         public StorableCreator getFactory() {
             return new TeleportWrapperFactory();
         }
+    }, normalperson("normalperson"){
+        @Override
+        public StorableCreator getFactory() {
+            return new NormalPersonFactory();
+        }
     };
 
     private final String type;

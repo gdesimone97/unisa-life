@@ -14,6 +14,7 @@ import game.GameObjects.GameObject;
 import game.GameObjects.Guardian;
 import game.GameObjects.ImageNotLoadedException;
 import game.GameObjects.Item;
+import game.GameObjects.NormalPerson;
 import game.GameObjects.ObjectManager;
 import game.GameObjects.Professor;
 import game.GameObjects.Renderable;
@@ -140,6 +141,7 @@ public class DatabaseManager implements Initializable {
             dynArrObj.get(mapId).put(p.getScaledPosition(), p);
         }
         try {
+            // Here dynamic but known object will be retrived.
             Cook cook = this.findCook();
             int cookMapId = this.findMap(cook.getIndex(), DatabaseManager.DYNCOLLECTIONNAME);
             dynArrObj.get(cookMapId).put(cook.getScaledPosition(), cook);
@@ -147,18 +149,20 @@ public class DatabaseManager implements Initializable {
             Guardian guardian = this.findGuardian();
             int guardMapId = this.findMap(guardian.getIndex(), DatabaseManager.DYNCOLLECTIONNAME);
             dynArrObj.get(guardMapId).put(guardian.getScaledPosition(), guardian);
+
+            List<NormalPerson> np_list = this.findNormalPeople();
+            for (NormalPerson np : np_list) {
+                int npMapId = this.findMap(np.getIndex(), DatabaseManager.DYNCOLLECTIONNAME);
+                dynArrObj.get(npMapId).put(np.getScaledPosition(), np);
+            }
+
         } catch (ObjectNotFoundException ex) {
-
+            // It's not a problem if an object of this kind is not found.
         }
 
-        /*
-        if ((dynArrObj.stream().filter((obj) -> obj.size() <= 0).count()) > 0) {
-            throw new ErrorWhileSavingException();
-        }
-         */
         ConcurrentHashMap<Position, Renderable>[] newArray = DatabaseManager.newArray(1, dynArrObj.get(0));
-        for (int i = 1; i<mapNum; i++) {
-                newArray = ArrayUtils.addAll(newArray, DatabaseManager.newArray(1, dynArrObj.get(i)));
+        for (int i = 1; i < mapNum; i++) {
+            newArray = ArrayUtils.addAll(newArray, DatabaseManager.newArray(1, dynArrObj.get(i)));
         }
         return newArray;
     }
@@ -225,7 +229,7 @@ public class DatabaseManager implements Initializable {
                 }
             } catch (Exception x) {
                 //x.printStackTrace();
-                       
+
             }
             int index = tilemap.getId();
             maps[index] = new Map(tilemap, new ObjectManager(fixed, dyn), tilemap.getMiniMapPath());
@@ -317,6 +321,22 @@ public class DatabaseManager implements Initializable {
     }
 
     /**
+     * Private method to search for normal people in the database
+     *
+     * @return a list of normal person, instantiated.
+     */
+    private List<NormalPerson> findNormalPeople() throws ObjectNotFoundException, ImageNotLoadedException {
+        List<NormalPerson> np_list = db.getNitriteDatabase().getRepository(NormalPerson.class).find(ObjectFilters.ALL).toList();
+        if (np_list == null || np_list.size() == 0) {
+            throw new ObjectNotFoundException();
+        }
+        for (NormalPerson np : np_list) {
+            np.loadImage();
+        }
+        return np_list;
+    }
+
+    /**
      * Private method to search for the guardian
      *
      * @return an instance of the guardian
@@ -357,35 +377,4 @@ public class DatabaseManager implements Initializable {
     public void init() {
 
     }
-
-    /*
-    public void save(List<Saveable> elems) throws ErrorWhileSavingException {
-        List<SaveableObject> finalList = elems.stream().map(e -> new SaveableObject(e)).collect(Collectors.toList());
-        finalList.stream().forEach((obj) -> {
-            System.out.println(obj);
-        });
-        ObjectRepository repo = db.getNitriteDatabase().getRepository(SaveableObject.class);
-        repo.remove(ObjectFilters.ALL);
-        WriteResult ws = repo.insert(finalList.toArray());
-        if (ws.getAffectedCount() != elems.size()) {
-            throw new ErrorWhileSavingException();
-        }
-    }
-
-    public List<Saveable> load() {
-        Cursor<SaveableObject> c = db.getNitriteDatabase().getRepository(SaveableObject.class).find(ObjectFilters.ALL);
-        System.out.println(c.size());
-        List<Saveable> returnList = new ArrayList<>();
-        for (SaveableObject obj : c) {
-            System.out.println(obj);
-            System.out.println(obj.getInnerObj());
-            returnList.add((Saveable) obj.getInnerObj());
-        }
-        return returnList; //l.stream().map(e -> e.getInnerObj()).collect(Collectors.toList());
-    }
-     
-    public boolean isSaved() {
-        return this.load().size() >= 0;
-    }
-     */
 }
