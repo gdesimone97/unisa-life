@@ -20,273 +20,274 @@ distributor %928%224%vm1 %0%f
 distributor %960%224%vm2 %0%f
 distributor %992%224%vm3 %0%f
 distributor %1024%224%vm4 %0%f
-# block %224%704%0%f
-# block %224%672%0%f
-# block %224%640%0%f
-# block %224%608%0%f
-# block %224%576%0%f
-# block %224%544%0%f
-# block %224%512%0%f
-# block %224%480%0%f
-# block %224%448%0%f
-# block %224%416%0%f
-# block %224%384%0%f
-# block %224%352%0%f
-# block %224%320%0%f
-# block %224%288%0%f
-# block %224%256%0%f
-# block %512%320%0%f
-# block %512%224%0%f
-# block %544%224%0%f
-# block %576%224%0%f
-# block %608%224%0%f
-# block %640%224%0%f
-# block %672%224%0%f
-# block %704%224%0%f
-# block %736%224%0%f
-# block %768%224%0%f
-# block %800%224%0%f
-# block %832%224%0%f
-# block %864%224%0%f
-# block %896%224%0%f
-# block %928%192%0%f
-# block %960%192%0%f
-# block %992%192%0%f
-# block %1024%192%0%f
-# block %1056%224%0%f
-# block %1056%256%0%f
-# block %1056%288%0%f
-# block %1056%320%0%f
-# block %1088%352%0%f
-# block %1088%288%0%f
-# block %1120%288%0%f
-# block %1120%256%0%f
-# block %1088%256%0%f
-# block %1088%192%0%f
-# block %1120%192%0%f
-# block %1152%192%0%f
-# block %1184%192%0%f
-# block %1216%192%0%f
-# block %1248%192%0%f
-# block %1280%192%0%f
-# block %1312%192%0%f
-# block %1344%192%0%f
-# block %1376%192%0%f
-# block %1408%192%0%f
-# block %1440%192%0%f
-# block %1472%192%0%f
-# block %1504%192%0%f
-# block %1536%192%0%f
-# block %1568%192%0%f
-# block %1216%256%0%f
-# block %1216%288%0%f
-# block %1248%256%0%f
-# block %1248%288%0%f
-# block %1312%352%0%f
-# block %1344%256%0%f
-# block %1376%256%0%f
-# block %1344%288%0%f
-# block %1376%288%0%f
-# block %1408%320%0%f
-# block %1440%320%0%f
-# block %1440%288%0%f
-# block %1440%256%0%f
-# block %1472%256%0%f
-# block %1504%256%0%f
-# block %1472%288%0%f
-# block %1504%288%0%f
-# block %1472%352%0%f
-# block %1600%256%0%f
-# block %1600%288%0%f
-# block %1632%288%0%f
-# block %1632%256%0%f
-# block %1600%192%0%f
-# block %1632%192%0%f
-# block %1664%192%0%f
-# block %1696%192%0%f
-# block %1728%192%0%f
-# block %1760%192%0%f
-# block %1792%192%0%f
-# block %1824%224%0%f
-# block %1824%256%0%f
-# block %1824%288%0%f
-# block %1824%320%0%f
-# block %1824%352%0%f
-# block %1792%320%0%f
-# block %1728%352%0%f
-# block %1760%352%0%f
-# block %1760%352%0%f
-# block %1824%384%0%f
-# block %1856%384%0%f
-# block %1888%384%0%f
-# block %1920%384%0%f
-# block %1920%352%0%f
-# block %1952%320%0%f
-# block %1984%320%0%f
-# block %2016%352%0%f
-# block %2016%384%0%f
-# block %2048%384%0%f
-# block %2080%384%0%f
-# block %2112%384%0%f
-# block %2112%416%0%f
-# block %2112%448%0%f
-# block %2112%480%0%f
-# block %2112%512%0%f
-# block %2112%544%0%f
-# block %2112%576%0%f
-# block %2112%608%0%f
-# block %2080%608%0%f
-# block %2048%608%0%f
-# block %2016%608%0%f
-# block %1984%608%0%f
-# block %1952%608%0%f
-# block %1920%608%0%f
-# block %1888%608%0%f
-# block %1856%608%0%f
-# block %1824%608%0%f
-# block %1984%544%0%f
-# block %2016%544%0%f
-# block %1984%576%0%f
-# block %2016%576%0%f
-# block %1856%544%0%f
-# block %1856%576%0%f
-# block %1888%544%0%f
-# block %1888%576%0%f
-# block %1728%256%0%f
-# block %1760%256%0%f
-# block %1760%288%0%f
-# block %1728%288%0%f
-# block %1728%544%0%f
-# block %1760%544%0%f
-# block %1760%576%0%f
-# block %1728%576%0%f
-# block %1600%544%0%f
-# block %1632%544%0%f
-# block %1632%576%0%f
-# block %1600%576%0%f
-# block %1472%544%0%f
-# block %1504%544%0%f
-# block %1504%576%0%f
-# block %1472%576%0%f
-# block %1344%544%0%f
-# block %1376%544%0%f
-# block %1376%576%0%f
-# block %1344%576%0%f
-# block %1216%544%0%f
-# block %1248%544%0%f
-# block %1248%576%0%f
-# block %1216%576%0%f
-# block %1088%544%0%f
-# block %1120%544%0%f
-# block %1120%576%0%f
-# block %1088%576%0%f
-# block %512%736%0%f
-# block %544%736%0%f
-# block %576%736%0%f
-# block %704%736%0%f
-# block %736%736%0%f
-# block %768%736%0%f
-# block %800%736%0%f
-# block %832%736%0%f
-# block %864%736%0%f
-# block %896%736%0%f
-# block %928%736%0%f
-# block %960%736%0%f
-# block %1088%736%0%f
-# block %1120%736%0%f
-# block %1152%736%0%f
-# block %1184%736%0%f
-# block %1216%736%0%f
-# block %1248%736%0%f
-# block %1280%736%0%f
-# block %1312%736%0%f
-# block %1344%736%0%f
-# block %1376%736%0%f
-# block %1440%736%0%f
-# block %1408%736%0%f
-# block %1504%736%0%f
-# block %1472%736%0%f
-# block %1536%736%0%f
-# block %1568%736%0%f
-# block %1600%736%0%f
-# block %1632%736%0%f
-# block %1664%736%0%f
-# block %1696%736%0%f
-# block %1728%736%0%f
-# block %1824%640%0%f
-# block %1824%672%0%f
-# block %1824%704%0%f
-# block %1792%736%0%f
-# block %1760%736%0%f
-# block %1632%640%0%f
-# block %1664%640%0%f
-# block %1696%640%0%f
-# block %1760%672%0%f
-# block %736%416%0%f
-# block %736%448%0%f
-# block %736%480%0%f
-# block %768%416%0%f
-# block %768%480%0%f
-# block %800%480%0%f
-# block %832%480%0%f
-# block %864%480%0%f
-# block %896%480%0%f
-# block %928%480%0%f
-# block %928%448%0%f
-# block %800%416%0%f
-# block %832%416%0%f
-# block %864%416%0%f
-# block %896%416%0%f
-# block %928%416%0%f
-# block %608%672%0%f
-# block %640%672%0%f
-# block %672%672%0%f
-# block %992%672%0%f
-# block %1024%672%0%f
-# block %1056%672%0%f
-# block %608%704%0%f
-# block %672%704%0%f
-# block %992%704%0%f
-# block %1056%704%0%f
-# block %736%608%0%f
-# block %768%640%0%f
-# block %768%576%0%f
-# block %800%640%0%f
-# block %800%576%0%f
-# block %832%640%0%f
-# block %832%576%0%f
-# block %864%640%0%f
-# block %864%576%0%f
-# block %896%640%0%f
-# block %896%576%0%f
-# block %928%608%0%f
-# block %352%224%0%f
-# block %384%224%0%f
-# block %416%224%0%f
-# block %448%224%0%f
-# block %352%736%0%f
-# block %384%736%0%f
-# block %416%736%0%f
-# block %448%736%0%f
-# block %480%736%0%f
-# block %256%736%0%f
-# block %288%736%0%f
-# block %320%736%0%f
-# block %256%224%0%f
-# block %288%224%0%f
-# block %320%224%0%f
-# block %480%256%0%f
-# block %480%288%0%f
-# block %480%320%0%f
-# block %448%608%0%f
-# block %480%608%0%f
-# block %480%640%0%f
-# block %448%640%0%f
-# block %320%608%0%f
-# block %352%608%0%f
-# block %352%640%0%f
-# block %320%640%0%f
-# block %928%576%0%f
-# block %736%576%0%f
-teleport %448%448%1%0%0%0
-teleport %1984%352%1%0%0%0
+block %224%704%0%f
+block %224%672%0%f
+block %224%640%0%f
+block %224%608%0%f
+block %224%576%0%f
+block %224%544%0%f
+block %224%512%0%f
+block %224%480%0%f
+block %224%448%0%f
+block %224%416%0%f
+block %224%384%0%f
+block %224%352%0%f
+block %224%320%0%f
+block %224%288%0%f
+block %224%256%0%f
+block %512%320%0%f
+block %512%224%0%f
+block %544%224%0%f
+block %576%224%0%f
+block %608%224%0%f
+block %640%224%0%f
+block %672%224%0%f
+block %704%224%0%f
+block %736%224%0%f
+block %768%224%0%f
+block %800%224%0%f
+block %832%224%0%f
+block %864%224%0%f
+block %896%224%0%f
+block %928%192%0%f
+block %960%192%0%f
+block %992%192%0%f
+block %1024%192%0%f
+block %1056%224%0%f
+block %1056%256%0%f
+block %1056%288%0%f
+block %1056%320%0%f
+block %1088%352%0%f
+block %1088%288%0%f
+block %1120%288%0%f
+block %1120%256%0%f
+block %1088%256%0%f
+block %1088%192%0%f
+block %1120%192%0%f
+block %1152%192%0%f
+block %1184%192%0%f
+block %1216%192%0%f
+block %1248%192%0%f
+block %1280%192%0%f
+block %1312%192%0%f
+block %1344%192%0%f
+block %1376%192%0%f
+block %1408%192%0%f
+block %1440%192%0%f
+block %1472%192%0%f
+block %1504%192%0%f
+block %1536%192%0%f
+block %1568%192%0%f
+block %1216%256%0%f
+block %1216%288%0%f
+block %1248%256%0%f
+block %1248%288%0%f
+block %1312%352%0%f
+block %1344%256%0%f
+block %1376%256%0%f
+block %1344%288%0%f
+block %1376%288%0%f
+block %1408%320%0%f
+block %1440%320%0%f
+block %1440%288%0%f
+block %1440%256%0%f
+block %1472%256%0%f
+block %1504%256%0%f
+block %1472%288%0%f
+block %1504%288%0%f
+block %1472%352%0%f
+block %1600%256%0%f
+block %1600%288%0%f
+block %1632%288%0%f
+block %1632%256%0%f
+block %1600%192%0%f
+block %1632%192%0%f
+block %1664%192%0%f
+block %1696%192%0%f
+block %1728%192%0%f
+block %1760%192%0%f
+block %1792%192%0%f
+block %1824%224%0%f
+block %1824%256%0%f
+block %1824%288%0%f
+block %1824%320%0%f
+block %1824%352%0%f
+block %1792%320%0%f
+block %1728%352%0%f
+block %1760%352%0%f
+block %1760%352%0%f
+block %1824%384%0%f
+block %1856%384%0%f
+block %1888%384%0%f
+block %1920%384%0%f
+block %1920%352%0%f
+block %1952%320%0%f
+block %1984%320%0%f
+block %2016%352%0%f
+block %2016%384%0%f
+block %2048%384%0%f
+block %2080%384%0%f
+block %2112%384%0%f
+block %2112%416%0%f
+block %2112%448%0%f
+block %2112%480%0%f
+block %2112%512%0%f
+block %2112%544%0%f
+block %2112%576%0%f
+block %2112%608%0%f
+block %2080%608%0%f
+block %2048%608%0%f
+block %2016%608%0%f
+block %1984%608%0%f
+block %1952%608%0%f
+block %1920%608%0%f
+block %1888%608%0%f
+block %1856%608%0%f
+block %1824%608%0%f
+block %1984%544%0%f
+block %2016%544%0%f
+block %1984%576%0%f
+block %2016%576%0%f
+block %1856%544%0%f
+block %1856%576%0%f
+block %1888%544%0%f
+block %1888%576%0%f
+block %1728%256%0%f
+block %1760%256%0%f
+block %1760%288%0%f
+block %1728%288%0%f
+block %1728%544%0%f
+block %1760%544%0%f
+block %1760%576%0%f
+block %1728%576%0%f
+block %1600%544%0%f
+block %1632%544%0%f
+block %1632%576%0%f
+block %1600%576%0%f
+block %1472%544%0%f
+block %1504%544%0%f
+block %1504%576%0%f
+block %1472%576%0%f
+block %1344%544%0%f
+block %1376%544%0%f
+block %1376%576%0%f
+block %1344%576%0%f
+block %1216%544%0%f
+block %1248%544%0%f
+block %1248%576%0%f
+block %1216%576%0%f
+block %1088%544%0%f
+block %1120%544%0%f
+block %1120%576%0%f
+block %1088%576%0%f
+block %512%736%0%f
+block %544%736%0%f
+block %576%736%0%f
+block %704%736%0%f
+block %736%736%0%f
+block %768%736%0%f
+block %800%736%0%f
+block %832%736%0%f
+block %864%736%0%f
+block %896%736%0%f
+block %928%736%0%f
+block %960%736%0%f
+block %1088%736%0%f
+block %1120%736%0%f
+block %1152%736%0%f
+block %1184%736%0%f
+block %1216%736%0%f
+block %1248%736%0%f
+block %1280%736%0%f
+block %1312%736%0%f
+block %1344%736%0%f
+block %1376%736%0%f
+block %1440%736%0%f
+block %1408%736%0%f
+block %1504%736%0%f
+block %1472%736%0%f
+block %1536%736%0%f
+block %1568%736%0%f
+block %1600%736%0%f
+block %1632%736%0%f
+block %1664%736%0%f
+block %1696%736%0%f
+block %1728%736%0%f
+block %1824%640%0%f
+block %1824%672%0%f
+block %1824%704%0%f
+block %1792%736%0%f
+block %1760%736%0%f
+block %1632%640%0%f
+block %1664%640%0%f
+block %1696%640%0%f
+block %1760%672%0%f
+block %736%416%0%f
+block %736%448%0%f
+block %736%480%0%f
+block %768%416%0%f
+block %768%480%0%f
+block %800%480%0%f
+block %832%480%0%f
+block %864%480%0%f
+block %896%480%0%f
+block %928%480%0%f
+block %928%448%0%f
+block %800%416%0%f
+block %832%416%0%f
+block %864%416%0%f
+block %896%416%0%f
+block %928%416%0%f
+block %608%672%0%f
+block %640%672%0%f
+block %672%672%0%f
+block %992%672%0%f
+block %1024%672%0%f
+block %1056%672%0%f
+block %608%704%0%f
+block %672%704%0%f
+block %992%704%0%f
+block %1056%704%0%f
+block %736%608%0%f
+block %768%640%0%f
+block %768%576%0%f
+block %800%640%0%f
+block %800%576%0%f
+block %832%640%0%f
+block %832%576%0%f
+block %864%640%0%f
+block %864%576%0%f
+block %896%640%0%f
+block %896%576%0%f
+block %928%608%0%f
+block %352%224%0%f
+block %384%224%0%f
+block %416%224%0%f
+block %448%224%0%f
+block %352%736%0%f
+block %384%736%0%f
+block %416%736%0%f
+block %448%736%0%f
+block %480%736%0%f
+block %256%736%0%f
+block %288%736%0%f
+block %320%736%0%f
+block %256%224%0%f
+block %288%224%0%f
+block %320%224%0%f
+block %480%256%0%f
+block %480%288%0%f
+block %480%320%0%f
+block %448%608%0%f
+block %480%608%0%f
+block %480%640%0%f
+block %448%640%0%f
+block %320%608%0%f
+block %352%608%0%f
+block %352%640%0%f
+block %320%640%0%f
+block %928%576%0%f
+block %736%576%0%f
+teleport %1952%352%1%32%32%0
+teleport %1984%352%1%32%32%0
+teleport %32%64%0%352%448%1
