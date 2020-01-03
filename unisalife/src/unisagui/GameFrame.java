@@ -2134,6 +2134,7 @@ public class GameFrame extends javax.swing.JFrame {
         if(GameManager.getInstance().isRunning()){
             SwingUtilities.invokeLater(() -> SaveManager.getSaveManager().save());
             SwingUtilities.invokeLater(() -> GameManager.getInstance().stopGame());
+            SwingUtilities.invokeLater(() -> ResumeGameButton.setEnabled(true));
         }
         SwingUtilities.invokeLater(() -> sound.play("menu"));
         SwingUtilities.invokeLater(() -> MainMenuDialog.setVisible(true));
@@ -2158,7 +2159,6 @@ public class GameFrame extends javax.swing.JFrame {
 
     private void ExitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitButtonActionPerformed
         SwingUtilities.invokeLater(() -> sound.play("menu"));
-        SwingUtilities.invokeLater(() -> SaveManager.getSaveManager().save());
         SwingUtilities.invokeLater(() -> System.exit(0));
     }//GEN-LAST:event_ExitButtonActionPerformed
 
