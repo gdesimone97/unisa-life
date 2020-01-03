@@ -2137,11 +2137,13 @@ public class GameFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_ResumeGameButtonActionPerformed
 
     private void ReturnToMainMenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReturnToMainMenuButtonActionPerformed
-        // QUI EVENTUALE CHIAMATA A FUNZIONE SE SIAMO IN GIOCO PER AVVISARE DI SALVARE ETC...
+        if(GameManager.getInstance().isRunning()){
+            SwingUtilities.invokeLater(() -> SaveManager.getSaveManager().save());
+            SwingUtilities.invokeLater(() -> GameManager.getInstance().stopGame());
+        }
         SwingUtilities.invokeLater(() -> sound.play("menu"));
         SwingUtilities.invokeLater(() -> MainMenuDialog.setVisible(true));
         SwingUtilities.invokeLater(() -> SettingsDialog.setVisible(false));
-        SwingUtilities.invokeLater(() -> GameManager.getInstance().stopGame());
     }//GEN-LAST:event_ReturnToMainMenuButtonActionPerformed
 
     private void YesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_YesButtonActionPerformed
@@ -2264,7 +2266,6 @@ public class GameFrame extends javax.swing.JFrame {
 
     private void GameCloseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GameCloseButtonActionPerformed
         SwingUtilities.invokeLater(() -> sound.play("menu"));
-        SwingUtilities.invokeLater(() -> SaveManager.getSaveManager().save());
         SwingUtilities.invokeLater(() -> System.exit(0));
     }//GEN-LAST:event_GameCloseButtonActionPerformed
 
