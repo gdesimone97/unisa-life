@@ -224,6 +224,8 @@ public class DatabaseManager implements Initializable {
                     fixed.put(t.getScaledPosition(), t);
                 }
             } catch (Exception x) {
+                //x.printStackTrace();
+                       
             }
             int index = tilemap.getId();
             maps[index] = new Map(tilemap, new ObjectManager(fixed, dyn), tilemap.getMiniMapPath());
