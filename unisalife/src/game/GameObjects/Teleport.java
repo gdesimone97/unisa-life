@@ -75,7 +75,6 @@ public class Teleport extends GameObject implements Interactable{
     @Override
     public void interact() {
         InteractionManager im = new TeleportInteractionManager();
-        
         im.execute(this);
     }
 

@@ -26,7 +26,7 @@ public class TeleportInteractionManager implements InteractionManager {
         try{
             MapManager.getInstance().setMap(t.getMapDestination());
             GameStateManager.getInstance().setState(LoadingState.getInstance());
-            Player.getIstance().setX(t.getPositionDestination().getX());
+            Player.getIstance().setX(t.getPositionDestination().getX());    
             Player.getIstance().setY(t.getPositionDestination().getY());
             new Thread(() -> {
                 try {

@@ -1,5 +1,6 @@
 subject %tolc
-tilemap %0%2368%928%/Tilesets/TilesetConSfondo.png%/Maps/Tutorial.map%352%448%/Sprites/Tutorial.png
+tilemap %0%2368%928%/Tilesets/TilesetConSfondo.png%/Maps/Tutorial.map%352%448%/MiniMap/Tutorial.png
+tilemap %1%320%320%/Tilesets/TilesetDefinitivo.png%/Maps/Engeneering.map%0%0%/MiniMap/Tutorial.png
 # cook %cook%128%320%/Sprites/spritesignoramensa.png %0%d
 # guardian %guardian%160%320%/Sprites/spritedormitorio.png %0%d
 coin %544%448%/Sprites/coin.png%coin1 %0%d
@@ -287,3 +288,5 @@ block %352%640%0%f
 block %320%640%0%f
 block %928%576%0%f
 block %736%576%0%f
+teleport %448‬%448‬%1%0%0%0
+# teleport %1984%352%1%0%0%0

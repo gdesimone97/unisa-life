@@ -215,8 +215,8 @@ public class Player extends GameObject implements Tickable, Saveable {
      * @param ObjectsManager
      */
     private void collisions(ObjectManager objMan) {
-
         GameObject g = objMan.getObjectInNextPosition(getScaledPosition());
+        
         if (g != null && g instanceof Teleport) {
             ((Interactable) g).interact();
             setVelX(0);

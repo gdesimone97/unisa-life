@@ -93,10 +93,6 @@ public class MapManager implements Initializable, Saveable {
             for (int i = 0; i < objectsFromLevel.length; i++) {
                 maps[i].addDynamicObjects(objectsFromLevel[i]);
             }
-            
-            for (int i = 0; i < maps.length; i++) {
-                maps[i].loadImages();
-            }
         } catch (NoQuestsException ex) {
         }
     }
