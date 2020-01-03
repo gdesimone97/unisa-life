@@ -102,7 +102,7 @@ public class DatabaseManager implements Initializable {
     /**
      * Method to obtain all the objects for a particular level of the game.This
      * includes items and professors.Moreover, cook, coins and guardian are
- added.
+     * added.
      *
      * @param level
      * @return a map of HashMaps (instances)
@@ -208,14 +208,17 @@ public class DatabaseManager implements Initializable {
             }
 
             // this is to get the blocks
-            for (BlockWrapper bw : db.getNitriteDatabase().getRepository(BlockWrapper.class).find(eq("map", Integer.parseInt(id))).toList()) {
-                Block b = bw.getBlock();
-                fixed.put(b.getScaledPosition(), b);
-            }
-            // this is to get the teleports
-            for (TeleportWrapper tw : db.getNitriteDatabase().getRepository(TeleportWrapper.class).find(eq("map", Integer.parseInt(id))).toList()) {
-                Teleport t = tw.getTeleport();
-                fixed.put(t.getScaledPosition(), t);
+            try {
+                for (BlockWrapper bw : db.getNitriteDatabase().getRepository(BlockWrapper.class).find(eq("map", Integer.parseInt(id))).toList()) {
+                    Block b = bw.getBlock();
+                    fixed.put(b.getScaledPosition(), b);
+                }
+                // this is to get the teleports
+                for (TeleportWrapper tw : db.getNitriteDatabase().getRepository(TeleportWrapper.class).find(eq("map", Integer.parseInt(id))).toList()) {
+                    Teleport t = tw.getTeleport();
+                    fixed.put(t.getScaledPosition(), t);
+                }
+            } catch (Exception x) {
             }
             int index = tilemap.getId();
             maps[index] = new Map(tilemap, new ObjectManager(fixed, dyn), tilemap.getMiniMapPath());
