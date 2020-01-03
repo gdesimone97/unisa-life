@@ -24,8 +24,10 @@ import saving.SaveManager;
 import sound.JukeBoxMusic;
 import sound.JukeBoxSound;
 import javax.swing.JFormattedTextField;
+import javax.swing.JOptionPane;
 import javax.swing.ListModel;
 import javax.swing.text.MaskFormatter;
+import saving.exceptions.SavingException;
 
 /**
  * @author Virginia Cavallaro
@@ -2132,7 +2134,11 @@ public class GameFrame extends javax.swing.JFrame {
 
     private void ReturnToMainMenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReturnToMainMenuButtonActionPerformed
         if(GameManager.getInstance().isRunning()){
-            SwingUtilities.invokeLater(() -> SaveManager.getSaveManager().save());
+            try{
+                SwingUtilities.invokeLater(() -> SaveManager.getSaveManager().save());
+            }catch(SavingException ex){
+                SwingUtilities.invokeLater(() -> JOptionPane.showMessageDialog(instance,"Error during saving process.","Alert",JOptionPane.WARNING_MESSAGE));
+            }
             SwingUtilities.invokeLater(() -> GameManager.getInstance().stopGame());
             SwingUtilities.invokeLater(() -> ResumeGameButton.setEnabled(true));
         }
