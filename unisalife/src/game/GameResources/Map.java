@@ -79,6 +79,14 @@ public class Map implements Runnable {
             System.exit(-1);
         }
     }
+    
+    public void addFixedObject(Position p, GameObject g) {
+        try {
+            mapObjects.addFixedObject(p, g);
+        } catch (Exception e) {
+            System.exit(-1);
+        }
+    }
 
     /**
      * Remove(if presents) the GameObject object g from the list.

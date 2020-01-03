@@ -340,6 +340,10 @@
 <message>... well, good luck for your brilliant career!</message>
 </MessageInformation>
 
+<MessageInformation info="RandomPeople">
+<message>Hello, </message>
+</MessageInformation>
+
 <MessageInformation info="QuestDescription">
 <message>It's time to get a new Exam: </message>
 <message>For this exam you need: </message>

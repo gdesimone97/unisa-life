@@ -59,6 +59,9 @@ public class MapManager implements Initializable, Saveable {
     }
 
     public void setMap(int n) throws InitException {
+        if (n > mapNumber || n < 0) {
+            throw new InitException("Map number not allowed or out of bounds");
+        }
         this.actualMap = n;
         MapState.getInstance().setMinimap(maps[actualMap].getPathMiniMap());
     }
@@ -79,6 +82,8 @@ public class MapManager implements Initializable, Saveable {
             throw new InitException("Objects not found in Database");
         } catch (ClassNotFoundException ex) {
             throw new InitException("Class not found during Database query");
+        } catch (InitException ex) {
+            throw ex;
         }
     }
 

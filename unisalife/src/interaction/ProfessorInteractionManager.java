@@ -40,14 +40,14 @@ public class ProfessorInteractionManager implements InteractionManager {
         // 2. verifica idonietà e requisiti
         try {
             if (Quests.getInstance().getQuest(s.getInfo()).isDone()) {
-                GuiManager.getInstance().showDialog(p.getNome(), FileTextManager.getFileTextManager().getString(new MessageInformation("ExamAlreadyDone")).get(0));
+//                GuiManager.getInstance().showDialog(p.getNome(), FileTextManager.getFileTextManager().getString(new MessageInformation("ExamAlreadyDone")).get(0));
 
             } else if (Quests.getInstance().getQuest(s.getInfo()).isAvailable()) {
                 
                 //3. Start the exam session
                 if(s.getInfo().compareTo("tolc") == 0) {
                     List<String> str = FileTextManager.getFileTextManager().getString(new MessageInformation("BeforeTolcDialogName"));
-                    GuiManager.getInstance().showDialog(p.getNome(), str.get(0) + Player.getIstance().getName() + str.get(1) + "\n" + str.get(2));
+//                    GuiManager.getInstance().showDialog(p.getNome(), str.get(0) + Player.getIstance().getName() + str.get(1) + "\n" + str.get(2));
 
                     Thread tolcThread = new Thread(new Tolc(p.getNome()));
                     tolcThread.start();
@@ -58,7 +58,7 @@ public class ProfessorInteractionManager implements InteractionManager {
                 }
                 
             } else {
-                GuiManager.getInstance().showDialog(p.getNome(), FileTextManager.getFileTextManager().getString(new MessageInformation("NotAllowed")).get(0));
+//                GuiManager.getInstance().showDialog(p.getNome(), FileTextManager.getFileTextManager().getString(new MessageInformation("NotAllowed")).get(0));
             }
             
             // autosave
@@ -67,8 +67,6 @@ public class ProfessorInteractionManager implements InteractionManager {
         } catch (InitException ex) {
         } catch (SavingException ex) {
         }
-
-        // 4. modifica stato e ricompense
     }
 
 }
