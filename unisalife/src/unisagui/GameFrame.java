@@ -2137,7 +2137,8 @@ public class GameFrame extends javax.swing.JFrame {
             try{
                 SwingUtilities.invokeLater(() -> SaveManager.getSaveManager().save());
             }catch(SavingException ex){
-                SwingUtilities.invokeLater(() -> JOptionPane.showMessageDialog(instance,"Error during saving process.","Alert",JOptionPane.WARNING_MESSAGE));
+                SwingUtilities.invokeLater(() -> JOptionPane.showMessageDialog
+                    (instance,"Error during saving process.","Alert",JOptionPane.WARNING_MESSAGE));
             }
             SwingUtilities.invokeLater(() -> GameManager.getInstance().stopGame());
             SwingUtilities.invokeLater(() -> ResumeGameButton.setEnabled(true));
@@ -2266,6 +2267,14 @@ public class GameFrame extends javax.swing.JFrame {
 
     private void GameCloseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GameCloseButtonActionPerformed
         SwingUtilities.invokeLater(() -> sound.play("menu"));
+        if(GameManager.getInstance().isRunning()){
+            try{
+                SwingUtilities.invokeLater(() -> SaveManager.getSaveManager().save());
+            }catch(SavingException ex){
+                SwingUtilities.invokeLater(() -> JOptionPane.showMessageDialog
+                    (instance,"Error during saving process.","Alert",JOptionPane.WARNING_MESSAGE));
+            }
+        }
         SwingUtilities.invokeLater(() -> System.exit(0));
     }//GEN-LAST:event_GameCloseButtonActionPerformed
 
