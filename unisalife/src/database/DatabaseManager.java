@@ -25,6 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.Arrays;
+import org.apache.commons.lang3.ArrayUtils;
 import org.dizitart.no2.Cursor;
 import org.dizitart.no2.Document;
 import org.dizitart.no2.Index;
@@ -113,7 +114,7 @@ public class DatabaseManager implements Initializable {
     public ConcurrentHashMap<Position, Renderable>[] getObjectsFromLevel(int level) throws ObjectNotFoundException, ImageNotLoadedException, NoQuestsException {
         List<TileMap> res = this.getTileMaps();
         int mapNum = res.size();
-        List<ConcurrentHashMap<Position, Renderable>> dynArrObj = new ArrayList<>();
+        ArrayList<ConcurrentHashMap<Position, Renderable>> dynArrObj = new ArrayList<>();
 
         for (int index = 0; index < mapNum; index++) {
             dynArrObj.add(new ConcurrentHashMap<>());
@@ -155,7 +156,11 @@ public class DatabaseManager implements Initializable {
             throw new ErrorWhileSavingException();
         }
          */
-        return DatabaseManager.newArray(dynArrObj.size(), dynArrObj.get(0));
+        ConcurrentHashMap<Position, Renderable>[] newArray = DatabaseManager.newArray(1, dynArrObj.get(0));
+        for (int i = 1; i<mapNum; i++) {
+                newArray = ArrayUtils.addAll(newArray, DatabaseManager.newArray(1, dynArrObj.get(i)));
+        }
+        return newArray;
     }
 
     /**
