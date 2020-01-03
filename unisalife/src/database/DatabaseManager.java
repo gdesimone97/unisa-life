@@ -145,11 +145,17 @@ public class DatabaseManager implements Initializable {
             Cook cook = this.findCook();
             int cookMapId = this.findMap(cook.getIndex(), DatabaseManager.DYNCOLLECTIONNAME);
             dynArrObj.get(cookMapId).put(cook.getScaledPosition(), cook);
-
+        } catch (ObjectNotFoundException ex) {
+            // It's not a problem if an object of this kind is not found.
+        }
+        try {
             Guardian guardian = this.findGuardian();
             int guardMapId = this.findMap(guardian.getIndex(), DatabaseManager.DYNCOLLECTIONNAME);
             dynArrObj.get(guardMapId).put(guardian.getScaledPosition(), guardian);
-
+        } catch (ObjectNotFoundException ex) {
+            // It's not a problem if an object of this kind is not found.
+        }
+        try {
             List<NormalPerson> np_list = this.findNormalPeople();
             for (NormalPerson np : np_list) {
                 int npMapId = this.findMap(np.getIndex(), DatabaseManager.DYNCOLLECTIONNAME);
