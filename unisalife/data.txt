@@ -3,6 +3,31 @@ tilemap %0%2368%928%/Tilesets/TilesetConSfondo.png%/Maps/Tutorial.map%352%448%/M
 tilemap %1%320%320%/Tilesets/TilesetDefinitivo.png%/Maps/Engeneering.map%0%0%/MiniMap/Tutorial.png
 # cook %cook%128%320%/Sprites/spritesignoramensa.png %0%d
 # guardian %guardian%160%320%/Sprites/spritedormitorio.png %0%d
+normalperson %Christian%672%320%/Sprites/tizio1.png %0%d
+normalperson %Gennaro%640%320%/Sprites/tizio2.png %0%d
+normalperson %Alfonso%1184%640%/Sprites/tizio6.png %0%d
+normalperson %Peppe%576%768%/Sprites/tizio3.png %0%d
+normalperson %Vito%544%768%/Sprites/tizio5.png %0%d
+normalperson %Davide%1536%384%/Sprites/tizio4.png %0%d
+normalperson %Mario%864%256%/Sprites/tizio7.png %0%d
+normalperson %Simone%832%256%/Sprites/tizio8.png %0%d
+normalperson %Virginia%1568%384%/Sprites/tizia6.png %0%d
+normalperson %Giovanni%128%320%/Sprites/tizio1.png %1%d
+normalperson %Francesco%128%320%/Sprites/tizio2.png %1%d
+normalperson %John%128%320%/Sprites/tizio3.png %1%d
+normalperson %Chris%128%320%/Sprites/tizio4.png %1%d
+normalperson %Pasqual%128%320%/Sprites/tizio5.png %1%d
+normalperson %David%128%320%/Sprites/tizio6.png %1%d
+normalperson %Antony%128%320%/Sprites/tizio7.png %1%d
+normalperson %Ciccio%128%320%/Sprites/tizio8.png %1%d
+normalperson %Mary%128%320%/Sprites/tizia1.png %1%d
+normalperson %Sailor%128%320%/Sprites/tizia2.png %1%d
+normalperson %Fonza%128%320%/Sprites/tizia3.png %1%d
+normalperson %Jennifer%128%320%/Sprites/tizia4.png %1%d
+normalperson %Peppa%128%320%/Sprites/tizia5.png %1%d
+normalperson %Giulia%128%320%/Sprites/tizia6.png %1%d
+normalperson %Alexis%128%320%/Sprites/tizia7.png %1%d
+normalperson %Hannah%128%320%/Sprites/tizia8.png %1%d
 coin %544%448%/Sprites/coin.png%coin1 %0%d
 coin %800%352%/Sprites/coin.png%coin2 %0%d
 coin %640%448%/Sprites/coin.png%coin3 %0%d

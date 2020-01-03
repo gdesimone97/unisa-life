@@ -76,7 +76,6 @@ public class Map implements Runnable {
         try {
             mapObjects.addObject(p, g);
         } catch (Exception e) {
-            System.exit(-1);
         }
     }
     
@@ -84,7 +83,6 @@ public class Map implements Runnable {
         try {
             mapObjects.addFixedObject(p, g);
         } catch (Exception e) {
-            System.exit(-1);
         }
     }
 

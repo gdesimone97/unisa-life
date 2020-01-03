@@ -40,7 +40,7 @@ public class NormalPersonInteractionManager implements InteractionManager {
                 str = ftm.getString(new MessageInformation("TutorialFrasi"));
 //                gui.showDialog(p.getNome(), str.get(0) + Player.getIstance().getName() + str.get(1));
 //                for (int i = 2; i < str.size(); i++)
-////                    gui.showDialog(p.getNome(), str.get(i));
+//                    gui.showDialog(p.getNome(), str.get(i));
 //            } else {
                 Random random = new Random();
                 str = ftm.getString(new MessageInformation("RandomPeople"));
