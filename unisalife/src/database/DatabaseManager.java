@@ -87,7 +87,7 @@ public class DatabaseManager implements Initializable {
      *
      * @param level
      * @return The list of quests (instances)
-     * @throws ObjectNotFoundException
+     * @throws database.NoQuestsException
      */
     public List<Quest> getQuestsFromLevel(int level) throws NoQuestsException {
 
@@ -101,13 +101,14 @@ public class DatabaseManager implements Initializable {
 
     /**
      * Method to obtain all the objects for a particular level of the game.This
-     * includes items and professors. Moreover, cook, coins and guardian are
-     * added.
+     * includes items and professors.Moreover, cook, coins and guardian are
+ added.
      *
      * @param level
      * @return a map of HashMaps (instances)
      * @throws ObjectNotFoundException
      * @throws game.GameObjects.ImageNotLoadedException
+     * @throws database.NoQuestsException
      */
     public ConcurrentHashMap<Position, Renderable>[] getObjectsFromLevel(int level) throws ObjectNotFoundException, ImageNotLoadedException, NoQuestsException {
         List<TileMap> res = this.getTileMaps();
