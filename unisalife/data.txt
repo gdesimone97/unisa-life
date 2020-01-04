@@ -55,9 +55,9 @@ coin %1376%448%/Sprites/coin.png%coin8 %0%d
 coin %1504%448%/Sprites/coin.png%coin9 %0%d
 # 
 # items quest tolc
-item %1024%448%/Sprites/calculator.png%calcolatrice %0%d
-item %1632%448%/Sprites/note.png%appunti %0%d
-quest %0%tolc%calcolatrice%appunti
+item %1024%448%/Sprites/calculator.png%calculator %0%d
+item %1632%448%/Sprites/note.png%notes %0%d
+quest %0%tolc%calculator%notes
 # 
 # items quest map1
 item %1536%1600%/Sprites/englishdictionary.png%dictionary %0%d

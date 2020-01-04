@@ -225,11 +225,11 @@
 <message>Are you ready?</message>
 </Professor>
 
-<Item info="calcolatrice">
+<Item info="calculator">
 <message>Calculator</message>
 </Item>
 
-<Item info="appunti">
+<Item info="notes">
 <message>Some Notes</message>
 </Item>
 
@@ -361,6 +361,10 @@
 
 <MessageInformation info="calculator">
 <message>Calculator</message>
+</MessageInformation>
+
+<MessageInformation info="notes">
+<message>Some Notes</message>
 </MessageInformation>
 
 <MessageInformation info="BarEmergency">
