@@ -5,6 +5,7 @@
  */
 package interaction;
 
+import game.GameObjects.DownFaceState;
 import game.GameObjects.Player;
 import game.GameObjects.Teleport;
 import game.Interfaces.Interactable;
@@ -12,14 +13,9 @@ import gameSystem.GameStateManager;
 import gameSystem.LoadingState;
 import gameSystem.PlayState;
 import gameSystem.map.MapManager;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import language.FileTextManager;
 import language.MessageInformation;
-import language.exceptions.StringNotFoundException;
-import language.exceptions.TextFinderException;
 import sound.JukeBoxSound;
-import unisagui.DialogManager;
 import unisagui.GuiManager;
 
 /**
@@ -41,6 +37,9 @@ public class TeleportEmergencyInteractionManager implements InteractionManager {
             MapManager.getInstance().setMap(t.getMapDestination());
             Player.getIstance().setX(30*32);
             Player.getIstance().setY(10*32);
+            Player.getIstance().setState(DownFaceState.getInstance());
+            Player.getIstance().setVelX(0);
+            Player.getIstance().setVelY(0);
             System.out.println(Player.getIstance().getX());
             System.out.println(Player.getIstance().getY());
             new Thread(() -> {

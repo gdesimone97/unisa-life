@@ -5,6 +5,7 @@
  */
 package interaction;
 
+import game.GameObjects.DownFaceState;
 import game.GameObjects.Player;
 import game.GameObjects.Teleport;
 import game.Interfaces.Initializable.InitException;
@@ -26,6 +27,9 @@ public class TeleportInteractionManager implements InteractionManager {
         try{
             MapManager.getInstance().setMap(t.getMapDestination());
             GameStateManager.getInstance().setState(LoadingState.getInstance());
+            Player.getIstance().setVelX(0);
+            Player.getIstance().setVelY(0);
+            Player.getIstance().setState(DownFaceState.getInstance());
             Player.getIstance().setX(t.getPositionDestination().getX());    
             Player.getIstance().setY(t.getPositionDestination().getY());
             new Thread(() -> {
