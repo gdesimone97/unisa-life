@@ -53,8 +53,10 @@ public class TeleportEmergencyInteractionManager implements InteractionManager {
                 } catch (TextFinderException ex) {
                     Logger.getLogger(TeleportEmergencyInteractionManager.class.getName()).log(Level.SEVERE, null, ex);
                 }*/
-                
-                GuiManager.getInstance().showHint("riguardati");
+                try{
+                    GuiManager.getInstance().showHint("riguardati");
+                }
+                catch(Exception e){}
                 JukeBoxSound.getInstance().play("wrong");
                 GameStateManager.getInstance().setState(PlayState.getInstance());
                 
