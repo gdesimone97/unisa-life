@@ -304,7 +304,7 @@ public class DatabaseManager implements Initializable {
      * @throws ObjectNotFoundException
      */
     private Professor findProfessor(Subject s) throws ObjectNotFoundException, ImageNotLoadedException {
-        Professor prof = db.getNitriteDatabase().getRepository(Professor.class).find(eq("subject.subject", s.getInfo())).firstOrDefault();
+        Professor prof = db.getNitriteDatabase().getRepository(Professor.class).find(eq("subject", s.getInfo())).firstOrDefault();
         if (prof == null) {
             throw new ObjectNotFoundException();
         }
