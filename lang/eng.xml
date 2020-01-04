@@ -340,6 +340,19 @@
 <message>... well, good luck for your brilliant career!</message>
 </MessageInformation>
 
+<MessageInformation info="RandomPeople">
+<message>Hi, hope you're having a nice day! </message>
+<message>This university is terribly stressful...</message>
+<message>Will I ever become a computer engineer?</message>
+<message>Hey, did I ever see you at courses?</message>
+<message>Psst.. do you want some notes?</message>
+<message>I'm hungry, I should check what can be eaten at the refectory</message>
+<message>Do you have any tips to survive Signals' exam?</message>
+<message>Damn, I missed the bus this morning...</message>
+<message>Hey, how are your exams going? </message>
+<message>Hope you have a brilliant career!</message>
+</MessageInformation>
+
 <MessageInformation info="QuestDescription">
 <message>It's time to get a new Exam: </message>
 <message>For this exam you need: </message>

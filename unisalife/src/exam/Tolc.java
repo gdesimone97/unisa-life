@@ -4,12 +4,14 @@
  * and open the template in the editor.
  */
 package exam;
+import character.StatusManager;
 import exam.booklet.Booklet;
 import exam.booklet.Subject;
 import exam.question.*;
 import game.GameObjects.Player;
 import game.GameObjects.Position;
 import game.GameObjects.Teleport;
+import game.GameResources.Map;
 import game.Interfaces.Initializable.InitException;
 import gameSystem.map.MapManager;
 import java.util.ArrayList;
@@ -46,8 +48,8 @@ public class Tolc implements Runnable {
      * questions
      *
      */
-    public Tolc(String profName) throws TextFinderException, InitException {
-        this.subject = new Subject("tolc");
+    public Tolc(Subject s, String profName) throws TextFinderException, InitException {
+        this.subject = s;
         QuestionFactory questionsFetch = new StringsQuestionFactory(subject);
         this.count = 0;
         this.questionTime = 60;
@@ -116,25 +118,36 @@ public class Tolc implements Runnable {
         try {
             FileTextManager f = FileTextManager.getFileTextManager();
             if (passed) {
-                gui.showDialog(professorName, f.getString(new MessageInformation("TolcPassedName")).get(0) + Player.getIstance().getName() + f.getString(new MessageInformation("TolcPassedName")).get(1));
+                Booklet.getInstance().setScore(subject, 30);
+                
+//                gui.showDialog(professorName, f.getString(new MessageInformation("TolcPassedName")).get(0) + Player.getIstance().getName() + f.getString(new MessageInformation("TolcPassedName")).get(1));
                 JukeBoxSound.getInstance().play("exam_passed");
-                gui.showDialog(professorName, f.getString(new MessageInformation("TolcPassedName")).get(2));
+//                gui.showDialog(professorName, f.getString(new MessageInformation("TolcPassedName")).get(2));
+
+                StatusManager.getInstance().updateMoney(10);
+                
+                // add the 2 teleports after tolc completed
+                Position destPosition = new Position(32,32);
+                Position p1 = new Position(1952, 352);
+                Map map = MapManager.getInstance().getMap();
+                map.addFixedObject(p1.getScaledPosition(), new Teleport(p1, 0, destPosition));
+                p1 = new Position(1984, 352);
+                map.addFixedObject(p1.getScaledPosition(), new Teleport(p1, 0, destPosition));
             }
             else {
-                gui.showDialog(professorName, f.getString(new MessageInformation("TolcFailedName")).get(0) + Player.getIstance().getName() + f.getString(new MessageInformation("TolcFailedName")).get(1));
+//                gui.showDialog(professorName, f.getString(new MessageInformation("TolcFailedName")).get(0) + Player.getIstance().getName() + f.getString(new MessageInformation("TolcFailedName")).get(1));
                 JukeBoxSound.getInstance().play("exam_failed");
             }
-        } catch (TextFinderException ex) {
-            ex.printStackTrace();
+//        } catch (TextFinderException ex) {
+//            ex.printStackTrace();
         } catch (InitException ex) {
             ex.printStackTrace();
         }
-        
-        //Far comparire i due teleport o rimuovere i due oggetti davanti al teleport        
+              
     }
 
     private boolean isPassed() {
         return count >= maxLevel/2 + 1;
     }
-
+    
 }

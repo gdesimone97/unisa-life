@@ -39,7 +39,8 @@ public class ProfessorFactory extends StorableCreator {
         try {
 
             //Retrieve subject from the DB
-            Professor pw = new Professor(st.nextToken(), new Position(Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken())), st.nextToken(), new Subject(st.nextToken()));
+            Professor pw = new Professor(st.nextToken(), new Position(Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken())), 
+                    st.nextToken(), st.nextToken());
             return pw;
 
         } catch (NoSuchElementException | NumberFormatException e) {

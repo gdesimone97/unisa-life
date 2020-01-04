@@ -57,6 +57,9 @@ public class MapManager implements Initializable, Saveable {
     }
 
     public void setMap(int n) throws InitException {
+        if (n > mapNumber || n < 0) {
+            throw new InitException("Map number not allowed or out of bounds");
+        }
         this.actualMap = n;
         MapState.getInstance().setMinimap(maps[actualMap].getPathMiniMap());
     }
@@ -77,6 +80,8 @@ public class MapManager implements Initializable, Saveable {
             throw new InitException("Objects not found in Database");
         } catch (ClassNotFoundException ex) {
             throw new InitException("Class not found during Database query");
+        } catch (InitException ex) {
+            throw ex;
         }
     }
 
@@ -85,10 +90,6 @@ public class MapManager implements Initializable, Saveable {
             ConcurrentHashMap<Position, Renderable>[] objectsFromLevel = DatabaseManager.getDatabaseManager().getObjectsFromLevel(level);
             for (int i = 0; i < objectsFromLevel.length; i++) {
                 maps[i].addDynamicObjects(objectsFromLevel[i]);
-            }
-            
-            for (int i = 0; i < maps.length; i++) {
-                maps[i].loadImages();
             }
         } catch (NoQuestsException ex) {
         }
@@ -104,7 +105,8 @@ public class MapManager implements Initializable, Saveable {
 
     @Override
     public Serializable save() {
-        ArrayList<ConcurrentHashMap<Position, Renderable>> list = new ArrayList<>();
+        ArrayList<Object> list = new ArrayList<>();
+        list.add(0, actualMap);
         for (Map map : maps) {
             ConcurrentHashMap<Position, Renderable> objects = map.getDynamicObjects();
             list.add(objects);
@@ -114,9 +116,10 @@ public class MapManager implements Initializable, Saveable {
 
     @Override
     public void load(Serializable obj) throws LoadingException {
-        ArrayList<ConcurrentHashMap<Position, Renderable>> list = (ArrayList<ConcurrentHashMap<Position, Renderable>>) obj;
+        ArrayList<Object> list = (ArrayList<Object>) obj;
+        actualMap = (int) list.remove(0);
         for (int i = 0; i < list.size(); i++) {
-            ConcurrentHashMap<Position, Renderable> mapObject = list.get(i);
+            ConcurrentHashMap<Position, Renderable> mapObject = (ConcurrentHashMap<Position, Renderable>) list.get(i);
             mapObject.forEachValue(this.MAX_PARALLEL, value -> {
                 Renderable object = (Renderable) value;
                 try {

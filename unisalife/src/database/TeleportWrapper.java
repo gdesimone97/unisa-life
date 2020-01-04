@@ -5,7 +5,6 @@
  */
 package database;
 
-import game.GameObjects.Block;
 import game.GameObjects.Teleport;
 import org.dizitart.no2.IndexType;
 import org.dizitart.no2.objects.Index;
@@ -22,6 +21,10 @@ public class TeleportWrapper implements Storable{
 
     private int map;
     private Teleport t;
+    
+    private TeleportWrapper(){
+        
+    }
     
     public TeleportWrapper(Teleport t, int map){
         this.t = t;

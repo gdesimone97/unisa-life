@@ -99,14 +99,6 @@ public class Exam implements Runnable {
      */
     public int getScore() {
         this.score = (int) this.sum / (lastLevelAnswered);
-        
-        if (this.score >= 18){
-            StatusManager.getInstance().updateMoney((this.score - 18) + this.coinReward);
-            //can be used also this expression. In fact if the user
-            //doesn't pass the exame, he/she loses an amount of money that depends
-            //on which is slow him/her score.
-        }
-
         return this.score;
     }
 
@@ -186,8 +178,6 @@ public class Exam implements Runnable {
                     c.execute();
                 }
                 
-                
-                
                 gui.isCorrect(correctness, nextQuestion);
                 nextQuestion.getValue();
             }
@@ -198,28 +188,32 @@ public class Exam implements Runnable {
 
         int voto = getScore();
         
+        // EXAM RESULT
         try {
             if (voto >= 18 && voto <= 30) {
-                gui.showDialog(professorName, FileTextManager.getFileTextManager().getString(new MessageInformation("ScoreTaken")).get(0) + " " + voto);
+//                gui.showDialog(professorName, FileTextManager.getFileTextManager().getString(new MessageInformation("ScoreTaken")).get(0) + " " + voto);
                 JukeBoxSound.getInstance().play("exam_passed");
-                Booklet.getInstance().setScore(subject, voto);                
+                Booklet.getInstance().setScore(subject, voto);    
             }
             else if (voto == 31) {
-                gui.showDialog(professorName, FileTextManager.getFileTextManager().getString(new MessageInformation("Lode")).get(0));
+//                gui.showDialog(professorName, FileTextManager.getFileTextManager().getString(new MessageInformation("Lode")).get(0));
                 JukeBoxSound.getInstance().play("exam_passed");
                 Booklet.getInstance().setScore(subject, voto);
             }
             else {
-                gui.showDialog(professorName, FileTextManager.getFileTextManager().getString(new MessageInformation("ExamFailed")).get(0));
+//                gui.showDialog(professorName, FileTextManager.getFileTextManager().getString(new MessageInformation("ExamFailed")).get(0));
                 JukeBoxSound.getInstance().play("exam_failed");
             }
-        } catch (TextFinderException ex) {
-            ex.printStackTrace();
+            if (this.score >= 18) {
+                StatusManager.getInstance().updateMoney((this.score - 18) + this.coinReward);
+            }
+//        } catch (TextFinderException ex) {
+//            ex.printStackTrace();
         } catch (InitException ex) {
             ex.printStackTrace();
         }
              
-        MapManager.getInstance().stopGeneratingCoins();
+        MapManager.getInstance().startGeneratingCoins();
         
         //SEGNARE ESAME SUL LIBRETTO
     }

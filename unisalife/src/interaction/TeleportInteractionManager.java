@@ -7,6 +7,7 @@ package interaction;
 
 import game.GameObjects.Player;
 import game.GameObjects.Teleport;
+import game.Interfaces.Initializable.InitException;
 import game.Interfaces.Interactable;
 import gameSystem.GameStateManager;
 import gameSystem.LoadingState;
@@ -23,9 +24,9 @@ public class TeleportInteractionManager implements InteractionManager {
     public void execute(Interactable obj) {
         Teleport t=(Teleport)obj;
         try{
-            GameStateManager.getInstance().setState(LoadingState.getInstance());
             MapManager.getInstance().setMap(t.getMapDestination());
-            Player.getIstance().setX(t.getPositionDestination().getX());
+            GameStateManager.getInstance().setState(LoadingState.getInstance());
+            Player.getIstance().setX(t.getPositionDestination().getX());    
             Player.getIstance().setY(t.getPositionDestination().getY());
             new Thread(() -> {
                 try {
@@ -36,11 +37,9 @@ public class TeleportInteractionManager implements InteractionManager {
             }).start();
 
         }
-        catch(Exception e){
+        catch(InitException e) {
             e.printStackTrace();
         }
-        
-        
     }
     
 }

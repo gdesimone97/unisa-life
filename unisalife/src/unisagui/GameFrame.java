@@ -5,6 +5,9 @@ import exam.booklet.Subject;
 import java.awt.event.KeyEvent;
 import javax.swing.SwingUtilities;
 import gameSystem.GameManager;
+import gameSystem.GameStateManager;
+import gameSystem.PauseState;
+import gameSystem.PlayState;
 import gameSystem.keySettings.SettingsManager;
 import java.awt.Component;
 import java.awt.Dialog;
@@ -21,8 +24,10 @@ import saving.SaveManager;
 import sound.JukeBoxMusic;
 import sound.JukeBoxSound;
 import javax.swing.JFormattedTextField;
+import javax.swing.JOptionPane;
 import javax.swing.ListModel;
 import javax.swing.text.MaskFormatter;
+import saving.exceptions.SavingException;
 
 /**
  * @author Virginia Cavallaro
@@ -94,7 +99,7 @@ public class GameFrame extends javax.swing.JFrame {
     /**
      * this method sets the Booklet of the gui, booklet works with inverse  boolean logic. 
      */
-    private void setCareer() {
+    protected void setCareer() {
         int row = 0;
         int column = 0;
         careerModel = (DefaultTableModel) ExamTable.getModel();
@@ -113,13 +118,7 @@ public class GameFrame extends javax.swing.JFrame {
         }
         
     }
-    /**
-     * this method update the Booklet of the gui
-     */
-    public void updateCareer(){
-        SwingUtilities.invokeLater(() -> setCareer());
-        
-    }
+    
 
 
     protected void initializingTable() {
@@ -339,6 +338,7 @@ public class GameFrame extends javax.swing.JFrame {
         UpperBorder = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
 
+        ExamDialog.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         ExamDialog.setMinimumSize(new java.awt.Dimension(500, 500));
         ExamDialog.setModalityType(java.awt.Dialog.ModalityType.APPLICATION_MODAL);
         ExamDialog.addWindowListener(new java.awt.event.WindowAdapter() {
@@ -2133,11 +2133,18 @@ public class GameFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_ResumeGameButtonActionPerformed
 
     private void ReturnToMainMenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReturnToMainMenuButtonActionPerformed
-        // QUI EVENTUALE CHIAMATA A FUNZIONE SE SIAMO IN GIOCO PER AVVISARE DI SALVARE ETC...
+        if(GameManager.getInstance().isRunning()){
+            try{
+                SwingUtilities.invokeLater(() -> SaveManager.getSaveManager().save());
+            }catch(SavingException ex){
+                SwingUtilities.invokeLater(() -> JOptionPane.showMessageDialog(instance,"Error during saving process.","Alert",JOptionPane.WARNING_MESSAGE));
+            }
+            SwingUtilities.invokeLater(() -> GameManager.getInstance().stopGame());
+            SwingUtilities.invokeLater(() -> ResumeGameButton.setEnabled(true));
+        }
         SwingUtilities.invokeLater(() -> sound.play("menu"));
         SwingUtilities.invokeLater(() -> MainMenuDialog.setVisible(true));
         SwingUtilities.invokeLater(() -> SettingsDialog.setVisible(false));
-        SwingUtilities.invokeLater(() -> GameManager.getInstance().stopGame());
     }//GEN-LAST:event_ReturnToMainMenuButtonActionPerformed
 
     private void YesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_YesButtonActionPerformed
@@ -2158,7 +2165,6 @@ public class GameFrame extends javax.swing.JFrame {
 
     private void ExitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitButtonActionPerformed
         SwingUtilities.invokeLater(() -> sound.play("menu"));
-        SwingUtilities.invokeLater(() -> SaveManager.getSaveManager().save());
         SwingUtilities.invokeLater(() -> System.exit(0));
     }//GEN-LAST:event_ExitButtonActionPerformed
 
@@ -2224,23 +2230,19 @@ public class GameFrame extends javax.swing.JFrame {
     }
 
     private void AvatarOkButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AvatarOkButtonMouseClicked
-
+        
     }//GEN-LAST:event_AvatarOkButtonMouseClicked
 
     private void HintDialogKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_HintDialogKeyTyped
         if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
-            SwingUtilities.invokeLater(() -> HintDialog.setVisible(false));
-            SwingUtilities.invokeLater(() -> HintTextArea.setText(EMPTY_TEXT));
-            SwingUtilities.invokeLater(() -> HintDialog.setFocusable(false));
+            GuiManager.getInstance().hideHint();
         }
 
     }//GEN-LAST:event_HintDialogKeyTyped
 
     private void ConvDialogKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ConvDialogKeyTyped
         if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
-            SwingUtilities.invokeLater(() -> ConvDialog.setVisible(false));
-            SwingUtilities.invokeLater(() -> ConversationTextArea.setText(EMPTY_TEXT));
-            SwingUtilities.invokeLater(() -> ConvDialog.setFocusable(false));
+            GuiManager.getInstance().hideDialog();
         }
 
     }//GEN-LAST:event_ConvDialogKeyTyped
@@ -2264,7 +2266,6 @@ public class GameFrame extends javax.swing.JFrame {
 
     private void GameCloseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GameCloseButtonActionPerformed
         SwingUtilities.invokeLater(() -> sound.play("menu"));
-        SwingUtilities.invokeLater(() -> SaveManager.getSaveManager().save());
         SwingUtilities.invokeLater(() -> System.exit(0));
     }//GEN-LAST:event_GameCloseButtonActionPerformed
 
@@ -2317,11 +2318,11 @@ public class GameFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_HintTextAreaMouseClicked
 
     private void HintDialogWindowLostFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_HintDialogWindowLostFocus
-        SwingUtilities.invokeLater(() -> HintDialog.setVisible(false));
+        GuiManager.getInstance().hideHint();
     }//GEN-LAST:event_HintDialogWindowLostFocus
 
     private void ConvDialogWindowLostFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_ConvDialogWindowLostFocus
-        SwingUtilities.invokeLater(() -> ConvDialog.setVisible(false));
+        GuiManager.getInstance().hideDialog();
     }//GEN-LAST:event_ConvDialogWindowLostFocus
 
     private void ExamDialogWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_ExamDialogWindowOpened
@@ -2343,10 +2344,7 @@ public class GameFrame extends javax.swing.JFrame {
     private void HintDialogKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_HintDialogKeyReleased
         // TODO add your handling code here:
         if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
-            SwingUtilities.invokeLater(() -> HintDialog.setVisible(false));
-            SwingUtilities.invokeLater(() -> HintTextArea.setText(EMPTY_TEXT));
-            SwingUtilities.invokeLater(() -> HintDialog.setFocusable(false));
-            //SwingUtilities.invokeLater(() -> this.setEnabled(true));
+            GuiManager.getInstance().hideHint();            
         }
     }//GEN-LAST:event_HintDialogKeyReleased
 
@@ -2402,26 +2400,32 @@ public class GameFrame extends javax.swing.JFrame {
 
     private void InventoryButtonFrameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InventoryButtonFrameActionPerformed
         SwingUtilities.invokeLater(() -> InventoryDialog.setVisible(true));
+        GameStateManager.getInstance().setState(PauseState.getInstance());
     }//GEN-LAST:event_InventoryButtonFrameActionPerformed
 
     private void CareerButtonFrame1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CareerButtonFrame1ActionPerformed
         SwingUtilities.invokeLater(() -> CareerDialog.setVisible(true));
+        GameStateManager.getInstance().setState(PauseState.getInstance());
     }//GEN-LAST:event_CareerButtonFrame1ActionPerformed
 
     private void ExitCareerDialogMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ExitCareerDialogMouseClicked
         SwingUtilities.invokeLater(() -> CareerDialog.setVisible(false));
+        GameStateManager.getInstance().setState(PlayState.getInstance());
     }//GEN-LAST:event_ExitCareerDialogMouseClicked
 
     private void ExitInventoryDialogMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ExitInventoryDialogMouseClicked
         SwingUtilities.invokeLater(() -> InventoryDialog.setVisible(false));
+        GameStateManager.getInstance().setState(PlayState.getInstance());
     }//GEN-LAST:event_ExitInventoryDialogMouseClicked
 
     private void InventoryDialogWindowLostFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_InventoryDialogWindowLostFocus
         SwingUtilities.invokeLater(() -> InventoryDialog.setVisible(false));
+        GameStateManager.getInstance().setState(PlayState.getInstance());
     }//GEN-LAST:event_InventoryDialogWindowLostFocus
 
     private void CareerDialogWindowLostFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_CareerDialogWindowLostFocus
         SwingUtilities.invokeLater(() -> CareerDialog.setVisible(false));
+        GameStateManager.getInstance().setState(PlayState.getInstance());
     }//GEN-LAST:event_CareerDialogWindowLostFocus
 
     private void CareerDialogWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_CareerDialogWindowOpened
@@ -2548,9 +2552,7 @@ public class GameFrame extends javax.swing.JFrame {
 
     private void ConvDialogKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ConvDialogKeyReleased
         if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
-            SwingUtilities.invokeLater(() -> ConvDialog.setVisible(false));
-            SwingUtilities.invokeLater(() -> ConversationTextArea.setText(EMPTY_TEXT));
-            SwingUtilities.invokeLater(() -> ConvDialog.setFocusable(false));
+            GuiManager.getInstance().hideDialog();
         }
     }//GEN-LAST:event_ConvDialogKeyReleased
 

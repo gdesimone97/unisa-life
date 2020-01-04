@@ -40,6 +40,14 @@ public class ObjectManager {
         else
             dynamic.put(p, g);
     }
+    
+    public synchronized void addFixedObject(Position p, GameObject g) throws Exception {
+        if (fixed.containsKey(p) || dynamic.containsKey(p)){
+            throw new Exception();
+        }
+        else
+            fixed.put(p, g);
+    }
 
     public ConcurrentHashMap<Position, GameObject> getFixed() {
         return fixed;

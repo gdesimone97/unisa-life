@@ -76,7 +76,13 @@ public class Map implements Runnable {
         try {
             mapObjects.addObject(p, g);
         } catch (Exception e) {
-            System.exit(-1);
+        }
+    }
+    
+    public void addFixedObject(Position p, GameObject g) {
+        try {
+            mapObjects.addFixedObject(p, g);
+        } catch (Exception e) {
         }
     }
 
