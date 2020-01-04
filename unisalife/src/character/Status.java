@@ -15,7 +15,7 @@ import java.io.Serializable;
  */
 public class Status implements Serializable {
 
-    private static int energyLevel = 100;
+    private static int energyLevel = 5;
     private static int hungerLevel = 0;
     private static int stressLevel = 0;
     private static int money = 0;
