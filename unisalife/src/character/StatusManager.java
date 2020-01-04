@@ -20,7 +20,7 @@ import unisagui.GuiManager;
  * @author mariodesio
  */
 public class StatusManager implements Saveable, Initializable {
-    private final int initialEnergy = 5,initialHunger = 0,initialStress = 0,initialMoney = 0;
+    private int initialEnergy,initialHunger,initialStress,initialMoney;
     private final GameFrame gameframe = GameFrame.getInstance();
     private HudUpdater updater;
     private static StatusManager instance;
@@ -114,6 +114,10 @@ public class StatusManager implements Saveable, Initializable {
     public void init() {
         this.updater = new HudUpdater();
         Thread up = new Thread(updater);
+        initialEnergy = Status.getEnergyLevel();
+        initialHunger = Status.getHungerLevel();
+        initialStress = Status.getStressLevel();
+        initialMoney = Status.getMoney();
         up.start();
         setEnergy(initialEnergy);
         setHunger(initialHunger);
