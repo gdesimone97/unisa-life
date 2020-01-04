@@ -13,12 +13,23 @@ tilemap %2%320%320%/Tilesets/TilesetDefinitivo.png%/Maps/Engineering.map%0%0%/Mi
 tilemap %3%1280%928%/Tilesets/Dormitory.png%/Maps/Dormitory.map%672%448%/MiniMap/Dormitory.png
 # guardian %guardian%160%320%/Sprites/spritedormitorio.png %0%d
 # 
-# Map 0 (Tutorial) objects
+# items quest tolc
+item %1024%448%/Sprites/calculator.png%calcolatrice %0%d
+item %1632%448%/Sprites/note.png%appunti %0%d
+quest %0%tolc%calcolatrice%appunti
 # 
+# items quest english
+item %1536%1600%/Sprites/englishdictionary.png%dictionary %1%d
+quest %1%english%dictionary
+# professors
+professor %Prof.Ritrovato%1824%448%/Sprites/spritetolc.png%tolc %0%d
+professor %Prof.Inglese%1728%1568%/Sprites/spritesenatoreincinta.png%english %1%d
 # Tutorial subject
 subject %tolc
 # Other subject
 subject %english
+# 
+# Map 0 (Tutorial) objects
 #
 # NP characters
 normalperson %Secretary%864%288%/Sprites/tizia8.png %0%d
@@ -1547,7 +1558,7 @@ normalperson %Mary%1472%1216%/Sprites/tizia1.png %1%d
 normalperson %Sailor%1856%1216%/Sprites/tizia2.png %1%d
 normalperson %Fonza%1888%1216%/Sprites/tizia3.png %1%d
 normalperson %Jennifer%1472%1344%/Sprites/tizia4.png %1%d
-normalperson %Peppa%1728%1792%/Sprites/tizia5.png %1%d
+normalperson %Peppa%1728%1792%/Sprites/tizia3.png %1%d
 normalperson %Giulia%1440%1440%/Sprites/tizia6.png %1%d
 normalperson %Alexis%1024%672%/Sprites/tizia7.png %1%d
 normalperson %Hannah%1056%672%/Sprites/tizia8.png %1%d

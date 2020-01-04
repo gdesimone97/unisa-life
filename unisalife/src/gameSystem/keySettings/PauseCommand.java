@@ -37,6 +37,8 @@ public class PauseCommand extends KeyCommand implements ActionCommand {
     @Override
     public void visitPauseState(PauseState pauseState) {
         stateManager.setState(PlayState.getInstance());
+        player.setVelX(0);
+        player.setVelY(0);
     }
 
     /**
