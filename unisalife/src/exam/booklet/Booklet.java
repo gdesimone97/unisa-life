@@ -9,17 +9,13 @@ import database.DatabaseManager;
 import database.FileNotSetException;
 import game.Interfaces.Initializable;
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import quests.QuestsManager;
 import quests.mediator.*;
 import quests.quest.Quests;
 import saving.Saveable;
-import unisagui.GameFrame;
 import unisagui.GuiManager;
 /**
  * This class is used due to the necessity of have a booklet for our
