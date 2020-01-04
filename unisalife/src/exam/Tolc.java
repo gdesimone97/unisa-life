@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package exam;
+
 import character.StatusManager;
 import exam.booklet.Booklet;
 import exam.booklet.Subject;
@@ -83,7 +84,7 @@ public class Tolc implements Runnable {
         Question question;
         int answer;
         boolean correctness;
-        
+
         try {
             gui.showDialog(professorName, FileTextManager.getFileTextManager().getString(new MessageInformation("TolcPassedName")).get(2));
         } catch (Exception ex) {
@@ -104,23 +105,23 @@ public class Tolc implements Runnable {
             } else {
                 correctness = question.isCorrect(answers.get(answer - 1));
                 verifyAnswer(correctness);
-                
+
                 gui.isCorrect(correctness, nextQuestion);
                 nextQuestion.getValue();
             }
-            
+
         }
-        
+
         gui.closeExamDialog();
 
         boolean passed = isPassed();
-        
+
         try {
             RequestGui r = new RequestGui();
             FileTextManager f = FileTextManager.getFileTextManager();
             if (passed) {
                 Booklet.getInstance().setScore(subject, 30);
-                
+
                 try {
                     gui.showDialog(professorName, f.getString(new MessageInformation("TolcPassedName")).get(0) + Player.getIstance().getName() + f.getString(new MessageInformation("TolcPassedName")).get(1), r);
                     rg.getValue();
@@ -133,25 +134,28 @@ public class Tolc implements Runnable {
                 }
 
                 StatusManager.getInstance().updateMoney(10);
-                
+
                 // add the 2 teleports after tolc completed
-                Position destPosition = new Position(32,32);
+                Position destPosition = new Position(32, 32);
                 Position p1 = new Position(1952, 352);
                 Map map = MapManager.getInstance().getMap();
                 map.addFixedObject(p1.getScaledPosition(), new Teleport(p1, 0, destPosition));
                 p1 = new Position(1984, 352);
                 map.addFixedObject(p1.getScaledPosition(), new Teleport(p1, 0, destPosition));
-            }
-            else {
-//                gui.showDialog(professorName, f.getString(new MessageInformation("TolcFailedName")).get(0) + Player.getIstance().getName() + f.getString(new MessageInformation("TolcFailedName")).get(1));
+            } else {
+                try {
+                    gui.showDialog(professorName, f.getString(new MessageInformation("TolcFailedName")).get(0) + Player.getIstance().getName() + f.getString(new MessageInformation("TolcFailedName")).get(1), r);
+                    rg.getValue();
+                } catch (DialogManager.DialogAlreadyOpenedException ex) {
+                }
                 JukeBoxSound.getInstance().play("exam_failed");
             }
-//        } catch (TextFinderException ex) {
-//            ex.printStackTrace();
+        } catch (TextFinderException ex) {
+            ex.printStackTrace();
         } catch (InitException ex) {
             ex.printStackTrace();
         }
-              
+
     }
 
     private boolean isPassed() {
