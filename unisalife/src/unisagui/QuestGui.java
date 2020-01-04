@@ -5,6 +5,8 @@
  */
 package unisagui;
 
+import java.util.Set;
+
 /**
  *
  * @author virgi
@@ -12,9 +14,9 @@ package unisagui;
 public class QuestGui {
    
     private String name;
-    private String description;
+    private Set<String> description;
 
-    public QuestGui(String name, String description) {
+    public QuestGui(String name, Set<String> description) {
         this.name = name;
         this.description = description;
     }    
@@ -24,7 +26,11 @@ public class QuestGui {
     }
 
     public String getDescription() {
-        return description;
+        String text = "";
+        for (String s : description){
+            text += "\n" + s + ";";
+        }
+        return text;
     }
         
 }

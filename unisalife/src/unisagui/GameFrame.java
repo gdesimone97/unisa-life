@@ -942,6 +942,7 @@ public class GameFrame extends javax.swing.JFrame {
         );
 
         CareerDialog.setMinimumSize(new java.awt.Dimension(500, 500));
+        CareerDialog.setModalityType(java.awt.Dialog.ModalityType.APPLICATION_MODAL);
         CareerDialog.addWindowFocusListener(new java.awt.event.WindowFocusListener() {
             public void windowGainedFocus(java.awt.event.WindowEvent evt) {
             }
@@ -1653,6 +1654,7 @@ public class GameFrame extends javax.swing.JFrame {
         );
 
         QuestDialog.setMinimumSize(new java.awt.Dimension(420, 400));
+        QuestDialog.setModalityType(java.awt.Dialog.ModalityType.APPLICATION_MODAL);
         QuestDialog.setResizable(false);
         QuestDialog.addWindowFocusListener(new java.awt.event.WindowFocusListener() {
             public void windowGainedFocus(java.awt.event.WindowEvent evt) {
@@ -1748,6 +1750,7 @@ public class GameFrame extends javax.swing.JFrame {
         );
 
         InventoryDialog.setMinimumSize(new java.awt.Dimension(500, 500));
+        InventoryDialog.setModalityType(java.awt.Dialog.ModalityType.APPLICATION_MODAL);
         InventoryDialog.setResizable(false);
         InventoryDialog.addWindowFocusListener(new java.awt.event.WindowFocusListener() {
             public void windowGainedFocus(java.awt.event.WindowEvent evt) {
@@ -2042,7 +2045,7 @@ public class GameFrame extends javax.swing.JFrame {
         RightBorderLayout.setHorizontalGroup(
             RightBorderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RightBorderLayout.createSequentialGroup()
-                .addGap(0, 26, Short.MAX_VALUE)
+                .addGap(0, 25, Short.MAX_VALUE)
                 .addComponent(GameCloseButton))
         );
         RightBorderLayout.setVerticalGroup(
@@ -2315,6 +2318,7 @@ public class GameFrame extends javax.swing.JFrame {
     private void QuestButtonFrameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_QuestButtonFrameActionPerformed
         SwingUtilities.invokeLater(() -> sound.play("menu"));
         GuiManager.getInstance().showQuestDialog();
+        GameStateManager.getInstance().setState(PauseState.getInstance());
     }//GEN-LAST:event_QuestButtonFrameActionPerformed
 
     private void MaleWhiteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MaleWhiteButtonActionPerformed
@@ -2347,8 +2351,8 @@ public class GameFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_MaleBlackButtonActionPerformed
 
     private void ExitQuestDialogLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ExitQuestDialogLabelMouseClicked
-        SwingUtilities.invokeLater(() -> QuestDialog.setVisible(false));
-        GuiManager.getInstance().hideDescription();
+        GameStateManager.getInstance().setState(PlayState.getInstance());
+        GuiManager.getInstance().hideQuestDialog();
     }//GEN-LAST:event_ExitQuestDialogLabelMouseClicked
 
     private void HintTextAreaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HintTextAreaMouseClicked
@@ -2368,7 +2372,7 @@ public class GameFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_ExamDialogWindowOpened
 
     private void QuestDialogWindowLostFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_QuestDialogWindowLostFocus
-        SwingUtilities.invokeLater(() -> QuestDialog.setVisible(false));
+        GuiManager.getInstance().hideQuestDialog();
     }//GEN-LAST:event_QuestDialogWindowLostFocus
 
     private void ExamDialogWindowDeactivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_ExamDialogWindowDeactivated
