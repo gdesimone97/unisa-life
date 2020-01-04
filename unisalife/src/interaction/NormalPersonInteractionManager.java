@@ -16,41 +16,69 @@ import java.util.logging.Logger;
 import language.FileTextManager;
 import language.MessageInformation;
 import language.exceptions.TextFinderException;
+import unisagui.DialogManager;
 import unisagui.GuiManager;
+import unisagui.RequestGui;
 
 /**
  *
  * @author 1997g
  */
 public class NormalPersonInteractionManager implements InteractionManager {
-    
+
     private List<String> str;
     private GuiManager gui = GuiManager.getInstance();
 
     @Override
     public void execute(Interactable obj) {
-        try {
-            NormalPerson p = (NormalPerson) obj;
-            // if in the tutorial, a normal person explains the game
-            // else in the rest, a normal person says random phrases
+        
+        RequestGui rg = new RequestGui();
 
-            FileTextManager ftm = FileTextManager.getFileTextManager();
+        new Thread(() -> {
 
-            if (p.getNome().compareToIgnoreCase("Secretary") == 0) {
-                str = ftm.getString(new MessageInformation("TutorialFrasi"));
-//                gui.showDialog(p.getNome(), str.get(0) + Player.getIstance().getName() + str.get(1));
-//                for (int i = 2; i < str.size(); i++)
-//                    gui.showDialog(p.getNome(), str.get(i));
-//            } else {
-                Random random = new Random();
-                str = ftm.getString(new MessageInformation("RandomPeople"));
-                int i = random.nextInt(str.size());
-//                gui.showDialog(p.getNome(), str.get(i));
+            try {
+                NormalPerson p = (NormalPerson) obj;
+                // if in the tutorial, a normal person explains the game
+                // else in the rest, a normal person says random phrases
+
+                FileTextManager ftm = FileTextManager.getFileTextManager();
+
+                if (p.getNome().compareToIgnoreCase("Secretary") == 0) {
+                    str = ftm.getString(new MessageInformation("TutorialFrasi"));
+
+                    try {
+                        gui.showDialog(p.getNome(), str.get(0) + Player.getIstance().getName() + str.get(1), rg);
+                        rg.getValue();
+                        Thread.sleep(500);
+                    } catch (DialogManager.DialogAlreadyOpenedException ex) {
+                    } catch (InterruptedException ex) {
+                    }
+                    for (int i = 2; i < str.size(); i++) {
+                        try {
+                            gui.showDialog(p.getNome(), str.get(i), rg);
+                            rg.getValue();
+                            Thread.sleep(500);
+                        } catch (DialogManager.DialogAlreadyOpenedException ex) {
+                        } catch (InterruptedException ex) {
+                    }
+
+                    }
+                } else {
+                    Random random = new Random();
+                    str = ftm.getString(new MessageInformation("RandomPeople"));
+                    int i = random.nextInt(str.size());
+                    try {
+                        gui.showDialog(p.getNome(), str.get(i), rg);
+                        rg.getValue();
+                    } catch (DialogManager.DialogAlreadyOpenedException ex) {
+                    }
+
+                }
+
+            } catch (TextFinderException ex) {
+                ex.printStackTrace();
             }
-
-        } catch (TextFinderException ex) {
-            ex.printStackTrace();
-        }
+        }).start();
     }
 
 }

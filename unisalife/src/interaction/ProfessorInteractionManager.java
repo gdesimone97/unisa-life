@@ -13,6 +13,7 @@ import game.GameObjects.Player;
 import game.GameObjects.Professor;
 import game.Interfaces.Initializable.InitException;
 import game.Interfaces.Interactable;
+import gameSystem.map.MapManager;
 import java.util.List;
 import language.FileTextManager;
 import language.MessageInformation;

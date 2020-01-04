@@ -5,6 +5,7 @@
  */
 package game.GameObjects;
 
+import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -55,6 +56,10 @@ public class ObjectManager {
 
     public ConcurrentHashMap<Position, Renderable> getDynamic() {
         return dynamic;
+    }
+    
+    public void mergeDynamic(ConcurrentHashMap<Position, Renderable> newDynamic) {
+        this.dynamic.putAll(newDynamic);
     }
 
     public void setDynamic(ConcurrentHashMap<Position, Renderable> dynamic) {
