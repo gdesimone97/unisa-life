@@ -237,6 +237,10 @@ public class GuiManager {
         questmanager.showQuestDialog();
     }
     
+    public void hideQuestDialog() {
+        questmanager.hideQuestDialog();
+    }
+    
     public void showDescription(int x){
         questmanager.showDescription(x);
     }

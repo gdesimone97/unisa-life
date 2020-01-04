@@ -28,7 +28,7 @@ public class QuestManager {
         
     }
     
-    public void updateQuestDialog(){
+    /*public void updateQuestDialog(){
         int count = 0;
         SwingUtilities.invokeLater(() -> gameframe.listModel.removeAllElements());
         quests = new HashMap<>();
@@ -36,33 +36,33 @@ public class QuestManager {
             quests.put(count, new QuestGui(q.getSubject().toString(),q.getItemList().toString()));
              SwingUtilities.invokeLater(() -> gameframe.listModel.add(count, q.getSubject().toString()));
         }
-    }
+    }*/
     
     
     //---------------------------QUESTA QUANDO FUNZIONERA' IL DB---------------------------------
     
-    /*public void updateQuestDialog(){
+    public void updateQuestDialog(){
         int count = 0;
         SwingUtilities.invokeLater(() -> gameframe.listModel.removeAllElements());
         quests = new HashMap<>();
         for (Quest q : Quests.getInstance().getQuests().values()){
             try {
                 String subj = FileTextManager.getFileTextManager().getString(q.getSubject()).get(0);
-                quests.put(count, new QuestGui(subj,q.getItemList().toString()));
+                quests.put(count, new QuestGui(subj,q.getItemList()));
                 SwingUtilities.invokeLater(() -> gameframe.listModel.add(count, subj));
             } catch (TextFinderException ex) {
             }
         }
-        System.out.println("unisagui.QuestManager.updateQuestDialog()");
-    }*/
+    }
     
 
     
-    /*public void showDescription(int x){
+    public void showDescription(int x){
+        if (x>=0)
         SwingUtilities.invokeLater(() -> {
             try {
                 gameframe.QuestTextArea.setText(FileTextManager.getFileTextManager().getString(
-                        new MessageInformation("QuestDescription")).get(0)
+                        new MessageInformation("QuestDescription")).get(1)
                         + " " +
                         quests.get(x).getDescription());
             } catch (TextFinderException ex) {
@@ -70,16 +70,16 @@ public class QuestManager {
             }
         });
         
-    }*/
+    }
     
     // --------------------------------------------------------------------------------------------
     
-    public void showDescription(int x){
+    /*public void showDescription(int x){
         
         if(x>=0)
             SwingUtilities.invokeLater(() -> gameframe.QuestTextArea.setText(quests.get(x).getDescription()));
             
-    }
+    }*/
     
     public void hideDescription(){
         SwingUtilities.invokeLater(() -> gameframe.QuestTextArea.setText(""));
@@ -88,5 +88,10 @@ public class QuestManager {
     public void showQuestDialog(){
         updateQuestDialog();
         SwingUtilities.invokeLater(() -> gameframe.QuestDialog.setVisible(true));
+    }
+    
+    public void hideQuestDialog(){
+        SwingUtilities.invokeLater(() -> gameframe.QuestDialog.setVisible(false));
+        hideDescription();
     }
 }
