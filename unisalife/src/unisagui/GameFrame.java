@@ -13,7 +13,10 @@ import java.awt.Component;
 import java.awt.Dialog;
 import java.text.ParseException;
 import java.util.HashSet;
+import java.util.Set;
 import javax.swing.ButtonGroup;
+import javax.swing.ComboBoxModel;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JLabel;
 import javax.swing.JTable;
@@ -27,6 +30,7 @@ import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
 import javax.swing.ListModel;
 import javax.swing.text.MaskFormatter;
+import language.FileTextManager;
 import saving.exceptions.SavingException;
 
 /**
@@ -60,12 +64,14 @@ public class GameFrame extends javax.swing.JFrame {
     protected DefaultTableModel careerModel;
     
     
+    
     private GameFrame() {
         initComponents();
         undecoratingDialogs();
         settingLocations(this);
         initialSettings(this);
         initializingTable();
+        setComponentsNames();
         //saveManager qui
     }
 
@@ -75,11 +81,18 @@ public class GameFrame extends javax.swing.JFrame {
         }
         return instance;
     }
+    
+    private void setComponentsNames(){
+        NewGameButton.setName("new_game");
+        AvatarName.setName("avatar");
+        MoveUpField.setName("moveup");
+  
+    }
 
     /**
      * this method set all the key settings at the start of the game
      */
-    private void setKeyBoard() {
+    protected void setKeyBoard() {
         moveUp = settings.getMoveUp();
         moveDown = settings.getMoveDown();
         moveLeft = settings.getMoveLeft();
@@ -211,9 +224,20 @@ public class GameFrame extends javax.swing.JFrame {
         SwingUtilities.invokeLater(() -> InventoryDialog.setLocation(instance.getLocation().x + 50, instance.getLocation().y + 75));
         SwingUtilities.invokeLater(() -> CareerDialog.setLocation(instance.getLocation().x + 50, instance.getLocation().y + 75));
     }
+    /**
+     * this method accesses the language database with its drop-down menu with
+     * all the available languages
+     */
+    private void settingLanguage() {
+        DefaultComboBoxModel languageModel = new DefaultComboBoxModel();
+        int row = 0;
+        Set<String> language = FileTextManager.getFileTextManager().getAvailableLanguages();
 
-    protected void settingLanguage(String s) throws Exception {
-        //in cui verranno settati testi e cazzi e mazzi nella lingua scelta
+        for (String x : language) {
+            languageModel.addElement(x);
+        }
+        LanguageComboBox.setModel(languageModel);
+
     }
 
     /**
@@ -684,6 +708,11 @@ public class GameFrame extends javax.swing.JFrame {
         );
 
         SettingsDialog.setMinimumSize(new java.awt.Dimension(600, 750));
+        SettingsDialog.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                SettingsDialogWindowOpened(evt);
+            }
+        });
 
         SettingsPanel.setBackground(new java.awt.Color(93, 150, 199));
         SettingsPanel.setMaximumSize(new java.awt.Dimension(600, 750));
@@ -742,7 +771,6 @@ public class GameFrame extends javax.swing.JFrame {
         LanguageComboBox.setBackground(new java.awt.Color(75, 125, 167));
         LanguageComboBox.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
         LanguageComboBox.setForeground(new java.awt.Color(255, 255, 255));
-        LanguageComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "English" }));
         LanguageComboBox.setMaximumSize(new java.awt.Dimension(200, 50));
         LanguageComboBox.setMinimumSize(new java.awt.Dimension(200, 50));
         LanguageComboBox.setPreferredSize(new java.awt.Dimension(200, 50));
@@ -2013,7 +2041,7 @@ public class GameFrame extends javax.swing.JFrame {
         RightBorderLayout.setHorizontalGroup(
             RightBorderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RightBorderLayout.createSequentialGroup()
-                .addGap(0, 25, Short.MAX_VALUE)
+                .addGap(0, 26, Short.MAX_VALUE)
                 .addComponent(GameCloseButton))
         );
         RightBorderLayout.setVerticalGroup(
@@ -2137,7 +2165,8 @@ public class GameFrame extends javax.swing.JFrame {
             try{
                 SwingUtilities.invokeLater(() -> SaveManager.getSaveManager().save());
             }catch(SavingException ex){
-                SwingUtilities.invokeLater(() -> JOptionPane.showMessageDialog(instance,"Error during saving process.","Alert",JOptionPane.WARNING_MESSAGE));
+                SwingUtilities.invokeLater(() -> JOptionPane.showMessageDialog
+                    (instance,"Error during saving process.","Alert",JOptionPane.WARNING_MESSAGE));
             }
             SwingUtilities.invokeLater(() -> GameManager.getInstance().stopGame());
             SwingUtilities.invokeLater(() -> ResumeGameButton.setEnabled(true));
@@ -2266,6 +2295,14 @@ public class GameFrame extends javax.swing.JFrame {
 
     private void GameCloseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GameCloseButtonActionPerformed
         SwingUtilities.invokeLater(() -> sound.play("menu"));
+        if(GameManager.getInstance().isRunning()){
+            try{
+                SwingUtilities.invokeLater(() -> SaveManager.getSaveManager().save());
+            }catch(SavingException ex){
+                SwingUtilities.invokeLater(() -> JOptionPane.showMessageDialog
+                    (instance,"Error during saving process.","Alert",JOptionPane.WARNING_MESSAGE));
+            }
+        }
         SwingUtilities.invokeLater(() -> System.exit(0));
     }//GEN-LAST:event_GameCloseButtonActionPerformed
 
@@ -2555,6 +2592,10 @@ public class GameFrame extends javax.swing.JFrame {
             GuiManager.getInstance().hideDialog();
         }
     }//GEN-LAST:event_ConvDialogKeyReleased
+
+    private void SettingsDialogWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_SettingsDialogWindowOpened
+         SwingUtilities.invokeLater(() ->settingLanguage());
+    }//GEN-LAST:event_SettingsDialogWindowOpened
 
     /**
      * @param args the command line arguments
