@@ -82,8 +82,8 @@ public class Quests extends User implements Saveable, Serializable, Initializabl
 
         this.quests = new HashMap<>();
         for (Quest quest : quests) {
-            this.quests.put(quest.getSubject().toString(), quest);
-            String currentQuest = quest.getSubject().toString();
+            this.quests.put(quest.getSubject().getInfo(), quest);
+            String currentQuest = quest.getSubject().getInfo();
             // prendere tutti gli elementi
             // elemento per elemento, aggiungerlo alla map associando la quest corretta
             for (String item : quest.getItemList()) {
