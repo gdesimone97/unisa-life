@@ -64,24 +64,10 @@ public class DialogManager {
      * show a little conversation 
      * @param name is the name of the person who is talking
      * @param conversation
+     * @param request
      
      */
-    public void showDialog(String name, String conversation) throws DialogAlreadyOpenedException{
-        if (!DialogAvailable)
-            throw new DialogAlreadyOpenedException();
-        else{
-        title = BorderFactory.createTitledBorder(name);
-        SwingUtilities.invokeLater(() -> gameframe.ConvDialog.setAlwaysOnTop(true));
-        SwingUtilities.invokeLater(() -> gameframe.ConversationTextArea.setBorder(title));
-        SwingUtilities.invokeLater(() -> gameframe.ConversationTextArea.setText(conversation));
-        SwingUtilities.invokeLater(() -> gameframe.ConversationScrollPane.setVisible(true));
-        SwingUtilities.invokeLater(() -> gameframe.ConvDialog.setVisible(true));
-        SwingUtilities.invokeLater(() -> gameframe.ConvDialog.setFocusable(true));
-        DialogAvailable = false;
-        }
-    }
-    
-    
+
     
         public void showDialog(String name, String conversation, RequestGui request) throws DialogAlreadyOpenedException{
         if (!DialogAvailable)
@@ -100,8 +86,7 @@ public class DialogManager {
     }
     
     public void hideDialog(){
-        if(request!=null)
-            request.setValue(true);
+
         title = BorderFactory.createTitledBorder("");
         SwingUtilities.invokeLater(() -> gameframe.ConversationTextArea.setBorder(title));
         SwingUtilities.invokeLater(() -> gameframe.ConversationTextArea.setText(""));
@@ -109,6 +94,8 @@ public class DialogManager {
         SwingUtilities.invokeLater(() -> gameframe.ConvDialog.setVisible(false));
         SwingUtilities.invokeLater(() -> gameframe.ConvDialog.setFocusable(false));
         DialogAvailable = true;
+        if(request!=null)
+            request.setValue(true);
         request = null;
     }
 

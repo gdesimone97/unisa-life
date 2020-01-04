@@ -91,7 +91,7 @@ public class GuiManager {
      * 
      */
     public void showDialog(String name,String s) throws DialogManager.DialogAlreadyOpenedException {
-        dialogmanager.showDialog(name,s);
+        dialogmanager.showDialog(name,s,null);
     }
     
     public void showDialog(String name, String conversation, RequestGui request) throws DialogManager.DialogAlreadyOpenedException{
