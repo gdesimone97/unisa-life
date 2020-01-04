@@ -74,6 +74,7 @@ public class Booklet extends User implements Serializable,Saveable,Initializable
     public void setScore(Subject subject, int score){
         subject.setScore(score);
         subject.setAvailable(false);
+        booklet.put(subject.getInfo(), subject);
         Quests.getInstance().getQuest(subject.getInfo()).finish();
         GuiManager.getInstance().updateCareer();
     }

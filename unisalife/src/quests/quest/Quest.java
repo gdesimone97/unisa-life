@@ -34,7 +34,7 @@ public class Quest extends User implements Serializable, Storable {
     private boolean done;
 
     private Quest() {
-
+        super.mediator = QuestsManager.getInstance();
     }
 
     public Quest(int level, Subject subject) throws QuestNotValidException {

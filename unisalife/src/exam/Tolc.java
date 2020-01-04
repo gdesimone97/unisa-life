@@ -48,8 +48,8 @@ public class Tolc implements Runnable {
      * questions
      *
      */
-    public Tolc(String profName) throws TextFinderException, InitException {
-        this.subject = new Subject("tolc");
+    public Tolc(Subject s, String profName) throws TextFinderException, InitException {
+        this.subject = s;
         QuestionFactory questionsFetch = new StringsQuestionFactory(subject);
         this.count = 0;
         this.questionTime = 60;
@@ -118,6 +118,8 @@ public class Tolc implements Runnable {
         try {
             FileTextManager f = FileTextManager.getFileTextManager();
             if (passed) {
+                Booklet.getInstance().setScore(subject, 30);
+                
 //                gui.showDialog(professorName, f.getString(new MessageInformation("TolcPassedName")).get(0) + Player.getIstance().getName() + f.getString(new MessageInformation("TolcPassedName")).get(1));
                 JukeBoxSound.getInstance().play("exam_passed");
 //                gui.showDialog(professorName, f.getString(new MessageInformation("TolcPassedName")).get(2));
@@ -147,5 +149,5 @@ public class Tolc implements Runnable {
     private boolean isPassed() {
         return count >= maxLevel/2 + 1;
     }
-
+    
 }

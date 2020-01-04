@@ -36,7 +36,7 @@ public class NormalPersonInteractionManager implements InteractionManager {
 
             FileTextManager ftm = FileTextManager.getFileTextManager();
 
-            if (MapManager.getInstance().getActualMap() == 0) {
+            if (p.getNome().compareToIgnoreCase("Secretary") == 0) {
                 str = ftm.getString(new MessageInformation("TutorialFrasi"));
 //                gui.showDialog(p.getNome(), str.get(0) + Player.getIstance().getName() + str.get(1));
 //                for (int i = 2; i < str.size(); i++)
