@@ -35,7 +35,7 @@ import javax.imageio.ImageIO;
  *
  */
 public class Map implements Runnable {
-
+    
     private TileMap tMap;
     private ObjectManager mapObjects;
     private String pathMiniMap;

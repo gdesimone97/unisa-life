@@ -19,8 +19,6 @@ import java.awt.Graphics2D;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import saving.Saveable;
 import saving.exceptions.LoadingException;
 
