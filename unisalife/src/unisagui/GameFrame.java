@@ -126,8 +126,8 @@ public class GameFrame extends javax.swing.JFrame {
             } else {
                 careerModel.setValueAt(booklet.getScore(sub), row, ++column);
                 careerModel.setValueAt("Passed", row, ++column);
-                row += 1;
             }
+             row ++;
         }
         
     }
