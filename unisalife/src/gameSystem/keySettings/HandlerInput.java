@@ -9,6 +9,7 @@ import gameSystem.keySettings.interfaces.MovingCommand;
 import gameSystem.keySettings.interfaces.KeyCommand;
 import gameSystem.GameState;
 import gameSystem.GameStateManager;
+import gameSystem.keySettings.interfaces.ActionCommand;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
@@ -39,7 +40,7 @@ public class HandlerInput extends KeyAdapter {
     @Override
     public void keyReleased(KeyEvent e) {
         KeyCommand cmd = selectCommand(e);
-        if (cmd != null && prev != null) {
+        if ((cmd != null && prev != null) || cmd instanceof ActionCommand ) {
             prev = null;
             GameState state = stateManager.getState();
             if (cmd instanceof MovingCommand) {
@@ -57,7 +58,7 @@ public class HandlerInput extends KeyAdapter {
      */
     @Override
     public void keyPressed(KeyEvent e) {
-        KeyCommand cmd = selectCommand(e);
+         KeyCommand cmd = selectCommand(e);
         /* if (e.getKeyCode() == KeyEvent.VK_O) {
             try {
                 SaveManager.getSaveManager().load();
@@ -67,6 +68,7 @@ public class HandlerInput extends KeyAdapter {
         } */
         if (cmd != null && cmd instanceof MovingCommand && (prev == cmd || prev == null)) {
             prev = cmd;
+            System.out.println(cmd);
             GameState state = stateManager.getState();
             state.handleInput(cmd);
         }
