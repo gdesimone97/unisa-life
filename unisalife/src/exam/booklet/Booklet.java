@@ -69,6 +69,10 @@ public class Booklet extends User implements Serializable,Saveable,Initializable
         return booklet.get(subject.getInfo()).isAvailable();
     }
     
+    public Subject getSubject(String subject){
+        return this.booklet.get(subject);
+    }
+    
     /**
      * This method allows to set a score to the exam and make it no longer
      * available
