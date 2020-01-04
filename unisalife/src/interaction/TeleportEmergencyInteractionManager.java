@@ -19,6 +19,7 @@ import language.MessageInformation;
 import language.exceptions.StringNotFoundException;
 import language.exceptions.TextFinderException;
 import sound.JukeBoxSound;
+import unisagui.DialogManager;
 import unisagui.GuiManager;
 
 /**

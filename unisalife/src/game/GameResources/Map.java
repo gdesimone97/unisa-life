@@ -98,7 +98,6 @@ public class Map implements Runnable {
         try {
             o = mapObjects.removeObject(p);
         } catch (Exception e) {
-            e.printStackTrace();
         }
         return o;
     }
@@ -186,7 +185,7 @@ public class Map implements Runnable {
     }
 
     public void addDynamicObjects(ConcurrentHashMap<Position, Renderable> dynamic) {
-        mapObjects.setDynamic(dynamic);
+        mapObjects.mergeDynamic(dynamic);
     }
 
     public Position getInitialPosition() {

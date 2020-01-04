@@ -44,6 +44,8 @@ public class DoNothingCommand extends KeyCommand {
      */
     @Override
     public void visitLoadingState(LoadingState loadState) {
+        player.setVelX(0);
+        player.setVelY(0);
     }
 
     /**

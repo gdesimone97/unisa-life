@@ -30,7 +30,7 @@ public class HandlerInput extends KeyAdapter {
     private final KeyCommand mapCommand = new MapCommand();
     private final GameStateManager stateManager = GameStateManager.getInstance();
     private final SettingsManager settingsManager = SettingsManager.getSettingsManager();
-    private boolean isPressed = false;
+    private KeyCommand prev = null;
 
     /**
      *
@@ -39,8 +39,8 @@ public class HandlerInput extends KeyAdapter {
     @Override
     public void keyReleased(KeyEvent e) {
         KeyCommand cmd = selectCommand(e);
-        if (cmd != null) {
-            isPressed = false;
+        if (cmd != null && prev != null) {
+            prev = null;
             GameState state = stateManager.getState();
             if (cmd instanceof MovingCommand) {
                 state.handleInput(doNothing);
@@ -65,8 +65,8 @@ public class HandlerInput extends KeyAdapter {
                 ex.printStackTrace();
             }
         } */
-        if (cmd != null && cmd instanceof MovingCommand && !isPressed) {
-            isPressed = true;
+        if (cmd != null && cmd instanceof MovingCommand && (prev == cmd || prev == null)) {
+            prev = cmd;
             GameState state = stateManager.getState();
             state.handleInput(cmd);
         }

@@ -359,4 +359,8 @@
 <message>Go find them!</message>
 </MessageInformation>
 
+<MessageInformation info="BarEmergency">
+<message>Your health is important. Never forget to take care of yourself!</message>
+</MessageInformation>
+
 </root>
