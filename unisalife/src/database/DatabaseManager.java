@@ -126,44 +126,13 @@ public class DatabaseManager implements Initializable {
         for (Quest q : questList) {
             Subject questSubject = q.getSubject();
             for (String itemName : q.getItemList()) {
-                if (itemName.startsWith("coin")) {
-                    Coin c = this.findCoin(itemName);
-                    int mapId = this.findMap(itemName, DatabaseManager.DYNCOLLECTIONNAME);
-                    dynArrObj.get(mapId).put(c.getScaledPosition(), c);
-                } else {
-                    Item i = this.findItem(itemName);
-                    int mapId = this.findMap(itemName, DatabaseManager.DYNCOLLECTIONNAME);
-                    dynArrObj.get(mapId).put(i.getScaledPosition(), i);
-                }
+                Item i = this.findItem(itemName);
+                int mapId = this.findMap(itemName, DatabaseManager.DYNCOLLECTIONNAME);
+                dynArrObj.get(mapId).put(i.getScaledPosition(), i);
             }
             Professor p = this.findProfessor(questSubject);
             int mapId = this.findMap(questSubject.getInfo(), DatabaseManager.DYNCOLLECTIONNAME);
             dynArrObj.get(mapId).put(p.getScaledPosition(), p);
-        }
-        try {
-            // Here dynamic but known object will be retrived.
-            Cook cook = this.findCook();
-            int cookMapId = this.findMap(cook.getIndex(), DatabaseManager.DYNCOLLECTIONNAME);
-            dynArrObj.get(cookMapId).put(cook.getScaledPosition(), cook);
-        } catch (ObjectNotFoundException ex) {
-            // It's not a problem if an object of this kind is not found.
-        }
-        try {
-            Guardian guardian = this.findGuardian();
-            int guardMapId = this.findMap(guardian.getIndex(), DatabaseManager.DYNCOLLECTIONNAME);
-            dynArrObj.get(guardMapId).put(guardian.getScaledPosition(), guardian);
-        } catch (ObjectNotFoundException ex) {
-            // It's not a problem if an object of this kind is not found.
-        }
-        try {
-            List<NormalPerson> np_list = this.findNormalPeople();
-            for (NormalPerson np : np_list) {
-                int npMapId = this.findMap(np.getIndex(), DatabaseManager.DYNCOLLECTIONNAME);
-                dynArrObj.get(npMapId).put(np.getScaledPosition(), np);
-            }
-
-        } catch (ObjectNotFoundException ex) {
-            // It's not a problem if an object of this kind is not found.
         }
 
         ConcurrentHashMap<Position, Renderable>[] newArray = DatabaseManager.newArray(1, dynArrObj.get(0));
@@ -233,15 +202,51 @@ public class DatabaseManager implements Initializable {
                     Teleport t = tw.getTeleport();
                     fixed.put(t.getScaledPosition(), t);
                 }
-            } catch (Exception x) {
-                //x.printStackTrace();
+            } catch (Exception ex) {
+                //ex.printStackTrace();
 
             }
             int index = tilemap.getId();
             maps[index] = new Map(tilemap, new ObjectManager(fixed, dyn), tilemap.getMiniMapPath());
         }
 
-        // inserire anche gli oggetti dinamici del livello zero per testare
+        try {
+            Cook cook = this.findCook();
+            int cookMapId = this.findMap(cook.getIndex(), DatabaseManager.DYNCOLLECTIONNAME);
+            maps[cookMapId].getObjectManager().addObject(cook.getScaledPosition(), cook);
+
+        } catch (Exception ex) {
+            // It's not a problem if an object of this kind is not found.
+        }
+        try {
+
+            Guardian guardian = this.findGuardian();
+            int guardMapId = this.findMap(guardian.getIndex(), DatabaseManager.DYNCOLLECTIONNAME);
+            maps[guardMapId].getObjectManager().addObject(guardian.getScaledPosition(), guardian);
+
+        } catch (Exception ex) {
+            // It's not a problem if an object of this kind is not found.
+        }
+        try {
+            List<NormalPerson> np_list = this.findNormalPeople();
+            for (NormalPerson np : np_list) {
+                int npMapId = this.findMap(np.getIndex(), DatabaseManager.DYNCOLLECTIONNAME);
+                maps[npMapId].getObjectManager().addObject(np.getScaledPosition(), np);
+            }
+
+        } catch (Exception ex) {
+            // It's not a problem if an object of this kind is not found.
+        }
+        try {
+            List<Coin> c_list = this.findCoin();
+            for (Coin c : c_list) {
+                int cMapId = this.findMap(c.getIndex(), DatabaseManager.DYNCOLLECTIONNAME);
+                maps[cMapId].getObjectManager().addObject(c.getScaledPosition(), c);
+            }
+        } catch (Exception ex) {
+
+        }
+
         return maps;
     }
 
@@ -251,28 +256,13 @@ public class DatabaseManager implements Initializable {
      * @return a list of tilemaps
      */
     private List<TileMap> getTileMaps() {
-        List<TileMapWrapper> res = db.getNitriteDatabase().getRepository(TileMapWrapper.class).find(ObjectFilters.ALL).toList();
+        List<TileMapWrapper> res = db.getNitriteDatabase().getRepository(TileMapWrapper.class
+        ).find(ObjectFilters.ALL).toList();
         List<TileMap> returnList = new ArrayList<>();
         for (TileMapWrapper t : res) {
             returnList.add(t.buildTileMap());
         }
         return returnList;
-    }
-
-    /**
-     * Private method to search for a coin in the coin repo
-     *
-     * @param id coin id
-     * @return an instance of a coin
-     * @throws ObjectNotFoundException
-     */
-    private Coin findCoin(String id) throws ObjectNotFoundException, ImageNotLoadedException {
-        Coin c = db.getNitriteDatabase().getRepository(Coin.class).find(eq("info", id)).firstOrDefault();
-        if (c == null) {
-            throw new ObjectNotFoundException();
-        }
-        c.loadImage();
-        return c;
     }
 
     /**
@@ -288,7 +278,8 @@ public class DatabaseManager implements Initializable {
         // %448%1024%/Sprites/note.png%appunti
         Item res = new Item((Position) d.get("p"), (String) d.get("path"), (String) d.get("info"));
          */
-        Item i = db.getNitriteDatabase().getRepository(Item.class).find(eq("info", itemName)).firstOrDefault();
+        Item i = db.getNitriteDatabase().getRepository(Item.class
+        ).find(eq("info", itemName)).firstOrDefault();
         if (i == null) {
             throw new ObjectNotFoundException();
         }
@@ -304,7 +295,8 @@ public class DatabaseManager implements Initializable {
      * @throws ObjectNotFoundException
      */
     private Professor findProfessor(Subject s) throws ObjectNotFoundException, ImageNotLoadedException {
-        Professor prof = db.getNitriteDatabase().getRepository(Professor.class).find(eq("subject", s.getInfo())).firstOrDefault();
+        Professor prof = db.getNitriteDatabase().getRepository(Professor.class
+        ).find(eq("subject", s.getInfo())).firstOrDefault();
         if (prof == null) {
             throw new ObjectNotFoundException();
         }
@@ -318,7 +310,8 @@ public class DatabaseManager implements Initializable {
      * @return an instance of the cook
      */
     private Cook findCook() throws ObjectNotFoundException, ImageNotLoadedException {
-        Cook c = db.getNitriteDatabase().getRepository(Cook.class).find(ObjectFilters.ALL).firstOrDefault();
+        Cook c = db.getNitriteDatabase().getRepository(Cook.class
+        ).find(ObjectFilters.ALL).firstOrDefault();
         if (c == null) {
             throw new ObjectNotFoundException();
         }
@@ -332,7 +325,8 @@ public class DatabaseManager implements Initializable {
      * @return a list of normal person, instantiated.
      */
     private List<NormalPerson> findNormalPeople() throws ObjectNotFoundException, ImageNotLoadedException {
-        List<NormalPerson> np_list = db.getNitriteDatabase().getRepository(NormalPerson.class).find(ObjectFilters.ALL).toList();
+        List<NormalPerson> np_list = db.getNitriteDatabase().getRepository(NormalPerson.class
+        ).find(ObjectFilters.ALL).toList();
         if (np_list == null || np_list.size() == 0) {
             throw new ObjectNotFoundException();
         }
@@ -343,12 +337,32 @@ public class DatabaseManager implements Initializable {
     }
 
     /**
+     * Private method to search for a coin in the coin repo
+     *
+     * @param id coin id
+     * @return an instance of a coin
+     * @throws ObjectNotFoundException
+     */
+    private List<Coin> findCoin() throws ObjectNotFoundException, ImageNotLoadedException {
+        List<Coin> c_list = db.getNitriteDatabase().getRepository(Coin.class
+        ).find(ObjectFilters.ALL).toList();
+        if (c_list == null || c_list.size() == 0) {
+            throw new ObjectNotFoundException();
+        }
+        for (Coin c : c_list) {
+            c.loadImage();
+        }
+        return c_list;
+    }
+
+    /**
      * Private method to search for the guardian
      *
      * @return an instance of the guardian
      */
     private Guardian findGuardian() throws ObjectNotFoundException, ImageNotLoadedException {
-        Guardian g = db.getNitriteDatabase().getRepository(Guardian.class).find(ObjectFilters.ALL).firstOrDefault();
+        Guardian g = db.getNitriteDatabase().getRepository(Guardian.class
+        ).find(ObjectFilters.ALL).firstOrDefault();
         if (g == null) {
             throw new ObjectNotFoundException();
         }
@@ -362,7 +376,8 @@ public class DatabaseManager implements Initializable {
      * @return a list of the subjects (instances)
      */
     public List<Subject> getSubjects() {
-        return db.getNitriteDatabase().getRepository(Subject.class).find(ObjectFilters.ALL).toList();
+        return db.getNitriteDatabase().getRepository(Subject.class
+        ).find(ObjectFilters.ALL).toList();
     }
 
     /**
