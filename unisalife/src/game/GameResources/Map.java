@@ -185,7 +185,7 @@ public class Map implements Runnable {
     }
 
     public void addDynamicObjects(ConcurrentHashMap<Position, Renderable> dynamic) {
-        mapObjects.setDynamic(dynamic);
+        mapObjects.mergeDynamic(dynamic);
     }
 
     public Position getInitialPosition() {

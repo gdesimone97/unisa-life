@@ -190,6 +190,7 @@ public class Exam implements Runnable {
         
         // EXAM RESULT
         try {
+            RequestGui r = new RequestGui();
             if (voto >= 18 && voto <= 30) {
 //                gui.showDialog(professorName, FileTextManager.getFileTextManager().getString(new MessageInformation("ScoreTaken")).get(0) + " " + voto);
                 JukeBoxSound.getInstance().play("exam_passed");
