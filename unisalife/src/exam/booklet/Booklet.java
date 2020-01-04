@@ -143,8 +143,10 @@ public class Booklet extends User implements Serializable,Saveable,Initializable
         this.booklet = new HashMap<>();
         try {
             List<Subject> subjects = DatabaseManager.getDatabaseManager().getSubjects();
-            for (Subject s : subjects)
-            this.booklet.put(s.getInfo(), s);
+            subjects.forEach((s) -> {
+                this.booklet.put(s.getInfo(), s);
+            });
+            GuiManager.getInstance().updateCareer();
         } catch (FileNotSetException ex) {
             //ex.printStackTrace();
         }
