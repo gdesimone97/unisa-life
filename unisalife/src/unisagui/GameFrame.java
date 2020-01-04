@@ -390,7 +390,7 @@ public class GameFrame extends javax.swing.JFrame {
         NameOfExamLabel.setFont(new java.awt.Font("Arial Black", 1, 13)); // NOI18N
         NameOfExamLabel.setForeground(new java.awt.Color(255, 255, 255));
         NameOfExamLabel.setText("ExamName");
-        NameOfExamLabel.setMaximumSize(new java.awt.Dimension(150, 25));
+        NameOfExamLabel.setMaximumSize(new java.awt.Dimension(125, 25));
         NameOfExamLabel.setMinimumSize(new java.awt.Dimension(125, 25));
         NameOfExamLabel.setPreferredSize(new java.awt.Dimension(125, 25));
 

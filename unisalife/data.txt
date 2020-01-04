@@ -19,7 +19,8 @@ tilemap %3%1280%928%/Tilesets/Dormitory.png%/Maps/Dormitory.map%672%448%/MiniMap
 subject %tolc
 # Other subject
 subject %english
-# NP characters MAP 0
+#
+# NP characters
 normalperson %Secretary%864%288%/Sprites/tizia8.png %0%d
 normalperson %Christian%1600%352%/Sprites/tizio1.png %0%d
 normalperson %Gennaro%1632%352%/Sprites/tizio2.png %0%d
@@ -30,23 +31,6 @@ normalperson %Davide%1536%384%/Sprites/tizio4.png %0%d
 normalperson %Mario%1376%384%/Sprites/tizio7.png %0%d
 normalperson %Simone%2048%480%/Sprites/tizio8.png %0%d
 normalperson %Virginia%1568%384%/Sprites/tizia6.png %0%d
-# NP characters MAP 1
-normalperson %Giovanni%1248%960%/Sprites/tizio1.png %1%d
-normalperson %Francesco%1280%960%/Sprites/tizio2.png %1%d
-normalperson %John%1664%1120%/Sprites/tizio3.png %1%d
-normalperson %Chris%1568%1568%/Sprites/tizio4.png %1%d
-normalperson %Pasqual%832%1696%/Sprites/tizio5.png %1%d
-normalperson %David%864%1696%/Sprites/tizio6.png %1%d
-normalperson %Antony%960%1344%/Sprites/tizio7.png %1%d
-normalperson %Ciccio%800%1088%/Sprites/tizio8.png %1%d
-normalperson %Mary%1472%1216%/Sprites/tizia1.png %1%d
-normalperson %Sailor%1856%1248%/Sprites/tizia2.png %1%d
-normalperson %Fonza%1888%1216%/Sprites/tizia3.png %1%d
-normalperson %Jennifer%1472%1344%/Sprites/tizia4.png %1%d
-normalperson %Peppa%1728%1792%/Sprites/tizia7.png %1%d
-normalperson %Giulia%1440%1440%/Sprites/tizia6.png %1%d
-normalperson %Alexis%1024%672%/Sprites/tizia7.png %1%d
-normalperson %Hannah%1056%672%/Sprites/tizia8.png %1%d
 # 
 # coins
 coin %544%448%/Sprites/coin.png%coin1 %0%d
@@ -1550,7 +1534,23 @@ teleport %1984%352%1%1248%1408%0
 # characters
 cook %cook%1664%960%/Sprites/spritesignoramensa.png %1%d
 # 
-# NP character
+# NP characters
+normalperson %Giovanni%1248%960%/Sprites/tizio1.png %1%d
+normalperson %Francesco%1280%960%/Sprites/tizio2.png %1%d
+normalperson %John%1664%1120%/Sprites/tizio3.png %1%d
+normalperson %Chris%1568%1568%/Sprites/tizio4.png %1%d
+normalperson %Pasqual%832%1696%/Sprites/tizio5.png %1%d
+normalperson %David%864%1696%/Sprites/tizio6.png %1%d
+normalperson %Antony%960%1344%/Sprites/tizio7.png %1%d
+normalperson %Ciccio%800%1088%/Sprites/tizio8.png %1%d
+normalperson %Mary%1472%1216%/Sprites/tizia1.png %1%d
+normalperson %Sailor%1856%1216%/Sprites/tizia2.png %1%d
+normalperson %Fonza%1888%1216%/Sprites/tizia3.png %1%d
+normalperson %Jennifer%1472%1344%/Sprites/tizia4.png %1%d
+normalperson %Peppa%1728%1792%/Sprites/tizia5.png %1%d
+normalperson %Giulia%1440%1440%/Sprites/tizia6.png %1%d
+normalperson %Alexis%1024%672%/Sprites/tizia7.png %1%d
+normalperson %Hannah%1056%672%/Sprites/tizia8.png %1%d
 # 
 # distributors
 distributor %544%1120%vm1 %1%f
