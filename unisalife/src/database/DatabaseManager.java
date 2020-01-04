@@ -25,6 +25,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.Arrays;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.dizitart.no2.Cursor;
 import org.dizitart.no2.Document;
 import org.dizitart.no2.Index;
@@ -94,6 +96,7 @@ public class DatabaseManager implements Initializable {
         List<Quest> list = db.getNitriteDatabase().getRepository(Quest.class).find(eq("level", level)).toList();
 
         if (list.size() <= 0) {
+             System.out.println("Cn't find for level" + level);
             throw new ObjectNotFoundException();
         }
         return list;
@@ -123,15 +126,20 @@ public class DatabaseManager implements Initializable {
         for (Quest q : questList) {
             Subject questSubject = q.getSubject();
             for (String itemName : q.getItemList()) {
+                /*
                 if (itemName.equals("coin")) {
-                    Coin c = this.findCoin(itemName);
-                    int mapId = this.findMap(itemName, DatabaseManager.DYNCOLLECTIONNAME);
-                    dynArrObj.get(mapId).put(c.getScaledPosition(), c);
+                Coin c = this.findCoin(itemName);
+                int mapId = this.findMap(itemName, DatabaseManager.DYNCOLLECTIONNAME);
+                dynArrObj.get(mapId).put(c.getScaledPosition(), c);
                 } else {
                     Item i = this.findItem(itemName);
                     int mapId = this.findMap(itemName, DatabaseManager.DYNCOLLECTIONNAME);
                     dynArrObj.get(mapId).put(i.getScaledPosition(), i);
                 }
+                */
+                Item i = this.findItem(itemName);
+                int mapId = this.findMap(itemName, DatabaseManager.DYNCOLLECTIONNAME);
+                dynArrObj.get(mapId).put(i.getScaledPosition(), i);
             }
             Professor p = this.findProfessor(questSubject);
             int mapId = this.findMap(questSubject.getInfo(), DatabaseManager.DYNCOLLECTIONNAME);
@@ -207,6 +215,20 @@ public class DatabaseManager implements Initializable {
                 fixed.put(o.getScaledPosition(), o);
             }
 
+            /**
+             * Insert coins in map, more precisely in dyn array before it's populated 
+             * regarding the actual quest since coins are not quests objects.
+             */
+            ObjectRepository coinRepo = db.getNitriteDatabase().getRepository(Coin.class);
+            System.out.println(coinRepo.size());
+            Cursor pr = db.getNitriteDatabase().getCollection(DatabaseManager.DYNCOLLECTIONNAME).find(Filters.and(Filters.eq("CLASSOBJ", Coin.class.getName()), Filters.eq("IDMAP", id)));
+            
+            for(Document d : pr){
+                String idCoin = d.get("IDOBJ",String.class);
+                Coin coin = (Coin)coinRepo.find(eq("info",idCoin)).firstOrDefault();
+                dyn.put(coin.getPosition(), coin);
+            }
+
             // this is to get the blocks
             for (BlockWrapper bw : db.getNitriteDatabase().getRepository(BlockWrapper.class).find(eq("map", Integer.parseInt(id))).toList()) {
                 Block b = bw.getBlock();
@@ -239,6 +261,7 @@ public class DatabaseManager implements Initializable {
         return returnList;
     }
 
+    
     /**
      * Private method to search for a coin in the coin repo
      *
@@ -270,6 +293,7 @@ public class DatabaseManager implements Initializable {
          */
         Item i = db.getNitriteDatabase().getRepository(Item.class).find(eq("info", itemName)).firstOrDefault();
         if (i == null) {
+            System.out.println("Can't find " + itemName);
             throw new ObjectNotFoundException();
         }
         i.loadImage();
