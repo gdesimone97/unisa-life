@@ -50,7 +50,7 @@ quest %0%tolc%calcolatrice%appunti
 # 
 # items quest map1
 item %1536%1600%/Sprites/englishdictionary.png%dictionary %0%d
-quest %1%english%dictionary
+# quest %1%english%dictionary
 # professors
 professor %Prof.Ritrovato%1824%448%/Sprites/spritetolc.png%tolc %0%d
 professor %Prof.Inglese%1728%1568%/Sprites/spritesenatoreincinta.png%english %1%d

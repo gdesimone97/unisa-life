@@ -67,7 +67,7 @@ public class MapState extends GameState {
         widthMap = MapManager.getInstance().getMap().getWidthMap();
         xPlayerInMap = (int)(xPlayer*Game.WIDTHSCREEN/widthMap);
         yPlayerInMap = (int)(yPlayer*Game.HEIGHTSCREEN2/heightMap);
-        g.drawImage(here, xPlayerInMap, yPlayerInMap,25,25,null);
+        g.drawImage(here, xPlayerInMap, yPlayerInMap,35,35,null);
     }
 
     @Override
