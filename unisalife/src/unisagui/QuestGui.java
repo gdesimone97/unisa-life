@@ -6,6 +6,7 @@
 package unisagui;
 
 import java.util.Set;
+import language.FileTextManager;
 
 /**
  *
@@ -28,7 +29,9 @@ public class QuestGui {
     public String getDescription() {
         String text = "";
         for (String s : description){
-            text += "\n" + s + ";";
+            text += "\n" +
+                    //FileTextManager.getFileTextManager().getString(new MessageInformation(s)).get(0)
+                    s + ";";
         }
         return text;
     }

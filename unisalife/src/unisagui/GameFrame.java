@@ -1255,7 +1255,8 @@ public class GameFrame extends javax.swing.JFrame {
         OpenInventoryField.setBackground(new java.awt.Color(0, 153, 204));
         OpenInventoryField.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
         OpenInventoryField.setForeground(new java.awt.Color(204, 255, 255));
-        OpenInventoryField.setText(" Tab");
+        OpenInventoryField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        OpenInventoryField.setText("Tab");
         OpenInventoryField.setAutoscrolls(false);
         OpenInventoryField.setMaximumSize(new java.awt.Dimension(100, 50));
         OpenInventoryField.setMinimumSize(new java.awt.Dimension(100, 50));
@@ -1279,6 +1280,7 @@ public class GameFrame extends javax.swing.JFrame {
 
         MoveUpField.setBackground(new java.awt.Color(0, 153, 204));
         MoveUpField.setForeground(new java.awt.Color(204, 255, 255));
+        MoveUpField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         MoveUpField.setMaximumSize(new java.awt.Dimension(100, 50));
         MoveUpField.setMinimumSize(new java.awt.Dimension(100, 50));
         MoveUpField.setPreferredSize(new java.awt.Dimension(100, 50));
@@ -1295,6 +1297,7 @@ public class GameFrame extends javax.swing.JFrame {
 
         MoveDownField.setBackground(new java.awt.Color(0, 153, 204));
         MoveDownField.setForeground(new java.awt.Color(204, 255, 255));
+        MoveDownField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         MoveDownField.setMaximumSize(new java.awt.Dimension(100, 50));
         MoveDownField.setMinimumSize(new java.awt.Dimension(100, 50));
         MoveDownField.setPreferredSize(new java.awt.Dimension(100, 50));
@@ -1311,6 +1314,7 @@ public class GameFrame extends javax.swing.JFrame {
 
         MoveLeftField.setBackground(new java.awt.Color(0, 153, 204));
         MoveLeftField.setForeground(new java.awt.Color(204, 255, 255));
+        MoveLeftField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         MoveLeftField.setMaximumSize(new java.awt.Dimension(100, 50));
         MoveLeftField.setMinimumSize(new java.awt.Dimension(100, 50));
         MoveLeftField.setPreferredSize(new java.awt.Dimension(100, 50));
@@ -1327,6 +1331,7 @@ public class GameFrame extends javax.swing.JFrame {
 
         MoveRightField.setBackground(new java.awt.Color(0, 153, 204));
         MoveRightField.setForeground(new java.awt.Color(204, 255, 255));
+        MoveRightField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         MoveRightField.setMaximumSize(new java.awt.Dimension(100, 50));
         MoveRightField.setMinimumSize(new java.awt.Dimension(100, 50));
         MoveRightField.setPreferredSize(new java.awt.Dimension(100, 50));
@@ -1343,6 +1348,7 @@ public class GameFrame extends javax.swing.JFrame {
 
         InteractField.setBackground(new java.awt.Color(0, 153, 204));
         InteractField.setForeground(new java.awt.Color(204, 255, 255));
+        InteractField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         InteractField.setMaximumSize(new java.awt.Dimension(100, 50));
         InteractField.setMinimumSize(new java.awt.Dimension(100, 50));
         InteractField.setPreferredSize(new java.awt.Dimension(100, 50));
@@ -1359,6 +1365,7 @@ public class GameFrame extends javax.swing.JFrame {
 
         PauseField.setBackground(new java.awt.Color(0, 153, 204));
         PauseField.setForeground(new java.awt.Color(204, 255, 255));
+        PauseField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         PauseField.setMaximumSize(new java.awt.Dimension(100, 50));
         PauseField.setMinimumSize(new java.awt.Dimension(100, 50));
         PauseField.setPreferredSize(new java.awt.Dimension(100, 50));
@@ -1375,6 +1382,7 @@ public class GameFrame extends javax.swing.JFrame {
 
         MapField.setBackground(new java.awt.Color(0, 153, 204));
         MapField.setForeground(new java.awt.Color(204, 255, 255));
+        MapField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         MapField.setMaximumSize(new java.awt.Dimension(100, 50));
         MapField.setMinimumSize(new java.awt.Dimension(100, 50));
         MapField.setPreferredSize(new java.awt.Dimension(100, 50));
@@ -1480,7 +1488,7 @@ public class GameFrame extends javax.swing.JFrame {
                 .addGroup(KeyBoardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(OpenInventoryField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(OpenInventoryLabel))
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
 
         try{

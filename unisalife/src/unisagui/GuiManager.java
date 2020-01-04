@@ -93,7 +93,13 @@ public class GuiManager {
     public void showDialog(String name,String s) throws DialogManager.DialogAlreadyOpenedException {
         dialogmanager.showDialog(name,s,null);
     }
-    
+    /**
+     * When called the Conversation Area appears on the screen
+     * @param name 
+     * @param conversation
+     * @param request is the request that will be updated when the conversation area is closed
+     * @throws unisagui.DialogManager.DialogAlreadyOpenedException 
+     */
     public void showDialog(String name, String conversation, RequestGui request) throws DialogManager.DialogAlreadyOpenedException{
          dialogmanager.showDialog(name, conversation, request);
     }
