@@ -390,7 +390,7 @@ public class GameFrame extends javax.swing.JFrame {
         NameOfExamLabel.setFont(new java.awt.Font("Arial Black", 1, 13)); // NOI18N
         NameOfExamLabel.setForeground(new java.awt.Color(255, 255, 255));
         NameOfExamLabel.setText("ExamName");
-        NameOfExamLabel.setMaximumSize(new java.awt.Dimension(125, 25));
+        NameOfExamLabel.setMaximumSize(new java.awt.Dimension(150, 25));
         NameOfExamLabel.setMinimumSize(new java.awt.Dimension(125, 25));
         NameOfExamLabel.setPreferredSize(new java.awt.Dimension(125, 25));
 
@@ -960,6 +960,7 @@ public class GameFrame extends javax.swing.JFrame {
         CareerPanel.setMinimumSize(new java.awt.Dimension(500, 500));
         CareerPanel.setPreferredSize(new java.awt.Dimension(500, 500));
 
+        ExamTable.setBackground(new java.awt.Color(255, 255, 204));
         ExamTable.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         ExamTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
