@@ -7,14 +7,12 @@
 package exam.booklet;
 import game.Interfaces.Initializable;
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import quests.QuestsManager;
 import quests.mediator.*;
 import quests.quest.Quests;
 import saving.Saveable;
-import unisagui.GameFrame;
 import unisagui.GuiManager;
 /**
  * This class is used due to the necessity of have a booklet for our
