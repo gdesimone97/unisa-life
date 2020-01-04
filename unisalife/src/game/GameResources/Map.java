@@ -98,7 +98,6 @@ public class Map implements Runnable {
         try {
             o = mapObjects.removeObject(p);
         } catch (Exception e) {
-            e.printStackTrace();
         }
         return o;
     }

@@ -59,7 +59,8 @@ class SavingCommand extends KeyCommand implements ActionCommand {
      */
     @Override
     public void visitLoadingState(LoadingState loadState) {
-
+        player.setVelX(0);
+        player.setVelY(0);
     }
 
     /**
