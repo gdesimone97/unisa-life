@@ -2230,7 +2230,7 @@ public class GameFrame extends javax.swing.JFrame {
     }
 
     private void AvatarOkButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AvatarOkButtonMouseClicked
-
+        
     }//GEN-LAST:event_AvatarOkButtonMouseClicked
 
     private void HintDialogKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_HintDialogKeyTyped
