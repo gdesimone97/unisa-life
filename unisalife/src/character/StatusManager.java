@@ -20,7 +20,7 @@ import unisagui.GuiManager;
  * @author mariodesio
  */
 public class StatusManager implements Saveable, Initializable {
-    
+    private int initialEnergy,initialHunger,initialStress,initialMoney;
     private final GameFrame gameframe = GameFrame.getInstance();
     private HudUpdater updater;
     private static StatusManager instance;
@@ -59,17 +59,17 @@ public class StatusManager implements Saveable, Initializable {
         GuiManager.getInstance().updateMoney(newValue);
     }
     
-    private synchronized void setEnergy(int newValue) {
+    public synchronized void setEnergy(int newValue) {
         Status.setEnergyLevel(newValue);
         GuiManager.getInstance().updateEnergyBar(newValue);
     }
     
-    private synchronized void setHunger(int newValue) {
+    public synchronized void setHunger(int newValue) {
         Status.setHungerLevel(newValue);
         GuiManager.getInstance().updateHungerBar(newValue);
     }
     
-    private synchronized void setStress(int newValue) {
+    public synchronized void setStress(int newValue) {
         Status.setStressLevel(newValue);
         GuiManager.getInstance().updateStressBar(newValue);
     }
@@ -114,10 +114,14 @@ public class StatusManager implements Saveable, Initializable {
     public void init() {
         this.updater = new HudUpdater();
         Thread up = new Thread(updater);
+        initialEnergy = Status.getEnergyLevel();
+        initialHunger = Status.getHungerLevel();
+        initialStress = Status.getStressLevel();
+        initialMoney = Status.getMoney();
         up.start();
-        setEnergy(100);
-        setHunger(0);
-        setMoney(0);
-        setStress(0);
+        setEnergy(initialEnergy);
+        setHunger(initialHunger);
+        setMoney(initialMoney);
+        setStress(initialStress);
     }
 }

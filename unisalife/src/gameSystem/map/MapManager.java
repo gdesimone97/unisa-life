@@ -19,8 +19,6 @@ import java.awt.Graphics2D;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import saving.Saveable;
 import saving.exceptions.LoadingException;
 
@@ -107,7 +105,8 @@ public class MapManager implements Initializable, Saveable {
 
     @Override
     public Serializable save() {
-        ArrayList<ConcurrentHashMap<Position, Renderable>> list = new ArrayList<>();
+        ArrayList<Object> list = new ArrayList<>();
+        list.add(0, actualMap);
         for (Map map : maps) {
             ConcurrentHashMap<Position, Renderable> objects = map.getDynamicObjects();
             list.add(objects);
@@ -117,9 +116,10 @@ public class MapManager implements Initializable, Saveable {
 
     @Override
     public void load(Serializable obj) throws LoadingException {
-        ArrayList<ConcurrentHashMap<Position, Renderable>> list = (ArrayList<ConcurrentHashMap<Position, Renderable>>) obj;
+        ArrayList<Object> list = (ArrayList<Object>) obj;
+        actualMap = (int) list.remove(0);
         for (int i = 0; i < list.size(); i++) {
-            ConcurrentHashMap<Position, Renderable> mapObject = list.get(i);
+            ConcurrentHashMap<Position, Renderable> mapObject = (ConcurrentHashMap<Position, Renderable>) list.get(i);
             mapObject.forEachValue(this.MAX_PARALLEL, value -> {
                 Renderable object = (Renderable) value;
                 try {

@@ -10,6 +10,7 @@ import database.FileNotSetException;
 import database.NoQuestsException;
 import database.ObjectNotFoundException;
 import game.Interfaces.Initializable;
+import gameSystem.EndGameState;
 import gameSystem.GameStateManager;
 import gameSystem.LoadingState;
 import gameSystem.map.MapManager;
@@ -65,7 +66,7 @@ public class QuestsManager implements QuestMessages, Initializable {
         } catch (FileNotSetException ex) {
             throw new InitException("Error loading quests");
         } catch(NoQuestsException ex){
-            GameStateManager.getInstance().setState(LoadingState.getInstance());
+            GameStateManager.getInstance().setState(EndGameState.getInstance());
         }
     }
     
