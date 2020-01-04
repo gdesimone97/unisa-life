@@ -68,7 +68,6 @@ public class HandlerInput extends KeyAdapter {
         } */
         if (cmd != null && cmd instanceof MovingCommand && (prev == cmd || prev == null)) {
             prev = cmd;
-            System.out.println(cmd);
             GameState state = stateManager.getState();
             state.handleInput(cmd);
         }
