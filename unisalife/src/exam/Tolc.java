@@ -116,13 +116,21 @@ public class Tolc implements Runnable {
         boolean passed = isPassed();
         
         try {
+            RequestGui r = new RequestGui();
             FileTextManager f = FileTextManager.getFileTextManager();
             if (passed) {
                 Booklet.getInstance().setScore(subject, 30);
                 
-//                gui.showDialog(professorName, f.getString(new MessageInformation("TolcPassedName")).get(0) + Player.getIstance().getName() + f.getString(new MessageInformation("TolcPassedName")).get(1));
-                JukeBoxSound.getInstance().play("exam_passed");
-//                gui.showDialog(professorName, f.getString(new MessageInformation("TolcPassedName")).get(2));
+                try {
+                    gui.showDialog(professorName, f.getString(new MessageInformation("TolcPassedName")).get(0) + Player.getIstance().getName() + f.getString(new MessageInformation("TolcPassedName")).get(1), r);
+                    rg.getValue();
+                    JukeBoxSound.getInstance().play("exam_passed");
+                    gui.showDialog(professorName, f.getString(new MessageInformation("TolcPassedName")).get(2), r);
+                    rg.getValue();
+                } catch (DialogManager.DialogAlreadyOpenedException ex) {
+                } catch (TextFinderException ex) {
+                    Logger.getLogger(Tolc.class.getName()).log(Level.SEVERE, null, ex);
+                }
 
                 StatusManager.getInstance().updateMoney(10);
                 

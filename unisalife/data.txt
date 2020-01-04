@@ -17,6 +17,8 @@ tilemap %3%1280%928%/Tilesets/Dormitory.png%/Maps/Dormitory.map%672%448%/MiniMap
 # 
 # Tutorial subject
 subject %tolc
+# Other subject
+subject %english
 # NP characters MAP 0
 normalperson %Secretary%864%288%/Sprites/tizia8.png %0%d
 normalperson %Christian%1600%352%/Sprites/tizio1.png %0%d
@@ -38,10 +40,10 @@ normalperson %David%864%1696%/Sprites/tizio6.png %1%d
 normalperson %Antony%960%1344%/Sprites/tizio7.png %1%d
 normalperson %Ciccio%800%1088%/Sprites/tizio8.png %1%d
 normalperson %Mary%1472%1216%/Sprites/tizia1.png %1%d
-normalperson %Sailor%1856%1216%/Sprites/tizia2.png %1%d
+normalperson %Sailor%1856%1248%/Sprites/tizia2.png %1%d
 normalperson %Fonza%1888%1216%/Sprites/tizia3.png %1%d
 normalperson %Jennifer%1472%1344%/Sprites/tizia4.png %1%d
-normalperson %Peppa%1728%1792%/Sprites/tizia5.png %1%d
+normalperson %Peppa%1728%1792%/Sprites/tizia7.png %1%d
 normalperson %Giulia%1440%1440%/Sprites/tizia6.png %1%d
 normalperson %Alexis%1024%672%/Sprites/tizia7.png %1%d
 normalperson %Hannah%1056%672%/Sprites/tizia8.png %1%d
@@ -58,10 +60,13 @@ coin %1376%448%/Sprites/coin.png%coin8 %0%d
 coin %1504%448%/Sprites/coin.png%coin9 %0%d
 # 
 # items quest tolc
-item %256%320%/Sprites/calculator.png%calcolatrice %0%d
-item %288%320%/Sprites/note.png%appunti %0%d
+item %1024%448%/Sprites/calculator.png%calcolatrice %0%d
+item %1632%448%/Sprites/note.png%appunti %0%d
 quest %0%tolc%calcolatrice%appunti
 # 
+# items quest map1
+item %1536%1600%/Sprites/englishdictionary.png%dictionary %0%d
+quest %1%english%dictionary
 # professors
 professor %Prof.Ritrovato%1824%448%/Sprites/spritetolc.png%tolc %0%d
 professor %Prof.Inglese%1728%1568%/Sprites/spritesenatoreincinta.png%english %1%d
