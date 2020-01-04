@@ -13,12 +13,23 @@ tilemap %2%320%320%/Tilesets/TilesetDefinitivo.png%/Maps/Engineering.map%0%0%/Mi
 tilemap %3%1280%928%/Tilesets/Dormitory.png%/Maps/Dormitory.map%672%448%/MiniMap/Dormitory.png
 # guardian %guardian%160%320%/Sprites/spritedormitorio.png %0%d
 # 
-# Map 0 (Tutorial) objects
+# items quest tolc
+item %1024%448%/Sprites/calculator.png%calcolatrice %0%d
+item %1632%448%/Sprites/note.png%appunti %0%d
+quest %0%tolc%calcolatrice%appunti
 # 
+# items quest english
+item %1536%1600%/Sprites/englishdictionary.png%dictionary %0%d
+quest %1%english%dictionary
+# professors
+professor %Prof.Ritrovato%1824%448%/Sprites/spritetolc.png%tolc %0%d
+professor %Prof.Inglese%1728%1568%/Sprites/spritesenatoreincinta.png%english %1%d
 # Tutorial subject
 subject %tolc
 # Other subject
 subject %english
+# 
+# Map 0 (Tutorial) objects
 #
 # NP characters
 normalperson %Secretary%864%288%/Sprites/tizia8.png %0%d
@@ -42,18 +53,6 @@ coin %704%352%/Sprites/coin.png%coin6 %0%d
 coin %1248%448%/Sprites/coin.png%coin7 %0%d
 coin %1376%448%/Sprites/coin.png%coin8 %0%d
 coin %1504%448%/Sprites/coin.png%coin9 %0%d
-# 
-# items quest tolc
-item %1024%448%/Sprites/calculator.png%calcolatrice %0%d
-item %1632%448%/Sprites/note.png%appunti %0%d
-quest %0%tolc%calcolatrice%appunti
-# 
-# items quest map1
-item %1536%1600%/Sprites/englishdictionary.png%dictionary %0%d
-quest %1%english%dictionary
-# professors
-professor %Prof.Ritrovato%1824%448%/Sprites/spritetolc.png%tolc %0%d
-professor %Prof.Inglese%1728%1568%/Sprites/spritesenatoreincinta.png%english %1%d
 # 
 # distributors
 distributor %928%224%vm17 %0%f

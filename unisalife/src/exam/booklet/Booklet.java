@@ -49,9 +49,9 @@ public class Booklet extends User implements Serializable,Saveable,Initializable
         return booklet.get(subject.getInfo()).getScore();
     }
     
-    public HashSet iteratorBooklet() {
+    public HashSet<Subject> iteratorBooklet() {
         HashSet<Subject> temp = new HashSet<>(booklet.values());
-        return (HashSet) temp;
+        return (HashSet<Subject>) temp;
     }
 
     /**
