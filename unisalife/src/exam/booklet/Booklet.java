@@ -5,11 +5,16 @@
  */
 
 package exam.booklet;
+import database.DatabaseManager;
+import database.FileNotSetException;
 import game.Interfaces.Initializable;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import quests.QuestsManager;
 import quests.mediator.*;
 import quests.quest.Quests;
@@ -135,8 +140,14 @@ public class Booklet extends User implements Serializable,Saveable,Initializable
         super.name = "booklet";
         super.mediator = QuestsManager.getInstance();
         mediator.addUser(this);
-
         this.booklet = new HashMap<>();
+        try {
+            List<Subject> subjects = DatabaseManager.getDatabaseManager().getSubjects();
+            for (Subject s : subjects)
+            this.booklet.put(s.getInfo(), s);
+        } catch (FileNotSetException ex) {
+            ex.printStackTrace();
+        }
     }
     
 }
