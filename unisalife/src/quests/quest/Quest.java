@@ -17,7 +17,6 @@ import quests.mediator.Message;
 import quests.mediator.User;
 import org.dizitart.no2.objects.Index;
 import org.dizitart.no2.objects.Indices;
-import saving.Saveable;
 
 /**
  *
@@ -63,27 +62,15 @@ public class Quest extends User implements Serializable, Storable {
     }
     
     public boolean isAvailable() {
-        
         boolean available = true;
         for (Boolean b : items.values()) {
             available = available && b;
         }
-        
         return available;
-    }
-    
-    public void finish() {
-        this.done = true;
-        this.send(new Message(this.name, true));
-        
     }
     
     public boolean isDone() {
         return this.done;
-    }
-    
-    public void setDone(boolean bool) {
-        this.done = bool;
     }
     
     @Override
@@ -124,10 +111,7 @@ public class Quest extends User implements Serializable, Storable {
     }
     
     @Override
-    public void send(Message mess) {
-        
-        this.mediator.sendMessage(mess, this);
-        
+    public void send(Message mess) {        
     }
     
     @Override

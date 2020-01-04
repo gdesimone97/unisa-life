@@ -19,6 +19,7 @@ import language.MessageInformation;
 import language.exceptions.StringNotFoundException;
 import language.exceptions.TextFinderException;
 import sound.JukeBoxSound;
+import unisagui.DialogManager;
 import unisagui.GuiManager;
 
 /**
@@ -53,8 +54,11 @@ public class TeleportEmergencyInteractionManager implements InteractionManager {
                 } catch (TextFinderException ex) {
                     Logger.getLogger(TeleportEmergencyInteractionManager.class.getName()).log(Level.SEVERE, null, ex);
                 }*/
-                
-                GuiManager.getInstance().showHint("riguardati");
+                try {
+                    GuiManager.getInstance().showHint("riguardati");
+                } catch (DialogManager.HintAlreadyOpenedException ex) {
+                    
+                }
                 JukeBoxSound.getInstance().play("wrong");
                 GameStateManager.getInstance().setState(PlayState.getInstance());
                 
