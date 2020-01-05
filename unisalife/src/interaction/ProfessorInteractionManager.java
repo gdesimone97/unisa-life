@@ -26,7 +26,8 @@ import unisagui.GuiManager;
 import unisagui.RequestGui;
 
 /**
- * InteractionManager implemented for Professor's exam process
+ * InteractionManager implemented for letting the professors in the game interact
+ * with the main character. It prints some dialogs or start the exam if it's possible
  *
  * @author 1997g
  */
@@ -35,6 +36,11 @@ public class ProfessorInteractionManager implements InteractionManager {
     public ProfessorInteractionManager() {
     }
 
+    /**
+     * Finds the subject related to that professor and checks if the exam is available or not
+     * Based on this, it can start the exam or print some tips
+     * @param obj 
+     */
     @Override
     public void execute(Interactable obj) {
         // 1. Find the subject of the exam

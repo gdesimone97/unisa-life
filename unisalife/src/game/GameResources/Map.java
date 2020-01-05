@@ -22,17 +22,13 @@ import java.util.Random;
 import java.util.concurrent.ConcurrentHashMap;
 import javax.imageio.ImageIO;
 
-/**
- *
- * @author 1997g
- */
 
 /**
  * Class map contains a tilemap tMap representing a map of the game and the list
  * mapObject that containts all the GameObjects objects that belongs to that
  * map(without considering Player. If an objects is collected by the Player, it
  * must be removed from the list.
- *
+ * @author 1997g
  */
 public class Map implements Runnable {
     
