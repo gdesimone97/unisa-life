@@ -224,9 +224,6 @@ public class Exam implements Runnable {
             ex.printStackTrace();
         }
 
-        MapManager.getInstance().startGeneratingCoins();
-
-        //SEGNARE ESAME SUL LIBRETTO
     }
 
 }

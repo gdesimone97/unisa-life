@@ -21,7 +21,8 @@ import unisagui.GuiManager;
 import unisagui.RequestGui;
 
 /**
- *
+ * This interactionManager is connected to the normal person. It implements the
+ * behaviour of a Not Playable Character in the game
  * @author 1997g
  */
 public class NormalPersonInteractionManager implements InteractionManager {
@@ -29,6 +30,10 @@ public class NormalPersonInteractionManager implements InteractionManager {
     private List<String> str;
     private GuiManager gui = GuiManager.getInstance();
 
+    /**
+     * checks what kind of person called this method and prints phrases relative to it
+     * @param obj the interactable obj to which interact
+     */
     @Override
     public void execute(Interactable obj) {
         
