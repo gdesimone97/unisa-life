@@ -155,8 +155,10 @@ public class Map implements Runnable {
         while (generateRandomCoins) {
             try {
                 // sleep a certain period of time until next coin is spawned (could be random too)
-                sleep(20 * 1000);
-
+                sleep(5 * 1000);
+                
+                System.out.println("Prima di generare coin");
+                
                 int rX = 0;
                 int rY = 0;
                 int cX;
@@ -174,6 +176,9 @@ public class Map implements Runnable {
                 // add coin in the map (if it's already present a GameObject, exception is catched and compute restarts
                 Position p = new Position(cX, cY);
                 mapObjects.addObject(p.getScaledPosition(), new Coin(p, "/Sprites/coin.png", "moneta"));
+                
+                System.out.println("Generando coins in posizione " + p);
+                System.out.println("La posizione attuale mia è " + Player.getIstance().getPosition());
             } catch (InterruptedException ex) {
             } catch (Exception ex) {
             }
