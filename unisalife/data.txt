@@ -54,18 +54,6 @@ coin %1248%448%/Sprites/coin.png%coin7 %0%d
 coin %1376%448%/Sprites/coin.png%coin8 %0%d
 coin %1504%448%/Sprites/coin.png%coin9 %0%d
 # 
-# items quest tolc
-item %1024%448%/Sprites/calculator.png%calculator %0%d
-item %1632%448%/Sprites/note.png%notes %0%d
-quest %0%tolc%calculator%notes
-# 
-# items quest map1
-item %1536%1600%/Sprites/englishdictionary.png%dictionary %0%d
-# quest %1%english%dictionary
-# professors
-professor %Prof.Ritrovato%1824%448%/Sprites/spritetolc.png%tolc %0%d
-professor %Prof.Inglese%1728%1568%/Sprites/spritesenatoreincinta.png%english %1%d
-# 
 # distributors
 distributor %928%224%vm17 %0%f
 distributor %960%224%vm18 %0%f
@@ -6531,7 +6519,10 @@ teleport %1280%1280%0%352%448%1
 # teleport
 # 
 # Map 3 (Dormitory) objects
-# 
+#
+# beds
+bed %832%384%832%448%3
+bed %864%384%832%448%3
 # blocks
 block %384%544%3%f
 block %512%480%3%f

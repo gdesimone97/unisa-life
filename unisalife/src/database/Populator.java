@@ -59,7 +59,7 @@ public class Populator {
         String line = r.readLine();
 
         while (line != null) {
-
+            
             String[] tokens = line.split(" ", 3);
             if(tokens[0].compareTo("#")!=0){
                 if (!line.matches("^(?!\\s*$).+[' ']{1}[%]{1}.*")) {
@@ -71,10 +71,12 @@ public class Populator {
 
                 StorableCreator s = CreatorsEnum.valueOf(type).getFactory();
                 Storable sitem = s.create(arguments);
-
+                try{
                 ObjectRepository repo = db.getNitriteDatabase().getRepository(sitem.getClass());
                 repo.insert(sitem);
-
+                }catch(Exception ex){
+                    ex.printStackTrace();
+                }
                 if (tokens.length == 3) {
                     //System.out.println("Ci sono 3 token");
                     StringTokenizer subst = new StringTokenizer(tokens[2], StorableCreator.DELIMETER);
@@ -119,6 +121,7 @@ public class Populator {
         //        System.out.println("Database populated");
         System.out.println(System.getProperty("user.dir"));
         new Populator("data.txt").populate();
+  
 
     }
 }
