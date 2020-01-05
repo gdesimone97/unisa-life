@@ -13,9 +13,13 @@ import gameSystem.GameStateManager;
 import gameSystem.LoadingState;
 import gameSystem.PlayState;
 import gameSystem.map.MapManager;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import language.FileTextManager;
 import language.MessageInformation;
+import language.exceptions.TextFinderException;
 import sound.JukeBoxSound;
+import unisagui.DialogManager;
 import unisagui.GuiManager;
 
 /**
@@ -44,21 +48,21 @@ public class TeleportEmergencyInteractionManager implements InteractionManager {
             System.out.println(Player.getIstance().getY());
             new Thread(() -> {
                 try {
-                    Thread.sleep(2000);
-                } catch (InterruptedException ex) {
-                }
-                /*ms = new MessageInformation("EmergencyStatus");
-                try {
-                    toShow = tm.getString(ms).get(0);
+                    try {
+                        Thread.sleep(2000);
+                    } catch (InterruptedException ex) {
+                    }
+                    
+                    toShow = tm.getString(new MessageInformation("EmergencyStatus")).get(0);
+                    
+                    GuiManager.getInstance().showHint(toShow);
+                    
+                    JukeBoxSound.getInstance().play("wrong");
+                    GameStateManager.getInstance().setState(PlayState.getInstance());
+                    
                 } catch (TextFinderException ex) {
-                    Logger.getLogger(TeleportEmergencyInteractionManager.class.getName()).log(Level.SEVERE, null, ex);
-                }*/
-                try{
-                    GuiManager.getInstance().showHint("riguardati");
+                } catch (DialogManager.HintAlreadyOpenedException ex) {
                 }
-                catch(Exception e){}
-                JukeBoxSound.getInstance().play("wrong");
-                GameStateManager.getInstance().setState(PlayState.getInstance());
                 
             }).start();
 

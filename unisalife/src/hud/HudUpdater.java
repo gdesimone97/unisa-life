@@ -5,7 +5,6 @@
  */
 package hud;
 
-import java.lang.Math;
 import character.StatusManager;
 import character.Status;
 import game.GameObjects.Position;
@@ -36,10 +35,9 @@ public class HudUpdater implements Runnable {
             energyValue = Status.getEnergyLevel();
             hungerValue = Status.getHungerLevel();
             stressValue = Status.getStressLevel();
-            delta1 = (int)(Math.random() * 3) + 1;
-            delta2 = (int)(Math.random() * 3) + 1;
-            System.out.println(delta1);
-            System.out.println(delta2);
+            delta1 = (int)(Math.random() * 2) + 1;
+            delta2 = (int)(Math.random() * 2) + 1;
+            
             
             // Updating stress
             if (energyValue == 0 || stressValue == 100){

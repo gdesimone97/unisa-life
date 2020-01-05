@@ -25,9 +25,9 @@ import sound.JukeBoxSound;
 import unisagui.*;
 
 /**
- * This class is used to do an exam of a given subject. The number of questions
- * is modifiable by changing maxLevel value and basicScore due to reach a
- * maximum of 30 point (a little overflow is admitted)
+ * This class is used to do the tolc. The number of questions is setted by
+ * the lenght of questions loaded from the file. This runnable class can be
+ * runned and allows to do an exam based session.
  *
  * @author 1997g
  */
@@ -43,11 +43,11 @@ public class Tolc implements Runnable {
     QuestionsIterator iter;
 
     /**
-     * Constructor. Given a examSubject fetches the questions.
-     *
-     * @param materia An object Materia needed to load the correct exam's
-     * questions
-     *
+     * constructor of the class
+     * @param s the subject
+     * @param profName the name of the professor
+     * @throws TextFinderException if questions are not in the file
+     * @throws game.Interfaces.Initializable.InitException if cannot be initializable
      */
     public Tolc(Subject s, String profName) throws TextFinderException, InitException {
         this.subject = s;
@@ -62,19 +62,18 @@ public class Tolc implements Runnable {
     }
 
     /**
-     * Verify if the given answer is correct and gives a score, depending on the
-     * level of the question and on the time passed before give the answer.
-     *
-     * @param answer A boolean value that indicates if the answer is or not is
-     * correct
-     * @param seconds Time passed before give the answer
-     * @param level Difficulty level of the question used to give a rising value
-     * for each answer
+     * increments the counter of right answers
+     * @param answer the boolean 
      */
     public void verifyAnswer(boolean answer) { //here the level is referred to the number of questions choosed
         count += (answer ? 1 : 0);
     }
 
+    /**
+     * this run method allows to start the tolc session. It iterates on the questions
+     * and checks if answers are correct or not. At the end, it end and gives reward
+     * and the result
+     */
     @Override
     public void run() {
         MapManager.getInstance().stopGeneratingCoins();
@@ -126,11 +125,12 @@ public class Tolc implements Runnable {
                     gui.showDialog(professorName, f.getString(new MessageInformation("TolcPassedName")).get(0) + Player.getIstance().getName() + f.getString(new MessageInformation("TolcPassedName")).get(1), r);
                     rg.getValue();
                     JukeBoxSound.getInstance().play("exam_passed");
+                    Thread.sleep(250);
                     gui.showDialog(professorName, f.getString(new MessageInformation("TolcPassedName")).get(2), r);
                     rg.getValue();
                 } catch (DialogManager.DialogAlreadyOpenedException ex) {
                 } catch (TextFinderException ex) {
-                    Logger.getLogger(Tolc.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (InterruptedException ex) {
                 }
 
                 StatusManager.getInstance().updateMoney(10);

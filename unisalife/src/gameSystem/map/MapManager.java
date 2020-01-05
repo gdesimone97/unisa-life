@@ -23,8 +23,9 @@ import saving.Saveable;
 import saving.exceptions.LoadingException;
 
 /**
- *
- * @author liovi
+ * this class manages the list of maps in the game. This class mantains all the maps
+ * and allows to set a new map or get some info about the actual map
+ * @author 1997g
  */
 public class MapManager implements Initializable, Saveable {
 
@@ -55,13 +56,25 @@ public class MapManager implements Initializable, Saveable {
     public Map getMap() {
         return maps[actualMap];
     }
-
+    
+    /**
+     * allows to change map in the list of availables
+     * @param n number of new map
+     * @throws game.Interfaces.Initializable.InitException if n is not in the bounds
+     */
     public void setMap(int n) throws InitException {
         if (n > mapNumber || n < 0) {
             throw new InitException("Map number not allowed or out of bounds");
         }
+        if(n != 1) {
+            this.maps[actualMap].stopGeneratingCoins();
+        }
         this.actualMap = n;
         MapState.getInstance().setMinimap(maps[actualMap].getPathMiniMap());
+        
+        if(n == 1) {
+            this.maps[actualMap].startGeneratingCoins();
+        }
     }
 
     public void render(Graphics2D g) {
@@ -95,10 +108,17 @@ public class MapManager implements Initializable, Saveable {
         }
     }
 
+    /**
+     * starts the creation of coins in the selected map
+     */
     public void startGeneratingCoins() {
-        this.maps[actualMap].startGeneratingCoins();
+        if(this.actualMap == 1)
+            this.maps[actualMap].startGeneratingCoins();
     }
 
+    /**
+     * stops the creation of coins in the selected map
+     */
     public void stopGeneratingCoins() {
         this.maps[actualMap].stopGeneratingCoins();
     }
@@ -133,6 +153,11 @@ public class MapManager implements Initializable, Saveable {
         }
     }
     
+    /**
+     * This method is called when a level finishes. Adds all the new objects of 
+     * the new level in the maps
+     * @param newLevel the number of the new level 
+     */
     public void setLevel(int newLevel) {
         try {
             addDynamicObjects(newLevel);

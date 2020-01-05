@@ -90,7 +90,8 @@ public class GameManager {
 
     /**
      * this method have to be called the first time we want to initialize the
-     * game and all the managers of it. It starts the game
+     * game and all the managers of it. It starts the game or closes the window
+     * if there are errors in init all managers.
      */
     public void initGame() {
 
@@ -112,7 +113,10 @@ public class GameManager {
     }
 
     /**
-     * creates and runs the Game thread
+     * creates and runs the game, while re-initializating all the managers.
+     * This method is called after the "new game" button
+     * @param skin the selected skin of the player
+     * @param Name the selected name of the player
      */
     public void startGame(int skin, String Name) {
         Thread t = new Thread(game);
@@ -164,7 +168,8 @@ public class GameManager {
     }
 
     /**
-     * main method just calls a start method on the GuiManager
+     * main method just calls a start method on the GuiManager and also, init
+     * managers that have to be initializabled befor running the game
      *
      * @param args
      */
