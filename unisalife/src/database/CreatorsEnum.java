@@ -72,6 +72,11 @@ public enum CreatorsEnum {
         public StorableCreator getFactory() {
             return new NormalPersonFactory();
         }
+    }, bed("bed"){
+        @Override
+        public StorableCreator getFactory(){
+            return new BedWrapperFactory();
+        }
     };
 
     private final String type;

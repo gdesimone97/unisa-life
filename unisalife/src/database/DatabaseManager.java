@@ -6,6 +6,7 @@
 package database;
 
 import exam.booklet.Subject;
+import game.GameObjects.Bed;
 import game.GameObjects.Block;
 import game.GameObjects.Coin;
 import game.GameObjects.Cook;
@@ -202,6 +203,11 @@ public class DatabaseManager implements Initializable {
                     Teleport t = tw.getTeleport();
                     fixed.put(t.getScaledPosition(), t);
                 }
+                // this is to get the beds
+                for (BedWrapper bw : db.getNitriteDatabase().getRepository(BedWrapper.class).find(eq("map", Integer.parseInt(id))).toList()) {
+                    Bed b = bw.getBed();
+                    fixed.put(b.getScaledPosition(), b);
+                }
             } catch (Exception ex) {
                 //ex.printStackTrace();
 
@@ -244,7 +250,7 @@ public class DatabaseManager implements Initializable {
                 maps[cMapId].getObjectManager().addObject(c.getScaledPosition(), c);
             }
         } catch (Exception ex) {
-
+            // It's not a problem if an object of this kind is not found.
         }
 
         return maps;
