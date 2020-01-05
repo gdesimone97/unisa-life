@@ -112,7 +112,8 @@ public class MapManager implements Initializable, Saveable {
      * starts the creation of coins in the selected map
      */
     public void startGeneratingCoins() {
-        this.maps[actualMap].startGeneratingCoins();
+        if(this.actualMap == 1)
+            this.maps[actualMap].startGeneratingCoins();
     }
 
     /**
