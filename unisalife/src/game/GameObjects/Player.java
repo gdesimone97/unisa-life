@@ -52,9 +52,9 @@ public class Player extends GameObject implements Tickable, Saveable {
     private Player() {
         super(new Position(0, 0));
     }
-    
-    public void setState(FaceState s){
-        this.face=s;
+
+    public void setState(FaceState s) {
+        this.face = s;
     }
 
     public FaceState getFace() {
@@ -75,7 +75,6 @@ public class Player extends GameObject implements Tickable, Saveable {
         rightWalk = right;
     }
 
-    
     public void initialize(int skin, String name, Position initialPosition) {
         BufferedImage texturePlayer[][] = null;
         nameOfPlayer = name;
@@ -215,8 +214,8 @@ public class Player extends GameObject implements Tickable, Saveable {
      */
     private void collisions(ObjectManager objMan) {
         GameObject g = objMan.getObjectInNextPosition(getScaledPosition());
-        
-        if (g != null && g instanceof Teleport) {
+
+        if (g != null && (g instanceof Teleport || g instanceof Bed)) {
             ((Interactable) g).interact();
             setVelX(0);
             setVelY(0);
@@ -224,7 +223,7 @@ public class Player extends GameObject implements Tickable, Saveable {
             g = objMan.getObjectInNextPosition(face.nextStep());
             if (g != null && g instanceof Coin) {
                 ((Interactable) g).interact();
-            } else if (g != null && !(g instanceof Teleport)) {
+            } else if (g != null && !((g instanceof Teleport) || (g instanceof Bed))) {
                 nextMove = false;
             }
         }
