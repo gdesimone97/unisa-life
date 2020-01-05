@@ -36,7 +36,6 @@ public class DialogManager {
     
     
     public void showHint(String hint) throws HintAlreadyOpenedException {
-        System.out.println("unisagui.DialogManager.showHint()");
         if (!HintAvailable)
             throw new HintAlreadyOpenedException();
         else{
@@ -78,23 +77,22 @@ public class DialogManager {
 
     
         public void showDialog(String name, String conversation, RequestGui request) throws DialogAlreadyOpenedException{
-            System.out.println("unisagui.DialogManager.showDialog()");
-        if (!DialogAvailable)
-            throw new DialogAlreadyOpenedException();
-        else{
-            if(gameframe.isShowing()){
-                this.request = request;
-                title = BorderFactory.createTitledBorder(name);
-                SwingUtilities.invokeLater(() -> gameframe.ConvDialog.setAlwaysOnTop(true));
-                SwingUtilities.invokeLater(() -> gameframe.ConversationTextArea.setBorder(title));
-                SwingUtilities.invokeLater(() -> gameframe.ConversationTextArea.setText(conversation));
-                SwingUtilities.invokeLater(() -> gameframe.ConversationScrollPane.setVisible(true));
-                SwingUtilities.invokeLater(() -> gameframe.ConvDialog.setVisible(true));
-                SwingUtilities.invokeLater(() -> gameframe.ConvDialog.setFocusable(true));
-                DialogAvailable = false;
-                GameStateManager.getInstance().setState(PauseState.getInstance());
+            if (!DialogAvailable)
+                throw new DialogAlreadyOpenedException();
+            else{
+                if(gameframe.isShowing()){
+                    this.request = request;
+                    title = BorderFactory.createTitledBorder(name);
+                    SwingUtilities.invokeLater(() -> gameframe.ConvDialog.setAlwaysOnTop(true));
+                    SwingUtilities.invokeLater(() -> gameframe.ConversationTextArea.setBorder(title));
+                    SwingUtilities.invokeLater(() -> gameframe.ConversationTextArea.setText(conversation));
+                    SwingUtilities.invokeLater(() -> gameframe.ConversationScrollPane.setVisible(true));
+                    SwingUtilities.invokeLater(() -> gameframe.ConvDialog.setVisible(true));
+                    SwingUtilities.invokeLater(() -> gameframe.ConvDialog.setFocusable(true));
+                    DialogAvailable = false;
+                    GameStateManager.getInstance().setState(PauseState.getInstance());
+                }
             }
-        }
     }
     
     public void hideDialog(){
