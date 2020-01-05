@@ -208,7 +208,7 @@ public class DatabaseManager implements Initializable {
                     Bed b = bw.getBed();
                     fixed.put(b.getScaledPosition(), b);
                 }
-            } catch (Exception ex) {
+            } catch (NumberFormatException ex) {
                 //ex.printStackTrace();
 
             }
