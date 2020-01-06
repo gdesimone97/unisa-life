@@ -331,5 +331,13 @@ public class GuiManager {
     public void updateMoney(int money) {
         hudmanager.updateMoney(money);
     }
+    
+    /**
+     * This method will update the name of the level that appears on the screen
+     * @param s 
+     */
+    public void setLevel(String s){
+       SwingUtilities.invokeLater(()-> gameframe.LevelLabel.setText(s.toUpperCase()));
+    }
 
 }

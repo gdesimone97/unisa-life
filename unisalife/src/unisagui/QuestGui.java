@@ -34,7 +34,7 @@ public class QuestGui {
         for (String s : description){
             try {
                 text += "\n" +
-                        FileTextManager.getFileTextManager().getString(new MessageInformation(s)).get(0) //non funge
+                        FileTextManager.getFileTextManager().getString(new MessageInformation(s)).get(0) 
                         + ";";
             } catch (TextFinderException ex) {
                 
