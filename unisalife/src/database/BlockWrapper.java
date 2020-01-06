@@ -11,7 +11,7 @@ import org.dizitart.no2.objects.Index;
 import org.dizitart.no2.objects.Indices;
 
 /**
- *
+ * Wrapper class to mantain a Block object and its map
  * @author christian
  */
 @Indices({

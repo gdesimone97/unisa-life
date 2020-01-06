@@ -13,7 +13,7 @@ import saving.Saveable;
 import saving.exceptions.LoadingException;
 
 /**
- *
+ * Wrapper class to mantain a Distributor object and its map 
  * @author christian
  */
 class DistributorWrapper implements Saveable, Storable {

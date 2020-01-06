@@ -6,23 +6,22 @@
 package database;
 
 import database.populator.exceptions.InvalidArgumentListException;
-import game.GameObjects.Distributor;
+import game.GameObjects.Bed;
 import game.GameObjects.Position;
 import java.util.NoSuchElementException;
 import java.util.StringTokenizer;
 
 /**
- * Storable Creator for DistributorWrapper
+ * Storable Creator for BedWrapper
  *
- * @author christian
+ * @author alfon
  */
-public class DistributorWrapperFactory extends StorableCreator {
+public class BedWrapperFactory extends StorableCreator {
 
     /**
      *
      * @param s The string that contains every field needed to construct the
-     * DistributorWrapper object that should follow the pattern
-     * %x_source%y_source%info
+     * BedWrapper object that should follow the pattern %x_source%y_source%x_dest%y_dest%map_source
      *
      * @throws InvalidArgumentListException
      */
@@ -30,9 +29,11 @@ public class DistributorWrapperFactory extends StorableCreator {
     public Storable create(String s) {
         try {
             StringTokenizer st = new StringTokenizer(s, StorableCreator.DELIMETER);
-            Distributor d = new Distributor(new Position(Integer.parseInt((st.nextToken())), Integer.parseInt(st.nextToken())), st.nextToken());
-            return d;
+            BedWrapper bw = new BedWrapper(new Bed(new Position(Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken())),
+                    new Position(Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken()))),
+                    Integer.parseInt(st.nextToken()));
 
+            return bw;
         } catch (NoSuchElementException | NumberFormatException e) {
             throw new InvalidArgumentListException();
         }

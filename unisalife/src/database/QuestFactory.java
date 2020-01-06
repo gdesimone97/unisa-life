@@ -14,7 +14,7 @@ import quests.quest.Quest;
 import quests.quest.QuestNotValidException;
 
 /**
- *
+ * Storable Creator for Quest
  * @author cmarino
  */
 public class QuestFactory extends StorableCreator {

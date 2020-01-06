@@ -5,43 +5,43 @@
  */
 package database;
 
-import game.GameObjects.Teleport;
+import game.GameObjects.Bed;
 import org.dizitart.no2.IndexType;
 import org.dizitart.no2.objects.Index;
 import org.dizitart.no2.objects.Indices;
 
 /**
- * Wrapper class to mantain a Teleport object and its map
+ * Wrapper class to mantain a Bed object and its map
  * @author alfon
  */
 @Indices({
     @Index(value = "map", type = IndexType.NonUnique)
 })
-public class TeleportWrapper implements Storable{
+public class BedWrapper implements Storable {
 
+    private Bed bed;
     private int map;
-    private Teleport t;
-    
-    private TeleportWrapper(){
-        
+
+    private BedWrapper() {
+
     }
-    
-    public TeleportWrapper(Teleport t, int map){
-        this.t = t;
+
+    public BedWrapper(Bed bed, int map) {
+        this.bed = bed;
         this.map = map;
+    }
+
+    public Bed getBed() {
+        return bed;
     }
 
     public int getMap() {
         return map;
     }
 
-    public Teleport getTeleport() {
-        return t;
-    }
-    
     @Override
     public String getIndex() {
         return Integer.toString(this.map);
     }
-    
+
 }

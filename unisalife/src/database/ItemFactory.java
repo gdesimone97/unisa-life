@@ -12,7 +12,7 @@ import java.util.NoSuchElementException;
 import java.util.StringTokenizer;
 
 /**
- *
+ * Storable Creator for Item
  * @author cmarino
  */
 public class ItemFactory extends StorableCreator {

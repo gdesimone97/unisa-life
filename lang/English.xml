@@ -233,6 +233,10 @@
 <message>Some Notes</message>
 </Item>
 
+<Item info="dictionary">
+<message>Dictionary</message>
+</Item>
+
 <Item info="coin">
 <message>Money</message>
 </Item>
