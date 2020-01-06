@@ -95,7 +95,7 @@ public class Tolc implements Runnable {
             gui.setExamQuestion(question.getQuestion());
             ArrayList<Answer> answers = question.getAnswers();
             gui.showExamDialog(this.subject.toString(), question.getQuestion(), answers.get(0).getAnswer(), answers.get(1).getAnswer(), answers.get(2).getAnswer(), answers.get(3).getAnswer(), questionTime, rg, question.getLevel(), maxLevel);
-
+            System.out.println("LA MATERIAAAA:" + this.subject.toString());
             answer = rg.getValue();
 
             //check answer

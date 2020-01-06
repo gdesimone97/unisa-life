@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <root>
 
-<Subject info="maths">
+<Subject info="Maths">
 <message>Calculus</message>
 <message>1#The area of a triangle is:#(b*h)/2#b+h#b*h+2#b/2+h/2</message>
 <message>1#Euler's number is equal to#2.7#2.8#3.14#9.81</message>
@@ -15,7 +15,7 @@
 <message>4#If f(z) is an holomorphic function defined in a simply connected space, its integral on a closed path is:#0#f(0)#Not enough information#+inf</message>
 </Subject>
 
-<Subject info="tolc">
+<Subject info="Tolc">
 <message>Tolc</message>
 <message>1#A student has 2 hours to solve a exam problem. When 75% of the time is gone, how much time is left?#30 mins#25 mins#25 mins and 45 secs#30 mins and 10 secs</message>
 <message>2#What is the next number in the following sequence: 4 16 5 25 6 36 7 49 8#64#9#16#0</message>
@@ -29,7 +29,7 @@
 <message>10#Two numbers are in ratio 4 : 6. If the sum of the numbers is 200, find the numbers.#80 and 120#100 and 150#60 and 100#95 and 105</message>
 </Subject>
 
-<Subject info="programming">
+<Subject info="Programming">
 <message>Programming</message>
 <message>1#Which C function allows you to display an output message?#printf#scanf#fopen#fclose</message>
 <message>1#Which C function allows you to take an input value from user?#scanf#printf#fclose#fopen</message>
@@ -53,7 +53,7 @@
 <message>4#What does parameter argv[0] represent in C main function when parameter argc is greater than 0?#The programm name#The path of .exe file in the File system#The path of libraries included in the programm#The path of NetBeans folder</message>
 </Subject>
 
-<Subject info="computernetwork">
+<Subject info="Computer Network">
 <message>Computer Networks</message>
 <message>1#What is Internet?#A network of interconnected computers#The set of navigable websites#The signal that comes to the home router#A fishing net to catch all the people</message>
 <message>1#How many layers does the ISO/OSI model provide?#7#4#10#2</message>
@@ -77,7 +77,7 @@
 <message>4#Which technique is used in DISTANCE VECTOR algorithms to solve (partially) the problem of addressing cycles?#Poisoned reverse#Indirect addressing#Hierarchical addressing#Addressing without classes</message>
 </Subject>
 
-<Subject info="acso">
+<Subject info="ACSO">
 <message>Calculator Architectures and Operating Systems</message>
 <message>1#What does MAR stand for?#Memory Address Register#Minimale Age Readable#Massive Address Register#Main Address Register</message>
 <message>1#A CPU which is able to carry out a thousand milion instructions per seconds would have a clock speed of:#1GHz#10GHz#1000GHz#100MHz</message>
@@ -101,7 +101,7 @@
 <message>4#How many bits do I need to cache 32 bits? Suppose you have a 2 ^ 32 bit memory and a 2 ^ 12 bit cache.#32+21=53#32#32+20=52#32+44=76</message>
 </Subject>
 
-<Subject info="telecomunications">
+<Subject info="Telecomunications">
 <message>Telecomunications</message>
 <message>1#A power signal has energy equals to:#infinity#0#1#a complex value</message>
 <message>1#A signal x(t) is said hermitian if:#x(t) = x*(-t)#x(t) = x(-t)#x(t) = -x*(-t)#A signal can't be hermitian</message>
@@ -125,7 +125,7 @@
 <message>4#The LED Life Expectancy is a typical example of:#exponential model#gaussian model#uniform model#Poisson model</message>
 </Subject>
 
-<Subject info="tisc">
+<Subject info="Tisc">
 <message>TISC</message>
 <message>1#The lowest level of CIM is:#The workshop level#Control level#Company management level#Cell supervision level </message>
 <message>1#A Plc has:#An real-time multi-tasking operating system#No operating system#No multi-tasking operating system#No I/O ports,read I/O signals by network</message>
@@ -149,7 +149,7 @@
 <message>4#How many I/O points can handle a micro-Plc?#64#128#256#32</message>
 </Subject>
 
-<Subject info="english">
+<Subject info="English">
 <message>English</message>
 <message>1#Fill the gap : I have always …………… play games well.#been able to#able#could#can</message>
 <message>1#Fill the gap : He has always …………… to do what he wanted.#been allowed#could#be able#granted</message>
@@ -173,7 +173,7 @@
 <message>4#What's the meaning of "fall down" ?#To fall to the ground#To climb a ladder#To overcome an obstacle#To jump over an obstacle</message>
 </Subject>
 
-<Subject info="electrotechnics">
+<Subject info="Electrotechnics">
 <message>Electronitechincs</message>
 <message>1#What is the unit of measurement for electric current?#Ampere#Volt#Hertz#Ohm</message>
 <message>1#What is the unit of measurement for electric resistance?#Ohm#Ampere#Volt#Coulomb</message>
@@ -197,7 +197,7 @@
 <message>4#What is the nodal analysis of an electrical circuit?#A method of determining the voltage between nodes#A method of determining the current in a node#A mathematical transform#None of the above</message>
 </Subject>
 
-<Subject info="database">
+<Subject info="Database">
 <message>Database</message>
 <message>1#DBMS stands for#Data Base Management System#Data Base Memory Storage#Document Base Memory System#Data Base Manipulation System</message>
 <message>1#A database can be defined as a:#data collection managed by a DBMS#file collection manages by a DBMS#data collection stored in some files#simple file collection</message>
@@ -219,6 +219,11 @@
 <message>4#Which of these structures is slower when looking for a row (search by primary key)?#entry-sequenced#ordered structure#hash#b-tree</message>
 <message>4#The merge-scan join requires:#equi-join, ordered tables on the given attributes#equi-join, tables stored via an hash function on the given attributes#any kind of join, but only on the ordered sequence structure#outer-join, tables ordered on the given attributes</message>
 <message>4#In the falling phase of 2 Phase Locking:#all the locks are released#all the lock are acquired#all write locks are demoted to read locks#all the read locks are promoted to write locks</message>
+</Subject> 
+
+<Subject info="Database">
+<message>Database</message>
+<message></message>
 </Subject> 
 
 <Professor info="Foggia">
@@ -330,8 +335,7 @@
 <MessageInformation info="TutorialFrasi">
 <message>Hello, </message>
 <message>. It's a plesaure to meet you!</message>
-<message>It seems you chose to become a computer engineer...</message>
-<message>... well, let's start with some fundamentals. </message>
+<message>It seems you chose to become a computer engineer... let's start with some fundamentals.</message>
 <message>Your main goal is to pick up items from the map in order to be able to take exams later.</message>
 <message>Use the keys W,A,S,D to move around the map</message>
 <message>The map can be very big and you can easely loose yourself, press M to show the map in order to orientate.</message>
@@ -340,8 +344,7 @@
 <message>Pressing SPACEBAR you can also interact with the characters you can find on the map, doing so with professors will start an exam if it's possible.</message>
 <message>To track down your progress and know the exams to take click on the QUEST panel.</message>
 <message>As in the real life, taking exams could be really stressing, feel free to take a break! Press P to pause the game.</message>
-<message>It seems you're ready to start your adventure...</message>
-<message>... well, good luck for your brilliant career!</message>
+<message>It seems you're ready to start your adventure... well, good luck for your brilliant career!</message>
 </MessageInformation>
 
 <MessageInformation info="RandomPeople">
