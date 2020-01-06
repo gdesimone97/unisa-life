@@ -6492,8 +6492,8 @@ block %1856%928%1%f
 block %1024%928%1%f
 # 
 # teleport to engineering
-teleport %1216%1280%2%0%0%1
-teleport %1248%1280%2%0%0%1
+teleport %1216%1280%2%768%1344%1
+teleport %1248%1280%2%800%1344%1
 # 
 # teleport to dormitory
 teleport %672%1504%3%672%448%1
@@ -6507,26 +6507,26 @@ teleport %704%1504%3%672%448%1
 # 
 # distributors
 distributor %928%608%vm21 %2%f
-distributor %736%448%vm22 %2%f
-distributor %768%448%vm23 %2%f
-distributor %800%448%vm24 %2%f
-distributor %832%448%vm25 %2%f
-distributor %1376%448%vm26 %2%f
-distributor %1408%448%vm27 %2%f
-distributor %1440%448%vm28 %2%f
-distributor %1472%448%vm29 %2%f
-distributor %1600%448%vm30 %2%f
-distributor %1568%448%vm31 %2%f
-distributor %1536%448%vm32 %2%f
-distributor %1504%448%vm33 %2%f
-distributor %1600%704%vm34 %2%f
-distributor %1568%704%vm35 %2%f
-distributor %1536%704%vm36 %2%f
-distributor %1504%704%vm37 %2%f
-distributor %1472%704%vm38 %2%f
-distributor %1440%704%vm39 %2%f
-distributor %1408%704%vm40 %2%f
-distributor %1376%704%vm41 %2%f
+distributor %736%416%vm22 %2%f
+distributor %768%416%vm23 %2%f
+distributor %800%416%vm24 %2%f
+distributor %832%416%vm25 %2%f
+distributor %1376%416%vm26 %2%f
+distributor %1408%416%vm27 %2%f
+distributor %1440%416%vm28 %2%f
+distributor %1472%416%vm29 %2%f
+distributor %1600%416%vm30 %2%f
+distributor %1568%416%vm31 %2%f
+distributor %1536%416%vm32 %2%f
+distributor %1504%416%vm33 %2%f
+distributor %1504%672%vm34 %2%f
+distributor %1536%672%vm35 %2%f
+distributor %1568%672%vm36 %2%f
+distributor %1600%672%vm37 %2%f
+distributor %1472%672%vm38 %2%f
+distributor %1440%672%vm39 %2%f
+distributor %1408%672%vm40 %2%f
+distributor %1376%672%vm41 %2%f
 # 
 # blocks
 block %384%1248%2%f
@@ -11275,22 +11275,10 @@ block %800%384%2%f
 block %768%384%2%f
 block %736%384%2%f
 block %704%384%2%f
-block %736%416%2%f
-block %768%416%2%f
-block %800%416%2%f
-block %832%416%2%f
-block %1472%416%2%f
-block %1440%416%2%f
-block %1408%416%2%f
-block %1376%416%2%f
 block %1376%384%2%f
 block %1408%384%2%f
 block %1440%384%2%f
 block %1472%384%2%f
-block %1600%416%2%f
-block %1568%416%2%f
-block %1536%416%2%f
-block %1504%416%2%f
 block %1504%384%2%f
 block %1536%384%2%f
 block %1568%384%2%f
@@ -11459,26 +11447,18 @@ block %1152%672%2%f
 block %1184%672%2%f
 block %1152%640%2%f
 block %1152%768%2%f
-block %1376%672%2%f
-block %1408%672%2%f
-block %1440%672%2%f
-block %1472%672%2%f
 block %1472%640%2%f
 block %1440%640%2%f
 block %1408%640%2%f
 block %1376%640%2%f
-block %1504%672%2%f
-block %1536%672%2%f
-block %1568%672%2%f
-block %1600%672%2%f
 block %1600%640%2%f
 block %1568%640%2%f
 block %1536%640%2%f
 block %1504%640%2%f
 # 
-# teleport
-teleport %768%1376%1%1216%1216%2
-teleport %800%1376%1%1248%1216%2
+# teleport to Main map
+teleport %768%1376%1%1184%1344%2
+teleport %800%1376%1%1216%1344%2
 # 
 # beds
 bed %1216%480%1184%480%2

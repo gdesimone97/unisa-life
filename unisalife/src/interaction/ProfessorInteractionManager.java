@@ -18,6 +18,7 @@ import java.util.List;
 import language.FileTextManager;
 import language.MessageInformation;
 import language.exceptions.TextFinderException;
+import quests.quest.Quest;
 import quests.quest.Quests;
 import saving.SaveManager;
 import saving.exceptions.SavingException;
@@ -53,7 +54,8 @@ public class ProfessorInteractionManager implements InteractionManager {
 
             // 2. verifica idonietà e requisiti
             try {
-                if (Quests.getInstance().getQuest(s.getInfo()).isDone()) {
+                Quest q = Quests.getInstance().getQuest(s.getInfo());
+                if (q != null && q.isDone()) {
                     try {
                         GuiManager.getInstance().showDialog(p.getNome(), FileTextManager.getFileTextManager().getString(new MessageInformation("ExamAlreadyDone")).get(0), rg);
                         rg.getValue();

@@ -39,18 +39,19 @@ public class Quest extends User implements Serializable, Storable {
     
     public Quest(int level, Subject subject) throws QuestNotValidException {
         super();
-        this.level = level;
         super.name = subject.getInfo();
         super.mediator = QuestsManager.getInstance();
         mediator.addUser(this);
         
+        this.subject = subject;
+        this.items = new HashMap<>();
+        this.done = false;
+        this.level = level;
         if (level < 0) {
             throw new QuestNotValidException("The level you entered is not a positive integer");
         }
         
-        this.subject = subject;
-        this.items = new HashMap<>();
-        this.done = false;
+        
     }
     
     public void putItem(String item) {
