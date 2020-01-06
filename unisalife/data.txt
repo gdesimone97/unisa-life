@@ -14,9 +14,9 @@ tilemap %3%1280%928%/Tilesets/Dormitory.png%/Maps/Dormitory.map%672%448%/MiniMap
 # guardian %guardian%160%320%/Sprites/spritedormitorio.png %0%d
 # 
 # items quest tolc
-item %1024%448%/Sprites/calculator.png%calcolatrice %0%d
-item %1632%448%/Sprites/note.png%appunti %0%d
-quest %0%tolc%calcolatrice%appunti
+item %1024%448%/Sprites/calculator.png%calculator %0%d
+item %1632%448%/Sprites/note.png%notes %0%d
+quest %0%tolc%calculator%notes
 # 
 # items quest english
 item %1536%1600%/Sprites/englishdictionary.png%dictionary %1%d

@@ -22,6 +22,8 @@ yes
 /Sound/Yes.mp3
 no
 /Sound/No.mp3
+snoring
+/Sound/Snoring.mp3
 
 
 

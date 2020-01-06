@@ -11,6 +11,7 @@ import exam.booklet.Subject;
 import exam.question.*;
 import game.GameObjects.Player;
 import game.GameObjects.Position;
+import game.GameObjects.Professor;
 import game.GameObjects.Teleport;
 import game.GameResources.Map;
 import game.Interfaces.Initializable.InitException;
@@ -41,6 +42,7 @@ public class Tolc implements Runnable {
     private int count;
     private final int maxLevel;
     QuestionsIterator iter;
+    private final Professor professor;
 
     /**
      * constructor of the class
@@ -49,7 +51,7 @@ public class Tolc implements Runnable {
      * @throws TextFinderException if questions are not in the file
      * @throws game.Interfaces.Initializable.InitException if cannot be initializable
      */
-    public Tolc(Subject s, String profName) throws TextFinderException, InitException {
+    public Tolc(Subject s, Professor p) throws TextFinderException, InitException {
         this.subject = s;
         QuestionFactory questionsFetch = new StringsQuestionFactory(subject);
         this.count = 0;
@@ -58,7 +60,8 @@ public class Tolc implements Runnable {
         this.questions = questionsFetch.getQuestions();
         this.maxLevel = this.questions.getNumLevels();
         this.iter = questions.iterator();
-        this.professorName = profName;
+        this.professor = p;
+        this.professorName = p.getNome();
     }
 
     /**
@@ -84,18 +87,12 @@ public class Tolc implements Runnable {
         int answer;
         boolean correctness;
 
-        try {
-            gui.showDialog(professorName, FileTextManager.getFileTextManager().getString(new MessageInformation("TolcPassedName")).get(2));
-        } catch (Exception ex) {
-        }
-
         while (iter.hasNext()) {
             //print question
             question = iter.next();
             gui.setExamQuestion(question.getQuestion());
             ArrayList<Answer> answers = question.getAnswers();
             gui.showExamDialog(this.subject.toString(), question.getQuestion(), answers.get(0).getAnswer(), answers.get(1).getAnswer(), answers.get(2).getAnswer(), answers.get(3).getAnswer(), questionTime, rg, question.getLevel(), maxLevel);
-
             answer = rg.getValue();
 
             //check answer
@@ -119,21 +116,18 @@ public class Tolc implements Runnable {
             RequestGui r = new RequestGui();
             FileTextManager f = FileTextManager.getFileTextManager();
             if (passed) {
-                Booklet.getInstance().setScore(subject, 30);
-
                 try {
-                    gui.showDialog(professorName, f.getString(new MessageInformation("TolcPassedName")).get(0) + Player.getIstance().getName() + f.getString(new MessageInformation("TolcPassedName")).get(1), r);
-                    rg.getValue();
                     JukeBoxSound.getInstance().play("exam_passed");
+                    gui.showDialog(professorName, f.getString(new MessageInformation("TolcPassedName")).get(0) + Player.getIstance().getName() + f.getString(new MessageInformation("TolcPassedName")).get(1), r);
+                    r.getValue();
                     Thread.sleep(250);
                     gui.showDialog(professorName, f.getString(new MessageInformation("TolcPassedName")).get(2), r);
-                    rg.getValue();
+                    r.getValue();
                 } catch (DialogManager.DialogAlreadyOpenedException ex) {
                 } catch (TextFinderException ex) {
                 } catch (InterruptedException ex) {
                 }
 
-                StatusManager.getInstance().updateMoney(10);
 
                 // add the 2 teleports after tolc completed
                 Position destPosition = new Position(32, 32);
@@ -142,6 +136,12 @@ public class Tolc implements Runnable {
                 map.addFixedObject(p1.getScaledPosition(), new Teleport(p1, 0, destPosition));
                 p1 = new Position(1984, 352);
                 map.addFixedObject(p1.getScaledPosition(), new Teleport(p1, 0, destPosition));
+                
+                
+                // remove professor
+                map.removeObject(professor.getPosition().getScaledPosition());
+                
+                Booklet.getInstance().setScore(subject, 30);
             } else {
                 try {
                     gui.showDialog(professorName, f.getString(new MessageInformation("TolcFailedName")).get(0) + Player.getIstance().getName() + f.getString(new MessageInformation("TolcFailedName")).get(1), r);

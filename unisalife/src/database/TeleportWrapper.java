@@ -11,7 +11,7 @@ import org.dizitart.no2.objects.Index;
 import org.dizitart.no2.objects.Indices;
 
 /**
- *
+ * Wrapper class to mantain a Teleport object and its map
  * @author alfon
  */
 @Indices({

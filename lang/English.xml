@@ -156,7 +156,7 @@
 <message>1#Fill the gap : One cannot help but …………….. his courage.#admire#to admire#show#to show</message>
 <message>1#Fill the gap : …………… do you want a holiday?#How much#How many#How far#How</message>
 <message>1#Fill the gap :  I will have tea …………… coffee.#instead of#instead#indeeed#without</message>
-<message>2#A synonim of "speed" is :#slowness#fast#velocity#</message>
+<message>2#A synonim of "speed" is :#velocity#slowness#fast#spritz</message>
 <message>2#A synonim of "able" is :#skilled#useless#approximative#unable</message>
 <message>2#A synonim of "risk" is :#danger#saefty#safe#wisdom</message>
 <message>2#A synonim of "fire" is :#flames#waterfall#smoke#fall</message>
@@ -221,6 +221,11 @@
 <message>4#In the falling phase of 2 Phase Locking:#all the locks are released#all the lock are acquired#all write locks are demoted to read locks#all the read locks are promoted to write locks</message>
 </Subject> 
 
+<Subject info="physics">
+<message>Physics</message>
+<message></message>
+</Subject> 
+
 <Professor info="Foggia">
 <message>Are you ready?</message>
 </Professor>
@@ -231,6 +236,10 @@
 
 <Item info="notes">
 <message>Some Notes</message>
+</Item>
+
+<Item info="dictionary">
+<message>Dictionary</message>
 </Item>
 
 <Item info="coin">
@@ -326,8 +335,7 @@
 <MessageInformation info="TutorialFrasi">
 <message>Hello, </message>
 <message>. It's a plesaure to meet you!</message>
-<message>It seems you chose to become a computer engineer...</message>
-<message>... well, let's start with some fundamentals. </message>
+<message>It seems you chose to become a computer engineer... let's start with some fundamentals.</message>
 <message>Your main goal is to pick up items from the map in order to be able to take exams later.</message>
 <message>Use the keys W,A,S,D to move around the map</message>
 <message>The map can be very big and you can easely loose yourself, press M to show the map in order to orientate.</message>
@@ -336,8 +344,7 @@
 <message>Pressing SPACEBAR you can also interact with the characters you can find on the map, doing so with professors will start an exam if it's possible.</message>
 <message>To track down your progress and know the exams to take click on the QUEST panel.</message>
 <message>As in the real life, taking exams could be really stressing, feel free to take a break! Press P to pause the game.</message>
-<message>It seems you're ready to start your adventure...</message>
-<message>... well, good luck for your brilliant career!</message>
+<message>It seems you're ready to start your adventure... well, good luck for your brilliant career!</message>
 </MessageInformation>
 
 <MessageInformation info="RandomPeople">

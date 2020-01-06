@@ -12,11 +12,20 @@ import java.util.NoSuchElementException;
 import java.util.StringTokenizer;
 
 /**
+ * Storable Creator for Block Wrapper
  *
  * @author christian
  */
 class BlockWrapperFactory extends StorableCreator {
 
+    /**
+     *
+     * @param s The string that contains every field needed to construct the BlockWrapper
+     * object that should follow the pattern
+     * %x_source%y_source%map_source
+     *
+     * @throws InvalidArgumentListException
+     */
     @Override
     public Storable create(String s) {
         try {

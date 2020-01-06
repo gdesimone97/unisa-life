@@ -57,7 +57,7 @@ public class Populator {
         QuestsManager.getInstance().init();
         BufferedReader r = new BufferedReader(new FileReader(filepath));
         String line = r.readLine();
-
+        
         while (line != null) {
             
             String[] tokens = line.split(" ", 3);
@@ -71,12 +71,8 @@ public class Populator {
 
                 StorableCreator s = CreatorsEnum.valueOf(type).getFactory();
                 Storable sitem = s.create(arguments);
-                try{
                 ObjectRepository repo = db.getNitriteDatabase().getRepository(sitem.getClass());
                 repo.insert(sitem);
-                }catch(Exception ex){
-                    ex.printStackTrace();
-                }
                 if (tokens.length == 3) {
                     //System.out.println("Ci sono 3 token");
                     StringTokenizer subst = new StringTokenizer(tokens[2], StorableCreator.DELIMETER);

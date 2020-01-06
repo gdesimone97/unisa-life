@@ -16,6 +16,7 @@ import gameSystem.PlayState;
 import gameSystem.SleepState;
 import hud.change.DormitoryHudBarChange;
 import hud.change.HudBarChange;
+import sound.JukeBoxSound;
 
 /**
  * the interaction manager used when the player goes to sleep
@@ -34,6 +35,7 @@ public class BedInteractionManager implements InteractionManager {
             Player.getIstance().setState(DownFaceState.getInstance());
             Player.getIstance().setX(b.getDestPosition().getX());    
             Player.getIstance().setY(b.getDestPosition().getY());
+            JukeBoxSound.getInstance().play("snoring");
             new Thread(() -> {
                 try {
                     Thread.sleep(2000);

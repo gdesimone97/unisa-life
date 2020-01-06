@@ -6,7 +6,10 @@
 package unisagui;
 
 import java.util.Set;
+
 import language.FileTextManager;
+import language.MessageInformation;
+import language.exceptions.TextFinderException;
 
 /**
  *
@@ -29,9 +32,13 @@ public class QuestGui {
     public String getDescription() {
         String text = "";
         for (String s : description){
-            text += "\n" +
-                    //FileTextManager.getFileTextManager().getString(new MessageInformation(s)).get(0)
-                    s + ";";
+            try {
+                text += "\n" +
+                        FileTextManager.getFileTextManager().getString(new MessageInformation(s)).get(0) 
+                        + ";";
+            } catch (TextFinderException ex) {
+                
+            }
         }
         return text;
     }

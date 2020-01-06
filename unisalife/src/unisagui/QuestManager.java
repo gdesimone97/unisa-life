@@ -28,15 +28,7 @@ public class QuestManager {
         
     }
     
-    /*public void updateQuestDialog(){
-        int count = 0;
-        SwingUtilities.invokeLater(() -> gameframe.listModel.removeAllElements());
-        quests = new HashMap<>();
-        for (Quest q : Quests.getInstance().getQuests().values()){
-            quests.put(count, new QuestGui(q.getSubject().toString(),q.getItemList().toString()));
-             SwingUtilities.invokeLater(() -> gameframe.listModel.add(count, q.getSubject().toString()));
-        }
-    }*/
+
     
     
     //---------------------------QUESTA QUANDO FUNZIONERA' IL DB---------------------------------
