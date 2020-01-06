@@ -22,20 +22,16 @@ import java.util.Random;
 import java.util.concurrent.ConcurrentHashMap;
 import javax.imageio.ImageIO;
 
-/**
- *
- * @author 1997g
- */
 
 /**
  * Class map contains a tilemap tMap representing a map of the game and the list
  * mapObject that containts all the GameObjects objects that belongs to that
  * map(without considering Player. If an objects is collected by the Player, it
  * must be removed from the list.
- *
+ * @author 1997g
  */
 public class Map implements Runnable {
-
+    
     private TileMap tMap;
     private ObjectManager mapObjects;
     private String pathMiniMap;
@@ -63,13 +59,8 @@ public class Map implements Runnable {
         this.pathMiniMap=pathMiniMap;
     }
     
-    public BufferedImage getMiniMap() throws Initializable.InitException{
-        
-        try {
-            return ImageIO.read(getClass().getResource(pathMiniMap));
-        } catch (IOException ex) {
-            throw new Initializable.InitException("Can't find Map image");
-        }
+    public String getPathMiniMap() {
+        return pathMiniMap;
     }
 
     /**
@@ -81,7 +72,13 @@ public class Map implements Runnable {
         try {
             mapObjects.addObject(p, g);
         } catch (Exception e) {
-            System.exit(-1);
+        }
+    }
+    
+    public void addFixedObject(Position p, GameObject g) {
+        try {
+            mapObjects.addFixedObject(p, g);
+        } catch (Exception e) {
         }
     }
 
@@ -97,7 +94,6 @@ public class Map implements Runnable {
         try {
             o = mapObjects.removeObject(p);
         } catch (Exception e) {
-            e.printStackTrace();
         }
         return o;
     }
@@ -159,8 +155,10 @@ public class Map implements Runnable {
         while (generateRandomCoins) {
             try {
                 // sleep a certain period of time until next coin is spawned (could be random too)
-                sleep(20 * 1000);
-
+                sleep(5 * 1000);
+                
+                System.out.println("Prima di generare coin");
+                
                 int rX = 0;
                 int rY = 0;
                 int cX;
@@ -178,6 +176,9 @@ public class Map implements Runnable {
                 // add coin in the map (if it's already present a GameObject, exception is catched and compute restarts
                 Position p = new Position(cX, cY);
                 mapObjects.addObject(p.getScaledPosition(), new Coin(p, "/Sprites/coin.png", "moneta"));
+                
+                System.out.println("Generando coins in posizione " + p);
+                System.out.println("La posizione attuale mia è " + Player.getIstance().getPosition());
             } catch (InterruptedException ex) {
             } catch (Exception ex) {
             }
@@ -185,7 +186,7 @@ public class Map implements Runnable {
     }
 
     public void addDynamicObjects(ConcurrentHashMap<Position, Renderable> dynamic) {
-        mapObjects.setDynamic(dynamic);
+        mapObjects.mergeDynamic(dynamic);
     }
 
     public Position getInitialPosition() {

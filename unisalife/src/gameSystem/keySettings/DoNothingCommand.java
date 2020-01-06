@@ -5,6 +5,7 @@
  */
 package gameSystem.keySettings;
 
+import gameSystem.EndGameState;
 import gameSystem.keySettings.interfaces.KeyCommand;
 import gameSystem.LoadingState;
 import gameSystem.MapState;
@@ -43,6 +44,8 @@ public class DoNothingCommand extends KeyCommand {
      */
     @Override
     public void visitLoadingState(LoadingState loadState) {
+        player.setVelX(0);
+        player.setVelY(0);
     }
 
     /**
@@ -51,6 +54,14 @@ public class DoNothingCommand extends KeyCommand {
      */
     @Override
     public void visitMapState(MapState mapState) {
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     */
+    @Override
+    public void visitEndGameState(EndGameState endGamestate) {
     }
 
 }

@@ -13,7 +13,7 @@ public interface Initializable {
 
     public void init() throws InitException;
 
-    public class InitException extends Exception {
+    public class InitException extends RuntimeException {
         private String error;
         
         public InitException(String error) {

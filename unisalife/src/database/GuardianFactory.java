@@ -12,11 +12,19 @@ import java.util.NoSuchElementException;
 import java.util.StringTokenizer;
 
 /**
+ * Storable Creator for Guardian
  *
  * @author christian
  */
 public class GuardianFactory extends StorableCreator {
 
+    /**
+     *
+     * @param s The string that contains every field needed to construct the
+     * Guardian object that should follow the pattern %name%x_source%y_source%pah
+     *
+     * @throws InvalidArgumentListException
+     */
     @Override
     public Storable create(String s) {
         StringTokenizer st = new StringTokenizer(s, StorableCreator.DELIMETER);
