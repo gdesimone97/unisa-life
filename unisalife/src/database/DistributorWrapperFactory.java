@@ -12,11 +12,20 @@ import java.util.NoSuchElementException;
 import java.util.StringTokenizer;
 
 /**
+ * Storable Creator for DistributorWrapper
  *
  * @author christian
  */
 public class DistributorWrapperFactory extends StorableCreator {
 
+    /**
+     *
+     * @param s The string that contains every field needed to construct the
+     * DistributorWrapper object that should follow the pattern
+     * %x_source%y_source%info
+     *
+     * @throws InvalidArgumentListException
+     */
     @Override
     public Storable create(String s) {
         try {

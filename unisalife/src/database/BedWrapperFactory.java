@@ -12,12 +12,20 @@ import java.util.NoSuchElementException;
 import java.util.StringTokenizer;
 
 /**
+ * Storable Creator for BedWrapper
  *
  * @author alfon
  */
 public class BedWrapperFactory extends StorableCreator {
-    
-        @Override
+
+    /**
+     *
+     * @param s The string that contains every field needed to construct the
+     * BedWrapper object that should follow the pattern %x_source%y_source%x_dest%y_dest%map_source
+     *
+     * @throws InvalidArgumentListException
+     */
+    @Override
     public Storable create(String s) {
         try {
             StringTokenizer st = new StringTokenizer(s, StorableCreator.DELIMETER);

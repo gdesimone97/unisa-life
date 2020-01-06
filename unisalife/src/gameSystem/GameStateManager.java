@@ -50,6 +50,7 @@ public class GameStateManager implements Initializable {
         PlayState.getInstance().init();
         PauseState.getInstance().init();
         EndGameState.getInstance().init();
+        SleepState.getInstance().init();
         gs = LoadingState.getInstance();
     }
 }

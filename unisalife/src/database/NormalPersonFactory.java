@@ -13,10 +13,19 @@ import java.util.StringTokenizer;
 
 /**
  * Factory for Normal Person, to be inserted in the database
+ *
  * @author alfon
  */
 public class NormalPersonFactory extends StorableCreator {
-    
+
+    /**
+     *
+     * @param s The string that contains every field needed to construct the
+     * Normal Person object that should follow the pattern
+     * %name%x_source%y_source%pah
+     *
+     * @throws InvalidArgumentListException
+     */
     @Override
     public Storable create(String s) {
         StringTokenizer st = new StringTokenizer(s, StorableCreator.DELIMETER);

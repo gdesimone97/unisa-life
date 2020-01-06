@@ -276,7 +276,6 @@ public class SettingsManager implements Saveable, Initializable {
         try {
             SaveManager.getSaveManager().loadKeys();
         } catch (LoadingException ex) {
-            System.out.println(ex.getMessage());
             defaultInit();
         }
     }
