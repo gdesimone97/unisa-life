@@ -6,7 +6,7 @@
 package database;
 
 /**
- * Exception raised when the database is used but the path for its file hasn't been provided
+ *
  * @author alfon
  */
 public class FileNotSetException extends Exception {
@@ -15,7 +15,7 @@ public class FileNotSetException extends Exception {
     }
 
     FileNotSetException(String no_filename_specified) {
-        
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

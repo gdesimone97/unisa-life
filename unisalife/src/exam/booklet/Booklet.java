@@ -5,18 +5,15 @@
  */
 
 package exam.booklet;
-import database.DatabaseManager;
-import database.FileNotSetException;
 import game.Interfaces.Initializable;
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import quests.QuestsManager;
 import quests.mediator.*;
 import quests.quest.Quests;
 import saving.Saveable;
-import unisagui.GuiManager;
 /**
  * This class is used due to the necessity of have a booklet for our
  * character.
@@ -49,9 +46,11 @@ public class Booklet extends User implements Serializable,Saveable,Initializable
         return booklet.get(subject.getInfo()).getScore();
     }
     
-    public HashSet<Subject> iteratorBooklet() {
+    public HashSet iteratorBooklet() {
         HashSet<Subject> temp = new HashSet<>(booklet.values());
-        return (HashSet<Subject>) temp;
+
+        return (HashSet) temp;
+
     }
 
     /**
@@ -65,10 +64,6 @@ public class Booklet extends User implements Serializable,Saveable,Initializable
         return booklet.get(subject.getInfo()).isAvailable();
     }
     
-    public Subject getSubject(String subject){
-        return this.booklet.get(subject);
-    }
-    
     /**
      * This method allows to set a score to the exam and make it no longer
      * available
@@ -79,9 +74,8 @@ public class Booklet extends User implements Serializable,Saveable,Initializable
     public void setScore(Subject subject, int score){
         subject.setScore(score);
         subject.setAvailable(false);
-        booklet.put(subject.getInfo(), subject);
-        this.send(new Message(subject.getInfo(),true));
-        GuiManager.getInstance().updateCareer();
+        
+        Quests.getInstance().getQuest(subject.getInfo()).finish();
     }
     
     /**
@@ -140,16 +134,8 @@ public class Booklet extends User implements Serializable,Saveable,Initializable
         super.name = "booklet";
         super.mediator = QuestsManager.getInstance();
         mediator.addUser(this);
+
         this.booklet = new HashMap<>();
-        try {
-            List<Subject> subjects = DatabaseManager.getDatabaseManager().getSubjects();
-            subjects.forEach((s) -> {
-                this.booklet.put(s.getInfo(), s);
-            });
-            GuiManager.getInstance().updateCareer();
-        } catch (FileNotSetException ex) {
-            //ex.printStackTrace();
-        }
     }
     
 }

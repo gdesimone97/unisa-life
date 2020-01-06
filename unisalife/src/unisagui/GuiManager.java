@@ -87,21 +87,10 @@ public class GuiManager {
      * When called the Conversation Area appears  on the screen
      * @param name is the name of the person who is talking
      * @param s is the text in the text area
-     * @throws unisagui.DialogManager.DialogAlreadyOpenedException if Dialog is already shown 
      * 
      */
-    public void showDialog(String name,String s) throws DialogManager.DialogAlreadyOpenedException {
-        dialogmanager.showDialog(name,s,null);
-    }
-    /**
-     * When called the Conversation Area appears on the screen
-     * @param name 
-     * @param conversation
-     * @param request is the request that will be updated when the conversation area is closed
-     * @throws unisagui.DialogManager.DialogAlreadyOpenedException 
-     */
-    public void showDialog(String name, String conversation, RequestGui request) throws DialogManager.DialogAlreadyOpenedException{
-         dialogmanager.showDialog(name, conversation, request);
+    public void showDialog(String name,String s) {
+        dialogmanager.showDialog(name,s);
     }
     /**
      * When called the Conversation Area disappears
@@ -112,9 +101,8 @@ public class GuiManager {
     /**
      * When called the Hint Area appears on the screen
      * @param s is the text of the hint
-     * @throws unisagui.DialogManager.HintAlreadyOpenedException if Hint is already shown
      */
-    public void showHint(String s) throws DialogManager.HintAlreadyOpenedException{
+    public void showHint(String s){
         dialogmanager.showHint(s);
     }
     /**
@@ -122,14 +110,6 @@ public class GuiManager {
      */
     public void hideHint(){
         dialogmanager.hideHint();
-    }
-    
-    public boolean isHintAvailable(){
-        return dialogmanager.isHintAvailable();
-    }
-
-    public boolean isDialogAvailable() {
-        return dialogmanager.isDialogAvailable();
     }
     
     /**
@@ -149,8 +129,7 @@ public class GuiManager {
      * This method requires  all the methods useful for updating the interface relative
      * to the exam
      */
-     public void showExamDialog(String examName, String question, String answer1, String answer2, String answer3,
-                                String answer4, int time, ResultGui lock,int level,int numLevel) {
+     public void showExamDialog(String examName, String question, String answer1, String answer2, String answer3, String answer4, int time, ResultGui lock,int level,int numLevel) {
         exammanager.showExamDialog(examName, question, answer1, answer2, answer3, answer4, time, lock,level,numLevel);
     }
     /**
@@ -226,35 +205,15 @@ public class GuiManager {
     public void showCareerDialog(boolean show) {
         careermanager.showCareerDialog(show);
     }
-    
-    /**
-     * this method update the Booklet of the gui
-     */
-    public void updateCareer(){
-         gameframe.setCareer();
-        
-    }
 
     /**
      * When called a JDialog with the Career appears or disappears on the screen
      *
+     * @param show if true the JDialog appears, if false disappears
      */
-    public void showQuestDialog() {
-        questmanager.showQuestDialog();
+    public void showQuestDialog(boolean show) {
+        questmanager.showQuestDialog(show);
     }
-    
-    public void hideQuestDialog() {
-        questmanager.hideQuestDialog();
-    }
-    
-    public void showDescription(int x){
-        questmanager.showDescription(x);
-    }
-    
-     public void hideDescription(){
-        questmanager.hideDescription();
-    }
-    
 
     /**
      * When called a JDialog with the Request appears or disappears on the
@@ -271,16 +230,19 @@ public class GuiManager {
      * When called the JDialog with the quests is update with the new quest or
      * the quest is deleted.
      *
+     * @param quest is the quest to isert or delete
+     * @param presence if true the quest is added, if false is deleted
      */
-    public void updateQuestDialog(){
-        questmanager.updateQuestDialog();
-    }
+    /*public void updateQuestDialog(Quest quest, boolean presence){
+        questmanager.updateQuestDialog(quest, presence);
+    }*/
     
     /**
      * When called the Inventory Diaog is updated
      */
     public void updateInventoryDialog(){
         inventorymanager.updateInventoryDialog();
+        System.out.println("unisagui.GuiManager.updateInventoryDialog()");
     }
  /*
     public void updateInventoryDialog(Item item, int position, boolean presence){

@@ -7,9 +7,9 @@ package saving.exceptions;
 
 /**
  *
- * @author Giuseppe De Simone
+ * @author desio
  */
-public class SavingException extends RuntimeException {
+public class SavingException extends Exception {
 
     /**
      * Creates a new instance of <code>SavingException</code> without detail

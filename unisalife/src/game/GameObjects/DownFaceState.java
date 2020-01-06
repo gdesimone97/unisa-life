@@ -6,34 +6,37 @@
 package game.GameObjects;
 import gameSystem.Game;
 import java.awt.Graphics;
-
+import java.awt.Rectangle;
 /**
  *
  * @author simon
  */
 public class DownFaceState extends FaceState{
-    private static DownFaceState instance;
-   
-    private DownFaceState(){
+    public DownFaceState(Player player){
+        super(player);
     }
-    
     
     public void drawFace(Graphics g){
-        g.drawImage(Player.getIstance().facingDownImage, (int)Player.getIstance().getX(), (int)Player.getIstance().getY(), null);
+        g.drawImage(player.facingDownImage, (int)player.getX(), (int)player.getY(), null);
     }
-    
+    /*
     @Override
     public Position visualViewOfPlayer(){
-        return new Position(Player.getIstance().getX()/Game.DIMENSIONSPRITE,Player.getIstance().getY()/Game.DIMENSIONSPRITE+1);
+        return new Rectangle((int)player.getX()+player.getWidth()/4,(int)player.getY()+player.getHeight(),(int)player.getWidth()/2,(int)player.getHeight()/2);
+    }
+    
+    */
+    /*@Override
+    public Rectangle nextStep(){
+        return new Rectangle((int)player.getX(),(int)player.getY()+player.getHeight(),(int)player.getWidth(),Game.PLAYERSPEED);
+    }
+    */
+    @Override
+    public Position visualViewOfPlayer(){
+        return new Position(player.getX()/Game.DIMENSIONSPRITE,player.getY()/Game.DIMENSIONSPRITE+1);
     }
     @Override
     public Position nextStep(){
-        return new Position(Player.getIstance().getX()/Game.DIMENSIONSPRITE,Player.getIstance().getY()/Game.DIMENSIONSPRITE+1);
-    }
-
-    public static DownFaceState getInstance() {
-        if (instance==null)
-            instance = new DownFaceState();
-        return instance;
+        return new Position(player.getX()/Game.DIMENSIONSPRITE,player.getY()/Game.DIMENSIONSPRITE+1);
     }
 }

@@ -6,7 +6,6 @@
 package gameSystem.keySettings.interfaces;
 
 import game.GameObjects.Player;
-import gameSystem.EndGameState;
 import gameSystem.Game;
 import gameSystem.LoadingState;
 import gameSystem.MapState;
@@ -51,11 +50,4 @@ public abstract class KeyCommand {
      * @param mapState
      */
     public abstract void visitMapState(MapState mapState);
-
-    /**
-     * Handle the keyboard commands when the game end
-     *
-     * @param endGamestate
-     */
-    public abstract void visitEndGameState(EndGameState endGamestate);
 }

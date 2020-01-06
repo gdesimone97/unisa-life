@@ -57,36 +57,40 @@ public class Populator {
         QuestsManager.getInstance().init();
         BufferedReader r = new BufferedReader(new FileReader(filepath));
         String line = r.readLine();
-        
+
         while (line != null) {
-            
+
             String[] tokens = line.split(" ", 3);
-            if(tokens[0].compareTo("#")!=0){
-                if (!line.matches("^(?!\\s*$).+[' ']{1}[%]{1}.*")) {
-                    throw new InvalidGameDataFormatException();
-                }
 
-                String type = tokens[0].toLowerCase();
-                String arguments = tokens[1];
-
-                StorableCreator s = CreatorsEnum.valueOf(type).getFactory();
-                Storable sitem = s.create(arguments);
-                ObjectRepository repo = db.getNitriteDatabase().getRepository(sitem.getClass());
-                repo.insert(sitem);
-                if (tokens.length == 3) {
-                    //System.out.println("Ci sono 3 token");
-                    StringTokenizer subst = new StringTokenizer(tokens[2], StorableCreator.DELIMETER);
-                    String mapTok = subst.nextToken();
-                    String repoTok = subst.nextToken();
-                    //System.out.println(" REPO -> " + repoTok + " MAPPA -> " + mapTok);
-                    db.getNitriteDatabase().getCollection(repoTok.equals("d") ? DatabaseManager.DYNCOLLECTIONNAME : DatabaseManager.FIXEDCOLLECTIONNAME).insert(
-                            Document.createDocument("IDMAP", mapTok).put("IDOBJ", sitem.getIndex()).put("CLASSOBJ", sitem.getClass().getName())
-                    );
-
-                }
+            if (!line.matches("^(?!\\s*$).+[' ']{1}[%]{1}.*")) {
+                throw new InvalidGameDataFormatException();
             }
+
+            String type = tokens[0].toLowerCase();
+            String arguments = tokens[1];
+
+            StorableCreator s = CreatorsEnum.valueOf(type).getFactory();
+            Storable sitem = s.create(arguments);
+
+            Class c = type.equals("coin") ? Item.class : sitem.getClass();
+            //System.out.println("Inserting object of type " + c + " = " + sitem);
+            ObjectRepository repo = db.getNitriteDatabase().getRepository(sitem.getClass());
+            repo.insert(sitem);
+
+            if (tokens.length == 3) {
+                //System.out.println("Ci sono 3 token");
+                StringTokenizer subst = new StringTokenizer(tokens[2], StorableCreator.DELIMETER);
+                String mapTok = subst.nextToken();
+                String repoTok = subst.nextToken();
+                //System.out.println(" REPO -> " + repoTok + " MAPPA -> " + mapTok);
+                db.getNitriteDatabase().getCollection(repoTok.equals("d") ? DatabaseManager.DYNCOLLECTIONNAME : DatabaseManager.FIXEDCOLLECTIONNAME).insert(
+                        Document.createDocument("IDMAP", mapTok).put("IDOBJ", sitem.getIndex()).put("CLASSOBJ", sitem.getClass().getName())
+                );
+
+            }
+
             line = r.readLine();
-            
+
         }
 
         db.close();
@@ -117,7 +121,6 @@ public class Populator {
         //        System.out.println("Database populated");
         System.out.println(System.getProperty("user.dir"));
         new Populator("data.txt").populate();
-  
 
     }
 }

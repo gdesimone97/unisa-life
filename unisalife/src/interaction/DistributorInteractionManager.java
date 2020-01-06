@@ -20,19 +20,16 @@ import unisagui.RequestGui;
  * @author 1997g
  */
 public class DistributorInteractionManager implements InteractionManager {
-    
-    FileTextManager tm;
-    String toShow = null;
-    MessageInformation ms;
-    
+
     @Override
     public void execute(Interactable obj) {
         // get text to show
-        
+        FileTextManager tm;
+        String toShow = null;
 
         try {
             tm = FileTextManager.getFileTextManager();
-            
+            MessageInformation ms;
             
             // check if you have money
             if(Status.getMoney()<1) {

@@ -48,6 +48,11 @@ public class LoadingState extends GameState {
     @Override
     public void render(Graphics2D g) {
         g.drawImage(img, 0, 0, null);
+//        g.setColor(Color.black);
+//        g.fillRect(0, 0, Game.WIDTHSCREEN, Game.HEIGHTSCREEN2);
+//        g.setColor(Color.white);
+//        g.setFont(new Font("TimesRoman", Font.PLAIN, 30));
+//        g.drawString("Loading..", Game.WIDTHSCREEN/2, Game.HEIGHTSCREEN2/2);
     }
 
     @Override

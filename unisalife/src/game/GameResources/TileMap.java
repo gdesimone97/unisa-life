@@ -46,11 +46,10 @@ public class TileMap implements Serializable, Storable {
     private int ymax;
 
     // map
-    private int[][][] map;
+    private int[][] map;
     private int tileSize;
     private int numRows;
     private int numCols;
-    private int layers;
     private int width;
     private int height;
     private String miniMapPath;
@@ -133,10 +132,10 @@ public class TileMap implements Serializable, Storable {
             BufferedReader br = new BufferedReader(
                     new InputStreamReader(in)
             );
-            layers = Integer.parseInt(br.readLine());
+
             numCols = Integer.parseInt(br.readLine()); //29
             numRows = Integer.parseInt(br.readLine()); //29
-            map = new int[layers][numRows][numCols]; //modificare il numero di righe moltiplicandolo con quello dei layer
+            map = new int[numRows][numCols];
             width = numCols * tileSize;
             height = numRows * tileSize;
             //xmin = Game.WIDTH - width;
@@ -145,19 +144,16 @@ public class TileMap implements Serializable, Storable {
             //ymin = Game.HEIGHT - height;
             //ymin = -height;
             //ymax = 0;
-            
-            //fare il for per quanti sono i layer
+
             String delims = "\\s+";
-            //dichiarare qui row e inserirlo in un ulteriore ciclo for da 0 a numero di layer (escluso)
-            for(int l=0; l<layers;l++){    
-                for (int row = 0 ; row < numRows; row++){
-                    String line = br.readLine();
-                    String[] tokens = line.split(delims);
-                    for (int col = 0; col < numCols; col++) {
-                        map[l][row][col] = Integer.parseInt(tokens[col]);
-                    }
+            for (int row = 0; row < numRows; row++) {
+                String line = br.readLine();
+                String[] tokens = line.split(delims);
+                for (int col = 0; col < numCols; col++) {
+                    map[row][col] = Integer.parseInt(tokens[col]);
                 }
             }
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -177,32 +173,35 @@ public class TileMap implements Serializable, Storable {
                 System.out.println("col off"+colOffset);
                 System.out.println("righe"+numRowsToDraw);
                 System.out.println("colonne"+numColsToDraw);*/
-        for (int l = 0; l<layers; l++){
-            for (int row = 0; row < numRowsToDraw; row++) {
-                if (row >= numRows) {
+        for (int row = 0; row < numRowsToDraw; row++) {
+
+            if (row >= numRows) {
+                break;
+            }
+
+            for (int col = 0; col < numColsToDraw; col++) {
+
+                if (col >= numCols) {
                     break;
                 }
-                for (int col = 0; col < numColsToDraw; col++) {
-                    if (col >= numCols) {
-                        break;
-                    }
-                    if (map[l][row][col] == 0) {
-                        continue;
-                    }
-                    int rc = map[l][row][col];
-                    if(rc != -1){
-                        int r = rc / numTilesOriz;
-                        int c = rc % numTilesOriz;
-                        g.drawImage(
-                                tiles[r][c].getImage(),
-                                x + col * tileSize,
-                                y + row * tileSize,
-                                null
-                        );   
-                    }
+                if (map[row][col] == 0) {
+                    continue;
                 }
+
+                int rc = map[row][col];
+                int r = rc / numTilesOriz;
+                int c = rc % numTilesOriz;
+                g.drawImage(
+                        tiles[r][c].getImage(),
+                        x + col * tileSize,
+                        y + row * tileSize,
+                        null
+                );
+
             }
+
         }
+
     }
 
     @Override

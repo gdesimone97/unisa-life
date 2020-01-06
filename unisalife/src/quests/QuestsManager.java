@@ -7,8 +7,10 @@ package quests;
 
 import game.Interfaces.Initializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import quests.mediator.*;
+import quests.quest.Quest;
 import quests.quest.Quests;
 
 /**
@@ -22,8 +24,7 @@ public class QuestsManager implements QuestMessages, Initializable {
     private static QuestsManager instance = null;
     private List<User> users;
     // Item : Subject associative collection
-//    private HashMap<String, String> item;
-//    private int currentLevel;
+    private HashMap<String, String> item; 
 
     private QuestsManager() {
 
@@ -43,48 +44,31 @@ public class QuestsManager implements QuestMessages, Initializable {
         return instance;
     }
 
-    
-//    public void levelEnded(){
-//        this.currentLevel++;
-//        this.loadLevel();                
-//    }
-//    
-//    private void loadLevel() throws InitException{
-//        try {
-//            this.loadNewItems(DatabaseManager.getDatabaseManager().getQuestsFromLevel(currentLevel));
-//            MapManager.getInstance().setLevel(currentLevel);
-//        } catch (FileNotSetException ex) {
-//            throw new InitException("Error loading quests");
-//        } catch(NoQuestsException ex){
-//            GameStateManager.getInstance().setState(EndGameState.getInstance());
-//        }
-//    }
-    
-//    public void loadNewItems(List<Quest> quests) {
-//        // prima volta:
-//        /*
-//        list<quest>, list<item> = dbms.getQuestsFromLevel(0);
-//        QuestsManager.getInstance().loadNewItems(list);
-//         */
-//
-//        // lista fornita dal game manager, che ha già effettuato l'accesso al database
-//        /*  {esempio di comportamento del game manager}
-//        ....-> dopo che è stata fatta la finish
-//        DatabaseManagaer dbms = new...
-//        list<quest>, list<item> = dbms.getQuestsFromLevel(QuestsManager.getInstance().getCurrentLevel());
-//        QuestsManager.getInstance().loadNewItems(list);
-//        ..ora metto nella mappa tutti gli oggetti presenti nella lista
-//         */
-//        Quests.getInstance().loadNewQuests(quests);
-//        for (Quest q : quests) {
-//            String currentQuest = q.getSubject().toString();
-//            // prendere tutti gli elementi
-//            // elemento per elemento, aggiungerlo alla map associando la quest corretta
-//            for (String item : q.getItemList()) {
-//                this.item.put(item, currentQuest);
-//            }
-//        }
-//    }
+    public void loadNewItems(List<Quest> quests) {
+        // prima volta:
+        /*
+        list<quest>, list<item> = dbms.getQuestsFromLevel(0);
+        QuestsManager.getInstance().loadNewItems(list);
+         */
+
+        // lista fornita dal game manager, che ha già effettuato l'accesso al database
+        /*  {esempio di comportamento del game manager}
+        ....-> dopo che è stata fatta la finish
+        DatabaseManagaer dbms = new...
+        list<quest>, list<item> = dbms.getQuestsFromLevel(QuestsManager.getInstance().getCurrentLevel());
+        QuestsManager.getInstance().loadNewItems(list);
+        ..ora metto nella mappa tutti gli oggetti presenti nella lista
+         */
+        Quests.getInstance().loadNewQuests(quests);
+        for (Quest q : quests) {
+            String currentQuest = q.getSubject().toString();
+            // prendere tutti gli elementi
+            // elemento per elemento, aggiungerlo alla map associando la quest corretta
+            for (String item : q.getItemList()) {
+                this.item.put(item, currentQuest);
+            }
+        }
+    }
 
     /**
      * This method is used to forward messages between the classes
@@ -94,9 +78,9 @@ public class QuestsManager implements QuestMessages, Initializable {
      */
     @Override
     public void sendMessage(Message mess, User user) {
-//        String receiver = item.get(mess.getId());
-//        Quest q = Quests.getInstance().getQuest(receiver);
-        Quests.getInstance().receive(mess);
+        String receiver = item.get(mess.getId());
+        Quest q = Quests.getInstance().getQuest(receiver);
+        q.receive(mess);
     }
 
     /**
@@ -109,17 +93,10 @@ public class QuestsManager implements QuestMessages, Initializable {
         this.users.add(user);
     }
 
-//    public int getCurrentLevel() {
-//        return this.currentLevel;
-//    }
-
     @Override
-    public void init() throws InitException {
+    public void init(){
         this.users = new ArrayList<>();
-//        this.item = new HashMap<>();
-//        this.currentLevel = 0;
-        Quests.getInstance().init();
-//        this.loadLevel();        
+        this.item = new HashMap<>();
     }
 
 }

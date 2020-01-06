@@ -5,7 +5,6 @@
  */
 package gameSystem.keySettings;
 
-import game.Interfaces.Initializable;
 import java.awt.event.KeyEvent;
 import java.io.Serializable;
 import java.util.HashMap;
@@ -21,8 +20,8 @@ import saving.exceptions.SavingException;
  *
  * @author Giuseppe De Simone
  */
-public class SettingsManager implements Saveable, Initializable {
-    
+public class SettingsManager implements Saveable {
+
     private enum Commands {
         MOVE_UP,
         MOVE_DOWN,
@@ -34,10 +33,10 @@ public class SettingsManager implements Saveable, Initializable {
         INVENTORY,
         SAVE
     }
-    
+
     private HashMap<Commands, Integer> register = new HashMap<>(9);
     private static final SettingsManager instance = new SettingsManager();
-    
+
     private boolean checkInput(int code) {
         final int A = KeyEvent.VK_A;
         final int Z = KeyEvent.VK_Z;
@@ -46,29 +45,22 @@ public class SettingsManager implements Saveable, Initializable {
         final int NINE = KeyEvent.VK_9;
         final int DOWN = KeyEvent.VK_DOWN;
         final int LEFT = KeyEvent.VK_LEFT;
-        
+
         if ((code >= A && code <= Z) || (code >= ZERO && code <= NINE) || (code == SPACE) || (code >= LEFT && code <= DOWN)) {
             return true;
         }
         return false;
     }
-    
-    private boolean isRegistered(Commands cmd, int key) {
-        Integer oldKey = register.get(cmd);
-        if (oldKey.equals(key)) {
+
+    private boolean isRegistered(int key) {
+        if (register.containsValue(key)) {
             return true;
         }
-        register.put(cmd, null);
-        register.forEach((k, v) -> {
-            if (!k.equals(Commands.INVENTORY) && !k.equals(Commands.SAVE) && v != null && v.equals(key)) {
-                register.replace(k, oldKey);
-            }
-        });
         return false;
     }
-    
+
     private boolean setKey(Commands cmd, int button) {
-        if (!checkInput(button) || isRegistered(cmd, button)) {
+        if (!checkInput(button) || isRegistered(button)) {
             return false;
         }
         register.put(cmd, button);
@@ -82,7 +74,7 @@ public class SettingsManager implements Saveable, Initializable {
         return true;
     }
     
-    private void defaultInit() {
+    private void defaultInit(){
         register.put(Commands.MOVE_UP, KeyEvent.VK_W);
         register.put(Commands.MOVE_DOWN, KeyEvent.VK_S);
         register.put(Commands.MOVE_LEFT, KeyEvent.VK_A);
@@ -92,10 +84,14 @@ public class SettingsManager implements Saveable, Initializable {
         register.put(Commands.MAP, KeyEvent.VK_M);
         register.put(Commands.INVENTORY, KeyEvent.VK_I);
         register.put(Commands.SAVE, KeyEvent.VK_S);
-        SaveManager.getSaveManager().saveKeys();
     }
     
     private SettingsManager() {
+        try{
+            SaveManager.getSaveManager().loadKeys();
+        }catch(LoadingException ex){
+            defaultInit();
+        }
     }
 
     /**
@@ -260,24 +256,14 @@ public class SettingsManager implements Saveable, Initializable {
     public boolean setPauseButton(int pauseButton) {
         return setKey(Commands.PAUSE, pauseButton);
     }
-    
+
     @Override
     public Serializable save() {
         return this.register;
     }
-    
+
     @Override
     public void load(Serializable obj) throws LoadingException {
         this.register = (HashMap<Commands, Integer>) obj;
     }
-    
-    @Override
-    public void init() throws InitException {
-        try {
-            SaveManager.getSaveManager().loadKeys();
-        } catch (LoadingException ex) {
-            defaultInit();
-        }
-    }
-    
 }

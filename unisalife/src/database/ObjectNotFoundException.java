@@ -6,7 +6,7 @@
 package database;
 
 /**
- * Exception raised when looking for a missing object in the database
+ *
  * @author alfon
  */
 public class ObjectNotFoundException extends Exception {

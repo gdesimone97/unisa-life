@@ -60,22 +60,12 @@ public enum CreatorsEnum {
     }, tilemap("tilemap") {
         @Override
         public StorableCreator getFactory() {
-            return new TileMapWrapperFactory();
+            return new TileMapFactory();
         }
     }, teleport("teleport"){
         @Override
         public StorableCreator getFactory() {
             return new TeleportWrapperFactory();
-        }
-    }, normalperson("normalperson"){
-        @Override
-        public StorableCreator getFactory() {
-            return new NormalPersonFactory();
-        }
-    }, bed("bed"){
-        @Override
-        public StorableCreator getFactory(){
-            return new BedWrapperFactory();
         }
     };
 

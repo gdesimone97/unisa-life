@@ -5,7 +5,6 @@
  */
 package gameSystem.keySettings;
 
-import gameSystem.EndGameState;
 import gameSystem.GameStateManager;
 import gameSystem.LoadingState;
 import gameSystem.MapState;
@@ -33,8 +32,6 @@ public class MapCommand extends KeyCommand implements ActionCommand {
 
     @Override
     public void visitLoadingState(LoadingState loadState) {
-        player.setVelX(0);
-        player.setVelY(0);
     }
 
     @Override
@@ -42,11 +39,4 @@ public class MapCommand extends KeyCommand implements ActionCommand {
         stateManager.setState(PlayState.getInstance());
     }
 
-    /**
-     * {@inheritDoc}
-     *
-     */
-    @Override
-    public void visitEndGameState(EndGameState endGamestate) {
-    }
 }

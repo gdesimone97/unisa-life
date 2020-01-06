@@ -43,10 +43,10 @@ public class Tile implements Serializable, Externalizable {
      * @param image
      */
     
-    public Tile(BufferedImage image) {
-            this.image = image;
-
-    }
+	public Tile(BufferedImage image) {
+		this.image = image;
+		
+	}
 	
     /**
      *

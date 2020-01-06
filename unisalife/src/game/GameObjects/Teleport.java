@@ -18,7 +18,7 @@ import java.util.LinkedList;
  *
  * @author simon
  */
-public class Teleport extends GameObject implements Interactable {
+public class Teleport extends GameObject implements Interactable{
 
     private int mapDest;
     private Position d;
@@ -34,16 +34,12 @@ public class Teleport extends GameObject implements Interactable {
      * of game.
      * @param d destination in terms of x and y of the player in the new map
      */
-    private Teleport() {
-        super();
-    }
-
-    public Teleport(Position p, int map, Position d) {
+    public Teleport(Position p,int map, Position d) {
         super(p);
         mapDest = map;
         this.d = d;
     }
-
+    
     //render is void because a Teleport is invisible.
     /**
      *
@@ -59,6 +55,7 @@ public class Teleport extends GameObject implements Interactable {
      *
      * @param objects
      */
+
     /**
      *
      * @return destination of the teleport
@@ -78,6 +75,7 @@ public class Teleport extends GameObject implements Interactable {
     @Override
     public void interact() {
         InteractionManager im = new TeleportInteractionManager();
+        
         im.execute(this);
     }
 

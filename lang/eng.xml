@@ -2,7 +2,6 @@
 <root>
 
 <Subject info="maths">
-<message>Calculus</message>
 <message>1#The area of a triangle is:#(b*h)/2#b+h#b*h+2#b/2+h/2</message>
 <message>1#Euler's number is equal to#2.7#2.8#3.14#9.81</message>
 <message>1#What is the value of the ratio between the biggest 4-digit natural number and the smallest natural number?#9999#infinito#0,9999#1</message>
@@ -16,7 +15,6 @@
 </Subject>
 
 <Subject info="tolc">
-<message>Tolc</message>
 <message>1#A student has 2 hours to solve a exam problem. When 75% of the time is gone, how much time is left?#30 mins#25 mins#25 mins and 45 secs#30 mins and 10 secs</message>
 <message>2#What is the next number in the following sequence: 4 16 5 25 6 36 7 49 8#64#9#16#0</message>
 <message>3#Al, Ron and Joe live in different houses. Each house is a different color. Al's house is not blue. Ron's house is not green. Jo's house is not yellow or blue. Which is correct?#Al's Yellow; Ron's Blue; Jo's Green#Al's Blue; Ron's White; Jo's Black#Al's Green; Ron's Blue; Jo's Yellow#Al's Green; Ron's Green; Jo's Red</message>
@@ -30,7 +28,6 @@
 </Subject>
 
 <Subject info="programming">
-<message>Programming</message>
 <message>1#Which C function allows you to display an output message?#printf#scanf#fopen#fclose</message>
 <message>1#Which C function allows you to take an input value from user?#scanf#printf#fclose#fopen</message>
 <message>1#How many bits is an Int variable represented by?#16#8#24#32</message>
@@ -54,7 +51,6 @@
 </Subject>
 
 <Subject info="computernetwork">
-<message>Computer Networks</message>
 <message>1#What is Internet?#A network of interconnected computers#The set of navigable websites#The signal that comes to the home router#A fishing net to catch all the people</message>
 <message>1#How many layers does the ISO/OSI model provide?#7#4#10#2</message>
 <message>1#What type of multiplexing is used for ADSL lines?#FDM with bands of different amplitude#FDM with bands of same amplitude#TDM#Statistical TDM</message>
@@ -78,7 +74,6 @@
 </Subject>
 
 <Subject info="acso">
-<message>Calculator Architectures and Operating Systems</message>
 <message>1#What does MAR stand for?#Memory Address Register#Minimale Age Readable#Massive Address Register#Main Address Register</message>
 <message>1#A CPU which is able to carry out a thousand milion instructions per seconds would have a clock speed of:#1GHz#10GHz#1000GHz#100MHz</message>
 <message>1#What does this instruction mean? lw $t, i($s)#$t = MEM [$s + i]:4#$t = MEM [$s + i]:2#$t = MEM [$s + i]:8#$t = MEM [$s + i]:16</message>
@@ -102,7 +97,6 @@
 </Subject>
 
 <Subject info="telecomunications">
-<message>Telecomunications</message>
 <message>1#A power signal has energy equals to:#infinity#0#1#a complex value</message>
 <message>1#A signal x(t) is said hermitian if:#x(t) = x*(-t)#x(t) = x(-t)#x(t) = -x*(-t)#A signal can't be hermitian</message>
 <message>1#Two events are said mutually exclusive are also indipendet.#False#True#Not enough information#None of the others</message>
@@ -126,7 +120,6 @@
 </Subject>
 
 <Subject info="tisc">
-<message>TISC</message>
 <message>1#The lowest level of CIM is:#The workshop level#Control level#Company management level#Cell supervision level </message>
 <message>1#A Plc has:#An real-time multi-tasking operating system#No operating system#No multi-tasking operating system#No I/O ports,read I/O signals by network</message>
 <message>1#The control device operating system doesn't have to:#Be No Pre-emptive#Have a mechanisms to avoid deadlock situations#Perform synchronization and comunication among tasks#Have a malfunction management system</message>
@@ -150,7 +143,6 @@
 </Subject>
 
 <Subject info="english">
-<message>English</message>
 <message>1#Fill the gap : I have always …………… play games well.#been able to#able#could#can</message>
 <message>1#Fill the gap : He has always …………… to do what he wanted.#been allowed#could#be able#granted</message>
 <message>1#Fill the gap : One cannot help but …………….. his courage.#admire#to admire#show#to show</message>
@@ -174,7 +166,6 @@
 </Subject>
 
 <Subject info="electrotechnics">
-<message>Electronitechincs</message>
 <message>1#What is the unit of measurement for electric current?#Ampere#Volt#Hertz#Ohm</message>
 <message>1#What is the unit of measurement for electric resistance?#Ohm#Ampere#Volt#Coulomb</message>
 <message>1#What is the unit of measurement for electric charge?#Coulomb#Ohm#Ampere#Volt</message>
@@ -198,7 +189,6 @@
 </Subject>
 
 <Subject info="database">
-<message>Database</message>
 <message>1#DBMS stands for#Data Base Management System#Data Base Memory Storage#Document Base Memory System#Data Base Manipulation System</message>
 <message>1#A database can be defined as a:#data collection managed by a DBMS#file collection manages by a DBMS#data collection stored in some files#simple file collection</message>
 <message>1#Which database part is invariant?#schemas#instances#records#attributes</message>
@@ -209,37 +199,28 @@
 <message>2#If an attribute is pointed as a primary key...#NULL is not allowed for that attribute#The attribute is used to compress the record#NULL is not allowed, but duplicates are#None of the others</message>
 <message>2#Referential integrity constraint among relations is based on:#same value on some attributes#same reference on some attributes#an attribute is used as a pointers to another record#an attribute is used as a key for another relation</message>
 <message>2#An attribute selected as foreign key, with respect to the external relation...#it has to be, at least, unique#it must be primary key#it can be anything#it must point to the primary key of the internal relation</message>
-<message>3#The join operation among A and B tables, which shows all the rows from table A but only those from B that satisfy the join condition is called#left outer join#right outer join#full outer join#inner join</message>
-<message>3#In an updatable view, the "check" keyword is used to:#ensure that any update doesn't make rows leaving the view#control if the constraints of the table are all true#block operations that would delete rows of the table#block operation that would add rows to the table</message>
-<message>3#A good restructuring on a ER model, guarantees..#1NF of the relational model#2NF of the relational model#nothing, it's not related to the relational model#absence of functional dependencies</message>
-<message>3#Which granularity of a trigger makes it activate for a single SQL instruction?#statement#row#after#before</message>
+<message>3#####</message>
+<message>3#####</message>
+<message>3#####</message>
+<message>3#####</message>
 <message>3#Which one ofthe following statements about normal forms is false?#Loss less, dependency – preserving decomposition into BCNF is always possible#BCNF is stricter than 3 NF#Any relation with two attributes is BCNF#None Of the others</message>
-<message>4#To prevent SQL Injection, _____  are used in JDBC.#PreparedStatement#Statement#Forward Only ResultSet#Scrollable Result Set</message>
-<message>4#The D in ACID for transaction means:#The effect of a committed transaction are never lost#A transaction works independently from the other#The database is left in a consistent way by a transaction#It's not possible to see intermediate results of a transaction</message>
-<message>4#Which of these structures is slower when looking for a row (search by primary key)?#entry-sequenced#ordered structure#hash#b-tree</message>
-<message>4#The merge-scan join requires:#equi-join, ordered tables on the given attributes#equi-join, tables stored via an hash function on the given attributes#any kind of join, but only on the ordered sequence structure#outer-join, tables ordered on the given attributes</message>
-<message>4#In the falling phase of 2 Phase Locking:#all the locks are released#all the lock are acquired#all write locks are demoted to read locks#all the read locks are promoted to write locks</message>
-</Subject> 
-
-<Subject info="physics">
-<message>Physics</message>
-<message></message>
+<message>4#####</message>
+<message>4#####</message>
+<message>4#####</message>
+<message>4#####</message>
+<message>4#####</message>
 </Subject> 
 
 <Professor info="Foggia">
 <message>Are you ready?</message>
 </Professor>
 
-<Item info="calculator">
+<Item info="calcolatrice">
 <message>Calculator</message>
 </Item>
 
-<Item info="notes">
+<Item info="appunti">
 <message>Some Notes</message>
-</Item>
-
-<Item info="dictionary">
-<message>Dictionary</message>
 </Item>
 
 <Item info="coin">
@@ -278,14 +259,8 @@
 <message>Sorry, you should study a little more...</message>
 </MessageInformation>
 
-<MessageInformation info="BeforeTolcDialogName">
-<message>Well done, </message>
-<message>. Now you're going to make your first test of this long travel! Ahahah.</message>
-<message>Press SpaceBar as soon as you are ready and... STAY FOCUSED!</message>
-</MessageInformation>
-
 <MessageInformation info="NotAllowed">
-<message>You don't have all the requirements to do this. Check the QUESTS panel!</message>
+<message>You don't have all the requirements to do this</message>
 </MessageInformation>
 
 <MessageInformation info="ExamAlreadyDone">
@@ -330,52 +305,6 @@
 <MessageInformation info="TolcFailedName">
 <message>I'm sorry, </message>
 <message>. You should try again.</message>
-</MessageInformation>
-
-<MessageInformation info="TutorialFrasi">
-<message>Hello, </message>
-<message>. It's a plesaure to meet you!</message>
-<message>It seems you chose to become a computer engineer... let's start with some fundamentals.</message>
-<message>Your main goal is to pick up items from the map in order to be able to take exams later.</message>
-<message>Use the keys W,A,S,D to move around the map</message>
-<message>The map can be very big and you can easely loose yourself, press M to show the map in order to orientate.</message>
-<message>The objects you see on the map are items, pick one of them pressing SPACEBAR...</message>
-<message>... you can always check the items you picked up by pressing TAB and opening the inventory.</message>
-<message>Pressing SPACEBAR you can also interact with the characters you can find on the map, doing so with professors will start an exam if it's possible.</message>
-<message>To track down your progress and know the exams to take click on the QUEST panel.</message>
-<message>As in the real life, taking exams could be really stressing, feel free to take a break! Press P to pause the game.</message>
-<message>It seems you're ready to start your adventure... well, good luck for your brilliant career!</message>
-</MessageInformation>
-
-<MessageInformation info="RandomPeople">
-<message>Hi, hope you're having a nice day! </message>
-<message>This university is terribly stressful...</message>
-<message>Will I ever become a computer engineer?</message>
-<message>Hey, did I ever see you at courses?</message>
-<message>Psst.. do you want some notes?</message>
-<message>I'm hungry, I should check what can be eaten at the refectory</message>
-<message>Do you have any tips to survive Signals' exam?</message>
-<message>Damn, I missed the bus this morning...</message>
-<message>Hey, how are your exams going? </message>
-<message>Hope you have a brilliant career!</message>
-</MessageInformation>
-
-<MessageInformation info="QuestDescription">
-<message>It's time to get a new Exam: </message>
-<message>For this exam you need: </message>
-<message>Go find them!</message>
-</MessageInformation>
-
-<MessageInformation info="calculator">
-<message>Calculator</message>
-</MessageInformation>
-
-<MessageInformation info="notes">
-<message>Some Notes</message>
-</MessageInformation>
-
-<MessageInformation info="BarEmergency">
-<message>Your health is important. Never forget to take care of yourself!</message>
 </MessageInformation>
 
 </root>

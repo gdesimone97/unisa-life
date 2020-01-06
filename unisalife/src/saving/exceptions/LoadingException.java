@@ -7,9 +7,9 @@ package saving.exceptions;
 
 /**
  *
- * @author Giuseppe De Simone
+ * @author desio
  */
-public class LoadingException extends RuntimeException {
+public class LoadingException extends Exception {
 
     /**
      * Creates a new instance of <code>LoadingException</code> without detail

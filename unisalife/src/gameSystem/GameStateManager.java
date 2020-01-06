@@ -24,9 +24,6 @@ public class GameStateManager implements Initializable {
         return instance;
     }
 
-    private GameStateManager() {
-    }    
-
     public void setState(GameState state) {
         gs = state;
     }
@@ -49,8 +46,6 @@ public class GameStateManager implements Initializable {
         MapState.getInstance().init();
         PlayState.getInstance().init();
         PauseState.getInstance().init();
-        EndGameState.getInstance().init();
-        SleepState.getInstance().init();
         gs = LoadingState.getInstance();
     }
 }

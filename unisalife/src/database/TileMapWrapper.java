@@ -11,7 +11,7 @@ import java.io.Serializable;
 import org.dizitart.no2.objects.Id;
 
 /**
- * Wrapper class to mantain a TileMap object without loading its images
+ *
  * @author alfon
  */
 public class TileMapWrapper implements Storable, Serializable {
@@ -58,11 +58,7 @@ public class TileMapWrapper implements Storable, Serializable {
     public int getW() {
         return w;
     }
-    
-    /**
-     * Method to obtain a loaded TileMap from the Wrapper
-     * @return TileMap object
-     */
+
     public TileMap buildTileMap() {
         return new TileMap(id, l, w, p, m, pos, minimapPath);
     }

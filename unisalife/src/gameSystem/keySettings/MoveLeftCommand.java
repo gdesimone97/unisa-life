@@ -5,7 +5,6 @@
  */
 package gameSystem.keySettings;
 
-import gameSystem.EndGameState;
 import gameSystem.keySettings.interfaces.MovingCommand;
 import gameSystem.keySettings.interfaces.KeyCommand;
 import gameSystem.LoadingState;
@@ -45,8 +44,7 @@ class MoveLeftCommand extends KeyCommand implements MovingCommand {
      */
     @Override
     public void visitLoadingState(LoadingState loadState) {
-        player.setVelX(0);
-        player.setVelY(0);
+
     }
 
     /**
@@ -56,13 +54,4 @@ class MoveLeftCommand extends KeyCommand implements MovingCommand {
     @Override
     public void visitMapState(MapState mapState) {
     }
-
-    /**
-     * {@inheritDoc}
-     *
-     */
-    @Override
-    public void visitEndGameState(EndGameState endGamestate) {
-    }
-
 }

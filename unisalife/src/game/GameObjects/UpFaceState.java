@@ -6,34 +6,41 @@
 package game.GameObjects;
 
 import gameSystem.Game;
+import game.GameObjects.FaceState;
+
 import java.awt.Graphics;
+import java.awt.Rectangle;
 
 /**
  *
  * @author simon
  */
 public class UpFaceState extends FaceState{
-    private static UpFaceState instance;
-    private UpFaceState(){  
-    }
-    
-    public static UpFaceState getInstance(){
-        if (instance == null)
-            instance = new UpFaceState();
-        return instance;
+    public UpFaceState(Player player){
+        super(player);
+        
     }
     
     @Override
     public void drawFace(Graphics g){
-        g.drawImage(Player.getIstance().facingUpImage, (int)Player.getIstance().getX(),(int)Player.getIstance().getY(), null);
+        g.drawImage(player.facingUpImage, (int)player.getX(),(int)player.getY(), null);
     }
-    
+    /*
+    @Override
+    public Rectangle visualViewOfPlayer(){
+        return new Rectangle((int)player.getX()+player.getWidth()/4,(int)player.getY()-player.getHeight()/2,(int)player.getWidth()/2,player.getHeight()/2);
+    }
+    @Override
+    public Rectangle nextStep(){
+        return new Rectangle((int)player.getX(),(int)player.getY()-Game.PLAYERSPEED,(int)player.getWidth(),Game.PLAYERSPEED);
+    }
+    */
     @Override
     public Position visualViewOfPlayer(){
-        return new Position(Player.getIstance().getX()/Game.DIMENSIONSPRITE,Player.getIstance().getY()/Game.DIMENSIONSPRITE-1);
+        return new Position(player.getX()/Game.DIMENSIONSPRITE,player.getY()/Game.DIMENSIONSPRITE-1);
     }
     @Override
     public Position nextStep(){
-        return new Position(Player.getIstance().getX()/Game.DIMENSIONSPRITE,Player.getIstance().getY()/Game.DIMENSIONSPRITE-1);
+        return new Position(player.getX()/Game.DIMENSIONSPRITE,player.getY()/Game.DIMENSIONSPRITE-1);
     }
 }

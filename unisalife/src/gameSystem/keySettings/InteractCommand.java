@@ -10,7 +10,6 @@ import gameSystem.keySettings.interfaces.KeyCommand;
 import game.GameObjects.GameObject;
 import game.GameObjects.Position;
 import game.Interfaces.Interactable;
-import gameSystem.EndGameState;
 import gameSystem.GameStateManager;
 import gameSystem.LoadingState;
 import gameSystem.MapState;
@@ -56,8 +55,6 @@ public class InteractCommand extends KeyCommand implements ActionCommand {
      */
     @Override
     public void visitLoadingState(LoadingState loadState) {
-        player.setVelX(0);
-        player.setVelY(0);
 
     }
 
@@ -68,13 +65,4 @@ public class InteractCommand extends KeyCommand implements ActionCommand {
     @Override
     public void visitMapState(MapState mapState) {
     }
-
-    /**
-     * {@inheritDoc}
-     *
-     */
-    @Override
-    public void visitEndGameState(EndGameState endGamestate) {
-    }
-
 }

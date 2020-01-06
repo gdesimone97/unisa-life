@@ -7,14 +7,12 @@ package gameSystem.map;
 
 import database.DatabaseManager;
 import database.FileNotSetException;
-import database.NoQuestsException;
 import database.ObjectNotFoundException;
 import game.GameObjects.ImageNotLoadedException;
 import game.GameObjects.Position;
 import game.GameObjects.Renderable;
 import game.GameResources.Map;
 import game.Interfaces.Initializable;
-import gameSystem.MapState;
 import java.awt.Graphics2D;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -23,15 +21,14 @@ import saving.Saveable;
 import saving.exceptions.LoadingException;
 
 /**
- * this class manages the list of maps in the game. This class mantains all the maps
- * and allows to set a new map or get some info about the actual map
- * @author 1997g
+ *
+ * @author liovi
  */
 public class MapManager implements Initializable, Saveable {
 
     private int actualMap;
     private int mapNumber;
-    private final int MAX_PARALLEL = 5;
+
     private Map[] maps;
     private static MapManager instance;
 
@@ -43,6 +40,11 @@ public class MapManager implements Initializable, Saveable {
     }
 
     private MapManager() {
+        // Soluzione momentanea, quando c'è il database, dovrà essere vuoto!
+
+//        maps = new Map[2];
+//        maps[0] = new Map();
+//        actualMap = 0;
     }
 
     public int getMapNumber() {
@@ -56,25 +58,9 @@ public class MapManager implements Initializable, Saveable {
     public Map getMap() {
         return maps[actualMap];
     }
-    
-    /**
-     * allows to change map in the list of availables
-     * @param n number of new map
-     * @throws game.Interfaces.Initializable.InitException if n is not in the bounds
-     */
-    public void setMap(int n) throws InitException {
-        if (n > mapNumber || n < 0) {
-            throw new InitException("Map number not allowed or out of bounds");
-        }
-        if(n != 1) {
-            this.maps[actualMap].stopGeneratingCoins();
-        }
+
+    public void setMap(int n) {
         this.actualMap = n;
-        MapState.getInstance().setMinimap(maps[actualMap].getPathMiniMap());
-        
-        if(n == 1) {
-            this.maps[actualMap].startGeneratingCoins();
-        }
     }
 
     public void render(Graphics2D g) {
@@ -86,47 +72,41 @@ public class MapManager implements Initializable, Saveable {
         try {
             maps = DatabaseManager.getDatabaseManager().getMaps();
             mapNumber = maps.length;
-            setMap(0);
+            actualMap = 0;
+            addDynamicObjects();
         } catch (FileNotSetException ex) {
             throw new InitException("File not specified in Database");
         } catch (ObjectNotFoundException ex) {
             throw new InitException("Objects not found in Database");
         } catch (ClassNotFoundException ex) {
             throw new InitException("Class not found during Database query");
-        } catch (InitException ex) {
-            throw ex;
+        } catch (ImageNotLoadedException ex) {
+            throw new InitException("Image not loaded for one dynamic object");
         }
     }
 
-    private void addDynamicObjects(int level) throws FileNotSetException, ObjectNotFoundException, ImageNotLoadedException {
-        try {
-            ConcurrentHashMap<Position, Renderable>[] objectsFromLevel = DatabaseManager.getDatabaseManager().getObjectsFromLevel(level);
-            for (int i = 0; i < objectsFromLevel.length; i++) {
-                maps[i].addDynamicObjects(objectsFromLevel[i]);
-            }
-        } catch (NoQuestsException ex) {
+    private void addDynamicObjects() throws FileNotSetException, ObjectNotFoundException, ImageNotLoadedException {
+        ConcurrentHashMap<Position, Renderable>[] objectsFromLevel = DatabaseManager.getDatabaseManager().getObjectsFromLevel(0);
+        for (int i = 0; i < objectsFromLevel.length; i++) {
+            maps[i].addDynamicObjects(objectsFromLevel[i]);
+        }
+
+        for (int i = 0; i < maps.length; i++) {
+            maps[i].loadImages();
         }
     }
 
-    /**
-     * starts the creation of coins in the selected map
-     */
     public void startGeneratingCoins() {
-        if(this.actualMap == 1)
-            this.maps[actualMap].startGeneratingCoins();
+        this.maps[actualMap].startGeneratingCoins();
     }
 
-    /**
-     * stops the creation of coins in the selected map
-     */
     public void stopGeneratingCoins() {
         this.maps[actualMap].stopGeneratingCoins();
     }
 
     @Override
     public Serializable save() {
-        ArrayList<Object> list = new ArrayList<>();
-        list.add(0, actualMap);
+        ArrayList<ConcurrentHashMap<Position, Renderable>> list = new ArrayList<>();
         for (Map map : maps) {
             ConcurrentHashMap<Position, Renderable> objects = map.getDynamicObjects();
             list.add(objects);
@@ -136,37 +116,19 @@ public class MapManager implements Initializable, Saveable {
 
     @Override
     public void load(Serializable obj) throws LoadingException {
-        ArrayList<Object> list = (ArrayList<Object>) obj;
-        actualMap = (int) list.remove(0);
+        ArrayList<ConcurrentHashMap<Position, Renderable>> list = (ArrayList<ConcurrentHashMap<Position, Renderable>>) obj;
         for (int i = 0; i < list.size(); i++) {
-            ConcurrentHashMap<Position, Renderable> mapObject = (ConcurrentHashMap<Position, Renderable>) list.get(i);
-            mapObject.forEachValue(this.MAX_PARALLEL, value -> {
+            ConcurrentHashMap<Position, Renderable> mapObject = list.get(i);
+            mapObject.forEachValue(5, value -> {
                 Renderable object = (Renderable) value;
                 try {
                     object.loadImage();
                 } catch (ImageNotLoadedException ex) {
                     System.out.println(ex.getMessage());
-                    throw new RuntimeException(new LoadingException("Impossibile caricare immagini dopo la fase di load"));
+                    throw new RuntimeException(new LoadingException("Impossibile caricare immaggini dopo la fase di load"));
                 }
             });
             maps[i].addDynamicObjects(mapObject);
-        }
-    }
-    
-    /**
-     * This method is called when a level finishes. Adds all the new objects of 
-     * the new level in the maps
-     * @param newLevel the number of the new level 
-     */
-    public void setLevel(int newLevel) {
-        try {
-            addDynamicObjects(newLevel);
-        } catch (ImageNotLoadedException ex) {
-            throw new InitException("Image not loaded for one dynamic object");
-        } catch (FileNotSetException ex) {
-            throw new InitException("File not specified in Database");
-        } catch (ObjectNotFoundException ex) {
-            throw new InitException("Objects not found in Database");
         }
     }
 

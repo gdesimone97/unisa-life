@@ -39,7 +39,7 @@ public class Player extends GameObject implements Tickable, Saveable {
     protected BufferedImage facingLeftImage;
     protected BufferedImage facingRightImage;
     protected BufferedImage facingUpImage;
-    protected FaceState face = DownFaceState.getInstance();
+    protected FaceState face = new DownFaceState(this);
     private static Player uniqueIstance = null;
     private boolean nextMove = true;
     protected String nameOfPlayer = null;
@@ -51,10 +51,6 @@ public class Player extends GameObject implements Tickable, Saveable {
      }*/
     private Player() {
         super(new Position(0, 0));
-    }
-
-    public void setState(FaceState s) {
-        this.face = s;
     }
 
     public FaceState getFace() {
@@ -75,6 +71,12 @@ public class Player extends GameObject implements Tickable, Saveable {
         rightWalk = right;
     }
 
+    /**
+     * @param g
+     * @return da 0 a 8 up da 9 a 17 left da 18 a 26 down da 27 a 35 right
+     *
+     *
+     */
     public void initialize(int skin, String name, Position initialPosition) {
         BufferedImage texturePlayer[][] = null;
         nameOfPlayer = name;
@@ -174,13 +176,13 @@ public class Player extends GameObject implements Tickable, Saveable {
 
         if (y % 32 == 0 && x % 32 == 0) {
             if (velX > 0) {
-                face = RightFaceState.getInstance();
+                face = new RightFaceState(this);
             } else if (velX < 0) {
-                face = LeftFaceState.getInstance();
+                face = new LeftFaceState(this);
             } else if (velY > 0) {
-                face = DownFaceState.getInstance();
+                face = new DownFaceState(this);
             } else if (velY < 0) {
-                face = UpFaceState.getInstance();
+                face = new UpFaceState(this);
             }
             collisions(MapManager.getInstance().getMap().getObjectManager());
             if (velX != 0 && x + velX > 0 && x + velX < MapManager.getInstance().getMap().getWidthMap() - Game.DIMENSIONSPRITE && nextMove == true) {
@@ -213,9 +215,9 @@ public class Player extends GameObject implements Tickable, Saveable {
      * @param ObjectsManager
      */
     private void collisions(ObjectManager objMan) {
-        GameObject g = objMan.getObjectInNextPosition(getScaledPosition());
 
-        if (g != null && (g instanceof Teleport || g instanceof Bed)) {
+        GameObject g = objMan.getObjectInNextPosition(getScaledPosition());
+        if (g != null && g instanceof Teleport) {
             ((Interactable) g).interact();
             setVelX(0);
             setVelY(0);
@@ -223,7 +225,7 @@ public class Player extends GameObject implements Tickable, Saveable {
             g = objMan.getObjectInNextPosition(face.nextStep());
             if (g != null && g instanceof Coin) {
                 ((Interactable) g).interact();
-            } else if (g != null && !((g instanceof Teleport) || (g instanceof Bed))) {
+            } else if (g != null && !(g instanceof Teleport)) {
                 nextMove = false;
             }
         }

@@ -5,18 +5,11 @@
  */
 package quests.quest;
 
-import database.DatabaseManager;
-import database.FileNotSetException;
-import database.NoQuestsException;
 import game.Interfaces.Initializable;
-import gameSystem.EndGameState;
-import gameSystem.GameStateManager;
-import gameSystem.map.MapManager;
 import saving.Saveable;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
-import quests.QuestsManager;
 import quests.mediator.Message;
 import quests.mediator.User;
 
@@ -27,9 +20,8 @@ import quests.mediator.User;
 public class Quests extends User implements Saveable, Serializable, Initializable {
 
     private HashMap<String, Quest> quests;
-    private HashMap<String, String> item;
-    private int currentLevel;
     private static Quests instance = null;
+    private int currentLevel = 0;
 
     private Quests() {
         super();
@@ -53,6 +45,10 @@ public class Quests extends User implements Saveable, Serializable, Initializabl
         this.quests.put(q.getSubject().getInfo(), q);
     }
 
+    public int getCurrentLevel() {
+        return this.currentLevel;
+    }
+
     @Override
     public Serializable save() {
         return null;
@@ -65,75 +61,38 @@ public class Quests extends User implements Saveable, Serializable, Initializabl
 
     @Override
     public void send(Message mess) {
-    }
-    
-    private void loadLevel() throws InitException{
-        try {
-            this.loadNewQuests(DatabaseManager.getDatabaseManager().getQuestsFromLevel(currentLevel));
-            MapManager.getInstance().setLevel(currentLevel);
-        } catch (FileNotSetException ex) {
-            throw new InitException("Error loading quests");
-        } catch(NoQuestsException ex){
-            GameStateManager.getInstance().setState(EndGameState.getInstance());
-        }
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public void loadNewQuests(List<Quest> quests) {
+    public void loadNewQuests(List<Quest> q) {
 
         this.quests = new HashMap<>();
-        for (Quest quest : quests) {
-            this.quests.put(quest.getSubject().getInfo(), quest);
-            String currentQuest = quest.getSubject().getInfo();
-            // prendere tutti gli elementi
-            // elemento per elemento, aggiungerlo alla map associando la quest corretta
-            for (String item : quest.getItemList()) {
-                this.item.put(item, currentQuest);
-            }
+        for (Quest quest : q) {
+            this.quests.put(quest.getSubject().toString(), quest);
         }
     }
-    
-    public void levelEnded(){
-        this.currentLevel++;
-        this.loadLevel();                
-    }
-    
-    
+
     @Override
     public void receive(Message mess) {
         //Messaggio = stringa +  bool -> se bool è true --> ho fatto quest'esame
-        String receiver = item.get(mess.getId());
-        Quest qItem = this.getQuest(receiver);
-        if(qItem!=null){
-            qItem.receive(mess);
-        }else{
-            String quest = mess.getId();
-            if (mess.getBool()) {
-                quests.remove(quest);
-            }
-            if (quests.isEmpty()) {
-                this.levelEnded();
-            }
+        String quest = mess.getId();
+        if (mess.getBool()) {
+
+            quests.remove(quest);
+
         }
-    }
-    
-    public int getCurrentLevel() {
-        return this.currentLevel;
+
+        if (quests.isEmpty()) {
+            this.currentLevel++;
+            // chiamata a livello superiore per informare che le quest correnti sono terminate
+        }
+
     }
 
     @Override
     public void init() {
         this.name = "Quests";
-        this.currentLevel = 0;
         this.quests = new HashMap<>();
-        this.item = new HashMap<>();
-        this.loadLevel();  
     }
-
-    public HashMap<String, Quest> getQuests() {
-        return quests;
-    }
-
-    
-    
 
 }

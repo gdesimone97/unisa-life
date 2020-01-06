@@ -9,9 +9,10 @@ import gameSystem.keySettings.interfaces.MovingCommand;
 import gameSystem.keySettings.interfaces.KeyCommand;
 import gameSystem.GameState;
 import gameSystem.GameStateManager;
-import gameSystem.keySettings.interfaces.ActionCommand;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import saving.SaveManager;
+import saving.exceptions.LoadingException;
 
 /**
  * This class allow to component that add it to listen keyboard keys
@@ -31,7 +32,7 @@ public class HandlerInput extends KeyAdapter {
     private final KeyCommand mapCommand = new MapCommand();
     private final GameStateManager stateManager = GameStateManager.getInstance();
     private final SettingsManager settingsManager = SettingsManager.getSettingsManager();
-    private KeyCommand prev = null;
+    private boolean isPressed = false;
 
     /**
      *
@@ -40,8 +41,8 @@ public class HandlerInput extends KeyAdapter {
     @Override
     public void keyReleased(KeyEvent e) {
         KeyCommand cmd = selectCommand(e);
-        if ((cmd != null && prev != null) || cmd instanceof ActionCommand ) {
-            prev = null;
+        if (cmd != null) {
+            isPressed = false;
             GameState state = stateManager.getState();
             if (cmd instanceof MovingCommand) {
                 state.handleInput(doNothing);
@@ -58,16 +59,16 @@ public class HandlerInput extends KeyAdapter {
      */
     @Override
     public void keyPressed(KeyEvent e) {
-         KeyCommand cmd = selectCommand(e);
-        /* if (e.getKeyCode() == KeyEvent.VK_O) {
+        KeyCommand cmd = selectCommand(e);
+        if (e.getKeyCode() == KeyEvent.VK_O) {
             try {
                 SaveManager.getSaveManager().load();
             } catch (LoadingException ex) {
                 ex.printStackTrace();
             }
-        } */
-        if (cmd != null && cmd instanceof MovingCommand && (prev == cmd || prev == null)) {
-            prev = cmd;
+        }
+        if (cmd != null && cmd instanceof MovingCommand && !isPressed) {
+            isPressed = true;
             GameState state = stateManager.getState();
             state.handleInput(cmd);
         }
@@ -75,9 +76,10 @@ public class HandlerInput extends KeyAdapter {
 
     private KeyCommand selectCommand(KeyEvent e) {
         int keyCode = e.getKeyCode();
-        /*if ((((e.getModifiers() & KeyEvent.CTRL_MASK) != 0) && e.getKeyCode() == settingsManager.getSaveButton())) {
+        // Da cancellare
+        if ((((e.getModifiers() & KeyEvent.CTRL_MASK) != 0) && e.getKeyCode() == settingsManager.getSaveButton())) {
             return saveCommand;
-        } */
+        }
         if (keyCode == settingsManager.getMoveUp()) {
             return moveUp;
         } else if (keyCode == settingsManager.getMoveDown()) {

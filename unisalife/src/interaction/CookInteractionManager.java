@@ -10,11 +10,7 @@ import character.StatusManager;
 import game.GameObjects.Cook;
 import game.GameObjects.Player;
 import game.Interfaces.Interactable;
-import gameSystem.GameStateManager;
-import gameSystem.PlayState;
 import hud.change.CanteenHudBarChange;
-import hud.change.DormitoryHudBarChange;
-import hud.change.HudBarChange;
 import language.FileTextManager;
 import language.MessageInformation;
 import saving.SaveManager;
@@ -30,53 +26,47 @@ public class CookInteractionManager implements InteractionManager {
 
     @Override
     public void execute(Interactable obj) {
-        
-        new Thread(() -> {
-            // get text to show
-            FileTextManager tm;
-            String toShow = null;
-            String nome = ((Cook) obj).getNome();
+        // get text to show
+        FileTextManager tm;
+        String toShow = null;
+        String nome = ((Cook) obj).getNome();
 
-            try {
-                tm = FileTextManager.getFileTextManager();
-                MessageInformation ms;
+        try {
+            tm = FileTextManager.getFileTextManager();
+            MessageInformation ms;
+            
+            if(Status.getMoney()<3) {
+                ms = new MessageInformation("NotEnoughMoneyCanteen");
+                toShow = tm.getString(ms).get(0);
+                GuiManager.getInstance().showDialog(nome, toShow);
+                JukeBoxSound.getInstance().play("wrong");
+            } else {
+                // show request
+//                ms = new MessageInformation("CanteenRequest");
+//                toShow = tm.getString(ms).get(0);
+//                RequestGui request = new RequestGui();
+//                GuiManager.getInstance().showRequest(toShow, request);
+//                if(request.getValue()) {
+                     // restore status bars
+                    JukeBoxSound.getInstance().play("canteen");
+                    StatusManager.getInstance().updateMoney(-3);
+//                }
 
-                if (Status.getMoney() < 3) {
-                    ms = new MessageInformation("NotEnoughMoneyCanteen");
-                    toShow = tm.getString(ms).get(0);
-                    GuiManager.getInstance().showDialog(nome, toShow);
-                    JukeBoxSound.getInstance().play("wrong");
-                } else {
+                // show pop up
+                ms = new MessageInformation("SeeYouAgainName");
+                toShow = tm.getString(ms).get(0) + Player.getIstance().getName();
+                GuiManager.getInstance().showDialog(nome, toShow);
 
-                    // show request
-                    ms = new MessageInformation("CanteenRequest");
-                    toShow = tm.getString(ms).get(0);
-                    RequestGui request = new RequestGui();
-                    GuiManager.getInstance().showRequest(toShow, request);
-                    if (request.getValue()) {
-                        // restore status bars
-                        JukeBoxSound.getInstance().play("canteen");
-                        StatusManager.getInstance().updateMoney(-3);
-                    }
-
-                    // show pop up
-                    ms = new MessageInformation("SeeYouAgainName");
-                    toShow = tm.getString(ms).get(0) + Player.getIstance().getName();
-                    GuiManager.getInstance().showDialog(nome, toShow);
-
-                    // restore status bars
-                    CanteenHudBarChange c = new CanteenHudBarChange();
-                    c.execute();
-
-                }
-
-                // autosave
-                SaveManager.getSaveManager().save();
-            } catch (Exception ex) {
-                // decide what to do when an error with string retriving occurs
+                // restore status bars
+                CanteenHudBarChange c = new CanteenHudBarChange();
+                c.execute();
             }
-
-        }).start();
+            
+            // autosave
+            SaveManager.getSaveManager().save();
+        } catch (Exception ex) {
+            // decide what to do when an error with string retriving occurs
+        }
     }
     
 }
