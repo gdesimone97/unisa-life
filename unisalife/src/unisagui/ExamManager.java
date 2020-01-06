@@ -137,8 +137,7 @@ import sound.JukeBoxSound;
      * @param numLevel max level of question for this exam
      */
    private void fillExam(String examName, String question, String answer1, String answer2, String answer3, String answer4,int numLevel) {
-        String ProfIcon= "/Sprites/"+examName.toString()+".png";
-        System.out.println(ProfIcon);
+        String ProfIcon= "/Sprites/"+examName+".png";
         this.manageButtons(true);
         this.clearExam();
         SwingUtilities.invokeLater(() -> gameframe.ConfirmAnswer.setEnabled(false));
