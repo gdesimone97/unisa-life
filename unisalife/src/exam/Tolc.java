@@ -130,12 +130,12 @@ public class Tolc implements Runnable {
 
 
                 // add the 2 teleports after tolc completed
-                Position destPosition = new Position(32, 32);
+                Position destPosition = new Position(1248, 1408);
                 Position p1 = new Position(1952, 352);
                 Map map = MapManager.getInstance().getMap();
-                map.addFixedObject(p1.getScaledPosition(), new Teleport(p1, 0, destPosition));
+                map.addFixedObject(p1.getScaledPosition(), new Teleport(p1, 1, destPosition));
                 p1 = new Position(1984, 352);
-                map.addFixedObject(p1.getScaledPosition(), new Teleport(p1, 0, destPosition));
+                map.addFixedObject(p1.getScaledPosition(), new Teleport(p1, 1, destPosition));
                 
                 
                 // remove professor
