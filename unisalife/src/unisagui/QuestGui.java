@@ -6,8 +6,7 @@
 package unisagui;
 
 import java.util.Set;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 import language.FileTextManager;
 import language.MessageInformation;
 import language.exceptions.TextFinderException;
@@ -35,9 +34,8 @@ public class QuestGui {
         for (String s : description){
             try {
                 text += "\n" +
-                        FileTextManager.getFileTextManager().getString(new MessageInformation("calculator")).get(0)+
-                        //FileTextManager.getFileTextManager().getString(new MessageInformation("QuestDescription")).get(1)
-                        ";";
+                        FileTextManager.getFileTextManager().getString(new MessageInformation(s)).get(0) //non funge
+                        + ";";
             } catch (TextFinderException ex) {
                 
             }
