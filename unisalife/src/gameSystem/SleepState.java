@@ -34,7 +34,7 @@ public class SleepState extends GameState {
     @Override
     public void init() throws Initializable.InitException {
         try {
-            img = ImageIO.read(getClass().getResource("/Sprites/loadingwindow.png"));
+            img = ImageIO.read(getClass().getResource("/Sprites/sleepingwindow.png"));
         } catch (IOException ex) {
             throw new Initializable.InitException("Can't find Sleeping image");
         }

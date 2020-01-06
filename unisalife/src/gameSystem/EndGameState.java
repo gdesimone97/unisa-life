@@ -34,7 +34,7 @@ public class EndGameState extends GameState {
     @Override
     public void init() throws Initializable.InitException {
         try {
-            img = ImageIO.read(getClass().getResource("/Sprites/endgame.png"));
+            img = ImageIO.read(getClass().getResource("/Sprites/graduationwindow.png"));
         } catch (IOException ex) {
             throw new Initializable.InitException("Can't find EndGame image");
         }
