@@ -159,7 +159,7 @@ public class Exam implements Runnable {
             gui.setExamQuestion(question.getQuestion());
             ArrayList<Answer> answers = question.getAnswers();
             gui.showExamDialog(this.subject.toString(), question.getQuestion(), answers.get(0).getAnswer(), answers.get(1).getAnswer(), answers.get(2).getAnswer(), answers.get(3).getAnswer(), questionTime, rg, question.getLevel(), maxLevel);
-            System.out.println("LA MATERIAAAA:" + this.subject.toString());
+            
             //init timer
             start = System.nanoTime();
             answer = rg.getValue();
@@ -204,7 +204,7 @@ public class Exam implements Runnable {
                 
                 // remove professor
                 MapManager.getInstance().getMap().removeObject(professor.getPosition().getScaledPosition());
-                Booklet.getInstance().setScore(subject, voto);
+                
             } else if (voto == 31) {
                 JukeBoxSound.getInstance().play("exam_passed");
                 try {
@@ -215,7 +215,6 @@ public class Exam implements Runnable {
                 
                 // remove professor
                 MapManager.getInstance().getMap().removeObject(professor.getPosition().getScaledPosition());
-                Booklet.getInstance().setScore(subject, voto);
             } else {
                 try {
                     JukeBoxSound.getInstance().play("exam_failed");
@@ -226,6 +225,7 @@ public class Exam implements Runnable {
             }
             if (this.score >= 18) {
                 StatusManager.getInstance().updateMoney((this.score - 18) + this.coinReward);
+                Booklet.getInstance().setScore(subject, voto);
             }
         } catch (TextFinderException ex) {
             ex.printStackTrace();

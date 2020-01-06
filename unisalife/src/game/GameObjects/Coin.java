@@ -8,6 +8,8 @@ package game.GameObjects;
 import game.Interfaces.Interactable;
 import interaction.CoinInteractionManager;
 import interaction.InteractionManager;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 /**
@@ -18,6 +20,9 @@ public class Coin extends Item implements Interactable {
     
     public Coin(Position p, String path, String info) {
         super(p, path, info);
+        try {
+            loadImage();
+        } catch (ImageNotLoadedException ex) {}
     }
     
     private Coin(){

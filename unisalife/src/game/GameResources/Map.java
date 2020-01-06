@@ -36,6 +36,7 @@ public class Map implements Runnable {
     private ObjectManager mapObjects;
     private String pathMiniMap;
     private boolean generateRandomCoins = false;
+    private boolean mia = false;
 
     /**
      * Constructor that initializes tMap with the passed TileMap t and the
@@ -128,10 +129,8 @@ public class Map implements Runnable {
 
     public void render(Graphics2D g) {
         tMap.render(g);
-        for (GameObject go : mapObjects.getDynamic().values()) {
-            if (go instanceof Renderable) {
-                ((Renderable) go).render(g);
-            }
+        for (Renderable r : mapObjects.getDynamic().values()) {
+            r.render(g);
         }
     }
 
@@ -155,9 +154,7 @@ public class Map implements Runnable {
         while (generateRandomCoins) {
             try {
                 // sleep a certain period of time until next coin is spawned (could be random too)
-                sleep(5 * 1000);
-                
-                System.out.println("Prima di generare coin");
+                sleep(25 * 1000);
                 
                 int rX = 0;
                 int rY = 0;
@@ -176,9 +173,7 @@ public class Map implements Runnable {
                 // add coin in the map (if it's already present a GameObject, exception is catched and compute restarts
                 Position p = new Position(cX, cY);
                 mapObjects.addObject(p.getScaledPosition(), new Coin(p, "/Sprites/coin.png", "moneta"));
-                
-                System.out.println("Generando coins in posizione " + p);
-                System.out.println("La posizione attuale mia è " + Player.getIstance().getPosition());
+                this.mia = true;
             } catch (InterruptedException ex) {
             } catch (Exception ex) {
             }
