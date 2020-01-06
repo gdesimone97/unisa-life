@@ -9,10 +9,8 @@ import game.GameObjects.Player;
 import game.Interfaces.Initializable;
 import gameSystem.keySettings.interfaces.KeyCommand;
 import gameSystem.map.MapManager;
-import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
-import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import javax.imageio.ImageIO;
@@ -25,6 +23,7 @@ public class MapState extends GameState {
 
     private static MapState instance;
     private static BufferedImage img;
+    private static BufferedImage here;
     
     private int xPlayer;
     private int yPlayer;
@@ -37,7 +36,6 @@ public class MapState extends GameState {
         if (instance == null) {
             instance = new MapState();
         }
-        img = MapManager.getInstance().getMap().getMiniMap();
         return instance;
     }
     
@@ -45,17 +43,13 @@ public class MapState extends GameState {
     }
     
     @Override
-    public void init(){}
-    
-    /*@Override
     public void init() throws Initializable.InitException {
         try {
-            img = ImageIO.read(getClass().getResource("/Sprites/Tutorial.png"));
+            here = ImageIO.read(getClass().getResource("/Sprites/here.png"));
         } catch (IOException ex) {
             throw new Initializable.InitException("Can't find Map image");
         }
     }
-    */
 
     @Override
     public void tick() {
@@ -66,23 +60,28 @@ public class MapState extends GameState {
     public void render(Graphics2D g) {
         g.setColor(Color.black);
         g.fillRect(0, 0, Game.WIDTHSCREEN, Game.HEIGHTSCREEN2);
-        g.drawImage(img, Game.WIDTHSCREEN / 4, Game.HEIGHTSCREEN2 / 4, null);
-        g.setColor(Color.red);
+        g.drawImage(img, 0, 0,Game.WIDTHSCREEN,Game.HEIGHTSCREEN2, null);
         xPlayer = Player.getIstance().getPosition().getX();
         yPlayer = Player.getIstance().getPosition().getY();
         heightMap = MapManager.getInstance().getMap().getHeightMap();
         widthMap = MapManager.getInstance().getMap().getWidthMap();
-        xPlayerInMap = (int)Math.ceil(xPlayer*img.getWidth()/widthMap)+Game.WIDTHSCREEN/4;
-        yPlayerInMap = (int)Math.ceil(yPlayer*img.getHeight()/heightMap)+Game.HEIGHTSCREEN2/4;
-        g.setStroke(new BasicStroke(2));
-        g.drawLine(xPlayerInMap - 4, yPlayerInMap, xPlayerInMap + 4, yPlayerInMap);
-        g.drawLine(xPlayerInMap, yPlayerInMap - 4, xPlayerInMap, yPlayerInMap + 4);
+        xPlayerInMap = (int)(xPlayer*Game.WIDTHSCREEN/widthMap);
+        yPlayerInMap = (int)(yPlayer*Game.HEIGHTSCREEN2/heightMap);
+        g.drawImage(here, xPlayerInMap, yPlayerInMap,35,35,null);
     }
 
     @Override
     public void handleInput(KeyCommand cmd) {
 
         cmd.visitMapState(instance);
+    }
+    
+    public void setMinimap(String path) throws Initializable.InitException {
+        try {
+            img = ImageIO.read(getClass().getResource(path));
+        } catch (IOException ex) {
+            throw new Initializable.InitException("Can't find Map image");
+        }
     }
 
 }

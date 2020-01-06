@@ -58,6 +58,8 @@ public class StringsQuestionFactory extends QuestionFactory {
         String quest;
         ArrayList<Answer> answers;
         
+        String subjectName = strList.remove(0);
+                
         for (String str : strList) {
             sc = new Scanner(str);
             sc.useDelimiter(delimiter);

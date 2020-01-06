@@ -11,10 +11,6 @@ import javax.swing.SwingUtilities;
 import language.*;
 import game.GameObjects.GameInventory;
 import game.Interfaces.Initializable;
-import java.util.Iterator;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.table.DefaultTableModel;
 import language.exceptions.TextFinderException;
 
 /**
@@ -42,12 +38,12 @@ public class InventoryManager {
     
     public void updateInventoryDialog(){
         
-        gameframe.model = new DefaultTableModel();
-        gameframe.model.setColumnIdentifiers(new Object[]{"Name","Icon"});
-        System.out.println("unisagui.InventoryManager.updateInventoryDialog()");
+        /*gameframe.model = new DefaultTableModel();
+        gameframe.model.setColumnIdentifiers(new Object[]{"Name","Icon"});*/
+        gameframe.initializingTable();
         for (Item item : GameInventory.getInstance()) {
             JLabel label = new JLabel();
-            label.setIcon(new javax.swing.ImageIcon(getClass().getResource("nome"/*item.getImage()*/))); //getqualcosa che mi restituisca il path del'immagine
+            label.setIcon(new javax.swing.ImageIcon(getClass().getResource(item.getPath()))); //getqualcosa che mi restituisca il path del'immagine
             String name;
             try {
                 name = FileTextManager.getFileTextManager().getString(item).get(0);
@@ -57,8 +53,9 @@ public class InventoryManager {
             }
             gameframe.model.addRow(new Object[]{name ,label});
         }
+        gameframe.InventoryTable.setModel(gameframe.model);
+        
     }
-    //se viene passata la posizione dell'elemento
-    // public void updateInventoryDialog(Item item, int position, boolean presence)
+    
     
 }

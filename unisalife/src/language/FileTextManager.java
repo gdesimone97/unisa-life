@@ -107,7 +107,7 @@ public class FileTextManager extends TextManager implements Initializable {
         try {
             String loadLang = sv.loadLang();
             if (loadLang.equals("")) {
-                setLanguage("eng");
+                setLanguage("English");
             } else {
                 setLanguage(loadLang);
             }

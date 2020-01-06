@@ -14,7 +14,7 @@ import java.util.NoSuchElementException;
 import java.util.StringTokenizer;
 
 /**
- *
+ * Storable Creator for Professor
  * @author cmarino
  */
 public class ProfessorFactory extends StorableCreator {
@@ -25,9 +25,7 @@ public class ProfessorFactory extends StorableCreator {
     /**
      *
      * @param s The string that contains every field needed to construct the
-     * ProfessorItem that should follow the pattern %name%x%y%map%subject The
-     * subject is required as Object, so it needs to be queried on the DB
-     * starting from the String identifier specified in the text file.
+     * ProfessorItem that should follow the pattern %name%x%y%map%subject
      *
      * @throws InvalidArgumentListException
      */
@@ -39,7 +37,8 @@ public class ProfessorFactory extends StorableCreator {
         try {
 
             //Retrieve subject from the DB
-            Professor pw = new Professor(st.nextToken(), new Position(Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken())), st.nextToken(), new Subject(st.nextToken()));
+            Professor pw = new Professor(st.nextToken(), new Position(Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken())), 
+                    st.nextToken(), st.nextToken());
             return pw;
 
         } catch (NoSuchElementException | NumberFormatException e) {

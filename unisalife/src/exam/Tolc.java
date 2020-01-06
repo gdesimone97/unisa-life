@@ -4,14 +4,20 @@
  * and open the template in the editor.
  */
 package exam;
+
+import character.StatusManager;
+import exam.booklet.Booklet;
 import exam.booklet.Subject;
 import exam.question.*;
 import game.GameObjects.Player;
 import game.GameObjects.Position;
 import game.GameObjects.Teleport;
+import game.GameResources.Map;
 import game.Interfaces.Initializable.InitException;
 import gameSystem.map.MapManager;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import language.FileTextManager;
 import language.MessageInformation;
 import language.exceptions.TextFinderException;
@@ -19,9 +25,9 @@ import sound.JukeBoxSound;
 import unisagui.*;
 
 /**
- * This class is used to do an exam of a given subject. The number of questions
- * is modifiable by changing maxLevel value and basicScore due to reach a
- * maximum of 30 point (a little overflow is admitted)
+ * This class is used to do the tolc. The number of questions is setted by
+ * the lenght of questions loaded from the file. This runnable class can be
+ * runned and allows to do an exam based session.
  *
  * @author 1997g
  */
@@ -37,14 +43,14 @@ public class Tolc implements Runnable {
     QuestionsIterator iter;
 
     /**
-     * Constructor. Given a examSubject fetches the questions.
-     *
-     * @param materia An object Materia needed to load the correct exam's
-     * questions
-     *
+     * constructor of the class
+     * @param s the subject
+     * @param profName the name of the professor
+     * @throws TextFinderException if questions are not in the file
+     * @throws game.Interfaces.Initializable.InitException if cannot be initializable
      */
-    public Tolc() throws TextFinderException, InitException {
-        this.subject = new Subject("tolc");
+    public Tolc(Subject s, String profName) throws TextFinderException, InitException {
+        this.subject = s;
         QuestionFactory questionsFetch = new StringsQuestionFactory(subject);
         this.count = 0;
         this.questionTime = 60;
@@ -52,23 +58,22 @@ public class Tolc implements Runnable {
         this.questions = questionsFetch.getQuestions();
         this.maxLevel = this.questions.getNumLevels();
         this.iter = questions.iterator();
-        this.professorName = "EMPTY NAME";
+        this.professorName = profName;
     }
 
     /**
-     * Verify if the given answer is correct and gives a score, depending on the
-     * level of the question and on the time passed before give the answer.
-     *
-     * @param answer A boolean value that indicates if the answer is or not is
-     * correct
-     * @param seconds Time passed before give the answer
-     * @param level Difficulty level of the question used to give a rising value
-     * for each answer
+     * increments the counter of right answers
+     * @param answer the boolean 
      */
     public void verifyAnswer(boolean answer) { //here the level is referred to the number of questions choosed
         count += (answer ? 1 : 0);
     }
 
+    /**
+     * this run method allows to start the tolc session. It iterates on the questions
+     * and checks if answers are correct or not. At the end, it end and gives reward
+     * and the result
+     */
     @Override
     public void run() {
         MapManager.getInstance().stopGeneratingCoins();
@@ -79,13 +84,17 @@ public class Tolc implements Runnable {
         int answer;
         boolean correctness;
 
+        try {
+            gui.showDialog(professorName, FileTextManager.getFileTextManager().getString(new MessageInformation("TolcPassedName")).get(2));
+        } catch (Exception ex) {
+        }
+
         while (iter.hasNext()) {
             //print question
             question = iter.next();
             gui.setExamQuestion(question.getQuestion());
             ArrayList<Answer> answers = question.getAnswers();
             gui.showExamDialog(this.subject.toString(), question.getQuestion(), answers.get(0).getAnswer(), answers.get(1).getAnswer(), answers.get(2).getAnswer(), answers.get(3).getAnswer(), questionTime, rg, question.getLevel(), maxLevel);
-
             answer = rg.getValue();
 
             //check answer
@@ -94,27 +103,50 @@ public class Tolc implements Runnable {
             } else {
                 correctness = question.isCorrect(answers.get(answer - 1));
                 verifyAnswer(correctness);
-                
+
                 gui.isCorrect(correctness, nextQuestion);
                 nextQuestion.getValue();
             }
-            
+
         }
-        
+
         gui.closeExamDialog();
 
         boolean passed = isPassed();
-        
+
         try {
+            RequestGui r = new RequestGui();
             FileTextManager f = FileTextManager.getFileTextManager();
             if (passed) {
-                gui.showDialog(professorName, f.getString(new MessageInformation("TolcPassedName")).get(0) + Player.getIstance().getName() + f.getString(new MessageInformation("TolcPassedName")).get(1));
-                gui.showDialog(professorName, f.getString(new MessageInformation("TolcPassedName")).get(2));
-                JukeBoxSound.getInstance().play("exam_passed");
-//                Booklet.getInstance().setScore(subject, voto);
-            }
-            else {
-                gui.showDialog(professorName, f.getString(new MessageInformation("TolcFailedName")).get(0) + Player.getIstance().getName() + f.getString(new MessageInformation("TolcFailedName")).get(1));
+                Booklet.getInstance().setScore(subject, 30);
+
+                try {
+                    JukeBoxSound.getInstance().play("exam_passed");
+                    gui.showDialog(professorName, f.getString(new MessageInformation("TolcPassedName")).get(0) + Player.getIstance().getName() + f.getString(new MessageInformation("TolcPassedName")).get(1), r);
+                    r.getValue();
+                    Thread.sleep(250);
+                    gui.showDialog(professorName, f.getString(new MessageInformation("TolcPassedName")).get(2), r);
+                    r.getValue();
+                } catch (DialogManager.DialogAlreadyOpenedException ex) {
+                } catch (TextFinderException ex) {
+                } catch (InterruptedException ex) {
+                }
+
+                StatusManager.getInstance().updateMoney(10);
+
+                // add the 2 teleports after tolc completed
+                Position destPosition = new Position(32, 32);
+                Position p1 = new Position(1952, 352);
+                Map map = MapManager.getInstance().getMap();
+                map.addFixedObject(p1.getScaledPosition(), new Teleport(p1, 0, destPosition));
+                p1 = new Position(1984, 352);
+                map.addFixedObject(p1.getScaledPosition(), new Teleport(p1, 0, destPosition));
+            } else {
+                try {
+                    gui.showDialog(professorName, f.getString(new MessageInformation("TolcFailedName")).get(0) + Player.getIstance().getName() + f.getString(new MessageInformation("TolcFailedName")).get(1), r);
+                    rg.getValue();
+                } catch (DialogManager.DialogAlreadyOpenedException ex) {
+                }
                 JukeBoxSound.getInstance().play("exam_failed");
             }
         } catch (TextFinderException ex) {
@@ -122,12 +154,11 @@ public class Tolc implements Runnable {
         } catch (InitException ex) {
             ex.printStackTrace();
         }
-        
-        //Far comparire i due teleport o rimuovere i due oggetti davanti al teleport        
+
     }
 
     private boolean isPassed() {
         return count >= maxLevel/2 + 1;
     }
-
+    
 }
