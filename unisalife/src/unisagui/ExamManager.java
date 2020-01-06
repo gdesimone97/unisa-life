@@ -137,10 +137,12 @@ import sound.JukeBoxSound;
      * @param numLevel max level of question for this exam
      */
    private void fillExam(String examName, String question, String answer1, String answer2, String answer3, String answer4,int numLevel) {
+        String ProfIcon= examName+".png";
         this.manageButtons(true);
         this.clearExam();
         SwingUtilities.invokeLater(() -> gameframe.ConfirmAnswer.setEnabled(false));
         SwingUtilities.invokeLater(() -> gameframe.ExamDialog.setVisible(true));
+        SwingUtilities.invokeLater(() -> gameframe.ProfLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource(ProfIcon))));
         SwingUtilities.invokeLater(() -> gameframe.ExamTextArea.setText(question));
         SwingUtilities.invokeLater(() -> gameframe.FirstAnswer.setText(answer1));
         SwingUtilities.invokeLater(() -> gameframe.SecondAnswer.setText(answer2));
