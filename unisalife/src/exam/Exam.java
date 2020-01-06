@@ -192,28 +192,28 @@ public class Exam implements Runnable {
         try {
             RequestGui r = new RequestGui();
             if (voto >= 18 && voto <= 30) {
+                JukeBoxSound.getInstance().play("exam_passed");
+                Booklet.getInstance().setScore(subject, voto);
                 try {
                     gui.showDialog(professorName, FileTextManager.getFileTextManager().getString(new MessageInformation("ScoreTaken")).get(0) + " " + voto, r);
-                    rg.getValue();
+                    r.getValue();
                 } catch (DialogManager.DialogAlreadyOpenedException ex) {
                 }
+            } else if (voto == 31) {
                 JukeBoxSound.getInstance().play("exam_passed");
                 Booklet.getInstance().setScore(subject, voto);
-            } else if (voto == 31) {
                 try {
                     gui.showDialog(professorName, FileTextManager.getFileTextManager().getString(new MessageInformation("Lode")).get(0), r);
-                    rg.getValue();
+                    r.getValue();
                 } catch (DialogManager.DialogAlreadyOpenedException ex) {
                 }
-                JukeBoxSound.getInstance().play("exam_passed");
-                Booklet.getInstance().setScore(subject, voto);
             } else {
                 try {
+                    JukeBoxSound.getInstance().play("exam_failed");
                     gui.showDialog(professorName, FileTextManager.getFileTextManager().getString(new MessageInformation("ExamFailed")).get(0), r);
-                    rg.getValue();
+                    r.getValue();
                 } catch (DialogManager.DialogAlreadyOpenedException ex) {
                 }
-                JukeBoxSound.getInstance().play("exam_failed");
             }
             if (this.score >= 18) {
                 StatusManager.getInstance().updateMoney((this.score - 18) + this.coinReward);
