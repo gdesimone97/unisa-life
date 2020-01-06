@@ -148,7 +148,7 @@ import sound.JukeBoxSound;
         SwingUtilities.invokeLater(() -> gameframe.SecondAnswer.setText(answer2));
         SwingUtilities.invokeLater(() -> gameframe.ThirdAnswer.setText(answer3));
         SwingUtilities.invokeLater(() -> gameframe.FourthAnswer.setText(answer4));
-        SwingUtilities.invokeLater(() -> gameframe.NameOfExamLabel.setText(examName));
+        SwingUtilities.invokeLater(() -> gameframe.NameOfExamLabel.setText(Character.toUpperCase(examName.charAt(0))+ examName.substring(1)));
         if (level == 4) {
             SwingUtilities.invokeLater(() -> gameframe.LevelOfQuestionLabel.setText("Laud Question "));
         } else {
