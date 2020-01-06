@@ -95,7 +95,6 @@ public class Tolc implements Runnable {
             gui.setExamQuestion(question.getQuestion());
             ArrayList<Answer> answers = question.getAnswers();
             gui.showExamDialog(this.subject.toString(), question.getQuestion(), answers.get(0).getAnswer(), answers.get(1).getAnswer(), answers.get(2).getAnswer(), answers.get(3).getAnswer(), questionTime, rg, question.getLevel(), maxLevel);
-            System.out.println("LA MATERIAAAA:" + this.subject.toString());
             answer = rg.getValue();
 
             //check answer
@@ -122,12 +121,12 @@ public class Tolc implements Runnable {
                 Booklet.getInstance().setScore(subject, 30);
 
                 try {
-                    gui.showDialog(professorName, f.getString(new MessageInformation("TolcPassedName")).get(0) + Player.getIstance().getName() + f.getString(new MessageInformation("TolcPassedName")).get(1), r);
-                    rg.getValue();
                     JukeBoxSound.getInstance().play("exam_passed");
+                    gui.showDialog(professorName, f.getString(new MessageInformation("TolcPassedName")).get(0) + Player.getIstance().getName() + f.getString(new MessageInformation("TolcPassedName")).get(1), r);
+                    r.getValue();
                     Thread.sleep(250);
                     gui.showDialog(professorName, f.getString(new MessageInformation("TolcPassedName")).get(2), r);
-                    rg.getValue();
+                    r.getValue();
                 } catch (DialogManager.DialogAlreadyOpenedException ex) {
                 } catch (TextFinderException ex) {
                 } catch (InterruptedException ex) {
