@@ -10,6 +10,7 @@ import character.StatusManager;
 import exam.booklet.Booklet;
 import exam.booklet.Subject;
 import exam.question.*;
+import game.GameObjects.Professor;
 import game.Interfaces.Initializable;
 import game.Interfaces.Initializable.InitException;
 import gameSystem.map.MapManager;
@@ -46,6 +47,7 @@ public class Exam implements Runnable {
     private final float basicScore;
     private int lastLevelAnswered = 0;
     QuestionsIterator iter;
+    private final Professor professor;
 
     /**
      * Constructor. Given a examSubject fetches the questions.
@@ -54,7 +56,7 @@ public class Exam implements Runnable {
      * questions
      *
      */
-    public Exam(Subject subject, String profName) throws TextFinderException, InitException {
+    public Exam(Subject subject, Professor p) throws TextFinderException, InitException {
         this.subject = subject;
         QuestionFactory questionsFetch = new StringsQuestionFactory(subject);
         this.score = 0;
@@ -66,7 +68,8 @@ public class Exam implements Runnable {
         this.maxLevel = this.questions.getNumLevels();
         this.basicScore = 12 / (30 - (30 / (float) (this.maxLevel - 1)));
         this.iter = questions.iterator();
-        this.professorName = profName;
+        this.professor = p;
+        this.professorName = p.getNome();
     }
 
     /**
@@ -193,20 +196,26 @@ public class Exam implements Runnable {
             RequestGui r = new RequestGui();
             if (voto >= 18 && voto <= 30) {
                 JukeBoxSound.getInstance().play("exam_passed");
-                Booklet.getInstance().setScore(subject, voto);
                 try {
                     gui.showDialog(professorName, FileTextManager.getFileTextManager().getString(new MessageInformation("ScoreTaken")).get(0) + " " + voto, r);
                     r.getValue();
                 } catch (DialogManager.DialogAlreadyOpenedException ex) {
                 }
+                
+                // remove professor
+                MapManager.getInstance().getMap().removeObject(professor.getPosition().getScaledPosition());
+                Booklet.getInstance().setScore(subject, voto);
             } else if (voto == 31) {
                 JukeBoxSound.getInstance().play("exam_passed");
-                Booklet.getInstance().setScore(subject, voto);
                 try {
                     gui.showDialog(professorName, FileTextManager.getFileTextManager().getString(new MessageInformation("Lode")).get(0), r);
                     r.getValue();
                 } catch (DialogManager.DialogAlreadyOpenedException ex) {
                 }
+                
+                // remove professor
+                MapManager.getInstance().getMap().removeObject(professor.getPosition().getScaledPosition());
+                Booklet.getInstance().setScore(subject, voto);
             } else {
                 try {
                     JukeBoxSound.getInstance().play("exam_failed");

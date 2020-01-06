@@ -71,10 +71,10 @@ public class ProfessorInteractionManager implements InteractionManager {
                         } catch (DialogManager.DialogAlreadyOpenedException ex) {
                         }
                         
-                        Thread tolcThread = new Thread(new Tolc(s, p.getNome()));
+                        Thread tolcThread = new Thread(new Tolc(s, p));
                         tolcThread.start();
                     } else {
-                        Thread esameThread = new Thread(new Exam(s, p.getNome()));
+                        Thread esameThread = new Thread(new Exam(s, p));
                         esameThread.start();
                     }
 
