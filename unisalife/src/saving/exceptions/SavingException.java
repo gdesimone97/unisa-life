@@ -6,6 +6,7 @@
 package saving.exceptions;
 
 /**
+ * Report to developer that something has gone wrong in the saving operation
  *
  * @author Giuseppe De Simone
  */
