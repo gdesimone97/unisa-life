@@ -7,7 +7,7 @@ tilemap %0%2368%928%/Tilesets/TilesetConSfondo.png%/Maps/Tutorial.map%352%448%/M
 tilemap %1%2560%2560%/Tilesets/TilesetConSfondo.png%/Maps/ExternalMap.map%1248%1408%/MiniMap/ExternalMap.png
 # 
 # Map 2 Engineering
-tilemap %2%320%320%/Tilesets/TilesetDefinitivo.png%/Maps/Engineering.map%0%0%/MiniMap/Tutorial.png
+tilemap %2%1984%1728%/Tilesets/EngDef.png%/Maps/Engineering.map%800%1344%/MiniMap/EngineeringMini.png
 # 
 # Map 3 Dormitory
 tilemap %3%1280%928%/Tilesets/Dormitory.png%/Maps/Dormitory.map%672%448%/MiniMap/Dormitory.png
@@ -1524,9 +1524,6 @@ block %864%448%0%f
 block %832%448%0%f
 block %800%448%0%f
 block %768%448%0%f
-# teleport to main map da togliere
-teleport %1952%352%1%1248%1408%0
-teleport %1984%352%1%1248%1408%0
 # 
 # Map 1 (ExternalMap) objects
 # 
@@ -6501,10 +6498,6 @@ teleport %1248%1280%2%0%0%1
 # teleport to dormitory
 teleport %672%1504%3%672%448%1
 teleport %704%1504%3%672%448%1
-# 
-# teleport Tutorial da togliere
-teleport %1248%1280%0%352%448%1
-teleport %1280%1280%0%352%448%1
 # 
 # Map 2 (Engineering) objects
 # 
