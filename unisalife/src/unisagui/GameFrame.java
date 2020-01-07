@@ -87,6 +87,12 @@ public class GameFrame extends javax.swing.JFrame {
         NewGameButton.setName("new_game");
         AvatarName.setName("avatar");
         MoveUpField.setName("moveup");
+        MoveDownField.setName("movedown");
+        MoveLeftField.setName("moveleft");
+        MoveRightField.setName("moveright");
+        InteractField.setName("interact");
+        PauseField.setName("pause");
+        MapField.setName("map");
   
     }
 
