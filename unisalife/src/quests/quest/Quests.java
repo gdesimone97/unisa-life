@@ -20,6 +20,7 @@ import java.util.List;
 import quests.QuestsManager;
 import quests.mediator.Message;
 import quests.mediator.User;
+import unisagui.GuiManager;
 
 /**
  *
@@ -103,7 +104,8 @@ public class Quests extends User implements Saveable, Serializable, Initializabl
     
     public void levelEnded(){
         this.currentLevel++;
-        this.loadLevel();                
+        this.loadLevel();
+        GuiManager.getInstance().setLevel("Level " + String.valueOf(this.currentLevel + 1));
     }
     
     
