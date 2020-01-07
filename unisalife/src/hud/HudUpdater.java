@@ -22,7 +22,7 @@ public class HudUpdater implements Runnable {
 
     private final Teleport healthTeleport = new Teleport(null, 3, new Position(832, 448));
     private final Teleport hungerTeleport = new Teleport(null, 1, new Position(51 * 32, 30 * 32));
-    private volatile static boolean paused = true;
+    private volatile static boolean paused = false;
     private final static Object pauseLock = new Object();
     int energyValue;
     int hungerValue;
@@ -45,17 +45,16 @@ public class HudUpdater implements Runnable {
                 if (currentThread != StatusManagerAdapter.getThread()) {
                     break;
                 }
-            }
+                if (paused) {
+                    try {
+                        pauseLock.wait();
+                    } catch (InterruptedException ex) {
+                        break;
+                    }
 
-            if (paused) {
-                try {
-                    pauseLock.wait();
-                } catch (InterruptedException ex) {
-                    break;
-                }
-
-                if (currentThread != StatusManagerAdapter.getThread()) {
-                    break;
+                    if (currentThread != StatusManagerAdapter.getThread()) {
+                        break;
+                    }
                 }
             }
 
