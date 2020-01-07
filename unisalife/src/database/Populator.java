@@ -6,7 +6,6 @@
 package database;
 
 import database.populator.exceptions.InvalidGameDataFormatException;
-import game.GameObjects.Item;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;

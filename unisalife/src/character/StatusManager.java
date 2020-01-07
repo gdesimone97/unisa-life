@@ -20,19 +20,23 @@ import unisagui.GuiManager;
  * @author mariodesio
  */
 public class StatusManager implements Saveable, Initializable {
-    private int initialEnergy,initialHunger,initialStress,initialMoney;
+
+    private int initialEnergy, initialHunger, initialStress, initialMoney;
     private final GameFrame gameframe = GameFrame.getInstance();
     private HudUpdater updater;
     private static StatusManager instance;
-    private static Thread up;
+    protected static Thread up;
+
     /**
-     * Private constructor
+     * Protected constructor
      */
-    private StatusManager() {
+    protected StatusManager() {
     }
-    
+
     /**
-     * Static method to get a StatusManager object, according to the Singleton pattern.
+     * Static method to get a StatusManager object, according to the Singleton
+     * pattern.
+     *
      * @return an instance of StatusManager.
      */
     public static StatusManager getInstance() {
@@ -41,9 +45,10 @@ public class StatusManager implements Saveable, Initializable {
         }
         return instance;
     }
-    
+
     /**
      * Method to update the value contained in the energy bar.
+     *
      * @param increment increment of value that is wanted to be applied.
      */
     public synchronized void updateEnergy(int increment) {
@@ -51,9 +56,10 @@ public class StatusManager implements Saveable, Initializable {
         Status.setEnergyLevel(newValue);
         GuiManager.getInstance().updateEnergyBar(newValue);
     }
-    
+
     /**
      * Method to update the value contained in the hunger bar.
+     *
      * @param increment increment of value that is wanted to be applied.
      */
     public synchronized void updateHunger(int increment) {
@@ -61,9 +67,10 @@ public class StatusManager implements Saveable, Initializable {
         Status.setHungerLevel(newValue);
         GuiManager.getInstance().updateHungerBar(newValue);
     }
-    
+
     /**
      * Method to update the value contained in the stress bar.
+     *
      * @param increment increment of value that is wanted to be applied.
      */
     public synchronized void updateStress(int increment) {
@@ -71,62 +78,67 @@ public class StatusManager implements Saveable, Initializable {
         Status.setStressLevel(newValue);
         GuiManager.getInstance().updateStressBar(newValue);
     }
-    
+
     /**
      * Method to update the value contained in the money label.
-     * @param increment increment of value that is wanted to be applied. 
+     *
+     * @param increment increment of value that is wanted to be applied.
      */
     public synchronized void updateMoney(int increment) {
         int newValue = Status.getMoney() + increment;
         Status.setMoney(newValue);
         GuiManager.getInstance().updateMoney(newValue);
     }
-    
+
     /**
      * Method to set the value contained in the energy bar.
+     *
      * @param newValue value that is wanted to be shown.
      */
     public synchronized void setEnergy(int newValue) {
         Status.setEnergyLevel(newValue);
         GuiManager.getInstance().updateEnergyBar(newValue);
     }
-    
+
     /**
      * Method to set the value contained in the hunger bar.
+     *
      * @param newValue value that is wanted to be shown.
      */
     public synchronized void setHunger(int newValue) {
         Status.setHungerLevel(newValue);
         GuiManager.getInstance().updateHungerBar(newValue);
     }
-    
+
     /**
      * Method to set the value contained in the stress bar.
+     *
      * @param newValue value that is wanted to be shown.
      */
     public synchronized void setStress(int newValue) {
         Status.setStressLevel(newValue);
         GuiManager.getInstance().updateStressBar(newValue);
     }
-    
+
     /**
      * Method to set the value contained in the money label.
+     *
      * @param newValue value that is wanted to be shown.
      */
     private synchronized void setMoney(int newValue) {
         Status.setMoney(newValue);
         GuiManager.getInstance().updateMoney(newValue);
     }
-    
+
     /**
      * Method to stop the thread that changes the bar status.
      */
-    public static synchronized void stopBar(){
-        if(up!=null){
-            up.interrupt();
+    public static synchronized void stopBar() {
+        if (up != null) {
+            up = null;
         }
     }
-    
+
     /**
      *
      * @return a Serializable useful to save the status of the character
@@ -160,7 +172,7 @@ public class StatusManager implements Saveable, Initializable {
         up = new Thread(updater);
         up.start();
     }
-    
+
     /**
      *
      */
