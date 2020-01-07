@@ -1525,6 +1525,10 @@ block %832%448%0%f
 block %800%448%0%f
 block %768%448%0%f
 # 
+# teleport to Main Map
+teleport %1952%352%1%1248%1408%0
+teleport %1984%352%1%1248%1408%0
+# 
 # Map 1 (ExternalMap) objects
 # 
 # characters
@@ -11466,8 +11470,6 @@ bed %1216%512%1184%512%2
 bed %1216%544%1184%544%2
 bed %928%544%960%544%2
 bed %928%512%960%512%2
-bed %1216%576%1184%576%2
-bed %928%576%960%576%2
 # 
 # Map 3 (Dormitory) objects
 #
