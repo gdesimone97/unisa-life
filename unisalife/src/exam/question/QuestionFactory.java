@@ -30,6 +30,10 @@ public abstract class QuestionFactory {
     */
     public abstract Questions getQuestions();
 
+    /**
+     * returns the subject
+     * @return 
+     */
     public Subject getSubject() {
         return subject;
     }

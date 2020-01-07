@@ -44,6 +44,10 @@ public class GameManager {
         game = new Game();
     }
 
+    /**
+     * returns the instance
+     * @return 
+     */
     public static GameManager getInstance() {
         if (instance == null) {
             instance = new GameManager();
@@ -185,6 +189,10 @@ public class GameManager {
         GuiManager.getInstance().startGame();
     }
 
+    /**
+     * returns if the game is running
+     * @return 
+     */
     public boolean isRunning() {
         return game.isRunning();
     }

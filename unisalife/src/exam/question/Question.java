@@ -84,6 +84,10 @@ public class Question {
         return answers.size();
     }
 
+    /**
+     * converts the questions to strings
+     * @return 
+     */
     @Override
     public String toString() {
         String str = "";

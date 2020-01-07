@@ -14,12 +14,16 @@ import sound.JukeBoxSound;
 import unisagui.GuiManager;
 
 /**
- * InteractionManager implemented for Item collection
+ * InteractionManager used to interact with the items
  *
  * @author alfon
  */
 public class ItemInteractionManager implements InteractionManager {
 
+    /**
+     * execute method for the related object
+     * @param obj 
+     */
     @Override
     public void execute(Interactable obj) {
         // get text to show

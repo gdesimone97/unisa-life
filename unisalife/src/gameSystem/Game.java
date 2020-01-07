@@ -103,20 +103,33 @@ public class Game extends Canvas implements Runnable {
         }
     }
 
+    /**
+     * this method shows fps of the game
+     * @param showFPS 
+     */
     public void setShowFPS(boolean showFPS) {
         this.showFPS = showFPS;
     }
 
+    /**
+     * init the game
+     */
     private void init() {
         gsm = GameStateManager.getInstance();
         this.addKeyListener(new HandlerInput());
         running = true;
     }
 
+    /**
+     * tick of the game, calls tick of the state
+     */
     private void tick() {
         gsm.tick();
     }
 
+    /**
+     * render of the game, calls render of player, camera and state
+     */
     private void render() {
         BufferStrategy bs = this.getBufferStrategy();
         if (bs == null) {
@@ -145,14 +158,25 @@ public class Game extends Canvas implements Runnable {
         bs.show();
     }
 
+    /**
+     * 
+     */
     public void stopGame() {
         running = false;
     }
 
+    /**
+     * get if the fps are shown 
+     * @return 
+     */
     public boolean getShowFPS() {
         return showFPS;
     }
 
+    /**
+     * return if the game is running
+     * @return 
+     */
     public boolean isRunning() {
         return running;
     }

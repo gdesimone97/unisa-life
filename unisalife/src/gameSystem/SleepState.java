@@ -13,7 +13,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 /**
- *
+ * This state is shown when the player goes to sleep
  * @author 1997g
  */
 public class SleepState extends GameState {
@@ -21,6 +21,10 @@ public class SleepState extends GameState {
     private static SleepState instance;
     private BufferedImage img;
     
+    /**
+     * returns the instance
+     * @return 
+     */
     public static SleepState getInstance() {
         if (instance == null) {
             instance = new SleepState();
@@ -31,6 +35,10 @@ public class SleepState extends GameState {
     private SleepState() {
     }
 
+    /**
+     * init the image
+     * @throws game.Interfaces.Initializable.InitException 
+     */
     @Override
     public void init() throws Initializable.InitException {
         try {
@@ -40,15 +48,26 @@ public class SleepState extends GameState {
         }
     }
 
+    /**
+     * nothing to tick
+     */
     @Override
     public void tick() {
     }
 
+    /**
+     * render the image
+     * @param g 
+     */
     @Override
     public void render(Graphics2D g) {
         g.drawImage(img, 0, 0, null);
     }
 
+    /**
+     * handles the input for this state
+     * @param cmd 
+     */
     @Override
     public void handleInput(KeyCommand cmd) {
     }

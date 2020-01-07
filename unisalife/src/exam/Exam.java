@@ -14,6 +14,7 @@ import game.GameObjects.Professor;
 import game.Interfaces.Initializable;
 import game.Interfaces.Initializable.InitException;
 import gameSystem.map.MapManager;
+import hud.HudUpdater;
 import hud.change.CanteenHudBarChange;
 import hud.change.CorrectAnswerHudBarChange;
 import hud.change.WrongAnswerHudBarChange;
@@ -121,6 +122,7 @@ public class Exam implements Runnable {
     @Override
     public void run() {
         MapManager.getInstance().stopGeneratingCoins();
+        HudUpdater.pause();
         GuiManager gui = GuiManager.getInstance();
         ResultGui rg = new ResultGui(questionTime);
         RequestGui praiseRequest = new RequestGui();
@@ -227,6 +229,8 @@ public class Exam implements Runnable {
                 StatusManager.getInstance().updateMoney((this.score - 18) + this.coinReward);
                 Booklet.getInstance().setScore(subject, voto);
             }
+            
+            HudUpdater.resume();
         } catch (TextFinderException ex) {
             ex.printStackTrace();
         } catch (InitException ex) {

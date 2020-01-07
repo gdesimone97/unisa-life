@@ -14,7 +14,7 @@ import game.Interfaces.Interactable;
 public interface InteractionManager {
 
     /**
-     * Method to implement the acctual series of actions taken by the game.
+     * Method to implement the actual series of actions taken by the game.
      * @param obj The game object that starts the interaction
      */
     public void execute(Interactable obj);

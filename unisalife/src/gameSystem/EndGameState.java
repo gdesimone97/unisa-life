@@ -13,7 +13,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 /**
- *
+ * This state shows an image of end game
  * @author 1997g
  */
 public class EndGameState extends GameState {
@@ -21,6 +21,10 @@ public class EndGameState extends GameState {
     private static EndGameState instance;
     private BufferedImage img;
     
+    /**
+     * returns the instance
+     * @return 
+     */
     public static EndGameState getInstance() {
         if (instance == null) {
             instance = new EndGameState();
@@ -31,6 +35,10 @@ public class EndGameState extends GameState {
     private EndGameState() {
     }
     
+    /**
+     * Method to init the state
+     * @throws game.Interfaces.Initializable.InitException 
+     */
     @Override
     public void init() throws Initializable.InitException {
         try {
@@ -40,15 +48,26 @@ public class EndGameState extends GameState {
         }
     }
     
+    /**
+     * tick of the state
+     */
     @Override
     public void tick() {
     }
     
+    /**
+     * render of the image
+     * @param g 
+     */
     @Override
     public void render(Graphics2D g) {
         g.drawImage(img, 0, 0, Game.WIDTHSCREEN, Game.HEIGHTSCREEN, null);
     }
     
+    /**
+     * handles input of this state
+     * @param cmd 
+     */
     @Override
     public void handleInput(KeyCommand cmd) {
         cmd.visitEndGameState(this);

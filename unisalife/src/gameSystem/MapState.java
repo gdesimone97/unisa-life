@@ -16,7 +16,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 /**
- *
+ * This state shows the minimap of the actual map
  * @author simon
  */
 public class MapState extends GameState {
@@ -32,6 +32,11 @@ public class MapState extends GameState {
     private int xPlayerInMap;
     private int yPlayerInMap;
     
+    /**
+     * returns the instance
+     * @return
+     * @throws game.Interfaces.Initializable.InitException 
+     */
     public static MapState getInstance() throws Initializable.InitException{
         if (instance == null) {
             instance = new MapState();
@@ -42,6 +47,10 @@ public class MapState extends GameState {
     private MapState() {
     }
     
+    /**
+     * initialize the image
+     * @throws game.Interfaces.Initializable.InitException 
+     */
     @Override
     public void init() throws Initializable.InitException {
         try {
@@ -51,11 +60,18 @@ public class MapState extends GameState {
         }
     }
 
+    /**
+     * nothing to tick
+     */
     @Override
     public void tick() {
 
     }
 
+    /**
+     * renders the image on the screen
+     * @param g 
+     */
     @Override
     public void render(Graphics2D g) {
         g.setColor(Color.black);
@@ -70,12 +86,21 @@ public class MapState extends GameState {
         g.drawImage(here, xPlayerInMap, yPlayerInMap,35,35,null);
     }
 
+    /**
+     * handles the input of this state
+     * @param cmd 
+     */
     @Override
     public void handleInput(KeyCommand cmd) {
 
         cmd.visitMapState(instance);
     }
     
+    /**
+     * sets the minimap of the actual map
+     * @param path
+     * @throws game.Interfaces.Initializable.InitException 
+     */
     public void setMiniMap(String path) throws Initializable.InitException {
         try {
             img = ImageIO.read(getClass().getResource(path));

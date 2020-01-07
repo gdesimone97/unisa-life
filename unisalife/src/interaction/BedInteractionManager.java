@@ -24,6 +24,10 @@ import sound.JukeBoxSound;
  */
 public class BedInteractionManager implements InteractionManager {
 
+    /**
+     * execute method for the related object
+     * @param obj 
+     */
     @Override
     public void execute(Interactable obj) {
         Bed b = (Bed) obj;

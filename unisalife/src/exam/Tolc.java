@@ -16,6 +16,7 @@ import game.GameObjects.Teleport;
 import game.GameResources.Map;
 import game.Interfaces.Initializable.InitException;
 import gameSystem.map.MapManager;
+import hud.HudUpdater;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -80,6 +81,7 @@ public class Tolc implements Runnable {
     @Override
     public void run() {
         MapManager.getInstance().stopGeneratingCoins();
+        HudUpdater.pause();
         GuiManager gui = GuiManager.getInstance();
         ResultGui rg = new ResultGui(questionTime);
         RequestGui nextQuestion = new RequestGui();
@@ -150,6 +152,8 @@ public class Tolc implements Runnable {
                 }
                 JukeBoxSound.getInstance().play("exam_failed");
             }
+            
+            HudUpdater.resume();
         } catch (TextFinderException ex) {
             ex.printStackTrace();
         } catch (InitException ex) {
