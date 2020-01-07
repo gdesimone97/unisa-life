@@ -14,7 +14,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
+ * This class is a thread in which the status bars are updated. 
  * @author mariodesio
  */
 public class HudUpdater implements Runnable {
@@ -31,7 +31,7 @@ public class HudUpdater implements Runnable {
     public void run() {
         while (true) {
             
-            //prendi da status 
+            
             energyValue = Status.getEnergyLevel();
             hungerValue = Status.getHungerLevel();
             stressValue = Status.getStressLevel();
