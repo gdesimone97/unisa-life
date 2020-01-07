@@ -186,7 +186,6 @@ public class FileTextManagerTest {
             return ATTR_STRING;
         }
 
-        @Override
         public Boolean isAvailable() {
             return true;
         }
