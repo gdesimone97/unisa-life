@@ -179,6 +179,10 @@ public class StatusManager implements Saveable, Initializable {
     @Override
     public void init() {
         this.updater = new HudUpdater();
+        Status.setEnergyLevel(100);
+        Status.setHungerLevel(0);
+        Status.setStressLevel(0);
+        Status.setMoney(0);
         up = new Thread(updater);
         initialEnergy = Status.getEnergyLevel();
         initialHunger = Status.getHungerLevel();
