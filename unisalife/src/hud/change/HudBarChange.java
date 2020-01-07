@@ -6,7 +6,7 @@
 package hud.change;
 
 /**
- *
+ * 
  * @author mariodesio
  */
 public interface HudBarChange {

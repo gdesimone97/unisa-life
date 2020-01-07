@@ -36,7 +36,7 @@ public class Map implements Runnable {
     private ObjectManager mapObjects;
     private String pathMiniMap;
     private boolean generateRandomCoins = false;
-    private boolean mia = false;
+    
 
     /**
      * Constructor that initializes tMap with the passed TileMap t and the
@@ -173,7 +173,7 @@ public class Map implements Runnable {
                 // add coin in the map (if it's already present a GameObject, exception is catched and compute restarts
                 Position p = new Position(cX, cY);
                 mapObjects.addObject(p.getScaledPosition(), new Coin(p, "/Sprites/coin.png", "moneta"));
-                this.mia = true;
+                
             } catch (InterruptedException ex) {
             } catch (Exception ex) {
             }

@@ -206,6 +206,10 @@ public class GameInventory extends User implements Iterable<Item>, Saveable, Ini
         this.comp = new TakenComparator();
     }
 
+    /**
+     * These two inner classes allow us to switch at runtime the comparator that
+     * keeps the view list ordered by a changing criteria
+     */
     private static class TakenComparator implements Comparator<Item> {
 
         public TakenComparator() {
