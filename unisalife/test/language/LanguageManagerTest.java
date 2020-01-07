@@ -17,7 +17,7 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author desio
+ * @author Giuseppe De Simone
  */
 public class LanguageManagerTest {
 

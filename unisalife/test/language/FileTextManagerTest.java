@@ -85,7 +85,7 @@ public class FileTextManagerTest {
         System.out.println("setLanguage");
         FileTextManager instance = FileTextManager.getFileTextManager();
         FileLanguageManager languageManager = FileLanguageManager.getLanguageManager();
-        String lang = "eng";
+        String lang = "English";
         instance.setLanguage(lang);
         String result = languageManager.getCurrentLanguage();
         assertEquals(result, lang);
@@ -118,30 +118,15 @@ public class FileTextManagerTest {
      */
     @Test
     public void testGetString() throws TextFinderException, LanguageSelectedNotAvailableException, FileTextManagerException {
-        final String TEST_STRING = "Stringa di test";
+        final String TEST_STRING = "Your health is important. Never forget to take care of yourself!";
         System.out.println("getString");
         FileTextManager instance = FileTextManager.getFileTextManager();
-        instance.setLanguage("test");
+        instance.setLanguage("English");
         String expResult = TEST_STRING;
-        InformationTest infoTest = new InformationTest();
+        MessageInformation infoTest = new MessageInformation("EmergencyStatus");
         List<String> listStrings = instance.getString(infoTest);
         String result = listStrings.get(0);
         assertEquals(expResult, result);
-    }
-    
-    /**
-     * Test of getString method, of class FileTextManager.
-     */
-    @Test(expected = XMLFileException.class)
-    public void testGetString_empty() throws TextFinderException, LanguageSelectedNotAvailableException, FileTextManagerException {
-        final String TEST_STRING = "Stringa di test";
-        System.out.println("getString");
-        FileTextManager instance = FileTextManager.getFileTextManager();
-        instance.setLanguage("test_empty");
-        InformationTest infoTest = new InformationTest();
-        List<String> listStrings = instance.getString(infoTest);
-        String result = listStrings.get(0);
-        assertEquals("", result);
     }
     
     /**
@@ -152,34 +137,16 @@ public class FileTextManagerTest {
         final String TEST_STRING = "Stringa di test";
         System.out.println("getString");
         FileTextManager instance = FileTextManager.getFileTextManager();
-        instance.setLanguage("test_stringNotFound");
+        instance.setLanguage("English");
         InformationTest infoTest = new InformationTest();
         List<String> listStrings = instance.getString(infoTest);
         String result = listStrings.get(0);
         assertEquals("", result);
     }
-
-    /**
-     * Test of getString method, of class FileTextManager.
-     */
-    @Test
-    public void testGetString_getMultipleStrings() throws TextFinderException, LanguageSelectedNotAvailableException, FileTextManagerException {
-        final String TEST_STRING_1 = "Test1";
-        final String TEST_STRING_2 = "Test2";
-        System.out.println("getString");
-        FileTextManager instance = FileTextManager.getFileTextManager();
-        instance.setLanguage("test_multipleStrings");
-        InformationTest infoTest = new InformationTest();
-        List<String> listStrings = instance.getString(infoTest);
-        String result1 = listStrings.get(0);
-        String resutl2 = listStrings.get(1);
-        assertEquals(TEST_STRING_1, result1);
-        assertEquals(TEST_STRING_2,resutl2);
-    }
     
     private class InformationTest implements Information {
 
-        private final String ATTR_STRING = "123";
+        private final String ATTR_STRING = "TolcFailedName";
 
         @Override
         public String getInfo() {

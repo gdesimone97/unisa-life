@@ -16,7 +16,7 @@ import java.util.Set;
 
 /**
  *
- * @author desio
+ * @author Giuseppe De Simone
  */
 class ReadDirectory {
 

@@ -6,7 +6,6 @@
 package language;
 
 import java.io.IOException;
-import java.util.Iterator;
 import java.util.Set;
 import language.exceptions.*;
 import org.junit.After;
@@ -15,7 +14,6 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import org.junit.Ignore;
 
 /**
  *
