@@ -5,8 +5,6 @@
  */
 package language;
 
-import com.sun.javafx.scene.control.skin.VirtualFlow;
-import java.util.ArrayList;
 import java.util.List;
 import language.exceptions.*;
 import org.junit.After;
@@ -21,7 +19,10 @@ import static org.junit.Assert.*;
  * @author alfon
  */
 public class CacheFileTextFinderTest {
-
+    
+    private String fileName = "..//test/testfile.xml";
+    private String repFileName = "..//test/replacement.xml";
+    
     abstract class GenericAbstract implements Information {
     };
 
@@ -39,14 +40,6 @@ public class CacheFileTextFinderTest {
             return this.info;
         }
 
-        public Boolean isAvailable() {
-            return this.av;
-        }
-
-        public void setAvailable(Boolean b) {
-            this.av = b;
-        }
-
     }
 
     public CacheFileTextFinderTest() {
@@ -61,7 +54,8 @@ public class CacheFileTextFinderTest {
     }
 
     @Before
-    public void setUp() {
+    public void setUp() throws TextFinderException, FileNotSetException, InvalidFileNameException {
+
     }
 
     @After
@@ -86,7 +80,7 @@ public class CacheFileTextFinderTest {
     public void testGetStringSingle() throws Exception {
         System.out.println("getString");
         GenericClass instance = new GenericClass("TestSingleInfo");
-        FileTextFinder finder = FileTextFinder.getFileTextFinder("testfile.xml");
+        FileTextFinder finder = FileTextFinder.getFileTextFinder(fileName);
         List<String> resultList = finder.getString(instance);
         int expResult = 1;
         assertEquals(expResult, resultList.size());
@@ -96,7 +90,7 @@ public class CacheFileTextFinderTest {
     public void testGetStringMultiple() throws Exception {
         System.out.println("getString");
         GenericClass instance = new GenericClass("TestMultipleInfo");
-        FileTextFinder finder = FileTextFinder.getFileTextFinder("testfile.xml");
+        FileTextFinder finder = FileTextFinder.getFileTextFinder(fileName);
         List<String> resultList = finder.getString(instance);
         assertTrue(resultList.size()>1);
     }
@@ -106,7 +100,7 @@ public class CacheFileTextFinderTest {
         System.out.println("getString");
         GenericClass instance = new GenericClass("TestWrongInfo");
 
-        FileTextFinder finder = FileTextFinder.getFileTextFinder("testfile.xml");
+        FileTextFinder finder = FileTextFinder.getFileTextFinder(fileName);
         List<String> result = finder.getString(instance);
     }
 
@@ -116,10 +110,10 @@ public class CacheFileTextFinderTest {
     @Test
     public void testCleanCache() throws TextFinderException, FileNotSetException, InvalidFileNameException, StringNotFoundException {
         System.out.println("cleanCache");
-        FileTextFinder finder = FileTextFinder.getFileTextFinder("testfile.xml");
+        FileTextFinder finder = FileTextFinder.getFileTextFinder(fileName);
         GenericClass instance = new GenericClass("TestInfo");
         List<String> resultList = finder.getString(instance);
-        FileTextFinder.setFileName("replacement.xml");
+        FileTextFinder.setFileName(repFileName);
         int result = ((CacheFileTextFinder) finder).size();
         int expectedResult = 0;
         assertEquals(result, expectedResult);
@@ -131,7 +125,7 @@ public class CacheFileTextFinderTest {
     @Test
     public void testSize() throws Exception {
         System.out.println("size");
-        FileTextFinder finder = FileTextFinder.getFileTextFinder("testfile.xml");
+        FileTextFinder finder = FileTextFinder.getFileTextFinder(fileName);
         GenericClass instance = new GenericClass("TestInfo");
         List<String> resultList = finder.getString(instance);
         int result = ((CacheFileTextFinder) finder).size();
@@ -139,32 +133,5 @@ public class CacheFileTextFinderTest {
         assertEquals(result, expectedResult);
     }
 
-    /**
-     * Test of fullfillment in cache
-     */
-    /*
-    public void testFill() throws Exception {
-        System.out.println("Fill");
-        FileTextFinder finder = FileTextFinder.getFileTextFinder("it.xml");
-        for (int i = 0; i < 150; i++) {
-            finder.getString("#" + i);
-        }
-        int result = ((CacheFileTextFinder) finder).size();
-        int expectedResult = 100;
-        assertEquals(result, expectedResult);
-    }
-     */
-    /**
-     * Test Warning message
-     */
-    @Test
-    public void testWarning() throws Exception {
-        System.out.println("getString");
-        GenericClass instance = new GenericClass("TestInfo");
-        instance.setAvailable(Boolean.FALSE);
-        FileTextFinder finder = FileTextFinder.getFileTextFinder("testfile.xml");
-        List<String> resultList = finder.getString(instance);
-        String expResult = "Operation not allowed";
-        assertTrue(expResult.equals(resultList.get(0)));
-    }
+
 }
