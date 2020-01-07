@@ -46,7 +46,7 @@ public class EndGameState extends GameState {
     
     @Override
     public void render(Graphics2D g) {
-        g.drawImage(img, 0, 0, Game.WIDTHSCREEN, Game.HEIGHTSCREEN2, null);
+        g.drawImage(img, 0, 0, Game.WIDTHSCREEN, Game.HEIGHTSCREEN, null);
     }
     
     @Override

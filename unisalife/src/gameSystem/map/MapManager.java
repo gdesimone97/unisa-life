@@ -70,7 +70,7 @@ public class MapManager implements Initializable, Saveable {
             this.maps[actualMap].stopGeneratingCoins();
         }
         this.actualMap = n;
-        MapState.getInstance().setMinimap(maps[actualMap].getPathMiniMap());
+        MapState.getInstance().setMiniMap(maps[actualMap].getPathMiniMap());
         
         if(n == 1) {
             this.maps[actualMap].startGeneratingCoins();
@@ -151,6 +151,7 @@ public class MapManager implements Initializable, Saveable {
             });
             maps[i].addDynamicObjects(mapObject);
         }
+        MapState.getInstance().setMiniMap(maps[actualMap].getPathMiniMap());
     }
     
     /**

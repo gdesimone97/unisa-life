@@ -65,8 +65,8 @@ public class MapState extends GameState {
         yPlayer = Player.getIstance().getPosition().getY();
         heightMap = MapManager.getInstance().getMap().getHeightMap();
         widthMap = MapManager.getInstance().getMap().getWidthMap();
-        xPlayerInMap = (int)(xPlayer*Game.WIDTHSCREEN/widthMap);
-        yPlayerInMap = (int)(yPlayer*Game.HEIGHTSCREEN2/heightMap);
+        xPlayerInMap = (int)(xPlayer*(Game.WIDTHSCREEN-32)/img.getWidth());
+        yPlayerInMap = (int)(yPlayer*Game.HEIGHTSCREEN/img.getHeight());
         g.drawImage(here, xPlayerInMap, yPlayerInMap,35,35,null);
     }
 
@@ -76,7 +76,7 @@ public class MapState extends GameState {
         cmd.visitMapState(instance);
     }
     
-    public void setMinimap(String path) throws Initializable.InitException {
+    public void setMiniMap(String path) throws Initializable.InitException {
         try {
             img = ImageIO.read(getClass().getResource(path));
         } catch (IOException ex) {

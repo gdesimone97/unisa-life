@@ -95,12 +95,9 @@ public class GameInventory extends User implements Iterable<Item>, Saveable, Ini
         //int pos = view.indexOf(i);
         if( pos < 0 )
             pos = -(pos+1);
-        
-        System.out.println("Posizione in cui inserier -> " + pos );
         view.add(pos, i);
         GuiManager.getInstance().updateInventoryDialog();
         return pos;
-        
     }
 
     /**

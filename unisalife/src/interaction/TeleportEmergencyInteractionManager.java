@@ -44,8 +44,6 @@ public class TeleportEmergencyInteractionManager implements InteractionManager {
             Player.getIstance().setState(DownFaceState.getInstance());
             Player.getIstance().setVelX(0);
             Player.getIstance().setVelY(0);
-            System.out.println(Player.getIstance().getX());
-            System.out.println(Player.getIstance().getY());
             new Thread(() -> {
                 try {
                     try {
