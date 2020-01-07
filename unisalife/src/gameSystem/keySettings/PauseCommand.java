@@ -13,6 +13,7 @@ import gameSystem.LoadingState;
 import gameSystem.MapState;
 import gameSystem.PauseState;
 import gameSystem.PlayState;
+import hud.HudUpdater;
 
 /**
  * Class to handle the pause key command
@@ -29,6 +30,7 @@ public class PauseCommand extends KeyCommand implements ActionCommand {
     @Override
     public void visitPlayState(PlayState playState) {
         stateManager.setState(PauseState.getInstance());
+        HudUpdater.pause();
     }
 
     /**
@@ -39,6 +41,7 @@ public class PauseCommand extends KeyCommand implements ActionCommand {
         stateManager.setState(PlayState.getInstance());
         player.setVelX(0);
         player.setVelY(0);
+        HudUpdater.resume();
     }
 
     /**
