@@ -93,7 +93,11 @@ public class GameInventory extends User implements Iterable<Item>, Saveable, Ini
         send(msg); //then sends it
         int pos = Collections.binarySearch(view, i, comp);
         //int pos = view.indexOf(i);
-        view.add(-(pos+1), i);
+        if( pos < 0 )
+            pos = -(pos+1);
+        
+        System.out.println("Posizione in cui inserier -> " + pos );
+        view.add(pos, i);
         GuiManager.getInstance().updateInventoryDialog();
         return pos;
         
@@ -108,7 +112,7 @@ public class GameInventory extends User implements Iterable<Item>, Saveable, Ini
      
         Item i = view.remove(pos);
         GuiManager.getInstance().updateInventoryDialog();
-        return removeItem(i);
+        return items.remove(i.getInfo());
         
     }
     
@@ -117,6 +121,9 @@ public class GameInventory extends User implements Iterable<Item>, Saveable, Ini
         Item r = items.remove(i.getInfo());
         if( r == null )
             throw new RuntimeException("Item is not in the inventory, impossible to remove");
+        int pos = Collections.binarySearch(view, r, comp);
+        pos = pos<0? (-(pos+1)) : pos;
+        view.remove(pos);
         GuiManager.getInstance().updateInventoryDialog();
         return i;
     }
@@ -206,6 +213,10 @@ public class GameInventory extends User implements Iterable<Item>, Saveable, Ini
         this.comp = new TakenComparator();
     }
 
+    /**
+     * These two inner classes allow us to switch at runtime the comparator that
+     * keeps the view list ordered by a changing criteria
+     */
     private static class TakenComparator implements Comparator<Item> {
 
         public TakenComparator() {

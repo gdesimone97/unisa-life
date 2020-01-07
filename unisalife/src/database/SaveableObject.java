@@ -26,10 +26,15 @@ public class SaveableObject<T extends Saveable> implements Serializable {
 
     }
 
+    /**
+     * 
+     * @return the encapsulated object in this "wrapper"
+     */
     public T getInnerObj() {
         return innerObj;
     }
 
+    @Override
     public String toString() {
         return innerObj.getClass().getSimpleName();
     }

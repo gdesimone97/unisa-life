@@ -1765,7 +1765,7 @@
                           <Component id="OpenInventoryField" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="OpenInventoryLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="39" max="32767" attributes="0"/>
+                      <EmptySpace pref="40" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -1906,7 +1906,6 @@
                 <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="MoveUpFieldKeyPressed"/>
               </Events>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="try{&#xa;MaskFormatter mask= new MaskFormatter(&quot;*&quot;);&#xa;mask.install(MoveUpField);&#xa;} catch(ParseException e){&#xa;    e.printStackTrace();&#xa;}"/>
                 <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JFormattedTextField()"/>
               </AuxValues>
             </Component>
@@ -1934,7 +1933,6 @@
                 <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="MoveDownFieldKeyPressed"/>
               </Events>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="try{&#xa;MaskFormatter mask= new MaskFormatter(&quot;*&quot;);&#xa;mask.install(MoveUpField);&#xa;} catch(ParseException e){&#xa;    e.printStackTrace();&#xa;}"/>
                 <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JFormattedTextField()"/>
               </AuxValues>
             </Component>
@@ -1962,7 +1960,6 @@
                 <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="MoveLeftFieldKeyPressed"/>
               </Events>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="try{&#xa;MaskFormatter mask= new MaskFormatter(&quot;*&quot;);&#xa;mask.install(MoveUpField);&#xa;} catch(ParseException e){&#xa;    e.printStackTrace();&#xa;}"/>
                 <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JFormattedTextField()"/>
               </AuxValues>
             </Component>
@@ -1990,7 +1987,6 @@
                 <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="MoveRightFieldKeyPressed"/>
               </Events>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="try{&#xa;MaskFormatter mask= new MaskFormatter(&quot;*&quot;);&#xa;mask.install(MoveUpField);&#xa;} catch(ParseException e){&#xa;    e.printStackTrace();&#xa;}"/>
                 <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JFormattedTextField()"/>
               </AuxValues>
             </Component>
@@ -2018,7 +2014,6 @@
                 <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="InteractFieldKeyPressed"/>
               </Events>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="try{&#xa;MaskFormatter mask= new MaskFormatter(&quot;*&quot;);&#xa;mask.install(MoveUpField);&#xa;} catch(ParseException e){&#xa;    e.printStackTrace();&#xa;}"/>
                 <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JFormattedTextField()"/>
               </AuxValues>
             </Component>
@@ -2046,7 +2041,6 @@
                 <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="PauseFieldKeyPressed"/>
               </Events>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="try{&#xa;MaskFormatter mask= new MaskFormatter(&quot;*&quot;);&#xa;mask.install(MoveUpField);&#xa;} catch(ParseException e){&#xa;    e.printStackTrace();&#xa;}"/>
                 <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JFormattedTextField()"/>
               </AuxValues>
             </Component>
@@ -2074,7 +2068,6 @@
                 <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="MapFieldKeyPressed"/>
               </Events>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="try{&#xa;MaskFormatter mask= new MaskFormatter(&quot;*&quot;);&#xa;mask.install(MoveUpField);&#xa;} catch(ParseException e){&#xa;    e.printStackTrace();&#xa;}"/>
                 <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JFormattedTextField()"/>
               </AuxValues>
             </Component>
@@ -3065,7 +3058,7 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace min="0" pref="25" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="26" max="32767" attributes="0"/>
                   <Component id="GameCloseButton" min="-2" max="-2" attributes="0"/>
               </Group>
           </Group>
