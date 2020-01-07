@@ -29,8 +29,8 @@ public class HudUpdater implements Runnable {
     
     @Override
     public void run() {
-        while (true) {
-            
+        Thread currentThread = Thread.currentThread();
+        while (currentThread == StausManagerAdapter.getThread()) {
             
             energyValue = Status.getEnergyLevel();
             hungerValue = Status.getHungerLevel();
@@ -79,10 +79,11 @@ public class HudUpdater implements Runnable {
             }
             
             // Updating energy and Updating hunger
+            
             try {
                 Thread.sleep(5000);
             } catch (InterruptedException ex) {
-                
+                ex.printStackTrace();
             }
             
             StatusManager.getInstance().updateEnergy(-delta1);

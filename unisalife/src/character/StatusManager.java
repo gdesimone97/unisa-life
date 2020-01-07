@@ -24,11 +24,11 @@ public class StatusManager implements Saveable, Initializable {
     private final GameFrame gameframe = GameFrame.getInstance();
     private HudUpdater updater;
     private static StatusManager instance;
-    private static Thread up;
+    protected static Thread up;
     /**
-     * Private constructor
+     * Protected constructor
      */
-    private StatusManager() {
+    protected StatusManager() {
     }
     
     /**
@@ -117,13 +117,21 @@ public class StatusManager implements Saveable, Initializable {
         Status.setMoney(newValue);
         GuiManager.getInstance().updateMoney(newValue);
     }
+   
+    /**
+     * 
+     * @return the thread that controlls bars
+     */
+    protected static Thread getThread(){
+        return up;
+    }
     
     /**
      * Method to stop the thread that changes the bar status.
      */
     public static synchronized void stopBar(){
         if(up!=null){
-            up.interrupt();
+            up = null;
         }
     }
     
