@@ -128,7 +128,7 @@
 <Subject info="tisc">
 <message>TISC</message>
 <message>1#The lowest level of CIM is:#The workshop level#Control level#Company management level#Cell supervision level </message>
-<message>1#A Plc has:#An real-time multi-tasking operating system#No operating system#No multi-tasking operating system#No I/O ports,read I/O signals by network</message>
+<message>1#A Plc has:#A real-time multi-tasking operating system#No operating system#No multi-tasking operating system#No I/O ports,read I/O signals by network</message>
 <message>1#The control device operating system doesn't have to:#Be No Pre-emptive#Have a mechanisms to avoid deadlock situations#Perform synchronization and comunication among tasks#Have a malfunction management system</message>
 <message>1#Control device based on personal computer are useful because:#The device has already a series of functionalities#You can extend its functionalities through modules#Good for hostile environment#You can use it without an operating system</message>
 <message>1#Which of these is a special module for PLC:#Co-Processor#Processor#I/O#Power supply module</message>
