@@ -8,13 +8,13 @@ package hud;
 import character.StatusManager;
 
 /**
- *
+ * This class extends StatusManager class, returning the thread up that is protected in its parent.
  * @author mariodesio
  */
-class StausManagerAdapter extends StatusManager{
+class StatusManagerAdapter extends StatusManager{
     /**
      * 
-     * @return 
+     * @return thread associated with the status manager
      */
     public static Thread getThread(){
         return up;

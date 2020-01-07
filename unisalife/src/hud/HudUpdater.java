@@ -14,81 +14,111 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * This class is a thread in which the status bars are updated. 
+ * This class is a thread in which the status bars are updated.
+ *
  * @author mariodesio
  */
 public class HudUpdater implements Runnable {
-    
-    private final Teleport healthTeleport = new Teleport(null,3,new Position(832,448));
-    private final Teleport hungerTeleport = new Teleport(null,1,new Position(51*32,30*32));
+
+    private final Teleport healthTeleport = new Teleport(null, 3, new Position(832, 448));
+    private final Teleport hungerTeleport = new Teleport(null, 1, new Position(51 * 32, 30 * 32));
+    private volatile boolean paused = true;
+    private final Object pauseLock = new Object();
     int energyValue;
     int hungerValue;
     int stressValue;
     int delta1;
     int delta2;
-    
+
+    /**
+     * This method starts the thread that updates all the three status bars and
+     * the money label
+     */
     @Override
     public void run() {
         Thread currentThread = Thread.currentThread();
-        while (currentThread == StausManagerAdapter.getThread()) {
-            
+
+        while (currentThread == StatusManagerAdapter.getThread()) {
+
+            synchronized (pauseLock) {
+                //it may be changed while waiting
+                if (currentThread != StatusManagerAdapter.getThread()) {
+                    break;
+                }
+            }
+
+            if (paused) {
+                try {
+                    pauseLock.wait();
+                } catch (InterruptedException ex) {
+                    break;
+                }
+
+                if (currentThread != StatusManagerAdapter.getThread()) {
+                    break;
+                }
+            }
+
             energyValue = Status.getEnergyLevel();
             hungerValue = Status.getHungerLevel();
             stressValue = Status.getStressLevel();
-            
-            delta1 = (int)(Math.random() * 2)+1;
-            delta2 = (int)(Math.random() * (int)(Math.ceil(delta1*1.7)))+1;
-            
-            
+
+            delta1 = (int) (Math.random() * 2) + 1;
+            delta2 = (int) (Math.random() * (int) (Math.ceil(delta1 * 1.7))) + 1;
+
             // Updating stress
-            if (energyValue == 0 || stressValue == 100){
+            if (energyValue == 0 || stressValue == 100) {
                 //teletrasporto al letto nella mappa piccolina e ripristino barre
                 TeleportEmergencyInteractionManager t = new TeleportEmergencyInteractionManager();
                 StatusManager.getInstance().setEnergy(100);
                 StatusManager.getInstance().setStress(0);
                 StatusManager.getInstance().setHunger(0);
                 t.execute(healthTeleport);
+            } else if (hungerValue == 100) {
+                //teletrasporto davanti alla mensa e ripristino.
+                TeleportEmergencyInteractionManager t = new TeleportEmergencyInteractionManager();
+                StatusManager.getInstance().setEnergy(100);
+                StatusManager.getInstance().setStress(0);
+                StatusManager.getInstance().setHunger(0);
+                t.execute(hungerTeleport);
             }
-            else
-                if(hungerValue==100){
-                    //teletrasporto davanti alla mensa e ripristino.
-                    TeleportEmergencyInteractionManager t = new TeleportEmergencyInteractionManager();
-                    StatusManager.getInstance().setEnergy(100);
-                    StatusManager.getInstance().setStress(0);
-                    StatusManager.getInstance().setHunger(0);
-                    t.execute(hungerTeleport);
-                }
-            
-            if (energyValue <50 || hungerValue > 50) {
+
+            if (energyValue < 50 || hungerValue > 50) {
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException ex) {
                     Logger.getLogger(HudUpdater.class.getName()).log(Level.SEVERE, null, ex);
-            }
-                StatusManager.getInstance().updateStress((delta1+delta2)/2+1);
-            }
-            else
-                if(energyValue>=50 && hungerValue <= 50)
-            {
+                }
+                StatusManager.getInstance().updateStress((delta1 + delta2) / 2 + 1);
+            } else if (energyValue >= 50 && hungerValue <= 50) {
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException ex) {
-                Logger.getLogger(HudUpdater.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(HudUpdater.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                StatusManager.getInstance().updateStress(-((delta1 + delta2) / 2) + 1);
             }
-                StatusManager.getInstance().updateStress(-((delta1+delta2)/2)+1);
-            }
-            
+
             // Updating energy and Updating hunger
-            
             try {
                 Thread.sleep(5000);
             } catch (InterruptedException ex) {
                 ex.printStackTrace();
             }
-            
+
             StatusManager.getInstance().updateEnergy(-delta1);
             StatusManager.getInstance().updateHunger(delta2);
         }
     }
 
+    public void pause() {
+        paused = true;
+    }
+
+    public void resume() {
+        synchronized (pauseLock) {
+            paused = false;
+            pauseLock.notifyAll(); // Unblocks thread
+        }
+    }
 }
