@@ -24,7 +24,7 @@ public class StatusManager implements Saveable, Initializable {
     private final GameFrame gameframe = GameFrame.getInstance();
     private HudUpdater updater;
     private static StatusManager instance;
-    
+    private static Thread up;
     private StatusManager() {
     }
     
@@ -78,7 +78,13 @@ public class StatusManager implements Saveable, Initializable {
         Status.setMoney(newValue);
         GuiManager.getInstance().updateMoney(newValue);
     }
-
+    
+    public static synchronized void stopBar(){
+        if(up!=null){
+            up.interrupt();
+        }
+    }
+    
     /**
      *
      * @return a Serializable useful to save the status of the character
@@ -108,6 +114,9 @@ public class StatusManager implements Saveable, Initializable {
         setHunger(hungerLevel);
         setMoney(money);
         setStress(stressLevel);
+        this.updater = new HudUpdater();
+        up = new Thread(updater);
+        up.start();
     }
     
     @Override
