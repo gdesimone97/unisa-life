@@ -55,7 +55,7 @@ professor %Prof.Marano%1536%512%/Sprites/spritetelecomunicazioni.png%telecomunic
 # Tutorial subject
 subject %tolc
 # Other subject
-subject %english
+# subject %english
 subject %maths
 subject %programming
 # subject %physics
