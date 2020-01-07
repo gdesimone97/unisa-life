@@ -1,0 +1,22 @@
+<Subject info="Tisc">
+<message>1#The lowest level of CIM is:#The workshop level#Control level#Company management level#Cell supervision level </message>
+<message>1#A Plc has:#An real-time multi-tasking operating system#No operating system#No multi-tasking operating system#No I/O ports,read I/O signals by network</message>
+<message>1#The control device operating system doesn't have to:#Be No Pre-emptive#Have a mechanisms to avoid deadlock situations#Perform synchronization and comunication among tasks#Have a malfunction management system</message>
+<message>1#Control device based on personal computer are useful because:#The device has already a series of functionalities#You can extend its functionalities through modules#Good for hostile environment#You can use it without an operating system</message>
+<message>1#Which of these is a special module for PLC:#Co-Processor#Processor#I/O#Power supply module</message>
+<message>2#A control device want:#Fast access to memory#Only one CPU#No hardware redundancy#Perform tasks in arbitrary time</message>
+<message>2#Which is the core of Scada:#Process database#Driver#Alarm management#Expert system</message>
+<message>2#The plc architecture is:#Bus#Token bus#Monolitic#Based on Personal Computer</message>
+<message>2#Which system is used for manage the production activity:#Mes#Scada#Bus#Plc </message>
+<message>2#The statistical process control is a module of:#Scada#Mes#Dcs#Plc></message>
+<message>3#The remote I/O module is used when:#There are a lot of I/O signals#Plc can't read I/O signals beacuse its ports are broken#Plc can read I/O signals only by network#You need to convert analogic signals into digital signals</message>
+<message>3#Which is the access method for camp networks:#Token#CSMA/CD#CSMA/BA#Master-slave</message>
+<message>3#The transmission frequency of a network for information is:#Low and the messagge can be received in an arbitrary time#Low and the message have to be received in short time#High and the messagge can be received in an arbitrary time#High and the message have to be received in short time</message>
+<message>3#How the response time is calculated? (Ts is the scanning time and Tr is the network time):#2Ts+Ti/o+Tr#Ts+Ti/o+Tr#2Ts+2Ti/o+2Tr#2Ts+Ti/o+2Tr</message>
+<message>3#A monolitic control device doesn't have:#A massive memory#A clock#A volatile memory#A non-volatile memory</message>
+<message>4#Which levels of ISO/OSI the networks for automation implement?#1,2,7#1,2,3#1,4,7#1,2,6</message>
+<message>4#The maximum transfer rate of PCI bus is:#132 MB/s#170 MB/s#1 MB/s#232 MB/s</message>
+<message>4#How many devices an Inter-bus can handle up to:#256#300#128#64</message>
+<message>4#Which levels of ISO/OSI implements a sensor bus?#1,2#1,2,7#6,7#1,5,7</message>
+<message>4#How many I/O points can handle a micro-Plc?#64#128#256#32</message>
+</Subject>
