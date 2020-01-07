@@ -38,8 +38,6 @@ public class HudUpdater implements Runnable {
             
             delta1 = (int)(Math.random() * 2)+1;
             delta2 = (int)(Math.random() * (int)(Math.ceil(delta1*1.7)))+1;
-            System.out.println(delta1);
-            System.out.println(delta2);
             
             
             // Updating stress
