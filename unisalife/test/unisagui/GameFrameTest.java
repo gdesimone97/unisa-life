@@ -56,21 +56,6 @@ public class GameFrameTest {
         
     }
 
-    /**
-     * Test of setCareer method, of class GameFrame.
-     */
-     
-    @Test
-    public void testSetCareer() {
-        System.out.println("setCareer");
-        GameFrame instance = null;
-        instance.setCareer();
-        if(true)
-            System.out.println(" TESTING SET CAREER  OK");
-        else
-            System.out.println("TESTING SET CAREER  FAILED");
-        
-    }
     
 
     /**
