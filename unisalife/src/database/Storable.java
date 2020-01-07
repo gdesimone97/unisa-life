@@ -12,6 +12,10 @@ package database;
  */
 public interface Storable {
 
+    /**
+     * 
+     * @return the index of the storable object to retrive it from database.
+     */
     public String getIndex();
 
 }
