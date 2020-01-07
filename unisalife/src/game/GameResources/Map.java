@@ -12,15 +12,11 @@ import game.GameObjects.ObjectManager;
 import game.GameObjects.Player;
 import game.GameObjects.Position;
 import game.GameObjects.Renderable;
-import game.Interfaces.Initializable;
 import gameSystem.Game;
 import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
 import static java.lang.Thread.sleep;
 import java.util.Random;
 import java.util.concurrent.ConcurrentHashMap;
-import javax.imageio.ImageIO;
 
 
 /**
@@ -39,20 +35,17 @@ public class Map implements Runnable {
     
 
     /**
-     * Constructor that initializes tMap with the passed TileMap t and the
-     * mapObject with an empty list.
-     *
-     * @param t TileMap
+     * Constructor 
      */
     public Map() {
     }
 
     /**
-     * Constructor that initializes tMap with the passed TileMap t and the
-     * mapObject with the passed LinkedList l.
+     * Constructor 
      *
-     * @param t Tmap
-     * @param hm HashMap of GameObject objects
+     * @param tMap TileMap of the map 
+     * @param mapObjects ObjectManager containing all GameObject of the map
+     * @param pathMiniMap String represents the path of image to be rendered when game is in MapState
      */
     public Map(TileMap tMap, ObjectManager mapObjects, String pathMiniMap) {
         this.tMap = tMap;
@@ -66,8 +59,8 @@ public class Map implements Runnable {
 
     /**
      * Add a new GameObject object g to the list.
-     *
-     * @param g GameObject
+     * @param p position of the GameObject
+     * @param g GameObject to be added
      */
     public void addObject(Position p, Renderable g) {
         try {
@@ -86,7 +79,7 @@ public class Map implements Runnable {
     /**
      * Remove(if presents) the GameObject object g from the list.
      *
-     * @param g
+     * @param p position of the object
      * @return true if the object was present and has been removed or false if
      * it was not present.
      */
@@ -101,7 +94,7 @@ public class Map implements Runnable {
 
     /**
      *
-     * @return mapObjects List.
+     * @return the ObjectManager of the map
      */
     public ObjectManager getObjectManager() {
         return mapObjects;
@@ -121,7 +114,7 @@ public class Map implements Runnable {
 
     /**
      *
-     * @return tMap TileMap.
+     * @return TileMap of the map
      */
     public TileMap getTileMap() {
         return tMap;

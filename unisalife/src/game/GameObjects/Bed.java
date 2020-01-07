@@ -24,22 +24,33 @@ public class Bed extends GameObject implements Interactable {
     /**
      * constructor for Bed game object
      * @param p The position in pixels where to add object
-     * @param d The position in pixels to let the player spawn in
+     * @param dest The position in pixels to let the player spawn in
      */
     public Bed(Position p, Position dest) {
         super(p);
         this.dest = dest;
     }
     
+    /**
+     *  Returns the DestinationPosition of the Bed
+     * @return 
+     */
     public Position getDestPosition() {
         return this.dest;
     }
 
+    /**
+     * Returns the index of the object in order to access to the Database 
+     * @return 
+     */
     @Override
     public String getIndex() {
         return "Bed";
     }
 
+    /**
+     * Executes the action of sleeping in the bed
+     */
     @Override
     public void interact() {
         InteractionManager im = new BedInteractionManager();

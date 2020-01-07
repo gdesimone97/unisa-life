@@ -10,7 +10,8 @@ import interaction.InteractionManager;
 import language.Information;
 
 /**
- *
+ * A cook represents a person in the game that can prepare you a meal
+ * to satisfy your hunger.
  * @author 1997g
  */
 public class Cook extends Person implements Information {
@@ -21,11 +22,20 @@ public class Cook extends Person implements Information {
         super();
     }
 
+    /**
+     *
+     * @param nome Name of the cook
+     * @param p Position of the cook in the map
+     * @param path Path of the image to be loaded in order to render the object in the game
+     */
     public Cook(String nome, Position p, String path) {
         super(p, path);
         this.nome = nome;
     }
 
+    /**
+     * This method executes an interaction with the cook
+     */
     @Override
     public void interact() {
         InteractionManager cookInteraction = new CookInteractionManager();
@@ -37,11 +47,19 @@ public class Cook extends Person implements Information {
         return this.nome;
     }
 
+    /**
+     * Return the index in order to access to the Database
+     * @return
+     */
     @Override
     public String getIndex() {
         return this.nome;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getNome() {
         return nome;
     }

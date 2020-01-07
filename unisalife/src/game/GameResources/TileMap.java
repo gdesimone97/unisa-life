@@ -71,6 +71,16 @@ public class TileMap implements Serializable, Storable {
         
     }
     
+    /**
+     * costructor
+     * @param id id of TileMap
+     * @param w width of a tile
+     * @param h height of a tile
+     * @param t string representing the file of tile
+     * @param m string representing the file of the map
+     * @param initialPosition initial position of the player in the map
+     * @param miniMapPath path representing the image to be rendered when game is in MapState
+     */
     public TileMap(int id, int w, int h, String t, String m, Position initialPosition, String miniMapPath) {
         this.tileSize = Game.DIMENSIONSPRITE;
         numRowsToDraw = /*Game.WIDTHMAP / tileSize + 2;*/ w; //31
@@ -83,16 +93,24 @@ public class TileMap implements Serializable, Storable {
         this.miniMapPath = miniMapPath;
     }
     
+    /**
+     *
+     * @return path of minimap image
+     */
     public String getMiniMapPath(){
         return this.miniMapPath;
     }
 
+    /**
+     *
+     * @return id of tilemap in order to access to the Database
+     */
     public int getId(){
         return this.id;
     }
 
     private void loadTiles(String s) {
-        //System.out.print(s);
+        
         try {
             tileset = ImageIO.read(
                     getClass().getResourceAsStream(s)
@@ -136,19 +154,12 @@ public class TileMap implements Serializable, Storable {
             layers = Integer.parseInt(br.readLine());
             numCols = Integer.parseInt(br.readLine()); //29
             numRows = Integer.parseInt(br.readLine()); //29
-            map = new int[layers][numRows][numCols]; //modificare il numero di righe moltiplicandolo con quello dei layer
+            map = new int[layers][numRows][numCols]; 
             width = numCols * tileSize;
             height = numRows * tileSize;
-            //xmin = Game.WIDTH - width;
-            //xmin = -width;
-            //xmax = 0;
-            //ymin = Game.HEIGHT - height;
-            //ymin = -height;
-            //ymax = 0;
             
-            //fare il for per quanti sono i layer
             String delims = "\\s+";
-            //dichiarare qui row e inserirlo in un ulteriore ciclo for da 0 a numero di layer (escluso)
+            
             for(int l=0; l<layers;l++){    
                 for (int row = 0 ; row < numRows; row++){
                     String line = br.readLine();
@@ -164,19 +175,28 @@ public class TileMap implements Serializable, Storable {
 
     }
 
+    /**
+     *
+     * @return width of a tile
+     */
     public int getWidth() {
         return width;
     }
 
+    /**
+     *
+     * @return height of a tile
+     */
     public int getHeight() {
         return height;
     }
 
+    /**
+     * method to render the map
+     * @param g graphics of the canvas
+     */
     public void render(Graphics2D g) {
-        /*System.out.println("row off"+rowOffset);
-                System.out.println("col off"+colOffset);
-                System.out.println("righe"+numRowsToDraw);
-                System.out.println("colonne"+numColsToDraw);*/
+        
         for (int l = 0; l<layers; l++){
             for (int row = 0; row < numRowsToDraw; row++) {
                 if (row >= numRows) {
@@ -205,11 +225,19 @@ public class TileMap implements Serializable, Storable {
         }
     }
 
+    /**
+     *
+     * @return index in order to access to the Database
+     */
     @Override
     public String getIndex() {
         return String.valueOf(this.id);
     }
 
+    /**
+     *
+     * @return initial position of the player
+     */
     public Position getInitialPosition() {
         return initialPosition;
     }

@@ -25,7 +25,7 @@ import saving.exceptions.LoadingException;
 import unisagui.GuiManager;
 
 /**
- *
+ * represent the inventory of the player in the game
  * @author cmarino
  */
 public class GameInventory extends User implements Iterable<Item>, Saveable, Initializable{
@@ -42,7 +42,7 @@ public class GameInventory extends User implements Iterable<Item>, Saveable, Ini
     }
     
     /**
-     *
+     * static method to get an instance of this singleton class
      * @return The instance of the singleton object 
      */
     public static GameInventory getInstance(){
@@ -71,7 +71,7 @@ public class GameInventory extends User implements Iterable<Item>, Saveable, Ini
     public void receive(Message mess) {}
 
     /**
-     *
+     * 
      * @return The number of items contained in the inventory
      */
     public int length(){
@@ -112,6 +112,11 @@ public class GameInventory extends User implements Iterable<Item>, Saveable, Ini
         
     }
     
+    /**
+     *
+     * @param i
+     * @return
+     */
     public Item removeItem(Item i ){
 
         Item r = items.remove(i.getInfo());
@@ -195,6 +200,10 @@ public class GameInventory extends User implements Iterable<Item>, Saveable, Ini
         GuiManager.getInstance().updateInventoryDialog();
     }
 
+    /**
+     *
+     * @throws InitException
+     */
     @Override
     public void init() throws InitException {
         super.name = "inventory";

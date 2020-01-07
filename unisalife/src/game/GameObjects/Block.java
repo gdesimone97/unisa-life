@@ -18,11 +18,8 @@ public class Block extends GameObject implements Serializable {
      * constructor returns a new istance of block
      *
      * @param p
-     * @param x x position of the block
-     * @param y y position of the block
-     * @param i SubjectEnum of the block
-     * @param width width of block
-     * @param height height of block
+     * @param width width of the block
+     * @param height height of the block
      */
     
     public Block(Position p, int width,int height) {
@@ -35,36 +32,21 @@ public class Block extends GameObject implements Serializable {
         
     }
     
+    /**
+     *
+     * @param p
+     */
     public Block(Position p) {
         super(p);
-        /*try {
-        sprite = ImageIO.read(
-				getClass().getResourceAsStream("/Sprites/gatto.png")
-        );}
-        catch (Exception e) {
-            System.exit(1);
-    }*/
     }
 
+    /**
+     * Returns the index of the block in order to access to the Database
+     * @return
+     */
     @Override
     public String getIndex() {
         return "Block";
     }
 
-    /**
-     * method tick is void because a block
-     *
-     * @param object
-     */
-
-    /**
-     *
-     * @param g
-     */
-    
-    /*public void render(Graphics g){
-        g.setColor(Color.black);
-        g.fillRect((int)x,(int)y, width, height);
-        //g.drawImage(image, (int)x,(int) y, (int)width, (int)height, null);
-    }*/
 }

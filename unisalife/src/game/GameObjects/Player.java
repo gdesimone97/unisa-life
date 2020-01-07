@@ -23,44 +23,94 @@ import saving.Saveable;
 import saving.exceptions.LoadingException;
 
 /**
- *
+ * this class represents the player of the game
  * @author simon
  */
 public class Player extends GameObject implements Tickable, Saveable {
 
     private static final int DELAY = 8;
     private int velX = 0;
+
+    /**
+     * y velocity of player
+     */
     protected int velY = 0;
+
+    /**
+     * y velocity of the player
+     */
     protected Animation upWalk;
+
+    /**
+     * animation of the player walking up
+     */
     protected Animation downWalk;
+
+    /**
+     *animation of the player walking down
+     */
     protected Animation leftWalk;
+
+    /**
+     * animation of the player walking left
+     */
     protected Animation rightWalk;
+
+    /**
+     * animation of the player walking rigth
+     */
     protected BufferedImage facingDownImage;
+
+    /**
+     * image of the player looking down
+     */
     protected BufferedImage facingLeftImage;
+
+    /**
+     *image of the player looking left
+     */
     protected BufferedImage facingRightImage;
+
+    /**
+     *image of the player looking right
+     */
     protected BufferedImage facingUpImage;
+
+    /**
+     * image of the player looking up
+     */
     protected FaceState face = DownFaceState.getInstance();
     private static Player uniqueIstance = null;
     private boolean nextMove = true;
+
+    /**
+     * name of the player
+     */
     protected String nameOfPlayer = null;
     private int delta = 0;
     private int skin;
 
-    /*public Player(float x,float y,SubjectEnum i){
-     super(x,y,i);
-     }*/
     private Player() {
         super(new Position(0, 0));
     }
 
+    /**
+     * set the face state of the player
+     * @param s new state of the player
+     */
     public void setState(FaceState s) {
         this.face = s;
     }
 
+    /**
+     *
+     * @return actual face state of the player
+     */
     public FaceState getFace() {
         return face;
     }
-
+    
+    
     private void changeFaceSet(BufferedImage up, BufferedImage left, BufferedImage down, BufferedImage right) {
         facingLeftImage = left;
         facingRightImage = right;
@@ -75,6 +125,12 @@ public class Player extends GameObject implements Tickable, Saveable {
         rightWalk = right;
     }
 
+    /**
+     * this method initializes the player at the beginning of the game
+     * @param skin integer that represents the skin selected in main menu
+     * @param name name of the player
+     * @param initialPosition initial position in the map
+     */
     public void initialize(int skin, String name, Position initialPosition) {
         BufferedImage texturePlayer[][] = null;
         nameOfPlayer = name;
@@ -107,6 +163,10 @@ public class Player extends GameObject implements Tickable, Saveable {
                 new Animation(Arrays.copyOfRange(texturePlayer[3], 1, texturePlayer[0].length)));
     }
 
+    /**
+     *
+     * @return the instance of this singleton class
+     */
     public static Player getIstance() {
         if (uniqueIstance == null) {
             uniqueIstance = new Player();
@@ -114,44 +174,56 @@ public class Player extends GameObject implements Tickable, Saveable {
         return uniqueIstance;
     }
 
+    /**
+     * setter method for x of the player
+     * @param x 
+     */
     public void setX(int x) {
         this.p.setX(x);
     }
 
+    /**
+     * setter method for y of the player
+     * @param y
+     */
     public void setY(int y) {
         this.p.setY(y);
     }
 
     /**
-     *
-     * @param a
-     */
-    /**
-     *
-     * @return
+     * 
+     * @return x of the player
      */
     public int getX() {
         return p.getX();
     }
 
+    /**
+     *
+     * @return y of the player
+     */
     public int getY() {
         return p.getY();
     }
 
+    /**
+     *
+     * @return x velocity of player
+     */
     public int getVelX() {
         return velX;
     }
 
     /**
      *
-     * @return
+     * @return y velocity of player
      */
     public int getVelY() {
         return velY;
     }
 
     /**
-     *
+     * setter method for x velocity of player
      * @param velX
      */
     public void setVelX(int velX) {
@@ -159,13 +231,16 @@ public class Player extends GameObject implements Tickable, Saveable {
     }
 
     /**
-     *
+     * setter method for y velocity of player
      * @param velY
      */
     public void setVelY(int velY) {
         this.velY = velY;
     }
 
+    /**
+     * this method is used to update the position of the player during the game
+     */
     @Override
     public void tick(/*LinkedList<GameObject> objects*/) {
         nextMove = true;
@@ -200,7 +275,6 @@ public class Player extends GameObject implements Tickable, Saveable {
                 p.setY(y + delta);
             }
         }
-        //collisions(game.getActualMap().getList());
         downWalk.runAnimation();
         leftWalk.runAnimation();
         rightWalk.runAnimation();
@@ -209,8 +283,8 @@ public class Player extends GameObject implements Tickable, Saveable {
     }
 
     /**
-     *
-     * @param ObjectsManager
+     * this method checks if player is able to move in a direction
+     * @param ObjectsManager HashMap of the object in the map of the player
      */
     private void collisions(ObjectManager objMan) {
         GameObject g = objMan.getObjectInNextPosition(getScaledPosition());
@@ -230,8 +304,8 @@ public class Player extends GameObject implements Tickable, Saveable {
     }
 
     /**
-     *
-     * @param g
+     * this method render the image of the player
+     * @param g graphics of the canvas
      */
     public void render(Graphics g) {
         if (velX > 0) {
@@ -259,10 +333,18 @@ public class Player extends GameObject implements Tickable, Saveable {
         return face.visualViewOfPlayer();
     }
 
+    /**
+     * 
+     * @return pixel width of player
+     */
     public int getWidth() {
         return width;
     }
 
+    /**
+     *
+     * @return pixel height of player
+     */
     public int getHeight() {
         return height;
     }
@@ -286,14 +368,26 @@ public class Player extends GameObject implements Tickable, Saveable {
         initialize(skin, name, p);
     }
 
+    /**
+     *
+     * @return name of the player
+     */
     public String getName() {
         return nameOfPlayer;
     }
 
+    /**
+     * setter method for name
+     * @param name name of the player
+     */
     public void setName(String name) {
         this.nameOfPlayer = name;
     }
 
+    /**
+     *
+     * @return index of player in order to access to the Database
+     */
     @Override
     public String getIndex() {
         return "Player";
