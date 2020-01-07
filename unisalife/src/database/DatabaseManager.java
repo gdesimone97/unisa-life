@@ -197,7 +197,6 @@ public class DatabaseManager implements Initializable {
              * regarding the actual quest since coins are not quests objects.
              */
             ObjectRepository coinRepo = db.getNitriteDatabase().getRepository(Coin.class);
-            System.out.println(coinRepo.size());
             Cursor pr = db.getNitriteDatabase().getCollection(DatabaseManager.DYNCOLLECTIONNAME).find(Filters.and(Filters.eq("CLASSOBJ", Coin.class.getName()), Filters.eq("IDMAP", id)));
             
             for(Document d : pr){
