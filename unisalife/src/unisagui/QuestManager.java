@@ -41,9 +41,10 @@ public class QuestManager {
             try {
                 String subj = FileTextManager.getFileTextManager().getString(q.getSubject()).get(0);
                 quests.put(count, new QuestGui(subj,q.getItemList()));
-                SwingUtilities.invokeLater(() -> gameframe.listModel.add(count, subj));
+                gameframe.listModel.add(count, subj);
             } catch (TextFinderException ex) {
             }
+            count++;
         }
     }
     

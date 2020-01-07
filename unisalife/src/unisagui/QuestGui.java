@@ -32,13 +32,11 @@ public class QuestGui {
     public String getDescription() {
         String text = "";
         for (String s : description){
-            try {
+            
                 text += "\n" +
-                        FileTextManager.getFileTextManager().getString(new MessageInformation(s)).get(0) 
+                        //FileTextManager.getFileTextManager().getString(new MessageInformation(s)).get(0) 
+                        s
                         + ";";
-            } catch (TextFinderException ex) {
-                
-            }
         }
         return text;
     }
