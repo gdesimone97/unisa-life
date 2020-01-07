@@ -39,7 +39,6 @@ public class CacheFileTextFinderTest {
             return this.info;
         }
 
-        @Override
         public Boolean isAvailable() {
             return this.av;
         }

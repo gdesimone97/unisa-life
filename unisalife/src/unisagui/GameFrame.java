@@ -1488,51 +1488,8 @@ public class GameFrame extends javax.swing.JFrame {
                 .addGroup(KeyBoardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(OpenInventoryField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(OpenInventoryLabel))
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
-
-        try{
-            MaskFormatter mask= new MaskFormatter("*");
-            mask.install(MoveUpField);
-        } catch(ParseException e){
-            e.printStackTrace();
-        }
-        try{
-            MaskFormatter mask= new MaskFormatter("*");
-            mask.install(MoveUpField);
-        } catch(ParseException e){
-            e.printStackTrace();
-        }
-        try{
-            MaskFormatter mask= new MaskFormatter("*");
-            mask.install(MoveUpField);
-        } catch(ParseException e){
-            e.printStackTrace();
-        }
-        try{
-            MaskFormatter mask= new MaskFormatter("*");
-            mask.install(MoveUpField);
-        } catch(ParseException e){
-            e.printStackTrace();
-        }
-        try{
-            MaskFormatter mask= new MaskFormatter("*");
-            mask.install(MoveUpField);
-        } catch(ParseException e){
-            e.printStackTrace();
-        }
-        try{
-            MaskFormatter mask= new MaskFormatter("*");
-            mask.install(MoveUpField);
-        } catch(ParseException e){
-            e.printStackTrace();
-        }
-        try{
-            MaskFormatter mask= new MaskFormatter("*");
-            mask.install(MoveUpField);
-        } catch(ParseException e){
-            e.printStackTrace();
-        }
 
         javax.swing.GroupLayout KeyboardSettingsDialogLayout = new javax.swing.GroupLayout(KeyboardSettingsDialog.getContentPane());
         KeyboardSettingsDialog.getContentPane().setLayout(KeyboardSettingsDialogLayout);
@@ -2053,7 +2010,7 @@ public class GameFrame extends javax.swing.JFrame {
         RightBorderLayout.setHorizontalGroup(
             RightBorderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RightBorderLayout.createSequentialGroup()
-                .addGap(0, 25, Short.MAX_VALUE)
+                .addGap(0, 26, Short.MAX_VALUE)
                 .addComponent(GameCloseButton))
         );
         RightBorderLayout.setVerticalGroup(
