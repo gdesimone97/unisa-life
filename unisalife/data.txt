@@ -7,7 +7,7 @@ tilemap %0%2368%928%/Tilesets/TilesetConSfondo.png%/Maps/Tutorial.map%352%448%/M
 tilemap %1%2560%2560%/Tilesets/TilesetConSfondo.png%/Maps/ExternalMap.map%1248%1408%/MiniMap/ExternalMap.png
 # 
 # Map 2 Engineering
-tilemap %2%1984%1728%/Tilesets/EngDef.png%/Maps/Engineering.map%800%1344%/MiniMap/EngineeringMini.png
+tilemap %2%1984%1728%/Tilesets/EngDef.png%/Maps/Engineering.map%800%1344%/MiniMap/Engineering.png
 # 
 # Map 3 Dormitory
 tilemap %3%1280%928%/Tilesets/Dormitory.png%/Maps/Dormitory.map%672%448%/MiniMap/Dormitory.png
@@ -18,19 +18,56 @@ item %1024%448%/Sprites/calculator.png%calculator %0%d
 item %1632%448%/Sprites/note.png%notes %0%d
 quest %0%tolc%calculator%notes
 # 
-# items quest english
-item %1536%1600%/Sprites/englishdictionary.png%dictionary %1%d
-quest %1%english%dictionary
+# items
+item %928%1792%/Sprites/englishdictionary.png%dictionary %1%d
+item %608%1920%/Sprites/calculator.png%calculator2 %1%d
+item %960%1088%/Sprites/fisicamagnete.png%magnet %1%d
+item %1312%1504%/Sprites/programmazionepc.png%computer %1%d
+item %1504%1728%/Sprites/acsoprocessore.png%processor %1%d
+item %1728%1248%/Sprites/tiscplc.png%PLC %1%d
+item %1024%864%/Sprites/elettrotecnicaresistenza.png%resistor %1%d
+item %608%1920%/Sprites/basidatabase.png%database %1%d
+item %352%1280%/Sprites/retiethernet.png%ethernet %2%d
+item %1600%1056%/Sprites/telecomunicazionigaussiane.png%gaussian %2%d
+quest %1%maths%calculator2
+# quest %2%physics%magnet
+quest %1%programming%computer
+quest %2%acso%processor
+quest %2%tisc%PLC
+quest %1%electrotechnics%resistor
+quest %3%database%database
+quest %3%computernetwork%ethernet
+quest %3%telecomunications%gaussian
+# 
 # professors
 professor %Prof.Ritrovato%1824%448%/Sprites/spritetolc.png%tolc %0%d
 professor %Prof.Inglese%1728%1568%/Sprites/spritesenatoreincinta.png%english %1%d
+professor %Prof.Rhandi%384%512%/Sprites/spritematematica.png%maths %2%d
+# professor %Prof.Guida%544%1024%/Sprites/spritefisica.png%physics %2%d
+professor %Prof.Foggia%928%1056%/Sprites/spriteprogrammazione.png%programming %2%d
+professor %Prof.Basile%1568%1056%/Sprites/spritetisc.png%tisc %2%d
+professor %Prof.DellaCioppa%608%480%/Sprites/spriteacso.png%acso %2%d
+professor %Prof.Petrone%1536%1056%/Sprites/spriteelettrotecnica.png%electrotechnics %2%d
+professor %Prof.Auletta%448%1088%/Sprites/spritereti.png%computernetwork %2%d
+professor %Prof.DAcierno%1376%1024%/Sprites/spritebasi.png%database %2%d
+professor %Prof.Marano%1536%512%/Sprites/spritetelecomunicazioni.png%telecomunications %2%d
+# 
 # Tutorial subject
 subject %tolc
 # Other subject
 subject %english
+subject %maths
+subject %programming
+# subject %physics
+subject %acso
+subject %tisc
+subject %electrotechnics
+subject %database
+subject %computernetwork
+subject %telecomunications
 # 
 # Map 0 (Tutorial) objects
-#
+# 
 # NP characters
 normalperson %Secretary%864%288%/Sprites/tizia8.png %0%d
 normalperson %Christian%1600%352%/Sprites/tizio1.png %0%d
@@ -6509,6 +6546,23 @@ teleport %704%1504%3%672%448%1
 # 
 # NP characters
 # 
+normalperson %Mick%608%576%/Sprites/tizio1.png %2%d
+normalperson %Fra%864%512%/Sprites/tizio2.png %2%d
+normalperson %Josue%608%1184%/Sprites/tizio3.png %2%d
+normalperson %Michel%1184%640%/Sprites/tizio4.png %2%d
+normalperson %Anto%1440%864%/Sprites/tizio5.png %2%d
+normalperson %Dioca%1440%1216%/Sprites/tizio6.png %2%d
+normalperson %Nemo%1280%448%/Sprites/tizio7.png %2%d
+normalperson %Ugo%1024%832%/Sprites/tizio8.png %2%d
+normalperson %Fiffy%384%704%/Sprites/tizia1.png %2%d
+normalperson %Argos%768%768%/Sprites/tizia2.png %2%d
+normalperson %Amanda%960%736%/Sprites/tizia3.png %2%d
+normalperson %Vita%1408%864%/Sprites/tizia4.png %2%d
+normalperson %Sam%1216%1184%/Sprites/tizia5.png %2%d
+normalperson %Gio%1472%1216%/Sprites/tizia6.png %2%d
+normalperson %Megan%1600%1152%/Sprites/tizia7.png %2%d
+normalperson %Pem%1344%704%/Sprites/tizia8.png %2%d
+# 
 # distributors
 distributor %928%608%vm21 %2%f
 distributor %736%416%vm22 %2%f
@@ -11461,8 +11515,8 @@ block %1536%640%2%f
 block %1504%640%2%f
 # 
 # teleport to Main map
-teleport %768%1376%1%1184%1344%2
-teleport %800%1376%1%1216%1344%2
+teleport %768%1376%1%1216%1344%2
+teleport %800%1376%1%1248%1344%2
 # 
 # beds
 bed %1216%480%1184%480%2

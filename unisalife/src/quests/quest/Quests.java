@@ -16,7 +16,9 @@ import saving.Saveable;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import quests.QuestsManager;
 import quests.mediator.Message;
 import quests.mediator.User;
@@ -70,6 +72,11 @@ public class Quests extends User implements Saveable, Serializable, Initializabl
         quests = (HashMap<String, Quest>) list.get(0);
         item = (HashMap<String, String>) list.get(1);
         currentLevel = (int) list.get(2);
+        if(currentLevel == 0)
+            GuiManager.getInstance().setLevel("Tutorial");
+        else
+            GuiManager.getInstance().setLevel("Level " + String.valueOf(this.currentLevel));
+        
         super.mediator = QuestsManager.getInstance();
     }
 
@@ -105,7 +112,7 @@ public class Quests extends User implements Saveable, Serializable, Initializabl
     public void levelEnded(){
         this.currentLevel++;
         this.loadLevel();
-        GuiManager.getInstance().setLevel("Level " + String.valueOf(this.currentLevel + 1));
+        GuiManager.getInstance().setLevel("Level " + String.valueOf(this.currentLevel));
     }
     
     

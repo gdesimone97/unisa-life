@@ -192,19 +192,6 @@ public class DatabaseManager implements Initializable {
                 fixed.put(o.getScaledPosition(), o);
             }
 
-            /**
-             * Insert coins in map, more precisely in dyn array before it's populated 
-             * regarding the actual quest since coins are not quests objects.
-             */
-            ObjectRepository coinRepo = db.getNitriteDatabase().getRepository(Coin.class);
-            Cursor pr = db.getNitriteDatabase().getCollection(DatabaseManager.DYNCOLLECTIONNAME).find(Filters.and(Filters.eq("CLASSOBJ", Coin.class.getName()), Filters.eq("IDMAP", id)));
-            
-            for(Document d : pr){
-                String idCoin = d.get("IDOBJ",String.class);
-                Coin coin = (Coin)coinRepo.find(eq("info",idCoin)).firstOrDefault();
-                dyn.put(coin.getPosition(), coin);
-            }
-
             // this is to get the blocks
             try {
                 for (BlockWrapper bw : db.getNitriteDatabase().getRepository(BlockWrapper.class).find(eq("map", Integer.parseInt(id))).toList()) {
@@ -284,7 +271,6 @@ public class DatabaseManager implements Initializable {
         return returnList;
     }
 
-    
     /**
      * Private method to search for an item in the item repo
      *
@@ -420,3 +406,4 @@ public class DatabaseManager implements Initializable {
 
     }
 }
+

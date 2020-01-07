@@ -971,6 +971,8 @@ public class GameFrame extends javax.swing.JFrame {
                 {null, null, null},
                 {null, null, null},
                 {null, null, null},
+                {null, null, null},
+                {null, null, null},
                 {null, null, null}
             },
             new String [] {
@@ -1878,7 +1880,7 @@ public class GameFrame extends javax.swing.JFrame {
         LevelLabel.setBackground(new java.awt.Color(93, 150, 199));
         LevelLabel.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
         LevelLabel.setForeground(new java.awt.Color(255, 255, 255));
-        LevelLabel.setText("LEVEL 1");
+        LevelLabel.setText("TUTORIAL");
         LevelLabel.setMaximumSize(new java.awt.Dimension(225, 25));
         LevelLabel.setMinimumSize(new java.awt.Dimension(225, 25));
         LevelLabel.setPreferredSize(new java.awt.Dimension(225, 25));
@@ -2051,7 +2053,7 @@ public class GameFrame extends javax.swing.JFrame {
         RightBorderLayout.setHorizontalGroup(
             RightBorderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RightBorderLayout.createSequentialGroup()
-                .addGap(0, 26, Short.MAX_VALUE)
+                .addGap(0, 25, Short.MAX_VALUE)
                 .addComponent(GameCloseButton))
         );
         RightBorderLayout.setVerticalGroup(

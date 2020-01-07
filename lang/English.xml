@@ -242,6 +242,38 @@
 <message>Dictionary</message>
 </Item>
 
+<Item info="calculator2">
+<message>Calculator</message>
+</Item>
+
+<Item info="computer">
+<message>Computer</message>
+</Item>
+
+<Item info="processor">
+<message>CPU</message>
+</Item>
+
+<Item info="PLC">
+<message>PLC</message>
+</Item>
+
+<Item info="resistor">
+<message>Resistor</message>
+</Item>
+
+<Item info="database">
+<message>Database</message>
+</Item>
+
+<Item info="ethernet">
+<message>Ethernet</message>
+</Item>
+
+<Item info="gaussian">
+<message>Gaussian</message>
+</Item>
+
 <Item info="coin">
 <message>Money</message>
 </Item>
@@ -374,7 +406,47 @@
 <message>Some Notes</message>
 </MessageInformation>
 
+<MessageInformation info="dictionary">
+<message>Dictionary</message>
+</MessageInformation>
+
+<MessageInformation info="calculator2">
+<message>Calculator</message>
+</MessageInformation>
+
+<MessageInformation info="computer">
+<message>Computer</message>
+</MessageInformation>
+
+<MessageInformation info="processor">
+<message>CPU</message>
+</MessageInformation>
+
+<MessageInformation info="PLC">
+<message>PLC</message>
+</MessageInformation>
+
+<MessageInformation info="resistor">
+<message>Resistor</message>
+</MessageInformation>
+
+<MessageInformation info="database">
+<message>Database</message>
+</MessageInformation>
+
+<MessageInformation info="ethernet">
+<message>Ethernet</message>
+</MessageInformation>
+
+<MessageInformation info="gaussian">
+<message>Gaussian</message>
+</MessageInformation>
+
 <MessageInformation info="BarEmergency">
+<message>Your health is important. Never forget to take care of yourself!</message>
+</MessageInformation>
+
+<MessageInformation info="EmergencyStatus">
 <message>Your health is important. Never forget to take care of yourself!</message>
 </MessageInformation>
 

@@ -6,7 +6,6 @@
 package database;
 
 import database.populator.exceptions.InvalidGameDataFormatException;
-import game.GameObjects.Item;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -101,21 +100,15 @@ public class Populator {
         return this.filepath;
     }
 
-    public static void main(String[] args) throws FileNotSetException, Exception {
-        //        if (args.length < 1) {
-        //            throw new FileNotSetException("No filename specified");
-        //        }
-        //
-        //        String filePath = args[0];
-        //        try{
-        //            new Populator(filePath).populate();
-        //        }catch(Exception ex){
-        //            throw new Exception("Error while populating");
-        //        }
-        //        
-        //
-        //        System.out.println("Database populated");
-        System.out.println(System.getProperty("user.dir"));
+    /**
+     * The main method is executed when there's the need to populate the database.
+     * @param args Unused, Java convention
+     * @throws FileNotSetException 
+     * @throws Exception 
+     */
+    public static void main(String[] args) throws Exception {
+        
+        
         new Populator("data.txt").populate();
   
 
