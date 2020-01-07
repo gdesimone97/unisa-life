@@ -7,6 +7,9 @@ package gameSystem;
 
 import gameSystem.keySettings.HandlerInput;
 import java.awt.Canvas;
+import java.awt.Color;
+import java.awt.Font;
+import static java.awt.Font.BOLD;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferStrategy;
@@ -38,6 +41,12 @@ public class Game extends Canvas implements Runnable {
 
     private GameStateManager gsm;
 
+    private int framesInLastSecond = 0;
+    private int framesInCurrentSecond = 0;
+    private long nextSecond = System.currentTimeMillis() + 1000;
+    
+    private boolean showFPS = false;
+    
     /**
      * This method initializes the game and runs continuously until the game
      * stops. Here 2 main methods are called: tick() and render(), that are
@@ -77,8 +86,7 @@ public class Game extends Canvas implements Runnable {
 
                 frames = 0;
                 updates = 0;
-            }
-
+            }            
             elapsed = System.nanoTime() - start;
 
             wait = TARGET_TIME - elapsed / 1000000;
@@ -93,6 +101,10 @@ public class Game extends Canvas implements Runnable {
             }
 
         }
+    }
+
+    public void setShowFPS(boolean showFPS) {
+        this.showFPS = showFPS;
     }
 
     private void init() {
@@ -112,14 +124,33 @@ public class Game extends Canvas implements Runnable {
             return;
         }
         g = bs.getDrawGraphics();
-        g2d = (Graphics2D) g;
+        g2d = (Graphics2D) g;      
         gsm.render(g2d);
+        if(showFPS){
+            long currentTime = System.currentTimeMillis();
+            if (currentTime > nextSecond) {
+                nextSecond += 1000;
+                framesInLastSecond = framesInCurrentSecond;
+                framesInCurrentSecond = 0;
+            }
+            framesInCurrentSecond++;  
+            g.setColor(Color.black);
+            g.drawRect(13, 8, 50, 15);
+            g.fillRect(13, 8, 50, 15);
+            g.setColor(Color.yellow);
+            g.setFont(new Font ("FPS", Font.BOLD, 12));
+            g.drawString(framesInLastSecond +" FPS", 20, 20);
+        }
         g.dispose();
         bs.show();
     }
 
     public void stopGame() {
         running = false;
+    }
+
+    public boolean getShowFPS() {
+        return showFPS;
     }
 
     public boolean isRunning() {

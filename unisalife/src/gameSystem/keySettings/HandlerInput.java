@@ -29,6 +29,7 @@ public class HandlerInput extends KeyAdapter {
     private final KeyCommand doNothing = new DoNothingCommand();
     private final KeyCommand saveCommand = new SavingCommand();
     private final KeyCommand mapCommand = new MapCommand();
+    private final KeyCommand showFpsCommand = new ShowFpsCommand();
     private final GameStateManager stateManager = GameStateManager.getInstance();
     private final SettingsManager settingsManager = SettingsManager.getSettingsManager();
     private KeyCommand prev = null;
@@ -92,7 +93,10 @@ public class HandlerInput extends KeyAdapter {
             return pauseCommand;
         } else if (keyCode == settingsManager.getMapButton()) {
             return mapCommand;
-        } else {
+        } else if (keyCode == settingsManager.getFpsButton()){
+            return showFpsCommand;
+        } 
+        else {
             return null;
         }
     }
