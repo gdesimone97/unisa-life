@@ -1,5 +1,6 @@
 package unisagui;
 
+import character.StatusManager;
 import exam.booklet.Booklet;
 import exam.booklet.Subject;
 import java.awt.event.KeyEvent;
@@ -2173,6 +2174,7 @@ public class GameFrame extends javax.swing.JFrame {
         if(GameManager.getInstance().isRunning()){
             try{
                 SwingUtilities.invokeLater(() -> SaveManager.getSaveManager().save());
+                 SwingUtilities.invokeLater(() -> StatusManager.stopBar());
             }catch(SavingException ex){
                 SwingUtilities.invokeLater(() -> JOptionPane.showMessageDialog
                     (instance,"Error during saving process.","Alert",JOptionPane.WARNING_MESSAGE));

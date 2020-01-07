@@ -84,7 +84,7 @@ public class HudUpdater implements Runnable {
             try {
                 Thread.sleep(5000);
             } catch (InterruptedException ex) {
-                Logger.getLogger(HudUpdater.class.getName()).log(Level.SEVERE, null, ex);
+                
             }
             
             StatusManager.getInstance().updateEnergy(-delta1);
