@@ -7,7 +7,7 @@ tilemap %0%2368%928%/Tilesets/TilesetConSfondo.png%/Maps/Tutorial.map%352%448%/M
 tilemap %1%2560%2560%/Tilesets/TilesetConSfondo.png%/Maps/ExternalMap.map%1248%1408%/MiniMap/ExternalMap.png
 # 
 # Map 2 Engineering
-tilemap %2%1984%1728%/Tilesets/EngDef.png%/Maps/Engineering.map%800%1344%/MiniMap/EngineeringMini.png
+tilemap %2%1984%1728%/Tilesets/EngDef.png%/Maps/Engineering.map%800%1344%/MiniMap/Engineering.png
 # 
 # Map 3 Dormitory
 tilemap %3%1280%928%/Tilesets/Dormitory.png%/Maps/Dormitory.map%672%448%/MiniMap/Dormitory.png
