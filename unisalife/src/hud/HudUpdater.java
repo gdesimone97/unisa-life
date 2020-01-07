@@ -22,8 +22,8 @@ public class HudUpdater implements Runnable {
 
     private final Teleport healthTeleport = new Teleport(null, 3, new Position(832, 448));
     private final Teleport hungerTeleport = new Teleport(null, 1, new Position(51 * 32, 30 * 32));
-    private volatile boolean paused = true;
-    private final Object pauseLock = new Object();
+    private volatile static boolean paused = true;
+    private final static Object pauseLock = new Object();
     int energyValue;
     int hungerValue;
     int stressValue;
@@ -111,11 +111,11 @@ public class HudUpdater implements Runnable {
         }
     }
 
-    public void pause() {
+    public static void pause() {
         paused = true;
     }
 
-    public void resume() {
+    public static void resume() {
         synchronized (pauseLock) {
             paused = false;
             pauseLock.notifyAll(); // Unblocks thread
