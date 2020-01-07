@@ -39,7 +39,7 @@ public class ItemInteractionManager implements InteractionManager {
             // add element to the inventory and remove from the map
             GameInventory.getInstance().addItem((Item) MapManager.getInstance().getMap().removeObject(((Item)obj).getPosition().getScaledPosition()));
         } catch (Exception ex) {
-            // decide what to do when an error with string retriving occurs
+            ex.printStackTrace();
         }
     }
 

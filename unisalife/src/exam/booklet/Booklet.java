@@ -115,7 +115,13 @@ public class Booklet extends User implements Serializable,Saveable,Initializable
      */
     @Override
     public void load(Serializable obj) {
+        super.name = "booklet";
+        super.mediator = QuestsManager.getInstance();
+        mediator.addUser(this);
         this.booklet = (HashMap<String,Subject>) obj;
+        
+        GuiManager.getInstance().updateCareer();
+        
     }
 
     /**

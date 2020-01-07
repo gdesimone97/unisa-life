@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import quests.QuestsManager;
 import quests.quest.Quests;
 
 /**
@@ -53,10 +54,10 @@ public class SaveManager {
      * Builds a SaveManager. Only the class' children can access to this method
      */
     protected SaveManager() {
+        saveableComponents.add(GameInventory.getInstance());
         saveableComponents.add(Booklet.getInstance());
         saveableComponents.add(Player.getIstance());
         saveableComponents.add(StatusManager.getInstance());
-        saveableComponents.add(GameInventory.getInstance());
         saveableComponents.add(MapManager.getInstance());
         saveableComponents.add(Quests.getInstance());
     }

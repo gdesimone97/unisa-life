@@ -129,6 +129,7 @@ public class GameManager {
                 Player.getIstance().initialize(skin, Name, MapManager.getInstance().getMap().getInitialPosition());
                 
                 QuestsManager.getInstance().init();
+                Quests.getInstance().init();
                 Booklet.getInstance().init();
                 GameInventory.getInstance().init();
                 JukeBoxMusic.getInstance();

@@ -6,10 +6,13 @@
 package quests;
 
 import game.Interfaces.Initializable;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import quests.mediator.*;
 import quests.quest.Quests;
+import saving.Saveable;
+import saving.exceptions.LoadingException;
 
 /**
  * This class is used due to a necessity of manage the communication between the
@@ -20,7 +23,7 @@ import quests.quest.Quests;
 public class QuestsManager implements QuestMessages, Initializable {
 
     private static QuestsManager instance = null;
-    private List<User> users;
+    private ArrayList<User> users;
     // Item : Subject associative collection
 //    private HashMap<String, String> item;
 //    private int currentLevel;
@@ -118,7 +121,7 @@ public class QuestsManager implements QuestMessages, Initializable {
         this.users = new ArrayList<>();
 //        this.item = new HashMap<>();
 //        this.currentLevel = 0;
-        Quests.getInstance().init();
+   //     Quests.getInstance().init();
 //        this.loadLevel();        
     }
 

@@ -14,6 +14,7 @@ import gameSystem.GameStateManager;
 import gameSystem.map.MapManager;
 import saving.Saveable;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import quests.QuestsManager;
@@ -55,12 +56,20 @@ public class Quests extends User implements Saveable, Serializable, Initializabl
 
     @Override
     public Serializable save() {
-        return null;
+        ArrayList<Object> list = new ArrayList<>();
+        list.add(quests);
+        list.add(item);
+        list.add(currentLevel);
+        return list;
     }
 
     @Override
     public void load(Serializable obj) {
-
+        ArrayList<Object> list = (ArrayList<Object>) obj;
+        quests = (HashMap<String, Quest>) list.get(0);
+        item = (HashMap<String, String>) list.get(1);
+        currentLevel = (int) list.get(2);
+        super.mediator = QuestsManager.getInstance();
     }
 
     @Override

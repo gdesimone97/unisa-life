@@ -171,7 +171,10 @@ public class GameInventory extends User implements Iterable<Item>, Saveable, Ini
      */
     @Override
     public Serializable save() {
-        return this.items; //cast to Serializable useful because ArrayList seems to not be Serializable
+        ArrayList <Object> list = new ArrayList<>();
+        list.add(this.view);
+        list.add(this.items);
+        return list; //cast to Serializable useful because ArrayList seems to not be Serializable
     }
 
     /**
@@ -180,7 +183,16 @@ public class GameInventory extends User implements Iterable<Item>, Saveable, Ini
      */
     @Override
     public void load(Serializable obj)throws LoadingException {
-        this.items = (HashMap<String,Item>) obj;
+        QuestsManager.getInstance().init();
+        super.name = "inventory";
+        super.mediator = QuestsManager.getInstance();
+        mediator.addUser(this);
+        
+        ArrayList<Object> list = (ArrayList<Object>) obj;
+        this.view = (ArrayList<Item>) list.get(0);
+        this.items = (HashMap< String, Item >) list.get(1);
+        this.comp = new TakenComparator();
+        GuiManager.getInstance().updateInventoryDialog();
     }
 
     @Override

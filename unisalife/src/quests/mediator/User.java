@@ -5,6 +5,7 @@
  */
 package quests.mediator;
 
+import java.io.Serializable;
 import quests.QuestsManager;
 
 /**
@@ -13,7 +14,7 @@ import quests.QuestsManager;
  * 
  * @author liovi
  */
-public abstract class User {
+public abstract class User implements Serializable{
 
     /**
      * Is an instance of the mediator
