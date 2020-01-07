@@ -93,7 +93,7 @@ public class DatabaseManagerTest {
     public void testGetSubjects() throws FileNotSetException {
         System.out.println("getSubjects");
         DatabaseManager instance = DatabaseManager.getDatabaseManager();
-        int expResult = 2;
+        int expResult = 10;
         List<Subject> resultlist = instance.getSubjects();
         int result = resultlist.size();
         assertEquals(expResult, result);
