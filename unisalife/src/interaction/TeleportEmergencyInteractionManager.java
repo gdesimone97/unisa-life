@@ -28,7 +28,7 @@ import unisagui.GuiManager;
  */
 public class TeleportEmergencyInteractionManager implements InteractionManager {
     
-    FileTextManager tm;
+    FileTextManager tm = FileTextManager.getFileTextManager();
     String toShow = null;
     MessageInformation ms;
     
@@ -54,9 +54,7 @@ public class TeleportEmergencyInteractionManager implements InteractionManager {
                     }
                     
                     toShow = tm.getString(new MessageInformation("EmergencyStatus")).get(0);
-                    
                     GuiManager.getInstance().showHint(toShow);
-                    
                     JukeBoxSound.getInstance().play("wrong");
                     GameStateManager.getInstance().setState(PlayState.getInstance());
                     
