@@ -5,6 +5,7 @@
  */
 package exam;
 
+import character.StatusManager;
 import exam.booklet.Booklet;
 import exam.booklet.Subject;
 import exam.question.*;
@@ -34,7 +35,7 @@ public class Tolc implements Runnable {
 
     private final Questions questions;
     private final int questionTime;
-    private int coinReward = 100;
+    private int coinReward = 25;
     private Subject subject;
     private String professorName;
     private int count;
@@ -140,7 +141,7 @@ public class Tolc implements Runnable {
                 
                 // remove professor
                 map.removeObject(professor.getPosition().getScaledPosition());
-                
+                StatusManager.getInstance().updateMoney(this.coinReward);
             } else {
                 try {
                     gui.showDialog(professorName, f.getString(new MessageInformation("TolcFailedName")).get(0) + Player.getIstance().getName() + f.getString(new MessageInformation("TolcFailedName")).get(1), r);
