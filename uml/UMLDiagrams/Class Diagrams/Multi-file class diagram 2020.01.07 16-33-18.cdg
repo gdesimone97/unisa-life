@@ -2,7 +2,7 @@
 
 <ClassDiagram name="Multi-file class diagram">
   <ClassDiagramComponents>
-    <Class name="ObjectManager" package="game.GameObjects" visibility="public" xPosition="20.0" yPosition="20.0">
+    <Class name="ObjectManager" package="game.GameObjects" visibility="public" xPosition="37.0" yPosition="20.0">
       <Fields>
         <Field name="fixed" type="ConcurrentHashMap&lt;Position, GameObject&gt;" visibility="private"/>
         <Field name="dynamic" type="ConcurrentHashMap&lt;Position, Renderable&gt;" visibility="private"/>
@@ -39,7 +39,7 @@
         <Method name="loadImages" returnType="void" visibility="public"/>
       </Methods>
     </Class>
-    <Class name="StatusManager" package="character" visibility="public" xPosition="320.0" yPosition="20.0">
+    <Class name="StatusManager" package="character" visibility="public" xPosition="1732.0" yPosition="46.0">
       <Fields>
         <Field name="initialEnergy" type="int" visibility="private"/>
         <Field name="gameframe" type="GameFrame" visibility="private" isFinal="true"/>
@@ -84,7 +84,7 @@
         <Method name="init" returnType="void" visibility="public"/>
       </Methods>
     </Class>
-    <Class name="Game" package="gameSystem" visibility="public" xPosition="620.0" yPosition="20.0">
+    <Class name="Game" package="gameSystem" visibility="public" xPosition="178.0" yPosition="171.0">
       <Fields>
         <Field name="WIDTHSCREEN" type="int" visibility="public" isStatic="true" isFinal="true"/>
         <Field name="WIDTHMAP" type="int" visibility="public" isStatic="true"/>
@@ -105,7 +105,7 @@
         <Method name="isRunning" returnType="boolean" visibility="public"/>
       </Methods>
     </Class>
-    <Class name="QuestsManager" package="quests" visibility="public" xPosition="920.0" yPosition="20.0">
+    <Class name="QuestsManager" package="quests" visibility="public" xPosition="413.0" yPosition="540.0">
       <Fields>
         <Field name="instance" type="QuestsManager" visibility="private" isStatic="true"/>
         <Field name="users" type="ArrayList&lt;User&gt;" visibility="private"/>
@@ -151,7 +151,7 @@
         <Method name="hideDialog" returnType="void" visibility="public"/>
       </Methods>
     </Class>
-    <Class name="MainMenuManager" package="unisagui" visibility="public" xPosition="1520.0" yPosition="20.0">
+    <Class name="MainMenuManager" package="unisagui" visibility="public" xPosition="1520.0" yPosition="171.0">
       <Fields>
         <Field name="info" type="String" visibility="private" isFinal="true"/>
         <Field name="gameframe" type="GameFrame" visibility="private" isFinal="true"/>
@@ -166,7 +166,7 @@
         <Method name="getInfo" returnType="String" visibility="public"/>
       </Methods>
     </Class>
-    <Class name="MapManager" package="gameSystem.map" visibility="public" xPosition="1820.0" yPosition="20.0">
+    <Class name="MapManager" package="gameSystem.map" visibility="public" xPosition="1026.0" yPosition="549.0">
       <Fields>
         <Field name="actualMap" type="int" visibility="private"/>
         <Field name="mapNumber" type="int" visibility="private"/>
@@ -203,7 +203,7 @@
         </Method>
       </Methods>
     </Class>
-    <Class name="Questions" package="exam.question" visibility="public" xPosition="2120.0" yPosition="20.0">
+    <Class name="Questions" package="exam.question" visibility="public" xPosition="1620.0" yPosition="549.0">
       <Fields>
         <Field name="questions" type="HashMap&lt;Integer, ArrayList&lt;Question&gt;&gt;" visibility="private"/>
       </Fields>
@@ -218,7 +218,7 @@
         <Method name="iterator" returnType="QuestionsIterator" visibility="public"/>
       </Methods>
     </Class>
-    <Class name="GameManager" package="gameSystem" visibility="public" xPosition="20.0" yPosition="420.0">
+    <Class name="GameManager" package="gameSystem" visibility="public" xPosition="37.0" yPosition="405.0">
       <Fields>
         <Field name="game" type="Game" visibility="private"/>
         <Field name="instance" type="GameManager" visibility="private" isStatic="true"/>
@@ -245,7 +245,7 @@
         <Method name="isRunning" returnType="boolean" visibility="public"/>
       </Methods>
     </Class>
-    <Class name="GameState" package="gameSystem" visibility="public" isAbstract="true" xPosition="320.0" yPosition="420.0">
+    <Class name="GameState" package="gameSystem" visibility="public" isAbstract="true" xPosition="286.0" yPosition="365.0">
       <Fields/>
       <Constructors>
         <Constructor visibility="public"/>
@@ -261,19 +261,12 @@
         </Method>
       </Methods>
     </Class>
-    <Class name="TextManager" package="language" visibility="public" isAbstract="true" xPosition="620.0" yPosition="420.0">
+    <Class name="TextManager" package="language" visibility="public" isAbstract="true" xPosition="619.0" yPosition="540.0">
       <Fields/>
       <Constructors/>
       <Methods/>
     </Class>
-    <Interface name="InteractionManager" package="interaction" visibility="public" xPosition="920.0" yPosition="420.0">
-      <Methods>
-        <Method name="execute" returnType="void" visibility="public">
-          <Argument type="Interactable" name="obj"/>
-        </Method>
-      </Methods>
-    </Interface>
-    <Class name="SaveManager" package="saving" visibility="public" xPosition="1220.0" yPosition="420.0">
+    <Class name="SaveManager" package="saving" visibility="public" xPosition="1520.0" yPosition="46.0">
       <Fields>
         <Field name="instance" type="SaveManager" visibility="private" isStatic="true" isFinal="true"/>
         <Field name="saveableComponents" type="List&lt;Saveable&gt;" visibility="private"/>
@@ -313,7 +306,7 @@
         </Method>
       </Methods>
     </Class>
-    <Class name="HUDManager" package="unisagui" visibility="public" xPosition="1820.0" yPosition="420.0">
+    <Class name="HUDManager" package="unisagui" visibility="public" xPosition="1520.0" yPosition="282.0">
       <Fields>
         <Field name="info" type="String" visibility="private" isFinal="true"/>
         <Field name="gameframe" type="GameFrame" visibility="private" isFinal="true"/>
@@ -337,7 +330,7 @@
         </Method>
       </Methods>
     </Class>
-    <Class name="DatabaseManager" package="database" visibility="public" xPosition="2120.0" yPosition="420.0">
+    <Class name="DatabaseManager" package="database" visibility="public" xPosition="1420.0" yPosition="549.0">
       <Fields>
         <Field name="FIXEDCOLLECTIONNAME" type="String" visibility="protected" isStatic="true" isFinal="true"/>
         <Field name="DYNCOLLECTIONNAME" type="String" visibility="protected" isStatic="true" isFinal="true"/>
@@ -383,7 +376,7 @@
         <Method name="init" returnType="void" visibility="public"/>
       </Methods>
     </Class>
-    <Class name="GameStateManager" package="gameSystem" visibility="public" xPosition="20.0" yPosition="820.0">
+    <Class name="GameStateManager" package="gameSystem" visibility="public" xPosition="178.0" yPosition="540.0">
       <Fields>
         <Field name="gs" type="GameState" visibility="private"/>
         <Field name="instance" type="GameStateManager" visibility="private" isStatic="true"/>
@@ -404,7 +397,7 @@
         <Method name="init" returnType="void" visibility="public"/>
       </Methods>
     </Class>
-    <Class name="SettingsMenuManager" package="unisagui" visibility="public" xPosition="320.0" yPosition="820.0">
+    <Class name="SettingsMenuManager" package="unisagui" visibility="public" xPosition="503.0" yPosition="306.0">
       <Fields>
         <Field name="info" type="String" visibility="private" isFinal="true"/>
         <Field name="gameframe" type="GameFrame" visibility="private" isFinal="true"/>
@@ -419,7 +412,7 @@
         </Method>
       </Methods>
     </Class>
-    <Class name="RequestManager" package="unisagui" visibility="public" xPosition="620.0" yPosition="820.0">
+    <Class name="RequestManager" package="unisagui" visibility="public" xPosition="595.0" yPosition="425.0">
       <Fields>
         <Field name="info" type="String" visibility="private"/>
         <Field name="gameframe" type="GameFrame" visibility="private" isFinal="true"/>
@@ -447,7 +440,7 @@
         </Method>
       </Methods>
     </Class>
-    <Class name="GuiManager" package="unisagui" visibility="public" xPosition="920.0" yPosition="820.0">
+    <Class name="GuiManager" package="unisagui" visibility="public" xPosition="725.0" yPosition="46.0">
       <Fields>
         <Field name="hudmanager" type="HUDManager" visibility="private" isFinal="true"/>
         <Field name="inventorymanager" type="InventoryManager" visibility="private" isFinal="true"/>
@@ -547,7 +540,7 @@
         </Method>
       </Methods>
     </Class>
-    <Class name="SettingsManager" package="gameSystem.keySettings" visibility="public" xPosition="1220.0" yPosition="820.0">
+    <Class name="SettingsManager" package="gameSystem.keySettings" visibility="public" xPosition="820.0" yPosition="549.0">
       <Fields>
         <Field name="register" type="HashMap&lt;Commands, Integer&gt;" visibility="private"/>
         <Field name="instance" type="SettingsManager" visibility="private" isStatic="true" isFinal="true"/>
@@ -606,7 +599,7 @@
         <Method name="init" returnType="void" visibility="public"/>
       </Methods>
     </Class>
-    <Class name="ExamManager" package="unisagui" visibility="public" xPosition="1520.0" yPosition="820.0">
+    <Class name="ExamManager" package="unisagui" visibility="public" xPosition="777.0" yPosition="420.0">
       <Fields>
         <Field name="gameframe" type="GameFrame" visibility="private"/>
         <Field name="EMPTY_TEXT" type="String" visibility="private" isStatic="true" isFinal="true"/>
@@ -667,7 +660,7 @@
         </Method>
       </Methods>
     </Class>
-    <Class name="InventoryManager" package="unisagui" visibility="public" xPosition="1820.0" yPosition="820.0">
+    <Class name="InventoryManager" package="unisagui" visibility="public" xPosition="951.0" yPosition="420.0">
       <Fields>
         <Field name="info" type="String" visibility="private" isFinal="true"/>
         <Field name="gameframe" type="GameFrame" visibility="private" isFinal="true"/>
@@ -681,7 +674,7 @@
         <Method name="updateInventoryDialog" returnType="void" visibility="public"/>
       </Methods>
     </Class>
-    <Class name="QuestManager" package="unisagui" visibility="public" xPosition="2120.0" yPosition="820.0">
+    <Class name="QuestManager" package="unisagui" visibility="public" xPosition="1085.0" yPosition="322.0">
       <Fields>
         <Field name="gameframe" type="GameFrame" visibility="private"/>
         <Field name="quests" type="HashMap&lt;Integer, QuestGui&gt;" visibility="private"/>
@@ -703,7 +696,14 @@
         <Method name="hideQuestDialog" returnType="void" visibility="public"/>
       </Methods>
     </Class>
-    <Interface name="JukeBox" package="sound" visibility="public" xPosition="20.0" yPosition="1220.0">
+    <Interface name="InteractionManager" package="interaction" visibility="public" xPosition="1220.0" yPosition="545.0">
+      <Methods>
+        <Method name="execute" returnType="void" visibility="public">
+          <Argument type="Interactable" name="obj"/>
+        </Method>
+      </Methods>
+    </Interface>
+    <Interface name="JukeBox" package="sound" visibility="public" xPosition="1820.0" yPosition="554.0">
       <Methods>
         <Method name="play" returnType="void" visibility="public" isAbstract="true">
           <Argument type="String" name="s"/>
@@ -723,41 +723,20 @@
     </Interface>
   </ClassDiagramComponents>
   <ClassDiagramRelations>
-    <HasRelation name="instance" source="quests.QuestsManager" target="quests.QuestsManager" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <UseRelation source="gameSystem.GameStateManager" target="gameSystem.GameState" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <UseRelation source="game.GameObjects.ObjectManager" target="gameSystem.Game" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <UseRelation source="exam.question.Questions" target="exam.question.Questions" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <UseRelation source="database.DatabaseManager" target="database.DatabaseManager" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <UseRelation source="gameSystem.GameStateManager" target="gameSystem.GameStateManager" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="mainmenumanager" source="unisagui.GuiManager" target="unisagui.MainMenuManager" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <UseRelation source="gameSystem.GameManager" target="gameSystem.GameManager" sourceCardinality="1..1" targetCardinality="1..1"/>
     <UseRelation source="gameSystem.GameManager" target="gameSystem.Game" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="instance" source="database.DatabaseManager" target="database.DatabaseManager" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <UseRelation source="gameSystem.keySettings.SettingsManager" target="gameSystem.keySettings.SettingsManager" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <UseRelation source="unisagui.ExamManager" target="unisagui.ExamManager" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="hudmanager" source="unisagui.GuiManager" target="unisagui.HUDManager" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="instance" source="character.StatusManager" target="character.StatusManager" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <UseRelation source="saving.SaveManager" target="saving.SaveManager" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="instance" source="gameSystem.map.MapManager" target="gameSystem.map.MapManager" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="MapManager"/>
-    <HasRelation name="settingsmenumanager" source="unisagui.GuiManager" target="unisagui.SettingsMenuManager" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="SettingsMenuManager"/>
-    <UseRelation source="gameSystem.map.MapManager" target="gameSystem.map.MapManager" sourceCardinality="1..1" targetCardinality="1..1"/>
     <HasRelation name="inventorymanager" source="unisagui.GuiManager" target="unisagui.InventoryManager" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="game" source="gameSystem.GameManager" target="gameSystem.Game" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="instance" source="unisagui.ExamManager" target="unisagui.ExamManager" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <UseRelation source="character.StatusManager" target="character.StatusManager" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="hudmanager" source="unisagui.GuiManager" target="unisagui.HUDManager" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
     <HasRelation name="dialogmanager" source="unisagui.GuiManager" target="unisagui.DialogManager" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <UseRelation source="unisagui.GuiManager" target="unisagui.GuiManager" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="instance" source="unisagui.GuiManager" target="unisagui.GuiManager" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="instance" source="gameSystem.GameStateManager" target="gameSystem.GameStateManager" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="instance" source="gameSystem.GameManager" target="gameSystem.GameManager" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="exammanager" source="unisagui.GuiManager" target="unisagui.ExamManager" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="instance" source="saving.SaveManager" target="saving.SaveManager" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
     <HasRelation name="gs" source="gameSystem.GameStateManager" target="gameSystem.GameState" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="careermanager" source="unisagui.GuiManager" target="unisagui.CareerManager" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="requestmanager" source="unisagui.GuiManager" target="unisagui.RequestManager" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
     <HasRelation name="questmanager" source="unisagui.GuiManager" target="unisagui.QuestManager" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="instance" source="gameSystem.keySettings.SettingsManager" target="gameSystem.keySettings.SettingsManager" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="SettingsManager"/>
-    <UseRelation source="quests.QuestsManager" target="quests.QuestsManager" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="settingsmenumanager" source="unisagui.GuiManager" target="unisagui.SettingsMenuManager" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="SettingsMenuManager"/>
+    <HasRelation name="careermanager" source="unisagui.GuiManager" target="unisagui.CareerManager" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="mainmenumanager" source="unisagui.GuiManager" target="unisagui.MainMenuManager" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="gameSystem.GameStateManager" target="gameSystem.GameState" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="exammanager" source="unisagui.GuiManager" target="unisagui.ExamManager" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="game" source="gameSystem.GameManager" target="gameSystem.Game" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="game.GameObjects.ObjectManager" target="gameSystem.Game" sourceCardinality="1..1" targetCardinality="1..1"/>
     <HasRelation name="gsm" source="gameSystem.Game" target="gameSystem.GameStateManager" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="requestmanager" source="unisagui.GuiManager" target="unisagui.RequestManager" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
   </ClassDiagramRelations>
 </ClassDiagram>
