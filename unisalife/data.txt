@@ -50,7 +50,7 @@ professor %Prof.Basile%1568%1056%/Sprites/spritetisc.png%tisc %2%d
 professor %Prof.DellaCioppa%608%480%/Sprites/spriteacso.png%acso %2%d
 professor %Prof.Petrone%1536%1056%/Sprites/spriteelettrotecnica.png%electrotechnics %2%d
 professor %Prof.Auletta%448%1088%/Sprites/spritereti.png%computernetwork %2%d
-professor %Prof.DAcierno%1376%1024%/Sprites/spritebasi.png%database %2%d
+professor %Prof.DAcierno%1376%1088%/Sprites/spritebasi.png%database %2%d
 professor %Prof.Marano%1536%512%/Sprites/spritetelecomunicazioni.png%telecomunications %2%d
 # 
 # Tutorial subject
