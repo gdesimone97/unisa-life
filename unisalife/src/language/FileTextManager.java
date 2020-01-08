@@ -47,7 +47,6 @@ public class FileTextManager extends TextManager implements Initializable {
      * Method to get the instance of FileTextManager
      *
      * @return the FileTextManager
-     * @throws FileTextManagerException
      */
     public synchronized static FileTextManager getFileTextManager() throws InitException {
         if (instance == null) {
@@ -100,7 +99,11 @@ public class FileTextManager extends TextManager implements Initializable {
     public List<String> getString(Information obj) throws StringNotFoundException, TextFinderException {
         return fileTextFinder.getString(obj);
     }
-
+    
+    /**
+     * {@inheritDoc}
+     */
+    
     @Override
     public void init() throws InitException {
         SaveManagerAdapter sv = new SaveManagerAdapter();

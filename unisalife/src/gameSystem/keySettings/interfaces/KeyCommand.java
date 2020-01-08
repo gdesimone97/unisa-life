@@ -21,7 +21,14 @@ import gameSystem.PlayState;
  */
 public abstract class KeyCommand {
 
+    /**
+     * Variebles that stores player's speed
+     */
     protected final int speed = Game.PLAYERSPEED;
+
+    /**
+     * 
+     */
     protected final Player player = Player.getIstance();
 
     /**
