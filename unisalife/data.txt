@@ -26,7 +26,7 @@ item %1312%1504%/Sprites/programmazionepc.png%computer %1%d
 item %1504%1728%/Sprites/acsoprocessore.png%processor %1%d
 item %1728%1248%/Sprites/tiscplc.png%PLC %1%d
 item %1024%864%/Sprites/elettrotecnicaresistenza.png%resistor %1%d
-item %608%1920%/Sprites/basidatabase.png%database %1%d
+item %608%1920%/Sprites/basidatabase.png%db %1%d
 item %352%1280%/Sprites/retiethernet.png%ethernet %2%d
 item %1600%1056%/Sprites/telecomunicazionigaussiane.png%gaussian %2%d
 quest %1%maths%calculator2
@@ -36,7 +36,7 @@ quest %1%programming%computer
 quest %2%acso%processor
 quest %2%tisc%PLC
 quest %1%electrotechnics%resistor
-quest %3%database%database
+quest %3%database%db
 quest %3%computernetwork%ethernet
 quest %3%telecomunications%gaussian
 # 
