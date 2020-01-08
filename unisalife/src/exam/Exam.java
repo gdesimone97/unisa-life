@@ -198,10 +198,6 @@ public class Exam implements Runnable {
                     r.getValue();
                 } catch (DialogManager.DialogAlreadyOpenedException ex) {
                 }
-                
-                // remove professor
-                MapManager.getInstance().getMap().removeObject(professor.getPosition().getScaledPosition());
-                
             } else if (voto == 31) {
                 JukeBoxSound.getInstance().play("exam_passed");
                 try {
@@ -209,9 +205,6 @@ public class Exam implements Runnable {
                     r.getValue();
                 } catch (DialogManager.DialogAlreadyOpenedException ex) {
                 }
-                
-                // remove professor
-                MapManager.getInstance().getMap().removeObject(professor.getPosition().getScaledPosition());
             } else {
                 try {
                     JukeBoxSound.getInstance().play("exam_failed");
@@ -221,8 +214,10 @@ public class Exam implements Runnable {
                 }
             }
             if (this.score >= 18) {
-                StatusManager.getInstance().updateMoney((this.score - 18) + this.coinReward);
                 Booklet.getInstance().setScore(subject, voto);
+                StatusManager.getInstance().updateMoney((this.score - 18) + this.coinReward);
+                // remove professor
+                MapManager.getInstance().getMap().removeObject(professor.getPosition().getScaledPosition());
             }
             
             HudUpdater.resume();
