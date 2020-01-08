@@ -12,15 +12,11 @@ import game.GameObjects.ObjectManager;
 import game.GameObjects.Player;
 import game.GameObjects.Position;
 import game.GameObjects.Renderable;
-import game.Interfaces.Initializable;
 import gameSystem.Game;
 import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
 import static java.lang.Thread.sleep;
 import java.util.Random;
 import java.util.concurrent.ConcurrentHashMap;
-import javax.imageio.ImageIO;
 
 
 /**
@@ -42,17 +38,17 @@ public class Map implements Runnable {
      * Constructor that initializes tMap with the passed TileMap t and the
      * mapObject with an empty list.
      *
-     * @param t TileMap
      */
     public Map() {
     }
 
     /**
-     * Constructor that initializes tMap with the passed TileMap t and the
-     * mapObject with the passed LinkedList l.
+     * Constructor that initializes tMap, mapObjects and the path of the relative
+     * mini map
      *
-     * @param t Tmap
-     * @param hm HashMap of GameObject objects
+     * @param tMap the tiled map
+     * @param mapObjects the objects of the map
+     * @param pathMiniMap the path of the mini map
      */
     public Map(TileMap tMap, ObjectManager mapObjects, String pathMiniMap) {
         this.tMap = tMap;
@@ -60,6 +56,10 @@ public class Map implements Runnable {
         this.pathMiniMap=pathMiniMap;
     }
     
+    /**
+     * Get the mini map
+     * @return the path of the mini map
+     */
     public String getPathMiniMap() {
         return pathMiniMap;
     }
@@ -67,7 +67,8 @@ public class Map implements Runnable {
     /**
      * Add a new GameObject object g to the list.
      *
-     * @param g GameObject
+     * @param p the position of the object
+     * @param g the Renderable object
      */
     public void addObject(Position p, Renderable g) {
         try {
@@ -76,6 +77,12 @@ public class Map implements Runnable {
         }
     }
     
+    /**
+     * Used to add the fixed objects to the map
+     * 
+     * @param p the position of the object
+     * @param g the GameObject
+     */
     public void addFixedObject(Position p, GameObject g) {
         try {
             mapObjects.addFixedObject(p, g);
@@ -84,11 +91,10 @@ public class Map implements Runnable {
     }
 
     /**
-     * Remove(if presents) the GameObject object g from the list.
+     * Remove (if presents) the object from the list and returns it.
      *
-     * @param g
-     * @return true if the object was present and has been removed or false if
-     * it was not present.
+     * @param p the position of the element
+     * @return the GameObject if present otherwise null
      */
     public GameObject removeObject(Position p) {
         GameObject o = null;
@@ -100,33 +106,56 @@ public class Map implements Runnable {
     }
 
     /**
-     *
-     * @return mapObjects List.
+     * Gives the ObjectManager
+     * 
+     * @return the mapObjects
      */
     public ObjectManager getObjectManager() {
         return mapObjects;
     }
 
+    /**
+     * Returns the width of the map
+     * 
+     * @return an int that represents the width of the map
+     */
     public int getWidthMap() {
         return this.tMap.getWidth();
     }
 
+    /**
+     * Returns the height of the map
+     * 
+     * @return an int that represents the height of the map
+     */
     public int getHeightMap() {
         return this.tMap.getHeight();
     }
 
+    /**
+     * Gets the object in the next position
+     * 
+     * @param p the position of the objects
+     * @return the object in the passed position
+     */
     public GameObject getGameObject(Position p) {
         return mapObjects.getObjectInNextPosition(p);
     }
 
     /**
-     *
-     * @return tMap TileMap.
+     * Gets the TileMap
+     * 
+     * @return the TileMap
      */
     public TileMap getTileMap() {
         return tMap;
     }
 
+    /**
+     * Renderize the passed object
+     * 
+     * @param g the object to be renderized
+     */
     public void render(Graphics2D g) {
         tMap.render(g);
         for (Renderable r : mapObjects.getDynamic().values()) {
@@ -134,16 +163,22 @@ public class Map implements Runnable {
         }
     }
 
+    /**
+     * Starts the thread that generates random coins
+     */
     public void startGeneratingCoins() {
         new Thread(this).start();
     }
 
+    /**
+     * Stops the thread that generates random coins
+     */
     public void stopGeneratingCoins() {
         generateRandomCoins = false;
     }
 
     /**
-     * this run method creates a permanent cycle that randomly adds Coins in the
+     * This run method creates a permanent cycle that randomly adds Coins in the
      * map, near the player
      */
     @Override
@@ -180,18 +215,38 @@ public class Map implements Runnable {
         }
     }
 
+    /**
+     * Merge the passed ConcurrentHashMap of dynamic objects with the actual
+     * 
+     * @param dynamic a ConcurrentHashMap of dynamic objects
+     */
     public void addDynamicObjects(ConcurrentHashMap<Position, Renderable> dynamic) {
         mapObjects.mergeDynamic(dynamic);
     }
 
+    /**
+     *  Gets the initial position of the player
+     * 
+     * @return a Position that indicates the initial position of the player
+     */
     public Position getInitialPosition() {
         return tMap.getInitialPosition();
     }
 
+    /**
+     * Gets all the dynamic objects of the map
+     * 
+     * @return a ConcurrentHashMap of dynamic objects
+     */
     public ConcurrentHashMap<Position, Renderable> getDynamicObjects() {
         return this.mapObjects.getDynamic();
     }
     
+    /**
+     * Reloads all the images of all the renderable objects
+     * 
+     * @throws ImageNotLoadedException
+     */
     public void loadImages() throws ImageNotLoadedException {
         mapObjects.loadImages();
     }
