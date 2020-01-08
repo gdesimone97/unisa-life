@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="gameSystem.keySettings">
+  <ClassDiagramComponents>
+    <Class name="DoNothingCommand" package="gameSystem.keySettings" visibility="public" xPosition="27.0" yPosition="919.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="visitPlayState" returnType="void" visibility="public">
+          <Argument type="PlayState" name="playState"/>
+        </Method>
+        <Method name="visitPauseState" returnType="void" visibility="public">
+          <Argument type="PauseState" name="pauseState"/>
+        </Method>
+        <Method name="visitLoadingState" returnType="void" visibility="public">
+          <Argument type="LoadingState" name="loadState"/>
+        </Method>
+        <Method name="visitMapState" returnType="void" visibility="public">
+          <Argument type="MapState" name="mapState"/>
+        </Method>
+        <Method name="visitEndGameState" returnType="void" visibility="public">
+          <Argument type="EndGameState" name="endGamestate"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="HandlerInput" package="gameSystem.keySettings" visibility="public" xPosition="1377.0" yPosition="869.0">
+      <Fields>
+        <Field name="moveUp" type="KeyCommand" visibility="private" isFinal="true"/>
+        <Field name="moveDown" type="KeyCommand" visibility="private" isFinal="true"/>
+        <Field name="moveLeft" type="KeyCommand" visibility="private" isFinal="true"/>
+        <Field name="moveRight" type="KeyCommand" visibility="private" isFinal="true"/>
+        <Field name="interactCommand" type="KeyCommand" visibility="private" isFinal="true"/>
+        <Field name="pauseCommand" type="KeyCommand" visibility="private" isFinal="true"/>
+        <Field name="doNothing" type="KeyCommand" visibility="private" isFinal="true"/>
+        <Field name="saveCommand" type="KeyCommand" visibility="private" isFinal="true"/>
+        <Field name="mapCommand" type="KeyCommand" visibility="private" isFinal="true"/>
+        <Field name="stateManager" type="GameStateManager" visibility="private" isFinal="true"/>
+        <Field name="settingsManager" type="SettingsManager" visibility="private" isFinal="true"/>
+        <Field name="prev" type="KeyCommand" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="keyReleased" returnType="void" visibility="public">
+          <Argument type="KeyEvent" name="e"/>
+        </Method>
+        <Method name="keyPressed" returnType="void" visibility="public">
+          <Argument type="KeyEvent" name="e"/>
+        </Method>
+        <Method name="selectCommand" returnType="KeyCommand" visibility="private">
+          <Argument type="KeyEvent" name="e"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="InteractCommand" package="gameSystem.keySettings" visibility="public" xPosition="666.0" yPosition="39.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="visitPlayState" returnType="void" visibility="public">
+          <Argument type="PlayState" name="playState"/>
+        </Method>
+        <Method name="visitPauseState" returnType="void" visibility="public">
+          <Argument type="PauseState" name="pauseState"/>
+        </Method>
+        <Method name="visitLoadingState" returnType="void" visibility="public">
+          <Argument type="LoadingState" name="loadState"/>
+        </Method>
+        <Method name="visitMapState" returnType="void" visibility="public">
+          <Argument type="MapState" name="mapState"/>
+        </Method>
+        <Method name="visitEndGameState" returnType="void" visibility="public">
+          <Argument type="EndGameState" name="endGamestate"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="KeyCommand" package="gameSystem.keySettings.interfaces" visibility="public" isAbstract="true" xPosition="612.0" yPosition="1019.0">
+      <Fields>
+        <Field name="speed" type="int" visibility="protected" isFinal="true"/>
+        <Field name="player" type="Player" visibility="protected" isFinal="true"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="visitPlayState" returnType="void" visibility="public" isAbstract="true">
+          <Argument type="PlayState" name="playState"/>
+        </Method>
+        <Method name="visitPauseState" returnType="void" visibility="public" isAbstract="true">
+          <Argument type="PauseState" name="pauseState"/>
+        </Method>
+        <Method name="visitLoadingState" returnType="void" visibility="public" isAbstract="true">
+          <Argument type="LoadingState" name="loadState"/>
+        </Method>
+        <Method name="visitMapState" returnType="void" visibility="public" isAbstract="true">
+          <Argument type="MapState" name="mapState"/>
+        </Method>
+        <Method name="visitEndGameState" returnType="void" visibility="public" isAbstract="true">
+          <Argument type="EndGameState" name="endGamestate"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="MapCommand" package="gameSystem.keySettings" visibility="public" xPosition="2013.0" yPosition="439.0">
+      <Fields>
+        <Field name="stateManager" type="GameStateManager" visibility="private" isFinal="true"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="visitPlayState" returnType="void" visibility="public">
+          <Argument type="PlayState" name="playState"/>
+        </Method>
+        <Method name="visitPauseState" returnType="void" visibility="public">
+          <Argument type="PauseState" name="pauseState"/>
+        </Method>
+        <Method name="visitLoadingState" returnType="void" visibility="public">
+          <Argument type="LoadingState" name="loadState"/>
+        </Method>
+        <Method name="visitMapState" returnType="void" visibility="public">
+          <Argument type="MapState" name="mapState"/>
+        </Method>
+        <Method name="visitEndGameState" returnType="void" visibility="public">
+          <Argument type="EndGameState" name="endGamestate"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="MoveDownCommand" package="gameSystem.keySettings" visibility="public" xPosition="102.0" yPosition="133.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="visitPlayState" returnType="void" visibility="public">
+          <Argument type="PlayState" name="playState"/>
+        </Method>
+        <Method name="visitPauseState" returnType="void" visibility="public">
+          <Argument type="PauseState" name="pauseState"/>
+        </Method>
+        <Method name="visitLoadingState" returnType="void" visibility="public">
+          <Argument type="LoadingState" name="loadState"/>
+        </Method>
+        <Method name="visitMapState" returnType="void" visibility="public">
+          <Argument type="MapState" name="mapState"/>
+        </Method>
+        <Method name="visitEndGameState" returnType="void" visibility="public">
+          <Argument type="EndGameState" name="endGamestate"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="MoveLeftCommand" package="gameSystem.keySettings" visibility="public" xPosition="63.0" yPosition="439.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="visitPlayState" returnType="void" visibility="public">
+          <Argument type="PlayState" name="playState"/>
+        </Method>
+        <Method name="visitPauseState" returnType="void" visibility="public">
+          <Argument type="PauseState" name="pauseState"/>
+        </Method>
+        <Method name="visitLoadingState" returnType="void" visibility="public">
+          <Argument type="LoadingState" name="loadState"/>
+        </Method>
+        <Method name="visitMapState" returnType="void" visibility="public">
+          <Argument type="MapState" name="mapState"/>
+        </Method>
+        <Method name="visitEndGameState" returnType="void" visibility="public">
+          <Argument type="EndGameState" name="endGamestate"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="MoveRightCommand" package="gameSystem.keySettings" visibility="public" xPosition="462.0" yPosition="439.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="visitPlayState" returnType="void" visibility="public">
+          <Argument type="PlayState" name="playState"/>
+        </Method>
+        <Method name="visitPauseState" returnType="void" visibility="public">
+          <Argument type="PauseState" name="pauseState"/>
+        </Method>
+        <Method name="visitLoadingState" returnType="void" visibility="public">
+          <Argument type="LoadingState" name="loadState"/>
+        </Method>
+        <Method name="visitMapState" returnType="void" visibility="public">
+          <Argument type="MapState" name="mapState"/>
+        </Method>
+        <Method name="visitEndGameState" returnType="void" visibility="public">
+          <Argument type="EndGameState" name="endGamestate"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="MoveUpCommand" package="gameSystem.keySettings" visibility="public" xPosition="842.0" yPosition="439.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="visitPlayState" returnType="void" visibility="public">
+          <Argument type="PlayState" name="playState"/>
+        </Method>
+        <Method name="visitPauseState" returnType="void" visibility="public">
+          <Argument type="PauseState" name="pauseState"/>
+        </Method>
+        <Method name="visitLoadingState" returnType="void" visibility="public">
+          <Argument type="LoadingState" name="loadState"/>
+        </Method>
+        <Method name="visitMapState" returnType="void" visibility="public">
+          <Argument type="MapState" name="mapState"/>
+        </Method>
+        <Method name="visitEndGameState" returnType="void" visibility="public">
+          <Argument type="EndGameState" name="endGamestate"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="PauseCommand" package="gameSystem.keySettings" visibility="public" xPosition="1198.0" yPosition="420.0">
+      <Fields>
+        <Field name="stateManager" type="GameStateManager" visibility="private" isFinal="true"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="visitPlayState" returnType="void" visibility="public">
+          <Argument type="PlayState" name="playState"/>
+        </Method>
+        <Method name="visitPauseState" returnType="void" visibility="public">
+          <Argument type="PauseState" name="pauseState"/>
+        </Method>
+        <Method name="visitLoadingState" returnType="void" visibility="public">
+          <Argument type="LoadingState" name="loadState"/>
+        </Method>
+        <Method name="visitMapState" returnType="void" visibility="public">
+          <Argument type="MapState" name="mapState"/>
+        </Method>
+        <Method name="visitEndGameState" returnType="void" visibility="public">
+          <Argument type="EndGameState" name="endGamestate"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="SavingCommand" package="gameSystem.keySettings" visibility="public" xPosition="1574.0" yPosition="420.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="save" returnType="void" visibility="private"/>
+        <Method name="visitPlayState" returnType="void" visibility="public">
+          <Argument type="PlayState" name="playState"/>
+        </Method>
+        <Method name="visitPauseState" returnType="void" visibility="public">
+          <Argument type="PauseState" name="pauseState"/>
+        </Method>
+        <Method name="visitLoadingState" returnType="void" visibility="public">
+          <Argument type="LoadingState" name="loadState"/>
+        </Method>
+        <Method name="visitMapState" returnType="void" visibility="public">
+          <Argument type="MapState" name="mapState"/>
+        </Method>
+        <Method name="visitEndGameState" returnType="void" visibility="public">
+          <Argument type="EndGameState" name="endGamestate"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="SettingsManager" package="gameSystem.keySettings" visibility="public" xPosition="1796.0" yPosition="656.0">
+      <Fields>
+        <Field name="register" type="HashMap&lt;Commands, Integer&gt;" visibility="private"/>
+        <Field name="instance" type="SettingsManager" visibility="private" isStatic="true" isFinal="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="private"/>
+      </Constructors>
+      <Methods>
+        <Method name="checkInput" returnType="boolean" visibility="private">
+          <Argument type="int" name="code"/>
+        </Method>
+        <Method name="isRegistered" returnType="boolean" visibility="private">
+          <Argument type="Commands" name="cmd"/>
+          <Argument type="int" name="key"/>
+        </Method>
+        <Method name="setKey" returnType="boolean" visibility="private">
+          <Argument type="Commands" name="cmd"/>
+          <Argument type="int" name="button"/>
+        </Method>
+        <Method name="defaultInit" returnType="void" visibility="private"/>
+        <Method name="getInventoryButton" returnType="int" visibility="public"/>
+        <Method name="getMapButton" returnType="int" visibility="public"/>
+        <Method name="setMapButton" returnType="boolean" visibility="public">
+          <Argument type="int" name="mapButton"/>
+        </Method>
+        <Method name="getSaveButton" returnType="int" visibility="public"/>
+        <Method name="getSettingsManager" returnType="SettingsManager" visibility="public" isStatic="true"/>
+        <Method name="getMoveUp" returnType="int" visibility="public"/>
+        <Method name="setMoveUp" returnType="boolean" visibility="public">
+          <Argument type="int" name="moveUp"/>
+        </Method>
+        <Method name="getMoveDown" returnType="int" visibility="public"/>
+        <Method name="setMoveDown" returnType="boolean" visibility="public">
+          <Argument type="int" name="moveDown"/>
+        </Method>
+        <Method name="getMoveLeft" returnType="int" visibility="public"/>
+        <Method name="setMoveLeft" returnType="boolean" visibility="public">
+          <Argument type="int" name="moveLeft"/>
+        </Method>
+        <Method name="getMoveRight" returnType="int" visibility="public"/>
+        <Method name="setMoveRight" returnType="boolean" visibility="public">
+          <Argument type="int" name="moveRight"/>
+        </Method>
+        <Method name="getInteractButton" returnType="int" visibility="public"/>
+        <Method name="setInteractButton" returnType="boolean" visibility="public">
+          <Argument type="int" name="interactButton"/>
+        </Method>
+        <Method name="getPauseButton" returnType="int" visibility="public"/>
+        <Method name="setPauseButton" returnType="boolean" visibility="public">
+          <Argument type="int" name="pauseButton"/>
+        </Method>
+        <Method name="save" returnType="Serializable" visibility="public"/>
+        <Method name="load" returnType="void" visibility="public">
+          <Argument type="Serializable" name="obj"/>
+        </Method>
+        <Method name="init" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Interface name="ActionCommand" package="gameSystem.keySettings.interfaces" visibility="public" xPosition="1552.0" yPosition="159.0">
+      <Methods/>
+    </Interface>
+    <Interface name="MovingCommand" package="gameSystem.keySettings.interfaces" visibility="public" xPosition="571.0" yPosition="260.0">
+      <Methods/>
+    </Interface>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <IsRelation name="is" source="gameSystem.keySettings.DoNothingCommand" target="gameSystem.keySettings.interfaces.KeyCommand"/>
+    <HasRelation name="interactCommand" source="gameSystem.keySettings.HandlerInput" target="gameSystem.keySettings.interfaces.KeyCommand" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="gameSystem.keySettings.MoveRightCommand" target="gameSystem.keySettings.interfaces.MovingCommand"/>
+    <HasRelation name="moveLeft" source="gameSystem.keySettings.HandlerInput" target="gameSystem.keySettings.interfaces.KeyCommand" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="gameSystem.keySettings.MoveRightCommand" target="gameSystem.keySettings.interfaces.KeyCommand"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="gameSystem.keySettings.MoveUpCommand" target="gameSystem.keySettings.interfaces.MovingCommand"/>
+    <HasRelation name="moveUp" source="gameSystem.keySettings.HandlerInput" target="gameSystem.keySettings.interfaces.KeyCommand" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="gameSystem.keySettings.InteractCommand" target="gameSystem.keySettings.interfaces.ActionCommand"/>
+    <HasRelation name="mapCommand" source="gameSystem.keySettings.HandlerInput" target="gameSystem.keySettings.interfaces.KeyCommand" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="prev" source="gameSystem.keySettings.HandlerInput" target="gameSystem.keySettings.interfaces.KeyCommand" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="gameSystem.keySettings.MoveLeftCommand" target="gameSystem.keySettings.interfaces.MovingCommand"/>
+    <IsRelation name="is" source="gameSystem.keySettings.SavingCommand" target="gameSystem.keySettings.interfaces.KeyCommand"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="gameSystem.keySettings.MoveDownCommand" target="gameSystem.keySettings.interfaces.MovingCommand"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="gameSystem.keySettings.MapCommand" target="gameSystem.keySettings.interfaces.ActionCommand"/>
+    <HasRelation name="instance" source="gameSystem.keySettings.SettingsManager" target="gameSystem.keySettings.SettingsManager" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="SettingsManager"/>
+    <IsRelation name="is" source="gameSystem.keySettings.MoveUpCommand" target="gameSystem.keySettings.interfaces.KeyCommand"/>
+    <HasRelation name="settingsManager" source="gameSystem.keySettings.HandlerInput" target="gameSystem.keySettings.SettingsManager" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="SettingsManager"/>
+    <HasRelation name="pauseCommand" source="gameSystem.keySettings.HandlerInput" target="gameSystem.keySettings.interfaces.KeyCommand" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="gameSystem.keySettings.SettingsManager" target="gameSystem.keySettings.SettingsManager" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="gameSystem.keySettings.MoveLeftCommand" target="gameSystem.keySettings.interfaces.KeyCommand"/>
+    <HasRelation name="moveRight" source="gameSystem.keySettings.HandlerInput" target="gameSystem.keySettings.interfaces.KeyCommand" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="gameSystem.keySettings.SavingCommand" target="gameSystem.keySettings.interfaces.ActionCommand"/>
+    <IsRelation name="is" source="gameSystem.keySettings.InteractCommand" target="gameSystem.keySettings.interfaces.KeyCommand"/>
+    <HasRelation name="doNothing" source="gameSystem.keySettings.HandlerInput" target="gameSystem.keySettings.interfaces.KeyCommand" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="saveCommand" source="gameSystem.keySettings.HandlerInput" target="gameSystem.keySettings.interfaces.KeyCommand" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="gameSystem.keySettings.PauseCommand" target="gameSystem.keySettings.interfaces.ActionCommand"/>
+    <UseRelation source="gameSystem.keySettings.HandlerInput" target="gameSystem.keySettings.interfaces.KeyCommand" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="gameSystem.keySettings.MoveDownCommand" target="gameSystem.keySettings.interfaces.KeyCommand"/>
+    <IsRelation name="is" source="gameSystem.keySettings.PauseCommand" target="gameSystem.keySettings.interfaces.KeyCommand"/>
+    <HasRelation name="moveDown" source="gameSystem.keySettings.HandlerInput" target="gameSystem.keySettings.interfaces.KeyCommand" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="gameSystem.keySettings.MapCommand" target="gameSystem.keySettings.interfaces.KeyCommand"/>
+  </ClassDiagramRelations>
+</ClassDiagram>
