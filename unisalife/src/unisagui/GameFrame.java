@@ -407,14 +407,14 @@ public class GameFrame extends javax.swing.JFrame {
 
         NameOfExamLabel.setFont(new java.awt.Font("Arial Black", 1, 13)); // NOI18N
         NameOfExamLabel.setForeground(new java.awt.Color(255, 255, 255));
-        NameOfExamLabel.setText("ExamName");
+        NameOfExamLabel.setText("Computer Networks");
         NameOfExamLabel.setMaximumSize(new java.awt.Dimension(125, 25));
         NameOfExamLabel.setMinimumSize(new java.awt.Dimension(125, 25));
         NameOfExamLabel.setPreferredSize(new java.awt.Dimension(125, 25));
 
         LevelOfQuestionLabel.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         LevelOfQuestionLabel.setForeground(new java.awt.Color(255, 255, 255));
-        LevelOfQuestionLabel.setText("LevelOfQuestion");
+        LevelOfQuestionLabel.setText("Laud Question");
         LevelOfQuestionLabel.setMaximumSize(new java.awt.Dimension(125, 25));
         LevelOfQuestionLabel.setMinimumSize(new java.awt.Dimension(125, 25));
         LevelOfQuestionLabel.setPreferredSize(new java.awt.Dimension(125, 25));
@@ -518,9 +518,9 @@ public class GameFrame extends javax.swing.JFrame {
                         .addGap(25, 25, 25)
                         .addGroup(ExamPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(ExamPanelLayout.createSequentialGroup()
-                                .addComponent(NameOfExamLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(26, 26, 26)
-                                .addComponent(LevelOfQuestionLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(NameOfExamLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(LevelOfQuestionLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(ExamScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(SecondAnswer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ThirdAnswer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
