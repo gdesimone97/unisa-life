@@ -195,7 +195,7 @@ public class Game extends Canvas implements Runnable {
     }
 
     /**
-     * 
+     * stops the game
      */
     public void stopGame() {
         running = false;
