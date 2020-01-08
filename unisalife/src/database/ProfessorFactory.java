@@ -5,7 +5,6 @@
  */
 package database;
 
-import database.populator.exceptions.InvalidArgumentListException;
 import saving.Saveable;
 import exam.booklet.Subject;
 import game.GameObjects.Position;
