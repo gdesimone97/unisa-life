@@ -6,8 +6,6 @@
 package database;
 
 import database.populator.exceptions.InvalidArgumentListException;
-import saving.Saveable;
-import exam.booklet.Subject;
 import game.GameObjects.Position;
 import game.GameObjects.Professor;
 import java.util.NoSuchElementException;
@@ -18,9 +16,6 @@ import java.util.StringTokenizer;
  * @author cmarino
  */
 public class ProfessorFactory extends StorableCreator {
-
-    public ProfessorFactory() {
-    }
 
     /**
      *

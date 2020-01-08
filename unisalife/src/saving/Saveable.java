@@ -12,7 +12,8 @@ import saving.exceptions.*;
  * This interface declares two methods in order to perform the saving and
  * loading operations
  *
- * @author
+ * @author Giuseppe De Simone
+ * @author Simone Serriello
  */
 public interface Saveable extends Serializable {
 

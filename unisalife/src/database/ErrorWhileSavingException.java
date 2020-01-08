@@ -7,11 +7,8 @@ package database;
 
 /**
  * Exception raised when an error during the save operation occurs
- * @author alfon
+ * @author Alfonso De Masi
  */
 public class ErrorWhileSavingException extends Exception {
-
-    public ErrorWhileSavingException() {
-    }
 
 }

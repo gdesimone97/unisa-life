@@ -26,19 +26,35 @@ public class TeleportWrapper implements Storable{
         
     }
     
+    /**
+     * Constructor of the wrapper fact
+     * @param t teleport object
+     * @param map map id integer
+     */
     public TeleportWrapper(Teleport t, int map){
         this.t = t;
         this.map = map;
     }
-
+    
+    /**
+     * Getter for the map wrapped
+     * @return the map id
+     */
     public int getMap() {
         return map;
     }
 
+    /**
+     * Getter for the wrapped teleport
+     * @return a teleport object
+     */
     public Teleport getTeleport() {
         return t;
     }
     
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getIndex() {
         return Integer.toString(this.map);

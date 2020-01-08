@@ -16,11 +16,15 @@ import gameSystem.PlayState;
 import gameSystem.map.MapManager;
 
 /**
- *
+ * interaction manager used to interact with teleports
  * @author simon
  */
 public class TeleportInteractionManager implements InteractionManager {
 
+    /**
+     * execute method for the related object
+     * @param obj 
+     */
     @Override
     public void execute(Interactable obj) {
         Teleport t=(Teleport)obj;

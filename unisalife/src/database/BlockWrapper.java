@@ -21,24 +21,40 @@ class BlockWrapper implements Storable {
 
     private int map;
     private Block block;
-
+    
+    /**
+     * Constructor of the class 
+     * @param block block object
+     * @param map map id integer
+     */
     public BlockWrapper(Block block, int map) {
         this.map = map;
         this.block = block;
     }
-
-    public BlockWrapper() {
+    
+    private BlockWrapper() {
 
     }
-
+    
+    /**
+     * Getter for the map wrapped
+     * @return map id 
+     */
     public int getMap() {
         return map;
     }
-
+    
+    /**
+     * Getter for the block wrapped
+     * @return  block object
+     */
     public Block getBlock() {
         return block;
     }
-
+    
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getIndex() {
         return Integer.toString(this.map);

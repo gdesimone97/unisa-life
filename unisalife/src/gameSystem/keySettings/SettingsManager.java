@@ -32,10 +32,11 @@ public class SettingsManager implements Saveable, Initializable {
         PAUSE,
         MAP,
         INVENTORY,
-        SAVE
+        SAVE,
+        FPS
     }
     
-    private HashMap<Commands, Integer> register = new HashMap<>(9);
+    private HashMap<Commands, Integer> register = new HashMap<>(10);
     private static final SettingsManager instance = new SettingsManager();
     
     private boolean checkInput(int code) {
@@ -46,8 +47,8 @@ public class SettingsManager implements Saveable, Initializable {
         final int NINE = KeyEvent.VK_9;
         final int DOWN = KeyEvent.VK_DOWN;
         final int LEFT = KeyEvent.VK_LEFT;
-        
-        if ((code >= A && code <= Z) || (code >= ZERO && code <= NINE) || (code == SPACE) || (code >= LEFT && code <= DOWN)) {
+        final int L = KeyEvent.VK_L;
+        if ((code!= L && code >= A && code <= Z) || (code >= ZERO && code <= NINE) || (code == SPACE) || (code >= LEFT && code <= DOWN)) {
             return true;
         }
         return false;
@@ -92,12 +93,21 @@ public class SettingsManager implements Saveable, Initializable {
         register.put(Commands.MAP, KeyEvent.VK_M);
         register.put(Commands.INVENTORY, KeyEvent.VK_I);
         register.put(Commands.SAVE, KeyEvent.VK_S);
+        register.put(Commands.FPS, KeyEvent.VK_L);
         SaveManager.getSaveManager().saveKeys();
     }
     
     private SettingsManager() {
     }
-
+    
+    /**
+     * 
+     * @return an int containing the value of fps button
+     */
+    public int getFpsButton(){
+        return register.get(Commands.FPS);
+    }
+    
     /**
      *
      * @return an int containing the value of keyboard key pressed
@@ -271,6 +281,9 @@ public class SettingsManager implements Saveable, Initializable {
         this.register = (HashMap<Commands, Integer>) obj;
     }
     
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void init() throws InitException {
         try {

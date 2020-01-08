@@ -7,16 +7,14 @@ package database;
 
 import game.GameObjects.Distributor;
 import game.GameObjects.Position;
-import java.io.Serializable;
 import org.dizitart.no2.objects.Id;
-import saving.Saveable;
-import saving.exceptions.LoadingException;
+
 
 /**
  * Wrapper class to mantain a Distributor object and its map 
  * @author christian
  */
-class DistributorWrapper implements Saveable, Storable {
+class DistributorWrapper implements Storable {
 
     @Id
     private String info;
@@ -24,27 +22,29 @@ class DistributorWrapper implements Saveable, Storable {
 
     private DistributorWrapper() {
     }
-
+    
+    /**
+     * Contructor of the wrapper class
+     * @param p position of the distributor
+     * @param info unique string
+     */
     public DistributorWrapper(Position p, String info) {
         this.position = p;
         this.info = info;
     }
-
+    
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getIndex() {
         return this.info;
     }
-
-    @Override
-    public Serializable save() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void load(Serializable obj) throws LoadingException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
+    
+    /**
+     * Method to build a distributor based on the wrapped informations
+     * @return an instance of distributor
+     */
     public Distributor buildDistributor() {
         return new Distributor(position, info);
     }

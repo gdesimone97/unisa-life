@@ -15,7 +15,8 @@ import sound.JukeBoxSound;
 /**
  *
  * @author Virginia Cavallaro
- * @author Davide Coppola This class manages the entire panel dedicated to the
+ * @author Davide Coppola 
+ * This class manages the entire panel dedicated to the
  * exam screen. It contains methods for updating text fields and for
  * communicating with the exam thread.
  */

@@ -17,6 +17,9 @@ import java.util.HashMap;
 public class Questions implements QuestionsCollection {
     private HashMap<Integer, ArrayList<Question>> questions;
 
+    /**
+     * creates an empty hashmap
+     */
     public Questions() {
         this.questions = new HashMap<Integer, ArrayList<Question>>();
     }
@@ -34,6 +37,10 @@ public class Questions implements QuestionsCollection {
         questions.get(question.getLevel()).add(question);
     }
     
+    /**
+     *
+     * @return
+     */
     public int getNumLevels() {
         return questions.size();
     }

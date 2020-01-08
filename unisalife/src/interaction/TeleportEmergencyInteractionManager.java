@@ -23,7 +23,7 @@ import unisagui.DialogManager;
 import unisagui.GuiManager;
 
 /**
- *
+ * interaction manager used to interact with emergency teleports
  * @author simon
  */
 public class TeleportEmergencyInteractionManager implements InteractionManager {
@@ -32,7 +32,10 @@ public class TeleportEmergencyInteractionManager implements InteractionManager {
     String toShow = null;
     MessageInformation ms;
     
-    
+    /**
+     * execute method for the related object
+     * @param obj 
+     */
     @Override
     public void execute(Interactable obj) {
         Teleport t=(Teleport)obj;
@@ -44,8 +47,6 @@ public class TeleportEmergencyInteractionManager implements InteractionManager {
             Player.getIstance().setState(DownFaceState.getInstance());
             Player.getIstance().setVelX(0);
             Player.getIstance().setVelY(0);
-            System.out.println(Player.getIstance().getX());
-            System.out.println(Player.getIstance().getY());
             new Thread(() -> {
                 try {
                     try {

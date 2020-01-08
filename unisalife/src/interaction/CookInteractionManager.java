@@ -23,11 +23,15 @@ import unisagui.GuiManager;
 import unisagui.RequestGui;
 
 /**
- *
+ * interaction manager used to interact with the cook
  * @author 1997g
  */
 public class CookInteractionManager implements InteractionManager {
 
+    /**
+     * execute method for the related object
+     * @param obj 
+     */
     @Override
     public void execute(Interactable obj) {
         

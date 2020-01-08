@@ -12,14 +12,11 @@ import gameSystem.PlayState;
 import gameSystem.keySettings.SettingsManager;
 import java.awt.Component;
 import java.awt.Dialog;
-import java.text.ParseException;
 import java.util.HashSet;
 import java.util.Set;
 import javax.swing.ButtonGroup;
-import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
-import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
@@ -27,10 +24,7 @@ import javax.swing.table.TableColumn;
 import saving.SaveManager;
 import sound.JukeBoxMusic;
 import sound.JukeBoxSound;
-import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
-import javax.swing.ListModel;
-import javax.swing.text.MaskFormatter;
 import language.FileTextManager;
 import saving.exceptions.SavingException;
 
@@ -58,10 +52,22 @@ public class GameFrame extends javax.swing.JFrame {
     private int interact;
     private int pause;
     private int map;
+
+    /**
+     * is the model of the inventory
+     */
     protected DefaultTableModel model;
+
+    /**
+     *
+     */
     protected DefaultListModel<String> listModel = new DefaultListModel();
     private Booklet booklet = Booklet.getInstance();
     private HashSet<Subject> career;
+
+    /**
+     * is the model of the career dialog
+     */
     protected DefaultTableModel careerModel;
     
     
@@ -72,10 +78,14 @@ public class GameFrame extends javax.swing.JFrame {
         settingLocations(this);
         initialSettings(this);
         initializingTable();
-        setComponentsNames();
-        //saveManager qui
+        setComponentsNames();// used for JUnit Test
+       
     }
 
+    /**
+     * singleton method to get the instance
+     * @return
+     */
     public static synchronized GameFrame getInstance() {
         if (instance == null) {
             instance = new GameFrame();
@@ -87,6 +97,12 @@ public class GameFrame extends javax.swing.JFrame {
         NewGameButton.setName("new_game");
         AvatarName.setName("avatar");
         MoveUpField.setName("moveup");
+        MoveDownField.setName("movedown");
+        MoveLeftField.setName("moveleft");
+        MoveRightField.setName("moveright");
+        InteractField.setName("interact");
+        PauseField.setName("pause");
+        MapField.setName("map");
   
     }
 
@@ -133,8 +149,9 @@ public class GameFrame extends javax.swing.JFrame {
         
     }
     
-
-
+    /**
+     * initialize the table in the inventory
+     */
     protected void initializingTable() {
         model = new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -157,7 +174,9 @@ public class GameFrame extends javax.swing.JFrame {
         
 
     }
-    
+    /**
+     * Render the cell with the image
+     */
     class CellRender implements TableCellRenderer {
 
         public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected,
@@ -1488,51 +1507,8 @@ public class GameFrame extends javax.swing.JFrame {
                 .addGroup(KeyBoardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(OpenInventoryField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(OpenInventoryLabel))
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
-
-        try{
-            MaskFormatter mask= new MaskFormatter("*");
-            mask.install(MoveUpField);
-        } catch(ParseException e){
-            e.printStackTrace();
-        }
-        try{
-            MaskFormatter mask= new MaskFormatter("*");
-            mask.install(MoveUpField);
-        } catch(ParseException e){
-            e.printStackTrace();
-        }
-        try{
-            MaskFormatter mask= new MaskFormatter("*");
-            mask.install(MoveUpField);
-        } catch(ParseException e){
-            e.printStackTrace();
-        }
-        try{
-            MaskFormatter mask= new MaskFormatter("*");
-            mask.install(MoveUpField);
-        } catch(ParseException e){
-            e.printStackTrace();
-        }
-        try{
-            MaskFormatter mask= new MaskFormatter("*");
-            mask.install(MoveUpField);
-        } catch(ParseException e){
-            e.printStackTrace();
-        }
-        try{
-            MaskFormatter mask= new MaskFormatter("*");
-            mask.install(MoveUpField);
-        } catch(ParseException e){
-            e.printStackTrace();
-        }
-        try{
-            MaskFormatter mask= new MaskFormatter("*");
-            mask.install(MoveUpField);
-        } catch(ParseException e){
-            e.printStackTrace();
-        }
 
         javax.swing.GroupLayout KeyboardSettingsDialogLayout = new javax.swing.GroupLayout(KeyboardSettingsDialog.getContentPane());
         KeyboardSettingsDialog.getContentPane().setLayout(KeyboardSettingsDialogLayout);
@@ -2053,7 +2029,7 @@ public class GameFrame extends javax.swing.JFrame {
         RightBorderLayout.setHorizontalGroup(
             RightBorderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RightBorderLayout.createSequentialGroup()
-                .addGap(0, 25, Short.MAX_VALUE)
+                .addGap(0, 26, Short.MAX_VALUE)
                 .addComponent(GameCloseButton))
         );
         RightBorderLayout.setVerticalGroup(
@@ -2140,7 +2116,7 @@ public class GameFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_ConfirmAnswerActionPerformed
 
     private void AudioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AudioButtonActionPerformed
-        // DA CANCELLARE, CREATO COL COMMIT DI PEPPE
+        
     }//GEN-LAST:event_AudioButtonActionPerformed
 
     private void NewGameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewGameButtonActionPerformed

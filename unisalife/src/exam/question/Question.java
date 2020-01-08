@@ -44,6 +44,7 @@ public class Question {
 
     /**
     * This methods returns the string question
+     * @return 
     */
     public String getQuestion() {
         return question;
@@ -51,6 +52,7 @@ public class Question {
 
     /**
     * This methods returns the list of answers
+     * @return 
     */
     public ArrayList<Answer> getAnswers() {
         return answers;
@@ -58,6 +60,7 @@ public class Question {
 
     /**
     * This methods returns the level of difficulty of the question
+     * @return 
     */
     public Integer getLevel() {
         return level;
@@ -79,11 +82,16 @@ public class Question {
     
     /**
      * Returns the dim of the list of answers of this question
+     * @return 
      */
     public int getNumberOfAnswers() {
         return answers.size();
     }
 
+    /**
+     * converts the questions to strings
+     * @return 
+     */
     @Override
     public String toString() {
         String str = "";

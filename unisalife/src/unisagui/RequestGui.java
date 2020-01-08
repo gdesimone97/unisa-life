@@ -12,8 +12,15 @@ package unisagui;
  * using other thread or active wait
  */
 public class RequestGui {
+
+    /**
+     * the answer
+     */
     protected boolean value;
 
+    /**
+     * empty constructor
+     */
     public RequestGui() {
     }
 /**

@@ -14,12 +14,10 @@ import java.util.StringTokenizer;
 /**
  * Storable Creator for Coin
  *
- * @author alfon
+ * @author Alfonso De Masi
  */
 public class CoinFactory extends StorableCreator {
 
-    public CoinFactory() {
-    }
 
     /**
      *

@@ -22,7 +22,9 @@ import javax.imageio.ImageIO;
 import org.dizitart.no2.objects.Id;
 
 /**
- *
+ * This method is used to read a Tiled Map from file and generate the relative
+ * image
+ * 
  * @author simon
  */
 public class TileMap implements Serializable, Storable {
@@ -72,38 +74,39 @@ public class TileMap implements Serializable, Storable {
     }
     
     /**
-     * costructor
-     * @param id id of TileMap
-     * @param w width of a tile
-     * @param h height of a tile
-     * @param t string representing the file of tile
-     * @param m string representing the file of the map
-     * @param initialPosition initial position of the player in the map
-     * @param miniMapPath path representing the image to be rendered when game is in MapState
+     * This method initializes a Tile Map with the passed parameters
+     * 
+     * @param id an int that represents the id of the map
+     * @param w an int that represents the width of the map
+     * @param h an int that represents the height of the map
+     * @param tileset a String that represents the path of the tileset (.png)
+     * @param map a String that represents the path of the map file (.map)
+     * @param initialPosition a Position that represents the initial position of the player
+     * @param miniMapPath a String that represents the path of the mini map (.png)
      */
-    public TileMap(int id, int w, int h, String t, String m, Position initialPosition, String miniMapPath) {
+    public TileMap(int id, int w, int h, String tileset, String map, Position initialPosition, String miniMapPath) {
         this.tileSize = Game.DIMENSIONSPRITE;
         numRowsToDraw = /*Game.WIDTHMAP / tileSize + 2;*/ w; //31
         numColsToDraw = /*Game.HEIGHTMAP / tileSize + 2;*/ h;  //31
         speed = 4;
         this.id = id;
         this.initialPosition = initialPosition;
-        loadTiles(t);
-        loadMap(m);
+        loadTiles(tileset);
+        loadMap(map);
         this.miniMapPath = miniMapPath;
     }
     
     /**
-     *
-     * @return path of minimap image
+     * Gets the path of the mini map
+     * @return a String that represent the path of the mini map
      */
     public String getMiniMapPath(){
         return this.miniMapPath;
     }
 
     /**
-     *
-     * @return id of tilemap in order to access to the Database
+     * Gets the id of the map
+     * @return an int that represents the id of the map
      */
     public int getId(){
         return this.id;
@@ -145,21 +148,20 @@ public class TileMap implements Serializable, Storable {
     private void loadMap(String s) {
 
         try {
-
             InputStream in = getClass().getResourceAsStream(s);
-
             BufferedReader br = new BufferedReader(
                     new InputStreamReader(in)
             );
+            
             layers = Integer.parseInt(br.readLine());
-            numCols = Integer.parseInt(br.readLine()); //29
-            numRows = Integer.parseInt(br.readLine()); //29
+            numCols = Integer.parseInt(br.readLine()); 
+            numRows = Integer.parseInt(br.readLine());
+            
             map = new int[layers][numRows][numCols]; 
             width = numCols * tileSize;
             height = numRows * tileSize;
             
             String delims = "\\s+";
-            
             for(int l=0; l<layers;l++){    
                 for (int row = 0 ; row < numRows; row++){
                     String line = br.readLine();
@@ -176,24 +178,27 @@ public class TileMap implements Serializable, Storable {
     }
 
     /**
-     *
-     * @return width of a tile
+     * Gets the width of the map
+     * @return an int that represent the width of the map
      */
     public int getWidth() {
         return width;
     }
 
     /**
-     *
-     * @return height of a tile
+     * Gets the height of the map
+     * @return an int that represent the height of the map
      */
     public int getHeight() {
         return height;
     }
 
     /**
-     * method to render the map
-     * @param g graphics of the canvas
+     * Renderize the map. The map allows to use more than one layer.
+     * When a tile is renderized the lower layer pixels are overwritten by
+     * the pixels of the upper layer
+     * 
+     * @param g used to store renderized objects
      */
     public void render(Graphics2D g) {
         
@@ -225,18 +230,15 @@ public class TileMap implements Serializable, Storable {
         }
     }
 
-    /**
-     *
-     * @return index in order to access to the Database
-     */
+    
     @Override
     public String getIndex() {
         return String.valueOf(this.id);
     }
 
     /**
-     *
-     * @return initial position of the player
+     * Gets the initial position of the player
+     * @return a Position that represents the initial position of the player
      */
     public Position getInitialPosition() {
         return initialPosition;

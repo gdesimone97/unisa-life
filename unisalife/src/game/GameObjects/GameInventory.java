@@ -12,20 +12,17 @@ import java.util.stream.Collectors;
 import quests.QuestsManager;
 import quests.mediator.Message;
 import quests.mediator.User;
-
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
-import quests.ItemDef;
 import saving.Saveable;
 import saving.exceptions.LoadingException;
 import unisagui.GuiManager;
 
 /**
- * represent the inventory of the player in the game
+ *
  * @author cmarino
  */
 public class GameInventory extends User implements Iterable<Item>, Saveable, Initializable{
@@ -42,7 +39,7 @@ public class GameInventory extends User implements Iterable<Item>, Saveable, Ini
     }
     
     /**
-     * static method to get an instance of this singleton class
+     *
      * @return The instance of the singleton object 
      */
     public static GameInventory getInstance(){
@@ -71,7 +68,7 @@ public class GameInventory extends User implements Iterable<Item>, Saveable, Ini
     public void receive(Message mess) {}
 
     /**
-     * 
+     *
      * @return The number of items contained in the inventory
      */
     public int length(){
@@ -93,10 +90,11 @@ public class GameInventory extends User implements Iterable<Item>, Saveable, Ini
         send(msg); //then sends it
         int pos = Collections.binarySearch(view, i, comp);
         //int pos = view.indexOf(i);
-        view.add(-(pos+1), i);
+        if( pos < 0 )
+            pos = -(pos+1);
+        view.add(pos, i);
         GuiManager.getInstance().updateInventoryDialog();
         return pos;
-        
     }
 
     /**
@@ -108,20 +106,18 @@ public class GameInventory extends User implements Iterable<Item>, Saveable, Ini
      
         Item i = view.remove(pos);
         GuiManager.getInstance().updateInventoryDialog();
-        return removeItem(i);
+        return items.remove(i.getInfo());
         
     }
     
-    /**
-     *
-     * @param i
-     * @return
-     */
     public Item removeItem(Item i ){
 
         Item r = items.remove(i.getInfo());
         if( r == null )
             throw new RuntimeException("Item is not in the inventory, impossible to remove");
+        int pos = Collections.binarySearch(view, r, comp);
+        pos = pos<0? (-(pos+1)) : pos;
+        view.remove(pos);
         GuiManager.getInstance().updateInventoryDialog();
         return i;
     }
@@ -200,10 +196,6 @@ public class GameInventory extends User implements Iterable<Item>, Saveable, Ini
         GuiManager.getInstance().updateInventoryDialog();
     }
 
-    /**
-     *
-     * @throws InitException
-     */
     @Override
     public void init() throws InitException {
         super.name = "inventory";
