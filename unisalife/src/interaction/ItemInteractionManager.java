@@ -10,7 +10,7 @@ import game.Interfaces.Interactable;
 import game.GameObjects.Item;
 import gameSystem.map.MapManager;
 import language.*;
-import sound.JukeBoxSound;
+import jubox.JukeBoxSound;
 import unisagui.GuiManager;
 
 /**

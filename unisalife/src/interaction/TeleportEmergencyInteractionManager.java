@@ -18,7 +18,7 @@ import java.util.logging.Logger;
 import language.FileTextManager;
 import language.MessageInformation;
 import language.exceptions.TextFinderException;
-import sound.JukeBoxSound;
+import jubox.JukeBoxSound;
 import unisagui.DialogManager;
 import unisagui.GuiManager;
 

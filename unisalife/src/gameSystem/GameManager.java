@@ -20,8 +20,8 @@ import quests.quest.Quests;
 import saving.SaveManager;
 import saving.exceptions.LoadingException;
 import saving.exceptions.SavingException;
-import sound.JukeBoxMusic;
-import sound.JukeBoxSound;
+import jubox.JukeBoxMusic;
+import jubox.JukeBoxSound;
 import unisagui.GuiManager;
 
 /**

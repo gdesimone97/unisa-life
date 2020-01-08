@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import language.FileTextManager;
 import language.MessageInformation;
 import language.exceptions.TextFinderException;
-import sound.JukeBoxSound;
+import jubox.JukeBoxSound;
 import unisagui.*;
 
 /**
