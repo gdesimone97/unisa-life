@@ -18,10 +18,6 @@ import java.util.StringTokenizer;
  */
 public class CookFactory extends StorableCreator {
 
-    public CookFactory() {
-
-    }
-
     /**
      *
      * @param s The string that contains every field needed to construct the

@@ -10,7 +10,7 @@ import org.dizitart.no2.Nitrite;
 
 /**
  *
- * @author alfon
+ * @author Alfono De Masi
  */
 class Database {
 

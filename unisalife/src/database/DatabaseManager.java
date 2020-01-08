@@ -42,7 +42,7 @@ import quests.quest.Quest;
  * Manager class to handle database interction with the game. It allows to
  * retrieve objects from the database.
  *
- * @author alfon
+ * @author Alfonso De Masi
  */
 public class DatabaseManager implements Initializable {
 
@@ -50,8 +50,15 @@ public class DatabaseManager implements Initializable {
     static private <E> E[] newArray(int length, E... array) {
         return Arrays.copyOf(array, length);
     }
-
+    
+    /**
+     * Name of the collection for fixed objects
+     */
     protected static final String FIXEDCOLLECTIONNAME = "FLINKS";
+
+    /**
+     * Name of the collection for dynamic objects
+     */
     protected static final String DYNCOLLECTIONNAME = "DLINKS";
     private static DatabaseManager instance = null;
     private Database db;
@@ -401,6 +408,9 @@ public class DatabaseManager implements Initializable {
         this.db.clear();
     }
 
+    /**
+     * Init method for the Game Manager game start.
+     */
     @Override
     public void init() {
 

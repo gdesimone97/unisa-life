@@ -11,11 +11,4 @@ package database;
  */
 public class FileNotSetException extends Exception {
 
-    public FileNotSetException() {
-    }
-
-    FileNotSetException(String no_filename_specified) {
-        
-    }
-
 }

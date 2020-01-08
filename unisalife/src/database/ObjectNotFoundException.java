@@ -7,11 +7,8 @@ package database;
 
 /**
  * Exception raised when looking for a missing object in the database
- * @author alfon
+ * @author Alfonso De Masi
  */
 public class ObjectNotFoundException extends Exception {
-
-    public ObjectNotFoundException() {
-    }
 
 }

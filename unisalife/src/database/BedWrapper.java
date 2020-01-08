@@ -12,7 +12,7 @@ import org.dizitart.no2.objects.Indices;
 
 /**
  * Wrapper class to mantain a Bed object and its map
- * @author alfon
+ * @author Alfonso De Masi
  */
 @Indices({
     @Index(value = "map", type = IndexType.NonUnique)
@@ -26,19 +26,36 @@ public class BedWrapper implements Storable {
 
     }
 
+    /**
+     * Constructor of the class
+     * @param bed bed object
+     * @param map integer as the id of the map
+     */
     public BedWrapper(Bed bed, int map) {
         this.bed = bed;
         this.map = map;
     }
 
+    /**
+     * Getter for the bed
+     * @return the bed object wrapped
+     */
     public Bed getBed() {
         return bed;
     }
 
+    /**
+     * Getter for the map
+     * @return the map id wrapped
+     */
     public int getMap() {
         return map;
     }
 
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getIndex() {
         return Integer.toString(this.map);
