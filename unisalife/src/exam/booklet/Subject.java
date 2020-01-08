@@ -71,19 +71,28 @@ public class Subject implements Information, Serializable, Comparable, Storable 
     public int getScore() {
         return score;
     }
-
+    
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString() {
         return subject;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int hashCode() {
         int hash = 7;
         hash = 79 * hash + Objects.hashCode(this.subject);
         return hash;
     }
-
+    
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -102,11 +111,17 @@ public class Subject implements Information, Serializable, Comparable, Storable 
         return true;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getInfo() {
         return subject;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int compareTo(Object o) {
         if (o == null) {
@@ -119,7 +134,9 @@ public class Subject implements Information, Serializable, Comparable, Storable 
 
     }
 
-    
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getIndex() {
         return this.subject;

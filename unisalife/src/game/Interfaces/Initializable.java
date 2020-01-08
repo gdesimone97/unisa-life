@@ -11,15 +11,29 @@ package game.Interfaces;
  */
 public interface Initializable {
 
+    /**
+     * This method has to be implemented to all the managers to be reinitialized
+     * 
+     * @throws InitException
+     */
     public void init() throws InitException;
 
+    /**
+     * This exception is thrown in case that the initialization fails
+     */
     public class InitException extends RuntimeException {
         private String error;
         
+        /**
+         * Constructor 
+         * 
+         * @param error
+         */
         public InitException(String error) {
             this.error = error;
         }
         
+        @Override
         public String toString() {
             return error;
         }
