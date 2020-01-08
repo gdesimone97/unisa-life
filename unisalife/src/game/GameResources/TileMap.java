@@ -113,7 +113,7 @@ public class TileMap implements Serializable, Storable {
     }
 
     private void loadTiles(String s) {
-        //System.out.print(s);
+        
         try {
             tileset = ImageIO.read(
                     getClass().getResourceAsStream(s)
@@ -201,10 +201,7 @@ public class TileMap implements Serializable, Storable {
      * @param g used to store renderized objects
      */
     public void render(Graphics2D g) {
-        /*System.out.println("row off"+rowOffset);
-                System.out.println("col off"+colOffset);
-                System.out.println("righe"+numRowsToDraw);
-                System.out.println("colonne"+numColsToDraw);*/
+        
         for (int l = 0; l<layers; l++){
             for (int row = 0; row < numRowsToDraw; row++) {
                 if (row >= numRows) {

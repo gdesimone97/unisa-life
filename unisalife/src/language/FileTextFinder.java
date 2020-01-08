@@ -40,7 +40,7 @@ public abstract class FileTextFinder implements TextFinder {
     /**
      * Change the common current filename to a new one
      *
-     * @param fileName
+     * @param fileName 
      * @throws language.exceptions.FileNotSetException
      * @throws language.exceptions.InvalidFileNameException
      */

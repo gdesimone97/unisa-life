@@ -106,9 +106,8 @@ public class Map implements Runnable {
     }
 
     /**
-     * Gives the ObjectManager
-     * 
-     * @return the mapObjects
+     *
+     * @return the ObjectManager of the map
      */
     public ObjectManager getObjectManager() {
         return mapObjects;

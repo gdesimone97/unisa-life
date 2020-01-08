@@ -25,7 +25,7 @@ public class Animation {
      * Constructor takes a sequence of BufferedImage objects.
      *
      * 
-     * @param args
+     * @param args sequence of BufferedImages
      */
     public Animation(BufferedImage... args){
         
@@ -46,7 +46,7 @@ public class Animation {
     }
     
     /**
-     * this method 
+     * this method updates the frame of the animation
      */
     public void nextFrame(){
         for(int i=0;i<frames;i++){

@@ -9,15 +9,23 @@ import game.Interfaces.Interactable;
 import java.awt.Graphics;
 
 /**
- *
+ * this abstract class represents a person in the game
  * @author simon
  */
 public abstract class Person extends Renderable implements Interactable {
 
+    /**
+     *
+     * @param p position of the person
+     * @param path path of the image to be loaded and rendered in the game
+     */
     public Person(Position p, String path) {
         super(p, path);
     }
 
+    /**
+     * costructor
+     */
     protected Person() {
         super();
     }
