@@ -31,7 +31,7 @@ public class Camera implements Tickable {
 
     /**
      * Setter method for x parameter
-     * @param x
+     * @param x new x 
      */
     public void setX(int x){
         this.x=x;
@@ -39,7 +39,7 @@ public class Camera implements Tickable {
 
     /**
      *  Setter method for y parameter
-     * @param y
+     * @param y new y
      */
     public void setY(int y){
         this.y=y;
@@ -47,7 +47,7 @@ public class Camera implements Tickable {
     
     /**
      *  Getter method for x parameter
-     * @return
+     * @return x parameter
      */
     public float getX(){
         return x;
@@ -55,7 +55,7 @@ public class Camera implements Tickable {
     
     /**
      * Getter method for y parameter
-     * @return
+     * @return y parameter
      */
     public float getY(){
         return y;
@@ -63,7 +63,6 @@ public class Camera implements Tickable {
     
     /** tick method is used for update the position of camera in order to 
      * translate the visual and the objects to be rendered in the game.
-     *
      * 
      */
     @Override

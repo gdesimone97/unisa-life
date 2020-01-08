@@ -98,7 +98,7 @@ public class HudUpdater implements Runnable {
                 StatusManager.getInstance().updateStress(-((delta1 + delta2) / 2) + 1);
             }
 
-            // Updating energy and Updating hunger
+            
             try {
                 Thread.sleep(5000);
             } catch (InterruptedException ex) {
@@ -110,10 +110,16 @@ public class HudUpdater implements Runnable {
         }
     }
 
+    /**
+     * This static method allows to pause the thread that is updating the status bars
+     */
     public static void pause() {
         paused = true;
     }
 
+    /**
+     * This static method allows to resume the paused thread which is stopped updating the status bars
+     */
     public static void resume() {
         synchronized (pauseLock) {
             paused = false;

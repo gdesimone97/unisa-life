@@ -32,16 +32,16 @@ public class Bed extends GameObject implements Interactable {
     }
     
     /**
-     *  Returns the DestinationPosition of the Bed
-     * @return 
+     *  
+     *  @return the DestinationPosition of the Bed
      */
     public Position getDestPosition() {
         return this.dest;
     }
 
     /**
-     * Returns the index of the object in order to access to the Database 
-     * @return 
+     * 
+     * @return the index of the object in order to access to the Database 
      */
     @Override
     public String getIndex() {

@@ -17,7 +17,7 @@ public class Block extends GameObject implements Serializable {
     /**
      * constructor returns a new istance of block
      *
-     * @param p
+     * @param p position of the block
      * @param width width of the block
      * @param height height of the block
      */
@@ -33,16 +33,16 @@ public class Block extends GameObject implements Serializable {
     }
     
     /**
-     *
-     * @param p
+     * costructor
+     * @param p position of the block
      */
     public Block(Position p) {
         super(p);
     }
 
     /**
-     * Returns the index of the block in order to access to the Database
-     * @return
+     * 
+     * @return the index of the block in order to access to the Database
      */
     @Override
     public String getIndex() {

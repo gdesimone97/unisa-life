@@ -48,8 +48,8 @@ public class Cook extends Person implements Information {
     }
 
     /**
-     * Return the index in order to access to the Database
-     * @return
+     * 
+     * @return the index in order to access to the Database
      */
     @Override
     public String getIndex() {
@@ -58,7 +58,7 @@ public class Cook extends Person implements Information {
 
     /**
      *
-     * @return
+     * @return name of the cook
      */
     public String getNome() {
         return nome;
