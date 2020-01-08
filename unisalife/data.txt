@@ -30,6 +30,7 @@ item %608%1920%/Sprites/basidatabase.png%database %1%d
 item %352%1280%/Sprites/retiethernet.png%ethernet %2%d
 item %1600%1056%/Sprites/telecomunicazionigaussiane.png%gaussian %2%d
 quest %1%maths%calculator2
+quest %1%english%dictionary
 # quest %2%physics%magnet
 quest %1%programming%computer
 quest %2%acso%processor
@@ -55,7 +56,7 @@ professor %Prof.Marano%1536%512%/Sprites/spritetelecomunicazioni.png%telecomunic
 # Tutorial subject
 subject %tolc
 # Other subject
-# subject %english
+subject %english
 subject %maths
 subject %programming
 # subject %physics
