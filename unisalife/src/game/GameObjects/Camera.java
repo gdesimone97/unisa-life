@@ -21,6 +21,7 @@ public class Camera implements Tickable {
      *
      * @param x x starting position of camera
      * @param y y starting position of camera
+     * @param p player to follow
      */
     public Camera(int x,int y,Player p){
         this.x=x;
@@ -29,7 +30,7 @@ public class Camera implements Tickable {
     }
 
     /**
-     *
+     * Setter method for x parameter
      * @param x
      */
     public void setX(int x){
@@ -37,7 +38,7 @@ public class Camera implements Tickable {
     }
 
     /**
-     *
+     *  Setter method for y parameter
      * @param y
      */
     public void setY(int y){
@@ -45,7 +46,7 @@ public class Camera implements Tickable {
     }
     
     /**
-     *
+     *  Getter method for x parameter
      * @return
      */
     public float getX(){
@@ -53,7 +54,7 @@ public class Camera implements Tickable {
     }
     
     /**
-     *
+     * Getter method for y parameter
      * @return
      */
     public float getY(){
@@ -69,8 +70,7 @@ public class Camera implements Tickable {
     public void tick(){
         x=(-player.getX()+Game.WIDTHSCREEN/2);
         y=(-player.getY()+Game.HEIGHTSCREEN2/2);
-        /*x=(-player.getX()+Toolkit.getDefaultToolkit().getScreenSize().width/2);
-        y=(-player.getY()+Toolkit.getDefaultToolkit().getScreenSize().height/2);*/
+        
     }
     
 }

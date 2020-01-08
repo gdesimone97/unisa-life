@@ -46,7 +46,7 @@ public class Animation {
     }
     
     /**
-     * this method 
+     * this method updates the frame of the animation
      */
     public void nextFrame(){
         for(int i=0;i<frames;i++){

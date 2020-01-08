@@ -13,11 +13,17 @@ import java.util.logging.Logger;
 
 
 /**
- *
+ * Coin object represents a currency for shopping in the game 
  * @author 1997g
  */
 public class Coin extends Item implements Interactable {
     
+    /**
+     * Costructor of class
+     * @param p position of the coin
+     * @param path path of the coin's image to be rendered in game
+     * @param info parameter for Database
+     */
     public Coin(Position p, String path, String info) {
         super(p, path, info);
         try {
@@ -29,6 +35,9 @@ public class Coin extends Item implements Interactable {
         super();
     }
     
+    /**
+     * This method is used to collect the coin
+     */
     @Override
     public void interact() {
         InteractionManager im = new CoinInteractionManager();

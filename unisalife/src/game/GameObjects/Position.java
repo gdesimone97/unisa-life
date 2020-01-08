@@ -22,8 +22,8 @@ public class Position implements Serializable {
 
     /**
      *
-     * @param x
-     * @param y
+     * @param x parameter x of the position
+     * @param y parameter y of the position
      */
     public Position(int x, int y) {
         this.x = x;
@@ -35,8 +35,8 @@ public class Position implements Serializable {
     }
 
     /**
-     *
-     * @return
+     *  
+     * @return x of position
      */
     public int getX() {
         return x;
@@ -44,16 +44,24 @@ public class Position implements Serializable {
 
     /**
      *
-     * @return
+     * @return y of position
      */
     public int getY() {
         return y;
     }
 
+    /**
+     * setter method for x 
+     * @param x new x 
+     */
     public void setX(int x) {
         this.x = x;
     }
 
+    /**
+     * setter method for y
+     * @param y new y
+     */
     public void setY(int y) {
         this.y = y;
     }
@@ -89,6 +97,10 @@ public class Position implements Serializable {
         return true;
     }
 
+    /**
+     * 
+     * @return position of the object scaled by a factor equal to the dimension of the sprites of the game
+     */
     public Position getScaledPosition() {
         return new Position(this.x / Game.DIMENSIONSPRITE, this.y / Game.DIMENSIONSPRITE);
     }

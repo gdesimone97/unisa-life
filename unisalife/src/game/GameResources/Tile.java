@@ -20,6 +20,8 @@ import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import javax.imageio.ImageIO;
+import javax.imageio.stream.ImageInputStream;
+import javax.imageio.stream.ImageOutputStream;
 
 /**
  *
@@ -29,16 +31,11 @@ public class Tile implements Serializable, Externalizable {
 
     private BufferedImage image;
 
-    /*private int type;
-	
-	// tile types
-	public static final int NORMAL = 0;
-	public static final int BLOCKED = 1;
-	*/
+    
 
     /**
      *
-     * @param image
+     * @param image image of the tile
      */
     
     public Tile(BufferedImage image) {
@@ -48,7 +45,7 @@ public class Tile implements Serializable, Externalizable {
 	
     /**
      *
-     * @return
+     * @return image of the tile
      */
     public BufferedImage getImage() {
         return image;

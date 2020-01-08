@@ -16,16 +16,32 @@ import java.io.Serializable;
  */
 public abstract class GameObject implements Storable,Serializable {
 
+    /**
+     * width in term of pixel of the object
+     */
     protected int width = Game.DIMENSIONSPRITE;
+
+    /**
+     * height in term of pixel of the object
+     */
     protected int height = Game.DIMENSIONSPRITE;
+
+    /**
+     *
+     * Position of the object in the map
+     */
     protected Position p;
 
+    /**
+     *
+     */
     protected GameObject() {
 
     }
 
     /**
      *
+     * @param pstn
      * @param x
      * @param y
      */
@@ -33,10 +49,18 @@ public abstract class GameObject implements Storable,Serializable {
         this.p = p;
     }
 
+    /**
+     *
+     * @return
+     */
     public Position getPosition() {
         return this.p;
     }
 
+    /**
+     *
+     * @return
+     */
     public Position getScaledPosition() {
         return this.p.getScaledPosition();
     }

@@ -35,20 +35,32 @@ public class Map implements Runnable {
     
 
     /**
+<<<<<<< HEAD
+     * Constructor 
+=======
      * Constructor that initializes tMap with the passed TileMap t and the
      * mapObject with an empty list.
      *
+>>>>>>> f962c1e5bfca245c83cc2b53fadfbdb8b1e9b40e
      */
     public Map() {
     }
 
     /**
+<<<<<<< HEAD
+     * Constructor 
+     *
+     * @param tMap TileMap of the map 
+     * @param mapObjects ObjectManager containing all GameObject of the map
+     * @param pathMiniMap String represents the path of image to be rendered when game is in MapState
+=======
      * Constructor that initializes tMap, mapObjects and the path of the relative
      * mini map
      *
      * @param tMap the tiled map
      * @param mapObjects the objects of the map
      * @param pathMiniMap the path of the mini map
+>>>>>>> f962c1e5bfca245c83cc2b53fadfbdb8b1e9b40e
      */
     public Map(TileMap tMap, ObjectManager mapObjects, String pathMiniMap) {
         this.tMap = tMap;
@@ -66,9 +78,14 @@ public class Map implements Runnable {
 
     /**
      * Add a new GameObject object g to the list.
+<<<<<<< HEAD
+     * @param p position of the GameObject
+     * @param g GameObject to be added
+=======
      *
      * @param p the position of the object
      * @param g the Renderable object
+>>>>>>> f962c1e5bfca245c83cc2b53fadfbdb8b1e9b40e
      */
     public void addObject(Position p, Renderable g) {
         try {
@@ -93,8 +110,14 @@ public class Map implements Runnable {
     /**
      * Remove (if presents) the object from the list and returns it.
      *
+<<<<<<< HEAD
+     * @param p position of the object
+     * @return true if the object was present and has been removed or false if
+     * it was not present.
+=======
      * @param p the position of the element
      * @return the GameObject if present otherwise null
+>>>>>>> f962c1e5bfca245c83cc2b53fadfbdb8b1e9b40e
      */
     public GameObject removeObject(Position p) {
         GameObject o = null;
@@ -106,9 +129,14 @@ public class Map implements Runnable {
     }
 
     /**
+<<<<<<< HEAD
+     *
+     * @return the ObjectManager of the map
+=======
      * Gives the ObjectManager
      * 
      * @return the mapObjects
+>>>>>>> f962c1e5bfca245c83cc2b53fadfbdb8b1e9b40e
      */
     public ObjectManager getObjectManager() {
         return mapObjects;
@@ -143,9 +171,14 @@ public class Map implements Runnable {
     }
 
     /**
+<<<<<<< HEAD
+     *
+     * @return TileMap of the map
+=======
      * Gets the TileMap
      * 
      * @return the TileMap
+>>>>>>> f962c1e5bfca245c83cc2b53fadfbdb8b1e9b40e
      */
     public TileMap getTileMap() {
         return tMap;

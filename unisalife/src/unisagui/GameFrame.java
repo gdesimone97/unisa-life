@@ -103,6 +103,7 @@ public class GameFrame extends javax.swing.JFrame {
         InteractField.setName("interact");
         PauseField.setName("pause");
         MapField.setName("map");
+        AvatarOkButton.setName("okbutton");
   
     }
 

@@ -17,7 +17,8 @@ import java.util.Objects;
 import org.dizitart.no2.objects.Id;
 
 /**
- *
+ * this class represents an item of the game that player can collect in order to
+ * pass an exam
  * @author simon
  */
 public class Item extends Renderable implements Interactable, Serializable, Comparable<Item>, Information {
@@ -26,11 +27,20 @@ public class Item extends Renderable implements Interactable, Serializable, Comp
     private String info;
     private LocalDateTime taken;
 
+    /**
+     *
+     * @param p position of the object in the map
+     * @param path path of the image to be loaded and rendered in the game
+     * @param info parameter for Database
+     */
     public Item(Position p, String path, String info) {
         super(p, path);
         this.info = info;
     }
 
+    /**
+     * costructor
+     */
     public Item() {
         super();
     }
@@ -51,6 +61,10 @@ public class Item extends Renderable implements Interactable, Serializable, Comp
         return info.compareTo(o.getInfo());
     }
 
+    /**
+     * this method is used to memorize the moment when the object was collected
+
+     */
     public void setTaken() {
         this.taken = LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS);
     }
@@ -60,6 +74,10 @@ public class Item extends Renderable implements Interactable, Serializable, Comp
         return this.info;
     }
 
+    /**
+     * 
+     * @return the moment in which the object has been collected
+     */
     public LocalDateTime getTaken() {
         return taken;
     }
@@ -76,17 +94,27 @@ public class Item extends Renderable implements Interactable, Serializable, Comp
         return "Object : " + this.info + " ( taken in " + this.taken + " )";
     }
     
-
+    /**
+     * this method allows player to collect the item
+     */
     @Override
     public void interact() {
         ItemInteractionManager iim = new ItemInteractionManager();
         iim.execute(this);
     }
 
+    /**
+     * 
+     * @return the id of the object for Database
+     */
     public String getID() {
         return this.info;
     }
 
+    /**
+     *
+     * @return the id of the object for Database
+     */
     @Override
     public String getIndex() {
         return this.info;
