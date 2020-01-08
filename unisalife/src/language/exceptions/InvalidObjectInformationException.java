@@ -10,8 +10,5 @@ package language.exceptions;
  * @author alfon
  */
 public class InvalidObjectInformationException extends Exception {
-
-    public InvalidObjectInformationException() {
-    }
     
 }

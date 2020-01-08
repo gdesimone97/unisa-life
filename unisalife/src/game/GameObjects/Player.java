@@ -34,27 +34,27 @@ public class Player extends GameObject implements Tickable, Saveable {
     /**
      * y velocity of player
      */
-    protected int velY = 0;
+    private int velY = 0;
 
     /**
      * y velocity of the player
      */
-    protected Animation upWalk;
+    private Animation upWalk;
 
     /**
      * animation of the player walking up
      */
-    protected Animation downWalk;
+    private Animation downWalk;
 
     /**
      *animation of the player walking down
      */
-    protected Animation leftWalk;
+    private Animation leftWalk;
 
     /**
      * animation of the player walking left
      */
-    protected Animation rightWalk;
+    private Animation rightWalk;
 
     /**
      * animation of the player walking rigth
@@ -236,6 +236,14 @@ public class Player extends GameObject implements Tickable, Saveable {
      */
     public void setVelY(int velY) {
         this.velY = velY;
+    }
+    
+    /**
+     * Get the selected skin
+     * @return the skin
+     */
+    public int getSkin(){
+        return this.skin;
     }
 
     /**

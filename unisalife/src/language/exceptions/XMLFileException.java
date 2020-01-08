@@ -11,7 +11,5 @@ package language.exceptions;
  */
 public class XMLFileException extends TextFinderException {
 
-    public XMLFileException() {
-    }
     
 }

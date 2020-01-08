@@ -9,8 +9,8 @@ import java.io.Serializable;
 import quests.QuestsManager;
 
 /**
- * Extend this class is useful for using the mechanis based on Mediator Pattern
- * Assign a value to mediator and name, then register the user in the mediator
+ * Extend this class is useful for using the mechanis based on Mediator Pattern.
+ * Assignes a value to mediator and name, then register the user in the mediator
  * 
  * @author liovi
  */
