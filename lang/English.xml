@@ -169,7 +169,7 @@
 <message>4#What's the meaning of "blow up something" ?#Make something explode#Set something to fire#To blow air into something#To mess up someting</message>
 <message>4#What's the meaning of "set something up" ?#To arrange/organize something#To install a malicious software#To caught an unfortunate event#To understand something fast</message>
 <message>4#What's the meaning of "break out" ?#To escape#To run through an obstacle#To jump over a cliff#To catch someone cheating</message>
-<message>4#What's the meaning of "count on something/someone" ?#0#f(0)#Not enough information#+inf</message>
+<message>4#What's the meaning of "count on something/someone" ?#trust#love#hate#find how many things/people are there</message>
 <message>4#What's the meaning of "fall down" ?#To fall to the ground#To climb a ladder#To overcome an obstacle#To jump over an obstacle</message>
 </Subject>
 
@@ -448,6 +448,11 @@
 
 <MessageInformation info="EmergencyStatus">
 <message>Your health is important. Never forget to take care of yourself!</message>
+</MessageInformation>
+
+<MessageInformation info="NotEnoughMoneyExam">
+<message>I'm sorry, you need </message>
+<message> coins to do this exam... go find some!</message>
 </MessageInformation>
 
 </root>
