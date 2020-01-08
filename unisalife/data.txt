@@ -69,7 +69,7 @@ subject %telecomunications
 # Map 0 (Tutorial) objects
 # 
 # NP characters
-normalperson %Secretary%864%288%/Sprites/tizia8.png %0%d
+normalperson %Secretary%384%448%/Sprites/tizia8.png %0%d
 normalperson %Christian%1600%352%/Sprites/tizio1.png %0%d
 normalperson %Gennaro%1632%352%/Sprites/tizio2.png %0%d
 normalperson %Alfonso%1184%640%/Sprites/tizio6.png %0%d

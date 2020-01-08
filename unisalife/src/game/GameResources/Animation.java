@@ -68,7 +68,7 @@ public class Animation {
             g.drawImage(currentImage, x,y, null);
         }
         
-    /*
+    /**
      * this method renders the right frame of the sequence with
      * dimensions scaleX(width) and scaleY(height).
      * @param g Graphics object where the frame will be displayed
