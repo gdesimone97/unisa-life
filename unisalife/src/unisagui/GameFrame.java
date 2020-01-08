@@ -58,10 +58,22 @@ public class GameFrame extends javax.swing.JFrame {
     private int interact;
     private int pause;
     private int map;
+
+    /**
+     * is the model of the inventory
+     */
     protected DefaultTableModel model;
+
+    /**
+     *
+     */
     protected DefaultListModel<String> listModel = new DefaultListModel();
     private Booklet booklet = Booklet.getInstance();
     private HashSet<Subject> career;
+
+    /**
+     * is the model of the career dialog
+     */
     protected DefaultTableModel careerModel;
     
     
@@ -76,6 +88,10 @@ public class GameFrame extends javax.swing.JFrame {
         //saveManager qui
     }
 
+    /**
+     * singleton method to get the instance
+     * @return
+     */
     public static synchronized GameFrame getInstance() {
         if (instance == null) {
             instance = new GameFrame();
@@ -139,8 +155,9 @@ public class GameFrame extends javax.swing.JFrame {
         
     }
     
-
-
+    /**
+     * initialize the table in the inventory
+     */
     protected void initializingTable() {
         model = new javax.swing.table.DefaultTableModel(
             new Object [][] {

@@ -13,9 +13,20 @@ package unisagui;
  */
 public class ResultGui {
 
+    /**
+     * the result
+     */
     protected int value = 0;
+
+    /**
+     * time
+     */
     protected int time;
 
+    /**
+     *  
+     * @param time is the time 
+     */
     public ResultGui(int time) {
         this.time = time;
     }

@@ -6,8 +6,6 @@
 package unisagui;
 
 import java.util.HashMap;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.SwingUtilities;
 import language.FileTextManager;
 import language.MessageInformation;
@@ -24,6 +22,9 @@ public class QuestManager {
     private GameFrame gameframe = GameFrame.getInstance();
     private HashMap<Integer, QuestGui> quests;
     
+    /**
+     * empty contructor
+     */
     protected QuestManager(){
         
     }
@@ -32,6 +33,10 @@ public class QuestManager {
     
     
     //---------------------------QUESTA QUANDO FUNZIONERA' IL DB---------------------------------
+
+    /**
+     * updates quest dialog
+     */
     
     public void updateQuestDialog(){
         int count = 0;
@@ -52,6 +57,10 @@ public class QuestManager {
         SwingUtilities.invokeLater(()-> gameframe.listModel.add(count, subj));
     }
     
+    /**
+     * show the description of the quest
+     * @param x is the index in the list
+     */
     public void showDescription(int x){
         if (x>=0)
         SwingUtilities.invokeLater(() -> {
@@ -76,15 +85,24 @@ public class QuestManager {
             
     }*/
     
+    /**
+     * hides description
+     */
     public void hideDescription(){
         SwingUtilities.invokeLater(() -> gameframe.QuestTextArea.setText(""));
     }
     
+    /**
+     * show wuest dialog
+     */
     public void showQuestDialog(){
         updateQuestDialog();
         SwingUtilities.invokeLater(() -> gameframe.QuestDialog.setVisible(true));
     }
     
+    /**
+     * hides quest dialog
+     */
     public void hideQuestDialog(){
         SwingUtilities.invokeLater(() -> gameframe.QuestDialog.setVisible(false));
         hideDescription();
