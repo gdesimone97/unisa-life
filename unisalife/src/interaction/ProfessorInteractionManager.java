@@ -14,7 +14,10 @@ import game.GameObjects.Professor;
 import game.Interfaces.Initializable.InitException;
 import game.Interfaces.Interactable;
 import gameSystem.map.MapManager;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import language.FileTextManager;
 import language.MessageInformation;
 import language.exceptions.TextFinderException;
@@ -79,8 +82,19 @@ public class ProfessorInteractionManager implements InteractionManager {
                         Thread tolcThread = new Thread(new Tolc(s, p));
                         tolcThread.start();
                     } else {
-                        Thread esameThread = new Thread(new Exam(s, p));
-                        esameThread.start();
+                        Thread esameThread;
+                        try {
+                            esameThread = new Thread(new Exam(s, p));
+                            esameThread.start();
+                        } catch (Exam.CoinNotEnoughException ex) {
+                            try {
+                                List<String> a = FileTextManager.getFileTextManager().getString(new MessageInformation("NotEnoughMoneyExam"));
+                                String str = a.get(0) + ex.getCoinRequired() + a.get(1);
+                                GuiManager.getInstance().showDialog(p.getNome(), str, rg);
+                                rg.getValue();
+                            } catch (DialogManager.DialogAlreadyOpenedException x) {
+                            }
+                        }
                     }
 
                 } else {

@@ -7,6 +7,7 @@ package exam.question;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Random;
 
 /**
  * This class is the set of all the Question objects that are in a specific subject
@@ -63,6 +64,7 @@ public class Questions implements QuestionsCollection {
         private Integer actualLevel;
         private int actualSeen;
         private HashMap<Integer, ArrayList<Question>> questions;
+        private Random generator;
 
         public QuestionsIteratorImpl(HashMap<Integer, ArrayList<Question>> questions) {
             this.questions = questions;
@@ -90,7 +92,8 @@ public class Questions implements QuestionsCollection {
                 levelQuestions = questions.get(++actualLevel);
             } while (levelQuestions == null);
             actualSeen++;
-            int randomIndex = ((int) (Math.random() * 10)) % levelQuestions.size();
+            generator = new Random(System.nanoTime());
+            int randomIndex = ((int) (generator.nextInt(levelQuestions.size())));
             return levelQuestions.get(randomIndex);
         }
         
