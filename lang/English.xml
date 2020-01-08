@@ -37,7 +37,7 @@
 <message>1#How many bits is a Char variable represented by?#8#16#32#24</message>
 <message>1#The expression !(A or B) is equivalent to#(!a and !b)#(a and !b)#(!a and b)#!(!a and !b)</message>
 <message>2#What the recursion technique consists of?#A function that makes a call to itself#A function that calls twice another function#A new programming language#None of the above</message>
-<message>2#What interface does Java Exception class implement?#Serializable#Throwable#Comparable#Runnable</message>
+<message>2#What interface does Java Exception class extend?#Throwable#Iterable#Comparable#Runnable</message>
 <message>2#What an iterator is used for?#To access to elements of a data structure#To read values from text file#To write on a text file#To throw an Exception</message>
 <message>2#Which of these languages ??is not object oriented?#C#C++#Java#Phyton</message>
 <message>2#What ASCII is related to?#A character encoding standard#A C function#A data structure#A Java framework</message>

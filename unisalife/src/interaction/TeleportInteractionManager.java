@@ -14,6 +14,7 @@ import gameSystem.GameStateManager;
 import gameSystem.LoadingState;
 import gameSystem.PlayState;
 import gameSystem.map.MapManager;
+import jubox.JukeBoxSound;
 
 /**
  * interaction manager used to interact with teleports
@@ -36,6 +37,7 @@ public class TeleportInteractionManager implements InteractionManager {
             Player.getIstance().setState(DownFaceState.getInstance());
             Player.getIstance().setX(t.getPositionDestination().getX());    
             Player.getIstance().setY(t.getPositionDestination().getY());
+            JukeBoxSound.getInstance().play("teleport");
             new Thread(() -> {
                 try {
                     Thread.sleep(2000);
