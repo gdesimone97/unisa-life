@@ -26,8 +26,8 @@ public class DownFaceState extends FaceState{
     }
     
     /**
-     * returns the position the player is looking at
-     * @return
+     * 
+     * @return the position the player is looking at
      */
     @Override
     public Position visualViewOfPlayer(){
@@ -35,8 +35,8 @@ public class DownFaceState extends FaceState{
     }
 
     /**
-     * returns the position the player will occupy
-     * @return
+     * 
+     * @return the position the player will occupy
      */
     @Override
     public Position nextStep(){
@@ -45,7 +45,7 @@ public class DownFaceState extends FaceState{
 
     /**
      *  static method to get an instance of this singleton class
-     * @return
+     * @return instance of class
      */
     public static DownFaceState getInstance() {
         if (instance==null)

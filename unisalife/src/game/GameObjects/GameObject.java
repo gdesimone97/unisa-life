@@ -41,9 +41,7 @@ public abstract class GameObject implements Storable,Serializable {
 
     /**
      *
-     * @param pstn
-     * @param x
-     * @param y
+     * @param p position of the object
      */
     public GameObject(Position p) {
         this.p = p;
@@ -51,7 +49,7 @@ public abstract class GameObject implements Storable,Serializable {
 
     /**
      *
-     * @return
+     * @return position of the object
      */
     public Position getPosition() {
         return this.p;
@@ -59,7 +57,7 @@ public abstract class GameObject implements Storable,Serializable {
 
     /**
      *
-     * @return
+     * @return position of the object scaled with respect to the dimension of sprites of game
      */
     public Position getScaledPosition() {
         return this.p.getScaledPosition();

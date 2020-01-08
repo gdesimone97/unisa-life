@@ -25,7 +25,7 @@ public class Animation {
      * Constructor takes a sequence of BufferedImage objects.
      *
      * 
-     * @param args
+     * @param args sequence of BufferedImages
      */
     public Animation(BufferedImage... args){
         

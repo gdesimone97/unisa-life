@@ -12,67 +12,131 @@ package database;
  * @author cmarino
  */
 public enum CreatorsEnum {
+
+    /**
+     * Returns a factory for the class Item
+     */
     item("item") {
         @Override
         public StorableCreator getFactory() {
             return new ItemFactory();
         }
-    }, professor("professor") {
+    },
+
+    /**
+     * Returns a factory for the class Professor
+     */
+    professor("professor") {
         @Override
         public StorableCreator getFactory() {
             return new ProfessorFactory();
         }
-    }, coin("coin") {
+    },
+
+    /**
+     * Returns a factory for the class Coin
+     */
+    coin("coin") {
         @Override
         public StorableCreator getFactory() {
             return new CoinFactory();
         }
-    }, subject("subject") {
+    },
+
+    /**
+     * Returns a factory for the class Subject
+     */
+    subject("subject") {
         @Override
         public StorableCreator getFactory() {
             return new SubjectFactory();
         }
-    }, quest("quest") {
+    },
+
+    /**
+     * Returns a factory for the class Quest
+     */
+    quest("quest") {
         @Override
         public StorableCreator getFactory() {
             return new QuestFactory();
         }
-    }, cook("cook") {
+    },
+
+    /**
+     * Returns a factory for the class Cook
+     */
+    cook("cook") {
         @Override
         public StorableCreator getFactory() {
             return new CookFactory();
         }
-    }, guardian("guardian") {
+    },
+
+    /**
+     * Returns a factory for the class Guardian
+     */
+    guardian("guardian") {
         @Override
         public StorableCreator getFactory() {
             return new GuardianFactory();
         }
-    }, distributor("distributor") {
+    },
+
+    /**
+     * Returns a factory for the class DistributorWrapper
+     */
+    distributor("distributor") {
         @Override
         public StorableCreator getFactory() {
             return new DistributorWrapperFactory();
         }
-    }, block("block") {
+    },
+
+    /**
+     * Returns a factory for the class BlockWrapper
+     */
+    block("block") {
         @Override
         public StorableCreator getFactory() {
             return new BlockWrapperFactory();
         }
-    }, tilemap("tilemap") {
+    },
+
+    /**
+     * Returns a factory for the class TileMapWrapper
+     */
+    tilemap("tilemap") {
         @Override
         public StorableCreator getFactory() {
             return new TileMapWrapperFactory();
         }
-    }, teleport("teleport"){
+    },
+
+    /**
+     * Returns a factory for the class TeleportWrapper
+     */
+    teleport("teleport"){
         @Override
         public StorableCreator getFactory() {
             return new TeleportWrapperFactory();
         }
-    }, normalperson("normalperson"){
+    },
+
+    /**
+     * Returns a factory for the class NormalPerson
+     */
+    normalperson("normalperson"){
         @Override
         public StorableCreator getFactory() {
             return new NormalPersonFactory();
         }
-    }, bed("bed"){
+    },
+
+    /**
+     * Returns a factory for the class BedWrapper
+     */
+    bed("bed"){
         @Override
         public StorableCreator getFactory(){
             return new BedWrapperFactory();
@@ -85,8 +149,16 @@ public enum CreatorsEnum {
         this.type = type;
     }
 
+    /**
+     *
+     * @return the Factory of the desired class
+     */
     public abstract StorableCreator getFactory();
 
+    /**
+     *
+     * @return
+     */
     public String getType() {
         return this.type;
     }

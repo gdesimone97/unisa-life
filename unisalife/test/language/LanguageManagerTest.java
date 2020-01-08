@@ -42,6 +42,7 @@ public class LanguageManagerTest {
 
     /**
      * Test of getCurrentLanguage method, of class LanguageManager.
+     * @throws language.exceptions.FileNotSetException
      */
     @Test
     public void testGetCurrentLanguage() throws LanguageSelectedNotAvailableException, FileNotSetException {
@@ -55,6 +56,7 @@ public class LanguageManagerTest {
 
     /**
      * Test of setLanguage method, of class LanguageManager.
+     * @throws language.exceptions.LanguageSelectedNotAvailableException
      */
     @Test
     public void testSetLanguage() throws LanguageSelectedNotAvailableException {

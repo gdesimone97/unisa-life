@@ -45,8 +45,8 @@ public class Distributor extends GameObject implements Interactable, Storable {
     }
 
     /**
-     * Returns index in order to access to the Database
-     * @return
+     * 
+     * @return index in order to access to the Database
      */
     @Override
     public String getIndex() {
