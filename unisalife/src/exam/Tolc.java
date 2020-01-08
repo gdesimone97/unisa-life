@@ -55,7 +55,6 @@ public class Tolc implements Runnable {
         QuestionFactory questionsFetch = new StringsQuestionFactory(subject);
         this.count = 0;
         this.questionTime = 60;
-        this.coinReward = 5;
         this.questions = questionsFetch.getQuestions();
         this.maxLevel = this.questions.getNumLevels();
         this.iter = questions.iterator();
