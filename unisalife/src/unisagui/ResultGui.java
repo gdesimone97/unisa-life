@@ -25,7 +25,7 @@ public class ResultGui {
 
     /**
      *  
-     * @param time is the time 
+     * @param time is the time
      */
     public ResultGui(int time) {
         this.time = time;

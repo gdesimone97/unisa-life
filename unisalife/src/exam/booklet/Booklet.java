@@ -112,8 +112,7 @@ public class Booklet extends User implements Serializable,Saveable,Initializable
     }
 
     /**
-     * This method is used to save the booklet
-     * @return a Serializable object that represents the booklet state
+     * {@inheritDoc}
      */
     @Override
     public Serializable save() {
@@ -121,8 +120,7 @@ public class Booklet extends User implements Serializable,Saveable,Initializable
     }
 
     /**
-     * This method is used to load the booklet 
-     * @param obj is a Serializable. Downcast is necessary before load the obj
+     * {@inheritDoc}
      */
     @Override
     public void load(Serializable obj) {
@@ -136,9 +134,7 @@ public class Booklet extends User implements Serializable,Saveable,Initializable
     }
 
     /**
-     * This method is used to send a message to the Mediator who forwards it
-     * to the receiver
-     * @param mess is the message that the class would send
+     * {@inheritDoc}
      */
     @Override
     public void send(Message mess) {
@@ -146,14 +142,13 @@ public class Booklet extends User implements Serializable,Saveable,Initializable
     }
 
     /**
-     * This method can be used to receive a message 
-     * @param mess is the message that the class can receive
+     * {@inheritDoc}
      */
     @Override
     public void receive(Message mess) {}
 
     /**
-     * This method is used to initialize the structures of the Booklet.
+     * {@inheritDoc}
      */
     @Override
     public void init() {

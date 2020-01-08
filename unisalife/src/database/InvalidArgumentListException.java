@@ -3,14 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package database.populator.exceptions;
+package database;
 
 /**
- *
+ * This exception is thrown when the list of parameters passed to a factory differs in length or format
  * @author cmarino
  */
 public class InvalidArgumentListException extends RuntimeException {
 
+    /**
+     * Construct the exception including details as message field of Exception
+     */
     public InvalidArgumentListException() {
         super("Actual list of parameters differ in length/format, cannot crate the object");
     }

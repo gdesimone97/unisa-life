@@ -10,5 +10,9 @@ package game.Interfaces;
  * @author simon
  */
 public interface Tickable {
+
+    /**
+     * This method has to be implemented by every GameObject, Player, Map, etc...
+     */
     public void tick();
 }

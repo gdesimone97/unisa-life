@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="Multi-file class diagram">
+  <ClassDiagramComponents>
+    <Class name="SaveManager" package="saving" visibility="public" xPosition="20.0" yPosition="20.0">
+      <Fields>
+        <Field name="instance" type="SaveManager" visibility="private" isStatic="true" isFinal="true"/>
+        <Field name="saveableComponents" type="List&lt;Saveable&gt;" visibility="private"/>
+        <Field name="savingItems" type="Map&lt;String, Serializable&gt;" visibility="private"/>
+        <Field name="PATH" type="String" visibility="private" isFinal="true"/>
+        <Field name="PATH_LANG" type="String" visibility="private" isFinal="true"/>
+        <Field name="PATH_KEYS" type="String" visibility="private" isFinal="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="protected"/>
+      </Constructors>
+      <Methods>
+        <Method name="getSaveManager" returnType="SaveManager" visibility="public" isStatic="true" isSynchronized="true"/>
+        <Method name="isSaveSomething" returnType="boolean" visibility="public"/>
+        <Method name="isSaveSomething" returnType="boolean" visibility="private">
+          <Argument type="String" name="path"/>
+        </Method>
+        <Method name="saveKeys" returnType="void" visibility="public"/>
+        <Method name="loadKeys" returnType="void" visibility="public"/>
+        <Method name="saveLang" returnType="void" visibility="public"/>
+        <Method name="loadLang" returnType="String" visibility="protected"/>
+        <Method name="save" returnType="void" visibility="public"/>
+        <Method name="load" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Interface name="Saveable" package="saving" visibility="public" xPosition="320.0" yPosition="20.0">
+      <Methods>
+        <Method name="save" returnType="Serializable" visibility="public"/>
+        <Method name="load" returnType="void" visibility="public">
+          <Argument type="Serializable" name="obj"/>
+        </Method>
+      </Methods>
+    </Interface>
+    <Class name="GameInventory" package="game.GameObjects" visibility="public" xPosition="620.0" yPosition="20.0">
+      <Fields>
+        <Field name="items" type="HashMap&lt;String, Item&gt;" visibility="private"/>
+        <Field name="view" type="ArrayList&lt;Item&gt;" visibility="private"/>
+        <Field name="comp" type="Comparator&lt;Item&gt;" visibility="private"/>
+        <Field name="instance" type="GameInventory" visibility="private" isStatic="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="private"/>
+      </Constructors>
+      <Methods>
+        <Method name="getInstance" returnType="GameInventory" visibility="public" isStatic="true"/>
+        <Method name="send" returnType="void" visibility="public">
+          <Argument type="Message" name="mess"/>
+        </Method>
+        <Method name="receive" returnType="void" visibility="public">
+          <Argument type="Message" name="mess"/>
+        </Method>
+        <Method name="length" returnType="int" visibility="public"/>
+        <Method name="addItem" returnType="int" visibility="public">
+          <Argument type="Item" name="i"/>
+        </Method>
+        <Method name="removeItem" returnType="Item" visibility="public">
+          <Argument type="int" name="pos"/>
+        </Method>
+        <Method name="removeItem" returnType="Item" visibility="public">
+          <Argument type="Item" name="i"/>
+        </Method>
+        <Method name="search" returnType="List&lt;Item&gt;" visibility="public">
+          <Argument type="String" name="s"/>
+        </Method>
+        <Method name="sortByTaken" returnType="void" visibility="public"/>
+        <Method name="sortByTitle" returnType="void" visibility="public"/>
+        <Method name="iterator" returnType="Iterator" visibility="public"/>
+        <Method name="save" returnType="Serializable" visibility="public"/>
+        <Method name="load" returnType="void" visibility="public">
+          <Argument type="Serializable" name="obj"/>
+        </Method>
+        <Method name="init" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="StatusManager" package="character" visibility="public" xPosition="920.0" yPosition="20.0">
+      <Fields>
+        <Field name="initialEnergy" type="int" visibility="private"/>
+        <Field name="gameframe" type="GameFrame" visibility="private" isFinal="true"/>
+        <Field name="updater" type="HudUpdater" visibility="private"/>
+        <Field name="instance" type="StatusManager" visibility="private" isStatic="true"/>
+        <Field name="up" type="Thread" visibility="protected" isStatic="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="protected"/>
+      </Constructors>
+      <Methods>
+        <Method name="getInstance" returnType="StatusManager" visibility="public" isStatic="true"/>
+        <Method name="updateEnergy" returnType="void" visibility="public" isSynchronized="true">
+          <Argument type="int" name="increment"/>
+        </Method>
+        <Method name="updateHunger" returnType="void" visibility="public" isSynchronized="true">
+          <Argument type="int" name="increment"/>
+        </Method>
+        <Method name="updateStress" returnType="void" visibility="public" isSynchronized="true">
+          <Argument type="int" name="increment"/>
+        </Method>
+        <Method name="updateMoney" returnType="void" visibility="public" isSynchronized="true">
+          <Argument type="int" name="increment"/>
+        </Method>
+        <Method name="setEnergy" returnType="void" visibility="public" isSynchronized="true">
+          <Argument type="int" name="newValue"/>
+        </Method>
+        <Method name="setHunger" returnType="void" visibility="public" isSynchronized="true">
+          <Argument type="int" name="newValue"/>
+        </Method>
+        <Method name="setStress" returnType="void" visibility="public" isSynchronized="true">
+          <Argument type="int" name="newValue"/>
+        </Method>
+        <Method name="setMoney" returnType="void" visibility="private" isSynchronized="true">
+          <Argument type="int" name="newValue"/>
+        </Method>
+        <Method name="stopBar" returnType="void" visibility="public" isStatic="true" isSynchronized="true"/>
+        <Method name="save" returnType="Serializable" visibility="public"/>
+        <Method name="load" returnType="void" visibility="public">
+          <Argument type="Serializable" name="obj"/>
+        </Method>
+        <Method name="init" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Booklet" package="exam.booklet" visibility="public" xPosition="1220.0" yPosition="20.0">
+      <Fields>
+        <Field name="instance" type="Booklet" visibility="private" isStatic="true"/>
+        <Field name="booklet" type="HashMap&lt;String, Subject&gt;" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="private"/>
+      </Constructors>
+      <Methods>
+        <Method name="getScore" returnType="int" visibility="public">
+          <Argument type="Subject" name="subject"/>
+        </Method>
+        <Method name="iteratorBooklet" returnType="HashSet&lt;Subject&gt;" visibility="public"/>
+        <Method name="getAvailablity" returnType="boolean" visibility="public">
+          <Argument type="Subject" name="subject"/>
+        </Method>
+        <Method name="getSubject" returnType="Subject" visibility="public">
+          <Argument type="String" name="subject"/>
+        </Method>
+        <Method name="setScore" returnType="void" visibility="public">
+          <Argument type="Subject" name="subject"/>
+          <Argument type="int" name="score"/>
+        </Method>
+        <Method name="getInstance" returnType="Booklet" visibility="public" isStatic="true"/>
+        <Method name="save" returnType="Serializable" visibility="public"/>
+        <Method name="load" returnType="void" visibility="public">
+          <Argument type="Serializable" name="obj"/>
+        </Method>
+        <Method name="send" returnType="void" visibility="public">
+          <Argument type="Message" name="mess"/>
+        </Method>
+        <Method name="receive" returnType="void" visibility="public">
+          <Argument type="Message" name="mess"/>
+        </Method>
+        <Method name="init" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Player" package="game.GameObjects" visibility="public" xPosition="1520.0" yPosition="20.0">
+      <Fields>
+        <Field name="DELAY" type="int" visibility="private" isStatic="true" isFinal="true"/>
+        <Field name="velX" type="int" visibility="private"/>
+        <Field name="velY" type="int" visibility="protected"/>
+        <Field name="upWalk" type="Animation" visibility="protected"/>
+        <Field name="downWalk" type="Animation" visibility="protected"/>
+        <Field name="leftWalk" type="Animation" visibility="protected"/>
+        <Field name="rightWalk" type="Animation" visibility="protected"/>
+        <Field name="facingDownImage" type="BufferedImage" visibility="protected"/>
+        <Field name="facingLeftImage" type="BufferedImage" visibility="protected"/>
+        <Field name="facingRightImage" type="BufferedImage" visibility="protected"/>
+        <Field name="facingUpImage" type="BufferedImage" visibility="protected"/>
+        <Field name="face" type="FaceState" visibility="protected"/>
+        <Field name="uniqueIstance" type="Player" visibility="private" isStatic="true"/>
+        <Field name="nextMove" type="boolean" visibility="private"/>
+        <Field name="nameOfPlayer" type="String" visibility="protected"/>
+        <Field name="delta" type="int" visibility="private"/>
+        <Field name="skin" type="int" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="private"/>
+      </Constructors>
+      <Methods>
+        <Method name="setState" returnType="void" visibility="public">
+          <Argument type="FaceState" name="s"/>
+        </Method>
+        <Method name="getFace" returnType="FaceState" visibility="public"/>
+        <Method name="changeFaceSet" returnType="void" visibility="private">
+          <Argument type="BufferedImage" name="up"/>
+          <Argument type="BufferedImage" name="left"/>
+          <Argument type="BufferedImage" name="down"/>
+          <Argument type="BufferedImage" name="right"/>
+        </Method>
+        <Method name="changeAnimationSet" returnType="void" visibility="private">
+          <Argument type="Animation" name="up"/>
+          <Argument type="Animation" name="left"/>
+          <Argument type="Animation" name="down"/>
+          <Argument type="Animation" name="right"/>
+        </Method>
+        <Method name="initialize" returnType="void" visibility="public">
+          <Argument type="int" name="skin"/>
+          <Argument type="String" name="name"/>
+          <Argument type="Position" name="initialPosition"/>
+        </Method>
+        <Method name="getIstance" returnType="Player" visibility="public" isStatic="true"/>
+        <Method name="setX" returnType="void" visibility="public">
+          <Argument type="int" name="x"/>
+        </Method>
+        <Method name="setY" returnType="void" visibility="public">
+          <Argument type="int" name="y"/>
+        </Method>
+        <Method name="getX" returnType="int" visibility="public"/>
+        <Method name="getY" returnType="int" visibility="public"/>
+        <Method name="getVelX" returnType="int" visibility="public"/>
+        <Method name="getVelY" returnType="int" visibility="public"/>
+        <Method name="setVelX" returnType="void" visibility="public">
+          <Argument type="int" name="velX"/>
+        </Method>
+        <Method name="setVelY" returnType="void" visibility="public">
+          <Argument type="int" name="velY"/>
+        </Method>
+        <Method name="tick" returnType="void" visibility="public"/>
+        <Method name="collisions" returnType="void" visibility="private">
+          <Argument type="ObjectManager" name="objMan"/>
+        </Method>
+        <Method name="render" returnType="void" visibility="public">
+          <Argument type="Graphics" name="g"/>
+        </Method>
+        <Method name="visualViewOfPlayer" returnType="Position" visibility="private"/>
+        <Method name="getWidth" returnType="int" visibility="public"/>
+        <Method name="getHeight" returnType="int" visibility="public"/>
+        <Method name="save" returnType="Serializable" visibility="public"/>
+        <Method name="load" returnType="void" visibility="public">
+          <Argument type="Serializable" name="obj"/>
+        </Method>
+        <Method name="getName" returnType="String" visibility="public"/>
+        <Method name="setName" returnType="void" visibility="public">
+          <Argument type="String" name="name"/>
+        </Method>
+        <Method name="getIndex" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="SettingsManager" package="gameSystem.keySettings" visibility="public" xPosition="1820.0" yPosition="20.0">
+      <Fields>
+        <Field name="register" type="HashMap&lt;Commands, Integer&gt;" visibility="private"/>
+        <Field name="instance" type="SettingsManager" visibility="private" isStatic="true" isFinal="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="private"/>
+      </Constructors>
+      <Methods>
+        <Method name="checkInput" returnType="boolean" visibility="private">
+          <Argument type="int" name="code"/>
+        </Method>
+        <Method name="isRegistered" returnType="boolean" visibility="private">
+          <Argument type="Commands" name="cmd"/>
+          <Argument type="int" name="key"/>
+        </Method>
+        <Method name="setKey" returnType="boolean" visibility="private">
+          <Argument type="Commands" name="cmd"/>
+          <Argument type="int" name="button"/>
+        </Method>
+        <Method name="defaultInit" returnType="void" visibility="private"/>
+        <Method name="getFpsButton" returnType="int" visibility="public"/>
+        <Method name="getInventoryButton" returnType="int" visibility="public"/>
+        <Method name="getMapButton" returnType="int" visibility="public"/>
+        <Method name="setMapButton" returnType="boolean" visibility="public">
+          <Argument type="int" name="mapButton"/>
+        </Method>
+        <Method name="getSaveButton" returnType="int" visibility="public"/>
+        <Method name="getSettingsManager" returnType="SettingsManager" visibility="public" isStatic="true"/>
+        <Method name="getMoveUp" returnType="int" visibility="public"/>
+        <Method name="setMoveUp" returnType="boolean" visibility="public">
+          <Argument type="int" name="moveUp"/>
+        </Method>
+        <Method name="getMoveDown" returnType="int" visibility="public"/>
+        <Method name="setMoveDown" returnType="boolean" visibility="public">
+          <Argument type="int" name="moveDown"/>
+        </Method>
+        <Method name="getMoveLeft" returnType="int" visibility="public"/>
+        <Method name="setMoveLeft" returnType="boolean" visibility="public">
+          <Argument type="int" name="moveLeft"/>
+        </Method>
+        <Method name="getMoveRight" returnType="int" visibility="public"/>
+        <Method name="setMoveRight" returnType="boolean" visibility="public">
+          <Argument type="int" name="moveRight"/>
+        </Method>
+        <Method name="getInteractButton" returnType="int" visibility="public"/>
+        <Method name="setInteractButton" returnType="boolean" visibility="public">
+          <Argument type="int" name="interactButton"/>
+        </Method>
+        <Method name="getPauseButton" returnType="int" visibility="public"/>
+        <Method name="setPauseButton" returnType="boolean" visibility="public">
+          <Argument type="int" name="pauseButton"/>
+        </Method>
+        <Method name="save" returnType="Serializable" visibility="public"/>
+        <Method name="load" returnType="void" visibility="public">
+          <Argument type="Serializable" name="obj"/>
+        </Method>
+        <Method name="init" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="MapManager" package="gameSystem.map" visibility="public" xPosition="2120.0" yPosition="20.0">
+      <Fields>
+        <Field name="actualMap" type="int" visibility="private"/>
+        <Field name="mapNumber" type="int" visibility="private"/>
+        <Field name="MAX_PARALLEL" type="int" visibility="private" isFinal="true"/>
+        <Field name="maps" type="Map[]" visibility="private"/>
+        <Field name="instance" type="MapManager" visibility="private" isStatic="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="private"/>
+      </Constructors>
+      <Methods>
+        <Method name="getInstance" returnType="MapManager" visibility="public" isStatic="true"/>
+        <Method name="getMapNumber" returnType="int" visibility="public"/>
+        <Method name="getActualMap" returnType="int" visibility="public"/>
+        <Method name="getMap" returnType="Map" visibility="public"/>
+        <Method name="setMap" returnType="void" visibility="public">
+          <Argument type="int" name="n"/>
+        </Method>
+        <Method name="render" returnType="void" visibility="public">
+          <Argument type="Graphics2D" name="g"/>
+        </Method>
+        <Method name="init" returnType="void" visibility="public"/>
+        <Method name="addDynamicObjects" returnType="void" visibility="private">
+          <Argument type="int" name="level"/>
+        </Method>
+        <Method name="startGeneratingCoins" returnType="void" visibility="public"/>
+        <Method name="stopGeneratingCoins" returnType="void" visibility="public"/>
+        <Method name="save" returnType="Serializable" visibility="public"/>
+        <Method name="load" returnType="void" visibility="public">
+          <Argument type="Serializable" name="obj"/>
+        </Method>
+        <Method name="setLevel" returnType="void" visibility="public">
+          <Argument type="int" name="newLevel"/>
+        </Method>
+      </Methods>
+    </Class>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="game.GameObjects.Player" target="saving.Saveable"/>
+    <UseRelation source="exam.booklet.Booklet" target="exam.booklet.Booklet" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="saving.SaveManager" target="saving.SaveManager" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="gameSystem.map.MapManager" target="saving.Saveable"/>
+    <HasRelation name="instance" source="gameSystem.map.MapManager" target="gameSystem.map.MapManager" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="MapManager"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="character.StatusManager" target="saving.Saveable"/>
+    <HasRelation name="instance" source="exam.booklet.Booklet" target="exam.booklet.Booklet" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="gameSystem.keySettings.SettingsManager" target="gameSystem.keySettings.SettingsManager" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="game.GameObjects.GameInventory" target="saving.Saveable"/>
+    <HasRelation name="saveableComponents" source="saving.SaveManager" target="saving.Saveable" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="List&lt;Saveable&gt;"/>
+    <HasRelation name="instance" source="game.GameObjects.GameInventory" target="game.GameObjects.GameInventory" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="exam.booklet.Booklet" target="saving.Saveable"/>
+    <UseRelation source="game.GameObjects.GameInventory" target="game.GameObjects.GameInventory" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="uniqueIstance" source="game.GameObjects.Player" target="game.GameObjects.Player" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="gameSystem.keySettings.SettingsManager" target="saving.Saveable"/>
+    <UseRelation source="game.GameObjects.Player" target="game.GameObjects.Player" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="instance" source="saving.SaveManager" target="saving.SaveManager" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="character.StatusManager" target="character.StatusManager" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="gameSystem.map.MapManager" target="gameSystem.map.MapManager" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="instance" source="gameSystem.keySettings.SettingsManager" target="gameSystem.keySettings.SettingsManager" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="SettingsManager"/>
+    <HasRelation name="instance" source="character.StatusManager" target="character.StatusManager" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+  </ClassDiagramRelations>
+</ClassDiagram>

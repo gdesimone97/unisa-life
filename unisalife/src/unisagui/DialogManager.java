@@ -135,7 +135,7 @@ public class DialogManager {
     public static class DialogAlreadyOpenedException extends Exception {
 
         /**
-         *
+         * empty constructor
          */
         public DialogAlreadyOpenedException() {
         }
@@ -147,7 +147,7 @@ public class DialogManager {
     public static class HintAlreadyOpenedException extends Exception {
 
         /**
-         *
+         * empty consructor
          */
         public HintAlreadyOpenedException() {
         }

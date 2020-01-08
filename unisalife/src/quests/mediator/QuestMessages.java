@@ -11,6 +11,19 @@ package quests.mediator;
  * @author liovi
  */
 public interface QuestMessages {
+
+    /**
+     * This method is used to send the messages to the registered users
+     * 
+     * @param mess a Message object
+     * @param user the User that sends the message
+     */
     public void sendMessage(Message mess, User user);
+
+    /**
+     * This method is used from users to register itself to the Mediator
+     * 
+     * @param user the User to register
+     */
     void addUser(User user);
 }
