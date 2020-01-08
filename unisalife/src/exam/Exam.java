@@ -5,6 +5,7 @@
  */
 package exam;
 
+import character.Status;
 import character.StatusManager;
 import exam.booklet.Booklet;
 import exam.booklet.Subject;
@@ -37,6 +38,7 @@ public class Exam implements Runnable {
     private final int questionTime;
     private int score;
     private int coinReward;
+    private int coinPenalty;
     private float sum;
     private int count;
     private final int maxLevel;
@@ -51,8 +53,9 @@ public class Exam implements Runnable {
      * @param p the professor 
      * @throws TextFinderException
      * @throws game.Interfaces.Initializable.InitException 
+     * @throws exam.Exam.CoinNotSufficientException 
      */
-    public Exam(Subject subject, Professor p) throws TextFinderException, InitException {
+    public Exam(Subject subject, Professor p) throws TextFinderException, InitException, CoinNotEnoughException {
         this.subject = subject;
         QuestionFactory questionsFetch = new StringsQuestionFactory(subject);
         this.score = 0;
@@ -60,12 +63,16 @@ public class Exam implements Runnable {
         this.count = 0;
         this.questionTime = 30;
         this.coinReward = 5;
+        this.coinPenalty = 10;
         this.questions = questionsFetch.getQuestions();
         this.maxLevel = this.questions.getNumLevels();
         this.basicScore = 12 / (30 - (30 / (float) (this.maxLevel - 1)));
         this.iter = questions.iterator();
         this.professor = p;
         this.professorName = p.getNome();
+        if(Status.getMoney() < coinPenalty) {
+            throw new CoinNotEnoughException(this.coinPenalty);
+        }
     }
 
     /**
@@ -208,6 +215,7 @@ public class Exam implements Runnable {
             } else {
                 try {
                     JukeBoxSound.getInstance().play("exam_failed");
+                    StatusManager.getInstance().updateMoney(- this.coinPenalty);
                     gui.showDialog(professorName, FileTextManager.getFileTextManager().getString(new MessageInformation("ExamFailed")).get(0), r);
                     r.getValue();
                 } catch (DialogManager.DialogAlreadyOpenedException ex) {
@@ -227,6 +235,29 @@ public class Exam implements Runnable {
             ex.printStackTrace();
         }
 
+    }
+    
+    /**
+     * coin not sufficient
+     */
+    public class CoinNotEnoughException extends Exception {
+        private int coinRequired;
+
+        /**
+         * constructor
+         * @param cointRequired requireds
+         */
+        public CoinNotEnoughException(int cointRequired) {
+            this.coinRequired = cointRequired;
+        }
+
+        /**
+         * getter
+         * @return 
+         */
+        public int getCoinRequired() {
+            return coinRequired;
+        }        
     }
 
 }
