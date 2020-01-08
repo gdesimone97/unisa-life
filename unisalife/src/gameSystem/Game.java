@@ -82,6 +82,7 @@ public class Game extends Canvas implements Runnable {
     private long nextSecond = System.currentTimeMillis() + 1000;
     
     private boolean showFPS = false;
+    private HandlerInput kl = new HandlerInput();
     
     /**
      * This method initializes the game and runs continuously until the game
@@ -152,7 +153,7 @@ public class Game extends Canvas implements Runnable {
      */
     private void init() {
         gsm = GameStateManager.getInstance();
-        this.addKeyListener(new HandlerInput());
+        this.addKeyListener(kl);
         running = true;
     }
 
@@ -199,6 +200,7 @@ public class Game extends Canvas implements Runnable {
      */
     public void stopGame() {
         running = false;
+        this.removeKeyListener(kl);
     }
 
     /**

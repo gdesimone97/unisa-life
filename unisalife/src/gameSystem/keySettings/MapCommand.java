@@ -29,6 +29,7 @@ public class MapCommand extends KeyCommand implements ActionCommand {
     @Override
     public void visitPlayState(PlayState playState) {
         stateManager.setState(MapState.getInstance());
+        System.out.println("apro mappa");
     }
 
     /**
