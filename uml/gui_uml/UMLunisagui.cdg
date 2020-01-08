@@ -1,0 +1,454 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="Multi-file class diagram">
+  <ClassDiagramComponents>
+    <Class name="CareerManager" package="unisagui" visibility="public" xPosition="56.0" yPosition="948.0">
+      <Fields>
+        <Field name="info" type="String" visibility="private" isFinal="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="protected"/>
+      </Constructors>
+      <Methods>
+        <Method name="getInfo" returnType="String" visibility="public"/>
+        <Method name="showCareerDialog" returnType="void" visibility="public">
+          <Argument type="boolean" name="show"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="DialogManager" package="unisagui" visibility="public" xPosition="1340.0" yPosition="777.0">
+      <Fields>
+        <Field name="gameframe" type="GameFrame" visibility="private" isFinal="true"/>
+        <Field name="title" type="TitledBorder" visibility="private"/>
+        <Field name="DialogAvailable" type="boolean" visibility="private"/>
+        <Field name="HintAvailable" type="boolean" visibility="private"/>
+        <Field name="request" type="RequestGui" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="protected"/>
+      </Constructors>
+      <Methods>
+        <Method name="showHint" returnType="void" visibility="public">
+          <Argument type="String" name="hint"/>
+        </Method>
+        <Method name="isHintAvailable" returnType="boolean" visibility="public"/>
+        <Method name="isDialogAvailable" returnType="boolean" visibility="public"/>
+        <Method name="hideHint" returnType="void" visibility="public"/>
+        <Method name="showDialog" returnType="void" visibility="public">
+          <Argument type="String" name="name"/>
+          <Argument type="String" name="conversation"/>
+          <Argument type="RequestGui" name="request"/>
+        </Method>
+        <Method name="hideDialog" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="ExamManager" package="unisagui" visibility="public" xPosition="2208.0" yPosition="17.0">
+      <Fields>
+        <Field name="gameframe" type="GameFrame" visibility="private"/>
+        <Field name="EMPTY_TEXT" type="String" visibility="private" isStatic="true" isFinal="true"/>
+        <Field name="RESULT" type="int" visibility="protected" isStatic="true"/>
+        <Field name="rg" type="ResultGui" visibility="protected"/>
+        <Field name="confirm" type="RequestGui" visibility="protected"/>
+        <Field name="time" type="int" visibility="private"/>
+        <Field name="timing" type="Timer" visibility="private"/>
+        <Field name="instance" type="ExamManager" visibility="protected" isStatic="true"/>
+        <Field name="level" type="int" visibility="private"/>
+        <Field name="color" type="Color" visibility="private"/>
+        <Field name="basecolor" type="Color" visibility="private" isFinal="true"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="getInstance" returnType="ExamManager" visibility="protected" isStatic="true"/>
+        <Method name="closeExamDialog" returnType="void" visibility="protected"/>
+        <Method name="setConfirm" returnType="void" visibility="protected"/>
+        <Method name="setRESULT" returnType="void" visibility="protected">
+          <Argument type="int" name="result"/>
+        </Method>
+        <Method name="isCorrect" returnType="void" visibility="protected">
+          <Argument type="boolean" name="correctness"/>
+          <Argument type="RequestGui" name="confirm"/>
+        </Method>
+        <Method name="clearExam" returnType="void" visibility="private"/>
+        <Method name="fillExam" returnType="void" visibility="private">
+          <Argument type="String" name="examName"/>
+          <Argument type="String" name="question"/>
+          <Argument type="String" name="answer1"/>
+          <Argument type="String" name="answer2"/>
+          <Argument type="String" name="answer3"/>
+          <Argument type="String" name="answer4"/>
+          <Argument type="int" name="numLevel"/>
+        </Method>
+        <Method name="manageButtons" returnType="void" visibility="protected">
+          <Argument type="boolean" name="enable"/>
+        </Method>
+        <Method name="showTimer" returnType="void" visibility="private"/>
+        <Method name="showExamDialog" returnType="void" visibility="protected">
+          <Argument type="String" name="examName"/>
+          <Argument type="String" name="question"/>
+          <Argument type="String" name="answer1"/>
+          <Argument type="String" name="answer2"/>
+          <Argument type="String" name="answer3"/>
+          <Argument type="String" name="answer4"/>
+          <Argument type="int" name="time"/>
+          <Argument type="ResultGui" name="lock"/>
+          <Argument type="int" name="level"/>
+          <Argument type="int" name="numLevel"/>
+        </Method>
+        <Method name="setExamQuestion" returnType="void" visibility="public">
+          <Argument type="String" name="question"/>
+        </Method>
+        <Method name="setExamAnswer" returnType="void" visibility="public">
+          <Argument type="String" name="answer"/>
+          <Argument type="int" name="position"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="GameFrame" package="unisagui" visibility="public" xPosition="1917.0" yPosition="936.0">
+      <Fields>
+        <Field name="instance" type="GameFrame" visibility="private" isStatic="true"/>
+        <Field name="EMPTY_TEXT" type="String" visibility="private" isStatic="true" isFinal="true"/>
+        <Field name="name" type="String" visibility="private"/>
+        <Field name="avatar" type="int" visibility="private"/>
+        <Field name="sound" type="JukeBoxSound" visibility="private" isStatic="true"/>
+        <Field name="music" type="JukeBoxMusic" visibility="private" isStatic="true"/>
+        <Field name="buttongroup" type="ButtonGroup" visibility="private" isStatic="true"/>
+        <Field name="settings" type="SettingsManager" visibility="private"/>
+        <Field name="model" type="DefaultTableModel" visibility="protected"/>
+        <Field name="listModel" type="DefaultListModel&lt;String&gt;" visibility="protected"/>
+        <Field name="booklet" type="Booklet" visibility="private"/>
+        <Field name="career" type="HashSet&lt;Subject&gt;" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="private"/>
+      </Constructors>
+      <Methods>
+        <Method name="getInstance" returnType="GameFrame" visibility="public" isStatic="true" isSynchronized="true"/>
+        <Method name="setComponentsNames" returnType="void" visibility="private"/>
+        <Method name="setKeyBoard" returnType="void" visibility="protected"/>
+        <Method name="setCareer" returnType="void" visibility="protected"/>
+        <Method name="initializingTable" returnType="void" visibility="protected"/>
+        <Method name="initialSettings" returnType="void" visibility="private">
+          <Argument type="GameFrame" name="instance"/>
+        </Method>
+        <Method name="settingAvatarButton" returnType="void" visibility="private"/>
+        <Method name="undecoratingDialogs" returnType="void" visibility="private"/>
+        <Method name="settingLocations" returnType="void" visibility="private">
+          <Argument type="GameFrame" name="instance"/>
+        </Method>
+        <Method name="settingLanguage" returnType="void" visibility="private"/>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="GuiManager" package="unisagui" visibility="public" xPosition="193.0" yPosition="-30.0">
+      <Fields>
+        <Field name="hudmanager" type="HUDManager" visibility="private" isFinal="true"/>
+        <Field name="inventorymanager" type="InventoryManager" visibility="private" isFinal="true"/>
+        <Field name="careermanager" type="CareerManager" visibility="private" isFinal="true"/>
+        <Field name="requestmanager" type="RequestManager" visibility="private" isFinal="true"/>
+        <Field name="dialogmanager" type="DialogManager" visibility="private" isFinal="true"/>
+        <Field name="mainmenumanager" type="MainMenuManager" visibility="private" isFinal="true"/>
+        <Field name="settingsmenumanager" type="SettingsMenuManager" visibility="private" isFinal="true"/>
+        <Field name="exammanager" type="ExamManager" visibility="private" isFinal="true"/>
+        <Field name="questmanager" type="QuestManager" visibility="private" isFinal="true"/>
+        <Field name="gameframe" type="GameFrame" visibility="private" isFinal="true"/>
+        <Field name="instance" type="GuiManager" visibility="private" isStatic="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="private"/>
+      </Constructors>
+      <Methods>
+        <Method name="getInstance" returnType="GuiManager" visibility="public" isStatic="true" isSynchronized="true"/>
+        <Method name="startGame" returnType="void" visibility="public"/>
+        <Method name="showDialog" returnType="void" visibility="public">
+          <Argument type="String" name="name"/>
+          <Argument type="String" name="s"/>
+        </Method>
+        <Method name="showDialog" returnType="void" visibility="public">
+          <Argument type="String" name="name"/>
+          <Argument type="String" name="conversation"/>
+          <Argument type="RequestGui" name="request"/>
+        </Method>
+        <Method name="hideDialog" returnType="void" visibility="public"/>
+        <Method name="showHint" returnType="void" visibility="public">
+          <Argument type="String" name="s"/>
+        </Method>
+        <Method name="hideHint" returnType="void" visibility="public"/>
+        <Method name="isHintAvailable" returnType="boolean" visibility="public"/>
+        <Method name="isDialogAvailable" returnType="boolean" visibility="public"/>
+        <Method name="showExamDialog" returnType="void" visibility="public">
+          <Argument type="String" name="examName"/>
+          <Argument type="String" name="question"/>
+          <Argument type="String" name="answer1"/>
+          <Argument type="String" name="answer2"/>
+          <Argument type="String" name="answer3"/>
+          <Argument type="String" name="answer4"/>
+          <Argument type="int" name="time"/>
+          <Argument type="ResultGui" name="lock"/>
+          <Argument type="int" name="level"/>
+          <Argument type="int" name="numLevel"/>
+        </Method>
+        <Method name="closeExamDialog" returnType="void" visibility="public"/>
+        <Method name="isCorrect" returnType="void" visibility="public">
+          <Argument type="boolean" name="correctness"/>
+          <Argument type="RequestGui" name="confirm"/>
+        </Method>
+        <Method name="setExamQuestion" returnType="void" visibility="public">
+          <Argument type="String" name="question"/>
+        </Method>
+        <Method name="setExamAnswer" returnType="void" visibility="public">
+          <Argument type="String" name="answer"/>
+          <Argument type="int" name="postion"/>
+        </Method>
+        <Method name="showSettingsMenu" returnType="void" visibility="public">
+          <Argument type="boolean" name="show"/>
+        </Method>
+        <Method name="showMainMenu" returnType="void" visibility="public">
+          <Argument type="boolean" name="show"/>
+        </Method>
+        <Method name="showInventoryDialog" returnType="void" visibility="public"/>
+        <Method name="showCareerDialog" returnType="void" visibility="public">
+          <Argument type="boolean" name="show"/>
+        </Method>
+        <Method name="updateCareer" returnType="void" visibility="public"/>
+        <Method name="showQuestDialog" returnType="void" visibility="public"/>
+        <Method name="hideQuestDialog" returnType="void" visibility="public"/>
+        <Method name="showDescription" returnType="void" visibility="public">
+          <Argument type="int" name="x"/>
+        </Method>
+        <Method name="hideDescription" returnType="void" visibility="public"/>
+        <Method name="showRequest" returnType="void" visibility="public">
+          <Argument type="String" name="s"/>
+          <Argument type="RequestGui" name="lock"/>
+        </Method>
+        <Method name="updateQuestDialog" returnType="void" visibility="public"/>
+        <Method name="updateInventoryDialog" returnType="void" visibility="public"/>
+        <Method name="updateStressBar" returnType="void" visibility="public">
+          <Argument type="int" name="stress"/>
+        </Method>
+        <Method name="updateEnergyBar" returnType="void" visibility="public">
+          <Argument type="int" name="energy"/>
+        </Method>
+        <Method name="updateHungerBar" returnType="void" visibility="public">
+          <Argument type="int" name="hunger"/>
+        </Method>
+        <Method name="updateMoney" returnType="void" visibility="public">
+          <Argument type="int" name="money"/>
+        </Method>
+        <Method name="setLevel" returnType="void" visibility="public">
+          <Argument type="String" name="s"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="HUDManager" package="unisagui" visibility="public" xPosition="585.0" yPosition="1374.0">
+      <Fields>
+        <Field name="info" type="String" visibility="private" isFinal="true"/>
+        <Field name="gameframe" type="GameFrame" visibility="private" isFinal="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="protected"/>
+      </Constructors>
+      <Methods>
+        <Method name="getInfo" returnType="String" visibility="public"/>
+        <Method name="updateEnergyBar" returnType="void" visibility="public">
+          <Argument type="int" name="energy"/>
+        </Method>
+        <Method name="updateHungerBar" returnType="void" visibility="public">
+          <Argument type="int" name="hunger"/>
+        </Method>
+        <Method name="updateStressBar" returnType="void" visibility="public">
+          <Argument type="int" name="stress"/>
+        </Method>
+        <Method name="updateMoney" returnType="void" visibility="public">
+          <Argument type="int" name="money"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="InventoryManager" package="unisagui" visibility="public" xPosition="772.0" yPosition="1107.0">
+      <Fields>
+        <Field name="info" type="String" visibility="private" isFinal="true"/>
+        <Field name="gameframe" type="GameFrame" visibility="private" isFinal="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="protected"/>
+      </Constructors>
+      <Methods>
+        <Method name="getInfo" returnType="String" visibility="public"/>
+        <Method name="showInventoryDialog" returnType="void" visibility="public"/>
+        <Method name="updateInventoryDialog" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="MainMenuManager" package="unisagui" visibility="public" xPosition="463.0" yPosition="961.0">
+      <Fields>
+        <Field name="info" type="String" visibility="private" isFinal="true"/>
+        <Field name="gameframe" type="GameFrame" visibility="private" isFinal="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="protected"/>
+      </Constructors>
+      <Methods>
+        <Method name="showMainMenu" returnType="void" visibility="public">
+          <Argument type="boolean" name="show"/>
+        </Method>
+        <Method name="getInfo" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="NotInteractiveException" package="unisagui" visibility="public" xPosition="93.0" yPosition="1772.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="QuestGui" package="unisagui" visibility="public" xPosition="933.0" yPosition="1672.0">
+      <Fields>
+        <Field name="name" type="String" visibility="private"/>
+        <Field name="description" type="Set&lt;String&gt;" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="name"/>
+          <Argument type="Set&lt;String&gt;" name="description"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getName" returnType="String" visibility="public"/>
+        <Method name="getDescription" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="QuestManager" package="unisagui" visibility="public" xPosition="961.0" yPosition="1326.0">
+      <Fields>
+        <Field name="gameframe" type="GameFrame" visibility="private"/>
+        <Field name="quests" type="HashMap&lt;Integer, QuestGui&gt;" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="protected"/>
+      </Constructors>
+      <Methods>
+        <Method name="updateQuestDialog" returnType="void" visibility="public"/>
+        <Method name="addToList" returnType="void" visibility="private">
+          <Argument type="int" name="count"/>
+          <Argument type="String" name="subj"/>
+        </Method>
+        <Method name="showDescription" returnType="void" visibility="public">
+          <Argument type="int" name="x"/>
+        </Method>
+        <Method name="hideDescription" returnType="void" visibility="public"/>
+        <Method name="showQuestDialog" returnType="void" visibility="public"/>
+        <Method name="hideQuestDialog" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="RequestGui" package="unisagui" visibility="public" xPosition="1443.0" yPosition="239.0">
+      <Fields>
+        <Field name="value" type="boolean" visibility="protected"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="getValue" returnType="boolean" visibility="public" isSynchronized="true"/>
+        <Method name="setValue" returnType="void" visibility="public" isSynchronized="true">
+          <Argument type="boolean" name="value"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="RequestManager" package="unisagui" visibility="public" xPosition="1881.0" yPosition="484.0">
+      <Fields>
+        <Field name="info" type="String" visibility="private"/>
+        <Field name="gameframe" type="GameFrame" visibility="private" isFinal="true"/>
+        <Field name="RESULT" type="boolean" visibility="private"/>
+        <Field name="rq" type="RequestGui" visibility="protected" isStatic="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="protected"/>
+      </Constructors>
+      <Methods>
+        <Method name="setRESULT" returnType="void" visibility="protected" isStatic="true">
+          <Argument type="boolean" name="RESULT"/>
+        </Method>
+        <Method name="showRequest" returnType="void" visibility="public">
+          <Argument type="String" name="id"/>
+          <Argument type="boolean" name="show"/>
+        </Method>
+        <Method name="setInfo" returnType="void" visibility="private">
+          <Argument type="String" name="id"/>
+        </Method>
+        <Method name="getInfo" returnType="String" visibility="public"/>
+        <Method name="showRequest" returnType="void" visibility="public">
+          <Argument type="String" name="s"/>
+          <Argument type="RequestGui" name="lock"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="ResultGui" package="unisagui" visibility="public" xPosition="1459.0" yPosition="22.0">
+      <Fields>
+        <Field name="value" type="int" visibility="protected"/>
+        <Field name="time" type="int" visibility="protected"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="int" name="time"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getValue" returnType="int" visibility="public" isSynchronized="true"/>
+        <Method name="setValue" returnType="void" visibility="public" isSynchronized="true">
+          <Argument type="int" name="value"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="SettingsMenuManager" package="unisagui" visibility="public" xPosition="193.0" yPosition="1241.0">
+      <Fields>
+        <Field name="info" type="String" visibility="private" isFinal="true"/>
+        <Field name="gameframe" type="GameFrame" visibility="private" isFinal="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="protected"/>
+      </Constructors>
+      <Methods>
+        <Method name="getInfo" returnType="String" visibility="public"/>
+        <Method name="showSettingsMenu" returnType="void" visibility="public">
+          <Argument type="boolean" name="show"/>
+        </Method>
+      </Methods>
+    </Class>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <HasRelation name="instance" source="unisagui.GuiManager" target="unisagui.GuiManager" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="unisagui.GuiManager" target="unisagui.RequestGui" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="gameframe" source="unisagui.HUDManager" target="unisagui.GameFrame" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="rq" source="unisagui.RequestManager" target="unisagui.RequestGui" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="gameframe" source="unisagui.ExamManager" target="unisagui.GameFrame" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="careermanager" source="unisagui.GuiManager" target="unisagui.CareerManager" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="quests" source="unisagui.QuestManager" target="unisagui.QuestGui" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="HashMap&lt;Integer, QuestGui&gt;"/>
+    <HasRelation name="gameframe" source="unisagui.DialogManager" target="unisagui.GameFrame" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="gameframe" source="unisagui.InventoryManager" target="unisagui.GameFrame" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="questmanager" source="unisagui.GuiManager" target="unisagui.QuestManager" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="confirm" source="unisagui.ExamManager" target="unisagui.RequestGui" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="rg" source="unisagui.ExamManager" target="unisagui.ResultGui" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="unisagui.GameFrame" target="unisagui.GameFrame" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="gameframe" source="unisagui.MainMenuManager" target="unisagui.GameFrame" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="exammanager" source="unisagui.GuiManager" target="unisagui.ExamManager" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="mainmenumanager" source="unisagui.GuiManager" target="unisagui.MainMenuManager" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="requestmanager" source="unisagui.GuiManager" target="unisagui.RequestManager" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="settingsmenumanager" source="unisagui.GuiManager" target="unisagui.SettingsMenuManager" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="SettingsMenuManager"/>
+    <UseRelation source="unisagui.ExamManager" target="unisagui.ExamManager" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="gameframe" source="unisagui.RequestManager" target="unisagui.GameFrame" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="unisagui.DialogManager" target="unisagui.RequestGui" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="request" source="unisagui.DialogManager" target="unisagui.RequestGui" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="unisagui.ExamManager" target="unisagui.RequestGui" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="instance" source="unisagui.GameFrame" target="unisagui.GameFrame" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="gameframe" source="unisagui.SettingsMenuManager" target="unisagui.GameFrame" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="dialogmanager" source="unisagui.GuiManager" target="unisagui.DialogManager" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="gameframe" source="unisagui.GuiManager" target="unisagui.GameFrame" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="inventorymanager" source="unisagui.GuiManager" target="unisagui.InventoryManager" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="unisagui.ExamManager" target="unisagui.ResultGui" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="unisagui.GuiManager" target="unisagui.GuiManager" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="instance" source="unisagui.ExamManager" target="unisagui.ExamManager" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="gameframe" source="unisagui.QuestManager" target="unisagui.GameFrame" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="unisagui.GuiManager" target="unisagui.ResultGui" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="hudmanager" source="unisagui.GuiManager" target="unisagui.HUDManager" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="unisagui.RequestManager" target="unisagui.RequestGui" sourceCardinality="1..1" targetCardinality="1..1"/>
+  </ClassDiagramRelations>
+</ClassDiagram>

@@ -22,9 +22,6 @@ public abstract class StorableCreator {
      * @param s The string to tokenize in order to get the constructor
      * parameters for every object that needs to be created
      * @return a Storable reference to the object that has just been created
-     * @throws database.populator.exceptions.InvalidArgumentListException If the
-     * list of arguments doesn't contain all the required arguments needed for
-     * the creation of the object
      */
     public abstract Storable create(String s);
 

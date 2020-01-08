@@ -37,6 +37,11 @@ public class Quests extends User implements Saveable, Serializable, Initializabl
         super();
     }
 
+    /**
+     * Gets an instance of the class
+     * 
+     * @return an instance of the class
+     */
     public static Quests getInstance() {
         if (instance == null)
             synchronized (Quests.class) {
@@ -47,14 +52,28 @@ public class Quests extends User implements Saveable, Serializable, Initializabl
         return instance;
     }
 
+    /**
+     * Gets the requested Quest
+     * 
+     * @param s a String that indicates the required Quest
+     * @return the required Quest if is present otherwise null
+     */
     public Quest getQuest(String s) {
         return this.quests.get(s);
     }
 
+    /**
+     * Used to add the quests
+     * 
+     * @param q the Quest to add
+     */
     public void putQuest(Quest q) {
         this.quests.put(q.getSubject().getInfo(), q);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Serializable save() {
         ArrayList<Object> list = new ArrayList<>();
@@ -64,6 +83,9 @@ public class Quests extends User implements Saveable, Serializable, Initializabl
         return list;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void load(Serializable obj) {
         ArrayList<Object> list = (ArrayList<Object>) obj;
@@ -78,6 +100,9 @@ public class Quests extends User implements Saveable, Serializable, Initializabl
         super.mediator = QuestsManager.getInstance();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void send(Message mess) {
     }
@@ -93,6 +118,11 @@ public class Quests extends User implements Saveable, Serializable, Initializabl
         }
     }
 
+    /**
+     * This method is used to load new quests
+     * 
+     * @param quests the quests to load
+     */
     public void loadNewQuests(List<Quest> quests) {
 
         this.quests = new HashMap<>();
@@ -107,13 +137,18 @@ public class Quests extends User implements Saveable, Serializable, Initializabl
         }
     }
     
+    /**
+     * This method is used to change level
+     */
     public void levelEnded(){
         this.currentLevel++;
         this.loadLevel();
         GuiManager.getInstance().setLevel("Level " + String.valueOf(this.currentLevel));
     }
     
-    
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void receive(Message mess) {
         //Messaggio = stringa +  bool -> se bool è true --> ho fatto quest'esame
@@ -132,10 +167,18 @@ public class Quests extends User implements Saveable, Serializable, Initializabl
         }
     }
     
+    /**
+     * Gets the current level of the game
+     * 
+     * @return an int that represents the current level of the game
+     */
     public int getCurrentLevel() {
         return this.currentLevel;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void init() {
         this.name = "Quests";
@@ -145,11 +188,13 @@ public class Quests extends User implements Saveable, Serializable, Initializabl
         this.loadLevel();  
     }
 
+    /**
+     * Gets all the active quests
+     * 
+     * @return an HashMap that represents all the active quests
+     */
     public HashMap<String, Quest> getQuests() {
         return quests;
     }
-
-    
-    
 
 }

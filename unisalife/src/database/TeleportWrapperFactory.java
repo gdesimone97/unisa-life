@@ -5,7 +5,6 @@
  */
 package database;
 
-import database.populator.exceptions.InvalidArgumentListException;
 import game.GameObjects.Position;
 import game.GameObjects.Teleport;
 import java.util.NoSuchElementException;

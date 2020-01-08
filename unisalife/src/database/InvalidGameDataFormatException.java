@@ -3,10 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package database.populator.exceptions;
+package database;
 
 /**
- *
+ * This exception is thrown when a line in the data file doesn't follow the required 
+ * structure "[type of object] [parameters]" 
  * @author cmarino
  */
 public class InvalidGameDataFormatException extends Exception {
