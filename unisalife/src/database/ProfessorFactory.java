@@ -5,8 +5,6 @@
  */
 package database;
 
-import saving.Saveable;
-import exam.booklet.Subject;
 import game.GameObjects.Position;
 import game.GameObjects.Professor;
 import java.util.NoSuchElementException;

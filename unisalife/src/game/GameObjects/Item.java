@@ -9,7 +9,6 @@ import game.Interfaces.Interactable;
 import interaction.ItemInteractionManager;
 import language.Information;
 import java.awt.Graphics;
-import java.awt.image.BufferedImage;
 import java.time.LocalDateTime;
 import java.io.Serializable;
 import java.time.temporal.ChronoUnit;

@@ -13,7 +13,6 @@ import language.FileTextManager;
 import language.MessageInformation;
 import jubox.JukeBoxSound;
 import unisagui.GuiManager;
-import unisagui.RequestGui;
 
 /**
  * interaction manager used to interact with the vending machine

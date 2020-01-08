@@ -11,7 +11,6 @@ import game.GameObjects.Player;
 import game.Interfaces.Initializable.InitException;
 import game.Interfaces.Interactable;
 import gameSystem.GameStateManager;
-import gameSystem.LoadingState;
 import gameSystem.PlayState;
 import gameSystem.SleepState;
 import hud.change.DormitoryHudBarChange;

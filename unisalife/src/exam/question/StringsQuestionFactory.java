@@ -6,13 +6,11 @@
 package exam.question;
 
 import exam.booklet.Subject;
-import game.Interfaces.Initializable;
 import game.Interfaces.Initializable.InitException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import language.FileTextManager;
-import language.exceptions.FileTextManagerException;
 import language.exceptions.TextFinderException;
 
 /**

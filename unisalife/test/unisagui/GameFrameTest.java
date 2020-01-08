@@ -6,7 +6,6 @@
 package unisagui;
 
 import gameSystem.GameManager;
-import gameSystem.keySettings.SettingsManager;
 import static java.lang.Thread.sleep;
 import org.junit.After;
 import org.junit.AfterClass;

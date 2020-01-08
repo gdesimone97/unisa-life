@@ -6,7 +6,6 @@
 package gameSystem;
 
 import game.GameObjects.Camera;
-import game.GameObjects.GameObject;
 import game.GameObjects.Player;
 import gameSystem.keySettings.interfaces.KeyCommand;
 import gameSystem.map.MapManager;

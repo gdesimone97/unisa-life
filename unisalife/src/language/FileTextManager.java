@@ -7,7 +7,6 @@ package language;
 
 import game.Interfaces.Initializable;
 import game.Interfaces.Initializable.InitException;
-import language.exceptions.FileTextManagerException;
 import java.util.List;
 import java.util.Set;
 import language.exceptions.*;

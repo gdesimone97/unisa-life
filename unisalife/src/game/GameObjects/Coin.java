@@ -8,8 +8,6 @@ package game.GameObjects;
 import game.Interfaces.Interactable;
 import interaction.CoinInteractionManager;
 import interaction.InteractionManager;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 
 /**

@@ -13,8 +13,6 @@ import gameSystem.GameStateManager;
 import gameSystem.LoadingState;
 import gameSystem.PlayState;
 import gameSystem.map.MapManager;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import language.FileTextManager;
 import language.MessageInformation;
 import language.exceptions.TextFinderException;
