@@ -11,7 +11,4 @@ package language.exceptions;
  */
 public class InvalidFileNameException extends Exception {
 
-    public InvalidFileNameException() {
-    }
-    
 }
