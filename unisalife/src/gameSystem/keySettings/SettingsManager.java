@@ -47,8 +47,8 @@ public class SettingsManager implements Saveable, Initializable {
         final int NINE = KeyEvent.VK_9;
         final int DOWN = KeyEvent.VK_DOWN;
         final int LEFT = KeyEvent.VK_LEFT;
-        
-        if ((code >= A && code <= Z) || (code >= ZERO && code <= NINE) || (code == SPACE) || (code >= LEFT && code <= DOWN)) {
+        final int L = KeyEvent.VK_L;
+        if ((code!= L && code >= A && code <= Z) || (code >= ZERO && code <= NINE) || (code == SPACE) || (code >= LEFT && code <= DOWN)) {
             return true;
         }
         return false;

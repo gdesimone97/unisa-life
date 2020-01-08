@@ -23,14 +23,50 @@ import java.awt.image.BufferStrategy;
  */
 public class Game extends Canvas implements Runnable {
 
+    /**
+     *
+     */
     public static final int WIDTHSCREEN = 500,
-            HEIGHTSCREEN = 500,
-            HEIGHTSCREEN2 = HEIGHTSCREEN + 32,
-            PLAYERSPEED = 32,
-            ANIMATIONSPEED = 1,
-            AMOUNTOFTICKS = 24,
-            DIMENSIONSPRITE = 32;
-    public static int WIDTHMAP, HEIGHTMAP;
+
+    /**
+     *
+     */
+    HEIGHTSCREEN = 500,
+
+    /**
+     *
+     */
+    HEIGHTSCREEN2 = HEIGHTSCREEN + 32,
+
+    /**
+     *
+     */
+    PLAYERSPEED = 32,
+
+    /**
+     *
+     */
+    ANIMATIONSPEED = 1,
+
+    /**
+     *
+     */
+    AMOUNTOFTICKS = 24,
+
+    /**
+     *
+     */
+    DIMENSIONSPRITE = 32;
+
+    /**
+     *
+     */
+    public static int WIDTHMAP,
+
+    /**
+     *
+     */
+    HEIGHTMAP;
 
     private boolean running = false;
     private final int FPS = 30;
@@ -103,20 +139,33 @@ public class Game extends Canvas implements Runnable {
         }
     }
 
+    /**
+     * this method shows fps of the game
+     * @param showFPS 
+     */
     public void setShowFPS(boolean showFPS) {
         this.showFPS = showFPS;
     }
 
+    /**
+     * init the game
+     */
     private void init() {
         gsm = GameStateManager.getInstance();
         this.addKeyListener(new HandlerInput());
         running = true;
     }
 
+    /**
+     * tick of the game, calls tick of the state
+     */
     private void tick() {
         gsm.tick();
     }
 
+    /**
+     * render of the game, calls render of player, camera and state
+     */
     private void render() {
         BufferStrategy bs = this.getBufferStrategy();
         if (bs == null) {
@@ -145,14 +194,25 @@ public class Game extends Canvas implements Runnable {
         bs.show();
     }
 
+    /**
+     * stops the game
+     */
     public void stopGame() {
         running = false;
     }
 
+    /**
+     * get if the fps are shown 
+     * @return 
+     */
     public boolean getShowFPS() {
         return showFPS;
     }
 
+    /**
+     * return if the game is running
+     * @return 
+     */
     public boolean isRunning() {
         return running;
     }

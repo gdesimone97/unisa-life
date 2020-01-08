@@ -14,11 +14,15 @@ import saving.SaveManager;
 import unisagui.GuiManager;
 
 /**
- *
+ * interaction manager used to interact with the guardian
  * @author 1997g
  */
 public class GuardianInteractionManager implements InteractionManager {
 
+    /**
+     * execute method for the related object
+     * @param obj 
+     */
     @Override
     public void execute(Interactable obj) {
         // get text to show

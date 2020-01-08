@@ -33,10 +33,14 @@ public class QuestGui {
         String text = "";
         for (String s : description){
             
+            try {
                 text += "\n" +
-                        //FileTextManager.getFileTextManager().getString(new MessageInformation(s)).get(0) 
-                        s
+                        FileTextManager.getFileTextManager().getString(new MessageInformation(s)).get(0) 
+                        
                         + ";";
+            } catch (TextFinderException ex) {
+               
+            }
         }
         return text;
     }
