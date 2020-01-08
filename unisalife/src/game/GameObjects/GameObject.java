@@ -33,14 +33,14 @@ public abstract class GameObject implements Storable,Serializable {
     protected Position p;
 
     /**
-     *
+     * constructor
      */
     protected GameObject() {
 
     }
 
     /**
-     *
+     * constructor
      * @param p position of the object
      */
     public GameObject(Position p) {
@@ -63,34 +63,4 @@ public abstract class GameObject implements Storable,Serializable {
         return this.p.getScaledPosition();
     }
 
-    /**
-     *
-     * @param object
-     */
-    //public abstract void tick(LinkedList<GameObject> object);
-    /**
-     *
-     * @param g
-     */
-    //public abstract void render(Graphics g);
-    //methods getter and setter  
-    /**
-     *
-     * @return
-     */
-    /**
-     *
-     * @param x
-     */
-    /*public int getHeight(){
-        return this.height;
-    }
-    public int getWidth(){
-        return this.width;
-    }
-     */
-    /**
-     *
-     * @return
-     */
 }
