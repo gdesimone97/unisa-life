@@ -10,8 +10,5 @@ package database;
  * @author alfon
  */
 public class NoQuestsException extends Exception {
-
-    public NoQuestsException() {
-    }
     
 }
