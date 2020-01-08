@@ -23,14 +23,50 @@ import java.awt.image.BufferStrategy;
  */
 public class Game extends Canvas implements Runnable {
 
+    /**
+     *
+     */
     public static final int WIDTHSCREEN = 500,
-            HEIGHTSCREEN = 500,
-            HEIGHTSCREEN2 = HEIGHTSCREEN + 32,
-            PLAYERSPEED = 32,
-            ANIMATIONSPEED = 1,
-            AMOUNTOFTICKS = 24,
-            DIMENSIONSPRITE = 32;
-    public static int WIDTHMAP, HEIGHTMAP;
+
+    /**
+     *
+     */
+    HEIGHTSCREEN = 500,
+
+    /**
+     *
+     */
+    HEIGHTSCREEN2 = HEIGHTSCREEN + 32,
+
+    /**
+     *
+     */
+    PLAYERSPEED = 32,
+
+    /**
+     *
+     */
+    ANIMATIONSPEED = 1,
+
+    /**
+     *
+     */
+    AMOUNTOFTICKS = 24,
+
+    /**
+     *
+     */
+    DIMENSIONSPRITE = 32;
+
+    /**
+     *
+     */
+    public static int WIDTHMAP,
+
+    /**
+     *
+     */
+    HEIGHTMAP;
 
     private boolean running = false;
     private final int FPS = 30;

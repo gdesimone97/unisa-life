@@ -46,11 +46,11 @@ public class Tolc implements Runnable {
     private final Professor professor;
 
     /**
-     * constructor of the class
+     * the constructor of the tolc
      * @param s the subject
-     * @param profName the name of the professor
-     * @throws TextFinderException if questions are not in the file
-     * @throws game.Interfaces.Initializable.InitException if cannot be initializable
+     * @param p the professor
+     * @throws TextFinderException
+     * @throws game.Interfaces.Initializable.InitException 
      */
     public Tolc(Subject s, Professor p) throws TextFinderException, InitException {
         this.subject = s;

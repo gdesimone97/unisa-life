@@ -5,25 +5,20 @@
  */
 package exam;
 
-import character.Status;
 import character.StatusManager;
 import exam.booklet.Booklet;
 import exam.booklet.Subject;
 import exam.question.*;
 import game.GameObjects.Professor;
-import game.Interfaces.Initializable;
 import game.Interfaces.Initializable.InitException;
 import gameSystem.map.MapManager;
 import hud.HudUpdater;
-import hud.change.CanteenHudBarChange;
 import hud.change.CorrectAnswerHudBarChange;
 import hud.change.WrongAnswerHudBarChange;
 import java.util.ArrayList;
 import language.FileTextManager;
 import language.MessageInformation;
-import language.exceptions.FileTextManagerException;
 import language.exceptions.TextFinderException;
-import sound.JukeBoxMusic;
 import sound.JukeBoxSound;
 import unisagui.*;
 
@@ -51,11 +46,11 @@ public class Exam implements Runnable {
     private final Professor professor;
 
     /**
-     * Constructor. Given a examSubject fetches the questions.
-     *
-     * @param materia An object Materia needed to load the correct exam's
-     * questions
-     *
+     * Exam constructor, sets the professor, the subject and other params
+     * @param subject the subject of exam
+     * @param p the professor 
+     * @throws TextFinderException
+     * @throws game.Interfaces.Initializable.InitException 
      */
     public Exam(Subject subject, Professor p) throws TextFinderException, InitException {
         this.subject = subject;
