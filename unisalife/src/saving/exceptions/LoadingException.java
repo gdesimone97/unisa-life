@@ -23,7 +23,7 @@ public class LoadingException extends RuntimeException {
      * Constructs an instance of <code>LoadingException</code> with the
      * specified detail message.
      *
-     * @param msg the detail message.
+     * @param msg
      */
     public LoadingException(String msg) {
         super(msg);

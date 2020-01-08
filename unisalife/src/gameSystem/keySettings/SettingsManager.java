@@ -281,6 +281,9 @@ public class SettingsManager implements Saveable, Initializable {
         this.register = (HashMap<Commands, Integer>) obj;
     }
     
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void init() throws InitException {
         try {
