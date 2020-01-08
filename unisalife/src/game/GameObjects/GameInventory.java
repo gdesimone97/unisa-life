@@ -110,6 +110,11 @@ public class GameInventory extends User implements Iterable<Item>, Saveable, Ini
         
     }
     
+    /**
+     * Remove an item passed as parameters
+     * @param i The items that needs to be deleted
+     * @return The deleted item 
+     */
     public Item removeItem(Item i ){
 
         Item r = items.remove(i.getInfo());

@@ -18,6 +18,10 @@ public class SaveableObject<T extends Saveable> implements Serializable {
 
     private T innerObj;
 
+    /**
+     * Constructor that sets the inner object that needs to be encapsulated.
+     * @param innerObj the object to encapsulate
+     */
     public SaveableObject(T innerObj) {
         this.innerObj = innerObj;
     }
