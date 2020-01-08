@@ -132,6 +132,7 @@ public class SaveManager {
     /**
      * Loads the language set by file
      *
+     * @return the string containing the language set
      * @throws LoadingException if somethig has gone wrong
      */
     protected String loadLang() throws LoadingException {

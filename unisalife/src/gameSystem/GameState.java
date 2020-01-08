@@ -15,6 +15,9 @@ import java.awt.Graphics2D;
  */
 public abstract class GameState {
     
+    /**
+     * empty constructor
+     */
     public GameState() {
     }
 
