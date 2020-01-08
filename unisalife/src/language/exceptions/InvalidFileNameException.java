@@ -6,7 +6,7 @@
 package language.exceptions;
 
 /**
- *
+ * Exception thrown when a path for an unreachable file is provided
  * @author alfon
  */
 public class InvalidFileNameException extends Exception {

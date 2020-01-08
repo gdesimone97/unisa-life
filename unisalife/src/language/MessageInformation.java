@@ -6,22 +6,29 @@
 package language;
 
 /**
+ * Sample class to obtain strings without having a proper object
  *
- * @author alfon
+ * @author Alfonso De Masi
  */
-public  class MessageInformation implements Information{
+public class MessageInformation implements Information {
 
     private String info;
-    
+
+    /**
+     * Constructor of the class
+     *
+     * @param info the string used to retrive the messages in the language file
+     */
     public MessageInformation(String info) {
         this.info = info;
     }
 
-    
-    
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getInfo() {
         return this.info;
     }
-    
+
 }
