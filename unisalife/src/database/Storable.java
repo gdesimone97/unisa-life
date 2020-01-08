@@ -13,8 +13,9 @@ package database;
 public interface Storable {
 
     /**
+     * Gets the index of the object to retrive it from database.
      * 
-     * @return the index of the storable object to retrive it from database.
+     * @return an int that represents the index of the storable object 
      */
     public String getIndex();
 
