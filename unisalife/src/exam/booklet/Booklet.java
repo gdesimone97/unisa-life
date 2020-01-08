@@ -14,9 +14,9 @@ import java.util.HashSet;
 import java.util.List;
 import quests.QuestsManager;
 import quests.mediator.*;
-import quests.quest.Quests;
 import saving.Saveable;
 import unisagui.GuiManager;
+
 /**
  * This class is used due to the necessity of have a booklet for our
  * character.
@@ -42,13 +42,18 @@ public class Booklet extends User implements Serializable,Saveable,Initializable
     /**
      * This method allows to view the score of a exam given the subject
      * 
-     * @param subject
+     * @param subject is the subject to search
      * @return the score of the exam
      */
     public int getScore(Subject subject) {
         return booklet.get(subject.getInfo()).getScore();
     }
     
+    /**
+     * This method is used to iterate on the booklet
+     * 
+     * @return an HashSet of Subject that is an iterable data structure
+     */
     public HashSet<Subject> iteratorBooklet() {
         HashSet<Subject> temp = new HashSet<>(booklet.values());
         return (HashSet<Subject>) temp;
@@ -58,13 +63,19 @@ public class Booklet extends User implements Serializable,Saveable,Initializable
      * True means not already passed
      * False means already passed
      * 
-     * @param subject
+     * @param subject is the subject to search
      * @return boolean that indicates if the exam is passed or not
      */
     public boolean getAvailablity(Subject subject){
         return booklet.get(subject.getInfo()).isAvailable();
     }
     
+    /**
+     * Used to search a Subject in the booklet
+     * 
+     * @param subject is the subject to search
+     * @return the requested Subject
+     */
     public Subject getSubject(String subject){
         return this.booklet.get(subject);
     }
@@ -141,6 +152,9 @@ public class Booklet extends User implements Serializable,Saveable,Initializable
     @Override
     public void receive(Message mess) {}
 
+    /**
+     * This method is used to initialize the structures of the Booklet.
+     */
     @Override
     public void init() {
         super.name = "booklet";
