@@ -450,4 +450,9 @@
 <message>Your health is important. Never forget to take care of yourself!</message>
 </MessageInformation>
 
+<MessageInformation info="NotEnoughMoneyExam">
+<message>I'm sorry, you need </message>
+<message> coins to do this exam... go find some!</message>
+</MessageInformation>
+
 </root>
