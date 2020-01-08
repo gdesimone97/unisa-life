@@ -20,15 +20,28 @@ public class QuestGui {
     private String name;
     private Set<String> description;
 
+    /**
+     * contstructor
+     * @param name name of the question
+     * @param description set of requirements 
+     */
     public QuestGui(String name, Set<String> description) {
         this.name = name;
         this.description = description;
     }    
 
+    /**
+     *
+     * @return name 
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     *
+     * @return description
+     */
     public String getDescription() {
         String text = "";
         for (String s : description){

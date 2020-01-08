@@ -23,7 +23,7 @@ public class SavingException extends RuntimeException {
      * Constructs an instance of <code>SavingException</code> with the specified
      * detail message.
      *
-     * @param string
+     * @param msg
      */
     public SavingException(String msg) {
         super(msg);

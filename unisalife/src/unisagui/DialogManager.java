@@ -25,12 +25,16 @@ public class DialogManager {
     private boolean HintAvailable = true;
     private RequestGui request = null;
     
+    /**
+     * singleton method to get the instance of the dialog manager
+     */
     protected DialogManager(){
         gameframe = GameFrame.getInstance();
     }
     /**
      * show an hint in a small text area that can be closed using a button
      * @param hint
+     * @throws unisagui.DialogManager.HintAlreadyOpenedException
      * 
      */
     
@@ -51,14 +55,25 @@ public class DialogManager {
         }
     }
     
+    /**
+     *
+     * @return if hint is available
+     */
     public boolean isHintAvailable(){
         return HintAvailable;
     }
 
+    /**
+     *
+     * @return if dialog is available
+     */
     public boolean isDialogAvailable() {
         return DialogAvailable;
     }
     
+    /**
+     * hides hint
+     */
     public void hideHint(){
         SwingUtilities.invokeLater(() -> gameframe.HintTextArea.setText(""));
         SwingUtilities.invokeLater(() -> gameframe.HintScrollPane.setVisible(false));
@@ -72,6 +87,7 @@ public class DialogManager {
      * @param name is the name of the person who is talking
      * @param conversation
      * @param request
+     * @throws unisagui.DialogManager.DialogAlreadyOpenedException
      
      */
 
@@ -95,6 +111,9 @@ public class DialogManager {
             }
     }
     
+    /**
+     * hides dialog
+     */
     public void hideDialog(){
         
         title = BorderFactory.createTitledBorder("");
@@ -110,14 +129,26 @@ public class DialogManager {
         request = null;
     }
 
+    /**
+     * dialog already opened exception
+     */
     public static class DialogAlreadyOpenedException extends Exception {
 
+        /**
+         *
+         */
         public DialogAlreadyOpenedException() {
         }
     }
 
+    /**
+     * hint already opened exception
+     */
     public static class HintAlreadyOpenedException extends Exception {
 
+        /**
+         *
+         */
         public HintAlreadyOpenedException() {
         }
     }
