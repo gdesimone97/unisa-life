@@ -34,6 +34,9 @@ import unisagui.RequestGui;
  */
 public class ProfessorInteractionManager implements InteractionManager {
 
+    /**
+     * empty constructor
+     */
     public ProfessorInteractionManager() {
     }
 

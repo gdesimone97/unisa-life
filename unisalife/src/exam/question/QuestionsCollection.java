@@ -11,5 +11,10 @@ package exam.question;
  * @author 1997g
  */
 public interface QuestionsCollection {
+
+    /**
+     *
+     * @return
+     */
     public QuestionsIterator iterator();
 }

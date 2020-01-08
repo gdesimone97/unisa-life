@@ -23,19 +23,31 @@ public class InventoryManager {
     private final String info = "GUIinventory";
     private final GameFrame gameframe = GameFrame.getInstance();
 
+    /**
+     * empty constructor
+     */
     protected InventoryManager() {
         
     }
     
+    /**
+     *
+     * @return info
+     */
     public String getInfo(){
         return info;
     }
     
+    /**
+     * show inventory
+     */
     public void showInventoryDialog(){
         SwingUtilities.invokeLater(() -> gameframe.InventoryDialog.setVisible(true));
     }
     
-    
+    /**
+     * update the inventory
+     */
     public void updateInventoryDialog(){
         
         /*gameframe.model = new DefaultTableModel();

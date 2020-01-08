@@ -123,17 +123,24 @@ public class GuiManager {
     public void hideHint(){
         dialogmanager.hideHint();
     }
-    
+    /**
+     * Return if Hint is not already shown
+     * @return true if available, false otherwise
+     */
     public boolean isHintAvailable(){
         return dialogmanager.isHintAvailable();
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean isDialogAvailable() {
         return dialogmanager.isDialogAvailable();
     }
     
     /**
-     *
+     * show the exam dialog
      * @param examName Subject of the exam
      * @param question one of the question for this subject
      * @param answer1 first answer
@@ -185,6 +192,7 @@ public class GuiManager {
      * @param answer is the answer that has to be written
      * @param postion is the position of the answer in the exam dialog, position
      * <=4
+     * @throws java.lang.Exception
      */
     public void setExamAnswer(String answer, int postion) throws Exception {
         exammanager.setExamAnswer(answer, postion);
@@ -243,14 +251,24 @@ public class GuiManager {
         questmanager.showQuestDialog();
     }
     
+    /**
+     * When called the Quest panel is hidden
+     */
     public void hideQuestDialog() {
         questmanager.hideQuestDialog();
     }
     
+    /**
+     * When called the Description of the element in the list is shown
+     * @param x index in the list
+     */
     public void showDescription(int x){
         questmanager.showDescription(x);
     }
     
+    /**
+     * When called the Description of the element in the list is hidden
+     */
      public void hideDescription(){
         questmanager.hideDescription();
     }
@@ -260,8 +278,8 @@ public class GuiManager {
      * When called a JDialog with the Request appears or disappears on the
      * screen
      *
-     * @param s
-     * @param lock
+     * @param s is the request
+     * @param lock the variable in which it's saved the answer
      */
     public void showRequest(String s, RequestGui lock) {
         requestmanager.showRequest(s, lock);
@@ -334,7 +352,7 @@ public class GuiManager {
     
     /**
      * This method will update the name of the level that appears on the screen
-     * @param s 
+     * @param s the name of the level
      */
     public void setLevel(String s){
        SwingUtilities.invokeLater(()-> gameframe.LevelLabel.setText(s.toUpperCase()));

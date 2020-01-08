@@ -29,7 +29,8 @@ public class StringsQuestionFactory extends QuestionFactory {
     
     /**
     * The constructor creates an instance of the object Questions and starts the parsing of the strings
-    * @param materia is the subject in which we want questions
+     * @param subject
+     * @throws language.exceptions.TextFinderException
     */
     public StringsQuestionFactory(Subject subject) throws InitException, TextFinderException {
         super(subject);
@@ -39,6 +40,7 @@ public class StringsQuestionFactory extends QuestionFactory {
 
     /**
     * Returns the instance of Questions
+     * @return 
     */
     @Override
     public Questions getQuestions() {

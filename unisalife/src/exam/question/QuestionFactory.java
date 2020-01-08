@@ -18,6 +18,7 @@ public abstract class QuestionFactory {
     
     /**
     * The constructor initializes the QuestionFactory
+     * @param subject
     * @params matter is the specific matter where the set of questions is needed
     */
     public QuestionFactory(Subject subject) {
