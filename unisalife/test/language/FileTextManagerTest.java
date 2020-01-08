@@ -43,6 +43,7 @@ public class FileTextManagerTest {
 
     /**
      * Test of getFileTextManager method, of class FileTextManager.
+     * @throws language.exceptions.FileTextManagerException
      */
     @Test
     public void testGetFileTextManager() throws FileTextManagerException {
@@ -54,6 +55,7 @@ public class FileTextManagerTest {
 
     /**
      * Test of getAvailableLanguages method, of class FileTextManager.
+     * @throws language.exceptions.FileTextManagerException
      */
     @Test
     public void testGetAvailableLanguages() throws IOException, FileTextManagerException {
@@ -66,6 +68,7 @@ public class FileTextManagerTest {
 
     /**
      * Test of getCurrentLanguage method, of class FileTextManager.
+     * @throws language.exceptions.FileLanguageManagerException
      */
     @Test
     public void testGetCurrentLanguage() throws FileTextManagerException, FileLanguageManagerException {
@@ -79,6 +82,7 @@ public class FileTextManagerTest {
 
     /**
      * Test of setLanguage method, of class FileTextManager.
+     * @throws java.lang.Exception
      */
     @Test
     public void testSetLanguage() throws Exception {
@@ -93,6 +97,7 @@ public class FileTextManagerTest {
 
     /**
      * Test of setLanguage method, of class FileTextManager.
+     * @throws java.lang.Exception
      */
     @Test(expected = LanguageSelectedNotAvailableException.class)
     public void testSetLanguage_languageNotSelectedException() throws Exception {
@@ -115,6 +120,7 @@ public class FileTextManagerTest {
 
     /**
      * Test of getString method, of class FileTextManager.
+     * @throws language.exceptions.FileTextManagerException
      */
     @Test
     public void testGetString() throws TextFinderException, LanguageSelectedNotAvailableException, FileTextManagerException {
@@ -131,6 +137,7 @@ public class FileTextManagerTest {
     
     /**
      * Test of getString method, of class FileTextManager.
+     * @throws language.exceptions.FileTextManagerException
      */
     @Test(expected = StringNotFoundException.class)
     public void testGetString_stringNotFound() throws TextFinderException, LanguageSelectedNotAvailableException, FileTextManagerException {

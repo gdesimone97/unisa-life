@@ -10,5 +10,9 @@ package game.Interfaces;
  * @author simon
  */
 public interface Interactable {
+
+    /**
+     * This method has to be implemented by every GameObject
+     */
     public void interact();
 }

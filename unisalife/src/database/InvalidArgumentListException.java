@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package database.populator.exceptions;
+package database;
 
 /**
- *
+ * This exception is thrown when the list of parameters passed to a factory differs in length or format
  * @author cmarino
  */
 public class InvalidArgumentListException extends RuntimeException {
