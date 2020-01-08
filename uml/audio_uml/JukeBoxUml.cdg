@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="Multi-file class diagram">
+  <ClassDiagramComponents>
+    <Class name="JukeBoxMusic" package="sound" visibility="public" xPosition="41.0" yPosition="94.0">
+      <Fields>
+        <Field name="clips" type="HashMap&lt;String, Clip&gt;" visibility="private" isStatic="true"/>
+        <Field name="frame" type="int" visibility="private" isStatic="true"/>
+        <Field name="isActive" type="boolean" visibility="private" isStatic="true"/>
+        <Field name="pathFile" type="String" visibility="private" isFinal="true"/>
+        <Field name="instance" type="JukeBoxMusic" visibility="private" isStatic="true"/>
+        <Field name="gain" type="double" visibility="private"/>
+        <Field name="dB" type="float" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="private"/>
+      </Constructors>
+      <Methods>
+        <Method name="getInstance" returnType="JukeBoxMusic" visibility="public" isStatic="true"/>
+        <Method name="play" returnType="void" visibility="public">
+          <Argument type="String" name="s"/>
+        </Method>
+        <Method name="stop" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="s"/>
+        </Method>
+        <Method name="readFile" returnType="void" visibility="public">
+          <Argument type="String" name="pathFile"/>
+        </Method>
+        <Method name="isActive" returnType="boolean" visibility="public" isStatic="true"/>
+        <Method name="setIsActive" returnType="void" visibility="public" isStatic="true">
+          <Argument type="boolean" name="isActive"/>
+        </Method>
+        <Method name="load" returnType="void" visibility="public">
+          <Argument type="String" name="path"/>
+          <Argument type="String" name="key"/>
+        </Method>
+        <Method name="loop" returnType="void" visibility="private">
+          <Argument type="String" name="s"/>
+        </Method>
+        <Method name="setVolume" returnType="void" visibility="public">
+          <Argument type="String" name="s"/>
+          <Argument type="float" name="f"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="JukeBoxSound" package="sound" visibility="public" xPosition="931.0" yPosition="104.0">
+      <Fields>
+        <Field name="clips" type="HashMap&lt;String, Clip&gt;" visibility="private" isStatic="true"/>
+        <Field name="frame" type="int" visibility="private" isStatic="true"/>
+        <Field name="isActive" type="boolean" visibility="private" isStatic="true"/>
+        <Field name="pathFile" type="String" visibility="private" isFinal="true"/>
+        <Field name="instance" type="JukeBoxSound" visibility="private" isStatic="true"/>
+        <Field name="gain" type="double" visibility="private"/>
+        <Field name="dB" type="float" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="private"/>
+      </Constructors>
+      <Methods>
+        <Method name="getInstance" returnType="JukeBoxSound" visibility="public" isStatic="true"/>
+        <Method name="play" returnType="void" visibility="public">
+          <Argument type="String" name="s"/>
+        </Method>
+        <Method name="stop" returnType="void" visibility="public">
+          <Argument type="String" name="s"/>
+        </Method>
+        <Method name="readFile" returnType="void" visibility="public">
+          <Argument type="String" name="pathFile"/>
+        </Method>
+        <Method name="isActive" returnType="boolean" visibility="public" isStatic="true"/>
+        <Method name="setIsActive" returnType="void" visibility="public" isStatic="true">
+          <Argument type="boolean" name="isActive"/>
+        </Method>
+        <Method name="load" returnType="void" visibility="public">
+          <Argument type="String" name="path"/>
+          <Argument type="String" name="key"/>
+        </Method>
+        <Method name="setVolume" returnType="void" visibility="public">
+          <Argument type="String" name="s"/>
+          <Argument type="float" name="f"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Interface name="JukeBox" package="sound" visibility="public" xPosition="506.0" yPosition="223.0">
+      <Methods>
+        <Method name="play" returnType="void" visibility="public" isAbstract="true">
+          <Argument type="String" name="s"/>
+        </Method>
+        <Method name="readFile" returnType="void" visibility="public" isAbstract="true">
+          <Argument type="String" name="path"/>
+        </Method>
+        <Method name="setVolume" returnType="void" visibility="public" isAbstract="true">
+          <Argument type="String" name="s"/>
+          <Argument type="float" name="f"/>
+        </Method>
+        <Method name="load" returnType="void" visibility="public" isAbstract="true">
+          <Argument type="String" name="path"/>
+          <Argument type="String" name="key"/>
+        </Method>
+      </Methods>
+    </Interface>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <UseRelation source="sound.JukeBoxMusic" target="sound.JukeBoxMusic" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="sound.JukeBoxSound" target="sound.JukeBoxSound" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="sound.JukeBoxSound" target="sound.JukeBox"/>
+    <HasRelation name="instance" source="sound.JukeBoxSound" target="sound.JukeBoxSound" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="sound.JukeBoxMusic" target="sound.JukeBox"/>
+    <HasRelation name="instance" source="sound.JukeBoxMusic" target="sound.JukeBoxMusic" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+  </ClassDiagramRelations>
+</ClassDiagram>

@@ -6,11 +6,16 @@
 package hud.change;
 
 /**
- * 
+ * This interface, according to the Strategy Pattern, will be implemented by all the classes
+ * that take effect on the changing of the status bar and the money label.
  * @author mariodesio
  */
 public interface HudBarChange {
     
+    /**
+     * This method will be implemented by all the classes that take effect on the changing of the status
+     * bar and the money label
+     */
     public void execute();
     
 }

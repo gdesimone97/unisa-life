@@ -15,6 +15,7 @@ import gameSystem.keySettings.interfaces.ActionCommand;
 import gameSystem.keySettings.interfaces.KeyCommand;
 
 /**
+ * Class to handle the map's appearance
  *
  * @author Giuseppe De Simone
  */
@@ -22,21 +23,33 @@ public class MapCommand extends KeyCommand implements ActionCommand {
 
     private final GameStateManager stateManager = GameStateManager.getInstance();
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void visitPlayState(PlayState playState) {
         stateManager.setState(MapState.getInstance());
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void visitPauseState(PauseState pauseState) {
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void visitLoadingState(LoadingState loadState) {
         player.setVelX(0);
         player.setVelY(0);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void visitMapState(MapState mapState) {
         stateManager.setState(PlayState.getInstance());

@@ -75,6 +75,7 @@ public class SaveManagerTest {
 
     /**
      * Test of load method, of class SaveManager.
+     * @throws java.lang.Exception
      */
     @Test(expected = LoadingException.class)
     public void testLoadEmptyFile() throws Exception {

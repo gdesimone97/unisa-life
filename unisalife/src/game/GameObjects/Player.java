@@ -176,7 +176,7 @@ public class Player extends GameObject implements Tickable, Saveable {
 
     /**
      * setter method for x of the player
-     * @param x 
+     * @param x new x
      */
     public void setX(int x) {
         this.p.setX(x);
@@ -184,7 +184,7 @@ public class Player extends GameObject implements Tickable, Saveable {
 
     /**
      * setter method for y of the player
-     * @param y
+     * @param y new y
      */
     public void setY(int y) {
         this.p.setY(y);
@@ -224,7 +224,7 @@ public class Player extends GameObject implements Tickable, Saveable {
 
     /**
      * setter method for x velocity of player
-     * @param velX
+     * @param velX new velX
      */
     public void setVelX(int velX) {
         this.velX = velX;
@@ -232,7 +232,7 @@ public class Player extends GameObject implements Tickable, Saveable {
 
     /**
      * setter method for y velocity of player
-     * @param velY
+     * @param velY new velY
      */
     public void setVelY(int velY) {
         this.velY = velY;
