@@ -238,6 +238,10 @@ public class Player extends GameObject implements Tickable, Saveable {
         this.velY = velY;
     }
     
+    /**
+     * Get the selected skin
+     * @return the skin
+     */
     public int getSkin(){
         return this.skin;
     }
