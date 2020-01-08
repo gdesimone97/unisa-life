@@ -12,14 +12,11 @@ import java.util.stream.Collectors;
 import quests.QuestsManager;
 import quests.mediator.Message;
 import quests.mediator.User;
-
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
-import quests.ItemDef;
 import saving.Saveable;
 import saving.exceptions.LoadingException;
 import unisagui.GuiManager;
@@ -95,12 +92,9 @@ public class GameInventory extends User implements Iterable<Item>, Saveable, Ini
         //int pos = view.indexOf(i);
         if( pos < 0 )
             pos = -(pos+1);
-        
-        System.out.println("Posizione in cui inserier -> " + pos );
         view.add(pos, i);
         GuiManager.getInstance().updateInventoryDialog();
         return pos;
-        
     }
 
     /**

@@ -12,6 +12,16 @@ package exam.question;
  * @author 1997g
  */
 public interface QuestionsIterator {
+    
+    /**
+     * if iterator has next element
+     * @return 
+     */
     public boolean hasNext();
+    
+    /**
+     * the next element
+     * @return 
+     */
     public Question next();
 }

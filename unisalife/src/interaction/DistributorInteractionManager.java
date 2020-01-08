@@ -16,7 +16,7 @@ import unisagui.GuiManager;
 import unisagui.RequestGui;
 
 /**
- *
+ * interaction manager used to interact with the vending machine
  * @author 1997g
  */
 public class DistributorInteractionManager implements InteractionManager {
@@ -25,6 +25,10 @@ public class DistributorInteractionManager implements InteractionManager {
     String toShow = null;
     MessageInformation ms;
     
+    /**
+     * execute method for the related object
+     * @param obj 
+     */
     @Override
     public void execute(Interactable obj) {
         // get text to show

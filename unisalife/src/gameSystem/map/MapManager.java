@@ -35,6 +35,10 @@ public class MapManager implements Initializable, Saveable {
     private Map[] maps;
     private static MapManager instance;
 
+    /**
+     *
+     * @return
+     */
     public static MapManager getInstance() {
         if (instance == null) {
             instance = new MapManager();
@@ -45,14 +49,26 @@ public class MapManager implements Initializable, Saveable {
     private MapManager() {
     }
 
+    /**
+     *
+     * @return
+     */
     public int getMapNumber() {
         return mapNumber;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getActualMap() {
         return actualMap;
     }
 
+    /**
+     *
+     * @return
+     */
     public Map getMap() {
         return maps[actualMap];
     }
@@ -70,17 +86,25 @@ public class MapManager implements Initializable, Saveable {
             this.maps[actualMap].stopGeneratingCoins();
         }
         this.actualMap = n;
-        MapState.getInstance().setMinimap(maps[actualMap].getPathMiniMap());
+        MapState.getInstance().setMiniMap(maps[actualMap].getPathMiniMap());
         
         if(n == 1) {
             this.maps[actualMap].startGeneratingCoins();
         }
     }
 
+    /**
+     *
+     * @param g
+     */
     public void render(Graphics2D g) {
         this.maps[actualMap].render(g);
     }
 
+    /**
+     *
+     * @throws InitException
+     */
     @Override
     public void init() throws InitException {
         try {
@@ -151,6 +175,7 @@ public class MapManager implements Initializable, Saveable {
             });
             maps[i].addDynamicObjects(mapObject);
         }
+        MapState.getInstance().setMiniMap(maps[actualMap].getPathMiniMap());
     }
     
     /**

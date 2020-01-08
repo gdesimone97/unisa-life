@@ -112,7 +112,7 @@
 <message>2#An LTI system with h(.)= a*δ(.) is:#without memory#with memory#causal#BIBO-stable</message>
 <message>2#Given a random variable X, the expression E[X^2]-E[X]^2 is:#VAR(X)#alwasy 0#VAR(X^2)# VAR(X)^2</message>
 <message>2#In the Pulse Amplitude Modulation, each signal has:#same frequency, different amplitude#different frequency, same amplitude#same phase, different frequency#different phase, same frequency</message>
-<message>2#In the Pulse Position Modulation with M signlas, the dimensionality is:#M#1log(M)#2^M</message>
+<message>2#In the Pulse Position Modulation with M signlas, the dimensionality is:#M#1#log(M)#2^M</message>
 <message>3#When sampling in time domain:#in frequency domanin periodic replication occurs#the signal is partitioned in fixed amplitude intervals#information is always lost#none of the others</message>
 <message>3#According to the Nyquist–Shannon sampling theorem, when the sampling frequency is lower than 2B:# aliasing can occur#it's still possible to perfectly reconstruct the signal#the theroem doesn't mention this case#all of the others</message>
 <message>3#The Nyquist criteria to avoid ISI gives an upper bound to the rate R, which is 2*W#True#False#The rate is not limited#ISI is always avoided with Nyquist criteria</message>
@@ -128,7 +128,7 @@
 <Subject info="tisc">
 <message>TISC</message>
 <message>1#The lowest level of CIM is:#The workshop level#Control level#Company management level#Cell supervision level </message>
-<message>1#A Plc has:#An real-time multi-tasking operating system#No operating system#No multi-tasking operating system#No I/O ports,read I/O signals by network</message>
+<message>1#A Plc has:#A real-time multi-tasking operating system#No operating system#No multi-tasking operating system#No I/O ports,read I/O signals by network</message>
 <message>1#The control device operating system doesn't have to:#Be No Pre-emptive#Have a mechanisms to avoid deadlock situations#Perform synchronization and comunication among tasks#Have a malfunction management system</message>
 <message>1#Control device based on personal computer are useful because:#The device has already a series of functionalities#You can extend its functionalities through modules#Good for hostile environment#You can use it without an operating system</message>
 <message>1#Which of these is a special module for PLC:#Co-Processor#Processor#I/O#Power supply module</message>
@@ -202,7 +202,7 @@
 <message>1#DBMS stands for#Data Base Management System#Data Base Memory Storage#Document Base Memory System#Data Base Manipulation System</message>
 <message>1#A database can be defined as a:#data collection managed by a DBMS#file collection manages by a DBMS#data collection stored in some files#simple file collection</message>
 <message>1#Which database part is invariant?#schemas#instances#records#attributes</message>
-<message>1DDL is:#Data Definition Language#Database Definition Language#Data Description Language#Databse Description Language#</message>
+<message>1#DDL is:#Data Definition Language#Database Definition Language#Data Description Language#Databse Description Language#</message>
 <message>1#DCL is:#Data Control Language#Database Control Language#Data Check Language#Database Construction Language</message>
 <message>2#In the relational model:#a relation is also a table#a table is also a relation#tables do not belong to the relational model#relations and tables are equivalent</message>
 <message>2#In the relational model, a superkey is also a key:#True#False#It depends on the relation#Superkeys do not belong to the relational model</message>

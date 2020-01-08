@@ -5,24 +5,20 @@
  */
 package exam;
 
-import character.Status;
 import character.StatusManager;
 import exam.booklet.Booklet;
 import exam.booklet.Subject;
 import exam.question.*;
 import game.GameObjects.Professor;
-import game.Interfaces.Initializable;
 import game.Interfaces.Initializable.InitException;
 import gameSystem.map.MapManager;
-import hud.change.CanteenHudBarChange;
+import hud.HudUpdater;
 import hud.change.CorrectAnswerHudBarChange;
 import hud.change.WrongAnswerHudBarChange;
 import java.util.ArrayList;
 import language.FileTextManager;
 import language.MessageInformation;
-import language.exceptions.FileTextManagerException;
 import language.exceptions.TextFinderException;
-import sound.JukeBoxMusic;
 import sound.JukeBoxSound;
 import unisagui.*;
 
@@ -50,11 +46,11 @@ public class Exam implements Runnable {
     private final Professor professor;
 
     /**
-     * Constructor. Given a examSubject fetches the questions.
-     *
-     * @param materia An object Materia needed to load the correct exam's
-     * questions
-     *
+     * Exam constructor, sets the professor, the subject and other params
+     * @param subject the subject of exam
+     * @param p the professor 
+     * @throws TextFinderException
+     * @throws game.Interfaces.Initializable.InitException 
      */
     public Exam(Subject subject, Professor p) throws TextFinderException, InitException {
         this.subject = subject;
@@ -121,6 +117,7 @@ public class Exam implements Runnable {
     @Override
     public void run() {
         MapManager.getInstance().stopGeneratingCoins();
+        HudUpdater.pause();
         GuiManager gui = GuiManager.getInstance();
         ResultGui rg = new ResultGui(questionTime);
         RequestGui praiseRequest = new RequestGui();
@@ -201,10 +198,6 @@ public class Exam implements Runnable {
                     r.getValue();
                 } catch (DialogManager.DialogAlreadyOpenedException ex) {
                 }
-                
-                // remove professor
-                MapManager.getInstance().getMap().removeObject(professor.getPosition().getScaledPosition());
-                
             } else if (voto == 31) {
                 JukeBoxSound.getInstance().play("exam_passed");
                 try {
@@ -212,9 +205,6 @@ public class Exam implements Runnable {
                     r.getValue();
                 } catch (DialogManager.DialogAlreadyOpenedException ex) {
                 }
-                
-                // remove professor
-                MapManager.getInstance().getMap().removeObject(professor.getPosition().getScaledPosition());
             } else {
                 try {
                     JukeBoxSound.getInstance().play("exam_failed");
@@ -224,9 +214,13 @@ public class Exam implements Runnable {
                 }
             }
             if (this.score >= 18) {
-                StatusManager.getInstance().updateMoney((this.score - 18) + this.coinReward);
                 Booklet.getInstance().setScore(subject, voto);
+                StatusManager.getInstance().updateMoney((this.score - 18) + this.coinReward);
+                // remove professor
+                MapManager.getInstance().getMap().removeObject(professor.getPosition().getScaledPosition());
             }
+            
+            HudUpdater.resume();
         } catch (TextFinderException ex) {
             ex.printStackTrace();
         } catch (InitException ex) {

@@ -13,7 +13,7 @@ import java.util.StringTokenizer;
 /**
  * Factory for Normal Person, to be inserted in the database
  *
- * @author alfon
+ * @author Alfonso De Masi
  */
 public class NormalPersonFactory extends StorableCreator {
 

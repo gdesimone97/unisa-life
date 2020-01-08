@@ -38,6 +38,10 @@ public class Answer {
         return correct;
     }
 
+    /**
+     * convert answer to string
+     * @return 
+     */
     public String toString() {
         return answer;
     }

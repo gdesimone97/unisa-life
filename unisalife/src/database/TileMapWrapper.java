@@ -12,7 +12,7 @@ import org.dizitart.no2.objects.Id;
 
 /**
  * Wrapper class to mantain a TileMap object without loading its images
- * @author alfon
+ * @author Alfonso De Masi
  */
 public class TileMapWrapper implements Storable, Serializable {
 
@@ -24,7 +24,18 @@ public class TileMapWrapper implements Storable, Serializable {
     private int w;
     private Position pos;
     private String minimapPath;
-
+    
+    
+    /**
+     * Constructor of the wrapped class
+     * @param id Map id integer
+     * @param l length
+     * @param w width
+     * @param p path of the tileset
+     * @param m path of the map
+     * @param pos initial position of the player in the map
+     * @param minimapPath path of the mini-map related to the map
+     */
     public TileMapWrapper(int id, int l, int w, String p, String m, Position pos, String minimapPath) {
         this.id = id;
         this.p = p;
@@ -38,26 +49,7 @@ public class TileMapWrapper implements Storable, Serializable {
     private TileMapWrapper() {
 
     }
-
-    public int getId() {
-        return id;
-    }
-
-    public String getP() {
-        return p;
-    }
-
-    public String getM() {
-        return m;
-    }
-
-    public int getL() {
-        return l;
-    }
-
-    public int getW() {
-        return w;
-    }
+ 
     
     /**
      * Method to obtain a loaded TileMap from the Wrapper
@@ -66,11 +58,18 @@ public class TileMapWrapper implements Storable, Serializable {
     public TileMap buildTileMap() {
         return new TileMap(id, l, w, p, m, pos, minimapPath);
     }
-
+    
+    /**
+     * Getter of the miniMap
+     * @return string of the path of the minimap
+     */
     public String getMiniMapPath(){
         return this.minimapPath;
     }
 
+    /**
+     * {@inheritDoc} 
+     */
     @Override
     public String getIndex() {
         return Integer.toString(this.id);

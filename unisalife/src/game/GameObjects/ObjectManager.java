@@ -19,6 +19,11 @@ public class ObjectManager {
     private ConcurrentHashMap<Position,GameObject> fixed;
     private ConcurrentHashMap<Position,Renderable> dynamic;
 
+    /**
+     *
+     * @param fixed HashMap containing objects fixed in the map that will not be removed during the game
+     * @param dynamic HashMap containing objects in the map that could be removed during the game
+     */
     public ObjectManager(ConcurrentHashMap<Position, GameObject> fixed, ConcurrentHashMap<Position, Renderable> dynamic) {
         this.fixed = fixed;
         this.dynamic = dynamic;
@@ -77,10 +82,18 @@ public class ObjectManager {
             fixed.put(p, g);
     }
 
+    /**
+     * 
+     * @return HashMap of fixed GameObjects
+     */
     public ConcurrentHashMap<Position, GameObject> getFixed() {
         return fixed;
     }
 
+    /**
+     *
+     * @return HashMap of dynamic GameObjects
+     */
     public ConcurrentHashMap<Position, Renderable> getDynamic() {
         return dynamic;
     }

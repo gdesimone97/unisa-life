@@ -5,17 +5,12 @@
  */
 package game.GameObjects;
 
-import game.GameObjects.Position;
 import game.Interfaces.Interactable;
 import interaction.InteractionManager;
-import interaction.ItemInteractionManager;
 import interaction.TeleportInteractionManager;
-import java.awt.Color;
-import java.awt.Graphics;
-import java.util.LinkedList;
 
 /**
- *
+ * this class represent a teleport that allows player to change map in the game
  * @author simon
  */
 public class Teleport extends GameObject implements Interactable {
@@ -38,27 +33,19 @@ public class Teleport extends GameObject implements Interactable {
         super();
     }
 
+    /**
+     *
+     * @param p position of the teleport
+     * @param map map in which the player will move
+     * @param d initial position of the player in new map
+     */
     public Teleport(Position p, int map, Position d) {
         super(p);
         mapDest = map;
         this.d = d;
     }
 
-    //render is void because a Teleport is invisible.
-    /**
-     *
-     * @param g
-     */
-    /*public void render(Graphics g) {
-        g.setColor(Color.blue);
-        g.fillRect(p.getX(), p.getY(), (int) width, (int) height);
-    }
-    //tick is void because the collision is handled by Player's tick method.
-
-    /**
-     *
-     * @param objects
-     */
+    
     /**
      *
      * @return destination of the teleport
@@ -75,12 +62,19 @@ public class Teleport extends GameObject implements Interactable {
         return mapDest;
     }
 
+    /**
+     * this method executes the change of map
+     */
     @Override
     public void interact() {
         InteractionManager im = new TeleportInteractionManager();
         im.execute(this);
     }
 
+    /**
+     *
+     * @return index of teleport in order to access to the Database
+     */
     @Override
     public String getIndex() {
         return "Teleport";

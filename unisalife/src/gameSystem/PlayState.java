@@ -14,7 +14,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 
 /**
- *
+ * This state allows the game work as it should
  * @author 1997g
  */
 public class PlayState extends GameState {
@@ -29,6 +29,10 @@ public class PlayState extends GameState {
     private int height;
     private int width;
 
+    /**
+     * returns the instance
+     * @return 
+     */
     public static PlayState getInstance() {
         if (instance == null) {
             instance = new PlayState();
@@ -39,6 +43,9 @@ public class PlayState extends GameState {
     private PlayState() {
     }
 
+    /**
+     * initializes some properties
+     */
     @Override
     public void init() {
         gameManager = GameManager.getInstance();
@@ -48,17 +55,28 @@ public class PlayState extends GameState {
         width = gameManager.getGame().WIDTHSCREEN;
     }
 
+    /**
+     * handles the input of this state
+     * @param cmd 
+     */
     @Override
     public void handleInput(KeyCommand cmd) {
         cmd.visitPlayState(this);
     }
 
+    /**
+     * calls the tick on the player and on the camera
+     */
     @Override
     public void tick() {
         player.tick();
         camera.tick();
     }
-
+    
+    /**
+     * sets the background color and calls the render method on the map and player
+     * @param g 
+     */
     @Override
     public void render(Graphics2D g) {
         g.setColor(color);

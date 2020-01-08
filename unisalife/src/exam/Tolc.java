@@ -5,7 +5,6 @@
  */
 package exam;
 
-import character.StatusManager;
 import exam.booklet.Booklet;
 import exam.booklet.Subject;
 import exam.question.*;
@@ -16,9 +15,8 @@ import game.GameObjects.Teleport;
 import game.GameResources.Map;
 import game.Interfaces.Initializable.InitException;
 import gameSystem.map.MapManager;
+import hud.HudUpdater;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import language.FileTextManager;
 import language.MessageInformation;
 import language.exceptions.TextFinderException;
@@ -45,11 +43,11 @@ public class Tolc implements Runnable {
     private final Professor professor;
 
     /**
-     * constructor of the class
+     * the constructor of the tolc
      * @param s the subject
-     * @param profName the name of the professor
-     * @throws TextFinderException if questions are not in the file
-     * @throws game.Interfaces.Initializable.InitException if cannot be initializable
+     * @param p the professor
+     * @throws TextFinderException
+     * @throws game.Interfaces.Initializable.InitException 
      */
     public Tolc(Subject s, Professor p) throws TextFinderException, InitException {
         this.subject = s;
@@ -80,6 +78,7 @@ public class Tolc implements Runnable {
     @Override
     public void run() {
         MapManager.getInstance().stopGeneratingCoins();
+        HudUpdater.pause();
         GuiManager gui = GuiManager.getInstance();
         ResultGui rg = new ResultGui(questionTime);
         RequestGui nextQuestion = new RequestGui();
@@ -116,6 +115,7 @@ public class Tolc implements Runnable {
             RequestGui r = new RequestGui();
             FileTextManager f = FileTextManager.getFileTextManager();
             if (passed) {
+                Booklet.getInstance().setScore(subject, 30);
                 try {
                     JukeBoxSound.getInstance().play("exam_passed");
                     gui.showDialog(professorName, f.getString(new MessageInformation("TolcPassedName")).get(0) + Player.getIstance().getName() + f.getString(new MessageInformation("TolcPassedName")).get(1), r);
@@ -141,15 +141,16 @@ public class Tolc implements Runnable {
                 // remove professor
                 map.removeObject(professor.getPosition().getScaledPosition());
                 
-                Booklet.getInstance().setScore(subject, 30);
             } else {
                 try {
                     gui.showDialog(professorName, f.getString(new MessageInformation("TolcFailedName")).get(0) + Player.getIstance().getName() + f.getString(new MessageInformation("TolcFailedName")).get(1), r);
-                    rg.getValue();
+                    r.getValue();
                 } catch (DialogManager.DialogAlreadyOpenedException ex) {
                 }
                 JukeBoxSound.getInstance().play("exam_failed");
             }
+            
+            HudUpdater.resume();
         } catch (TextFinderException ex) {
             ex.printStackTrace();
         } catch (InitException ex) {

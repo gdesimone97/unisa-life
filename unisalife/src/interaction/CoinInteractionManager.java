@@ -12,11 +12,15 @@ import gameSystem.map.MapManager;
 import sound.JukeBoxSound;
 
 /**
- *
+ * Interaction manager used when the player picks up a coin
  * @author 1997g
  */
 public class CoinInteractionManager implements InteractionManager {
 
+    /**
+     * execute method for the related object
+     * @param obj 
+     */
     @Override
     public void execute(Interactable obj) {
         // remove element from the the map

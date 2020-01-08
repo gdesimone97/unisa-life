@@ -119,6 +119,7 @@ public class Subject implements Information, Serializable, Comparable, Storable 
 
     }
 
+    
     @Override
     public String getIndex() {
         return this.subject;

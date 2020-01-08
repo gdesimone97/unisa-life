@@ -33,7 +33,10 @@ public class SaveableObject<T extends Saveable> implements Serializable {
     public T getInnerObj() {
         return innerObj;
     }
-
+    
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString() {
         return innerObj.getClass().getSimpleName();

@@ -91,7 +91,18 @@ public class CacheFileTextFinderTest {
         System.out.println("getString");
         GenericClass instance = new GenericClass("TestMultipleInfo");
         FileTextFinder finder = FileTextFinder.getFileTextFinder(fileName);
+        System.out.println("First Call");
         List<String> resultList = finder.getString(instance);
+        
+        for(String s: resultList){
+            System.out.println(s);
+        }
+        System.out.println("Second Call");
+        List<String> secondResultList = finder.getString(instance);
+        
+        for(String s: secondResultList){
+            System.out.println(s);
+        }
         assertTrue(resultList.size()>1);
     }
 

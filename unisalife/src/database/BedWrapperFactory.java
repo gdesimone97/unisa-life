@@ -13,7 +13,7 @@ import java.util.StringTokenizer;
 /**
  * Storable Creator for BedWrapper
  *
- * @author alfon
+ * @author Alfopnso De Masi
  */
 public class BedWrapperFactory extends StorableCreator {
 

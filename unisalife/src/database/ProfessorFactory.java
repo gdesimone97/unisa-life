@@ -18,9 +18,6 @@ import java.util.StringTokenizer;
  */
 public class ProfessorFactory extends StorableCreator {
 
-    public ProfessorFactory() {
-    }
-
     /**
      *
      * @param s The string that contains every field needed to construct the

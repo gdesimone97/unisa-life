@@ -89,7 +89,8 @@ public class CacheFileTextFinder extends FileTextFinder {
             this.updateCache(returnNode);
             returnList = returnNode.getMessages();
         }
-        return returnList;
+        ArrayList<String> copyOfList = new ArrayList<>(returnList);
+        return copyOfList;
     }
 
     /**

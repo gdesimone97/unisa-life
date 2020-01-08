@@ -19,12 +19,16 @@ import language.exceptions.TextFinderException;
 public abstract class FileTextFinder implements TextFinder {
 
     private static String fileName = null;
-
+    
+    /**
+     * Empty Constructor
+     */
     protected FileTextFinder() {
     }
 
     /**
      * @return the common current filename setted for that language
+     * @throws language.exceptions.FileNotSetException
      */
     public static String getFileName() throws FileNotSetException {
         if (FileTextFinder.fileName == null) {
@@ -36,7 +40,7 @@ public abstract class FileTextFinder implements TextFinder {
     /**
      * Change the common current filename to a new one
      *
-     * @param fileName
+     * @param fileName 
      * @throws language.exceptions.FileNotSetException
      * @throws language.exceptions.InvalidFileNameException
      */
@@ -69,10 +73,13 @@ public abstract class FileTextFinder implements TextFinder {
     }
 
     /**
-     * Method to get an istance of the FileTextFinder. Because it implements a
+     * Method to get an istance of the FileTextFinder.Because it implements a
      * cache proxy patter, this actually points to a cache text finder
      *
+     * @param fileName the path of the file to be set
      * @return an istance of the CacheFileTextFinder
+     * @throws language.exceptions.FileNotSetException
+     * @throws language.exceptions.InvalidFileNameException
      */
     public synchronized static FileTextFinder getFileTextFinder(String fileName) throws TextFinderException, FileNotSetException, InvalidFileNameException {
         FileTextFinder.setFileName(fileName);      

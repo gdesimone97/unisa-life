@@ -10,8 +10,15 @@ package exam;
  * @author 1997g
  */
 public class ExamResult {
+
+    /**
+     *
+     */
     protected int value = 0;
 
+    /**
+     * Empty constructor
+     */
     public ExamResult() {
     }
 /**
