@@ -11,6 +11,9 @@ package database;
  */
 public class InvalidArgumentListException extends RuntimeException {
 
+    /**
+     * Construct the exception including details as message field of Exception
+     */
     public InvalidArgumentListException() {
         super("Actual list of parameters differ in length/format, cannot crate the object");
     }

@@ -12,6 +12,9 @@ package database;
  */
 public class InvalidGameDataFormatException extends Exception {
 
+    /**
+     * Construct the exception including details as message field of Exception
+     */
     public InvalidGameDataFormatException() {
         super("Invalid or missing fields in game data file");
     }
