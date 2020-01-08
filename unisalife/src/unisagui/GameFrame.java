@@ -12,14 +12,11 @@ import gameSystem.PlayState;
 import gameSystem.keySettings.SettingsManager;
 import java.awt.Component;
 import java.awt.Dialog;
-import java.text.ParseException;
 import java.util.HashSet;
 import java.util.Set;
 import javax.swing.ButtonGroup;
-import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
-import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
@@ -27,10 +24,7 @@ import javax.swing.table.TableColumn;
 import saving.SaveManager;
 import sound.JukeBoxMusic;
 import sound.JukeBoxSound;
-import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
-import javax.swing.ListModel;
-import javax.swing.text.MaskFormatter;
 import language.FileTextManager;
 import saving.exceptions.SavingException;
 
@@ -84,8 +78,8 @@ public class GameFrame extends javax.swing.JFrame {
         settingLocations(this);
         initialSettings(this);
         initializingTable();
-        setComponentsNames();
-        //saveManager qui
+        setComponentsNames();// used for JUnit Test
+       
     }
 
     /**
@@ -109,6 +103,7 @@ public class GameFrame extends javax.swing.JFrame {
         InteractField.setName("interact");
         PauseField.setName("pause");
         MapField.setName("map");
+        AvatarOkButton.setName("okbutton");
   
     }
 
@@ -180,7 +175,9 @@ public class GameFrame extends javax.swing.JFrame {
         
 
     }
-    
+    /**
+     * Render the cell with the image
+     */
     class CellRender implements TableCellRenderer {
 
         public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected,
@@ -2120,7 +2117,7 @@ public class GameFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_ConfirmAnswerActionPerformed
 
     private void AudioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AudioButtonActionPerformed
-        // DA CANCELLARE, CREATO COL COMMIT DI PEPPE
+        
     }//GEN-LAST:event_AudioButtonActionPerformed
 
     private void NewGameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewGameButtonActionPerformed

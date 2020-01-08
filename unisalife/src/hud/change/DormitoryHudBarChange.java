@@ -8,11 +8,16 @@ package hud.change;
 import character.StatusManager;
 
 /**
- *
+ * This class is one of the ConcreteStrategy classes implementing the strategy HudBarChange.
+ * It implements the bar changes due to a rest at the dormitory.
  * @author mariodesio
  */
 public class DormitoryHudBarChange implements HudBarChange {
 
+     /**
+     * This method allows to implement the bar changes due to a rest at the dormitory.
+     * Energy will be resetted 
+     */
     @Override
     public void execute() {
         StatusManager.getInstance().updateEnergy(100);

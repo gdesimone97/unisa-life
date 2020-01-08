@@ -190,8 +190,7 @@ public class GuiManager {
      * When called one of the exam question is written in the Exam Dialog
      *
      * @param answer is the answer that has to be written
-     * @param postion is the position of the answer in the exam dialog, position
-     * <=4
+     * @param postion is the position of the answer in the exam dialog
      * @throws java.lang.Exception
      */
     public void setExamAnswer(String answer, int postion) throws Exception {

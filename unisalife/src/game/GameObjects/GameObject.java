@@ -16,27 +16,49 @@ import java.io.Serializable;
  */
 public abstract class GameObject implements Storable,Serializable {
 
+    /**
+     * width in term of pixel of the object
+     */
     protected int width = Game.DIMENSIONSPRITE;
+
+    /**
+     * height in term of pixel of the object
+     */
     protected int height = Game.DIMENSIONSPRITE;
+
+    /**
+     *
+     * Position of the object in the map
+     */
     protected Position p;
 
+    /**
+     *
+     */
     protected GameObject() {
 
     }
 
     /**
      *
-     * @param x
-     * @param y
+     * @param p position of the object
      */
     public GameObject(Position p) {
         this.p = p;
     }
 
+    /**
+     *
+     * @return position of the object
+     */
     public Position getPosition() {
         return this.p;
     }
 
+    /**
+     *
+     * @return position of the object scaled with respect to the dimension of sprites of game
+     */
     public Position getScaledPosition() {
         return this.p.getScaledPosition();
     }

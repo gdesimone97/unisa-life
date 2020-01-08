@@ -5,7 +5,6 @@
  */
 package database;
 
-import database.populator.exceptions.InvalidGameDataFormatException;
 import exam.booklet.Subject;
 import game.GameObjects.Position;
 import game.GameObjects.Renderable;

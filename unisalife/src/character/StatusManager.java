@@ -25,6 +25,10 @@ public class StatusManager implements Saveable, Initializable {
     private final GameFrame gameframe = GameFrame.getInstance();
     private HudUpdater updater;
     private static StatusManager instance;
+
+    /**
+     * This thread is the one associated with the StatusManager
+     */
     protected static Thread up;
 
     /**
@@ -174,7 +178,7 @@ public class StatusManager implements Saveable, Initializable {
     }
 
     /**
-     *
+     * This method starts the HudUpdater thread, initializing the status of the character.
      */
     @Override
     public void init() {

@@ -11,6 +11,9 @@ package game.GameObjects;
  */
 public class ImageNotLoadedException extends Exception {
 
+    /**
+     * costructor
+     */
     public ImageNotLoadedException() {
     }
     

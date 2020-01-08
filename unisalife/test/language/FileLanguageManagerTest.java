@@ -42,6 +42,7 @@ public class FileLanguageManagerTest {
 
     /**
      * Test of getLanguageManager method, of class FileLanguageManager.
+     * @throws language.exceptions.FileLanguageManagerException
      */
     @Test
     public void testGetLanguageManager() throws FileLanguageManagerException {
@@ -53,6 +54,7 @@ public class FileLanguageManagerTest {
 
     /**
      * Test of getAvailableLanguages method, of class FileLanguageManager.
+     * @throws language.exceptions.FileLanguageManagerException
      */
     @Test
     public void testGetAvailableLanguages() throws IOException, FileLanguageManagerException {

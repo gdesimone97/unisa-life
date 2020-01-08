@@ -70,8 +70,7 @@ public class GameFrameTest {
     }
     */
 
-    
-    
+
     
      
     @Test
@@ -90,6 +89,7 @@ public class GameFrameTest {
         JDialog temp;
         String result;
         JTextField inputTest;
+        JButton ok;
 
         frame = GameFrame.getInstance();
         frame.setVisible(true);
@@ -102,12 +102,18 @@ public class GameFrameTest {
         inputTest.setText("davide");
         sleep(1000);
         inputTest.postActionEvent();
-        sleep(1000);
-    
 
         result = "davide";
         
         assertEquals(result,inputTest.getText());
+        
+        inputTest.setText("");
+        sleep(1000);
+        inputTest.postActionEvent();
+        ok=(JButton) TestUtils.getChildNamed(temp, "okbutton");
+
+        
+        assertNotEquals(true,ok.isEnabled());
     }
     
     @Test

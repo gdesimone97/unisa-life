@@ -5,7 +5,6 @@
  */
 package database;
 
-import database.populator.exceptions.InvalidGameDataFormatException;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -47,7 +46,7 @@ public class Populator {
      * effective file.
      * @throws IOException If the file can't be opened.
      * @throws InvalidGameDataFormatException If a line in the file doesn't
-     * follow the basic structure <objectType> <parameters>
+     * follow the basic structure "[objectType] [parameters]"
      * @throws FileNotSetException If a file hasn't been set in the Database
      * class.
      */
@@ -73,11 +72,9 @@ public class Populator {
                 ObjectRepository repo = db.getNitriteDatabase().getRepository(sitem.getClass());
                 repo.insert(sitem);
                 if (tokens.length == 3) {
-                    //System.out.println("Ci sono 3 token");
                     StringTokenizer subst = new StringTokenizer(tokens[2], StorableCreator.DELIMETER);
                     String mapTok = subst.nextToken();
                     String repoTok = subst.nextToken();
-                    //System.out.println(" REPO -> " + repoTok + " MAPPA -> " + mapTok);
                     db.getNitriteDatabase().getCollection(repoTok.equals("d") ? DatabaseManager.DYNCOLLECTIONNAME : DatabaseManager.FIXEDCOLLECTIONNAME).insert(
                             Document.createDocument("IDMAP", mapTok).put("IDOBJ", sitem.getIndex()).put("CLASSOBJ", sitem.getClass().getName())
                     );

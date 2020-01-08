@@ -12,7 +12,8 @@ import interaction.InteractionManager;
 import org.dizitart.no2.objects.Id;
 
 /**
- *
+ * Distributor represent an object in the game the allows the player to 
+ * buy a meal to satisfy the hunger
  * @author 1997g
  */
 public class Distributor extends GameObject implements Interactable, Storable {
@@ -24,17 +25,29 @@ public class Distributor extends GameObject implements Interactable, Storable {
         super();
     }
 
+    /**
+     * Costructor of the class
+     * @param p position of the object in the map
+     * @param info paramter for Database
+     */
     public Distributor(Position p, String info) {
         super(p);
         this.info = info;
     }
 
+    /**
+     * This method executes the interaction of player with a distributor
+     */
     @Override
     public void interact() {
         InteractionManager im = new DistributorInteractionManager();
         im.execute(this);
     }
 
+    /**
+     * 
+     * @return index in order to access to the Database
+     */
     @Override
     public String getIndex() {
         return this.info;

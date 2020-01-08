@@ -21,18 +21,26 @@ public abstract class Renderable extends GameObject {
     private String path;
     private transient BufferedImage image;
 
+    /**
+     *
+     * @param p position of the object
+     * @param path path of the image to be loaded and rendered during the game
+     */
     public Renderable(Position p, String path) {
         super(p);
         this.path = path;
     }
 
+    /**
+     * costructor
+     */
     protected Renderable() {
     }
 
     /**
      * Method to load the image from the path
      *
-     * @throws game.GameObjects.ImageNotLoadedException
+     * @throws game.GameObjects.ImageNotLoadedException 
      */
     public void loadImage() throws ImageNotLoadedException {
         try {
@@ -60,8 +68,9 @@ public abstract class Renderable extends GameObject {
     }
 
     /**
-     * Method to be implemented. It provides the mechanism to render the object
-     * in the game.
+     * Method to be implemented.It provides the mechanism to render the object
+ in the game.
+     * @param g graphics of the canvas
      */
     public abstract void render(Graphics g);
 
