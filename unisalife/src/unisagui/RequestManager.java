@@ -29,6 +29,11 @@ import javax.swing.SwingUtilities;
     protected static void setRESULT(boolean RESULT) {
         rq.setValue(RESULT);
     }
+    /**
+     * show request
+     * @param id the request
+     * @param show true or false
+     */
 
     public void showRequest(String id, boolean show) {
         this.setInfo(id);
@@ -39,7 +44,10 @@ import javax.swing.SwingUtilities;
     private void setInfo(String id) {
         info = id;
     }
-
+    /**
+     * 
+     * @return info info
+     */
     public String getInfo() {
         return info;
     }
@@ -53,7 +61,6 @@ import javax.swing.SwingUtilities;
         rq = lock;
         SwingUtilities.invokeLater(() -> gameframe.RequestLabel.setText(s));
         SwingUtilities.invokeLater(() -> gameframe.RequestDialog.setVisible(true));
-        System.err.println("sono DENTRO REQUEST");
     }
 
 }
