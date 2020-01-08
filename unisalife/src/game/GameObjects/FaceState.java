@@ -18,8 +18,8 @@ public abstract class FaceState {
     }
 
     /**
-     * returns the position the player is looking at
-     * @return
+     * 
+     * @return the position the player is looking at
      */
     public abstract Position visualViewOfPlayer();
 
@@ -30,8 +30,8 @@ public abstract class FaceState {
     public abstract void drawFace(Graphics g);
 
     /**
-     * returns the position the player will occupy
-     * @return
+     * 
+     * @return the position the player will occupy
      */
     public abstract Position nextStep();
     
