@@ -14,7 +14,7 @@ import hud.change.CanteenHudBarChange;
 import language.FileTextManager;
 import language.MessageInformation;
 import saving.SaveManager;
-import jubox.JukeBoxSound;
+import jukebox.JukeBoxSound;
 import unisagui.GuiManager;
 import unisagui.RequestGui;
 

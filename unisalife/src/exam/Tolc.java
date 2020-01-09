@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import language.FileTextManager;
 import language.MessageInformation;
 import language.exceptions.TextFinderException;
-import jubox.JukeBoxSound;
+import jukebox.JukeBoxSound;
 import unisagui.*;
 
 /**

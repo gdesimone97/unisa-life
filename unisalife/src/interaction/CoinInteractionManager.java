@@ -9,7 +9,7 @@ import character.StatusManager;
 import game.GameObjects.Item;
 import game.Interfaces.Interactable;
 import gameSystem.map.MapManager;
-import jubox.JukeBoxSound;
+import jukebox.JukeBoxSound;
 
 /**
  * Interaction manager used when the player picks up a coin

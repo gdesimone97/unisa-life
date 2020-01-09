@@ -14,7 +14,7 @@ import gameSystem.GameStateManager;
 import gameSystem.LoadingState;
 import gameSystem.PlayState;
 import gameSystem.map.MapManager;
-import jubox.JukeBoxSound;
+import jukebox.JukeBoxSound;
 
 /**
  * interaction manager used to interact with teleports

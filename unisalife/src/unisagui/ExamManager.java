@@ -9,8 +9,8 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
-import jubox.JukeBoxMusic;
-import jubox.JukeBoxSound;
+import jukebox.JukeBoxMusic;
+import jukebox.JukeBoxSound;
 
 /**
  *

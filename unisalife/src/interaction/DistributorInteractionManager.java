@@ -11,7 +11,7 @@ import game.Interfaces.Interactable;
 import hud.change.VendingMachineHudBarChange;
 import language.FileTextManager;
 import language.MessageInformation;
-import jubox.JukeBoxSound;
+import jukebox.JukeBoxSound;
 import unisagui.GuiManager;
 
 /**

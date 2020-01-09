@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package jubox;
+package jukebox;
 
 import java.io.BufferedInputStream;
 import java.io.File;
@@ -29,7 +29,7 @@ public class JukeBoxSound implements JukeBox {
     private static int frame;
     private static boolean isActive;
     private final String pathFile = "./Resources/Sound/Sound.txt";
-    private static JukeBoxSound instance;
+    private static JukeBoxSound instance = new JukeBoxSound();
     private double gain = 0.99;
     private float dB = (float) (Math.log(gain) / Math.log(10.0) * 20.0);
 
@@ -53,9 +53,6 @@ public class JukeBoxSound implements JukeBox {
      * and returns a new one.
      */
     public static JukeBoxSound getInstance() {
-        if (instance == null) {
-            instance = new JukeBoxSound();
-        }
         return instance;
     }
 
@@ -151,9 +148,9 @@ public class JukeBoxSound implements JukeBox {
     @Override
     public void load(String path, String key) {
         Clip clip;
-        try {
-            AudioInputStream ais = AudioSystem.getAudioInputStream(new BufferedInputStream(
-                    JukeBoxSound.class.getResourceAsStream(path)));
+        try(AudioInputStream ais = AudioSystem.getAudioInputStream(new BufferedInputStream(
+                    JukeBoxSound.class.getResourceAsStream(path)));) {
+            
             AudioFormat baseFormat = ais.getFormat(); //obtain audio format
             AudioFormat decodeFormat = new AudioFormat(
                     AudioFormat.Encoding.PCM_SIGNED,
@@ -168,7 +165,9 @@ public class JukeBoxSound implements JukeBox {
             clip = AudioSystem.getClip();
             clip.open(dais);
             clips.put(key, clip);
+            dais.close();
         } catch (IOException | LineUnavailableException | UnsupportedAudioFileException e) {
+            System.out.println(e.getMessage());
             e.printStackTrace();
         }
     }

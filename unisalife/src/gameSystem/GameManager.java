@@ -19,8 +19,8 @@ import quests.QuestsManager;
 import quests.quest.Quests;
 import saving.SaveManager;
 import saving.exceptions.SavingException;
-import jubox.JukeBoxMusic;
-import jubox.JukeBoxSound;
+import jukebox.JukeBoxMusic;
+import jukebox.JukeBoxSound;
 import unisagui.GuiManager;
 
 /**
@@ -135,8 +135,8 @@ public class GameManager {
                 Quests.getInstance().init();
                 Booklet.getInstance().init();
                 GameInventory.getInstance().init();
-                JukeBoxMusic.getInstance();
-                JukeBoxSound.getInstance();
+                //JukeBoxMusic.getInstance();
+                //JukeBoxSound.getInstance();
 
                 //This is the last to be started
                 StatusManager.getInstance().init();
